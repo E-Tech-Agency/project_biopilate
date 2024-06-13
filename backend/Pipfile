@@ -1,0 +1,42 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+asgiref = "*"
+cachetools = "*"
+certifi = "*"
+charset-normalizer = "*"
+django = "==4.2"
+django-cors-headers = "*"
+django-environ = "*"
+djangorestframework = "*"
+djangorestframework-simplejwt = "*"
+google-api-core = "*"
+google-api-python-client = "*"
+google-auth = "*"
+google-auth-httplib2 = "*"
+googleapis-common-protos = "*"
+httplib2 = "*"
+idna = "*"
+protobuf = "*"
+pyasn1 = "*"
+pyasn1-modules = "*"
+pyjwt = "*"
+pyparsing = "*"
+pytz = "*"
+requests = "*"
+rsa = "*"
+six = "*"
+sqlparse = "*"
+tzdata = "*"
+uritemplate = "*"
+urllib3 = "*"
+pillow = "*"
+psycopg2-binary = "*"
+
+[dev-packages]
+
+[requires]
+python_version = "3.12"
