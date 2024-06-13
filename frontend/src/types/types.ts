@@ -129,7 +129,7 @@ export type Teache = {
     email : string;
     nomber_phone : number;
     specialite : string;
-    created_at: Date;
+    create_at: Date;
     updated_at: Date;
 }
 export type TeacherFormType = {

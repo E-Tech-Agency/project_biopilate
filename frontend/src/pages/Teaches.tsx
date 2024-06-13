@@ -1,7 +1,7 @@
 import SideNav from '@/components/shared/side-nav';
 
 import CreateTeacherFrom from '@/components/biopilate/CreateTeacherFrom';
-import ProductsTable from '@/components/supplier/products-table';
+import TeachesShow from '@/components/biopilate/TeachesShow';
 
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
@@ -21,7 +21,7 @@ export default function Teaches() {
             <SideNav/>
             <div>
                 <div className='flex flex-row justify-evenly items-center m-6'>
-                <ProductsTable/>
+                <TeachesShow/>
                 <div className='flex flex-col gap-4'>
                 <CreateTeacherFrom/>
                     {/* <CreateCategory/> */}

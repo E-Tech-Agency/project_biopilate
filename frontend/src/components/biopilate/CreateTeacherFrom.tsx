@@ -63,7 +63,7 @@ export default function CreateTeacherFrom() {
                 specialite: "",
                 image: null,
             })
-            toast.success("Teacher created")
+            toast.success("Instructeur created")
         } catch (error) {
             if(axios.isAxiosError(error)){
                 const errorsFromDb = error.response?.data;
