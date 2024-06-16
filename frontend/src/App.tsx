@@ -12,7 +12,10 @@ import AdminDashboard from './pages/admin-dashboard';
 import UserProfile from './pages/user-profile';
 import OneProduct from './pages/one-product';
 import EditProduct from './pages/edit-product';
+// biopilate
 import Teaches from './pages/Teaches';
+import Tages from './pages/Tages';
+import Services from './pages/Services';
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
@@ -50,6 +53,8 @@ function App() {
         <Route path='/update-product/:id' element={<EditProduct />} />
         {/* biopilate  */}
         <Route path='/Teaches-biopilate' element={<Teaches />} />
+        <Route path='/Tages-biopilate' element={<Tages />} />
+        <Route path='/Service-biopilate' element={<Services />} />
       </Routes>
       <Toaster />
       <Footer/>

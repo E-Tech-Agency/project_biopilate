@@ -149,3 +149,51 @@ export type CreateTeacherErrors = {
     image?: string[];
    
 }
+export type Tage = {
+    id: number;
+    title : string;
+    status : string;
+    create_at: Date;
+    updated_at: Date;
+}
+export type TagesFormType = {
+    title : string;
+    status : string;   
+
+}
+export type CreateTagesErrors = {
+    title?: string[];
+    status?: string[];
+    
+   
+}
+export type Service = {
+    id: number;
+    title : string;
+    image: string;
+    description : string;
+    full_text : string;
+    status : string;
+    instructeur : string;
+    create_at: Date;
+    updated_at: Date;
+}
+export type ServiceFormType = {
+    title : string;
+    image: File | null;
+    description : string;
+    full_text : string;
+    status : string;
+    instructeur : string;
+    
+
+}
+export type CreateServiceErrors = {
+    title?: string[];
+    image?: string[];
+    description?: string[];
+    full_text?: string[];
+    status?: string[];
+    instructeur?: string[];
+   
+}
