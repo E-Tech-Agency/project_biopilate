@@ -16,6 +16,8 @@ import EditProduct from './pages/edit-product';
 import Teaches from './pages/Teaches';
 import Tages from './pages/Tages';
 import Services from './pages/Services';
+import EditService from './pages/EditService';
+import Planning from './pages/Planning';
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
@@ -55,6 +57,10 @@ function App() {
         <Route path='/Teaches-biopilate' element={<Teaches />} />
         <Route path='/Tages-biopilate' element={<Tages />} />
         <Route path='/Service-biopilate' element={<Services />} />
+        <Route path="/edit-service/:id" element={<EditService/>}/>
+        <Route path="/planning-biopilat" element={<Planning/>}/>
+                    
+                
       </Routes>
       <Toaster />
       <Footer/>

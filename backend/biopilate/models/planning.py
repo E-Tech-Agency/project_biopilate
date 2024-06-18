@@ -11,7 +11,8 @@ class Planning(models.Model):
         ('approved', 'Publiée'),
         ]
     title = models.CharField('Titre',max_length=255)
-    description = models.TextField()
+    duree = models.CharField('durée ',max_length=255,blank=True, null=True,)
+    description = models.TextField(blank=True, null=True)
     range=models.IntegerField(default='1')
     status = models.CharField('Status', max_length=10, choices=STATUS_CHOICES, default='pending')
     category = models.ForeignKey(Category, on_delete=models.CASCADE, blank=True, null=True, related_name='category')

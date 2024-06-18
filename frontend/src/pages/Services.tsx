@@ -1,11 +1,9 @@
 import SideNav from '@/components/shared/side-nav';
-
-import CreateTeacherFrom from '@/components/biopilate/CreateTeacherFrom';
-import TeachesShow from '@/components/biopilate/TeachesShow';
-
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import CreateServicesForm from '@/components/biopilate/CreateServicesFrom';
+import ServiceShow from '@/components/biopilate/ServiceShow';
+
 export default function Services() {
     const navigate = useNavigate();
 
@@ -17,20 +15,28 @@ export default function Services() {
     }, [navigate]);
 
     return (
-        <div className='grid min-h-screen w-full lg:grid-cols-[280px_1fr]'>
-            <SideNav/>
-            <div>
-                <div className='justify-evenly items-center m-6'>
-                <TeachesShow/>
-                <div className='flex flex-col gap-4'>
-                {/* <CreateServicesForm/> */}
-                    {/* <CreateCategory/> */}
-                    {/* <SupplierProducts/> */}
-                </div>
-                </div>
-                <div className='m-4'>
-               
-                
+        <div className='flex min-h-screen'>
+            {/* Side Navigation */}
+            <SideNav />
+
+            {/* Main Content */}
+            <div className='flex-1 bg-gray-100'>
+                <div className='p-8'>
+                  
+                    <div className='grid grid-cols-1 lg:grid-cols-2 gap-8'>
+                        {/* Service Details */}
+                        <div className='bg-white rounded-lg shadow-md p-6'>
+                            <h2 className='text-xl font-semibold mb-4'>Services Liste</h2>
+                            <ServiceShow />
+                        </div>
+                        {/* Create New Service Form */}
+                        <div className='bg-white rounded-lg shadow-md p-4'>
+                            <h2 className='text-xl font-semibold mb-4'>Ajouter un Service</h2>
+                            <CreateServicesForm />
+                        </div>
+
+                        
+                    </div>
                 </div>
             </div>
         </div>

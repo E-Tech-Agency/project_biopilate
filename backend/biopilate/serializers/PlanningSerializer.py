@@ -10,5 +10,5 @@ class PlanningSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Planning
-        fields = ['id', 'title', 'description', 'range', 'status', 'category', 'category_name', 'create_at', 'updated_at']
+        fields = ['id', 'title', 'description', 'range','duree' , 'status', 'category', 'category_name', 'create_at', 'updated_at']
         read_only_fields = ['create_at', 'updated_at', 'category_name']

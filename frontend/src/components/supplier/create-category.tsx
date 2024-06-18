@@ -21,7 +21,7 @@ export default function CreateCategory() {
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         try {
-            await api.post("create/category/", category);
+            await api.post("categories/", category);
             toast.success("Category created");
             setCategory({name: ""});
             setErrors("");
@@ -35,17 +35,17 @@ export default function CreateCategory() {
     return (
         <Card>
             <CardHeader>
-                <CardTitle>Create Category</CardTitle>
+                <CardTitle>Ajouter un niveau</CardTitle>
                 <CardDescription>{errors !== "" && <li className="text-red-500 mt-2">{errors}</li>}</CardDescription>
             </CardHeader>
             <CardContent>
                 <form onSubmit={handleSubmit}>
                     <div className="grid gap-6">
                         <div className="grid gap-3">
-                            <Label htmlFor="status">Status</Label>
-                            <Input type="text" value={category.name} placeholder="category name" onChange={(e) => setCategory({ ...category, name: e.target.value })} />
+                           
+                            <Input type="text" value={category.name} placeholder="niveau" onChange={(e) => setCategory({ ...category, name: e.target.value })} />
                             <Button type="submit" className="w-full">
-                                Create
+                                Ajouter
                             </Button>
                         </div>
                     </div>

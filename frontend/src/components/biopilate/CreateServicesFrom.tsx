@@ -35,6 +35,8 @@ export default function CreateServicesForm() {
             try {
                 const res = await api.get("teaches/");
                 setTeaches(res.data);
+                console.log(res.data);
+                
             } catch (error) {
                 console.error("Error fetching instructeurs", error);
             }
@@ -75,7 +77,7 @@ export default function CreateServicesForm() {
         formData.append('description', service.description);
         formData.append('status', service.status);
         formData.append('full_text', service.full_text);
-        formData.append('instructeur', service.instructeur);
+        formData.append('instructeur', service.instructeur.toString());
 
         if (service.image) {
             formData.append('image', service.image);
@@ -103,9 +105,9 @@ export default function CreateServicesForm() {
     };
 
     return (
-        <Card className="w-min">
+        <Card className="w-max">
             <CardHeader>
-                <CardTitle>Ajouter un Service</CardTitle>
+                <CardTitle></CardTitle>
             </CardHeader>
             <CardContent>
                 <form onSubmit={handleSubmit}>
@@ -183,6 +185,7 @@ export default function CreateServicesForm() {
                                 />
                             </Suspense>
                         </div>
+                        <br/>
                         <div>
                             <Button type="submit" className="w-44" size={"lg"}>Ajouter</Button>
                         </div>

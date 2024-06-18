@@ -197,3 +197,33 @@ export type CreateServiceErrors = {
     instructeur?: string[];
    
 }
+export type Planning = {
+    id: number;
+    title : string;
+    duree: string;
+    description : string;
+    range : number;
+    status : string;
+    category : string;
+    create_at: Date;
+    updated_at: Date;
+}
+export type PlanningFormType = {
+    title : string;
+    duree: string;
+    description : string;
+    range : number;
+    status : string;
+    category : string;
+    
+
+}
+export type CreatePlanningErrors = {
+    title?: string[];
+    duree?: string[];
+    description?: string[];
+    status?: string[];
+    range?: number[];
+    category?: string[];
+   
+}
