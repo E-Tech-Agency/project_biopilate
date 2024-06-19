@@ -7,8 +7,9 @@ import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import CreatePlanningForm from '@/components/biopilate/CreatePlanningFrom';
 import PlanningShow from '@/components/biopilate/PlanningShow';
+import BlogShow from '@/components/biopilate/BlogShow';
 
-export default function Planning() {
+export default function Blog() {
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -22,17 +23,12 @@ export default function Planning() {
         <div className='grid min-h-screen w-full lg:grid-cols-[280px_1fr]'>
             <SideNav/>
             <div>
-                <div className='flex flex-row justify-evenly items-center m-6'>
+                <div className=' justify-evenly items-center m-6'>
+                <BlogShow/>
                 <CreatePlanningForm/>
-                <div className='flex  gap-3'>
-                    <CreateCategory/>
-                    
-                </div>
-                </div>
-                <div className='m-4'>
-                <PlanningShow/>
                 
                 </div>
+                
             </div>
         </div>
     );

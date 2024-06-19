@@ -17,6 +17,7 @@ class Blog(models.Model):
   create_at = models.DateTimeField(auto_now_add=True)
   updated_at = models.DateTimeField(auto_now=True)
   status = models.CharField('Status', max_length=10, choices=STATUS_CHOICES, default='pending')
+  view=models.IntegerField(default='0')
   def __str__(self):
         return self.title
   def admin_image(self):

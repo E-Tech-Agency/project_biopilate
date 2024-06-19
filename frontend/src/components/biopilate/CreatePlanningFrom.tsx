@@ -1,22 +1,11 @@
 import {
     Card,
     CardContent,
-    CardDescription,
     CardHeader,
     CardTitle,
 } from "@/components/ui/card";
-import {
-    Select,
-    SelectContent,
-    SelectGroup,
-    SelectItem,
-    SelectLabel,
-    SelectTrigger,
-    SelectValue,
-} from "@/components/ui/select";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Textarea } from "@/components/ui/textarea";
 import { CreatePlanningErrors, PlanningFormType, Category } from "@/types/types";
 import { useEffect, useState, Suspense } from "react";
 import { Button } from "@/components/ui/button";
@@ -45,8 +34,6 @@ export default function CreatePlanningForm() {
             try {
                 const res = await api.get("categories/");
                 setCategories(res.data);
-                console.log(res.data);
-                
             } catch (error) {
                 console.error("Error fetching categories", error);
             }
@@ -70,7 +57,8 @@ export default function CreatePlanningForm() {
         formData.append('duree', planning.duree);
         formData.append('description', planning.description);
         formData.append('range', planning.range.toString());
-        formData.append('category', planning.category.toString());
+        formData.append('status', planning.status);
+        formData.append('category', planning.category);
 
         try {
             await apiCreateTeache.post("plannings/", formData);
@@ -86,7 +74,6 @@ export default function CreatePlanningForm() {
         } catch (error) {
             if (axios.isAxiosError(error)) {
                 const errorsFromDb = error.response?.data;
-                console.log(errorsFromDb);
                 toast.error(errorsFromDb.error);
                 setErrors(errorsFromDb);
             }
@@ -94,7 +81,7 @@ export default function CreatePlanningForm() {
     };
 
     return (
-        <Card className="w-min">
+        <Card className="w-full max-w-2xl mx-auto p-6 my-8">
             <CardHeader>
                 <CardTitle>Ajouter un Planning</CardTitle>
             </CardHeader>
@@ -103,8 +90,8 @@ export default function CreatePlanningForm() {
                     <div className="grid gap-6">
                         <div className="grid gap-3">
                             <Label htmlFor="title">
-                                Titre <br />
-                                {errors.title && <li className="text-red-500 mt-2">{errors.title}</li>}
+                                Titre
+                                {errors.title && <span className="text-red-500 mt-2">{errors.title}</span>}
                             </Label>
                             <Input
                                 id="title"
@@ -116,21 +103,22 @@ export default function CreatePlanningForm() {
                         </div>
                         <div className="grid gap-3">
                             <Label htmlFor="duree">
-                                Durée <br />
-                                {errors.duree && <li className="text-red-500 mt-2">{errors.duree}</li>}
+                                Durée
+                                {errors.duree && <span className="text-red-500 mt-2">{errors.duree}</span>}
                             </Label>
                             <Input
                                 id="duree"
                                 value={planning.duree}
                                 onChange={(e) => setPlanning({ ...planning, duree: e.target.value })}
-                                placeholder="plannings durée"
+                                placeholder="Durée du planning"
                                 className="w-full"
                             />
                         </div>
-                        <div className="flex flex-col justify-center gap-6 items-center">
-                            <div className="flex flex-row justify-center gap-4 items-center">
+                        <div className="grid gap-6">
+                            <div className="grid gap-3">
                                 <Label htmlFor="category">
-                                    Niveau {JSON.stringify(planning.category)} {errors.category && <li className="text-red-500 mt-1">{errors.category}</li>}
+                                    Niveau
+                                    {errors.category && <span className="text-red-500 mt-2">{errors.category}</span>}
                                 </Label>
                                 <select
                                     id="category"
@@ -146,8 +134,11 @@ export default function CreatePlanningForm() {
                                         </option>
                                     ))}
                                 </select>
+                            </div>
+                            <div className="grid gap-3">
                                 <Label htmlFor="range">
-                                    Déplacement {errors.range && <li className="text-red-500 mt-1">{errors.range}</li>}
+                                    Déplacement
+                                    {errors.range && <span className="text-red-500 mt-2">{errors.range}</span>}
                                 </Label>
                                 <Input
                                     id="range"
@@ -155,42 +146,44 @@ export default function CreatePlanningForm() {
                                     type="number"
                                     value={planning.range}
                                     onChange={(e) => setPlanning({ ...planning, range: parseInt(e.target.value) })}
-                                    className="w-25"
+                                    className="w-full"
                                 />
                             </div>
-                            <div className="grid gap-3">
-                                <Label htmlFor="status">
-                                    Status <br />
-                                    {errors.status && <li className="text-red-500 mt-2">{errors.status}</li>}
-                                </Label>
-                                <select
-                                    id="status"
-                                    name="status"
-                                    value={planning.status}
-                                    onChange={(e) => setPlanning({ ...planning, status: e.target.value })}
-                                    className="mt-1 block w-full rounded-md border-gray-300 shadow-sm"
-                                >
-                                    <option value="pending">En attente de publication</option>
-                                    <option value="approved">Publiée</option>
-                                </select>
-                            </div>
-                            <div className="grid gap-3">
-                                <Label htmlFor="description">
-                                    Description {errors.description && <li className="text-red-500 mt-1">{errors.description}</li>}
-                                </Label>
-                                <Suspense fallback={<div>Loading...</div>}>
-                                    <ReactQuill
-                                        id="description"
-                                        value={planning.description}
-                                        onChange={handleQuillChange}
-                                        className="w-full"
-                                        theme="snow"
-                                    />
-                                </Suspense>
-                            </div>
-                            <div>
-                                <Button type="submit" className="w-44" size={"lg"}>Ajouter</Button>
-                            </div>
+                        </div>
+                        <div className="grid gap-3">
+                            <Label htmlFor="status">
+                                Status
+                                {errors.status && <span className="text-red-500 mt-2">{errors.status}</span>}
+                            </Label>
+                            <select
+                                id="status"
+                                name="status"
+                                value={planning.status}
+                                onChange={(e) => setPlanning({ ...planning, status: e.target.value })}
+                                className="mt-1 block w-full rounded-md border-gray-300 shadow-sm"
+                            >
+                                <option value="">Sélectionner un Status</option>
+                                <option value="pending">En attente de publication</option>
+                                <option value="approved">Publiée</option>
+                            </select>
+                        </div>
+                        <div className="grid gap-3">
+                            <Label htmlFor="description">
+                                Description
+                                {errors.description && <span className="text-red-500 mt-2">{errors.description}</span>}
+                            </Label>
+                            <Suspense fallback={<div>Loading...</div>}>
+                                <ReactQuill
+                                    id="description"
+                                    value={planning.description}
+                                    onChange={handleQuillChange}
+                                    className="w-full"
+                                    theme="snow"
+                                />
+                            </Suspense>
+                        </div>
+                        <div className="flex justify-end mt-6">
+                            <Button type="submit" className="w-44" size="lg">Ajouter</Button>
                         </div>
                     </div>
                 </form>

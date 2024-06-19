@@ -18,6 +18,7 @@ import Tages from './pages/Tages';
 import Services from './pages/Services';
 import EditService from './pages/EditService';
 import Planning from './pages/Planning';
+import Blog from './pages/Blog';
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
@@ -59,6 +60,7 @@ function App() {
         <Route path='/Service-biopilate' element={<Services />} />
         <Route path="/edit-service/:id" element={<EditService/>}/>
         <Route path="/planning-biopilat" element={<Planning/>}/>
+        <Route path="/blog-biopilat" element={<Blog/>}/>
                     
                 
       </Routes>

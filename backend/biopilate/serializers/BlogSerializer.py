@@ -6,7 +6,7 @@ class BlogSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Blog
-        fields = ['id', 'title', 'author', 'description', 'favorites', 'image_1', 'image_2', 'full_text', 'date', 'range', 'create_at', 'updated_at', 'status']
+        fields = ['id', 'title', 'author', 'description', 'favorites', 'image_1', 'image_2','view' ,'full_text', 'date', 'range', 'create_at', 'updated_at', 'status']
         read_only_fields = ['create_at', 'updated_at']
 
     def get_admin_image(self, obj):
