@@ -1,5 +1,6 @@
-import { useState, useEffect } from "react";
-import { FaTrash, FaEdit } from "react-icons/fa";
+import api from "@/lib/api";
+import { Blog } from "@/types/types";
+import { useEffect, useState } from "react";
 import {
     Card,
     CardContent,
@@ -15,88 +16,94 @@ import {
     TableRow,
 } from "@/components/ui/table";
 import { Button } from "../ui/button";
-import PlanningEditModal from "./PlanningEditModal";
-import api from "@/lib/api";
-import { Planning } from "@/types/types";
+import { FaTrash, FaEdit } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
 
 export default function BlogShow() {
-    const [blog, setBlog] = useState<Planning[] | null>(null);
-    const [editingId, setEditingId] = useState<number | null>(null);
-    const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+    const navigate = useNavigate();
+    const [blogs, setBlogs] = useState<Blog[] | null>([]);
+   
 
-    const getPlannings = async () => {
+
+
+    const getBlogs = async () => {
         try {
-            const res = await api.get("plannings/");
-            setPlanning(res.data);
+            const res = await api.get("blogs/");
+            setBlogs(res.data);
         } catch (error) {
-            console.error("Error fetching planning", error);
+            console.error("Error fetching blogs", error);
         }
-    };
+    }
 
     useEffect(() => {
-        getPlannings();
+        getBlogs();
     }, []);
 
-    const deletePlanning = async (id: number) => {
+    const deleteBlog = async (id: number) => {
         try {
-            await api.delete(`plannings/${id}`);
-            getPlannings();
+            await api.delete(`blogs/${id}`);
+            getBlogs();
         } catch (error) {
-            console.error("Error deleting planning", error);
+            console.log(error);
         }
-    };
+    }
 
-    const handleEditClick = (id: number) => {
-        setEditingId(id);
-        setIsModalOpen(true);
-    };
-
-    const handleEditClose = () => {
-        setEditingId(null);
-        setIsModalOpen(false);
-        getPlannings();
+   
+ 
+    const handleAddArticle = () => {
+        navigate("/add-article-biopilates");
     };
 
     return (
-        <Card>
-            <CardHeader className="px-7">
-                <CardTitle>Liste Blogs</CardTitle>
+        <Card className="w-full max-w-6xl mx-auto p-6 ">
+            <CardHeader className="  justify-between  ">
+             <div className="flex justify-between"><div className="justify-between"> <CardTitle>Liste Blog</CardTitle></div>
+             <div className="flex justify-between"> <Button   variant="default" className=" btn btn-primary"  onClick={handleAddArticle}>Ajouter un Article</Button>
+             </div>  </div>
             </CardHeader>
             <CardContent>
                 <Table>
                     <TableHeader>
                         <TableRow>
                             <TableHead>Titre</TableHead>
-                            <TableHead className="hidden sm:table-cell">Niveau</TableHead>
-                            <TableHead className="hidden sm:table-cell">Durée</TableHead>
+                            <TableHead className="hidden sm:table-cell">Nombre de réactions</TableHead>
+                            <TableHead className="hidden sm:table-cell">Nombre de vues</TableHead>
+                            <TableHead className="hidden md:table-cell">Date</TableHead>
                             <TableHead className="hidden md:table-cell">Status</TableHead>
-                            <TableHead className="hidden md:table-cell">Déplacement</TableHead>
-                            <TableHead className="hidden md:table-cell">Crée le</TableHead>
                             <TableHead className="hidden md:table-cell">Actions</TableHead>
                         </TableRow>
                     </TableHeader>
                     <TableBody>
-                        {planning && planning.map((plan: Planning) => (
-                            <TableRow key={plan.id} className="bg-accent">
+                        {blogs && blogs.map((blog: Blog) => (
+                            <TableRow key={blog.id} className="bg-accent">
                                 <TableCell>
-                                    <div className="font-medium">{plan.title}</div>
-                                </TableCell>
-                                <TableCell className="hidden sm:table-cell">{plan.category?.name}</TableCell>
-                                <TableCell className="hidden sm:table-cell">{plan.duree}</TableCell>
-                                <TableCell className="hidden sm:table-cell">{plan.range}</TableCell>
-                                <TableCell className="text-right">
-                                    <div className="flex space-x-2">
-                                        {plan.status === "pending" && <h2 className="text-emerald-500">En attente</h2>}
-                                        {plan.status === "approved" && <h2 className="text-emerald-500">Publiée</h2>}
+                                    <div className="flex items-center space-x-4">
+                                        <div className="w-16 h-16 overflow-hidden rounded-full">
+                                            <img src={blog.image_1} alt={blog.title} className="object-cover w-full h-full" />
+                                        </div>
+                                        <div>
+                                            <div className="font-medium">{blog.title}</div>
+                                            <div className="hidden text-sm text-muted-foreground md:inline">
+                                                {blog.author}
+                                            </div>
+                                        </div>
                                     </div>
                                 </TableCell>
-                                <TableCell className="hidden sm:table-cell">{new Date(plan.create_at).toLocaleDateString()}</TableCell>
+                                <TableCell className="hidden sm:table-cell">{blog.favorites} j'aime(s)</TableCell>
+                                <TableCell className="hidden sm:table-cell">{blog.view} vue(s)</TableCell>
+                                <TableCell className="hidden md:table-cell">{new Date(blog.date).toLocaleDateString()}</TableCell>
+                                <TableCell className="hidden md:table-cell text-right">
+                                    <div className="flex space-x-2">
+                                        {blog.status === "pending" && <h2 className="text-emerald-500">En attente</h2>}
+                                        {blog.status === "validated" && <h2 className="text-emerald-500">Publiée</h2>}
+                                    </div>
+                                </TableCell>
                                 <TableCell className="text-right">
                                     <div className="flex space-x-2">
-                                        <Button variant="secondary" onClick={() => handleEditClick(plan.id)}>
+                                        <Button variant="secondary" onClick={() => handleEditClick(blog.id)}>
                                             <FaEdit />
                                         </Button>
-                                        <Button variant="danger" onClick={() => deletePlanning(plan.id)}>
+                                        <Button variant="danger" onClick={() => deleteBlog(blog.id)}>
                                             <FaTrash />
                                         </Button>
                                     </div>
@@ -105,14 +112,6 @@ export default function BlogShow() {
                         ))}
                     </TableBody>
                 </Table>
-                {editingId !== null && (
-                    <PlanningEditModal
-                        planningId={editingId}
-                        isOpen={isModalOpen}
-                        onClose={handleEditClose}
-                        onSave={handleEditClose}
-                    />
-                )}
             </CardContent>
         </Card>
     );

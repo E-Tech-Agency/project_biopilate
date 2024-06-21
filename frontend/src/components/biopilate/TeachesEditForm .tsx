@@ -23,7 +23,7 @@ export default function TeachesEditForm ({ teache, onSave, onClose }: { teache: 
     const formData = new FormData();
     formData.append("fullname", fullname);
     formData.append("email", email);
-    formData.append("nomber_phone", nomberPhone);
+    formData.append("nomber_phone", nomberPhone.toString());
     formData.append("specialite", specialite);
 
     if (image) {

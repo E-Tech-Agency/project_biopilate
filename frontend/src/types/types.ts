@@ -223,7 +223,7 @@ export type CreatePlanningErrors = {
     duree?: string[];
     description?: string[];
     status?: string[];
-    range?: number[];
+    range?: string[];
     category?: string[];
    
 }
@@ -232,28 +232,41 @@ export type Blog = {
     title : string;
     author: string;
     description : string;
-    range : number;
+    favorites : number;
     status : string;
-    category : string;
+    image_1 : string;
+    image_2: string;
+    full_text:string;
+    date:Date;
+    range:number;
+    view:number;
     create_at: Date;
     updated_at: Date;
 }
-export type PlanningFormType = {
+export type BlogFormType = {
     title : string;
-    duree: string;
+    author: string;
     description : string;
-    range : number;
+   
     status : string;
-    category : string;
+    image_1 : File | null;
+    image_2: File | null;
+    full_text:string;
+    date:Date;
+    range:number;
     
 
 }
-export type CreatePlanningErrors = {
+export type CreateBlogErrors = {
     title?: string[];
-    duree?: string[];
+    author?: string[];
     description?: string[];
+    
     status?: string[];
-    range?: number[];
-    category?: string[];
+    image_1?: string[];
+    image_2?: string[];
+    full_text?: string[];
+    date?: string[];
+    range?: string[];
    
 }
