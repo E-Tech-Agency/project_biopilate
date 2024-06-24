@@ -66,7 +66,7 @@ function App() {
         <Route path="/blog-biopilates" element={<Blog/>}/>
         <Route path="/add-article-biopilates" element={<CreateBlogForm/>}/>
         <Route path="/FAQ-biopilates" element={<FAQ/>}/>
-        <Route path="/Formation-biopilates" element={<FAQ/>}/>
+        <Route path="/Formation-biopilates" element={<Formation/>}/>
                     
                 
       </Routes>

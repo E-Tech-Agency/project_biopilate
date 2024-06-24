@@ -6,7 +6,7 @@ import {
 } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { CreateFAQErrors, FAQFormType } from "@/types/types";
+import { CreateFAQErrors, FAQFormType,OptionFormType ,CreateOptionErrors } from "@/types/types";
 import { useEffect, useState, Suspense } from "react";
 import { Button } from "@/components/ui/button";
 import apiCreateTeache from "@/lib/apiCreateTeache";
@@ -17,10 +17,28 @@ import "react-quill/dist/quill.snow.css"; // Import styles for React Quill
 import React from "react";
 
 const ReactQuill = React.lazy(() => import("react-quill"));
-
+import { Modal } from "./Modal";
 export default function CreateFormationForm() {
+    const [isModalOpen, setIsModalOpen] = useState(false);
     const [errors, setErrors] = useState<CreateFAQErrors>({});
-   
+   const[option,setOption]=useState<OptionFormType>({
+    name:""
+   })
+   const [errorsO, setErrorsO] = useState<CreateOptionErrors>({});
+   const handleSubmitOption = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    try {
+        await api.post("options/", option);
+        toast.success("Option formation created");
+        setOption({name: ""});
+        setErrorsO("");
+    } catch (error) {
+        if (axios.isAxiosError(error)) {
+            setErrorsO(error.response?.data.name[0])
+
+        }
+    }
+}
     const [faq, setFaq] = useState<FAQFormType>({
         title: "",
         description: "",
@@ -72,7 +90,34 @@ export default function CreateFormationForm() {
     return (
         <Card className="w-max w-full">
             <CardHeader>
-                <CardTitle></CardTitle>
+                <CardTitle>
+                <Button onClick={() => setIsModalOpen(true)}>Create Option</Button>
+
+<Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
+  <form onSubmit={handleSubmitOption}>
+    <div className="grid gap-6">
+      <div className="grid gap-3">
+        <Label htmlFor="name">
+          Option Name
+          <br />
+          {errorsO.name && <li className="text-red-500 mt-2">{errorsO.name}</li>}
+        </Label>
+        <Input
+          id="name"
+          name="name"
+          type="text"
+          className="w-full"
+          value={option.name}
+          onChange={handleInputChange}
+        />
+      </div>
+      <div>
+        <Button type="submit" className="w-44" size={"lg"}>Add Option</Button>
+      </div>
+    </div>
+  </form>
+</Modal>
+                </CardTitle>
             </CardHeader>
             <CardContent>
                 <form onSubmit={handleSubmit}>

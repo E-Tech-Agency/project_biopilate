@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 
 import CreateFAQFrom from '@/components/biopilate/CreateFAQFrom';
 import FAQShow from '@/components/biopilate/FAQShow';
+import CreateFormationForm from '@/components/biopilate/CreateFormationForm';
 export default function Formation() {
     const navigate = useNavigate();
 
@@ -31,8 +32,8 @@ export default function Formation() {
                     </div>
                     {/* Create New Service Form */}
                     <div className='bg-white rounded-lg shadow-md p-4'>
-                        <h2 className='text-xl font-semibold mb-4'>Ajouter un FAQ</h2>
-                        <CreateFAQFrom />
+                        <h2 className='text-xl font-semibold mb-4'>Ajouter un Formation</h2>
+                        <CreateFormationForm />
                     </div>
 
                     
