@@ -8,7 +8,7 @@ class Blog(models.Model):
   title = models.CharField('Titre',max_length=255)
   author = models.CharField( 'Nom de l’écrivain', max_length=100)  
   description = models.TextField()
-  favorites = models.IntegerField()
+  favorites = models.IntegerField(blank=True)
   image_1 = models.ImageField(upload_to='blog_images/')  #  upload path
   image_2 = models.ImageField(upload_to='blog_images/')  
   full_text = models.TextField()

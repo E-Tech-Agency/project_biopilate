@@ -247,14 +247,14 @@ export type BlogFormType = {
     title : string;
     author: string;
     description : string;
-   
     status : string;
     image_1 : File | null;
     image_2: File | null;
     full_text:string;
-    date:Date;
+    date: string | Date;
     range:number;
-    
+    favorites:number | null;
+     
 
 }
 export type CreateBlogErrors = {
@@ -268,5 +268,72 @@ export type CreateBlogErrors = {
     full_text?: string[];
     date?: string[];
     range?: string[];
+   
+}
+
+export type FAQ = {
+    id: number;
+    title : string;
+    description : string;
+    status : string;
+    range:number;
+    create_at: Date;
+    updated_at: Date;
+}
+export type FAQFormType = {
+    title : string;
+    description : string;
+    status : string;
+    range:number;
+    
+
+}
+export type CreateFAQErrors = {
+    title?: string[];
+    description?: string[];
+    status?: string[];
+    range?: string[];
+   
+}
+export type Formation = {
+    id: number;
+    title : string;
+    description : string;
+    status : string;
+    range:number;
+    create_at: Date;
+    updated_at: Date;
+}
+export type FormationFormType = {
+    title : string;
+    description : string;
+    status : string;
+    range:number;
+    
+
+}
+export type CreateFormationErrors = {
+    title?: string[];
+    description?: string[];
+    status?: string[];
+    range?: string[];
+   
+}
+export type Option = {
+    id: number;
+    name : string;
+    
+    create_at: Date;
+    updated_at: Date;
+}
+export type OptionFormType = {
+    name : string;
+    
+    
+
+}
+export type CreateOptionErrors = {
+    name?: string[];
+    
    
 }

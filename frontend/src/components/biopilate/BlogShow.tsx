@@ -95,7 +95,7 @@ export default function BlogShow() {
                                 <TableCell className="hidden md:table-cell text-right">
                                     <div className="flex space-x-2">
                                         {blog.status === "pending" && <h2 className="text-emerald-500">En attente</h2>}
-                                        {blog.status === "validated" && <h2 className="text-emerald-500">Publiée</h2>}
+                                        {blog.status === "approved" && <h2 className="text-emerald-500">Publiée</h2>}
                                     </div>
                                 </TableCell>
                                 <TableCell className="text-right">
