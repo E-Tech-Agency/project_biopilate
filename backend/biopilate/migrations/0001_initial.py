@@ -55,24 +55,7 @@ class Migration(migrations.Migration):
                 'verbose_name_plural': 'FAQ',
             },
         ),
-        migrations.CreateModel(
-            name='Formation',
-            fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('title', models.CharField(max_length=200)),
-                ('description', models.TextField()),
-            ],
-            options={
-                'verbose_name_plural': 'Formations',
-            },
-        ),
-        migrations.CreateModel(
-            name='Option',
-            fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('name', models.CharField(max_length=100)),
-            ],
-        ),
+        
         migrations.CreateModel(
             name='Tages',
             fields=[
@@ -150,18 +133,6 @@ class Migration(migrations.Migration):
                 'verbose_name_plural': 'Plannings',
             },
         ),
-        migrations.CreateModel(
-            name='FormationCategory',
-            fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('price', models.DecimalField(decimal_places=2, max_digits=10)),
-                ('formation', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='biopilate.formation')),
-                ('option', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='biopilate.option')),
-            ],
-        ),
-        migrations.AddField(
-            model_name='formation',
-            name='options',
-            field=models.ManyToManyField(through='biopilate.FormationCategory', to='biopilate.option'),
-        ),
+        
+       
     ]

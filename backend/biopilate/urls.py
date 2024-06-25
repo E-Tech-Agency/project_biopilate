@@ -8,6 +8,7 @@ from .views.PlanningViewSet import CategoryViewSet, PlanningViewSet
 from .views.FAQViewSet import FAQViewSet
 from .views.BlogViewSet import BlogViewSet
 from .views.FormationsViewSet import FormationsViewSet, OptionViewSet, SelectedOptionViewSet
+from .views.CoursViewSet import CoursViewSet
 router = DefaultRouter()
 router.register(r'teaches', TeachesViewSet)
 router.register(r'tarifs', TarifsViewSet)
@@ -20,6 +21,7 @@ router.register(r'blogs', BlogViewSet)
 router.register(r'formations', FormationsViewSet)
 router.register(r'options', OptionViewSet)
 router.register(r'selected-options', SelectedOptionViewSet)
+router.register(r'cours', CoursViewSet)
 urlpatterns = [
     path('', include(router.urls)),
 ]

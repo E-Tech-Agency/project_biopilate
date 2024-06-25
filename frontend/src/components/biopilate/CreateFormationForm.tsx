@@ -1,3 +1,4 @@
+import React, { useState, useEffect } from "react";
 import {
     Card,
     CardContent,
@@ -6,155 +7,243 @@ import {
 } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { CreateFAQErrors, FAQFormType,OptionFormType ,CreateOptionErrors } from "@/types/types";
-import { useEffect, useState, Suspense } from "react";
+import { FormationFormType, CreateFormationErrors, OptionFormType, CreateOptionErrors } from "@/types/types";
 import { Button } from "@/components/ui/button";
-import apiCreateTeache from "@/lib/apiCreateTeache";
 import api from "@/lib/api";
-import axios from "axios";
+import axios, { AxiosError } from "axios";
 import { toast } from "sonner";
 import "react-quill/dist/quill.snow.css"; // Import styles for React Quill
-import React from "react";
+import { Modal } from "./Modal";
 
 const ReactQuill = React.lazy(() => import("react-quill"));
-import { Modal } from "./Modal";
-export default function CreateFormationForm() {
-    const [isModalOpen, setIsModalOpen] = useState(false);
-    const [errors, setErrors] = useState<CreateFAQErrors>({});
-   const[option,setOption]=useState<OptionFormType>({
-    name:""
-   })
-   const [errorsO, setErrorsO] = useState<CreateOptionErrors>({});
-   const handleSubmitOption = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    try {
-        await api.post("options/", option);
-        toast.success("Option formation created");
-        setOption({name: ""});
-        setErrorsO("");
-    } catch (error) {
-        if (axios.isAxiosError(error)) {
-            setErrorsO(error.response?.data.name[0])
 
-        }
-    }
+interface FormationCategoryType {
+    option: string;
+    price: string;
 }
-    const [faq, setFaq] = useState<FAQFormType>({
+
+const CreateFormationForm: React.FC = () => {
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    const [formation, setFormation] = useState<FormationFormType>({
         title: "",
         description: "",
-        status: "",
-        range:0,
+        options: [],
+        status: ""
     });
+    const [errors, setErrors] = useState<CreateFormationErrors>({});
+    const [option, setOption] = useState<OptionFormType>({
+        name: ""
+    });
+    const [errorsO, setErrorsO] = useState<CreateOptionErrors>({});
+    const [allOptions, setAllOptions] = useState<OptionFormType[]>([]);
+    const [formationCategories, setFormationCategories] = useState<FormationCategoryType[]>([]);
 
-  
+    useEffect(() => {
+        const fetchOptions = async () => {
+            try {
+                const response = await api.get("options/");
+                setAllOptions(response.data);
+            } catch (error) {
+                console.error("Error fetching options", error);
+            }
+        };
 
-    const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
-        const { name, value } = e.target;
-        setFaq((prevFAQ) => ({
-            ...prevFAQ,
-            [name]: value,
-        }));
-    };
+        fetchOptions();
+    }, []);
 
-    
-
-    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    const handleSubmitOption = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-
-        const formData = new FormData();
-        formData.append('title', faq.title);
-        formData.append('description', faq.description);
-        formData.append('status', faq.status);
-        formData.append('range', faq.range.toString());
-       
-
         try {
-            await apiCreateTeache.post("faqs/", formData);
-            setFaq({
-                title: "",
-                description: "",
-                status: "",
-                range:0,
-            });
-            toast.success("FAQ created");
+            const response = await api.post("options/", option);
+            toast.success("Option formation created");
+            setAllOptions([...allOptions, response.data]);
+            setOption({ name: "" });
+            setErrorsO({});
+            setIsModalOpen(false);
         } catch (error) {
             if (axios.isAxiosError(error)) {
-                const errorsFromDb = error.response?.data;
-                console.log(errorsFromDb);
-                toast.error(errorsFromDb.error);
-                setErrors(errorsFromDb);
+                const errorsFromDb = (error as AxiosError)?.response?.data;
+                setErrorsO(errorsFromDb || {});
+                if (errorsFromDb?.name) {
+                    toast.error(errorsFromDb.name[0]);
+                }
             }
         }
     };
 
+    const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+        const { name, value } = e.target;
+        setFormation((prevF) => ({
+            ...prevF,
+            [name]: value,
+        }));
+    };
+
+    const handleCategoryChange = (index: number, field: string, value: string) => {
+        const newCategories = [...formationCategories];
+        newCategories[index] = { ...newCategories[index], [field]: value };
+        setFormationCategories(newCategories);
+    };
+
+    const addCategory = () => {
+        setFormationCategories([...formationCategories, { option: "", price: "" }]);
+    };
+
+    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+
+        // Ensure there are categories with valid options and prices
+        if (formationCategories.some(cat => !cat.option || !cat.price)) {
+            toast.error("Veuillez remplir tous les champs des options et prix.");
+            return;
+        }
+        const formData = new FormData();
+        formData.append('title', formation.title);
+        formData.append('description', formation.description);
+        formData.append('status', formation.status);
+        
+    
+        // Append options from formationCategories
+        formationCategories.forEach((category, index) => {
+            formData.append(`options[${index}][option]`, category.option);
+            formData.append(`options[${index}][price]`, category.price);
+        });
+
+        try {
+            // Step 1: Create the formation
+            const formationResponse = await api.post("formations/", formData);
+            const formationId = formationResponse.data.id;
+
+            // Step 2: Create selected options for the formation
+            const selectedOptionsPromises = formationCategories.map(async (category) => {
+                try {
+                    await api.post("selected-options/", {
+                        formation: formationId,
+                        option: category.option,
+                        price: category.price,
+                    });
+                    toast.success("Option selected created successfully");
+                } catch (error) {
+                    console.error("Error creating selected option", error);
+                    throw error; // Throw error to catch block for consistent error handling
+                }
+            });
+
+            // Wait for all selected options to be created
+            await Promise.all(selectedOptionsPromises);
+
+            // Clear form fields and categories after successful submission
+            setFormation({
+                title: "",
+                description: "",
+                options: [],
+                status: ""
+            });
+            setFormationCategories([]);
+            toast.success("Formation created");
+            setErrors({});
+        } catch (error) {
+            if (axios.isAxiosError(error)) {
+                const errorsFromDb = (error as AxiosError)?.response?.data;
+                console.error("API Error:", error.response?.status, errorsFromDb);
+                setErrors(errorsFromDb || {});
+                toast.error("Failed to create formation");
+            }
+            
+        }
+    };
+
     return (
-        <Card className="w-max w-full">
+        <Card className="w-full">
             <CardHeader>
                 <CardTitle>
-                <Button onClick={() => setIsModalOpen(true)}>Create Option</Button>
-
-<Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
-  <form onSubmit={handleSubmitOption}>
-    <div className="grid gap-6">
-      <div className="grid gap-3">
-        <Label htmlFor="name">
-          Option Name
-          <br />
-          {errorsO.name && <li className="text-red-500 mt-2">{errorsO.name}</li>}
-        </Label>
-        <Input
-          id="name"
-          name="name"
-          type="text"
-          className="w-full"
-          value={option.name}
-          onChange={handleInputChange}
-        />
-      </div>
-      <div>
-        <Button type="submit" className="w-44" size={"lg"}>Add Option</Button>
-      </div>
-    </div>
-  </form>
-</Modal>
+                    <Button onClick={() => setIsModalOpen(true)}>Ajouter un niveau</Button>
+                    <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
+                        <form onSubmit={handleSubmitOption}>
+                            <div className="grid gap-6">
+                                <div className="grid gap-3">
+                                    <Label htmlFor="name">
+                                        Niveau de formation
+                                        {errorsO.name && <li className="text-red-500 mt-2">{errorsO.name}</li>}
+                                    </Label>
+                                    <Input
+                                        id="name"
+                                        name="name"
+                                        type="text"
+                                        className="w-full"
+                                        value={option.name}
+                                        onChange={(e) => setOption({ ...option, name: e.target.value })}
+                                    />
+                                </div>
+                                <div>
+                                    <Button type="submit" className="w-44" size={"lg"}>Add Option</Button>
+                                </div>
+                            </div>
+                        </form>
+                    </Modal>
                 </CardTitle>
             </CardHeader>
             <CardContent>
                 <form onSubmit={handleSubmit}>
                     <div className="grid gap-6">
                         <div className="grid gap-3">
-                            <Label htmlFor="fullname">Titre <br />{errors.title && <li className="text-red-500 mt-2">{errors.title}</li>}</Label>
+                            <Label htmlFor="title">
+                                Titre
+                                {errors.title && <li className="text-red-500 mt-2">{errors.title}</li>}
+                            </Label>
                             <Input
                                 id="title"
                                 name="title"
                                 type="text"
                                 className="w-full"
-                               
-                                onChange={(e) => setFaq({ ...faq, title: e.target.value })}
+                                value={formation.title}
+                                onChange={handleInputChange}
                             />
                         </div>
                         <div className="grid gap-3">
-                            <Label htmlFor="description">Description <br />{errors.description && <li className="text-red-500 mt-2">{errors.description}</li>}</Label>
+                            <Label htmlFor="description">
+                                Description
+                                {errors.description && <li className="text-red-500 mt-2">{errors.description}</li>}
+                            </Label>
                             <textarea
                                 id="description"
                                 name="description"
-                             
                                 className="w-full p-2 border rounded-md"
-                                onChange={(e) => setFaq({ ...faq, description: e.target.value })}
+                                value={formation.description}
+                                onChange={handleInputChange}
                             />
                         </div>
-                       
                         <div className="grid gap-3">
-                            <Label htmlFor="range"> déplacement <br />{errors.range && <li className="text-red-500 mt-2">{errors.range}</li>}</Label>
-                            <Input
-                                id="range"
-                                name="range"
-                                type="number"
-                                className="w-full"
-                                onChange={(e) => setFaq({ ...faq, range: e.target.value })}
-                            />
+                            <Label htmlFor="categories">
+                                Options et Prix
+                            </Label>
+                            {formationCategories.map((category, index) => (
+                                <div key={index} className="flex gap-2">
+                                    <select
+                                        id={`option-${index}`}
+                                        name="option"
+                                        value={category.option}
+                                        onChange={(e) => handleCategoryChange(index, 'option', e.target.value)}
+                                        className="w-full p-2 border rounded-md"
+                                    >
+                                        <option value="">Sélectionner un Option</option>
+                                        {allOptions.map((opt) => (
+                                            <option key={opt.id} value={opt.id}>{opt.name}</option>
+                                        ))}
+                                    </select>
+                                    <Input
+                                        id={`price-${index}`}
+                                        name="price"
+                                        type="text"
+                                        value={category.price}
+                                        onChange={(e) => handleCategoryChange(index, 'price', e.target.value)}
+                                        className="w-full"
+                                        placeholder="Prix"
+                                    />
+                                </div>
+                            ))}
+                            <Button onClick={addCategory} type="button" className="w-44" size={"lg"}>Ajouter Option et Prix</Button>
                         </div>
-                        
                         <div className="grid gap-3">
                             <Label htmlFor="status">
                                 Status
@@ -163,8 +252,8 @@ export default function CreateFormationForm() {
                             <select
                                 id="status"
                                 name="status"
-                               
-                                onChange={(e) => setFaq({ ...faq, status: e.target.value })}
+                                value={formation.status}
+                                onChange={handleInputChange}
                                 className="w-full p-2 border rounded-md"
                             >
                                 <option value="">Sélectionner un Status</option>
@@ -172,7 +261,7 @@ export default function CreateFormationForm() {
                                 <option value="approved">Publiée</option>
                             </select>
                         </div>
-                        <br/>
+                        <br />
                         <div>
                             <Button type="submit" className="w-44" size={"lg"}>Ajouter</Button>
                         </div>
@@ -181,4 +270,6 @@ export default function CreateFormationForm() {
             </CardContent>
         </Card>
     );
-}
+};
+
+export default CreateFormationForm;

@@ -297,26 +297,26 @@ export type CreateFAQErrors = {
 }
 export type Formation = {
     id: number;
-    title : string;
-    description : string;
-    status : string;
-    range:number;
-    create_at: Date;
+    status: "";
+    title: string;
+    description: string;
+    options: Option[];
+    created_at: Date;
     updated_at: Date;
 }
 export type FormationFormType = {
-    title : string;
-    description : string;
-    status : string;
-    range:number;
+    status: "";
+    title: string;
+    description: string;
+    options: number[]; 
     
 
 }
 export type CreateFormationErrors = {
+    status?: string[];
     title?: string[];
     description?: string[];
-    status?: string[];
-    range?: string[];
+    options?: string[];
    
 }
 export type Option = {
@@ -337,3 +337,26 @@ export type CreateOptionErrors = {
     
    
 }
+export type FormationCategory = {
+    id: number;
+    status: 'pending' | 'approved';
+    formation: Formation;
+    option: Option;
+    price: number;
+    created_at: Date;
+    updated_at: Date;
+};
+
+export type FormationCategoryFormType = {
+    status: 'pending' | 'approved';
+    formation: number; // Formation ID
+    option: number; // Option ID
+    price: number;
+};
+
+export type CreateFormationCategoryErrors = {
+    status?: string[];
+    formation?: string[];
+    option?: string[];
+    price?: string[];
+};

@@ -4,7 +4,7 @@ class Tarifs(models.Model):
         ('pending', 'En attente de publication'),
         ('approved', 'Publiée'),
         ]
-
+    title = models.CharField(max_length=200,default='1 Cours Duo')
     description  = models.CharField('Titre',max_length=255)
     price=models.IntegerField()
     create_at = models.DateTimeField(auto_now_add=True)
@@ -18,6 +18,6 @@ class Tarifs(models.Model):
         verbose_name_plural = "Tarifs"
 
     def __str__(self):
-        return self.description
+        return self.title
 
     
