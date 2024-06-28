@@ -23,20 +23,16 @@ export default function Services() {
             <div className='flex-1 bg-gray-100'>
                 <div className='p-8'>
                   
-                    <div className='grid grid-cols-1 lg:grid-cols-2 gap-8'>
-                        {/* Service Details */}
-                        <div className='bg-white rounded-lg shadow-md p-6'>
-                            <h2 className='text-xl font-semibold mb-4'>Services Liste</h2>
+                 
+                        {/* Service  */}
+                       
+                            
                             <ServiceShow />
-                        </div>
-                        {/* Create New Service Form */}
-                        <div className='bg-white rounded-lg shadow-md p-4'>
-                            <h2 className='text-xl font-semibold mb-4'>Ajouter un Service</h2>
-                            <CreateServicesForm />
-                        </div>
 
                         
-                    </div>
+
+                        
+                    
                 </div>
             </div>
         </div>

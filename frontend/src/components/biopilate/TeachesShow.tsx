@@ -41,6 +41,7 @@ export default function TeachesShow() {
     const [errors, setErrors] = useState<CreateTeacherErrors>({});
     const [searchTerm, setSearchTerm] = useState("");
     const [isEditing, setIsEditing] = useState(false); // Track whether modal is for editing or adding
+    const [rowsPerPage, setRowsPerPage] = useState(10); // Default rows per page
 
     const getTeaches = async () => {
         try {
@@ -68,12 +69,10 @@ export default function TeachesShow() {
         });
         setFilteredTeaches(filtered);
     };
-    
-    
 
     const deleteTeaches = async (id: number) => {
         try {
-            await api.delete(`teaches/${id}`);
+            await api.delete(`teaches/${id}/`);
             getTeaches();
         } catch (error) {
             console.log(error);
@@ -165,13 +164,31 @@ export default function TeachesShow() {
         }
     };
 
+    const handleChangeRowsPerPage = (value: number) => {
+        setRowsPerPage(value);
+    };
+
     return (
         <Card>
             <CardHeader className="px-7">
                 <div className="flex justify-between">
                     <div>
                         <CardTitle>Liste Instructeur</CardTitle>
+                        <div className=" justify-end mt-4">
+                    <Label htmlFor="rowsPerPage">Afficher:</Label>
+                    <select
+                        id="rowsPerPage"
+                        value={rowsPerPage}
+                        onChange={(e) => handleChangeRowsPerPage(Number(e.target.value))}
+                        className="ml-2 border-gray-300 rounded-md"
+                    >
+                        <option value={5}>5</option>
+                        <option value={10}>10</option>
+                        <option value={20}>20</option>
+                    </select>
+                </div>
                     </div>
+                    
                     <div className="flex space-x-4">
                         <Input
                             type="text"
@@ -184,7 +201,9 @@ export default function TeachesShow() {
                             Ajouter un Instructeur
                         </Button>
                     </div>
+                    
                 </div>
+                
             </CardHeader>
             <CardContent>
                 <Table>
@@ -198,7 +217,7 @@ export default function TeachesShow() {
                         </TableRow>
                     </TableHeader>
                     <TableBody>
-                        {filteredTeaches.map((teache: Teache) => (
+                        {filteredTeaches.slice(0, rowsPerPage).map((teache: Teache) => (
                             <TableRow key={teache.id}>
                                 <TableCell>
                                     <div className="flex items-center space-x-4">
@@ -230,6 +249,8 @@ export default function TeachesShow() {
                         ))}
                     </TableBody>
                 </Table>
+                {/* Pagination controls */}
+                
             </CardContent>
             {isModalOpen && (
                 <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>

@@ -34,7 +34,7 @@ export default function CreateTagesForm() {
     };
 
     return (
-        <Card className="w-min">
+        <Card >
             <CardHeader>
                 <CardTitle>Ajouter un Tage</CardTitle>
             </CardHeader>

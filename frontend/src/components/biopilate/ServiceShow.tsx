@@ -1,6 +1,6 @@
 import api from "@/lib/api";
-import { Service, Teache } from "@/types/types";
-import { useEffect, useState } from "react";
+import { Service, Teache,CreateServiceErrors, ServiceFormType } from "@/types/types";
+import React,{ useEffect, useState } from "react";
 import { FaTrash, FaEdit } from "react-icons/fa";
 import {
     Card,
@@ -17,15 +17,21 @@ import {
     TableRow,
 } from "@/components/ui/table";
 import { Button } from "../ui/button";
-
 import EditServiceForm from "./EditServiceForm";
 import { useNavigate } from "react-router-dom";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+
+
+
 export default function ServiceShow() {
     const [services, setServices] = useState<Service[]>([]);
     const [teaches, setTeaches] = useState<Teache[]>([]);
     const [selectedService, setSelectedService] = useState<Service | null>(null);
     const navigate = useNavigate();
-
+    const [filteredService, setFilteredService] = useState<Service[]>([]);
+    const [rowsPerPage, setRowsPerPage] = useState(10); 
+    const [searchTerm, setSearchTerm] = useState("");
     const fetchData = async () => {
         try {
             const [serviceRes, teachRes] = await Promise.all([
@@ -54,7 +60,7 @@ export default function ServiceShow() {
 
     const deleteService = async (id: number) => {
         try {
-            await api.delete(`services/${id}`);
+            await api.delete(`services/${id}/`);
             fetchData();
         } catch (error) {
             console.error("Error deleting service", error);
@@ -68,13 +74,59 @@ export default function ServiceShow() {
         
         
     };
-
+    const handleAddClick = () => {
+        navigate(`/ajouter-service-biopilates`);
+        
+        
+    };
+    const filterService = () => {
+        const filtered = services.filter((service) => {
+            const formattedDate = new Date(service.create_at).toLocaleDateString(); // Adjust this according to your date format
+            const fullText = `${service.title}  ${service.instructeur} ${formattedDate}`.toLowerCase();
+            return fullText.includes(searchTerm.toLowerCase());
+        });
+        setSelectedService(filtered);
+    };
+    useEffect(() => {
+        filterService();
+    }, [searchTerm, services]);
+    const handleChangeRowsPerPage = (value: number) => {
+        setRowsPerPage(value);
+    };
     return (
         <Card>
            
             <CardHeader className="px-7">
-                 <CardTitle></CardTitle>
-                
+            <div className="flex justify-between">
+                    <div>
+                        <CardTitle>Liste Instructeur</CardTitle></div>
+                        <Button variant="default" className="btn btn-primary"
+                          onClick={handleAddClick}
+                         >
+                           Ajouter un Service
+                        </Button></div>
+                        <div className=" justify-end mt-4">
+                    <Label htmlFor="rowsPerPage">Afficher:</Label>
+                    <select
+                        id="rowsPerPage"
+                        value={rowsPerPage}
+                        onChange={(e) => handleChangeRowsPerPage(Number(e.target.value))}
+                        className="ml-2 border-gray-300 rounded-md"
+                    >
+                        <option value={5}>5</option>
+                        <option value={10}>10</option>
+                        <option value={20}>20</option>
+                    </select>
+                    <div className="flex space-x-4">
+                        <Input
+                            type="text"
+                            placeholder="Rechercher"
+                            value={searchTerm}
+                            onChange={(e) => setSearchTerm(e.target.value)}
+                            className="w-full"
+                        />
+                        </div>
+                </div>
             </CardHeader>
            
             <CardContent>

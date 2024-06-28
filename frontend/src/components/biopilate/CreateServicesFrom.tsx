@@ -7,18 +7,26 @@ import {
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { CreateServiceErrors, ServiceFormType, Teache } from "@/types/types";
-import { useEffect, useState, Suspense } from "react";
+import React, { useEffect, useState, Suspense } from "react";
 import { Button } from "@/components/ui/button";
 import apiCreateTeache from "@/lib/apiCreateTeache";
 import api from "@/lib/api";
 import axios from "axios";
 import { toast } from "sonner";
 import "react-quill/dist/quill.snow.css"; // Import styles for React Quill
-import React from "react";
-
+import { useNavigate } from 'react-router-dom';
+import SideNav from '@/components/shared/side-nav';
 const ReactQuill = React.lazy(() => import("react-quill"));
 
 export default function CreateServicesForm() {
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        const isSupplier = localStorage.getItem('is_supplier');
+        if (!isSupplier || isSupplier !== "true") {
+            navigate('/login-register');
+        }
+    }, [navigate]);
     const [errors, setErrors] = useState<CreateServiceErrors>({});
     const [teaches, setTeaches] = useState<Teache[]>([]);
     const [service, setService] = useState<ServiceFormType>({
@@ -94,6 +102,7 @@ export default function CreateServicesForm() {
                 image: null,
             });
             toast.success("Service created");
+            navigate('/Service-biopilates')
         } catch (error) {
             if (axios.isAxiosError(error)) {
                 const errorsFromDb = error.response?.data;
@@ -105,7 +114,10 @@ export default function CreateServicesForm() {
     };
 
     return (
-        <Card className="w-max">
+        <div className='flex min-h-screen'>
+              <SideNav />
+              <div className='flex-1 bg-gray-100 bg-white shadow-md mb-4 m-7 justify-evenly items-center'>
+        <Card>
             <CardHeader>
                 <CardTitle></CardTitle>
             </CardHeader>
@@ -193,5 +205,7 @@ export default function CreateServicesForm() {
                 </form>
             </CardContent>
         </Card>
+        </div>
+        </div>
     );
 }

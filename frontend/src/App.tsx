@@ -23,6 +23,7 @@ import CreateBlogForm from './components/biopilate/CreateBlogForm';
 import FAQ from './pages/FAQ';
 import Formation from './pages/Formation';
 import Cours from './pages/Cours';
+import CreateServicesForm from './components/biopilate/CreateServicesFrom';
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
@@ -69,6 +70,7 @@ function App() {
         <Route path="/FAQ-biopilates" element={<FAQ/>}/>
         <Route path="/Formation-biopilates" element={<Formation/>}/>
         <Route path="/Cours-biopilates" element={<Cours/>}/>
+        <Route path="/ajouter-service-biopilates" element={<CreateServicesForm/>}/>
                     
                 
       </Routes>
