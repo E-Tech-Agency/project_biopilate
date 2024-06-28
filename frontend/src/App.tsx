@@ -22,6 +22,7 @@ import Blog from './pages/Blog';
 import CreateBlogForm from './components/biopilate/CreateBlogForm';
 import FAQ from './pages/FAQ';
 import Formation from './pages/Formation';
+import Cours from './pages/Cours';
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
@@ -67,6 +68,7 @@ function App() {
         <Route path="/add-article-biopilates" element={<CreateBlogForm/>}/>
         <Route path="/FAQ-biopilates" element={<FAQ/>}/>
         <Route path="/Formation-biopilates" element={<Formation/>}/>
+        <Route path="/Cours-biopilates" element={<Cours/>}/>
                     
                 
       </Routes>

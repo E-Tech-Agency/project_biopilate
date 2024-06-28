@@ -141,6 +141,15 @@ export type TeacherFormType = {
     
 
 }
+export type TeacherFormEditType = {
+    fullname : string;
+    image: File | string;
+    email : string;
+    nomber_phone : number;
+    specialite : string;
+    
+
+}
 export type CreateTeacherErrors = {
     fullname?: string[];
     email?: string[];
@@ -360,3 +369,26 @@ export type CreateFormationCategoryErrors = {
     option?: string[];
     price?: string[];
 };
+export type Cours = {
+    id: number;
+    title : string;
+    description : string;
+    status : string;
+    image: string;
+    created_at: Date;
+    updated_at: Date;
+}
+export type CoursFormType = {
+    title : string;
+    description : string;
+    status : string;
+    image: File | null;
+
+}
+export type CreateCoursErrors = {
+    title?: string[];
+    description?: string[];
+    status?: string[];
+    image?: string[];
+   
+}

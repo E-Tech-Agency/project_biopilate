@@ -1,96 +1,133 @@
-import api from "@/lib/api";
-import { Teache } from "@/types/types";
-import {  useState } from "react";
+import React, { useState, useEffect } from "react";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Button } from "@/components/ui/button";
+import { Teache, TeacherFormEditType, CreateTeacherErrors } from "@/types/types";
 
- 
-export default function TeachesEditForm ({ teache, onSave, onClose }: { teache: Teache, onSave: (updatedTeache: Teache) => void, onClose: () => void })  {
-    const [fullname, setFullname] = useState(teache.fullname);
-    const [email, setEmail] = useState(teache.email);
-    const [nomberPhone, setNomberPhone] = useState(teache.nomber_phone);
-    const [specialite, setSpecialite] = useState(teache.specialite);
-    const [image, setImage] = useState<File | null>(null);
+interface TeachesEditFormProps {
+    teache: Teache;
+    onSave: (data: any, id: number) => void;
+    onClose: () => void;
+}
 
-    const handleSubmit = async (e: React.FormEvent) => {
-        e.preventDefault();
-        const updatedTeache = {
-            ...teache,
-            fullname,
-            email,
-            nomber_phone: nomberPhone,
-            specialite,
-        };
-        console.log("Updated Teache Data:", updatedTeache);
-    const formData = new FormData();
-    formData.append("fullname", fullname);
-    formData.append("email", email);
-    formData.append("nomber_phone", nomberPhone.toString());
-    formData.append("specialite", specialite);
+const TeachesEditForm: React.FC<TeachesEditFormProps> = ({ teache, onSave, onClose }) => {
+    const [formState, setFormState] = useState<TeacherFormEditType>({
+        fullname: "",
+        email: "",
+        nomber_phone: 0,
+        specialite: "",
+        image: "",
+    });
+    const [errors, setErrors] = useState<CreateTeacherErrors>({});
 
-    if (image) {
-        formData.append("image", image); // Ensure image is appended if it exists
-    }
+    useEffect(() => {
+        setFormState({
+            fullname: teache.fullname,
+            email: teache.email,
+            nomber_phone: teache.nomber_phone,
+            specialite: teache.specialite,
+            image: teache.image,
+        });
+    }, [teache]);
 
-    console.log("Form Data:", formData);
-
-    try {
-        await onSave(formData, teache.id);
-    } catch (error) {
-        console.error("Error saving Instructeur", error);
-    }
+    const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const { id, value } = e.target;
+        setFormState((prev) => ({
+            ...prev,
+            [id]: id === "nomber_phone" ? Number(value) : value,
+        }));
     };
-   
-   
+
+    const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        if (e.target.files && e.target.files.length > 0) {
+            setFormState((prev) => ({
+                ...prev,
+                image: e.target.files[0],
+            }));
+        }
+    };
+
+    const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+        onSave(formState, teache.id);
+    };
+
     return (
-        <form onSubmit={handleSubmit}>
-            <h1 className="mb-4 items-center  ">Modifier   Instructeur</h1>
-            <div className="mb-4">
-                <label className="block text-sm font-medium text-gray-700">Prénom et Nom</label>
-                <input
-                    type="text"
-                    value={fullname}
-                    onChange={(e) => setFullname(e.target.value)}
-                    className="mt-1 block w-full rounded-md border-gray-300 shadow-sm"
-                />
+        <form onSubmit={handleSubmit} className="space-y-6">
+            <div className="grid gap-4 sm:grid-cols-2">
+            {formState.image && typeof formState.image === 'string' && (
+                        <div className="mb-4">
+                            <img src={formState.image} alt="Current" className="w-32 h-32 object-cover" />
+                        </div>
+                    )}
+                <div>
+                     
+                
+                    <Label htmlFor="fullname">Prénom et Nom</Label>
+                    <Input
+                        id="fullname"
+                        type="text"
+                        value={formState.fullname}
+                        onChange={handleInputChange}
+                        placeholder="Prénom et Nom"
+                        className="w-full"
+                    />
+                    {errors.fullname && <p className="text-red-500 mt-1">{errors.fullname}</p>}
+                </div>
+                <div>
+                    <Label htmlFor="email">Email</Label>
+                    <Input
+                        id="email"
+                        type="email"
+                        value={formState.email}
+                        onChange={handleInputChange}
+                        placeholder="Instructeur Email"
+                        className="w-full"
+                    />
+                    {errors.email && <p className="text-red-500 mt-1">{errors.email}</p>}
+                </div>
+                <div>
+                    <Label htmlFor="nomber_phone">Numéro Téléphone</Label>
+                    <Input
+                        id="nomber_phone"
+                        type="number"
+                        value={formState.nomber_phone}
+                        onChange={handleInputChange}
+                        placeholder="Numéro Téléphone"
+                        className="w-full"
+                    />
+                    {errors.nomber_phone && <p className="text-red-500 mt-1">{errors.nomber_phone}</p>}
+                </div>
+                <div>
+                    <Label htmlFor="specialite">Spécialité</Label>
+                    <Input
+                        id="specialite"
+                        type="text"
+                        value={formState.specialite}
+                        onChange={handleInputChange}
+                        placeholder="Spécialité"
+                        className="w-full"
+                    />
+                    {errors.specialite && <p className="text-red-500 mt-1">{errors.specialite}</p>}
+                </div>
+                <div className="sm:col-span-2">
+                   
+                    <Input
+                        id="image"
+                        type="file"
+                        
+                        onChange={handleImageChange}
+                        className="w-full"
+                    />
+                    {errors.image && <p className="text-red-500 mt-1">{errors.image}</p>}
+                </div>
             </div>
-            <div className="mb-4">
-                <label className="block text-sm font-medium text-gray-700">Email</label>
-                <input
-                    type="email"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    className="mt-1 block w-full rounded-md border-gray-300 shadow-sm"
-                />
-            </div>
-            <div className="mb-4">
-                <label className="block text-sm font-medium text-gray-700">Numéro Téléphone</label>
-                <input
-                    type="text"
-                    value={nomberPhone}
-                    onChange={(e) => setNomberPhone(e.target.value)}
-                    className="mt-1 block w-full rounded-md border-gray-300 shadow-sm"
-                />
-            </div>
-            <div className="mb-4">
-                <label className="block text-sm font-medium text-gray-700">Spécialité</label>
-                <input
-                    type="text"
-                    value={specialite}
-                    onChange={(e) => setSpecialite(e.target.value)}
-                    className="mt-1 block w-full rounded-md border-gray-300 shadow-sm"
-                />
-            </div>
-            <div className="mb-4">
-                <label className="block text-sm font-medium text-gray-700">Image</label>
-                <input
-    type="file"
-    onChange={(e) => setImage(e.target.files ? e.target.files[0] : null)}
-    className="mt-1 block w-full"
-/>
-            </div>
-            <div className="flex justify-end space-x-2">
-                <button type="submit" className="px-4 py-2 bg-blue-600 text-white rounded-md">Save</button>
-                <button type="button" onClick={onClose} className="px-4 py-2 bg-gray-600 text-white rounded-md">Cancel</button>
+            <div className="flex justify-end space-x-4">
+                <Button type="button" variant="secondary" onClick={onClose}>Annuler</Button>
+                <Button type="submit" className="w-full" size="lg">Mettre à jour</Button>
             </div>
         </form>
     );
 };
+
+export default TeachesEditForm;

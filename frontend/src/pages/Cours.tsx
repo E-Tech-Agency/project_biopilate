@@ -1,12 +1,8 @@
 import SideNav from '@/components/shared/side-nav';
-
-import CreateTeacherFrom from '@/components/biopilate/CreateTeacherFrom';
-import TeachesShow from '@/components/biopilate/TeachesShow';
-
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-
-export default function Teaches() {
+import CoursShow from '@/components/biopilate/CoursShow';
+export default function Cours() {
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -20,13 +16,10 @@ export default function Teaches() {
         <div className='grid min-h-screen w-full lg:grid-cols-[280px_1fr]'>
             <SideNav/>
             <div>
-                <div className='justify-evenly items-center m-6'>
-                <TeachesShow/>
-                <div className='flex flex-col '>
-                {/* <CreateTeacherFrom/> */}
-                    {/* <CreateCategory/> */}
-                    {/* <SupplierProducts/> */}
-                </div>
+                <div className=' justify-evenly items-center m-6'>
+                <CoursShow/>
+               
+                
                 </div>
                 
             </div>

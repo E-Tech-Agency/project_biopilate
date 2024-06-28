@@ -78,7 +78,7 @@ export default function CreateFAQFrom() {
                 <form onSubmit={handleSubmit}>
                     <div className="grid gap-6">
                         <div className="grid gap-3">
-                            <Label htmlFor="fullname">Titre <br />{errors.title && <li className="text-red-500 mt-2">{errors.title}</li>}</Label>
+                            <Label htmlFor="fullname">Question <br />{errors.title && <li className="text-red-500 mt-2">{errors.title}</li>}</Label>
                             <Input
                                 id="title"
                                 name="title"
@@ -89,7 +89,7 @@ export default function CreateFAQFrom() {
                             />
                         </div>
                         <div className="grid gap-3">
-                            <Label htmlFor="description">Description <br />{errors.description && <li className="text-red-500 mt-2">{errors.description}</li>}</Label>
+                            <Label htmlFor="description">Reponse <br />{errors.description && <li className="text-red-500 mt-2">{errors.description}</li>}</Label>
                             <textarea
                                 id="description"
                                 name="description"
