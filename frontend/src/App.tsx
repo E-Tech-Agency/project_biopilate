@@ -24,6 +24,7 @@ import FAQ from './pages/FAQ';
 import Formation from './pages/Formation';
 import Cours from './pages/Cours';
 import CreateServicesForm from './components/biopilate/CreateServicesFrom';
+import CreatePlanningForm from './components/biopilate/CreatePlanningFrom';
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
@@ -71,7 +72,8 @@ function App() {
         <Route path="/Formation-biopilates" element={<Formation/>}/>
         <Route path="/Cours-biopilates" element={<Cours/>}/>
         <Route path="/ajouter-service-biopilates" element={<CreateServicesForm/>}/>
-                    
+        <Route path="/ajouter-planning-biopilates" element={<CreatePlanningForm/>}/>
+                           
                 
       </Routes>
       <Toaster />

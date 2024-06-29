@@ -213,7 +213,8 @@ export type Planning = {
     description : string;
     range : number;
     status : string;
-    category : string;
+    category: number; // category ID
+    category_name: string; // category name
     create_at: Date;
     updated_at: Date;
 }

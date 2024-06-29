@@ -21,15 +21,20 @@ import { Planning } from "@/types/types";
 import { useNavigate } from "react-router-dom";
 
 export default function PlanningShow() {
-    const [planning, setPlanning] = useState<Planning[] | null>(null);
+    const [planning, setPlanning] = useState<Planning[]>([]);
+    const [filteredPlanning, setFilteredPlanning] = useState<Planning[]>([]);
     const [editingId, setEditingId] = useState<number | null>(null);
     const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+    const [searchTerm, setSearchTerm] = useState("");
+    const [statusFilter, setStatusFilter] = useState("");
+    const [rowsPerPage, setRowsPerPage] = useState(10);
     const navigate = useNavigate();
 
     const getPlannings = async () => {
         try {
             const res = await api.get("plannings/");
             setPlanning(res.data);
+            setFilteredPlanning(res.data);
         } catch (error) {
             console.error("Error fetching planning", error);
         }
@@ -39,36 +44,85 @@ export default function PlanningShow() {
         getPlannings();
     }, []);
 
+    useEffect(() => {
+        filterPlanning();
+    }, [searchTerm, statusFilter, planning]);
+
+    const filterPlanning = () => {
+        const filtered = planning.filter((plan) => {
+            const formattedDate = new Date(plan.create_at).toLocaleDateString();
+            const fullText = `${plan.title} ${plan.duree} ${plan.category_name} ${formattedDate}`.toLowerCase();
+            const matchesSearchTerm = fullText.includes(searchTerm.toLowerCase());
+            const matchesStatusFilter = statusFilter ? plan.status === statusFilter : true;
+            return matchesSearchTerm && matchesStatusFilter;
+        });
+        setFilteredPlanning(filtered);
+    };
+
     const deletePlanning = async (id: number) => {
         try {
-            await api.delete(`plannings/${id}`);
+            await api.delete(`plannings/${id}/`);
             getPlannings();
         } catch (error) {
             console.error("Error deleting planning", error);
         }
     };
 
-    const handleEditClick = (id: number) => {
-        setEditingId(id);
-        setIsModalOpen(true);
-    };
+   
 
     const handleEditClose = () => {
         setEditingId(null);
         setIsModalOpen(false);
         getPlannings();
     };
+
     const handleAddClick = () => {
         navigate(`/ajouter-planning-biopilates`);
     };
+
+    const handleChangeRowsPerPage = (value: number) => {
+        setRowsPerPage(value);
+    };
+
     return (
         <Card>
             <CardHeader className="px-7">
-            <div className="flex justify-between">
+                <div className="flex justify-between">
                     <CardTitle>Planning</CardTitle>
                     <Button variant="default" className="btn btn-primary" onClick={handleAddClick}>
                         Ajouter un planning
                     </Button>
+                </div>
+                <div className="mt-4 flex justify-end space-x-4">
+                    <div className="flex items-center space-x-2">
+                        <label htmlFor="rowsPerPage">Afficher:</label>
+                        <select
+                            id="rowsPerPage"
+                            value={rowsPerPage}
+                            onChange={(e) => handleChangeRowsPerPage(Number(e.target.value))}
+                            className="border-gray-300 rounded-md"
+                        >
+                            <option value={5}>5</option>
+                            <option value={10}>10</option>
+                            <option value={20}>20</option>
+                        </select>
+                    </div>
+                    <input
+                        type="text"
+                        placeholder="Rechercher"
+                        value={searchTerm}
+                        onChange={(e) => setSearchTerm(e.target.value)}
+                        className="w-full border-gray-300 rounded-md"
+                    />
+                    <select
+                        value={statusFilter}
+                        onChange={(e) => setStatusFilter(e.target.value)}
+                        className="border-gray-300 rounded-md"
+                    >
+                        <option value="">Tous les statuts</option>
+                        <option value="pending">En attente</option>
+                        <option value="approved">Publiée</option>
+                    </select>
                 </div>
             </CardHeader>
             <CardContent>
@@ -78,24 +132,24 @@ export default function PlanningShow() {
                             <TableHead>Titre</TableHead>
                             <TableHead className="hidden sm:table-cell">Niveau</TableHead>
                             <TableHead className="hidden sm:table-cell">Durée</TableHead>
-                            <TableHead className="hidden md:table-cell">Status</TableHead>
                             <TableHead className="hidden md:table-cell">Déplacement</TableHead>
+                            <TableHead className="hidden md:table-cell">Status</TableHead>
                             <TableHead className="hidden md:table-cell">Crée le</TableHead>
                             <TableHead className="hidden md:table-cell">Actions</TableHead>
                         </TableRow>
                     </TableHeader>
                     <TableBody>
-                        {planning && planning.map((plan: Planning) => (
+                        {filteredPlanning.slice(0, rowsPerPage).map((plan: Planning) => (
                             <TableRow key={plan.id} className="bg-accent">
                                 <TableCell>
                                     <div className="font-medium">{plan.title}</div>
                                 </TableCell>
-                                <TableCell className="hidden sm:table-cell">{plan.category?.name}</TableCell>
+                                <TableCell className="hidden sm:table-cell">{plan.category_name}</TableCell>
                                 <TableCell className="hidden sm:table-cell">{plan.duree}</TableCell>
-                                <TableCell className="hidden sm:table-cell">{plan.range}</TableCell>
+                                <TableCell className="hidden sm:table-cell">({plan.range}) range</TableCell>
                                 <TableCell className="text-right">
                                     <div className="flex space-x-2">
-                                        {plan.status === "pending" && <h2 className="text-emerald-500">En attente</h2>}
+                                        {plan.status === "pending" && <h2>En attente</h2>}
                                         {plan.status === "approved" && <h2 className="text-emerald-500">Publiée</h2>}
                                     </div>
                                 </TableCell>

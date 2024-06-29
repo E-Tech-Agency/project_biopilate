@@ -9,8 +9,13 @@ class CategoryViewSet(viewsets.ModelViewSet):
     serializer_class = CategorySerializer
 
 class PlanningViewSet(viewsets.ModelViewSet):
-    queryset = Planning.objects.all()
+    queryset = Planning.objects.all().order_by('-create_at')
     serializer_class = PlanningSerializer
+    def perform_update(self, serializer):
+        # Override perform_update to prevent reordering after edit
+        instance = serializer.save()
+        # Refresh the instance to ensure it's up-to-date
+        instance.refresh_from_db()
 
 @api_view(['GET', 'PUT'])
 def planning_detail(request, pk):
