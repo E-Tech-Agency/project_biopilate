@@ -13,7 +13,7 @@ const EditService: React.FC = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await api.get(`services/${id}`);
+                const response = await api.get(`services/${id}/`);
                 const serviceData = response.data;
                 setServiceData(serviceData);
             } catch (error) {
@@ -27,7 +27,7 @@ const EditService: React.FC = () => {
     const updateService = async (data: any, id?: number) => {
         try {
             if (data instanceof FormData) {
-                await api.put(`services/${id}`, data, {
+                await api.put(`services/${id}/`, data, {
                     headers: {
                         "Content-Type": "multipart/form-data",
                     },
@@ -36,7 +36,7 @@ const EditService: React.FC = () => {
                 await api.put(`services/${data.id}`, data);
             }
             // Handle success or navigate back to previous page
-            navigate('/'); // Navigate to home or previous page on successful update
+            navigate('/Service-biopilates'); // Navigate to home or previous page on successful update
         } catch (error) {
             console.error("Error updating service", error);
             alert(`Failed to update service: ${error.message}`);

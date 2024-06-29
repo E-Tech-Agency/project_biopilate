@@ -22,13 +22,13 @@ export default function Planning() {
         <div className='grid min-h-screen w-full lg:grid-cols-[280px_1fr]'>
             <SideNav/>
             <div>
-                <div className='flex flex-row justify-evenly items-center m-6'>
+                {/* <div className='flex flex-row justify-evenly items-center m-6'>
                 <CreatePlanningForm/>
                 <div className='flex  gap-3'>
                     <CreateCategory/>
                     
                 </div>
-                </div>
+                </div> */} 
                 <div className='m-4'>
                 <PlanningShow/>
                 

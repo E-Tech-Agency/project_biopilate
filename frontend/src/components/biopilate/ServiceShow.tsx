@@ -1,6 +1,6 @@
 import api from "@/lib/api";
-import { Service, Teache,CreateServiceErrors, ServiceFormType } from "@/types/types";
-import React,{ useEffect, useState } from "react";
+import { Service, Teache } from "@/types/types";
+import React, { useEffect, useState } from "react";
 import { FaTrash, FaEdit } from "react-icons/fa";
 import {
     Card,
@@ -16,22 +16,20 @@ import {
     TableHeader,
     TableRow,
 } from "@/components/ui/table";
-import { Button } from "../ui/button";
-import EditServiceForm from "./EditServiceForm";
+import { Button } from "@/components/ui/button";
 import { useNavigate } from "react-router-dom";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 
-
-
 export default function ServiceShow() {
     const [services, setServices] = useState<Service[]>([]);
     const [teaches, setTeaches] = useState<Teache[]>([]);
-    const [selectedService, setSelectedService] = useState<Service | null>(null);
-    const navigate = useNavigate();
-    const [filteredService, setFilteredService] = useState<Service[]>([]);
-    const [rowsPerPage, setRowsPerPage] = useState(10); 
+    const [filteredServices, setFilteredServices] = useState<Service[]>([]);
     const [searchTerm, setSearchTerm] = useState("");
+    const [statusFilter, setStatusFilter] = useState("");
+    const [rowsPerPage, setRowsPerPage] = useState(10);
+    const navigate = useNavigate();
+
     const fetchData = async () => {
         try {
             const [serviceRes, teachRes] = await Promise.all([
@@ -49,6 +47,7 @@ export default function ServiceShow() {
             });
             setServices(updatedServices);
             setTeaches(teachesData);
+            setFilteredServices(updatedServices); // Initialize filtered services
         } catch (error) {
             console.error("Error fetching data", error);
         }
@@ -67,70 +66,75 @@ export default function ServiceShow() {
         }
     };
 
-    
-
     const handleEditClick = (id: number) => {
         navigate(`/edit-service/${id}`);
-        
-        
     };
+
     const handleAddClick = () => {
         navigate(`/ajouter-service-biopilates`);
-        
-        
     };
-    const filterService = () => {
+
+    const filterServices = () => {
         const filtered = services.filter((service) => {
             const formattedDate = new Date(service.create_at).toLocaleDateString(); // Adjust this according to your date format
-            const fullText = `${service.title}  ${service.instructeur} ${formattedDate}`.toLowerCase();
-            return fullText.includes(searchTerm.toLowerCase());
+            const fullText = `${service.title} ${service.instructeurFullName} ${formattedDate}`.toLowerCase();
+            const matchesSearchTerm = fullText.includes(searchTerm.toLowerCase());
+            const matchesStatusFilter = statusFilter ? service.status === statusFilter : true;
+            return matchesSearchTerm && matchesStatusFilter;
         });
-        setSelectedService(filtered);
+        setFilteredServices(filtered);
     };
+
     useEffect(() => {
-        filterService();
-    }, [searchTerm, services]);
+        filterServices();
+    }, [searchTerm, statusFilter, services]);
+
     const handleChangeRowsPerPage = (value: number) => {
         setRowsPerPage(value);
     };
+
     return (
         <Card>
-           
             <CardHeader className="px-7">
-            <div className="flex justify-between">
-                    <div>
-                        <CardTitle>Liste Instructeur</CardTitle></div>
-                        <Button variant="default" className="btn btn-primary"
-                          onClick={handleAddClick}
-                         >
-                           Ajouter un Service
-                        </Button></div>
-                        <div className=" justify-end mt-4">
-                    <Label htmlFor="rowsPerPage">Afficher:</Label>
+                <div className="flex justify-between">
+                    <CardTitle>Liste Service</CardTitle>
+                    <Button variant="default" className="btn btn-primary" onClick={handleAddClick}>
+                        Ajouter un Service
+                    </Button>
+                </div>
+                <div className="mt-4 flex justify-end space-x-4">
+                    <div className="flex items-center space-x-2">
+                        <Label htmlFor="rowsPerPage">Afficher:</Label>
+                        <select
+                            id="rowsPerPage"
+                            value={rowsPerPage}
+                            onChange={(e) => handleChangeRowsPerPage(Number(e.target.value))}
+                            className="border-gray-300 rounded-md"
+                        >
+                            <option value={5}>5</option>
+                            <option value={10}>10</option>
+                            <option value={20}>20</option>
+                        </select>
+                    </div>
+                    <Input
+                        type="text"
+                        placeholder="Rechercher"
+                        value={searchTerm}
+                        onChange={(e) => setSearchTerm(e.target.value)}
+                        className="w-full"
+                    />
                     <select
-                        id="rowsPerPage"
-                        value={rowsPerPage}
-                        onChange={(e) => handleChangeRowsPerPage(Number(e.target.value))}
-                        className="ml-2 border-gray-300 rounded-md"
+                        value={statusFilter}
+                        onChange={(e) => setStatusFilter(e.target.value)}
+                        className="border-gray-300 rounded-md"
                     >
-                        <option value={5}>5</option>
-                        <option value={10}>10</option>
-                        <option value={20}>20</option>
+                        <option value="">Tous les statuts</option>
+                        <option value="pending">En attente</option>
+                        <option value="approved">Publiée</option>
                     </select>
-                    <div className="flex space-x-4">
-                        <Input
-                            type="text"
-                            placeholder="Rechercher"
-                            value={searchTerm}
-                            onChange={(e) => setSearchTerm(e.target.value)}
-                            className="w-full"
-                        />
-                        </div>
                 </div>
             </CardHeader>
-           
             <CardContent>
-            <button>Ajouter </button>
                 <Table>
                     <TableHeader>
                         <TableRow>
@@ -142,7 +146,7 @@ export default function ServiceShow() {
                         </TableRow>
                     </TableHeader>
                     <TableBody>
-                        {services.map((service: Service) => (
+                        {filteredServices.slice(0, rowsPerPage).map((service: Service) => (
                             <TableRow key={service.id} className="bg-accent">
                                 <TableCell>
                                     <div className="flex items-center space-x-4">
@@ -167,10 +171,9 @@ export default function ServiceShow() {
                                 <TableCell className="hidden md:table-cell">{new Date(service.create_at).toLocaleDateString()}</TableCell>
                                 <TableCell className="text-right">
                                     <div className="flex space-x-2">
-                                    <Button variant="secondary" onClick={() => handleEditClick(service.id)}>
-    <FaEdit />
-</Button>
-
+                                        <Button variant="secondary" onClick={() => handleEditClick(service.id)}>
+                                            <FaEdit />
+                                        </Button>
                                         <Button variant="danger" onClick={() => deleteService(service.id)}>
                                             <FaTrash />
                                         </Button>
@@ -181,7 +184,6 @@ export default function ServiceShow() {
                     </TableBody>
                 </Table>
             </CardContent>
-            
         </Card>
     );
 }

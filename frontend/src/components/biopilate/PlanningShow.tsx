@@ -18,11 +18,13 @@ import { Button } from "../ui/button";
 import PlanningEditModal from "./PlanningEditModal";
 import api from "@/lib/api";
 import { Planning } from "@/types/types";
+import { useNavigate } from "react-router-dom";
 
 export default function PlanningShow() {
     const [planning, setPlanning] = useState<Planning[] | null>(null);
     const [editingId, setEditingId] = useState<number | null>(null);
     const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+    const navigate = useNavigate();
 
     const getPlannings = async () => {
         try {
@@ -56,11 +58,18 @@ export default function PlanningShow() {
         setIsModalOpen(false);
         getPlannings();
     };
-
+    const handleAddClick = () => {
+        navigate(`/ajouter-planning-biopilates`);
+    };
     return (
         <Card>
             <CardHeader className="px-7">
-                <CardTitle>Planning</CardTitle>
+            <div className="flex justify-between">
+                    <CardTitle>Planning</CardTitle>
+                    <Button variant="default" className="btn btn-primary" onClick={handleAddClick}>
+                        Ajouter un planning
+                    </Button>
+                </div>
             </CardHeader>
             <CardContent>
                 <Table>
