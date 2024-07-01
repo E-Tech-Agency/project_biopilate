@@ -6,19 +6,27 @@ import {
 } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { CreateFAQErrors, FAQFormType, FAQ } from "@/types/types";
-import { useEffect, useState, Suspense } from "react";
+import { CreateFAQErrors, FAQFormType } from "@/types/types";
+import React,{ useEffect, useState, Suspense } from "react";
 import { Button } from "@/components/ui/button";
 import apiCreateTeache from "@/lib/apiCreateTeache";
 import api from "@/lib/api";
 import axios from "axios";
 import { toast } from "sonner";
 import "react-quill/dist/quill.snow.css"; // Import styles for React Quill
-import React from "react";
 
+import SideNav from '@/components/shared/side-nav';
 const ReactQuill = React.lazy(() => import("react-quill"));
-
+import { useNavigate } from 'react-router-dom';
 export default function CreateFAQFrom() {
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        const isSupplier = localStorage.getItem('is_supplier');
+        if (!isSupplier || isSupplier !== "true") {
+            navigate('/login-register');
+        }
+    }, [navigate]);
     const [errors, setErrors] = useState<CreateFAQErrors>({});
    
     const [faq, setFaq] = useState<FAQFormType>({
@@ -59,6 +67,7 @@ export default function CreateFAQFrom() {
                 range:0,
             });
             toast.success("FAQ created");
+            navigate('/FAQ-biopilates')
         } catch (error) {
             if (axios.isAxiosError(error)) {
                 const errorsFromDb = error.response?.data;
@@ -70,6 +79,10 @@ export default function CreateFAQFrom() {
     };
 
     return (
+        <div className='grid min-h-screen w-full lg:grid-cols-[280px_1fr]'>
+        {/* Side Navigation */}
+        <SideNav />
+        <div className=' justify-evenly items-center m-6'>
         <Card className="w-max w-full">
             <CardHeader>
                 <CardTitle></CardTitle>
@@ -135,5 +148,7 @@ export default function CreateFAQFrom() {
                 </form>
             </CardContent>
         </Card>
+        </div>
+        </div>
     );
 }

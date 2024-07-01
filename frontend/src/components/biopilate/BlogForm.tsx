@@ -1,4 +1,4 @@
-import React, { Suspense } from "react";
+import React, { useEffect, useState, Suspense } from "react";
 import {
     Card,
     CardContent,
@@ -10,6 +10,7 @@ import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 import "react-quill/dist/quill.snow.css"; // Import styles for React Quill
 import { BlogFormType, CreateBlogErrors } from "@/types/types";
+const ReactQuill = React.lazy(() => import("react-quill"));
 
 type BlogFormProps = {
     handleSubmit: (e: React.FormEvent<HTMLFormElement>) => Promise<void>;
@@ -27,8 +28,7 @@ const BlogForm: React.FC<BlogFormProps> = ({ handleSubmit, errors, blog, setBlog
         }));
     };
 
-    const ReactQuill = React.lazy(() => import("react-quill"));
-
+  
     const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const { name, files } = e.target;
         if (files && files.length > 0) {
@@ -45,6 +45,7 @@ const BlogForm: React.FC<BlogFormProps> = ({ handleSubmit, errors, blog, setBlog
             full_text: value,
         }));
     };
+
     const formatDateToYYYYMMDD = (date: Date): string => {
         const year = date.getFullYear();
         const month = String(date.getMonth() + 1).padStart(2, '0');
@@ -55,16 +56,14 @@ const BlogForm: React.FC<BlogFormProps> = ({ handleSubmit, errors, blog, setBlog
     return (
         <Card className="w-full max-w-2xl mx-auto p-6 my-8">
             <CardHeader>
-                <CardTitle className="text-center text-2xl font-bold">Ajouter un Planning</CardTitle>
+                <CardTitle className="text-center text-2xl font-bold">Ajouter un Article blog</CardTitle>
             </CardHeader>
             <CardContent>
                 <form onSubmit={handleSubmit}>
                     <div className="grid gap-6">
                         <div className="grid gap-3">
-                            <Label htmlFor="title">
-                                Titre
-                                {errors.title && <span className="text-red-500 mt-2">{errors.title}</span>}
-                            </Label>
+                            <Label htmlFor="title">Titre</Label>
+                            {errors.title && <span className="text-red-500">{errors.title}</span>}
                             <Input
                                 id="title"
                                 name="title"
@@ -75,10 +74,8 @@ const BlogForm: React.FC<BlogFormProps> = ({ handleSubmit, errors, blog, setBlog
                             />
                         </div>
                         <div className="grid gap-3">
-                            <Label htmlFor="author">
-                                Nom de l’écrivain
-                                {errors.author && <span className="text-red-500 mt-2">{errors.author}</span>}
-                            </Label>
+                            <Label htmlFor="author">Nom de l’écrivain</Label>
+                            {errors.author && <span className="text-red-500">{errors.author}</span>}
                             <Input
                                 id="author"
                                 name="author"
@@ -89,10 +86,8 @@ const BlogForm: React.FC<BlogFormProps> = ({ handleSubmit, errors, blog, setBlog
                             />
                         </div>
                         <div className="grid gap-3">
-                            <Label htmlFor="date">
-                                Date de création
-                                {errors.date && <span className="text-red-500 mt-2">{errors.date}</span>}
-                            </Label>
+                            <Label htmlFor="date">Date de création</Label>
+                            {errors.date && <span className="text-red-500">{errors.date}</span>}
                             <Input
                                 id="date"
                                 name="date"
@@ -104,10 +99,8 @@ const BlogForm: React.FC<BlogFormProps> = ({ handleSubmit, errors, blog, setBlog
                         </div>
                         <div className="grid grid-cols-2 gap-4 items-center">
                             <div className="grid gap-3">
-                                <Label htmlFor="image_1">
-                                    Image de couverture
-                                    {errors.image_1 && <span className="text-red-500 mt-2">{errors.image_1}</span>}
-                                </Label>
+                                <Label htmlFor="image_1">Image de couverture</Label>
+                                {errors.image_1 && <span className="text-red-500">{errors.image_1}</span>}
                                 <Input
                                     id="image_1"
                                     name="image_1"
@@ -117,10 +110,8 @@ const BlogForm: React.FC<BlogFormProps> = ({ handleSubmit, errors, blog, setBlog
                                 />
                             </div>
                             <div className="grid gap-3">
-                                <Label htmlFor="image_2">
-                                    Image du blog
-                                    {errors.image_2 && <span className="text-red-500 mt-2">{errors.image_2}</span>}
-                                </Label>
+                                <Label htmlFor="image_2">Image du blog</Label>
+                                {errors.image_2 && <span className="text-red-500">{errors.image_2}</span>}
                                 <Input
                                     id="image_2"
                                     name="image_2"
@@ -131,24 +122,19 @@ const BlogForm: React.FC<BlogFormProps> = ({ handleSubmit, errors, blog, setBlog
                             </div>
                         </div>
                         <div className="grid gap-3">
-                            <Label htmlFor="description">
-                                Description de couverture
-                                {errors.description && <span className="text-red-500 mt-2">{errors.description}</span>}
-                            </Label>
+                            <Label htmlFor="description">Description de couverture</Label>
+                            {errors.description && <span className="text-red-500">{errors.description}</span>}
                             <textarea
-                               
                                 id="description"
+                                name="description"
                                 value={blog.description}
                                 onChange={handleInputChange}
-                                name="description"
                                 className="w-full p-2 border rounded-md"
                             />
                         </div>
                         <div className="grid gap-3">
-                            <Label htmlFor="range">
-                                Déplacement
-                                {errors.range && <span className="text-red-500 mt-2">{errors.range}</span>}
-                            </Label>
+                            <Label htmlFor="range">Déplacement</Label>
+                            {errors.range && <span className="text-red-500">{errors.range}</span>}
                             <Input
                                 id="range"
                                 name="range"
@@ -159,10 +145,8 @@ const BlogForm: React.FC<BlogFormProps> = ({ handleSubmit, errors, blog, setBlog
                             />
                         </div>
                         <div className="grid gap-3">
-                            <Label htmlFor="status">
-                                Status
-                                {errors.status && <span className="text-red-500 mt-2">{errors.status}</span>}
-                            </Label>
+                            <Label htmlFor="status">Status</Label>
+                            {errors.status && <span className="text-red-500">{errors.status}</span>}
                             <select
                                 id="status"
                                 name="status"
@@ -176,10 +160,8 @@ const BlogForm: React.FC<BlogFormProps> = ({ handleSubmit, errors, blog, setBlog
                             </select>
                         </div>
                         <div className="grid gap-3">
-                            <Label htmlFor="full_text">
-                                Description
-                                {errors.full_text && <span className="text-red-500 mt-2">{errors.full_text}</span>}
-                            </Label>
+                            <Label htmlFor="full_text">Description</Label>
+                            {errors.full_text && <span className="text-red-500">{errors.full_text}</span>}
                             <Suspense fallback={<div>Loading...</div>}>
                                 <ReactQuill
                                     id="full_text"
@@ -190,14 +172,14 @@ const BlogForm: React.FC<BlogFormProps> = ({ handleSubmit, errors, blog, setBlog
                                 />
                             </Suspense>
                         </div>
-                        <input
-                             id="favorites"
-                             name="favorites"
-                             type="hidden" 
-                             
-                             onChange={(e) => setBlog({ ...blog, favorites: parseInt(e.target.value) })}
-                             className="display-none" />
-
+                        <div className="hidden">
+                            <input
+                                id="favorites"
+                                name="favorites"
+                                type="hidden"
+                                onChange={(e) => setBlog({ ...blog, favorites: parseInt(e.target.value) })}
+                            />
+                        </div>
                         <div className="flex justify-end mt-6">
                             <Button type="submit" className="w-44" size="lg">Ajouter</Button>
                         </div>

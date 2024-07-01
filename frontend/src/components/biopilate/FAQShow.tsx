@@ -55,12 +55,47 @@ export default function FAQShow() {
         
         
     };
+    const handleAddClick = () => {
+        navigate("/add-FAQ-biopilates");
+    };
 
     return (
         <Card>
            
             <CardHeader className="px-7">
-                 <CardTitle></CardTitle>
+            <div className="flex justify-between">
+            <CardTitle>Liste FAQ</CardTitle>
+                    {/* <div>
+                       
+                        <div className=" justify-end mt-4">
+                    <Label htmlFor="rowsPerPage">Afficher:</Label>
+                    <select
+                        id="rowsPerPage"
+                        value={rowsPerPage}
+                        onChange={(e) => handleChangeRowsPerPage(Number(e.target.value))}
+                        className="ml-2 border-gray-300 rounded-md"
+                    >
+                        <option value={5}>5</option>
+                        <option value={10}>10</option>
+                        <option value={20}>20</option>
+                    </select>
+                </div>
+                    </div> */}
+                    
+                    <div className="flex space-x-4">
+                        {/* <Input
+                            type="text"
+                            placeholder="Rechercher"
+                            value={searchTerm}
+                            onChange={(e) => setSearchTerm(e.target.value)}
+                            className="w-full"
+                        /> */}
+                        <Button variant="default" className="btn btn-primary" onClick={handleAddClick}>
+                            Ajouter un Instructeur
+                        </Button>
+                    </div>
+                    
+                </div>
                 
             </CardHeader>
            

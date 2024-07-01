@@ -22,11 +22,7 @@ export default function Teaches() {
             <div>
                 <div className='justify-evenly items-center m-6'>
                 <TeachesShow/>
-                <div className='flex flex-col '>
-                {/* <CreateTeacherFrom/> */}
-                    {/* <CreateCategory/> */}
-                    {/* <SupplierProducts/> */}
-                </div>
+                
                 </div>
                 
             </div>
