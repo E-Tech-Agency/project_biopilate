@@ -16,7 +16,7 @@ import "react-quill/dist/quill.snow.css"; // Import styles for React Quill
 import SideNav from "../shared/side-nav";
 import { useNavigate } from 'react-router-dom';
 import { CreatePlanningErrors, PlanningFormType, Category } from "@/types/types";
-
+import CreateCategory from "../supplier/create-category";
 const ReactQuill = React.lazy(() => import("react-quill"));
 
 export default function CreatePlanningForm() {
@@ -90,7 +90,7 @@ export default function CreatePlanningForm() {
         <div className='grid min-h-screen w-full lg:grid-cols-[280px_1fr]'>
             <SideNav />
             <div>
-                <div className='justify-evenly items-center m-6'>
+                <div className='flex flex-rowjustify-evenly items-center m-6'>
                     <Card className="w-full max-w-2xl mx-auto p-6 my-8">
                         <CardHeader>
                             <CardTitle>Ajouter un Planning</CardTitle>
@@ -199,7 +199,12 @@ export default function CreatePlanningForm() {
                             </form>
                         </CardContent>
                     </Card>
+                    <div className='flex  gap-3'>
+                    <CreateCategory/>
+                    
                 </div>
+                </div>
+               
             </div>
         </div>
     );

@@ -5,26 +5,28 @@ import {
     CardHeader,
     CardTitle,
 } from "@/components/ui/card"
-import { Label } from "@/components/ui/label"
+
 import { Input } from "../ui/input"
 import { useState } from "react";
 import api from "@/lib/api";
 import { Button } from "../ui/button";
 import { toast } from "sonner";
 import axios from "axios";
-
+import { useNavigate } from 'react-router-dom';
 export default function CreateCategory() {
     const [errors, setErrors] = useState("");
     const [category, setCategory] = useState({
         name: "",
     });
+    const navigate = useNavigate();
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         try {
             await api.post("categories/", category);
             toast.success("Category created");
             setCategory({name: ""});
-            setErrors("");
+            navigate('/ajouter-planning-biopilates');
+           
         } catch (error) {
             if (axios.isAxiosError(error)) {
                 setErrors(error.response?.data.name[0])

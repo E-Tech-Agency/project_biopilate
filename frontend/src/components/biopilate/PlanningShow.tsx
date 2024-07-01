@@ -68,7 +68,10 @@ export default function PlanningShow() {
         }
     };
 
-   
+    const handleEditClick = (id: number) => {
+        setEditingId(id);
+        setIsModalOpen(true);
+    };
 
     const handleEditClose = () => {
         setEditingId(null);
