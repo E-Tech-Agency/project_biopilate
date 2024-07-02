@@ -1,5 +1,5 @@
 import api from "@/lib/api";
-import { Formation, Option, FormationCategory } from "@/types/types";
+import { Formation } from "@/types/types";
 import { useEffect, useState } from "react";
 import { FaTrash, FaEdit } from "react-icons/fa";
 import {
@@ -23,46 +23,24 @@ import { useNavigate } from "react-router-dom";
 
 export default function FormationShow() {
     const [formations, setFormations] = useState<Formation[]>([]);
-    const [options, setOptions] = useState<Option[]>([]);
-    const [formationCategories, setFormationCategories] = useState<FormationCategory[]>([]);
     const [filteredFormations, setFilteredFormations] = useState<Formation[]>([]);
     const [rowsPerPage, setRowsPerPage] = useState(10);
     const [statusFilter, setStatusFilter] = useState("");
-    const [searchTerm, setSearchTerm] = useState("");
-    const [currentPage, setCurrentPage] = useState(1);
     const navigate = useNavigate();
+    const [currentPage, setCurrentPage] = useState(1);
+    const [searchTerm, setSearchTerm] = useState("");
 
     const getFormations = async () => {
         try {
-            const res = await api.get<Formation[]>("formations/");
+            const res = await api.get("formations/");
             setFormations(res.data);
         } catch (error) {
             console.error("Error fetching formations", error);
         }
     };
 
-    const getOptions = async () => {
-        try {
-            const res = await api.get<Option[]>("options/");
-            setOptions(res.data);
-        } catch (error) {
-            console.error("Error fetching options", error);
-        }
-    };
-
-    const getFormationCategories = async () => {
-        try {
-            const res = await api.get<FormationCategory[]>("selected-options/");
-            setFormationCategories(res.data);
-        } catch (error) {
-            console.error("Error fetching selected options", error);
-        }
-    };
-
     useEffect(() => {
         getFormations();
-        getOptions();
-        getFormationCategories();
     }, []);
 
     const filterFormations = () => {
@@ -84,7 +62,7 @@ export default function FormationShow() {
 
     const deleteFormation = async (id: number) => {
         try {
-            await api.delete(`formations/${id}/`);
+            await api.delete(`formations/${id}`);
             getFormations();
         } catch (error) {
             console.error("Error deleting formation", error);
@@ -135,7 +113,7 @@ export default function FormationShow() {
                         <select
                             value={statusFilter}
                             onChange={(e) => setStatusFilter(e.target.value)}
-                            className="ml-2 border-gray-300 rounded-md"
+                            className="border-gray-300 rounded-md ml-2"
                         >
                             <option value="">Tous les statuts</option>
                             <option value="pending">En attente</option>
@@ -167,8 +145,8 @@ export default function FormationShow() {
                                 </TableCell>
                                 <TableCell className="hidden md:table-cell">
                                     <div className="flex space-x-2">
-                                        {status === "pending" && <span className="text-danger">En attente</span>}
-                                        {status === "approved" && <span className="text-emerald-500">Publiée</span>}
+                                        {formation.status === "pending" && <span className="text-danger">En attente</span>}
+                                        {formation.status === "approved" && <span className="text-emerald-500">Publiée</span>}
                                     </div>
                                 </TableCell>
                                 <TableCell className="hidden md:table-cell">{new Date(formation.created_at).toLocaleDateString()}</TableCell>

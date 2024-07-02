@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import CreateFAQFrom from '@/components/biopilate/CreateFAQFrom';
 import FAQShow from '@/components/biopilate/FAQShow';
 import CreateFormationForm from '@/components/biopilate/CreateFormationForm';
+import FormationShow from '@/components/biopilate/FormationShow';
 export default function Formation() {
     const navigate = useNavigate();
 
@@ -16,30 +17,29 @@ export default function Formation() {
     }, [navigate]);
 
     return (
-        <div className='flex min-h-screen'>
+        <div className='grid min-h-screen w-full lg:grid-cols-[280px_1fr]'>
         {/* Side Navigation */}
         <SideNav />
 
         {/* Main Content */}
-        <div className='flex-1 bg-gray-100'>
-            <div className='p-8'>
-              
-                <div className='grid grid-cols-1 lg:grid-cols-2 gap-8'>
+        <div >
+            
+               
                     {/* Service Details */}
-                    <div className='bg-white rounded-lg shadow-md p-6'>
-                        <h2 className='text-xl font-semibold mb-4'>Services Liste</h2>
-                        <FAQShow />
+                    <div className='justify-evenly items-center m-6'>
+                       
+                        <FormationShow />
                     </div>
                     {/* Create New Service Form */}
-                    <div className='bg-white rounded-lg shadow-md p-4'>
+                    {/* <div className='bg-white rounded-lg shadow-md p-4'>
                         <h2 className='text-xl font-semibold mb-4'>Ajouter un Formation</h2>
                         <CreateFormationForm />
-                    </div>
+                    </div> */}
 
                     
-                </div>
+                
             </div>
         </div>
-    </div>
+   
     );
 }
