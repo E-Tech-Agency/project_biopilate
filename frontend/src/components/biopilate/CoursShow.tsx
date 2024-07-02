@@ -14,7 +14,7 @@ import {
     TableHeader,
     TableRow,
 } from "@/components/ui/table";
-import { FaTrash, FaEdit } from "react-icons/fa";
+import { FaTrash ,FaEdit} from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import "react-quill/dist/quill.snow.css"; // Import styles for React Quill
 import { Button } from "@/components/ui/button";
@@ -30,6 +30,11 @@ const ReactQuill = React.lazy(() => import("react-quill"));
 
 export default function CoursShow() {
     const [isModalOpen, setIsModalOpen] = useState(false);
+    const [filteredCours, setFilteredCours] = useState<Cours[]>([]);
+    const [searchTerm, setSearchTerm] = useState("");
+    const [statusFilter, setStatusFilter] = useState("");
+    const [rowsPerPage, setRowsPerPage] = useState(10);
+    const [currentPage, setCurrentPage] = useState(1);
     const navigate = useNavigate();
     const [cours, setCours] = useState<Cours[] | null>([]);
     const [newCours, setNewCours] = useState<CoursFormType>({
@@ -44,6 +49,7 @@ export default function CoursShow() {
         try {
             const res = await api.get("cours/");
             setCours(res.data);
+            setFilteredCours(res.data);
         } catch (error) {
             console.error("Error fetching Cours", error);
         }
@@ -53,16 +59,33 @@ export default function CoursShow() {
         getCours();
     }, []);
 
-    const deleteBlog = async (id: number) => {
+    const filterCours = () => {
+        if (cours) {
+        const filtered = cours.filter((cour) => {
+            const formattedDate = new Date(cour.created_at).toLocaleDateString();
+            const fullText = `${cour.title} ${formattedDate}`.toLowerCase();
+            const matchesSearchTerm = fullText.includes(searchTerm.toLowerCase());
+            const matchesStatusFilter = statusFilter ? cour.status === statusFilter : true;
+            return matchesSearchTerm && matchesStatusFilter;
+        });
+        setFilteredCours(filtered);
+    };
+};
+
+    useEffect(() => {
+        filterCours();
+    }, [searchTerm, statusFilter, cours]);
+
+    const deleteCours = async (id: number) => {
         try {
-            await api.delete(`cours/${id}`);
+            await api.delete(`cours/${id}/`);
             getCours();
         } catch (error) {
             console.log(error);
         }
     };
 
-    const handleSubmitOption = async (e: React.FormEvent<HTMLFormElement>) => {
+    const handleSubmitCours = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         try {
             const formData = new FormData();
@@ -78,7 +101,7 @@ export default function CoursShow() {
                     "Content-Type": "multipart/form-data",
                 },
             });
-            toast.success("Option coures created");
+            toast.success("Cours created");
             setNewCours({
                 title: "",
                 description: "",
@@ -112,24 +135,35 @@ export default function CoursShow() {
         }));
     };
 
+    const handleChangeRowsPerPage = (value: number) => {
+        setRowsPerPage(value);
+        setCurrentPage(1); // Reset to first page whenever rows per page change
+    };
+
+    const paginatedCours = filteredCours.slice((currentPage - 1) * rowsPerPage, currentPage * rowsPerPage);
+
+    const handleEditClick = (id: number) => {
+        navigate(`/edit-cours/${id}`);
+    };
+
     return (
         <Card className="w-full max-w-6xl mx-auto p-6">
             <CardHeader className="justify-between">
                 <div className="flex justify-between">
-                    <div className="justify-between">
+                    <div>
                         <CardTitle>Liste Cours</CardTitle>
                     </div>
-                    <div className="flex justify-between">
+                    <div>
                         <Button variant="default" className="btn btn-primary" onClick={() => setIsModalOpen(true)}>
                             Ajouter un Cours
                         </Button>
                         <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
-                            <form onSubmit={handleSubmitOption}>
+                            <form onSubmit={handleSubmitCours}>
                                 <div className="grid gap-6">
                                     <div className="grid gap-3">
                                         <Label htmlFor="title">
                                             Titre du cours
-                                            {errors.title && <li className="text-red-500 mt-2">{errors.title}</li>}
+                                            {errors.title && <span className="text-red-500 mt-2">{errors.title}</span>}
                                         </Label>
                                         <Input
                                             id="title"
@@ -143,7 +177,7 @@ export default function CoursShow() {
                                     <div className="grid gap-3">
                                         <Label htmlFor="image">
                                             Image
-                                            {errors.image && <li className="text-red-500 mt-2">{errors.image}</li>}
+                                            {errors.image && <span className="text-red-500 mt-2">{errors.image}</span>}
                                         </Label>
                                         <Input
                                             id="image"
@@ -156,7 +190,7 @@ export default function CoursShow() {
                                     <div className="grid gap-3">
                                         <Label htmlFor="description">
                                             Description
-                                            {errors.description && <li className="text-red-500 mt-1">{errors.description}</li>}
+                                            {errors.description && <span className="text-red-500 mt-1">{errors.description}</span>}
                                         </Label>
                                         <Suspense fallback={<div>Loading...</div>}>
                                             <ReactQuill
@@ -182,7 +216,7 @@ export default function CoursShow() {
                                         {errors.status && <span className="text-red-500 mt-2">{errors.status}</span>}
                                     </div>
                                     <Button type="submit" className="w-44" size={"lg"}>
-                                        Ajouer
+                                        Ajouter
                                     </Button>
                                 </div>
                             </form>
@@ -191,6 +225,37 @@ export default function CoursShow() {
                 </div>
             </CardHeader>
             <CardContent>
+                <div className="flex justify-end space-x-4 mb-4">
+                    <div className="flex items-center space-x-2">
+                        <label htmlFor="rowsPerPage">Afficher:</label>
+                        <select
+                            id="rowsPerPage"
+                            value={rowsPerPage}
+                            onChange={(e) => handleChangeRowsPerPage(Number(e.target.value))}
+                            className="border-gray-300 rounded-md"
+                        >
+                            <option value={5}>5</option>
+                            <option value={10}>10</option>
+                            <option value={20}>20</option>
+                        </select>
+                    </div>
+                    <input
+                        type="text"
+                        placeholder="Rechercher"
+                        value={searchTerm}
+                        onChange={(e) => setSearchTerm(e.target.value)}
+                        className="border-gray-300 rounded-md"
+                    />
+                    <select
+                        value={statusFilter}
+                        onChange={(e) => setStatusFilter(e.target.value)}
+                        className="border-gray-300 rounded-md"
+                    >
+                        <option value="">Tous les statuts</option>
+                        <option value="pending">En attente</option>
+                        <option value="approved">Publiée</option>
+                    </select>
+                </div>
                 <Table>
                     <TableHeader>
                         <TableRow>
@@ -202,46 +267,64 @@ export default function CoursShow() {
                         </TableRow>
                     </TableHeader>
                     <TableBody>
-                        {cours &&
-                            cours.map((cour: Cours) => (
-                                <TableRow key={cour.id} className="bg-accent">
-                                    <TableCell>
-                                        <div className="flex items-center space-x-4">
-                                            <div className="w-16 h-16 overflow-hidden rounded-full">
-                                                <img src={cour.image} alt={cour.title} className="object-cover w-full h-full" />
-                                            </div>
-                                            <div>
-                                                <div className="font-medium">{cour.title}</div>
-                                            </div>
+                        {paginatedCours.map((cour) => (
+                            <TableRow key={cour.id}>
+                                <TableCell>
+                                    <div className="flex items-center space-x-4">
+                                        <div className="w-16 h-16 overflow-hidden rounded-full">
+                                            <img src={cour.image} alt={cour.title} className="object-cover w-full h-full" />
                                         </div>
-                                    </TableCell>
-                                    <TableCell className="hidden sm:table-cell">
-                                        <div
-                                            dangerouslySetInnerHTML={{
-                                                __html: DOMPurify.sanitize(cour.description),
-                                            }}
-                                        />
-                                    </TableCell>
-                                    <TableCell className="hidden md:table-cell">
-                                        {new Date(cour.created_at).toLocaleDateString()}
-                                    </TableCell>
-                                    <TableCell className="hidden md:table-cell text-right">
-                                        <div className="flex space-x-2">
-                                            {cour.status === "pending" && <h2 >En attente</h2>}
-                                            {cour.status === "approved" && <h2 className="text-emerald-500">Publiée</h2>}
+                                        <div>
+                                            <div className="font-medium">{cour.title}</div>
                                         </div>
-                                    </TableCell>
-                                    <TableCell className="text-right">
-                                        <div className="flex space-x-2">
-                                            <Button variant="danger" onClick={() => deleteBlog(cour.id)}>
-                                                <FaTrash />
-                                            </Button>
-                                        </div>
-                                    </TableCell>
-                                </TableRow>
-                            ))}
+                                    </div>
+                                </TableCell>
+                                <TableCell className="hidden sm:table-cell">
+                                    <div
+                                        dangerouslySetInnerHTML={{
+                                            __html: DOMPurify.sanitize(cour.description),
+                                        }}
+                                    />
+                                </TableCell>
+                                <TableCell className="hidden md:table-cell">
+                                    {new Date(cour.created_at).toLocaleDateString()}
+                                </TableCell>
+                                <TableCell className="hidden md:table-cell">
+                                    <div className="flex space-x-2">
+                                        {cour.status === "pending" && <span>En attente</span>}
+                                        {cour.status === "approved" && <span className="text-emerald-500">Publiée</span>}
+                                    </div>
+                                </TableCell>
+                                <TableCell className="text-right">
+                                    <div className="flex space-x-2">
+                                    <Button variant="secondary" onClick={() => handleEditClick(cour.id)}>
+                                            <FaEdit />
+                                        </Button>
+                                        <Button variant="danger" onClick={() => deleteCours(cour.id)}>
+                                            <FaTrash />
+                                        </Button>
+                                    </div>
+                                </TableCell>
+                            </TableRow>
+                        ))}
                     </TableBody>
                 </Table>
+                <div className="flex justify-end mt-4">
+                    <Button
+                        variant="secondary"
+                        onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
+                        disabled={currentPage === 1}
+                    >
+                        Previous
+                    </Button>
+                    <Button
+                        variant="secondary"
+                        onClick={() => setCurrentPage((prev) => (prev * rowsPerPage < filteredCours.length ? prev + 1 : prev))}
+                        disabled={currentPage * rowsPerPage >= filteredCours.length}
+                    >
+                        Next
+                    </Button>
+                </div>
             </CardContent>
         </Card>
     );
