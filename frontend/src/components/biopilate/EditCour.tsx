@@ -103,14 +103,14 @@ const EditCour: React.FC<EditCourProps> = ({ cours, onUpdate }) => {
             </div>
             <div className="mb-4">
                 <Label htmlFor="date">Date</Label>
-                <Input
+                {/* <Input
                     id="date"
                     name="date"
                     type="date"
                     value={typeof date === 'string' ? date : date.toISOString().split('T')[0]}
                     onChange={handleInputChange}
                     className="mt-1 block w-full rounded-md border-gray-300 shadow-sm"
-                />
+                /> */}
             </div>
             <div className="mb-4">
                 <Label htmlFor="image1">Image 1</Label>
