@@ -23,7 +23,7 @@ export default function Footer() {
   ];
 
   return (
-    <footer className="fixed bottom-0 left-0 w-full p-4 flex flex-col pt-20 pr-16 pb-7 bg-bgColor max-md:pr-5 mt-auto ">
+    <footer className="absolute bottom-0 w-full p-4 flex flex-col flex-wrap pt-20 pr-16 pb-7 bg-bgColor max-md:pr-5 mt-auto ">
       <div className="self-center w-full max-w-[1310px] max-md:max-w-full">
         <div className="flex gap-5 max-md:flex-col max-md:gap-0">
           <div className="flex flex-col w-[45%] max-md:ml-0 max-md:w-full">
