@@ -2,9 +2,6 @@ import SideNav from '@/components/shared/side-nav';
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import CreateFAQFrom from '@/components/biopilate/CreateFAQFrom';
-import FAQShow from '@/components/biopilate/FAQShow';
-import CreateFormationForm from '@/components/biopilate/CreateFormationForm';
 import FormationShow from '@/components/biopilate/FormationShow';
 export default function Formation() {
     const navigate = useNavigate();
@@ -30,11 +27,7 @@ export default function Formation() {
                        
                         <FormationShow />
                     </div>
-                    {/* Create New Service Form */}
-                    {/* <div className='bg-white rounded-lg shadow-md p-4'>
-                        <h2 className='text-xl font-semibold mb-4'>Ajouter un Formation</h2>
-                        <CreateFormationForm />
-                    </div> */}
+                   
 
                     
                 

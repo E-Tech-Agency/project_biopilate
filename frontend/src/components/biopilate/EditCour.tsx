@@ -40,7 +40,7 @@ const EditCour: React.FC<EditCourProps> = ({ cours, onUpdate }) => {
     const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const { name, files } = e.target;
         if (files) {
-            if (name === "image1") {
+            if (name === "image") {
                 setImage1(files[0]);
             } 
         }
@@ -56,7 +56,7 @@ const EditCour: React.FC<EditCourProps> = ({ cours, onUpdate }) => {
         
 
         if (image) {
-            formData.append("image_1", image);
+            formData.append("image", image);
         }
         
         onUpdate(formData, cours.id);
@@ -77,17 +77,7 @@ const EditCour: React.FC<EditCourProps> = ({ cours, onUpdate }) => {
                 />
             </div>
            
-            <div className="mb-4">
-                <Label htmlFor="description">Description</Label>
-                <Input
-                    id="description"
-                    name="description"
-                    type="text"
-                    value={description}
-                    onChange={handleInputChange}
-                    className="mt-1 block w-full rounded-md border-gray-300 shadow-sm"
-                />
-            </div>
+            
             <div className="mb-4">
                 <Label htmlFor="status">Status</Label>
                 <select
@@ -101,48 +91,26 @@ const EditCour: React.FC<EditCourProps> = ({ cours, onUpdate }) => {
                     <option value="approved">Publiée</option>
                 </select>
             </div>
+            
             <div className="mb-4">
-                <Label htmlFor="date">Date</Label>
-                {/* <Input
-                    id="date"
-                    name="date"
-                    type="date"
-                    value={typeof date === 'string' ? date : date.toISOString().split('T')[0]}
-                    onChange={handleInputChange}
-                    className="mt-1 block w-full rounded-md border-gray-300 shadow-sm"
-                /> */}
-            </div>
-            <div className="mb-4">
-                <Label htmlFor="image1">Image 1</Label>
+                <Label htmlFor="image">Image </Label>
                 <Input
-                    id="image1"
-                    name="image1"
+                    id="image"
+                    name="image"
                     type="file"
                     onChange={handleImageChange}
                     className="mt-1 block w-full"
                 />
-                {blog.image_1 && (
-                    <img src={blog.image_1} alt={blog.title} className="w-16 h-16 rounded-full mt-2" />
+                {cours.image && (
+                    <img src={cours.image} alt={cours.title} className="w-16 h-16 rounded-full mt-2" />
                 )}
             </div>
+           
             <div className="mb-4">
-                <Label htmlFor="image2">Image 2</Label>
-                <Input
-                    id="image2"
-                    name="image2"
-                    type="file"
-                    onChange={handleImageChange}
-                    className="mt-1 block w-full"
-                />
-                {blog.image_2 && (
-                    <img src={blog.image_2} alt={blog.title} className="w-16 h-16 rounded-full mt-2" />
-                )}
-            </div>
-            <div className="mb-4">
-                <Label htmlFor="full_text">Texte Complet</Label>
+                <Label htmlFor="full_text">Description</Label>
                 <ReactQuill
                     id="full_text"
-                    value={fullText}
+                    value={description}
                     onChange={handleQuillChange}
                     className="w-full"
                     theme="snow"

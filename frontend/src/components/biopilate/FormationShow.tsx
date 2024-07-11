@@ -74,7 +74,7 @@ export default function FormationShow() {
     };
 
     const handleAddClick = () => {
-        navigate("/add-formation");
+        navigate("/add-Formation-biopilates");
     };
 
     const paginatedFormations = filteredFormations.slice((currentPage - 1) * rowsPerPage, currentPage * rowsPerPage);

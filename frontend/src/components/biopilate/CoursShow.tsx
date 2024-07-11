@@ -143,7 +143,7 @@ export default function CoursShow() {
     const paginatedCours = filteredCours.slice((currentPage - 1) * rowsPerPage, currentPage * rowsPerPage);
 
     const handleEditClick = (id: number) => {
-        navigate(`/edit-cours/${id}`);
+        navigate(`/edit-cours-biopilates/${id}`);
     };
 
     return (
