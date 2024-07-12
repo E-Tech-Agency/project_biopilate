@@ -16,7 +16,7 @@ export default function App() {
       <Header></Header>
       <BrowserRouter>
         <Routes>
-          <Route path="/accueil" element={<Accueil />}></Route>
+          <Route path="/" element={<Accueil />}></Route>
           <Route path="/a-propos" element={<Apropos />}></Route>
           <Route path="/cours" element={<Cours />}></Route>
           <Route path="/formations" element={<Formations />}></Route>

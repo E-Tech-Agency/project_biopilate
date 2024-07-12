@@ -4,7 +4,7 @@ import { IoMdSearch, IoIosMenu } from "react-icons/io";
 import { LuUserCircle2 } from "react-icons/lu";
 
 const navItems = [
-  { label: "Accueil", href: "/accueil" },
+  { label: "Accueil", href: "/" },
   { label: "À propos", href: "/a-propos" },
   { label: "Cours", href: "/cours" },
   { label: "Formations", href: "/formations" },
@@ -61,7 +61,7 @@ export default function Header() {
         {/* Navbar */}
         <div className="flex gap-7">
           <nav className="mx-auto gap-6 flex items-center">
-            <a href="/accueil" className=" text-2xl">
+            <a href="/" className=" text-2xl">
               <img
                 loading="lazy"
                 src={require("../Images/biopilate-logo.png")}

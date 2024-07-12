@@ -5,7 +5,7 @@ import { PiMapPinLight } from "react-icons/pi";
 
 export default function Footer() {
   const menuItems = [
-    { label: "Accueil", href: "/accueil" },
+    { label: "Accueil", href: "/" },
     { label: "À propos", href: "/a-propos" },
     { label: "Cours", href: "/cours" },
     { label: "Formations", href: "/formations" },
