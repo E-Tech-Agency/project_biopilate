@@ -28,6 +28,8 @@ export default function ServiceShow() {
     const [searchTerm, setSearchTerm] = useState("");
     const [statusFilter, setStatusFilter] = useState("");
     const [rowsPerPage, setRowsPerPage] = useState(10);
+    const [currentPage, setCurrentPage] = useState(1);
+
     const navigate = useNavigate();
 
     const fetchData = async () => {
@@ -76,7 +78,7 @@ export default function ServiceShow() {
 
     const filterServices = () => {
         const filtered = services.filter((service) => {
-            const formattedDate = new Date(service.create_at).toLocaleDateString(); // Adjust this according to your date format
+            const formattedDate = new Date(service.create_at).toLocaleDateString();
             const fullText = `${service.title} ${service.instructeurFullName} ${formattedDate}`.toLowerCase();
             const matchesSearchTerm = fullText.includes(searchTerm.toLowerCase());
             const matchesStatusFilter = statusFilter ? service.status === statusFilter : true;
@@ -89,8 +91,11 @@ export default function ServiceShow() {
         filterServices();
     }, [searchTerm, statusFilter, services]);
 
+    const paginatedServices = filteredServices.slice((currentPage - 1) * rowsPerPage, currentPage * rowsPerPage);
+
     const handleChangeRowsPerPage = (value: number) => {
         setRowsPerPage(value);
+        setCurrentPage(1);
     };
 
     return (
@@ -146,7 +151,7 @@ export default function ServiceShow() {
                         </TableRow>
                     </TableHeader>
                     <TableBody>
-                        {filteredServices.slice(0, rowsPerPage).map((service: Service) => (
+                        {paginatedServices.map((service: Service) => (
                             <TableRow key={service.id} className="bg-accent">
                                 <TableCell>
                                     <div className="flex items-center space-x-4">
@@ -183,6 +188,22 @@ export default function ServiceShow() {
                         ))}
                     </TableBody>
                 </Table>
+                <div className="flex justify-end mt-4">
+                    <Button
+                        variant="secondary"
+                        onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
+                        disabled={currentPage === 1}
+                    >
+                        Previous
+                    </Button>
+                    <Button
+                        variant="secondary"
+                        onClick={() => setCurrentPage((prev) => (prev * rowsPerPage < filteredServices.length ? prev + 1 : prev))}
+                        disabled={currentPage * rowsPerPage >= filteredServices.length}
+                    >
+                        Next
+                    </Button>
+                </div>
             </CardContent>
         </Card>
     );

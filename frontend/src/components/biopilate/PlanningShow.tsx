@@ -14,7 +14,7 @@ import {
     TableHeader,
     TableRow,
 } from "@/components/ui/table";
-import { Button } from "../ui/button";
+import { Button } from "@/components/ui/button";
 import PlanningEditModal from "./PlanningEditModal";
 import api from "@/lib/api";
 import { Planning } from "@/types/types";
@@ -28,6 +28,7 @@ export default function PlanningShow() {
     const [searchTerm, setSearchTerm] = useState("");
     const [statusFilter, setStatusFilter] = useState("");
     const [rowsPerPage, setRowsPerPage] = useState(10);
+    const [currentPage, setCurrentPage] = useState(1);
     const navigate = useNavigate();
 
     const getPlannings = async () => {
@@ -83,8 +84,11 @@ export default function PlanningShow() {
         navigate(`/ajouter-planning-biopilates`);
     };
 
+    const paginatedPlanning = filteredPlanning.slice((currentPage - 1) * rowsPerPage, currentPage * rowsPerPage);
+
     const handleChangeRowsPerPage = (value: number) => {
         setRowsPerPage(value);
+        setCurrentPage(1);
     };
 
     return (
@@ -142,19 +146,16 @@ export default function PlanningShow() {
                         </TableRow>
                     </TableHeader>
                     <TableBody>
-                        {filteredPlanning.slice(0, rowsPerPage).map((plan: Planning) => (
+                        {paginatedPlanning.map((plan: Planning) => (
                             <TableRow key={plan.id} className="bg-accent">
                                 <TableCell>
                                     <div className="font-medium">{plan.title}</div>
                                 </TableCell>
                                 <TableCell className="hidden sm:table-cell">{plan.category_name}</TableCell>
                                 <TableCell className="hidden sm:table-cell">{plan.duree}</TableCell>
-                                <TableCell className="hidden sm:table-cell">({plan.range}) range</TableCell>
-                                <TableCell className="text-right">
-                                    <div className="flex space-x-2">
-                                        {plan.status === "pending" && <h2>En attente</h2>}
-                                        {plan.status === "approved" && <h2 className="text-emerald-500">Publiée</h2>}
-                                    </div>
+                                <TableCell className="hidden sm:table-cell">{plan.range}</TableCell>
+                                <TableCell className="hidden sm:table-cell">
+                                    {plan.status === "pending" ? <h2>En attente</h2> : <h2 className="text-emerald-500">Publiée</h2>}
                                 </TableCell>
                                 <TableCell className="hidden sm:table-cell">{new Date(plan.create_at).toLocaleDateString()}</TableCell>
                                 <TableCell className="text-right">
@@ -171,6 +172,22 @@ export default function PlanningShow() {
                         ))}
                     </TableBody>
                 </Table>
+                <div className="flex justify-end mt-4">
+                    <Button
+                        variant="secondary"
+                        onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
+                        disabled={currentPage === 1}
+                    >
+                        Previous
+                    </Button>
+                    <Button
+                        variant="secondary"
+                        onClick={() => setCurrentPage((prev) => (prev * rowsPerPage < filteredPlanning.length ? prev + 1 : prev))}
+                        disabled={currentPage * rowsPerPage >= filteredPlanning.length}
+                    >
+                        Next
+                    </Button>
+                </div>
                 {editingId !== null && (
                     <PlanningEditModal
                         planningId={editingId}

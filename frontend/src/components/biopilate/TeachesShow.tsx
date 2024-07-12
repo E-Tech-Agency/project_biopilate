@@ -27,7 +27,7 @@ import "react-quill/dist/quill.snow.css"; // Import styles for React Quill
 import { Teache, TeacherFormType, CreateTeacherErrors } from "@/types/types";
 
 export default function TeachesShow() {
-    const [teaches, setTeaches] = useState<Teache[] | null>([]);
+    const [teaches, setTeaches] = useState<Teache[]>([]);
     const [filteredTeaches, setFilteredTeaches] = useState<Teache[]>([]);
     const [selectedTeache, setSelectedTeache] = useState<Teache | null>(null);
     const [isModalOpen, setIsModalOpen] = useState(false);
@@ -42,6 +42,7 @@ export default function TeachesShow() {
     const [searchTerm, setSearchTerm] = useState("");
     const [isEditing, setIsEditing] = useState(false); // Track whether modal is for editing or adding
     const [rowsPerPage, setRowsPerPage] = useState(10); // Default rows per page
+    const [currentPage, setCurrentPage] = useState(1);
 
     const getTeaches = async () => {
         try {
@@ -73,7 +74,8 @@ export default function TeachesShow() {
     const deleteTeaches = async (id: number) => {
         try {
             await api.delete(`teaches/${id}/`);
-            getTeaches();
+            setTeaches((prevTeaches) => prevTeaches.filter((teache) => teache.id !== id));
+            setFilteredTeaches((prevTeaches) => prevTeaches.filter((teache) => teache.id !== id));
         } catch (error) {
             console.log(error);
         }
@@ -166,7 +168,10 @@ export default function TeachesShow() {
 
     const handleChangeRowsPerPage = (value: number) => {
         setRowsPerPage(value);
+        setCurrentPage(1); // Reset to first page when changing rows per page
     };
+
+    const paginatedTeaches = filteredTeaches.slice((currentPage - 1) * rowsPerPage, currentPage * rowsPerPage);
 
     return (
         <Card>
@@ -174,21 +179,20 @@ export default function TeachesShow() {
                 <div className="flex justify-between">
                     <div>
                         <CardTitle>Liste Instructeur</CardTitle>
-                        <div className=" justify-end mt-4">
-                    <Label htmlFor="rowsPerPage">Afficher:</Label>
-                    <select
-                        id="rowsPerPage"
-                        value={rowsPerPage}
-                        onChange={(e) => handleChangeRowsPerPage(Number(e.target.value))}
-                        className="ml-2 border-gray-300 rounded-md"
-                    >
-                        <option value={5}>5</option>
-                        <option value={10}>10</option>
-                        <option value={20}>20</option>
-                    </select>
-                </div>
+                        <div className="mt-4">
+                            <Label htmlFor="rowsPerPage">Afficher:</Label>
+                            <select
+                                id="rowsPerPage"
+                                value={rowsPerPage}
+                                onChange={(e) => handleChangeRowsPerPage(Number(e.target.value))}
+                                className="ml-2 border-gray-300 rounded-md"
+                            >
+                                <option value={5}>5</option>
+                                <option value={10}>10</option>
+                                <option value={20}>20</option>
+                            </select>
+                        </div>
                     </div>
-                    
                     <div className="flex space-x-4">
                         <Input
                             type="text"
@@ -197,27 +201,25 @@ export default function TeachesShow() {
                             onChange={(e) => setSearchTerm(e.target.value)}
                             className="w-full"
                         />
-                        <Button variant="default" className="btn btn-primary" onClick={handleAddClick}>
+                        <Button variant="default" onClick={handleAddClick}>
                             Ajouter un Instructeur
                         </Button>
                     </div>
-                    
                 </div>
-                
             </CardHeader>
             <CardContent>
                 <Table>
                     <TableHeader>
                         <TableRow>
                             <TableHead>Prénom et Nom</TableHead>
-                            <TableHead className="hidden sm:table-cell">numéro téléphone</TableHead>
-                            <TableHead className="hidden sm:table-cell">spécialité</TableHead>
-                            <TableHead className="hidden md:table-cell">créé le</TableHead>
-                            <TableHead className="hidden md:table-cell">Actions</TableHead>
+                            <TableHead className="hidden sm:table-cell">Numéro téléphone</TableHead>
+                            <TableHead className="hidden sm:table-cell">Spécialité</TableHead>
+                            <TableHead className="hidden md:table-cell">Créé le</TableHead>
+                            <TableHead>Actions</TableHead>
                         </TableRow>
                     </TableHeader>
                     <TableBody>
-                        {filteredTeaches.slice(0, rowsPerPage).map((teache: Teache) => (
+                        {paginatedTeaches.map((teache: Teache) => (
                             <TableRow key={teache.id}>
                                 <TableCell>
                                     <div className="flex items-center space-x-4">
@@ -249,8 +251,22 @@ export default function TeachesShow() {
                         ))}
                     </TableBody>
                 </Table>
-                {/* Pagination controls */}
-                
+                <div className="flex justify-end mt-4">
+                    <Button
+                        variant="secondary"
+                        onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
+                        disabled={currentPage === 1}
+                    >
+                        Previous
+                    </Button>
+                    <Button
+                        variant="secondary"
+                        onClick={() => setCurrentPage((prev) => (prev * rowsPerPage < filteredTeaches.length ? prev + 1 : prev))}
+                        disabled={currentPage * rowsPerPage >= filteredTeaches.length}
+                    >
+                        Next
+                    </Button>
+                </div>
             </CardContent>
             {isModalOpen && (
                 <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
@@ -266,6 +282,7 @@ export default function TeachesShow() {
                                         type="text"
                                         className="w-full"
                                         placeholder="Prénom et Nom"
+                                        value={teache.fullname}
                                         onChange={(e) => setTeache({ ...teache, fullname: e.target.value })}
                                     />
                                 </div>
@@ -275,19 +292,20 @@ export default function TeachesShow() {
                                         id="email"
                                         placeholder="Intructeur Email"
                                         className="w-full"
+                                        value={teache.email}
                                         onChange={(e) => setTeache({ ...teache, email: e.target.value })}
                                     />
                                 </div>
                                 <div className="flex flex-col gap-6 items-center">
-                                    <div className="flex flex-row justify-center gap- items-center">
+                                    <div className="flex flex-row justify-center gap-3 items-center">
                                         <Label htmlFor="nomber_phone">Numéro téléphone</Label>
                                         <Input
                                             id="nomber_phone"
                                             type="number"
                                             className="w-25"
                                             placeholder="Numéro téléphone"
-                                            onChange={(e) => setTeache({ ...teache, nomber_phone: Number(e.target.value) })}
                                             value={teache.nomber_phone}
+                                            onChange={(e) => setTeache({ ...teache, nomber_phone: Number(e.target.value) })}
                                         />
                                         <Label htmlFor="specialite">Spécialité</Label>
                                         <Input
@@ -295,20 +313,21 @@ export default function TeachesShow() {
                                             type="text"
                                             className="w-25"
                                             placeholder="Spécialité"
+                                            value={teache.specialite}
                                             onChange={(e) => setTeache({ ...teache, specialite: e.target.value })}
                                         />
                                     </div>
                                     <div className="grid gap-3">
-                                        <Label htmlFor="photo">Ajouter une image</Label>
+                                        <Label htmlFor="image">Ajouter une image</Label>
                                         <Input
                                             id="image"
                                             type="file"
                                             className="w-full"
-                                            onChange={(e) => handleImageChange(e)}
+                                            onChange={handleImageChange}
                                         />
                                     </div>
                                     <div>
-                                        <Button type="submit" className="w-44" size={"lg"}>Ajouter</Button>
+                                        <Button type="submit" className="w-44" size="lg">Ajouter</Button>
                                     </div>
                                 </div>
                             </div>
