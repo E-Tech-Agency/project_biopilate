@@ -5,12 +5,12 @@ import { PiMapPinLight } from "react-icons/pi";
 
 export default function Footer() {
   const menuItems = [
-    "Accueil",
-    "A propos",
-    "Cours",
-    "Formations",
-    "Blog",
-    "Contact",
+    { label: "Accueil", href: "/accueil" },
+    { label: "À propos", href: "/a-propos" },
+    { label: "Cours", href: "/cours" },
+    { label: "Formations", href: "/formations" },
+    { label: "Blog", href: "/blog" },
+    { label: "Contact", href: "/contact" },
   ];
   const contactInfo = [
     { icon: LuPhone, text: "+33 6 50 81 18 92", ariaLabel: "Phone number" },
@@ -24,7 +24,7 @@ export default function Footer() {
 
   return (
     <footer className="bottom-0 w-full p-4 flex justify-center items-center flex-col flex-wrap px-2 py-16 pb-7 bg-bgColor max-md:pr-5 mt-auto ">
-      <div className="flex gap-5 max-md:flex-col max-md:gap-0 self-center w-full max-w-[1310px] max-md:max-w-full max-md:ml-4">
+      <div className="flex gap-5 max-md:flex-col max-md:gap-0 self-center w-full max-w-[1310px] px-12 max-md:max-w-full max-md:ml-4">
         <div className="flex flex-col w-[45%] max-md:ml-0 max-md:w-full">
           <div className="flex flex-col grow items-start text-base leading-7 text-neutral-900 max-md:mt-10">
             <img
@@ -52,8 +52,8 @@ export default function Footer() {
               </div>
               {menuItems.map((item, index) => (
                 <div key={index} className="w-[calc(50%-10px)]">
-                  <a href="#" className="block">
-                    {item}
+                  <a href={item.href} className="block">
+                    {item.label}
                   </a>
                 </div>
               ))}
@@ -75,14 +75,14 @@ export default function Footer() {
           </section>
         </div>
       </div>
-      <div className="flex justify-center items-center gap-5 mt-16 text-sm tracking-tight text-center capitalize text-neutral-900 max-md:mt-10">
-        <div className="shrink-0 mt-1 max-w-full h-px bg-neutral-900 w-[630px] max-md:w-16" />
+      <div className="flex items-center gap-2 lg:gap-4 md:gap-5 mt-16 text-xs tracking-tight text-center capitalize text-neutral-900 md:flex-row md:justify-center md:mt-10">
+        <div className="shrink-0 mt-1 max-w-full h-px bg-neutral-900 w-[50px] md:w-16 lg:w-[410px] xl:w-[450px] 2xl:w-[730px]" />
         <div className="flex-auto">
           Copyright by{" "}
           <span className="font-bold text-neutral-900">Brand & COM</span> @ 2024
           All rights reserved
         </div>
-        <div className="shrink-0 mt-1 max-w-full h-px bg-neutral-900 w-[630px] max-md:w-16" />
+        <div className="shrink-0 mt-1 max-w-full h-px bg-neutral-900 w-[50px] md:w-16 lg:w-[410px] xl:w-[450px] 2xl:w-[730px]" />
       </div>
     </footer>
   );
