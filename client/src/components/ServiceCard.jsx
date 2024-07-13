@@ -10,8 +10,8 @@ export default function ServiceCard() {
           alt="Gym"
           className="rounded-full w-[240px] h-[240px]"
         />
-        <p className="text-marron">Cours Reformer</p>
-        <p className="text-sm">Cours Reformer</p>
+        <p className="text-marron text-xl">Cours Reformer</p>
+        <p className="text-sm">Force et souplesse unies</p>
       </div>
 
       <div className="flex justify-between gap-12 border-t border-bgColor px-7 py-4">
