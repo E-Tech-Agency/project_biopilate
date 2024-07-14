@@ -3,6 +3,21 @@ import ServiceCard from "../components/ServiceCard";
 import FormationCard from "../components/FormationCard";
 import { FaArrowLeftLong, FaArrowRightLong } from "react-icons/fa6";
 
+const services = [
+  {
+    title: "Cours Reformer",
+    description: "Force et souplesse unies",
+  },
+  {
+    title: "Cours Reformer & Gyrotonic",
+    description: "Synergie et équilibre",
+  },
+  {
+    title: "Cours Reformer ,Gyrotonic et Evolis",
+    description: "Trio dynamique pour vitalité",
+  },
+];
+
 export default function Accueil() {
   return (
     <div className="flex flex-col mx-8 md:mx-12 ">
@@ -17,11 +32,54 @@ export default function Accueil() {
             Découvrez la force dans la fluidité et la grâce dans le mouvement,
             au cœur de Paris, avec notre approche personnalisée du Pilates.
           </p>
-          <button className="flex mr-auto flex-col justify-center text-base rounded-lg px-10 py-4 bg-bgColor text-marron">
+          <button className="flex mr-auto flex-col justify-center text-base rounded-lg px-10 py-4 bg-bgColor text-marron font-lato">
             Réserver
           </button>
         </div>
-        <div className="mr-4 border border-solid border-marron rounded-full w-[428px] h-[428px]"></div>
+        <div className="flex justify-center items-center gap-4 mr-4 border border-solid border-marron rounded-full w-[428px] h-[428px] pr-9">
+          <div className="z-[1] absolute mr-[290px] mt-[280px]">
+            <svg
+              width="93"
+              height="102"
+              viewBox="0 0 93 102"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M63.656 1.13904C51.4861 21.6158 46.9384 27.2573 39.1356 31.598C31.5812 35.7406 23.7046 36.3331 6.43913 33.951C3.10123 33.4993 0.300303 33.1562 0.191594 33.2123C0.0828858 33.2684 2.25737 34.7409 4.94607 36.5092C18.1244 45.1015 25.0911 51.9901 28.327 59.6463C31.6181 67.5195 31.8337 76.8039 29.1179 93.7708C28.4235 98.0556 27.8825 101.665 27.8906 101.766C27.9531 101.839 29.903 98.6246 32.2626 94.6377C41.7784 78.4751 49.0885 70.8125 57.6121 68.1684C64.6438 65.9784 72.1796 65.8421 84.6057 67.6355C88.8229 68.2296 92.2541 68.6683 92.246 68.5673C92.1835 68.4943 89.4089 66.5951 86.081 64.3853C72.9254 55.6059 66.8396 49.3498 63.7116 41.3925C60.7166 33.6821 60.6008 23.9956 63.3182 7.51868C64.6533 -0.777763 64.6695 -0.575768 63.656 1.13904Z"
+                fill="#756E66"
+              />
+            </svg>
+          </div>
+
+          <img
+            loading="lazy"
+            src={require("../Images/hero-1.jpg")}
+            alt="Biopilate trainer"
+            className="custom-half-circle-right h-[455px] shadow-lg"
+          />
+
+          <img
+            loading="lazy"
+            src={require("../Images/hero-2.jpg")}
+            alt="Biopilate trainer"
+            className="custom-half-circle-left h-[350px] shadow-lg pt-2"
+          />
+          <div className="z-[1] absolute ml-80 mb-[350px]">
+            <svg
+              width="44"
+              height="48"
+              viewBox="0 0 44 48"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M30.8913 0.065788C30.8194 0.154769 30.258 1.12103 29.627 2.20646C24.2565 11.4519 20.721 14.9587 15.6149 16.0943C12.7575 16.7333 8.61219 16.605 3.12778 15.704C1.99138 15.5083 0.971201 15.3581 0.86432 15.3602C0.757438 15.3624 1.55962 15.969 2.66398 16.6938C9.50409 21.2582 12.5415 24.3058 14.0786 28.128C15.5248 31.7243 15.5503 36.6827 14.1938 44.7314C13.9604 46.0748 13.7594 47.3285 13.7294 47.5217C13.7017 47.7451 14.1913 47.0143 15.1564 45.3715C19.6639 37.7064 22.3331 34.578 25.9422 32.7397C29.5467 30.9142 33.2781 30.7196 41.4233 31.9294C42.8432 32.1482 43.9446 32.257 43.8656 32.1821C43.7865 32.1073 42.8286 31.4544 41.7359 30.7341C35.4096 26.5464 32.1583 23.2833 30.6841 19.6175C29.1773 15.895 29.1314 11.5435 30.5107 3.06459C30.7972 1.31733 30.9633 -0.0231886 30.8913 0.065788Z"
+                fill="#756E66"
+              />
+            </svg>
+          </div>
+        </div>
       </section>
 
       {/* Intro */}
@@ -184,6 +242,34 @@ export default function Accueil() {
               Amélioration de la condition physique et de la santé.{" "}
             </div>
           </div>
+        </div>
+      </section>
+      {/* Temoignages */}
+      <section className="mb-16 flex flex-col justify-center items-center gap-8">
+        <div className="flex justify-center items-center gap-8">
+          <svg
+            width="111"
+            height="89"
+            viewBox="0 0 111 89"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              opacity="0.4"
+              d="M9.45464 12.8681C-1.00249 24.2174 0.0504303 38.792 0.0836792 38.9583V83.2916C0.0836792 84.7613 0.667534 86.1709 1.70679 87.2101C2.74606 88.2494 4.1556 88.8333 5.62534 88.8333H38.8754C44.9878 88.8333 49.9587 83.8624 49.9587 77.7499V38.9583C49.9587 37.4885 49.3748 36.079 48.3356 35.0397C47.2963 34.0004 45.8868 33.4166 44.417 33.4166H27.3598C27.4769 30.6769 28.2954 28.0131 29.7371 25.6804C32.5523 21.2416 37.8557 18.2103 45.5087 16.6808L49.9587 15.7941V0.166595H44.417C28.9946 0.166595 17.2296 4.43922 9.45464 12.8681ZM70.4518 12.8681C59.9891 24.2174 61.0476 38.792 61.0808 38.9583V83.2916C61.0808 84.7613 61.6647 86.1709 62.7039 87.2101C63.7432 88.2494 65.1527 88.8333 66.6225 88.8333H99.8725C105.985 88.8333 110.956 83.8624 110.956 77.7499V38.9583C110.956 37.4885 110.372 36.079 109.333 35.0397C108.293 34.0004 106.884 33.4166 105.414 33.4166H88.3569C88.474 30.6769 89.2926 28.0131 90.7343 25.6804C93.5494 21.2416 98.8528 18.2103 106.506 16.6808L110.956 15.7941V0.166595H105.414C89.9917 0.166595 78.2267 4.43922 70.4518 12.8681Z"
+              fill="#C4C4C4"
+            />
+          </svg>
+          <div className="flex flex-col justify-center items-center gap-4">
+            <p className="text-marron text-2xl">Témoignages clients </p>
+            <p className="text-blueText text-4xl">Nos clients formidables</p>
+          </div>
+        </div>
+        <div className="w-[860px] h-[300px] shadow-md"></div>
+        <div className="flex gap-4">
+          <button className="w-4 h-4 rounded-full bg-stone-300"></button>
+          <button className="w-4 h-4 rounded-full bg-marron"></button>
+          <button className="w-4 h-4 rounded-full bg-stone-300"></button>
         </div>
       </section>
     </div>
