@@ -57,14 +57,14 @@ export default function Header() {
 
   return (
     <header>
-      <div className="flex gap-5 justify-between items-center px-14 py-1.5 w-full border border-solid bg-white border-bgColor md:flex-wrap max-md:border-none max-md:px-5 max-md:max-w-full font-lato">
+      <div className="flex gap-5 justify-between items-center px-14 py-1.5 w-full border-b border-solid bg-white border-bgColor md:flex-wrap max-md:border-none max-md:px-5 max-md:max-w-full font-lato">
         {/* Navbar */}
         <div className="flex gap-7">
           <nav className="mx-auto gap-6 flex items-center">
             <a href="/" className=" text-2xl">
               <img
                 loading="lazy"
-                src={require("../Images/biopilate-logo.png")}
+                src={require("../images/biopilate-logo.png")}
                 alt="Logo"
                 className="rounded-full w-20"
               />

@@ -6,7 +6,7 @@ export default function FormationCard() {
       <div className="px-6 py-6 flex flex-col justify-center items-center gap-5">
         <img
           loading="lazy"
-          src={require("../Images/gym.jpg")}
+          src={require("../images/gym.jpg")}
           alt="Gym"
           className="rounded-full w-[240px] h-[240px]"
         />
