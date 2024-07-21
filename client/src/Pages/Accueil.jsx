@@ -6,21 +6,23 @@ import Temoignage from "../components/Temoignage";
 import Hero from "../components/Hero";
 import Engagement from "../components/Engagement";
 import CallToActionImg from "../components/CallToActionImg";
+import BlogCard from "../components/BlogCard";
+import FAQ from "../components/FAQ";
 
-const services = [
-  {
-    title: "Cours Reformer",
-    description: "Force et souplesse unies",
-  },
-  {
-    title: "Cours Reformer & Gyrotonic",
-    description: "Synergie et équilibre",
-  },
-  {
-    title: "Cours Reformer ,Gyrotonic et Evolis",
-    description: "Trio dynamique pour vitalité",
-  },
-];
+// const services = [
+//   {
+//     title: "Cours Reformer",
+//     description: "Force et souplesse unies",
+//   },
+//   {
+//     title: "Cours Reformer & Gyrotonic",
+//     description: "Synergie et équilibre",
+//   },
+//   {
+//     title: "Cours Reformer ,Gyrotonic et Evolis",
+//     description: "Trio dynamique pour vitalité",
+//   },
+// ];
 
 export default function Accueil() {
   return (
@@ -174,6 +176,40 @@ export default function Accueil() {
 
           <CallToActionImg />
         </div>
+      </section>
+
+      {/* Blog */}
+      <section className="mb-16 flex flex-col justify-center items-center gap-4">
+        <div className="flex flex-col justify-center items-center gap-1">
+          <p className="text-2xl">Blog</p>
+          <p className="text-blueText text-xl">
+            Trouvez l'harmonie entre corps et esprit : Bienvenue dans notre
+            rubrique blog.
+          </p>
+        </div>
+        <div className="flex flex-wrap justify-center gap-4">
+          <BlogCard />
+        </div>
+        <div className="flex gap-3 m-3">
+          <button className="flex justify-center items-center bg-bgColor rounded-full w-10 h-10">
+            <FaArrowLeftLong className="text-marron" />
+          </button>
+          <button className="flex justify-center items-center bg-bgColor rounded-full w-10 h-10">
+            <FaArrowRightLong className="text-marron" />
+          </button>
+        </div>
+      </section>
+
+      {/* FAQ */}
+      <section className="mb-16 flex flex-col justify-center items-center gap-4">
+        <div className="flex flex-col justify-center items-center gap-4">
+          <p className="text-3xl text-marron">FAQ</p>
+          <p className="text-blueText text-2xl">
+            Trouvez ici les réponses aux questions fréquemment posées concernant
+            les cours de Pilates, les horaires et les modalités d'inscription.
+          </p>
+        </div>
+        <FAQ />
       </section>
     </div>
   );
