@@ -6,19 +6,20 @@ import { Teache, TeacherFormEditType, CreateTeacherErrors } from "@/types/types"
 
 interface TeachesEditFormProps {
     teache: Teache;
-    onSave: (data: any, id: number) => void;
+    onSave: (data: TeacherFormEditType, id: number) => void;
     onClose: () => void;
 }
 
 const TeachesEditForm: React.FC<TeachesEditFormProps> = ({ teache, onSave, onClose }) => {
     const [formState, setFormState] = useState<TeacherFormEditType>({
-        fullname: "",
-        email: "",
-        nomber_phone: 0,
-        specialite: "",
-        image: "",
+        fullname: teache.fullname,
+        email: teache.email,
+        nomber_phone: teache.nomber_phone,
+        specialite: teache.specialite,
+        image: teache.image,
     });
     const [errors, setErrors] = useState<CreateTeacherErrors>({});
+    const [imagePreviewUrl, setImagePreviewUrl] = useState<string | undefined>(teache.image);
 
     useEffect(() => {
         setFormState({
@@ -28,7 +29,17 @@ const TeachesEditForm: React.FC<TeachesEditFormProps> = ({ teache, onSave, onClo
             specialite: teache.specialite,
             image: teache.image,
         });
+        setImagePreviewUrl(teache.image);
     }, [teache]);
+
+    useEffect(() => {
+        // Cleanup function to revoke object URL when component unmounts or URL changes
+        return () => {
+            if (imagePreviewUrl && imagePreviewUrl.startsWith('blob:')) {
+                URL.revokeObjectURL(imagePreviewUrl);
+            }
+        };
+    }, [imagePreviewUrl]);
 
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const { id, value } = e.target;
@@ -40,29 +51,34 @@ const TeachesEditForm: React.FC<TeachesEditFormProps> = ({ teache, onSave, onClo
 
     const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         if (e.target.files && e.target.files.length > 0) {
+            const file = e.target.files[0];
             setFormState((prev) => ({
                 ...prev,
-                image: e.target.files[0],
+                image: file,
             }));
+            setImagePreviewUrl(URL.createObjectURL(file)); // Update preview URL
         }
     };
 
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        onSave(formState, teache.id);
+        // If no new image is selected, use the original image URL
+        const updatedFormState = {
+            ...formState,
+            image: formState.image instanceof File ? formState.image : teache.image,
+        };
+        onSave(updatedFormState, teache.id);
     };
 
     return (
         <form onSubmit={handleSubmit} className="space-y-6">
             <div className="grid gap-4 sm:grid-cols-2">
-            {formState.image && typeof formState.image === 'string' && (
-                        <div className="mb-4">
-                            <img src={formState.image} alt="Current" className="w-32 h-32 object-cover" />
-                        </div>
-                    )}
+                {imagePreviewUrl && (
+                    <div className="mb-4">
+                        <img src={imagePreviewUrl} alt="Current" className="w-32 h-32 object-cover" />
+                    </div>
+                )}
                 <div>
-                     
-                
                     <Label htmlFor="fullname">Prénom et Nom</Label>
                     <Input
                         id="fullname"
@@ -111,11 +127,10 @@ const TeachesEditForm: React.FC<TeachesEditFormProps> = ({ teache, onSave, onClo
                     {errors.specialite && <p className="text-red-500 mt-1">{errors.specialite}</p>}
                 </div>
                 <div className="sm:col-span-2">
-                   
+                    <Label htmlFor="image">Image</Label>
                     <Input
                         id="image"
                         type="file"
-                        
                         onChange={handleImageChange}
                         className="w-full"
                     />
