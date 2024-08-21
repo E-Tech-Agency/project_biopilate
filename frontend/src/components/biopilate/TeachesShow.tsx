@@ -84,22 +84,28 @@ export default function TeachesShow() {
     const updateTeaches = async (data: TeacherFormType, id: number) => {
         try {
             const endpoint = `teaches/${id}/`;
-            if (data.image) {
-                const formData = new FormData();
-                formData.append("fullname", data.fullname);
-                formData.append("email", data.email);
-                formData.append("nomber_phone", data.nomber_phone.toString());
-                formData.append("specialite", data.specialite);
+    
+            // Create a FormData object
+            const formData = new FormData();
+    
+            // Always append these fields
+            formData.append("fullname", data.fullname);
+            formData.append("email", data.email);
+            formData.append("nomber_phone", data.nomber_phone.toString());
+            formData.append("specialite", data.specialite);
+    
+            // Only append the image if a new one was selected
+            if (data.image instanceof File) {
                 formData.append("image", data.image);
-
-                await api.put(endpoint, formData, {
-                    headers: {
-                        "Content-Type": "multipart/form-data",
-                    },
-                });
-            } else {
-                await api.put(endpoint, data);
             }
+    
+            // Send the request
+            await api.put(endpoint, formData, {
+                headers: {
+                    "Content-Type": "multipart/form-data",
+                },
+            });
+    
             getTeaches();
             setIsModalOpen(false);
         } catch (error) {
@@ -107,7 +113,8 @@ export default function TeachesShow() {
             alert(`Failed to update Instructeur: ${error.message}`);
         }
     };
-
+    
+    
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         try {
