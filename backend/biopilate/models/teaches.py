@@ -25,7 +25,13 @@ class Teaches(models.Model):
     def __str__(self):
         return self.fullname
 
-    
+class CategoryCours(models.Model):
+    name = models.CharField(max_length=100)
+    class Meta:
+        verbose_name_plural = "category Cours"
+    def __str__(self):
+        return self.name
+       
 class Cours(models.Model):
     STATUS_CHOICES = [
         ('pending', 'En attente de publication'),
@@ -34,6 +40,7 @@ class Cours(models.Model):
     title = models.CharField('Titre',max_length=255)
     description = models.TextField()
     image = models.ImageField(upload_to='cours_images/')  #  upload path
+    category = models.ForeignKey(CategoryCours, on_delete=models.CASCADE, blank=True, null=True, related_name='category')
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     status = models.CharField('Status', max_length=10, choices=STATUS_CHOICES, default='pending')
@@ -46,4 +53,4 @@ class Cours(models.Model):
     def __str__(self):
         return self.title
 
-    
+

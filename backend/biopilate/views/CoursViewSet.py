@@ -1,7 +1,9 @@
 from rest_framework import viewsets
-from ..models.teaches import Cours
-from ..serializers.CoursSerializer import CoursSerializer
-
+from ..models.teaches import Cours, CategoryCours
+from ..serializers.CoursSerializer import CoursSerializer , CategoryCoursSerializer
+class CategoryCoursViewSet(viewsets.ModelViewSet):
+    queryset = CategoryCours.objects.all()
+    serializer_class = CategoryCoursSerializer
 class CoursViewSet(viewsets.ModelViewSet):
     queryset = Cours.objects.all().order_by('-created_at')
     serializer_class = CoursSerializer

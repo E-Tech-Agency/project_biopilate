@@ -262,20 +262,23 @@ const CreateFormationForm: React.FC = () => {
                                         Add Option and Price
                                     </Button>
                                 </div>
+                              
                                 <div className="grid gap-3">
-                                    <Label htmlFor="status">
-                                        Status
-                                        {errors.status && <li className="text-red-500 mt-2">{errors.status}</li>}
-                                    </Label>
-                                    <Input
-                                        id="status"
-                                        name="status"
-                                        type="text"
-                                        className="w-full"
-                                        value={formation.status}
-                                        onChange={handleInputChange}
-                                    />
-                                </div>
+                            <Label htmlFor="status">
+                                Status
+                                {errors.status && <span className="text-red-500 mt-2">{errors.status}</span>}
+                            </Label>
+                            <select
+                                id="status"
+                                name="status"
+                               
+                                onChange={handleInputChange}                                className="w-full p-2 border rounded-md"
+                            >
+                                <option value="">Sélectionner un Status</option>
+                                <option value="pending">En attente de publication</option>
+                                <option value="approved">Publiée</option>
+                            </select>
+                        </div>
                                 <div>
                                     <Button type="submit" className="w-44" size={"lg"}>Submit</Button>
                                 </div>

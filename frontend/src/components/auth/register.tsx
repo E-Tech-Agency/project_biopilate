@@ -183,7 +183,7 @@ export function RegisterForm({ setIsLoggedIn }: { setIsLoggedIn: React.Dispatch<
                             </div>
                             <div className="flex items-center space-x-2">
                                 <Switch id="supplier-checked" defaultChecked={data.is_supplier} onCheckedChange={(checked) => setData({ ...data, is_supplier: checked })} />
-                                <Label htmlFor="supplier-checked">Are you a supplier? <br /> <div className="text-sm text-pretty text-inherit text-start">if you are a supplier, check this box even if you signup with google</div></Label>
+                                <Label htmlFor="supplier-checked">Are you a modirator? <br /> <div className="text-sm text-pretty text-inherit text-start">if you are a supplier, check this box even if you signup with google</div></Label>
                             </div>
                             <Button type="submit" className="w-full">
                                 Create an account
