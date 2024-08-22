@@ -8,6 +8,10 @@ class BlogSerializer(serializers.ModelSerializer):
         model = Blog
         fields = ['id', 'title', 'author', 'description', 'favorites', 'image_1', 'image_2','view' ,'full_text', 'date', 'range', 'create_at', 'updated_at', 'status']
         read_only_fields = ['create_at', 'updated_at']
+        extra_kwargs = {
+            'image_1': {'required': False},
+            'image_2': {'required': False},
+        }
 
     def get_admin_image(self, obj):
         if obj.image_1:

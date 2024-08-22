@@ -69,9 +69,11 @@ const TeachesEditForm: React.FC<TeachesEditFormProps> = ({ teache, onSave, onClo
         };
         onSave(updatedFormState, teache.id);
     };
+    console.log("FORM DATA", formState);
+    
 
     return (
-        <form onSubmit={handleSubmit} className="space-y-6">
+        <form onSubmit={handleSubmit} className="space-y-6" encType="multipart/form-data">
             <div className="grid gap-4 sm:grid-cols-2">
                 {imagePreviewUrl && (
                     <div className="mb-4">
@@ -131,7 +133,7 @@ const TeachesEditForm: React.FC<TeachesEditFormProps> = ({ teache, onSave, onClo
                     <Input
                         id="image"
                         type="file"
-                        onChange={handleImageChange}
+                        onChange={handleImageChange} 
                         className="w-full"
                     />
                     {errors.image && <p className="text-red-500 mt-1">{errors.image}</p>}

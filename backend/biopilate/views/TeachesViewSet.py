@@ -10,5 +10,8 @@ class TeachesViewSet(viewsets.ModelViewSet):
         instance = serializer.save()
         # Refresh the instance to ensure it's up-to-date
         instance.refresh_from_db()
+    
+    
+    
 
     

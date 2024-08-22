@@ -9,6 +9,10 @@ class ServicesSerializer(serializers.ModelSerializer):
         model = Services
         fields = ['id', 'title', 'image', 'description', 'full_text', 'create_at', 'updated_at', 'status', 'instructeur', 'admin_image', 'instructeur_fullname']
         read_only_fields = ['create_at', 'updated_at', 'admin_image', 'instructeur_fullname']
+        extra_kwargs = {
+            'image': {'required': False},
+        }
 
     def get_admin_image(self, obj):
         return obj.admin_image() if obj.image else 'No Image'
+    
