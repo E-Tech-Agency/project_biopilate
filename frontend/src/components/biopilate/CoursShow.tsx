@@ -1,20 +1,8 @@
 import React, { useEffect, useState, Suspense } from "react";
-import { Cours, CoursFormType, CreateCoursErrors } from "@/types/types";
-import {
-    Card,
-    CardContent,
-    CardHeader,
-    CardTitle,
-} from "@/components/ui/card";
-import {
-    Table,
-    TableBody,
-    TableCell,
-    TableHead,
-    TableHeader,
-    TableRow,
-} from "@/components/ui/table";
-import { FaTrash ,FaEdit} from "react-icons/fa";
+import { Cours, CoursFormType, CreateCoursErrors, CategoryCours } from "@/types/types";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
+import { FaTrash, FaEdit } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import "react-quill/dist/quill.snow.css"; // Import styles for React Quill
 import { Button } from "@/components/ui/button";
@@ -25,14 +13,16 @@ import axios, { AxiosError } from "axios";
 import { toast } from "sonner";
 import { Modal } from "./Modal";
 import DOMPurify from "dompurify"; // Import DOMPurify
-
+import CreateCategoryCours from "../supplier/create-categorycours";
 const ReactQuill = React.lazy(() => import("react-quill"));
 
 export default function CoursShow() {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [filteredCours, setFilteredCours] = useState<Cours[]>([]);
+    const [categories, setCategories] = useState<CategoryCours[]>([]);
     const [searchTerm, setSearchTerm] = useState("");
     const [statusFilter, setStatusFilter] = useState("");
+    const [categoryFilter, setCategoryFilter] = useState(""); // New state for category filter
     const [rowsPerPage, setRowsPerPage] = useState(10);
     const [currentPage, setCurrentPage] = useState(1);
     const navigate = useNavigate();
@@ -42,6 +32,7 @@ export default function CoursShow() {
         description: "",
         status: "",
         image: null,
+        category: "",
     });
     const [errors, setErrors] = useState<CreateCoursErrors>({});
 
@@ -56,25 +47,41 @@ export default function CoursShow() {
     };
 
     useEffect(() => {
+        const fetchCategories = async () => {
+            try {
+                const res = await api.get("cours_category/");
+                setCategories(res.data);
+                console.log(res.data);
+                
+            } catch (error) {
+                console.error("Error fetching categories", error);
+            }
+        };
+
+        fetchCategories();
+    }, []);
+
+    useEffect(() => {
         getCours();
     }, []);
 
     const filterCours = () => {
         if (cours) {
-        const filtered = cours.filter((cour) => {
-            const formattedDate = new Date(cour.created_at).toLocaleDateString();
-            const fullText = `${cour.title} ${formattedDate}`.toLowerCase();
-            const matchesSearchTerm = fullText.includes(searchTerm.toLowerCase());
-            const matchesStatusFilter = statusFilter ? cour.status === statusFilter : true;
-            return matchesSearchTerm && matchesStatusFilter;
-        });
-        setFilteredCours(filtered);
+            const filtered = cours.filter((cour) => {
+                const formattedDate = new Date(cour.created_at).toLocaleDateString();
+                const fullText = `${cour.title} ${formattedDate}`.toLowerCase();
+                const matchesSearchTerm = fullText.includes(searchTerm.toLowerCase());
+                const matchesStatusFilter = statusFilter ? cour.status === statusFilter : true;
+                const matchesCategoryFilter = categoryFilter ? cour.category_cours === Number(categoryFilter) : true;
+                return matchesSearchTerm && matchesStatusFilter && matchesCategoryFilter;
+            });
+            setFilteredCours(filtered);
+        }
     };
-};
 
     useEffect(() => {
         filterCours();
-    }, [searchTerm, statusFilter, cours]);
+    }, [searchTerm, statusFilter, categoryFilter, cours]);
 
     const deleteCours = async (id: number) => {
         try {
@@ -92,6 +99,7 @@ export default function CoursShow() {
             formData.append("title", newCours.title);
             formData.append("description", newCours.description);
             formData.append("status", newCours.status);
+            formData.append('category', newCours.category);
             if (newCours.image) {
                 formData.append("image", newCours.image);
             }
@@ -107,6 +115,7 @@ export default function CoursShow() {
                 description: "",
                 status: "",
                 image: null,
+                category: "",
             });
             setErrors({});
             setIsModalOpen(false);
@@ -147,13 +156,17 @@ export default function CoursShow() {
     };
 
     return (
+        <div className='flex flex-rowjustify-evenly items-center m-6'>
+         
         <Card className="w-full max-w-6xl mx-auto p-6">
+           
             <CardHeader className="justify-between">
                 <div className="flex justify-between">
                     <div>
                         <CardTitle>Liste Cours</CardTitle>
                     </div>
                     <div>
+
                         <Button variant="default" className="btn btn-primary" onClick={() => setIsModalOpen(true)}>
                             Ajouter un Cours
                         </Button>
@@ -202,21 +215,46 @@ export default function CoursShow() {
                                             />
                                         </Suspense>
                                     </div>
+                                    <div className="grid gap-3">
+                                            <Label htmlFor="category">
+                                                Niveau
+                                                {errors.category && <span className="text-red-500 mt-2">{errors.category}</span>}
+                                            </Label>
+                                            <select
+                                                id="category"
+                                                name="category"
+                                                value={newCours.category}
+                                                onChange={(e) => setNewCours({ ...newCours, category: e.target.value })}
+                                                className="mt-1 block w-full rounded-md border-gray-300 shadow-sm"
+                                            >
+                                                <option value="">Sélectionner un Niveau</option>
+                                                {categories.map((niveau) => (
+                                                    <option key={niveau.id} value={niveau.id}>
+                                                        {niveau.name}
+                                                    </option>
+                                                ))}
+                                            </select>
+                                        </div>
                                     <div className="grid gap-3 mt-5">
                                         <Label htmlFor="status">Status</Label>
                                         <select
                                             id="status"
                                             value={newCours.status}
                                             onChange={(e) => setNewCours({ ...newCours, status: e.target.value })}
-                                            className="mt-1 block w-full rounded-md border-gray-300 shadow-sm"
+                                            className="w-full p-2 border border-gray-300 rounded-md"
                                         >
-                                            <option value="pending">En attente de publication</option>
-                                            <option value="approved">Publiée</option>
+                                            <option value="">Select Status</option>
+                                            <option value="published">Published</option>
+                                            <option value="draft">Draft</option>
                                         </select>
-                                        {errors.status && <span className="text-red-500 mt-2">{errors.status}</span>}
                                     </div>
-                                    <Button type="submit" className="w-44" size={"lg"}>
-                                        Ajouter
+                                </div>
+                                <div className="mt-4">
+                                    <Button type="submit" className="btn btn-primary">
+                                        Save
+                                    </Button>
+                                    <Button variant="default" className="btn btn-secondary" onClick={() => setIsModalOpen(false)}>
+                                        Cancel
                                     </Button>
                                 </div>
                             </form>
@@ -224,108 +262,112 @@ export default function CoursShow() {
                     </div>
                 </div>
             </CardHeader>
-            <CardContent>
-                <div className="flex justify-end space-x-4 mb-4">
-                    <div className="flex items-center space-x-2">
-                        <label htmlFor="rowsPerPage">Afficher:</label>
-                        <select
-                            id="rowsPerPage"
-                            value={rowsPerPage}
-                            onChange={(e) => handleChangeRowsPerPage(Number(e.target.value))}
-                            className="border-gray-300 rounded-md"
-                        >
-                            <option value={5}>5</option>
-                            <option value={10}>10</option>
-                            <option value={20}>20</option>
-                        </select>
-                    </div>
-                    <input
+            <CardContent className="grid gap-3">
+                <div className="grid gap-6 md:grid-cols-3">
+                    <Input
                         type="text"
-                        placeholder="Rechercher"
+                        placeholder="Recherche..."
                         value={searchTerm}
                         onChange={(e) => setSearchTerm(e.target.value)}
-                        className="border-gray-300 rounded-md"
                     />
                     <select
                         value={statusFilter}
                         onChange={(e) => setStatusFilter(e.target.value)}
-                        className="border-gray-300 rounded-md"
+                        className="p-2 border border-gray-300 rounded-md"
                     >
                         <option value="">Tous les statuts</option>
-                        <option value="pending">En attente</option>
-                        <option value="approved">Publiée</option>
+                        <option value="published">Published</option>
+                        <option value="draft">Draft</option>
+                    </select>
+                    <select
+                        value={categoryFilter}
+                        onChange={(e) => setCategoryFilter(e.target.value)}
+                        className="p-2 border border-gray-300 rounded-md"
+                    >
+                        <option value="">Tous les Niveaux</option>
+                        {categories.map((category) => (
+                            <option key={category.id} value={category.id}>
+                                {category.name}
+                            </option>
+                        ))}
                     </select>
                 </div>
                 <Table>
                     <TableHeader>
                         <TableRow>
                             <TableHead>Titre</TableHead>
-                            <TableHead className="hidden sm:table-cell">Description</TableHead>
-                            <TableHead className="hidden md:table-cell">Crée le</TableHead>
-                            <TableHead className="hidden md:table-cell">Status</TableHead>
-                            <TableHead className="hidden md:table-cell">Actions</TableHead>
+                            <TableHead>Image</TableHead>
+                            <TableHead>Description</TableHead>
+                            <TableHead>Actions</TableHead>
                         </TableRow>
                     </TableHeader>
                     <TableBody>
                         {paginatedCours.map((cour) => (
                             <TableRow key={cour.id}>
+                                <TableCell>{cour.title}</TableCell>
                                 <TableCell>
-                                    <div className="flex items-center space-x-4">
-                                        <div className="w-16 h-16 overflow-hidden rounded-full">
-                                            <img src={cour.image} alt={cour.title} className="object-cover w-full h-full" />
-                                        </div>
-                                        <div>
-                                            <div className="font-medium">{cour.title}</div>
-                                        </div>
-                                    </div>
+                                    {cour.image && (
+                                        <img
+                                            src={cour.image}
+                                            alt={cour.title}
+                                            className="w-16 h-16 object-cover"
+                                        />
+                                    )}
                                 </TableCell>
-                                <TableCell className="hidden sm:table-cell">
+                                <TableCell>
                                     <div
                                         dangerouslySetInnerHTML={{
                                             __html: DOMPurify.sanitize(cour.description),
                                         }}
                                     />
                                 </TableCell>
-                                <TableCell className="hidden md:table-cell">
-                                    {new Date(cour.created_at).toLocaleDateString()}
-                                </TableCell>
-                                <TableCell className="hidden md:table-cell">
-                                    <div className="flex space-x-2">
-                                        {cour.status === "pending" && <span>En attente</span>}
-                                        {cour.status === "approved" && <span className="text-emerald-500">Publiée</span>}
-                                    </div>
-                                </TableCell>
-                                <TableCell className="text-right">
-                                    <div className="flex space-x-2">
-                                    <Button variant="secondary" onClick={() => handleEditClick(cour.id)}>
-                                            <FaEdit />
-                                        </Button>
-                                        <Button variant="danger" onClick={() => deleteCours(cour.id)}>
-                                            <FaTrash />
-                                        </Button>
-                                    </div>
+                                <TableCell className="space-x-4">
+                                    <Button onClick={() => handleEditClick(cour.id)} variant="secondary">
+                                        <FaEdit />
+                                    </Button>
+                                    <Button onClick={() => deleteCours(cour.id)} variant="destructive">
+                                        <FaTrash />
+                                    </Button>
                                 </TableCell>
                             </TableRow>
                         ))}
                     </TableBody>
                 </Table>
-                <div className="flex justify-end mt-4">
-                    <Button
-                        variant="secondary"
-                        onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
-                        disabled={currentPage === 1}
-                    >
-                        Previous
-                    </Button>
-                    <Button
-                        variant="secondary"
-                        onClick={() => setCurrentPage((prev) => (prev * rowsPerPage < filteredCours.length ? prev + 1 : prev))}
-                        disabled={currentPage * rowsPerPage >= filteredCours.length}
-                    >
-                        Next
-                    </Button>
+                <div className="flex justify-between items-center mt-4">
+                    <div className="flex items-center space-x-2">
+                        <span>Rows per page:</span>
+                        <select
+                            value={rowsPerPage}
+                            onChange={(e) => handleChangeRowsPerPage(parseInt(e.target.value))}
+                            className="p-1 border border-gray-300 rounded-md"
+                        >
+                            <option value={5}>5</option>
+                            <option value={10}>10</option>
+                            <option value={20}>20</option>
+                        </select>
+                    </div>
+                    <div className="flex items-center space-x-2">
+                        <button
+                            className="p-2 border border-gray-300 rounded-md"
+                            onClick={() => setCurrentPage(currentPage - 1)}
+                            disabled={currentPage === 1}
+                        >
+                            Previous
+                        </button>
+                        <span>
+                            Page {currentPage} of {Math.ceil(filteredCours.length / rowsPerPage)}
+                        </span>
+                        <button
+                            className="p-2 border border-gray-300 rounded-md"
+                            onClick={() => setCurrentPage(currentPage + 1)}
+                            disabled={currentPage === Math.ceil(filteredCours.length / rowsPerPage)}
+                        >
+                            Next
+                        </button>
+                    </div>
                 </div>
             </CardContent>
         </Card>
+    </div>
     );
 }

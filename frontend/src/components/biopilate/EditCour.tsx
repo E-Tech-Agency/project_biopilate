@@ -1,5 +1,5 @@
-import { useState, useEffect } from "react";
-import { Cours } from "@/types/types";
+import { useState } from "react";
+import { Cours, CategoryCours } from "@/types/types";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -8,58 +8,56 @@ import api from "@/lib/api";
 
 interface EditCourProps {
     cours: Cours;
+    categories: CategoryCours[];
     onUpdate: (data: FormData, id: number) => void;
 }
 
-const EditCour: React.FC<EditCourProps> = ({ cours, onUpdate }) => {
-    const [title, setTitle] = useState(cours.title);
-    const [description, setDescription] = useState(cours.description);
-    const [status, setStatus] = useState(cours.status);
-    const [image, setImage1] = useState<File | null>(null);
+const EditCour: React.FC<EditCourProps> = ({ cours, categories, onUpdate }) => {
+    const [formData, setFormData] = useState({
+        title: cours.title,
+        description: cours.description,
+        status: cours.status,
+        category_cours: cours.category_cours,
+        image: null as File | null,
+    });
 
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
         const { name, value } = e.target;
-        switch (name) {
-            case "title":
-                setTitle(value);
-                break;
-           
-            case "status":
-                setStatus(value);
-                break;
-           
-            default:
-                break;
-        }
+        setFormData({
+            ...formData,
+            [name]: value,
+        });
     };
 
     const handleQuillChange = (value: string) => {
-        setDescription(value);
+        setFormData({
+            ...formData,
+            description: value,
+        });
     };
 
     const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const { name, files } = e.target;
-        if (files) {
-            if (name === "image") {
-                setImage1(files[0]);
-            } 
+        if (e.target.files && e.target.files.length > 0) {
+            setFormData({
+                ...formData,
+                image: e.target.files[0],
+            });
         }
     };
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
-        const formData = new FormData();
-        formData.append("title", title);
-        formData.append("description", description);
-        formData.append("status", status);
-       
-        
+        const submitData = new FormData();
+        submitData.append("title", formData.title);
+        submitData.append("description", formData.description);
+        submitData.append("status", formData.status);
+        submitData.append("category_cours", formData.category_cours);
 
-        if (image) {
-            formData.append("image", image);
+        if (formData.image) {
+            submitData.append("image", formData.image);
         }
-        
-        onUpdate(formData, cours.id);
+
+        onUpdate(submitData, cours.id);
     };
 
     return (
@@ -71,19 +69,17 @@ const EditCour: React.FC<EditCourProps> = ({ cours, onUpdate }) => {
                     id="title"
                     name="title"
                     type="text"
-                    value={title}
+                    value={formData.title}
                     onChange={handleInputChange}
                     className="mt-1 block w-full rounded-md border-gray-300 shadow-sm"
                 />
             </div>
-           
-            
             <div className="mb-4">
                 <Label htmlFor="status">Status</Label>
                 <select
                     id="status"
                     name="status"
-                    value={status}
+                    value={formData.status}
                     onChange={handleInputChange}
                     className="mt-1 block w-full rounded-md border-gray-300 shadow-sm"
                 >
@@ -91,9 +87,25 @@ const EditCour: React.FC<EditCourProps> = ({ cours, onUpdate }) => {
                     <option value="approved">Publiée</option>
                 </select>
             </div>
-            
             <div className="mb-4">
-                <Label htmlFor="image">Image </Label>
+                <Label htmlFor="category_name">Catégorie</Label>
+                <select
+                    id="category_cours"
+                    name="category_cours"
+                    value={formData.category_cours || ''}
+                    onChange={handleInputChange}
+                    className="w-full mt-2 rounded-md border-gray-300 shadow-sm"
+                >
+                    <option value="">Sélectionner une Catégorie</option>
+                    {categories.map((category) => (
+                        <option key={category.id} value={category.name}>
+                            {category.name}
+                        </option>
+                    ))}
+                </select>
+            </div>
+            <div className="mb-4">
+                <Label htmlFor="image">Image</Label>
                 <Input
                     id="image"
                     name="image"
@@ -105,12 +117,11 @@ const EditCour: React.FC<EditCourProps> = ({ cours, onUpdate }) => {
                     <img src={cours.image} alt={cours.title} className="w-16 h-16 rounded-full mt-2" />
                 )}
             </div>
-           
             <div className="mb-4">
                 <Label htmlFor="full_text">Description</Label>
                 <ReactQuill
                     id="full_text"
-                    value={description}
+                    value={formData.description}
                     onChange={handleQuillChange}
                     className="w-full"
                     theme="snow"

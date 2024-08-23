@@ -349,7 +349,7 @@ export type CreateOptionErrors = {
 }
 export type FormationCategory = {
     id: number;
-    status: 'pending' | 'approved';
+   
     formation: Formation;
     option: Option;
     price: number;
@@ -358,7 +358,7 @@ export type FormationCategory = {
 };
 
 export type FormationCategoryFormType = {
-    status: 'pending' | 'approved';
+   
     formation: number; // Formation ID
     option: number; // Option ID
     price: number;
@@ -370,12 +370,19 @@ export type CreateFormationCategoryErrors = {
     option?: string[];
     price?: string[];
 };
+export type CategoryCours={
+    id: number;
+    name : string;
+}
+
 export type Cours = {
     id: number;
     title : string;
     description : string;
     status : string;
     image: string;
+    category: number; // category ID
+    category_cours: string; // category name
     created_at: Date;
     updated_at: Date;
 }
@@ -384,6 +391,7 @@ export type CoursFormType = {
     description : string;
     status : string;
     image: File | null;
+    category : string
 
 }
 export type CreateCoursErrors = {
@@ -391,5 +399,6 @@ export type CreateCoursErrors = {
     description?: string[];
     status?: string[];
     image?: string[];
+    category?: string[];
    
 }
