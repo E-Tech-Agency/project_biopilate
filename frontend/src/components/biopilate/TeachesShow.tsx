@@ -249,7 +249,7 @@ export default function TeachesShow() {
                                         <Button variant="secondary" onClick={() => handleEditClick(teache)}>
                                             <FaEdit />
                                         </Button>
-                                        <Button variant="danger" onClick={() => deleteTeaches(teache.id)}>
+                                        <Button variant="destructive" onClick={() => deleteTeaches(teache.id)}>
                                             <FaTrash />
                                         </Button>
                                     </div>

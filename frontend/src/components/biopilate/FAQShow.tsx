@@ -154,7 +154,7 @@ export default function FAQShow() {
                                         <Button variant="secondary" onClick={() => handleEditClick(faq.id)}>
                                             <FaEdit />
                                         </Button>
-                                        <Button variant="danger" onClick={() => deleteFaq(faq.id)}>
+                                        <Button variant="destructive" onClick={() => deleteFaq(faq.id)}>
                                             <FaTrash />
                                         </Button>
                                     </div>

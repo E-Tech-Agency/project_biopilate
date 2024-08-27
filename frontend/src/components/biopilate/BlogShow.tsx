@@ -163,7 +163,7 @@ export default function BlogShow() {
                                         <Button variant="secondary" onClick={() => handleEditClick(blog.id)}>
                                             <FaEdit />
                                         </Button>
-                                        <Button variant="danger" onClick={() => deleteBlog(blog.id)}>
+                                        <Button variant="destructive" onClick={() => deleteBlog(blog.id)}>
                                             <FaTrash />
                                         </Button>
                                     </div>

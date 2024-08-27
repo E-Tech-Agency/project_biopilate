@@ -179,7 +179,7 @@ export default function ServiceShow() {
                                         <Button variant="secondary" onClick={() => handleEditClick(service.id)}>
                                             <FaEdit />
                                         </Button>
-                                        <Button variant="danger" onClick={() => deleteService(service.id)}>
+                                        <Button variant="destructive" onClick={() => deleteService(service.id)}>
                                             <FaTrash />
                                         </Button>
                                     </div>

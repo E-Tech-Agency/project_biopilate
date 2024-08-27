@@ -155,7 +155,7 @@ export default function FormationShow() {
                                         <Button variant="secondary" onClick={() => handleEditClick(formation.id)}>
                                             <FaEdit />
                                         </Button>
-                                        <Button variant="danger" onClick={() => deleteFormation(formation.id)}>
+                                        <Button variant="destructive" onClick={() => deleteFormation(formation.id)}>
                                             <FaTrash />
                                         </Button>
                                     </div>

@@ -189,7 +189,7 @@ export default function TagesShow() {
                                             <FaEdit />
                                         </Button>
                                         <Button
-                                            variant="danger"
+                                           variant="destructive"
                                             onClick={() => deleteTage(tage.id)}
                                         >
                                             <FaTrash />

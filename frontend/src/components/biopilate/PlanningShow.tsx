@@ -163,7 +163,7 @@ export default function PlanningShow() {
                                         <Button variant="secondary" onClick={() => handleEditClick(plan.id)}>
                                             <FaEdit />
                                         </Button>
-                                        <Button variant="danger" onClick={() => deletePlanning(plan.id)}>
+                                        <Button variant="destructive" onClick={() => deletePlanning(plan.id)}>
                                             <FaTrash />
                                         </Button>
                                     </div>
