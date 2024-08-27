@@ -72,7 +72,7 @@ export default function CoursShow() {
                 const fullText = `${cour.title} ${formattedDate}`.toLowerCase();
                 const matchesSearchTerm = fullText.includes(searchTerm.toLowerCase());
                 const matchesStatusFilter = statusFilter ? cour.status === statusFilter : true;
-                const matchesCategoryFilter = categoryFilter ? cour.category_cours === Number(categoryFilter) : true;
+                const matchesCategoryFilter = categoryFilter ? cour.category === Number(categoryFilter) : true;
                 return matchesSearchTerm && matchesStatusFilter && matchesCategoryFilter;
             });
             setFilteredCours(filtered);
@@ -215,9 +215,9 @@ export default function CoursShow() {
                                             />
                                         </Suspense>
                                     </div>
-                                    <div className="grid gap-3">
+                                    <div className="grid gap-3 mt-9">
                                             <Label htmlFor="category">
-                                                Niveau
+                                            Catégorie
                                                 {errors.category && <span className="text-red-500 mt-2">{errors.category}</span>}
                                             </Label>
                                             <select
@@ -227,7 +227,7 @@ export default function CoursShow() {
                                                 onChange={(e) => setNewCours({ ...newCours, category: e.target.value })}
                                                 className="mt-1 block w-full rounded-md border-gray-300 shadow-sm"
                                             >
-                                                <option value="">Sélectionner un Niveau</option>
+                                                <option value="">Sélectionner un Catégorie</option>
                                                 {categories.map((niveau) => (
                                                     <option key={niveau.id} value={niveau.id}>
                                                         {niveau.name}
@@ -243,19 +243,17 @@ export default function CoursShow() {
                                             onChange={(e) => setNewCours({ ...newCours, status: e.target.value })}
                                             className="w-full p-2 border border-gray-300 rounded-md"
                                         >
-                                            <option value="">Select Status</option>
-                                            <option value="published">Published</option>
-                                            <option value="draft">Draft</option>
+                                            <option value="">Sélectionner un Status</option>
+                                <option value="pending">En attente de publication</option>
+                                <option value="approved">Publiée</option>
                                         </select>
                                     </div>
                                 </div>
                                 <div className="mt-4">
                                     <Button type="submit" className="btn btn-primary">
-                                        Save
+                                    Ajouter
                                     </Button>
-                                    <Button variant="default" className="btn btn-secondary" onClick={() => setIsModalOpen(false)}>
-                                        Cancel
-                                    </Button>
+                                   
                                 </div>
                             </form>
                         </Modal>
@@ -275,9 +273,9 @@ export default function CoursShow() {
                         onChange={(e) => setStatusFilter(e.target.value)}
                         className="p-2 border border-gray-300 rounded-md"
                     >
-                        <option value="">Tous les statuts</option>
-                        <option value="published">Published</option>
-                        <option value="draft">Draft</option>
+                       <option value="">Sélectionner un Status</option>
+                                <option value="pending">En attente de publication</option>
+                                <option value="approved">Publiée</option>
                     </select>
                     <select
                         value={categoryFilter}
@@ -295,8 +293,10 @@ export default function CoursShow() {
                 <Table>
                     <TableHeader>
                         <TableRow>
+                          <TableHead>Image</TableHead>
                             <TableHead>Titre</TableHead>
-                            <TableHead>Image</TableHead>
+                            <TableHead>Catégorie</TableHead>
+
                             <TableHead>Description</TableHead>
                             <TableHead>Actions</TableHead>
                         </TableRow>
@@ -304,7 +304,7 @@ export default function CoursShow() {
                     <TableBody>
                         {paginatedCours.map((cour) => (
                             <TableRow key={cour.id}>
-                                <TableCell>{cour.title}</TableCell>
+                               
                                 <TableCell>
                                     {cour.image && (
                                         <img
@@ -314,6 +314,8 @@ export default function CoursShow() {
                                         />
                                     )}
                                 </TableCell>
+                                <TableCell>{cour.title}</TableCell>
+                                <TableCell>{cour.category_cours}</TableCell>
                                 <TableCell>
                                     <div
                                         dangerouslySetInnerHTML={{
@@ -368,6 +370,9 @@ export default function CoursShow() {
                 </div>
             </CardContent>
         </Card>
+        <div className='flex  gap-3'>
+                    <CreateCategoryCours/>
+                    </div>
     </div>
     );
 }
