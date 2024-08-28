@@ -43,10 +43,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
-    'accounts',
-    'products',
-    'biopilate',
-    'social_accounts',
+    'accounts.apps.accounts',
+    'biopilate.apps.biopilate',
+    'social_accounts.apps.social_accounts',
     'corsheaders',
     'rest_framework_simplejwt.token_blacklist',
 ]
@@ -117,7 +116,7 @@ SIMPLE_JWT = {
 }
 
 DOMAIN='localhost:5173'
-SITE_NAME = 'Test Technique'
+SITE_NAME = 'biopilates'
 
 AUTH_USER_MODEL = 'accounts.User'
 
@@ -159,8 +158,8 @@ STATIC_URL = 'static/'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
-#EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
+#EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 EMAIL_HOST = 'smtp.gmail.com'

@@ -10,7 +10,7 @@ export default function SideNav() {
                 <div className="flex h-[60px] items-center border-b px-6">
                     <Link to="#" className="flex items-center gap-2 font-semibold">
                         <Package2Icon className="h-6 w-6" />
-                        <span className="">biopilate Dashboard</span>
+                        <span className="">biopilates Dashboard</span>
                     </Link>
                     <Button variant="outline" size="icon" className="ml-auto h-8 w-8">
                         <BellIcon className="h-4 w-4" />
@@ -27,34 +27,7 @@ export default function SideNav() {
                             <HomeIcon className="h-4 w-4" />
                             Home
                         </Link>
-                        {/* <Link
-                            to="/dashboard"
-                            className="flex items-center gap-3 rounded-lg bg-gray-100 px-3 py-2 text-gray-900 transition-all hover:text-gray-900 dark:bg-gray-800 dark:text-gray-50 dark:hover:text-gray-50"
-                        >
-                            <PackageIcon className="h-4 w-4" />
-                            Products
-                        </Link>
                         
-
-                            <Link
-                                to="/user"
-                                className="flex items-center gap-3 rounded-lg px-3 py-2 text-gray-500 transition-all hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-50"
-                            >
-                                <ShoppingCartIcon className="h-4 w-4" />
-                                Profile
-
-                            </Link>
-
-                        {localStorage.getItem("is_supplier")?.toString() === "true" &&
-                        
-                            <Link
-                                to="/create-product"
-                                className="flex items-center gap-3 rounded-lg px-3 py-2 text-gray-500 transition-all hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-50"
-                            >
-                                <PackageSearch className="text-sm" />
-                                Supplier Dashboard
-                            </Link>
-                        } */}
                         {localStorage.getItem("is_supplier")?.toString() === "true" &&
                         
                         <Link

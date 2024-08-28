@@ -11,11 +11,9 @@ export default function Footer() {
                 <div className="flex flex-col items-start gap-4">
                     <Link to="#" className="flex items-center gap-2">
                         <BoltIcon className="h-6 w-6 text-primary" />
-                        <span className="font-bold text-xl">Boumendil</span>
+                        <span className="font-bold text-xl">Biopilates</span>
                     </Link>
-                    <p className="text-sm">
-                        Boumendil is a leading e-commerce platform offering a wide range of high-quality products.
-                    </p>
+                    
                     <div className="flex gap-4">
                         <Link to="#" className="text-gray-400 hover:text-gray-300">
                             <FacebookIcon className="h-5 w-5" />
@@ -43,7 +41,7 @@ export default function Footer() {
                         <Link to="#" className="text-sm hover:text-gray-300">
                             About
                         </Link>
-                        <a href="mailto:Boumendil@gmail.com" className="text-sm hover:text-gray-300">
+                        <a href="mailto:Biopilates@gmail.com" className="text-sm hover:text-gray-300">
                             Contact
                         </a>
                     </div>
@@ -79,7 +77,7 @@ export default function Footer() {
                 </div>
             </div>
             <div className="container mx-auto px-4 md:px-6 mt-8 border-t border-gray-700 pt-8 flex items-center justify-between">
-                <p className="text-sm">&copy; 2024 Boumendil. All rights reserved.</p>
+                <p className="text-sm">&copy; 2024 Biopilates. All rights reserved.</p>
                 <div className="flex gap-4">
                     <Link to="#" className="text-sm hover:text-gray-300">
                         Privacy Policy
