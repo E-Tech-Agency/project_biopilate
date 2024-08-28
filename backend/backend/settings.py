@@ -13,7 +13,7 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 from pathlib import Path
 from datetime import timedelta
 import environ
-
+import os
 env = environ.Env()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -31,8 +31,9 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 APPEND_SLASH = False
-
-
+WHITENOISE_SKIP_MISSING = True
+WHITENOISE_AUTOREFRESH = True  # Enable auto-refresh for development
+WHITENOISE_INDEX_FILE = True
 # Application definition
 
 INSTALLED_APPS = [
