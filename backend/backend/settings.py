@@ -43,9 +43,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
-    'accounts.apps.accounts',
-    'biopilate.apps.biopilate',
-    'social_accounts.apps.social_accounts',
+    'accounts',
+    'biopilate',
+    'social_accounts',
     'corsheaders',
     'rest_framework_simplejwt.token_blacklist',
 ]
