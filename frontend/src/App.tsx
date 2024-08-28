@@ -10,8 +10,8 @@ import Home from '@/pages/home';
 import SupplierDashboard from '@/pages/supplier-dashboard';
 import AdminDashboard from './pages/admin-dashboard';
 import UserProfile from './pages/user-profile';
-import OneProduct from './pages/one-product';
-import EditProduct from './pages/edit-product';
+import OneCours from './pages/one-cours';
+
 // biopilate
 import Teaches from './pages/Teaches';
 import Tages from './pages/Tages';
@@ -63,8 +63,8 @@ function App() {
         <Route path="/create-product" element={<SupplierDashboard />} />
         <Route path="/admin" element={<AdminDashboard />} />
         <Route path="/user" element={<UserProfile />} />
-        <Route path="/product/:id" element={<OneProduct />} />
-        <Route path='/update-product/:id' element={<EditProduct />} />
+        <Route path="/cour/:id" element={<OneCours />} />
+        
         {/* biopilate  */}
         <Route path='/Teaches-biopilates' element={<Teaches />} />
         <Route path='/Tages-biopilates' element={<Tages />} />

@@ -10,7 +10,7 @@ export default function SideNav() {
                 <div className="flex h-[60px] items-center border-b px-6">
                     <Link to="#" className="flex items-center gap-2 font-semibold">
                         <Package2Icon className="h-6 w-6" />
-                        <span className="">Product Dashboard</span>
+                        <span className="">biopilate Dashboard</span>
                     </Link>
                     <Button variant="outline" size="icon" className="ml-auto h-8 w-8">
                         <BellIcon className="h-4 w-4" />

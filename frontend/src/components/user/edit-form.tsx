@@ -11,10 +11,10 @@ import { Label } from "@/components/ui/label"
 import api from "@/lib/api"
 import { User } from "@/types/types"
 import { useEffect, useState } from "react"
-import { Switch } from "../ui/switch"
 
 export function EditForm() {
     const [user, setUser] = useState<User>({});
+    
     useEffect(() => {
         async function fetchUser() {
             const res = await api.get("get_one_user/")
@@ -22,23 +22,23 @@ export function EditForm() {
         }
         fetchUser()
     }, [])
+
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         try {
             const res = await api.patch("update_user/", user)
             console.log(res.data)
-
         } catch (error) {
             console.log(error)
-
         }
     }
+
     return (
         <Card className="mt-4 mx-auto max-w-sm">
             <CardHeader>
-                <CardTitle className="text-xl">Edit Profile</CardTitle>
+                <CardTitle className="text-xl">Modifier le profil</CardTitle>
                 <CardDescription>
-                    Edit your profile information
+                    Modifiez les informations de votre profil
                 </CardDescription>
             </CardHeader>
             <form onSubmit={handleSubmit}>
@@ -46,12 +46,23 @@ export function EditForm() {
                     <div className="grid gap-4">
                         <div className="grid grid-cols-2 gap-4">
                             <div className="grid gap-2">
-                                <Label htmlFor="first-name">First name</Label>
-                                <Input id="first-name" defaultValue={user?.first_name} onChange={(e) => setUser({ ...user, first_name: e.target.value })} placeholder="John" required />
+                                <Label htmlFor="first-name">Prénom</Label>
+                                <Input 
+                                    id="first-name" 
+                                    defaultValue={user?.first_name} 
+                                    onChange={(e) => setUser({ ...user, first_name: e.target.value })} 
+                                    placeholder="Jean" 
+                                    required 
+                                />
                             </div>
                             <div className="grid gap-2">
-                                <Label htmlFor="last-name">Last name</Label>
-                                <Input id="last-name" defaultValue={user?.last_name} onChange={(e) => setUser({ ...user, last_name: e.target.value })} required />
+                                <Label htmlFor="last-name">Nom</Label>
+                                <Input 
+                                    id="last-name" 
+                                    defaultValue={user?.last_name} 
+                                    onChange={(e) => setUser({ ...user, last_name: e.target.value })} 
+                                    required 
+                                />
                             </div>
                         </div>
                         <div className="grid gap-2">
@@ -64,19 +75,13 @@ export function EditForm() {
                                 required
                             />
                         </div>
-                        {user.is_supplier === false &&
-                            <div className="flex items-center space-x-2">
-                                <Switch id="supplier-checked" defaultChecked={user.is_supplier} onCheckedChange={(checked) => setUser({ ...user, is_supplier: checked })} />
-                                <Label htmlFor="supplier-checked">Do you want to be a supplier?</Label>
-                            </div>
-                        }
+                       
                         <Button type="submit" className="w-full">
-                            Create an account
+                            Modifier
                         </Button>
                     </div>
                 </CardContent>
             </form>
-
         </Card>
     )
 }

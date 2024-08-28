@@ -1,15 +1,15 @@
-import AllProducts from "@/components/dashboard/products";
+import AllCours from "@/components/dashboard/cours";
 import Searchbar from "@/components/dashboard/searchbar";
 import SideNav from "@/components/shared/side-nav";
 import api from "@/lib/api";
-import { AllProductsType } from "@/types/types";
+import { Cours } from "@/types/types";
 import { useState } from "react";
 export function Dashboard() {
-    const [products, setProducts] = useState<AllProductsType[]|null>(null);
+    const [cours,setCours] = useState<Cours[]|null>(null);
     const handleCategoryChange = async(id: number) => {
         try {
-            const res = await api.get(`products/category/${id}/`);
-            setProducts(res.data);
+            const res = await api.get(`cours/${id}/`);
+            setCours(res.data);
         } catch (error) {
             console.log(error);
         }
@@ -20,7 +20,7 @@ export function Dashboard() {
             <SideNav />
             <div>
                 <Searchbar handleCategoryChange={handleCategoryChange} />
-                <AllProducts products={products} setProducts={setProducts} />
+                <AllCours cours={cours} setCours={setCours} />
             </div>
         </div>
     );

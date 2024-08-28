@@ -3,7 +3,7 @@ import { Input } from "@/components/ui/input"
 import { SVGProps } from "react"
 import { useState, useEffect, useCallback } from 'react';
 import api from "@/lib/api";
-import { Category, Product } from "@/types/types";
+import { CategoryCours, Cours } from "@/types/types";
 import {
     Select,
     SelectContent,
@@ -16,15 +16,15 @@ import {
 
 // eslint-disable-next-line @typescript-eslint/ban-types
 export default function Searchbar({ handleCategoryChange }: { handleCategoryChange: Function }) {
-    const [categories, setCategories] = useState<Category[] | null>(null);
+    const [categories, setCategories] = useState<CategoryCours[] | null>(null);
     const [query, setQuery] = useState('');
-    const [products, setProducts] = useState<Product[] | null>(null);
+    const [cours, setCours] = useState<Cours[] | null>(null);
     console.log(categories);
     
     useEffect(()=>{
         const getCategories = async () => {
             try {
-                const res = await api.get("categories/");
+                const res = await api.get("cours_category/");
                 setCategories(res.data);
             } catch (error) {
                 console.log(error);
@@ -33,17 +33,17 @@ export default function Searchbar({ handleCategoryChange }: { handleCategoryChan
         getCategories();
     },[])
 
-    const fetchProducts = async (searchQuery: string) => {
+    const fetchCours = async (searchQuery: string) => {
         try {
-            const response = await api.get(`products/filtred/?search=${searchQuery}`);
-            setProducts(response.data);
+            const response = await api.get(`cours/?search=${searchQuery}`);
+            setCours(response.data);
         } catch (error) {
             console.error("There was an error fetching the products!", error);
         }
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
     const debouncedFetchProducts = useCallback(
-        _.debounce((searchQuery: string) => fetchProducts(searchQuery), 300),
+        _.debounce((searchQuery: string) => fetchCours(searchQuery), 300),
         []
     );
 
@@ -51,7 +51,7 @@ export default function Searchbar({ handleCategoryChange }: { handleCategoryChan
         if (query) {
             debouncedFetchProducts(query);
         } else {
-            setProducts([]);
+            setCours([]);
         }
     }, [query, debouncedFetchProducts]);
 
@@ -74,16 +74,16 @@ export default function Searchbar({ handleCategoryChange }: { handleCategoryChan
                     />
                 </div>
                 {
-                    products && products.length > 0 &&
+                    cours && cours.length > 0 &&
                     <div className="absolute z-10 w-full mt-1 bg-white border border-gray-300 rounded-lg shadow-lg max-h-96 overflow-auto">
                         <ul className="py-1 text-sm text-gray-700">
-                            {products && products.map((product: Product) => (
-                                <li key={product.id}>
+                            {cours && cours.map((cours: Cours) => (
+                                <li key={cours.id}>
                                     <div className="flex items-center gap-2 justify-around-between">
-                                        <img src={product.image} alt={product.name} className="w-8 h-8 rounded-full" />
-                                        <span className="text-black font-bold">{product.name}</span>
-                                        <span className="text-gray-500 font-bold">{product.price}</span>
-                                        <span>{product.category_name}</span>
+                                        <img src={cours.image} alt={cours.title} className="w-8 h-8 rounded-full" />
+                                        <span className="text-black font-bold">{cours.title}</span>
+                                      
+                                        <span>{cours.category_cours}</span>
                                     </div>
                                 </li>
                             )
@@ -100,7 +100,7 @@ export default function Searchbar({ handleCategoryChange }: { handleCategoryChan
                     <SelectContent>
                     <SelectGroup>
                             <SelectLabel>Categories</SelectLabel>
-                            {categories && categories.map((category: Category) => (
+                            {categories && categories.map((category: CategoryCours) => (
                                 <SelectItem key={category.id} value={String(category.id)}>
                                     {category.name}
                                 </SelectItem>
