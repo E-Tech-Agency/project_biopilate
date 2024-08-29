@@ -27,7 +27,7 @@ environ.Env.read_env(BASE_DIR / '.env')
 SECRET_KEY = "django-insecure-ck#kon504#qtk$-ojh5rsw_(b0@-$)b*v+7j=+1^70q4(837%t"
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['*']
 APPEND_SLASH = False
@@ -88,7 +88,7 @@ TEMPLATES = [
 WSGI_APPLICATION = 'backend.wsgi.application'
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 MEDIA_URL = '/media/'
-MEDIA_ROOT = BASE_DIR / 'media'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
