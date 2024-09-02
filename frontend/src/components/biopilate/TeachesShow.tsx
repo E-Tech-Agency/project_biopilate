@@ -47,6 +47,8 @@ export default function TeachesShow() {
             const res = await api.get("teaches/");
             setTeaches(res.data);
             setFilteredTeaches(res.data);
+           
+            
         } catch (error) {
             console.error("Error fetching Instructeur", error);
         }
