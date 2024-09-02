@@ -21,16 +21,17 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useNavigate } from "react-router-dom";
 import EditFAQ from "./EditFAQ";
+
 export default function FAQShow() {
     const [faqs, setFaqs] = useState<FAQ[]>([]);
     const [filteredFaqs, setFilteredFaqs] = useState<FAQ[]>([]);
     const [rowsPerPage, setRowsPerPage] = useState(10);
-    const [statusFilter, setStatusFilter] = useState("");
+    const [searchTerm, setSearchTerm] = useState("");
     const navigate = useNavigate();
     const [currentPage, setCurrentPage] = useState(1);
-    const [searchTerm, setSearchTerm] = useState("");
     const [editingId, setEditingId] = useState<number | null>(null);
     const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+
     const getFaqs = async () => {
         try {
             const res = await api.get("faqs/");
@@ -47,11 +48,10 @@ export default function FAQShow() {
     const filterFaqs = () => {
         if (faqs) {
             const filtered = faqs.filter((faq) => {
-                const formattedDate = new Date(faq.date).toLocaleDateString();
+                const formattedDate = new Date(faq.create_at).toLocaleDateString();
                 const fullText = `${faq.title} ${formattedDate}`.toLowerCase();
                 const matchesSearchTerm = fullText.includes(searchTerm.toLowerCase());
-                const matchesStatusFilter = statusFilter ? faq.status === statusFilter : true;
-                return matchesSearchTerm && matchesStatusFilter;
+                return matchesSearchTerm;
             });
             setFilteredFaqs(filtered);
         }
@@ -59,7 +59,7 @@ export default function FAQShow() {
 
     useEffect(() => {
         filterFaqs();
-    }, [searchTerm, statusFilter, faqs]);
+    }, [searchTerm, faqs]);
 
     const deleteFaq = async (id: number) => {
         try {
@@ -80,6 +80,7 @@ export default function FAQShow() {
         setIsModalOpen(false);
         getFaqs();
     };
+
     const handleAddClick = () => {
         navigate("/add-FAQ-biopilates");
     };
@@ -104,7 +105,6 @@ export default function FAQShow() {
                             onChange={(e) => setSearchTerm(e.target.value)}
                             className="w-full"
                         />
-                       
                     </div>
                     <div className="flex items-center mt-4">
                         <Label htmlFor="rowsPerPage">Afficher:</Label>
@@ -120,8 +120,8 @@ export default function FAQShow() {
                         </select>
                     </div>
                     <Button variant="default" onClick={handleAddClick}>
-                            Ajouter un FAQ
-                        </Button>
+                        Ajouter un FAQ
+                    </Button>
                 </div>
             </CardHeader>
             <CardContent>

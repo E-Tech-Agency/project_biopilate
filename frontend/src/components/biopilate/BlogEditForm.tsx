@@ -1,10 +1,10 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { Blog } from "@/types/types";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import ReactQuill from "react-quill";
-import api from "@/lib/api";
+import  ReactQuill from 'react-quill';
+
 
 interface BlogEditFormProps {
     blog: Blog;

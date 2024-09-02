@@ -1,6 +1,6 @@
 import axios from "axios";
 import { jwtDecode as jwt_decode } from "jwt-decode";
-import dayjs from "dayjs";
+import * as dayjs from 'dayjs'
 
 const accessToken = localStorage.getItem('token') || "";
 const refresh_token = localStorage.getItem('refresh_token') || "";

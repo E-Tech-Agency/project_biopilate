@@ -1,25 +1,24 @@
-import React, { useState } from "react";
-
+import { useState } from "react";
+import * as React from 'react'; 
 interface TagesFormProps {
   initialData?: {
     title?: string;
     status?: string;
   };
-  onSave: (data: any) => void;
+  onSave: (data: { title: string; status: string }) => Promise<void>;
   onClose: () => void;
 }
-
-const TagesForm: React.FC<TagesFormProps> = ({ initialData, onSave, onClose }) => {
-  const [title, setTitle] = useState(initialData?.title || "");
-  const [status, setStatus] = useState(initialData?.status || "pending");
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    const data = { title, status };
-    console.log("Form Data:", data);
-    await onSave(data);
-  };
-
+  const TagesForm: React.FC<TagesFormProps> = ({ initialData, onSave, onClose }) => {
+    const [title, setTitle] = useState(initialData?.title || "");
+    const [status, setStatus] = useState(initialData?.status || "pending");
+  
+    const handleSubmit = async (e: React.FormEvent) => {
+      e.preventDefault();
+      const data = { title, status };
+      console.log("Form Data:", data);
+      await onSave(data);
+      onClose(); // Optional: Close the form after saving
+    };
   return (
     <form onSubmit={handleSubmit}>
       <div className="mb-4">

@@ -1,24 +1,12 @@
 import api from "@/lib/api"
 import SideNav from "@/components/shared/side-nav"
-import { Button } from "@/components/ui/button"
 import { useParams } from "react-router-dom"
 import { Cours } from "@/types/types";
 import {  useEffect, useState } from "react";
-import {
-    Dialog,
-    DialogContent,
-    DialogDescription,
-    DialogFooter,
-    DialogHeader,
-    DialogTitle,
-    DialogTrigger,
-} from "@/components/ui/dialog"
-import { Input } from "@/components/ui/input"
-import { toast } from "sonner";
 
 export default function OneCours() {
     const [cours, setCours] = useState<Cours | null>(null);
-    const [quantity, setQuantity] = useState<number>();
+   
 
     const { id } = useParams();
     const getCours = async () => {

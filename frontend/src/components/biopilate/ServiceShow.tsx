@@ -1,6 +1,6 @@
 import api from "@/lib/api";
 import { Service, Teache } from "@/types/types";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { FaTrash, FaEdit } from "react-icons/fa";
 import {
     Card,
@@ -21,10 +21,14 @@ import { useNavigate } from "react-router-dom";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 
+// Extend the Service type to include instructeurFullName
+export type ServiceWithInstructor = Service & {
+    instructeurFullName: string;
+};
+
 export default function ServiceShow() {
-    const [services, setServices] = useState<Service[]>([]);
-    const [teaches, setTeaches] = useState<Teache[]>([]);
-    const [filteredServices, setFilteredServices] = useState<Service[]>([]);
+    const [services, setServices] = useState<ServiceWithInstructor[]>([]);
+    const [filteredServices, setFilteredServices] = useState<ServiceWithInstructor[]>([]);
     const [searchTerm, setSearchTerm] = useState("");
     const [statusFilter, setStatusFilter] = useState("");
     const [rowsPerPage, setRowsPerPage] = useState(10);
@@ -38,17 +42,16 @@ export default function ServiceShow() {
                 api.get("services/"),
                 api.get("teaches/")
             ]);
-            const servicesData = serviceRes.data;
-            const teachesData = teachRes.data;
-            const updatedServices = servicesData.map((service: Service) => {
-                const instructor = teachesData.find(inst => inst.id === service.instructeur);
+            const servicesData: Service[] = serviceRes.data;
+            const teachesData: Teache[] = teachRes.data;
+            const updatedServices: ServiceWithInstructor[] = servicesData.map((service: Service) => {
+                const instructor = teachesData.find((inst: Teache) => inst.id === Number(service.instructeur)); // Ensure type match
                 return {
                     ...service,
                     instructeurFullName: instructor ? instructor.fullname : "Unknown"
                 };
             });
             setServices(updatedServices);
-            setTeaches(teachesData);
             setFilteredServices(updatedServices); // Initialize filtered services
         } catch (error) {
             console.error("Error fetching data", error);
@@ -151,7 +154,7 @@ export default function ServiceShow() {
                         </TableRow>
                     </TableHeader>
                     <TableBody>
-                        {paginatedServices.map((service: Service) => (
+                        {paginatedServices.map((service: ServiceWithInstructor) => (
                             <TableRow key={service.id} className="bg-accent">
                                 <TableCell>
                                     <div className="flex items-center space-x-4">

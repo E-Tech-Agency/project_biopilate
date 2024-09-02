@@ -44,9 +44,10 @@ const EditCourForm: React.FC = () => {
             });
             navigate('/Cours-biopilates'); // Navigate to home or previous page on successful update
         } catch (error) {
+            if (error instanceof Error) {
             console.error("Error updating cours", error);
             alert(`Failed to update cour: ${error.message}`);
-        }
+        }}
     };
 
     useEffect(() => {

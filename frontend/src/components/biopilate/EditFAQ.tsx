@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import Modal from 'react-modal';
+import * as Modal from 'react-modal';
 import { FAQ } from "@/types/types";
 import api from "@/lib/api";
 import { Input } from "@/components/ui/input";

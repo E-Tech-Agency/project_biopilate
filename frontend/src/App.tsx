@@ -7,7 +7,7 @@ import { useEffect, useState } from 'react';
 import { Navbar } from '@/components/shared/navbar';
 import Footer from '@/components/shared/footer';
 import Home from '@/pages/home';
-import SupplierDashboard from '@/pages/supplier-dashboard';
+
 import AdminDashboard from './pages/admin-dashboard';
 import UserProfile from './pages/user-profile';
 import OneCours from './pages/one-cours';
@@ -60,7 +60,7 @@ function App() {
         <Route path="/login-register" element={<LogReg  setIsLoggedIn={setIsLoggedIn} />} />
         <Route path="/reset_password/:id/:token" element={<ResetPassword />} />
         <Route path="/dashboard" element={<Dashboard />} />
-        <Route path="/create-product" element={<SupplierDashboard />} />
+         {/*<Route path="/create-product" element={<SupplierDashboard />} />*/}
         <Route path="/admin" element={<AdminDashboard />} />
         <Route path="/user" element={<UserProfile />} />
         <Route path="/cour/:id" element={<OneCours />} />

@@ -24,8 +24,7 @@ const ServiceEditForm: React.FC<ServiceEditFormProps> = ({ service, onUpdate }) 
         const fetchInstructeurs = async () => {
             try {
                 const response = await api.get("teaches/");
-                const teachesData = response.data;
-                setInstructeurs(teachesData);
+                setInstructeurs(response.data);
             } catch (error) {
                 console.error("Error fetching instructors", error);
             }
@@ -59,7 +58,8 @@ const ServiceEditForm: React.FC<ServiceEditFormProps> = ({ service, onUpdate }) 
     };
 
     const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const file = e.target.files?.[0];
+        // Ensure files is not null and has at least one file
+        const file = e.target.files?.[0] || null;
         setImage(file);
     };
 

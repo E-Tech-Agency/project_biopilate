@@ -1,6 +1,6 @@
 import SideNav from '@/components/shared/side-nav';
 
-import CreateTeacherFrom from '@/components/biopilate/CreateTeacherFrom';
+
 import TeachesShow from '@/components/biopilate/TeachesShow';
 
 import { useEffect } from 'react';

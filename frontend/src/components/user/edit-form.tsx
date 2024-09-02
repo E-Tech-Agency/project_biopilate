@@ -13,7 +13,20 @@ import { User } from "@/types/types"
 import { useEffect, useState } from "react"
 
 export function EditForm() {
-    const [user, setUser] = useState<User>({});
+    const [user, setUser] = useState<User>({
+        auth_provider: "", // Assuming this is a string
+        date_joined: "", // Assuming this is a string representing a date
+        email: "", // Assuming this is a string
+        first_name: "", // Initialize with an empty string for string properties
+        id: 0, // Initialize with 0 for numeric properties
+        is_active: false, // Initialize with false for boolean properties
+        is_staff: false,
+        is_superuser: false,
+        is_supplier: false,
+        is_verified: false,
+        last_name: "", // Initialize with an empty string
+    });
+    
     
     useEffect(() => {
         async function fetchUser() {

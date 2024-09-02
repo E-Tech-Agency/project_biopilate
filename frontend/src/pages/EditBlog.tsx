@@ -38,9 +38,10 @@ const EditBlog: React.FC = () => {
             // Handle success or navigate back to previous page
             navigate('/blog-biopilates'); // Navigate to home or previous page on successful update
         } catch (error) {
+            if (error instanceof Error) {
             console.error("Error updating blog", error);
             alert(`Failed to update blog: ${error.message}`);
-        }
+        }}
     };
 
     useEffect(() => {

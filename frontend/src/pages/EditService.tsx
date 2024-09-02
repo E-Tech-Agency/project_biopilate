@@ -38,9 +38,10 @@ const EditService: React.FC = () => {
             // Handle success or navigate back to previous page
             navigate('/Service-biopilates'); // Navigate to home or previous page on successful update
         } catch (error) {
+            if (error instanceof Error) {
             console.error("Error updating service", error);
             alert(`Failed to update service: ${error.message}`);
-        }
+        }}
     };
 
     useEffect(() => {

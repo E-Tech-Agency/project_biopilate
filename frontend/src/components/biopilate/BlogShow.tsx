@@ -27,8 +27,7 @@ export default function BlogShow() {
     const [statusFilter, setStatusFilter] = useState("");
     const [rowsPerPage, setRowsPerPage] = useState(10);
     const [currentPage, setCurrentPage] = useState(1);
-    const [editingId, setEditingId] = useState<number | null>(null);
-    const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+   
     const getBlogs = async () => {
         try {
             const res = await api.get("blogs/");

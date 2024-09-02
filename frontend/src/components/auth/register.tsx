@@ -9,7 +9,8 @@ import {
 } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import React, { SetStateAction, useEffect, useState } from "react";
+import { SetStateAction, useEffect, useState } from "react";
+import * as React from 'react';
 import axios from "axios";
 import { toast } from "sonner";
 import { LogRegError } from "@/types/types";
@@ -25,6 +26,13 @@ import {
 } from "../ui/dialog";
 import { AlertDialog } from "../ui/alert-dialog";
 import { AlertDialogAfterRegister } from "./alert-dialog";
+
+// Declare the google object globally
+declare global {
+    interface Window {
+        google: any;
+    }
+}
 
 export function RegisterForm({ setIsLoggedIn }: { setIsLoggedIn: React.Dispatch<SetStateAction<boolean>> }) {
     const navigate = useNavigate();
@@ -54,18 +62,21 @@ export function RegisterForm({ setIsLoggedIn }: { setIsLoggedIn: React.Dispatch<
         };
 
         const initializeGoogleLogin = () => {
-            google.accounts.id.initialize({
-                client_id: '84824279187-i984iquv2b83e4gf9b5jort0p770v21g.apps.googleusercontent.com',
-                callback: handleLoginWithGoogle,
-            });
-            google.accounts.id.renderButton(
-                document.getElementById("signInDiv"),
-                { text: "continue_with", width: "350px", shape: "circle", size: "large", theme: "outline" }
-            );
+            if (window.google) {
+                window.google.accounts.id.initialize({
+                    client_id: '84824279187-i984iquv2b83e4gf9b5jort0p770v21g.apps.googleusercontent.com',
+                    callback: handleLoginWithGoogle,
+                });
+                window.google.accounts.id.renderButton(
+                    document.getElementById("signInDiv"),
+                    { text: "continue_with", width: "350px", shape: "circle", size: "large", theme: "outline" }
+                );
+            }
         };
 
         loadGoogleScript();
     }, []);
+
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         if (data.password !== data.confirm_password) {
@@ -97,27 +108,28 @@ export function RegisterForm({ setIsLoggedIn }: { setIsLoggedIn: React.Dispatch<
             }
         }
     }
-    const handleLoginWithGoogle = async (response)=>{
+
+    const handleLoginWithGoogle = async (response: any) => {
         console.log("id_token", response)
         const payload = {
             access_token: response.credential,
             is_supplier: data.is_supplier
         }
-       try {
-        const server_res = await  axios.post('http://localhost:8000/api/google/', payload);
-        console.log(server_res.data);
-        
-        localStorage.setItem('token', server_res.data.access_token);
-        localStorage.setItem('refresh_token', server_res.data.refresh_token);
-        localStorage.setItem('is_supplier', server_res.data.is_supplier);
-        localStorage.setItem('is_supperuser', server_res.data.is_supplier);
-        setIsLoggedIn(true);
-        navigate('/dashboard');
-       } catch (error) {
-        console.log(error);
-        
-       }
+        try {
+            const server_res = await axios.post('http://localhost:8000/api/google/', payload);
+            console.log(server_res.data);
+
+            localStorage.setItem('token', server_res.data.access_token);
+            localStorage.setItem('refresh_token', server_res.data.refresh_token);
+            localStorage.setItem('is_supplier', server_res.data.is_supplier);
+            localStorage.setItem('is_supperuser', server_res.data.is_supplier);
+            setIsLoggedIn(true);
+            navigate('/dashboard');
+        } catch (error) {
+            console.log(error);
+        }
     }
+
     const handleVerify = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         toast.loading("Verifying...");
@@ -127,14 +139,14 @@ export function RegisterForm({ setIsLoggedIn }: { setIsLoggedIn: React.Dispatch<
             toast.success(res.data.message);
             setDialogOpen(false);
             setAlert(true);
-        }
-        catch (err) {
+        } catch (err) {
             if (axios.isAxiosError(err)) {
                 const errors = err.response?.data;
                 toast.error(errors.message);
             }
         }
     }
+
     return (
         <>
             <Card className="mx-auto max-w-sm">
@@ -161,7 +173,7 @@ export function RegisterForm({ setIsLoggedIn }: { setIsLoggedIn: React.Dispatch<
                             </div>
                             <div className="grid gap-2">
                                 <Label htmlFor="email">Email</Label>
-                                {error?.email && <li className="text-red-500">{error.email[0]}</li>}
+                                {error?.email && <p className="text-red-500">{error.email[0]}</p>}
                                 <Input
                                     id="email"
                                     type="email"
@@ -181,16 +193,15 @@ export function RegisterForm({ setIsLoggedIn }: { setIsLoggedIn: React.Dispatch<
                                 {error?.confirm_password && <li className="text-red-500">{error.confirm_password[0]}</li>}
                                 <Input id="password" type="password" value={data.confirm_password} onChange={(e) => setData({ ...data, confirm_password: e.target.value })} />
                             </div>
-                            <div className="flex items-center space-x-2">
+                            {/* <div className="flex items-center space-x-2">
                                 <Switch id="supplier-checked" defaultChecked={data.is_supplier} onCheckedChange={(checked) => setData({ ...data, is_supplier: checked })} />
                                 <Label htmlFor="supplier-checked">Are you a modirator? <br /> <div className="text-sm text-pretty text-inherit text-start">if you are a supplier, check this box even if you signup with google</div></Label>
-                            </div>
+                            </div> */}
                             <Button type="submit" className="w-full">
                                 Create an account
                             </Button>
                             
                             <div id="signInDiv" className='w-full'></div>
-                            
                             
                         </div>
                     </form>

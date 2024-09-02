@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
@@ -33,7 +33,6 @@ const TeachesEditForm: React.FC<TeachesEditFormProps> = ({ teache, onSave, onClo
     }, [teache]);
 
     useEffect(() => {
-        // Cleanup function to revoke object URL when component unmounts or URL changes
         return () => {
             if (imagePreviewUrl && imagePreviewUrl.startsWith('blob:')) {
                 URL.revokeObjectURL(imagePreviewUrl);
@@ -60,17 +59,50 @@ const TeachesEditForm: React.FC<TeachesEditFormProps> = ({ teache, onSave, onClo
         }
     };
 
+    const validateForm = (): boolean => {
+        let isValid = true;
+        const newErrors: CreateTeacherErrors = {};
+
+        // Initialize errors arrays
+        newErrors.fullname = [];
+        newErrors.email = [];
+        newErrors.nomber_phone = [];
+        newErrors.specialite = [];
+        newErrors.image = [];
+
+        if (!formState.fullname) {
+            newErrors.fullname.push("Full name is required.");
+            isValid = false;
+        }
+        if (!formState.email) {
+            newErrors.email.push("Email is required.");
+            isValid = false;
+        }
+        if (!formState.nomber_phone || isNaN(formState.nomber_phone)) {
+            newErrors.nomber_phone.push("Valid phone number is required.");
+            isValid = false;
+        }
+        if (!formState.specialite) {
+            newErrors.specialite.push("Speciality is required.");
+            isValid = false;
+        }
+        // Add more validation rules as needed
+
+        // Update state directly with errors
+        setErrors(newErrors);
+        return isValid;
+    };
+
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        // If no new image is selected, use the original image URL
-        const updatedFormState = {
-            ...formState,
-            image: formState.image instanceof File ? formState.image : teache.image,
-        };
-        onSave(updatedFormState, teache.id);
+        if (validateForm()) {
+            const updatedFormState = {
+                ...formState,
+                image: formState.image instanceof File ? formState.image : teache.image,
+            };
+            onSave(updatedFormState, teache.id);
+        }
     };
-    console.log("FORM DATA", formState);
-    
 
     return (
         <form onSubmit={handleSubmit} className="space-y-6" encType="multipart/form-data">
@@ -90,7 +122,9 @@ const TeachesEditForm: React.FC<TeachesEditFormProps> = ({ teache, onSave, onClo
                         placeholder="Prénom et Nom"
                         className="w-full"
                     />
-                    {errors.fullname && <p className="text-red-500 mt-1">{errors.fullname}</p>}
+                    {errors.fullname && errors.fullname.map((error, index) => (
+                        <p key={index} className="text-red-500 mt-1">{error}</p>
+                    ))}
                 </div>
                 <div>
                     <Label htmlFor="email">Email</Label>
@@ -102,7 +136,9 @@ const TeachesEditForm: React.FC<TeachesEditFormProps> = ({ teache, onSave, onClo
                         placeholder="Instructeur Email"
                         className="w-full"
                     />
-                    {errors.email && <p className="text-red-500 mt-1">{errors.email}</p>}
+                    {errors.email && errors.email.map((error, index) => (
+                        <p key={index} className="text-red-500 mt-1">{error}</p>
+                    ))}
                 </div>
                 <div>
                     <Label htmlFor="nomber_phone">Numéro Téléphone</Label>
@@ -114,7 +150,9 @@ const TeachesEditForm: React.FC<TeachesEditFormProps> = ({ teache, onSave, onClo
                         placeholder="Numéro Téléphone"
                         className="w-full"
                     />
-                    {errors.nomber_phone && <p className="text-red-500 mt-1">{errors.nomber_phone}</p>}
+                    {errors.nomber_phone && errors.nomber_phone.map((error, index) => (
+                        <p key={index} className="text-red-500 mt-1">{error}</p>
+                    ))}
                 </div>
                 <div>
                     <Label htmlFor="specialite">Spécialité</Label>
@@ -126,17 +164,21 @@ const TeachesEditForm: React.FC<TeachesEditFormProps> = ({ teache, onSave, onClo
                         placeholder="Spécialité"
                         className="w-full"
                     />
-                    {errors.specialite && <p className="text-red-500 mt-1">{errors.specialite}</p>}
+                    {errors.specialite && errors.specialite.map((error, index) => (
+                        <p key={index} className="text-red-500 mt-1">{error}</p>
+                    ))}
                 </div>
                 <div className="sm:col-span-2">
                     <Label htmlFor="image">Image</Label>
                     <Input
                         id="image"
                         type="file"
-                        onChange={handleImageChange} 
+                        onChange={handleImageChange}
                         className="w-full"
                     />
-                    {errors.image && <p className="text-red-500 mt-1">{errors.image}</p>}
+                    {errors.image && errors.image.map((error, index) => (
+                        <p key={index} className="text-red-500 mt-1">{error}</p>
+                    ))}
                 </div>
             </div>
             <div className="flex justify-end space-x-4">

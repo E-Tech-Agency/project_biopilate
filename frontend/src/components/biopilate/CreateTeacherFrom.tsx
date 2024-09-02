@@ -1,27 +1,19 @@
 import {
     Card,
     CardContent,
-    CardDescription,
+
     CardHeader,
     CardTitle,
 } from "@/components/ui/card"
-import {
-    Select,
-    SelectContent,
-    SelectGroup,
-    SelectItem,
-    SelectLabel,
-    SelectTrigger,
-    SelectValue,
-} from "@/components/ui/select"
+
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
-import { Textarea } from "@/components/ui/textarea"
+
 import { CreateTeacherErrors, TeacherFormType } from "@/types/types"
-import { useEffect, useState } from "react"
+import {  useState } from "react"
 import { Button } from "@/components/ui/button"
 import apiCreateTeache from "@/lib/apiCreateTeache"
-import api from "@/lib/api"
+
 import axios from "axios"
 import { toast } from "sonner"
 
@@ -38,22 +30,30 @@ export default function CreateTeacherFrom() {
     });
     
     
-
+    const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        // Ensure files is not null and has at least one file
+        const file = e.target.files ? e.target.files[0] : null;
+        setTeache((prevTeache) => ({
+            ...prevTeache,
+            image: file,
+        }));
+    };
+    
    
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-
+    
         const formData = new FormData();
         formData.append('fullname', teache.fullname);
         formData.append('email', teache.email);
         formData.append('specialite', teache.specialite);
         formData.append('nomber_phone', teache.nomber_phone.toString());
-        
+    
         if (teache.image) {
             formData.append('image', teache.image);
         }
-
+    
         try {
             await apiCreateTeache.post("teaches/", formData);
             setTeache({
@@ -62,22 +62,18 @@ export default function CreateTeacherFrom() {
                 nomber_phone: 0,
                 specialite: "",
                 image: null,
-            })
-            toast.success("Instructeur created")
+            });
+            toast.success("Instructeur created");
         } catch (error) {
-            if(axios.isAxiosError(error)){
+            if (axios.isAxiosError(error)) {
                 const errorsFromDb = error.response?.data;
                 console.log(errorsFromDb);
-                toast.error(errorsFromDb.error)
-                if(errorsFromDb.error){
-                    console.log("errorrrrrrrrrrr");
-                    
-                    setErrors({...errors,image:errorsFromDb.error})
-                }
+                toast.error(errorsFromDb.error);
                 setErrors(errorsFromDb);
             }
         }
     };
+    
 
     return (
         <Card className="w-min">
@@ -134,12 +130,13 @@ export default function CreateTeacherFrom() {
                             <div className="grid gap-3">
                             <Label htmlFor="photo"> Ajouter un image </Label>
                                 
-                                <Input
-                                    id="image"
-                                    type="file"
-                                    className="w-full"
-                                    onChange={(e) => setTeache({ ...teache, image: e.target.files[0] })}
-                                />
+                            <Input
+    id="image"
+    type="file"
+    className="w-full"
+    onChange={handleImageChange} // Use the handleImageChange function
+/>
+
                             </div>
                             <div>
                                 <Button type="submit" className="w-44" size={"lg"}>Ajouter</Button>

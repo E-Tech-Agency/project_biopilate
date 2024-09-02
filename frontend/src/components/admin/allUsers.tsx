@@ -33,7 +33,7 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 
 export default function AllUsers() {
-    const [reason, setReason] = useState({ reason: "" });
+    const [reason, setReason] = useState<string>("");
     const [users, setUsers] = useState<UserType[] | null>(null);
     const getUsers = async () => {
         try {
@@ -48,7 +48,7 @@ export default function AllUsers() {
     }, [])
     const deleteUser = async (id: number) => {
         try {
-            await api.delete(`delete_user/${id}/`, reason);
+            await api.delete(`delete_user/${id}/`, { data: { reason } });
             await getUsers();
             toast.success("User deleted");
         } catch (error) {
@@ -103,7 +103,7 @@ export default function AllUsers() {
                                                 <DialogHeader>
                                                     <DialogTitle>Send email</DialogTitle>
                                                     <DialogDescription>
-                                                        Send email to user to tell thel the reaseon for banning them.
+                                                        Send email to user to tell them the reason for banning them.
                                                     </DialogDescription>
                                                 </DialogHeader>
                                                 <div className="flex items-center space-x-2">
@@ -114,11 +114,11 @@ export default function AllUsers() {
                                                         <Input
                                                             id="email"
                                                             placeholder='email'
-                                                            onChange={(e) => setReason({ ...reason, reason: e.target.value })}
-                                                            value={reason.reason}
+                                                            onChange={(e) => setReason(e.target.value)}
+                                                            value={reason}
                                                         />
                                                     </div>
-                                                    <Button disabled={reason.reason === "" ? true : false}
+                                                    <Button disabled={!reason}
                                                         variant={"destructive"}
                                                         type="submit"
                                                         size="sm"

@@ -65,9 +65,10 @@ export default function TagesShow() {
             setIsModalOpen(false);
             setSelectedTage(null);
         } catch (error) {
+            if (error instanceof Error) {
             console.error("Error updating Tage", error);
             alert(`Failed to update Tage: ${error.message}`);
-        }
+              }  }
     };
 
     const handleEditClick = (tage: Tage) => {

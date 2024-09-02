@@ -1,4 +1,5 @@
-import _ from "loadsh";
+import _ from 'lodash';
+
 import { Input } from "@/components/ui/input"
 import { SVGProps } from "react"
 import { useState, useEffect, useCallback } from 'react';

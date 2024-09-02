@@ -30,7 +30,7 @@ export default function CreateBlogForm() {
         full_text: '',
         date: new Date().toISOString().split('T')[0],  // Default to today's date in YYYY-MM-DD format
         range: 0,
-        favorites:0,
+        favorites: 0,
     });
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -42,9 +42,9 @@ export default function CreateBlogForm() {
         formData.append('status', blog.status);
         formData.append('description', blog.description);
         formData.append('full_text', blog.full_text);
-        formData.append('date', blog.date);  // Ensure date is in YYYY-MM-DD format
-        formData.append('range', blog.range.toString());
-        formData.append('favorites', blog.favorites);
+        formData.append('date', blog.date.toLocaleString());  // Ensure date is in YYYY-MM-DD format
+        formData.append('range', blog.range.toString()); // Convert number to string
+        formData.append('favorites', blog.favorites !== null ? blog.favorites.toString() : ''); // Convert number to string or use empty string // Convert number to string
 
         if (blog.image_1) formData.append('image_1', blog.image_1);
         if (blog.image_2) formData.append('image_2', blog.image_2);
@@ -61,7 +61,7 @@ export default function CreateBlogForm() {
                 full_text: '',
                 date: new Date().toISOString().split('T')[0],  // Reset to today's date
                 range: 0,
-                favorites:0,
+                favorites: 0,
             });
             toast.success("Blog created");
             navigate('/blog-biopilates');

@@ -1,3 +1,5 @@
+# serializers/FormSerializer.py
+
 from rest_framework import serializers
 from ..models.formation import Formation, Option, FormationCategory
 
@@ -7,11 +9,12 @@ class OptionSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 class SelectedOptionSerializer(serializers.ModelSerializer):
-    option = OptionSerializer()
+    option = serializers.PrimaryKeyRelatedField(queryset=Option.objects.all())
 
     class Meta:
         model = FormationCategory
         fields = '__all__'
+
 
     def create(self, validated_data):
         option_data = validated_data.pop('option')
@@ -20,14 +23,15 @@ class SelectedOptionSerializer(serializers.ModelSerializer):
         return selected_option
 
 class FormationsSerializer(serializers.ModelSerializer):
-    options = SelectedOptionSerializer(source='formationcategory_set',many=True)
+    options = SelectedOptionSerializer(many=True, required=False)
 
     class Meta:
         model = Formation
-        fields = ['id', 'title', 'description', 'options']
+        fields = ['id', 'title', 'description', 'status', 'options']
+
 
     def create(self, validated_data):
-        options_data = validated_data.pop('formationcategory_set')
+        options_data = validated_data.pop('options', [])
         formation = Formation.objects.create(**validated_data)
         for option_data in options_data:
             option_details = option_data.pop('option')
@@ -36,7 +40,7 @@ class FormationsSerializer(serializers.ModelSerializer):
         return formation
 
     def update(self, instance, validated_data):
-        options_data = validated_data.pop('formationcategory_set')
+        options_data = validated_data.pop('options', [])
         instance.title = validated_data.get('title', instance.title)
         instance.description = validated_data.get('description', instance.description)
         instance.save()

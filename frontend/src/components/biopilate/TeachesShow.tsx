@@ -23,8 +23,7 @@ import apiCreateTeache from "@/lib/apiCreateTeache";
 import api from "@/lib/api";
 import { toast } from "sonner";
 import axios, { AxiosError } from "axios";
-import "react-quill/dist/quill.snow.css"; // Import styles for React Quill
-import { Teache, TeacherFormType, CreateTeacherErrors } from "@/types/types";
+import { Teache, TeacherFormType, TeacherFormEditType } from "@/types/types";
 
 export default function TeachesShow() {
     const [teaches, setTeaches] = useState<Teache[]>([]);
@@ -38,7 +37,6 @@ export default function TeachesShow() {
         specialite: "",
         image: null,
     });
-    const [errors, setErrors] = useState<CreateTeacherErrors>({});
     const [searchTerm, setSearchTerm] = useState("");
     const [isEditing, setIsEditing] = useState(false); // Track whether modal is for editing or adding
     const [rowsPerPage, setRowsPerPage] = useState(10); // Default rows per page
@@ -81,25 +79,19 @@ export default function TeachesShow() {
         }
     };
 
-    const updateTeaches = async (data: TeacherFormType, id: number) => {
+    const updateTeaches = async (data: TeacherFormEditType, id: number) => {
         try {
             const endpoint = `teaches/${id}/`;
-    
-            // Create a FormData object
             const formData = new FormData();
-    
-            // Always append these fields
             formData.append("fullname", data.fullname);
             formData.append("email", data.email);
             formData.append("nomber_phone", data.nomber_phone.toString());
             formData.append("specialite", data.specialite);
     
-            // Only append the image if a new one was selected
             if (data.image instanceof File) {
                 formData.append("image", data.image);
             }
     
-            // Send the request
             await api.put(endpoint, formData, {
                 headers: {
                     "Content-Type": "multipart/form-data",
@@ -109,12 +101,13 @@ export default function TeachesShow() {
             getTeaches();
             setIsModalOpen(false);
         } catch (error) {
-            console.error("Error updating Instructeur", error);
-            alert(`Failed to update Instructeur: ${error.message}`);
+            if (error instanceof Error) {
+                console.error("Error updating Instructeur", error);
+                alert(`Failed to update Instructeur: ${error.message}`);
+            }
         }
     };
-    
-    
+
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         try {
@@ -128,7 +121,7 @@ export default function TeachesShow() {
                 formData.append("image", teache.image);
             }
 
-            const response = await apiCreateTeache.post("teaches/", formData, {
+            await apiCreateTeache.post("teaches/", formData, {
                 headers: {
                     "Content-Type": "multipart/form-data",
                 },
@@ -141,13 +134,12 @@ export default function TeachesShow() {
                 specialite: "",
                 image: null,
             });
-            setErrors({});
             setIsModalOpen(false);
             getTeaches();
         } catch (error) {
             if (axios.isAxiosError(error)) {
                 const errorsFromDb = (error as AxiosError)?.response?.data;
-                setErrors(errorsFromDb || {});
+                console.error(errorsFromDb || {});
             }
         }
     };
@@ -165,12 +157,11 @@ export default function TeachesShow() {
     };
 
     const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        if (e.target.files && e.target.files.length > 0) {
-            setTeache((prevInstructeur) => ({
-                ...prevInstructeur,
-                image: e.target.files[0],
-            }));
-        }
+        const file = e.target.files?.[0] || null; // Handle the case where files might be null
+        setTeache((prevTeache) => ({
+            ...prevTeache,
+            image: file,
+        }));
     };
 
     const handleChangeRowsPerPage = (value: number) => {
@@ -297,7 +288,7 @@ export default function TeachesShow() {
                                     <Label htmlFor="email">Email</Label>
                                     <Input
                                         id="email"
-                                        placeholder="Intructeur Email"
+                                        placeholder="Instructeur Email"
                                         className="w-full"
                                         value={teache.email}
                                         onChange={(e) => setTeache({ ...teache, email: e.target.value })}
@@ -334,7 +325,7 @@ export default function TeachesShow() {
                                         />
                                     </div>
                                     <div>
-                                        <Button type="submit" className="w-44" size="lg">Ajouter</Button>
+                                    <Button type="submit" className="w-44" size="lg">Ajouter</Button>
                                     </div>
                                 </div>
                             </div>

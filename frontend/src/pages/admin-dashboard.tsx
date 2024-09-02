@@ -1,5 +1,4 @@
-import AllOrders from "@/components/admin/allOrders";
-import AllProducts from "@/components/admin/allProducts";
+
 import AllUsers from "@/components/admin/allUsers";
 import SideNav from "@/components/shared/side-nav";
 import { Separator } from "@/components/ui/separator";
@@ -18,11 +17,11 @@ export default function AdminDashboard() {
             <SideNav />
             <div>
                 <div className="flex flex-row items-center justify-center h-screen gap-9">
-                    <AllProducts />
+                    
                     <Separator orientation="vertical" className="h-1/2" />
                     <AllUsers />
                     </div>
-                <AllOrders />
+              
             </div>
         </div>
     )

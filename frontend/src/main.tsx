@@ -1,6 +1,6 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import App from './App.tsx';
+import * as React from 'react';
+import * as ReactDOM from 'react-dom/client';
+import App from './App';
 import '@/styles/index.css';
 import { ThemeProvider } from "@/components/shared/theme-provider";
 import { BrowserRouter } from 'react-router-dom';

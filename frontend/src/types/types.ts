@@ -307,69 +307,64 @@ export type CreateFAQErrors = {
 }
 export type Formation = {
     id: number;
-    status: "";
+    status: 'pending' | 'approved';  // Reflect the choices from Django
     title: string;
     description: string;
-    options: Option[];
     created_at: Date;
     updated_at: Date;
 }
+
 export type FormationFormType = {
-    status: "";
+    status: 'pending' | 'approved';  // Reflect the choices from Django
     title: string;
     description: string;
-    options: number[]; 
-    
-
 }
+
 export type CreateFormationErrors = {
     status?: string[];
     title?: string[];
     description?: string[];
-    options?: string[];
-   
 }
+
 export type Option = {
     id: number;
-    name : string;
-    
-    create_at: Date;
+    name: string;
+    created_at: Date;  // Corrected field name
     updated_at: Date;
 }
-export type OptionFormType = {
-    name : string;
-    
-    
 
+export type OptionFormType = {
+    id: number;
+    name: string;
 }
+
 export type CreateOptionErrors = {
     name?: string[];
-    
-   
 }
+
 export type FormationCategory = {
     id: number;
-   
     formation: Formation;
     option: Option;
     price: number;
     created_at: Date;
     updated_at: Date;
-};
+}
 
-export type FormationCategoryFormType = {
-   
-    formation: number; // Formation ID
-    option: number; // Option ID
+export type FormationCategoryType = {
+    formation: number;  // Formation ID
+    option: number;     // Option ID
     price: number;
-};
+    created_at: Date;
+    updated_at: Date;
+}
 
 export type CreateFormationCategoryErrors = {
-    status?: string[];
     formation?: string[];
     option?: string[];
     price?: string[];
-};
+}
+
 export type CategoryCours={
     id: number;
     name : string;

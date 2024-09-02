@@ -1,8 +1,5 @@
 import SideNav from '@/components/shared/side-nav';
-import CreateCategory from '@/components/supplier/create-category';
-import CreateProductForm from '@/components/supplier/create-product-form';
-import ProductsTable from '@/components/supplier/products-table';
-import SupplierProducts from '@/components/supplier/suplier-products';
+
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import CreateTagesFrom from '@/components/biopilate/CreateTagesFrom';

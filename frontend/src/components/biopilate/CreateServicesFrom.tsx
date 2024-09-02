@@ -53,23 +53,22 @@ export default function CreateServicesForm() {
         fetchTeaches();
     }, []);
 
-    const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
-        const { name, value } = e.target;
-        setService((prevService) => ({
-            ...prevService,
-            [name]: value,
-        }));
-    };
+    // const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+    //     const { name, value } = e.target;
+    //     setService((prevService) => ({
+    //         ...prevService,
+    //         [name]: value,
+    //     }));
+    // };
 
     const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        if (e.target.files && e.target.files.length > 0) {
-            setService((prevService) => ({
-                ...prevService,
-                image: e.target.files[0],
-            }));
-        }
+        const file = e.target.files?.[0] || null; // Ensure file is either File or null
+        setService((prevService) => ({
+            ...prevService,
+            image: file,
+        }));
     };
-
+    
     const handleQuillChange = (value: string) => {
         setService((prevService) => ({
             ...prevService,
