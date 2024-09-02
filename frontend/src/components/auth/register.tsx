@@ -193,10 +193,10 @@ export function RegisterForm({ setIsLoggedIn }: { setIsLoggedIn: React.Dispatch<
                                 {error?.confirm_password && <li className="text-red-500">{error.confirm_password[0]}</li>}
                                 <Input id="password" type="password" value={data.confirm_password} onChange={(e) => setData({ ...data, confirm_password: e.target.value })} />
                             </div>
-                            {/* <div className="flex items-center space-x-2">
+                             <div className="flex items-center space-x-2">
                                 <Switch id="supplier-checked" defaultChecked={data.is_supplier} onCheckedChange={(checked) => setData({ ...data, is_supplier: checked })} />
-                                <Label htmlFor="supplier-checked">Are you a modirator? <br /> <div className="text-sm text-pretty text-inherit text-start">if you are a supplier, check this box even if you signup with google</div></Label>
-                            </div> */}
+                                <Label htmlFor="supplier-checked">Are you a modirator? <br /> <div className="text-sm text-pretty text-inherit text-start">if you are a modirator, check this box even if you signup with google</div></Label>
+                            </div> 
                             <Button type="submit" className="w-full">
                                 Create an account
                             </Button>
