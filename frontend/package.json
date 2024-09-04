@@ -42,6 +42,7 @@
     "react-router-dom": "^6.23.1",
     "react-scripts": "^5.0.1",
     "sonner": "^1.4.41",
+    "swiper": "^11.1.12",
     "tailwind-merge": "^2.3.0",
     "tailwindcss-animate": "^1.0.7",
     "typescript": "^4.9.5"
@@ -49,7 +50,7 @@
   "devDependencies": {
     "@types/dompurify": "^3.0.5",
     "@types/lodash": "^4.17.7",
-    "@types/node": "^20.13.0",
+    "@types/node": "^20.16.3",
     "@types/react": "^18.2.66",
     "@types/react-dom": "^18.2.22",
     "@typescript-eslint/eslint-plugin": "^7.2.0",

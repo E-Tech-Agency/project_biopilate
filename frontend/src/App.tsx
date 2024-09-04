@@ -4,14 +4,15 @@ import { Toaster } from '@/components/ui/sonner';
 import { ResetPassword } from '@/pages/reset-password';
 import { Dashboard } from './pages/dashboard';
 import { useEffect, useState } from 'react';
-import { Navbar } from '@/components/shared/navbar';
-import Footer from '@/components/shared/footer';
+import  Header  from '@/biopilates/layout/Header'
+import Footer from '@/biopilates/layout/Footer'
 import Home from '@/pages/home';
 
 import AdminDashboard from './pages/admin-dashboard';
 import UserProfile from './pages/user-profile';
 import OneCours from './pages/one-cours';
-
+//site show
+import Accueil from '@/biopilates/pages/Accueil/Accueil'
 // biopilate
 import Teaches from './pages/Teaches';
 import Tages from './pages/Tages';
@@ -54,9 +55,9 @@ function App() {
 
   return (
     <div>
-      <Navbar isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />
+       <Header></Header>
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route path="/" element={<Accueil />} />
         <Route path="/login-register" element={<LogReg  setIsLoggedIn={setIsLoggedIn} />} />
         <Route path="/reset_password/:id/:token" element={<ResetPassword />} />
         <Route path="/dashboard" element={<Dashboard />} />
