@@ -173,7 +173,7 @@ export default function Accueil() {
             </div>
           </div>
 
-          {/* <CallToActionImg /> */}
+          <CallToActionImg />
         </div>
       </section>
 
@@ -195,13 +195,13 @@ export default function Accueil() {
                 rubrique blog.
               </p>
             </div>
-            {/* <OtherArticles articles={articles} /> */}
+            <OtherArticles articles={articles} />
           </div>
         </div>
       </section>
 
       {/* FAQ */}
-      {/* <FAQ /> */}
+      <FAQ />
     </div>
   );
 }

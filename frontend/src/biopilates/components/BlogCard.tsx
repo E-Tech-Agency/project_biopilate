@@ -1,8 +1,23 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { FaRegHeart, FaHeart } from "react-icons/fa";
+import biopilateLogo from "@/assets/images/biopilate-logo.png"; // Replace require with import
 
-export default function BlogCard({ article }) {
+// Define the Article type
+interface Article {
+  id: number;
+  title: string;
+  ecrivain: string;
+  description: string;
+  jaimes: number;
+  image: string;
+}
+
+interface BlogCardProps {
+  article: Article;
+}
+
+export default function BlogCard({ article }: BlogCardProps) {
   const [liked, setLiked] = useState(false);
   const [likes, setLikes] = useState(article.jaimes); // Initialize likes with article's jaimes count
   const navigate = useNavigate(); // Initialize navigate for programmatic navigation
@@ -55,7 +70,7 @@ export default function BlogCard({ article }) {
         <div className="flex items-center gap-2">
           <img
             loading="lazy"
-            src={require("../assets/images/biopilate-logo.png")}
+            src={biopilateLogo} // Use import instead of require
             alt="User"
             className="rounded-full w-[22px] h-[22px]"
           />

@@ -1,50 +1,51 @@
-import React from "react";
-import CircleSwiperCarousel from "../../components/CircleSwiperCarousel";
-import ImageSliderApropos from "../../components/ImageSliderApropos";
 
+import CircleSwiperCarousel from "@/biopilates/components/CircleSwiperCarousel";
+import ImageSliderApropos from "@/biopilates/components/ImageSliderApropos";
+import caroline3 from "@/assets/images/caroline-3.jpg";
+import caroline4 from "@/assets/images/caroline-4.jpg";
+import caroline5 from "@/assets/images/caroline-5.jpg";
+import caroline1 from "@/assets/images/caroline-1.jpg";
+import caroline2 from "@/assets/images/caroline-2.jpg";
+import stott from "@/assets/images/stott.jpg";
+import gyrotonic from "@/assets/images/gyrotonic.jpg";
+import evolis from "@/assets/images/evolis.jpg";
 export default function Apropos() {
-  const images = [
-    require("../../assets/images/caroline-3.jpg"),
-    require("../../assets/images/caroline-4.jpg"),
-    require("../../assets/images/caroline-5.jpg"),
-    require("../../assets/images/caroline-1.jpg"),
-    require("../../assets/images/caroline-2.jpg"),
-  ];
+  const images = [caroline3, caroline4, caroline5, caroline1, caroline2];
 
   const list = [
     {
       title: "STOTT PILATES",
-      image: require("../../assets/images/stott.jpg"),
+      image: stott,
       description:
         "Est une méthode d'entraînement précise et efficace pour renforcer le corps et améliorer la posture.",
     },
     {
       title: "Gyrotonic",
-      image: require("../../assets/images/gyrotonic.jpg"),
+      image: gyrotonic,
       description:
         "Combine la force du Pilates et la fluidité du Gyrotonic pour améliorer la posture, la flexibilité et le bien-être.",
     },
     {
       title: "Evolis",
-      image: require("../../assets/images/evolis.jpg"),
+      image: evolis,
       description:
         "Est une méthode innovante alliant Pilates et équipements évolutifs pour améliorer force, flexibilité et posture.",
     },
     {
       title: "STOTT PILATES",
-      image: require("../../assets/images/stott.jpg"),
+      image: stott,
       description:
         "Est une méthode d'entraînement précise et efficace pour renforcer le corps et améliorer la posture.",
     },
     {
       title: "Gyrotonic",
-      image: require("../../assets/images/gyrotonic.jpg"),
+      image: gyrotonic,
       description:
         "Combine la force du Pilates et la fluidité du Gyrotonic pour améliorer la posture, la flexibilité et le bien-être.",
     },
     {
       title: "Evolis",
-      image: require("../../assets/images/evolis.jpg"),
+      image: evolis,
       description:
         "Est une méthode innovante alliant Pilates et équipements évolutifs pour améliorer force, flexibilité et posture.",
     },

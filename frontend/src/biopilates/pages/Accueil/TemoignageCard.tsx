@@ -1,9 +1,15 @@
 import BiopilateLogo from '@/assets/images/biopilate-logo.png';
 import { FaStar } from "react-icons/fa";
+interface Temoignage {
+  user: string;
+  note: number;
+  title: string;
+  review: string;
+}
 
-export default function TemoignageCard({ temoignage }) {
+export default function TemoignageCard({ temoignage }: { temoignage: Temoignage }) {
   return (
-    <div className=" flex flex-col max-w-[850px] min-w-[220px] md:h-[300px] shadow-xl rounded-lg py-6 sm:py-4 px-4 sm:px-8">
+    <div className="flex flex-col max-w-[850px] min-w-[220px] md:h-[300px] shadow-xl rounded-lg py-6 sm:py-4 px-4 sm:px-8">
       <div className="flex gap-4">
         <img
           loading="lazy"
@@ -14,7 +20,7 @@ export default function TemoignageCard({ temoignage }) {
         <div className="mb-4 sm:mb-8 flex flex-col sm:gap-2">
           <p className="">{temoignage.user}</p>
           <div className="flex gap-1 text-yellow-300 text-lg">
-            {[...Array(5)].map((star, index) => (
+            {[...Array(temoignage.note)].map((_, index) => (
               <FaStar key={index} />
             ))}
           </div>

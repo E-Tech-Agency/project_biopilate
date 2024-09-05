@@ -6,11 +6,21 @@ import "swiper/css";
 import "swiper/css/effect-coverflow";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
-import { EffectCoverflow, Pagination, Navigation } from "swiper/modules";
+import {  Pagination, Navigation } from "swiper/modules";
 import { FaArrowLeftLong, FaArrowRightLong } from "react-icons/fa6";
-import BlogCard from "../../components/BlogCard";
+import BlogCard from "@/biopilates/components/BlogCard";
 
-export default function OtherArticles({ articles }) {
+interface Article {
+  id: number;
+  title: string;
+  ecrivain: string;
+  description: string;
+  jaimes: number;
+  image: string;
+}
+
+
+export default function OtherArticles({ articles }: { articles: Article[] }) {
   return (
     <div className="container w-full">
       <Swiper
@@ -25,7 +35,6 @@ export default function OtherArticles({ articles }) {
         navigation={{
           nextEl: ".swiper-but-next",
           prevEl: ".swiper-but-prev",
-          clickable: true,
         }}
         modules={[Pagination, Navigation]}
         breakpoints={{
@@ -69,9 +78,9 @@ export default function OtherArticles({ articles }) {
         }}
       >
         <div className="flex flex-nowrap justify-center items-center gap-2 overflow-hidden w-full">
-          {articles.map((article, index) => (
+          {articles.map((article) => (
             <SwiperSlide
-              key={index}
+              key={article.id}
               className="flex flex-col justify-center items-center"
             >
               <BlogCard article={article} />

@@ -12,7 +12,8 @@ import AdminDashboard from './pages/admin-dashboard';
 import UserProfile from './pages/user-profile';
 import OneCours from './pages/one-cours';
 //site show
-import Accueil from '@/biopilates/pages/Accueil/Accueil'
+import Accueil from '@/biopilates/pages/Accueil/Accueil';
+import Apropos from '@/biopilates/pages/Apropos/Apropos';
 // biopilate
 import Teaches from './pages/Teaches';
 import Tages from './pages/Tages';
@@ -58,6 +59,7 @@ function App() {
        <Header></Header>
       <Routes>
         <Route path="/" element={<Accueil />} />
+        <Route path="/a-propos" element={<Apropos />}></Route>
         <Route path="/login-register" element={<LogReg  setIsLoggedIn={setIsLoggedIn} />} />
         <Route path="/reset_password/:id/:token" element={<ResetPassword />} />
         <Route path="/dashboard" element={<Dashboard />} />

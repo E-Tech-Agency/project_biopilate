@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from "react";
-import "../assets/styles/image-slider.css";
-import "../assets/styles/swiper.css";
+import { useState, useEffect } from "react";
+import "@/assets/styles/image-slider.css";
+import "@/assets/styles/swiper.css";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination";
@@ -9,9 +9,21 @@ import { Pagination } from "swiper/modules";
 import { BsArrowUpRight } from "react-icons/bs";
 import { useNavigate } from "react-router-dom";
 
-export default function ImageSliderApropos({ list, action }) {
+// Define types for the props
+type ListItem = {
+  title: string;
+  image: string;
+  description: string;
+};
+
+interface ImageSliderAproposProps {
+  list: ListItem[];
+  action: string;
+}
+
+export default function ImageSliderApropos({ list, action }: ImageSliderAproposProps) {
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [hoverIndex, setHoverIndex] = useState(null);
+  const [hoverIndex, setHoverIndex] = useState<number | null>(null);
   const [isMobile, setIsMobile] = useState(false);
   const [isAnimating, setIsAnimating] = useState(false);
   const navigate = useNavigate();
@@ -27,7 +39,7 @@ export default function ImageSliderApropos({ list, action }) {
     return () => window.removeEventListener("resize", checkIsMobile);
   }, []);
 
-  const handleMouseEnter = (index) => {
+  const handleMouseEnter = (index: number) => {
     if (!isMobile) setHoverIndex(index);
   };
 
@@ -35,14 +47,15 @@ export default function ImageSliderApropos({ list, action }) {
     if (!isMobile) setHoverIndex(null);
   };
 
-  const handleImageClick = (index) => {
+  const handleImageClick = (index: number) => {
     setCurrentIndex(index);
   };
 
-  const navigateToMethode = (i) => {
-    const formattedTitle = i.replace(/\s/g, "");
-    navigate(`/a-propos/${formattedTitle}`); // Navigate to the methode page
+  const navigateToMethode = (title: string) => {
+    const formattedTitle = title.replace(/\s/g, "");
+    navigate(`/a-propos/${formattedTitle}`);
   };
+
   return (
     <div className="mb-14 flex flex-col-reverse lg:flex-row gap-5 xl:gap-8 max-lg:flex-wrap overflow-hidden lg:h-[530px]">
       <div className="flex flex-col justify-center max-md:items-center px-3 xl:px-2 md:px-5 lg:min-w-[35%] lg:max-w-[50%] gap-5 font-lato">
@@ -76,7 +89,7 @@ export default function ImageSliderApropos({ list, action }) {
           spaceBetween={10}
           slideToClickedSlide={true}
           onSlideChange={(swiper) => handleImageClick(swiper.realIndex)}
-          Pagination={{ el: ".swiper-pagination", clickable: true }}
+          pagination={{ el: ".swiper-pagination", clickable: true }} // Correct property name
           modules={[Pagination]}
           initialSlide={1}
           breakpoints={{
@@ -122,64 +135,62 @@ export default function ImageSliderApropos({ list, action }) {
             },
           }}
         >
-          <div>
-            {list.map((item, index) => (
-              <SwiperSlide
-                key={index}
-                className={`flex flex-col justify-center items-center ${
-                  currentIndex === index ? "active-slide" : ""
+          {list.map((item, index) => (
+            <SwiperSlide
+              key={index}
+              className={`flex flex-col justify-center items-center ${
+                currentIndex === index ? "active-slide" : ""
+              }`}
+            >
+              <div
+                className={`relative rounded-lg cursor-pointer transition-all duration-400 ${
+                  currentIndex === index
+                    ? "w-[300px] h-[450px]"
+                    : "w-[206px] h-[309px] sm:w-[240px] sm:h-[360px]"
                 }`}
+                onClick={() => handleImageClick(index)}
+                onMouseEnter={() => handleMouseEnter(index)}
+                onMouseLeave={handleMouseLeave}
               >
-                <div
-                  className={`relative rounded-lg cursor-pointer transition-all duration-400 ${
-                    currentIndex === index
-                      ? "w-[300px] h-[450px]"
-                      : "w-[206px] h-[309px] sm:w-[240px] sm:h-[360px]"
-                  }`}
-                  onClick={() => handleImageClick(index)}
-                  onMouseEnter={() => handleMouseEnter(index)}
-                  onMouseLeave={handleMouseLeave}
-                >
-                  <div className="absolute inset-0 size-full">
-                    <img
-                      loading="lazy"
-                      src={item.image}
-                      alt="Gym"
-                      className="size-full rounded-lg object-cover"
-                    />
-                  </div>
-                  <div className="relative text-bgColor size-full">
+                <div className="absolute inset-0 size-full">
+                  <img
+                    loading="lazy"
+                    src={item.image}
+                    alt="Gym"
+                    className="size-full rounded-lg object-cover"
+                  />
+                </div>
+                <div className="relative text-bgColor size-full">
+                  <div
+                    className={`flex flex-col pb-2 gap-5 transition-all duration-500 ease-in-out ${
+                      hoverIndex === index ? "opacity-100" : "opacity-0"
+                    }`}
+                  >
                     <div
-                      className={`flex flex-col pb-2 gap-5 transition-all duration-500 ease-in-out ${
-                        hoverIndex === index ? "opacity-100" : "opacity-0"
+                      className={`absolute inset-0 bg-gradient-to-t from-gray-900 to-[70%] rounded-lg ${
+                        hoverIndex === index ? "opacity-75" : "opacity-15"
                       }`}
-                    >
+                    />
+                    <div className="absolute rounded-md size-full flex flex-col justify-center flex-nowrap items-center gap-4 py-16 px-8 font-ebGaramond">
+                      <h3 className="text-base font-normal absolute bottom-0 left-0 right-0 text-center pb-20">
+                        Découvrir notre méthode
+                      </h3>
                       <div
-                        className={`absolute inset-0 bg-gradient-to-t from-gray-900 to-[70%] rounded-lg ${
-                          hoverIndex === index ? "opacity-75" : "opacity-15"
-                        }`}
-                      />
-                      <div className="absolute rounded-md size-full flex flex-col justify-center flex-nowrap items-center gap-4 py-16 px-8 font-ebGaramond">
-                        <h3 className="text-base font-normal absolute bottom-0 left-0 right-0 text-center pb-20">
-                          Découvrir notre méthode
-                        </h3>
-                        <div
-                          className="flex justify-center items-center text-lg font-semibold absolute bottom-0 left-0 right-0 text-center pb-12"
-                          onClick={(e) => {
-                            e.stopPropagation(); // Prevent card click when button is clicked
-                            navigateToMethode(item.title); // Navigate when button is clicked
-                          }}
-                        >
-                          <h3>{item.title}</h3>
-                          <BsArrowUpRight className="text-xl" />
-                        </div>
+                        className="flex justify-center items-center text-lg font-semibold absolute bottom-0 left-0 right-0 text-center pb-12"
+                        onClick={(e) => {
+                          e.stopPropagation(); // Prevent card click when button is clicked
+                          navigateToMethode(item.title); // Navigate when button is clicked
+                        }}
+                      >
+                        <h3>{item.title}</h3>
+                        <BsArrowUpRight className="text-xl" />
                       </div>
                     </div>
                   </div>
                 </div>
-              </SwiperSlide>
-            ))}
-          </div>
+              </div>
+            </SwiperSlide>
+          ))}
           <div className="swiper-pagination m-auto z-[1] block"></div>
         </Swiper>
       </div>
