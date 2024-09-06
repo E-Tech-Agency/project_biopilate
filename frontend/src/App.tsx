@@ -1,5 +1,7 @@
 import { Route, Routes } from 'react-router-dom';
 import LogReg from '@/pages/logReg';
+import { LoginForm } from '@/components/auth/login';
+import { RegisterForm } from '@/components/auth/register';
 import { Toaster } from '@/components/ui/sonner';
 import { ResetPassword } from '@/pages/reset-password';
 import { Dashboard } from './pages/dashboard';
@@ -58,6 +60,8 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/login-register" element={<LogReg  setIsLoggedIn={setIsLoggedIn} />} />
+        <Route path="/login" element={<LoginForm  setIsLoggedIn={setIsLoggedIn} />} />
+        <Route path="/register" element={<RegisterForm  setIsLoggedIn={setIsLoggedIn} />} />
         <Route path="/reset_password/:id/:token" element={<ResetPassword />} />
         <Route path="/dashboard" element={<Dashboard />} />
          {/*<Route path="/create-product" element={<SupplierDashboard />} />*/}

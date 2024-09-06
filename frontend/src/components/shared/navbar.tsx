@@ -5,11 +5,15 @@ import { SVGProps, SetStateAction } from "react";
 import { JSX } from "react/jsx-runtime";
 import { ModeToggle } from "./mode-toggle";
 
+
 export function Navbar({ isLoggedIn, setIsLoggedIn }: { isLoggedIn: boolean, setIsLoggedIn:React.Dispatch<SetStateAction<boolean>>}) {
     console.log(isLoggedIn);
 
     const navigate = useNavigate();
-    const nav = () => { navigate("/login-register") }
+    // const nav = () => { navigate("/login-register") }
+    const login = () => { navigate("/login") }
+    const register = () => { navigate("/register") }
+
     const logout = async () => {
         localStorage.clear();
         setIsLoggedIn(false);
@@ -62,7 +66,7 @@ Formations                </Link>
                 </a>
             </nav>
             <div className="ml-auto flex items-center gap-2">
-            {isLoggedIn ? <Button variant="destructive" onClick={logout}>Logout</Button> : <Button variant="default" onClick={nav}>Login / Register</Button>}
+            {isLoggedIn ? <Button variant="destructive" onClick={logout}>Logout</Button> : <div><Button variant="default" onClick={login}>Login</Button> <Button variant="default" onClick={register}>Register</Button></div> }
             <ModeToggle/>
             </div>
         </header>
