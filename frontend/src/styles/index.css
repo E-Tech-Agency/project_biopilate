@@ -61,3 +61,29 @@
         @apply bg-background text-foreground;
     }
 }
+
+.reserver-button {
+    position: relative;
+    background-color: #EBDCCD;
+    color: #756E66;
+    transition: 0.3s ease-in-out;
+  }
+  
+  .reserver-button:hover {
+    background-color: #756E66;
+    color: #EBDCCD;
+  }
+
+.button-hover{
+    transition: 0.3s ease-in-out;
+
+}
+
+.button-hover:hover {
+    background-color: #EBDCCD;
+    color:#756E66;
+    font-size: large;
+}
+.tr{
+    transition: 0.3s ease-in-out;
+}
