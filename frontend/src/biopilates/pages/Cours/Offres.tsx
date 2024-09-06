@@ -1,10 +1,10 @@
-import React from "react";
-import tarifs from "../../assets/data/tarifs.json"; // Adjust the path as necessary
+
+import tarifs from "@/assets/data/tarifs.json"; // Adjust the path as necessary
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/swiper-bundle.css";
 import "swiper/css";
 import "swiper/css/pagination";
-import "../../assets/styles/swiper.css";
+import "@/assets/styles/swiper.css";
 import { Pagination, Navigation } from "swiper/modules";
 
 export default function Offres() {

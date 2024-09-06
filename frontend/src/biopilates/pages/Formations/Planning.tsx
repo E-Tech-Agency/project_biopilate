@@ -1,13 +1,27 @@
-import React from "react";
+
 import PlanningCard from "./PlanningCard";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/swiper-bundle.css";
 import "swiper/css";
 import "swiper/css/pagination";
-import "../../assets/styles/swiper.css";
+import "@/assets/styles/swiper.css";
 import { Pagination } from "swiper/modules";
+type Plan = {
+  title: string;
+  niveau: string;
+  image: string;
+  date: string;
+};
 
-export default function Planning({ plans, calendar }) {
+type Calendar = {
+  timeSlots: string[];
+};
+
+interface PlanningProps {
+  plans: Plan[];
+  calendar: Calendar[];
+}
+export default function Planning({ plans, calendar }: PlanningProps) {
   return (
     <div className="mb-8">
       <Swiper
@@ -67,11 +81,7 @@ export default function Planning({ plans, calendar }) {
               key={index}
               className="flex flex-col justify-center items-center"
             >
-              <PlanningCard
-                key={index}
-                plans={plan}
-                calendar={calendar[index]}
-              />
+              <PlanningCard key={index} plan={plan} calendar={calendar[index]} />
             </SwiperSlide>
           ))}
         </div>

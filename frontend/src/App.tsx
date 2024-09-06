@@ -14,6 +14,8 @@ import OneCours from './pages/one-cours';
 //site show
 import Accueil from '@/biopilates/pages/Accueil/Accueil';
 import Apropos from '@/biopilates/pages/Apropos/Apropos';
+import CoursB from "@/biopilates/pages/Cours/Cours";
+import FormationsB from '@/biopilates/pages/Formations/Formations';
 // biopilate
 import Teaches from './pages/Teaches';
 import Tages from './pages/Tages';
@@ -59,7 +61,9 @@ function App() {
        <Header></Header>
       <Routes>
         <Route path="/" element={<Accueil />} />
-        <Route path="/a-propos" element={<Apropos />}></Route>
+        <Route path="/a-propos" element={<Apropos />}/>
+        <Route path="/cours" element={<CoursB />}/>
+        <Route path="/formations" element={<FormationsB />}/>
         <Route path="/login-register" element={<LogReg  setIsLoggedIn={setIsLoggedIn} />} />
         <Route path="/reset_password/:id/:token" element={<ResetPassword />} />
         <Route path="/dashboard" element={<Dashboard />} />

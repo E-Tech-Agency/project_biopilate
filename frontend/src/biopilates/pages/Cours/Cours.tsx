@@ -1,56 +1,54 @@
-import React from "react";
-import CircleSwiperCarousel from "../../components/CircleSwiperCarousel";
-import ImageSliderCours from "../../components/ImageSliderCours";
+
+import CircleSwiperCarousel from "@/biopilates/components/CircleSwiperCarousel";
+import ImageSliderCours from "@/biopilates/components/ImageSliderCours";
 import Offres from "./Offres";
+import reformerImage from "@/assets/images/reformer.jpg";
+import reformerGyrotonicImage from "@/assets/images/reformer-gyrotonic.jpg";
+import evolisImage from "@/assets/images/reformer-gyrotonic-evolis.png";
+import mobileImage from "@/assets/images/mobile.png";
 
 export default function Cours() {
-  const images = [
-    require("../../assets/images/reformer-gyrotonic-evolis.png"),
-    require("../../assets/images/cours-1.jpg"),
-    require("../../assets/images/cours-2.jpg"),
-    require("../../assets/images/reformer-gyrotonic.jpg"),
-    require("../../assets/images/reformer.jpg"),
-  ];
+  const images = [evolisImage, reformerImage, reformerGyrotonicImage];
 
   const cours = [
     {
       title: "COURS REFORMER",
-      image: require("../../assets/images/reformer.jpg"),
+      image:  reformerImage,
       description:
         "Découvrez le cours <strong>REFORMER</strong> , le plus populaire en cours de groupe (<strong>12 participants max</strong>).Renforcez vos muscles en profondeur,améliorez votre posture etdéveloppez votre souplesse avec notre méthode Pilates. Cours pourtous niveaux. Réservez votre séance découverte dès aujourd'hui.",
       cours: "Reformer",
     },
     {
       title: "COURS REFORMER & GYROTONIC",
-      image: require("../../assets/images/reformer-gyrotonic.jpg"),
+      image: reformerGyrotonicImage,
       description:
         "Découvrez nos cours semi-privés,(à <strong>6 participants max</strong>), avec un accès à un équipement complet :REFORMER,CADILLAC, CHAISE, TOUR GYROTONIC et tous lesaccessoires. Unique cours à Paris offrant autant d'équipement pour un seul participant.Bénéficiez d'une expérience Pilates unique et personnalisée au Studio Biopilates",
       cours: "Gyrotonoic",
     },
     {
       title: "COURS REFORMER & GYROTONIC & EVOLIS",
-      image: require("../../assets/images/reformer-gyrotonic-evolis.png"),
+      image: evolisImage,
       description:
         "Découvrez nos cours privés, ou duo avec unaccompagnement sur mesure et un accès totalsur tous les équipements Gyrotonic (Archway,les extensiounit, Gyrotoner, Poley Tower, Jumpingstretching board),PILATES (Reformer, Cadillac, Chaise, Barils,accessoires) et EVOLIS (la machine qui soulage lesmaux de dos).",
       cours: "Evolis",
     },
     {
       title: "COURS REFORMER",
-      image: require("../../assets/images/reformer.jpg"),
+      image: reformerImage ,
       description:
         "Découvrez le cours <strong>REFORMER</strong> , le plus populaire en cours de groupe (<strong>12 participants max</strong>).Renforcez vos muscles en profondeur,améliorez votre posture etdéveloppez votre souplesse avec notre méthode Pilates. Cours pourtous niveaux. Réservez votre séance découverte dès aujourd'hui.",
       cours: "Reformer",
     },
     {
       title: "COURS REFORMER & GYROTONIC",
-      image: require("../../assets/images/reformer-gyrotonic.jpg"),
+      image: evolisImage,
       description:
         "Découvrez nos cours semi-privés,(à <strong>6 participants max</strong>), avec un accès à un équipement complet :REFORMER,CADILLAC, CHAISE, TOUR GYROTONIC et tous lesaccessoires. Unique cours à Paris offrant autant d'équipement pour un seul participant.Bénéficiez d'une expérience Pilates unique et personnalisée au Studio Biopilates",
       cours: "Gyrotonoic",
     },
     {
       title: "COURS REFORMER & GYROTONIC & EVOLIS",
-      image: require("../../assets/images/reformer-gyrotonic-evolis.png"),
+      image: evolisImage,
       description:
         "Découvrez nos cours privés, ou duo avec unaccompagnement sur mesure et un accès totalsur tous les équipements Gyrotonic (Archway,les extensiounit, Gyrotoner, Poley Tower, Jumpingstretching board),PILATES (Reformer, Cadillac, Chaise, Barils,accessoires) et EVOLIS (la machine qui soulage lesmaux de dos).",
       cours: "Evolis",
@@ -218,10 +216,10 @@ export default function Cours() {
           </div>
         </div>
         <img
-          src={require("../../assets/images/mobile.png")}
-          alt=""
-          className="sm:max-w-[50%] max-w-[80%]"
-        />
+  src={mobileImage}
+  alt="mobileImage"
+  className="sm:max-w-[50%] max-w-[80%]"
+/>
       </section>
       <section className="mb-14">
         <Offres />
