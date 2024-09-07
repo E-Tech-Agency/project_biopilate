@@ -1,14 +1,28 @@
-import React from "react";
+
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/swiper-bundle.css";
 import "swiper/css";
 import "swiper/css/pagination";
-import "../../assets/styles/swiper.css";
+import "@/assets/styles/swiper.css";
 import StartupAnimation from "./StartupAnimation";
 
 import { Pagination, Navigation } from "swiper/modules";
 import { FaArrowLeftLong, FaArrowRightLong } from "react-icons/fa6";
-
+// Importing images at the top
+import stottRespiration from "@/assets/images/stott-respiration.jpg";
+import stottDeadBodyExercise from "@/assets/images/stott-deadbody-exercice.jpg";
+import stottPlacementBassin from "@/assets/images/stott-placement-bassin.png";
+import stottEpaules from "@/assets/images/stott-epaules.png";
+import stottPlacementTete from "@/assets/images/stott-placement-tete.jpg";
+import reformer from "@/assets/images/reformer.jpg";
+import stott2 from "@/assets/images/stott-2.jpg";
+import stott3 from "@/assets/images/stott-3.jpg";
+import formation1 from "@/assets/images/formation-1.jpg";
+import stott from "@/assets/images/stott.jpg";
+import stottWomanStanding from "@/assets/images/stott-woman-standing.jpg";
+import stottPosture from "@/assets/images/stott-posture.png";
+import stottDouleur from "@/assets/images/stott-douleur.jpg";
+import gyrotonicCoordination from "@/assets/images/gyrotonic-coordination.jpg";
 function PrincipeCard({ principe }) {
   return (
     <div className=" flex justify-center items-center max-w-[630px] xl:max-w-[680px] min-w-[220px] min-h-[350px] shadow-xl rounded-lg py-2 sm:py-4 px-4 sm:px-8 gap-4 mx-2">
@@ -37,31 +51,31 @@ function Slider() {
   const principes = [
     {
       title: "Respiration",
-      image: require("../../assets/images/stott-respiration.jpg"),
+      image: stottRespiration,
       description:
         "Une respiration adéquate assure une oxygénation optimale et réduit les tensions musculaires. <strong>Notre technique</strong> vous apprendra à utiliser pleinement votre capacité pulmonaire. Le modèle de respiration utilisé dans la méthode <strong>STOTT PILATES</strong>® aidera à engager vos muscles abdominaux profonds et à stabiliser votre tronc.",
     },
     {
       title: "Placement de la Cage Thoracique",
-      image: require("../../assets/images/stott-deadbody-exercice.jpg"),
+      image: stottDeadBodyExercise,
       description:
         "Maintenir la bonne position de la cage thoracique est crucial pour l’alignement de la   colonne dorsale. <strong>Nos instructeurs</strong> vous guideront pour éviter les erreurs courantes.",
     },
     {
       title: "Placement du Bassin",
-      image: require("../../assets/images/stott-placement-bassin.png"),
+      image: stottPlacementBassin,
       description:
         "Apprenez à   stabiliser votre bassin en position neutre ou imprimée pour une meilleure   absorption des chocs et un soutien optimal du dos.",
     },
     {
       title: "Stabilité des épaules",
-      image: require("../../assets/images/stott-epaules.png"),
+      image: stottEpaules,
       description:
         "Une bonne stabilisation des omoplates évite les tensions dans le cou et les épaules.   Découvrez les techniques pour un alignement parfait.",
     },
     {
       title: "Placement de la tête et du cou",
-      image: require("../../assets/images/stott-placement-tete.jpg"),
+      image: stottPlacementTete,
       description:
         "Gardez une courbe cervicale naturelle et évitez les tensions grâce à nos conseils personnalisés",
     },
@@ -147,11 +161,11 @@ function Slider() {
 
 export default function StottPilates() {
   const images = [
-    require("../../assets/images/reformer.jpg"),
-    require("../../assets/images/stott-2.jpg"),
-    require("../../assets/images/stott-3.jpg"),
-    require("../../assets/images/formation-1.jpg"),
-    require("../../assets/images/stott.jpg"),
+    reformer,
+    stott2,
+    stott3,
+    formation1,
+    stott,
   ];
 
   return (
@@ -172,7 +186,7 @@ export default function StottPilates() {
           </div>
           <img
             loading="lazy"
-            src={require("../../assets/images/stott.jpg")}
+            src={stott}
             alt="Stott Pilates"
             className="rounded-sm w-full max-h-[680px] object-cover shadow-lg my-6"
           />
@@ -216,7 +230,7 @@ export default function StottPilates() {
           </h2>
           <img
             loading="lazy"
-            src={require("../../assets/images/stott-woman-standing.jpg")}
+            src={stottWomanStanding}
             alt="Stott"
             className="rounded-full w-[220px] h-[220px] sm:w-[393px] sm:h-[393px] object-cover mb-2"
           />
@@ -250,7 +264,7 @@ export default function StottPilates() {
             <div className="flex justify-center items-center flex-col gap-4">
               <img
                 loading="lazy"
-                src={require("../../assets/images/stott-posture.png")}
+                src={stottPosture}
                 alt="stott posture"
                 className="rounded-full w-[150px] h-[150px] sm:w-[165px] sm:h-[165px] object-cover shadow-lg"
               />
@@ -262,7 +276,7 @@ export default function StottPilates() {
             <div className="flex justify-center items-center flex-col gap-4">
               <img
                 loading="lazy"
-                src={require("../../assets/images/stott-douleur.jpg")}
+                src={stottDouleur}
                 alt="stott posture"
                 className="rounded-full w-[150px] h-[150px] sm:w-[165px] sm:h-[165px] object-cover shadow-lg"
               />
@@ -273,7 +287,7 @@ export default function StottPilates() {
             <div className="flex justify-center items-center flex-col gap-4">
               <img
                 loading="lazy"
-                src={require("../../assets/images/gyrotonic-coordination.jpg")}
+                src={gyrotonicCoordination}
                 alt="stott posture"
                 className="rounded-full w-[150px] h-[150px] sm:w-[165px] sm:h-[165px] object-cover shadow-lg"
               />

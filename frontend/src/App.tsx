@@ -12,10 +12,14 @@ import AdminDashboard from './pages/admin-dashboard';
 import UserProfile from './pages/user-profile';
 import OneCours from './pages/one-cours';
 //site show
+
 import Accueil from '@/biopilates/pages/Accueil/Accueil';
 import Apropos from '@/biopilates/pages/Apropos/Apropos';
 import CoursB from "@/biopilates/pages/Cours/Cours";
 import FormationsB from '@/biopilates/pages/Formations/Formations';
+// import BlogB from '@/biopilates/pages/Blog/Blog';
+import ContactB from '@/biopilates/pages/Contact/Contact'
+import StottPilates from '@/biopilates/pages/Apropos/StottPilates';
 // biopilate
 import Teaches from './pages/Teaches';
 import Tages from './pages/Tages';
@@ -64,6 +68,14 @@ function App() {
         <Route path="/a-propos" element={<Apropos />}/>
         <Route path="/cours" element={<CoursB />}/>
         <Route path="/formations" element={<FormationsB />}/>
+        {/* <Route path="/blog" element={<BlogB />}/> */}
+        <Route path="/contact" element={<ContactB />} />
+        <Route path="/a-propos/stottPilates" element={<StottPilates />} />
+
+
+
+
+
         <Route path="/login-register" element={<LogReg  setIsLoggedIn={setIsLoggedIn} />} />
         <Route path="/reset_password/:id/:token" element={<ResetPassword />} />
         <Route path="/dashboard" element={<Dashboard />} />

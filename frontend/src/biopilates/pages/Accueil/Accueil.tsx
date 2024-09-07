@@ -3,7 +3,7 @@ import Engagement from "./Engagement";
 import CallToActionImg from "./CallToActionImg";
 
 import FAQ from "./FAQ";
-import '@/App.css';
+
 import TemoignagesSection from "./TemoignagesSection";
 import FormationSection from "./FormationSection";
 import ServicesSection from "./ServicesSection";

@@ -32,9 +32,9 @@ html {
 
 .reserver-button {
   position: relative;
-  background-color: white;
-  color: white;
-  border-radius: 50%;
+  background-color: #EBDCCD;
+  color:#756E66;
+  /* border-radius: 50%; */
   transition: 0.3s ease-in-out;
 }
 

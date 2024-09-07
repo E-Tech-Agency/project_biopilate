@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import "../../assets/styles/Apropos.css";
+import "@/assets/styles/Apropos.css";
 
 export default function StartupAnimation({ images }) {
   const [isAnimating, setIsAnimating] = useState(true);

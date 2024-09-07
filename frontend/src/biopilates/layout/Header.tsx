@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { IoMdSearch, IoIosMenu } from "react-icons/io";
 import { LuUserCircle2 } from "react-icons/lu";
-import '@/App.css';
+
 
 // Import the logo image
 import logoImage from '@/assets/images/biopilate-logo.png';
