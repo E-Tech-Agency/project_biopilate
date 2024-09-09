@@ -3,12 +3,22 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/swiper-bundle.css";
 import "swiper/css";
 import "swiper/css/pagination";
-import "../../assets/styles/swiper.css";
+import "@/assets/styles/swiper.css";
 import StartupAnimation from "./StartupAnimation";
 
 import { Pagination } from "swiper/modules";
-
-function PourQuiCard({ pourqui }) {
+import image1 from "@/assets/images/pourqui-1.jpg";
+import image2 from "@/assets/images/pourqui-2.jpg";
+import image3 from "@/assets/images/pourqui-3.jpg";
+import image4 from "@/assets/images/pourqui-4.jpg";
+import image5 from "@/assets/images/pourqui-5.jpg";
+import image6 from "@/assets/images/pourqui-6.jpg";
+type PourQui = {
+  title: string;
+  image: string;
+  description: string;
+};
+function PourQuiCard({ pourqui }: { pourqui: PourQui }) {
   return (
     <div className="relative w-[280px] h-[334px] sm:w-[393px] sm:h-[454px] rounded-lg shadow-lg font-lato">
       <div className="absolute inset-0 size-full self-start h-[83%]">
@@ -35,39 +45,40 @@ function Slider() {
   const principes = [
     {
       title: "Tous publics",
-      image: require("../../assets/images/pourqui-1.jpg"),
+      image: image1,
       description:
         "Modelage de la silhouette, amélioration du maintien postural et renforcement du périnée.",
     },
     {
       title: "Actifs surmenés",
-      image: require("../../assets/images/pourqui-2.jpg"),
+      image: image2,
       description:
         "Réduction des douleurs dorsales, relaxation et redynamisation.",
     },
     {
       title: "Sédentaires",
-      image: require("../../assets/images/pourqui-3.jpg"),
+      image: image3,
       description:
         "Soulagement des maux de dos et renforcement  musculaire global.",
     },
     {
       title: "Seniors",
-      image: require("../../assets/images/pourqui-4.jpg"),
+      image: image4,
       description:
         "Lutte contre le vieillissement, amélioration de l'équilibre et de la coordination.",
     },
     {
       title: "Sportifs",
-      image: require("../../assets/images/pourqui-5.jpg"),
+      image: image5,
       description: "Conditionnement musculaire et récupération physique.",
     },
     {
       title: "Adolescents",
-      image: require("../../assets/images/pourqui-6.jpg"),
+      image: image6,
       description: "Prévention pendant la phase de croissance.",
     },
   ];
+
   return (
     <section className="flex flex-col justify-center items-center w-full h-[480px] sm:h-[530px]">
       <Swiper
@@ -79,7 +90,7 @@ function Slider() {
           el: ".swiper-pagination",
           clickable: true,
         }}
-        modules={Pagination}
+        modules={[Pagination]} // Fix: Wrapping Pagination in an array
         breakpoints={{
           1920: {
             slidesPerView: 4,
@@ -109,24 +120,22 @@ function Slider() {
             slidesPerView: 1,
             spaceBetween: 5,
           },
-
           640: {
             slidesPerView: 1,
             spaceBetween: 2,
           },
         }}
       >
-        <div className="flex flex-nowrap gap-2 overflow-hidden">
-          {principes.map((pourqui, index) => (
-            <SwiperSlide
-              key={index}
-              className="flex flex-col justify-center items-center xl:items-start"
-            >
-              <PourQuiCard pourqui={pourqui} />
-            </SwiperSlide>
-          ))}
-        </div>
+        {principes.map((pourqui, index) => (
+          <SwiperSlide
+            key={index}
+            className="flex flex-col justify-center items-center xl:items-start"
+          >
+            <PourQuiCard pourqui={pourqui} />
+          </SwiperSlide>
+        ))}
       </Swiper>
+
       <div className="slider-controler flex justify-center items-center">
         <div className="swiper-pagination m-auto z-[1]"></div>
       </div>
@@ -134,13 +143,19 @@ function Slider() {
   );
 }
 
+import evolisImage from "@/assets/images/evolis.jpg";
+import evolisEtirementImage from "@/assets/images/evolis-etirement.jpg";
+import evolisSkeletonImage from "@/assets/images/evolis-skeleton.jpg";
+import evolisPostureImage from "@/assets/images/evolis-posture.png";
+
 export default function Evolis() {
-  const images = [
-    require("../../assets/images/evolis.jpg"),
-    require("../../assets/images/evolis-etirement.jpg"),
-    require("../../assets/images/evolis.jpg"),
-    require("../../assets/images/evolis-etirement.jpg"),
-    require("../../assets/images/evolis.jpg"),
+  const images = [    
+    evolisImage,
+    evolisEtirementImage,
+    evolisSkeletonImage,
+    evolisPostureImage,
+    evolisImage,
+   
   ];
   return (
     <div className="relative overflow-hidden">
@@ -162,7 +177,7 @@ export default function Evolis() {
           </div>
           <img
             loading="lazy"
-            src={require("../../assets/images/evolis.jpg")}
+            src={evolisImage}
             alt="Stott Pilates"
             className="rounded-sm w-full max-h-[680px] object-cover shadow-lg my-6"
           />
@@ -210,7 +225,7 @@ export default function Evolis() {
             <div className="flex justify-center items-center flex-col gap-4">
               <img
                 loading="lazy"
-                src={require("../../assets/images/evolis-skeleton.jpg")}
+                src={evolisSkeletonImage}
                 alt="stott posture"
                 className="rounded-full w-[150px] h-[150px] sm:w-[165px] sm:h-[165px] object-cover shadow-lg"
               />
@@ -221,7 +236,7 @@ export default function Evolis() {
             <div className="flex justify-center items-center flex-col gap-4">
               <img
                 loading="lazy"
-                src={require("../../assets/images/evolis-posture.png")}
+                src={evolisPostureImage}
                 alt="stott posture"
                 className="rounded-full w-[150px] h-[150px] sm:w-[165px] sm:h-[165px] object-cover shadow-lg"
               />
@@ -230,7 +245,7 @@ export default function Evolis() {
             <div className="flex justify-center items-center flex-col gap-4">
               <img
                 loading="lazy"
-                src={require("../../assets/images/evolis-etirement.jpg")}
+                src={evolisEtirementImage}
                 alt="stott posture"
                 className="rounded-full w-[150px] h-[150px] sm:w-[165px] sm:h-[165px] object-cover shadow-lg"
               />

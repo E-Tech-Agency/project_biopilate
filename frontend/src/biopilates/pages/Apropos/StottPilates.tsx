@@ -23,7 +23,12 @@ import stottWomanStanding from "@/assets/images/stott-woman-standing.jpg";
 import stottPosture from "@/assets/images/stott-posture.png";
 import stottDouleur from "@/assets/images/stott-douleur.jpg";
 import gyrotonicCoordination from "@/assets/images/gyrotonic-coordination.jpg";
-function PrincipeCard({ principe }) {
+interface Principe {
+  title: string;
+  image: string;
+  description: string;
+}
+function PrincipeCard({ principe }: { principe: Principe }) {
   return (
     <div className=" flex justify-center items-center max-w-[630px] xl:max-w-[680px] min-w-[220px] min-h-[350px] shadow-xl rounded-lg py-2 sm:py-4 px-4 sm:px-8 gap-4 mx-2">
       <img
@@ -83,67 +88,66 @@ function Slider() {
   return (
     <section className="flex flex-col justify-center items-center gap-8 w-full h-[480px] sm:h-[530px]">
       <Swiper
-        className="centered-slide-carousel swiper-container relative w-full"
-        grabCursor={true}
-        spaceBetween={40}
-        slideToClickedSlide={true}
-        pagination={{
-          el: ".swiper-pagination",
-          clickable: true,
-        }}
-        navigation={{
-          nextEl: ".swiper-but-next",
-          prevEl: ".swiper-but-prev",
-          clickable: true,
-        }}
-        modules={[Pagination, Navigation]}
-        breakpoints={{
-          1920: {
-            slidesPerView: 3,
-            spaceBetween: 25,
-          },
-          1750: {
-            slidesPerView: 3,
-            spaceBetween: 20,
-          },
-          1440: {
-            slidesPerView: 2,
-            spaceBetween: 18,
-          },
-          1280: {
-            slidesPerView: 2,
-            spaceBetween: 16,
-          },
-          1028: {
-            slidesPerView: 1,
-            spaceBetween: 14,
-          },
-          990: {
-            slidesPerView: 1,
-            spaceBetween: 10,
-          },
-          768: {
-            slidesPerView: 1,
-            spaceBetween: 5,
-          },
-
-          640: {
-            slidesPerView: 1,
-            spaceBetween: 2,
-          },
-        }}
+  className="centered-slide-carousel swiper-container relative w-full"
+  grabCursor={true}
+  spaceBetween={40}
+  slideToClickedSlide={true}
+  pagination={{
+    el: ".swiper-pagination",
+    clickable: true, // Keep clickable here for pagination
+  }}
+  navigation={{
+    nextEl: ".swiper-but-next",
+    prevEl: ".swiper-but-prev",
+  }} // Remove clickable from navigation
+  modules={[Pagination, Navigation]}
+  breakpoints={{
+    1920: {
+      slidesPerView: 3,
+      spaceBetween: 25,
+    },
+    1750: {
+      slidesPerView: 3,
+      spaceBetween: 20,
+    },
+    1440: {
+      slidesPerView: 2,
+      spaceBetween: 18,
+    },
+    1280: {
+      slidesPerView: 2,
+      spaceBetween: 16,
+    },
+    1028: {
+      slidesPerView: 1,
+      spaceBetween: 14,
+    },
+    990: {
+      slidesPerView: 1,
+      spaceBetween: 10,
+    },
+    768: {
+      slidesPerView: 1,
+      spaceBetween: 5,
+    },
+    640: {
+      slidesPerView: 1,
+      spaceBetween: 2,
+    },
+  }}
+>
+  <div className="flex flex-nowrap gap-2 overflow-hidden">
+    {principes.map((principe, index) => (
+      <SwiperSlide
+        key={index}
+        className="flex flex-col justify-center items-center xl:items-start"
       >
-        <div className="flex flex-nowrap gap-2 overflow-hidden">
-          {principes.map((principe, index) => (
-            <SwiperSlide
-              key={index}
-              className="flex flex-col justify-center items-center xl:items-start"
-            >
-              <PrincipeCard principe={principe} />
-            </SwiperSlide>
-          ))}
-        </div>
-      </Swiper>
+        <PrincipeCard principe={principe} />
+      </SwiperSlide>
+    ))}
+  </div>
+</Swiper>
+
       <div className="slider-controler hidden sm:flex justify-center gap-4">
         <div className="cursor-pointer swiper-but-prev slider-arrow hidden sm:flex justify-center items-center bg-bgColor rounded-full w-10 h-10">
           <FaArrowLeftLong className="text-marron" />

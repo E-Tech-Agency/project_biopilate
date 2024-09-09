@@ -1,8 +1,12 @@
-import React from "react";
+
 import { useParams } from "react-router-dom";
 import { LuShare } from "react-icons/lu";
 import OtherArticles from "./OtherArticles";
-
+import article1Image from "@/assets/images/article-1.png";
+import placeholderImage from "@/assets/images/Placeholder_view_vector.png";
+import image1 from "@/assets/images/caroline-article-1.jpeg";
+import image2 from "@/assets/images/caroline-article-2.jpg";
+import blogTrainer from "@//assets/images/blog-trainer.jpg";
 export default function Article() {
   const articles = [
     {
@@ -12,7 +16,7 @@ export default function Article() {
       description:
         "La Maison Vieille est un lieu de soutien et de bien-être pour les personnes âgées, visant à briser leur isolement et à offrir des moments enrichissants.",
       jaimes: 49,
-      image: require("../../assets/images/article-1.png"),
+      image: article1Image,
     },
     {
       id: 2,
@@ -21,7 +25,7 @@ export default function Article() {
       description:
         "Vous êtes débutant en Pilates et vous vous demandez comment bien commencer ? Découvrez nos 5 conseils pour débuter le Pilates.",
       jaimes: 39,
-      image: require("../../assets/images/Placeholder_view_vector.png"),
+      image: placeholderImage,
     },
     {
       id: 3,
@@ -30,7 +34,7 @@ export default function Article() {
       description:
         "Vous êtes débutant en Pilates et vous vous demandez comment bien commencer ? Découvrez nos 5 conseils pour débuter le Pilates.",
       jaimes: 67,
-      image: require("../../assets/images/Placeholder_view_vector.png"),
+      image: placeholderImage,
     },
     {
       id: 4,
@@ -39,7 +43,7 @@ export default function Article() {
       description:
         "Vous êtes débutant en Pilates et vous vous demandez comment bien commencer ? Découvrez nos 5 conseils pour débuter le Pilates.",
       jaimes: 25,
-      image: require("../../assets/images/Placeholder_view_vector.png"),
+      image: placeholderImage,
     },
     {
       id: 5,
@@ -48,7 +52,7 @@ export default function Article() {
       description:
         "Vous êtes débutant en Pilates et vous vous demandez comment bien commencer ? Découvrez nos 5 conseils pour débuter le Pilates.",
       jaimes: 49,
-      image: require("../../assets/images/Placeholder_view_vector.png"),
+      image:placeholderImage,
     },
     {
       id: 6,
@@ -57,7 +61,7 @@ export default function Article() {
       description:
         "Vous êtes débutant en Pilates et vous vous demandez comment bien commencer ? Découvrez nos 5 conseils pour débuter le Pilates.",
       jaimes: 49,
-      image: require("../../assets/images/Placeholder_view_vector.png"),
+      image: placeholderImage,
     },
     {
       id: 7,
@@ -66,7 +70,7 @@ export default function Article() {
       description:
         "Vous êtes débutant en Pilates et vous vous demandez comment bien commencer ? Découvrez nos 5 conseils pour débuter le Pilates.",
       jaimes: 49,
-      image: require("../../assets/images/Placeholder_view_vector.png"),
+      image: placeholderImage,
     },
     {
       id: 8,
@@ -75,12 +79,13 @@ export default function Article() {
       description:
         "Vous êtes débutant en Pilates et vous vous demandez comment bien commencer ? Découvrez nos 5 conseils pour débuter le Pilates.",
       jaimes: 49,
-      image: require("../../assets/images/Placeholder_view_vector.png"),
+      image: placeholderImage,
     },
   ];
-  const tags = ["#pilates", "#débutant", "#bien-être", "#conseils"];
-  const { id } = useParams(); // Extract the article ID from the URL parameters
-  const article = articles.find((a) => a.id === parseInt(id)); // Find the article using the ID
+  const { id } = useParams<{ id: string }>(); // Make sure id is of type string
+  const articleId = id ? parseInt(id) : null; // Safely parse the id if it exists
+  const article = articleId ? articles.find((a) => a.id === articleId) : null; // Find the article using the parsed ID
+
 
   if (!article) {
     return (
@@ -129,7 +134,7 @@ export default function Article() {
               plaisirs simples; devenir un lieu où l’on sait que l’on peut aller
               facilement pour briser pendant quelques jours,voire simplement
               pendant quelques heures, le cours infini de la solitude à laquelle
-              on est désormais contraint ». ​
+              on est désormais contraint ». 
             </p>
           </div>
           <p className="font-bold text-marron text-xl md:text-3xl">
@@ -138,12 +143,12 @@ export default function Article() {
           </p>
           <div className="flex flex-wrap gap-8 mt-2">
             <img
-              src={require("../../assets/images/caroline-article-1.jpeg")}
+              src={image1}
               alt={article.title}
               className="rounded-lg max-h-[300px] w-[420px] max-md:w-full object-top object-cover "
             />
             <img
-              src={require("../../assets/images/caroline-article-2.jpg")}
+              src={image2}
               alt={article.title}
               className="rounded-lg max-h-[300px] w-[420px] object-cover max-md:hidden"
             />
@@ -227,7 +232,7 @@ export default function Article() {
           </form>
         </div>
         <img
-          src={require("../../assets/images/blog-trainer.jpg")}
+          src={blogTrainer}
           alt="CTA"
           className="rounded-full object-cover min-w-[300px] min-h-[300px] max-w-[530px] max-h-[530px] w-full h-[530px] shadow-lg max-md:hidden"
         />

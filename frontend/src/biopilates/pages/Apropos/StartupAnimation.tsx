@@ -1,7 +1,12 @@
 import React, { useEffect, useState } from "react";
 import "@/assets/styles/Apropos.css";
 
-export default function StartupAnimation({ images }) {
+// Define the type for the images array as a prop
+interface StartupAnimationProps {
+  images: string[];
+}
+
+export default function StartupAnimation({ images }: StartupAnimationProps) {
   const [isAnimating, setIsAnimating] = useState(true);
 
   useEffect(() => {
@@ -9,6 +14,7 @@ export default function StartupAnimation({ images }) {
       setIsAnimating(false);
     }, 3300); // Adjust the duration to match your needs
   }, []);
+
   return (
     <div className="relative overflow-hidden">
       {/* Startup Animation */}
@@ -39,7 +45,7 @@ export default function StartupAnimation({ images }) {
         />
         <img
           src={images[4]}
-          alt="Stott Pilates 3"
+          alt="Stott Pilates 4"
           className="animate-transformImage w-[387px] h-[505px] object-cover rotate-[12deg] mr-[280px]"
         />
       </div>
