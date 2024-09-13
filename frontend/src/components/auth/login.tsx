@@ -16,7 +16,10 @@ export function LoginForm({
 }: {
   setIsLoggedIn: React.Dispatch<SetStateAction<boolean>>;
 }) {
-  const nav = useNavigate();
+  const navigate = useNavigate();
+  const register = () => {
+    navigate("/register");
+  };
   const [dialogOpen, setDialogOpen] = useState(false);
   const [data, setData] = useState({
     email: "",
@@ -236,9 +239,9 @@ export function LoginForm({
                 </p>
               </div>
               <Button
-                onClick={() => setDialogOpen(true)}
+                onClick={register}
                 variant={"link"}
-                className="button-hover ml-auto pr-0 text-gray-800 text-base font-lato font-medium underline"
+                className="ml-auto pr-0 text-gray-800 text-base font-lato font-medium underline"
               >
                 Créer un compte
               </Button>
