@@ -371,40 +371,24 @@ export function RegisterForm({
                 </div>
               </div>
             </div>
-            <div className="mb-5">
-              <label
-                className="block text-sm sm:text-xl font-bold mb-2"
-                htmlFor="password"
-              >
-                Date de naissance
-              </label>
-              <div className="mt-1 flex rounded-md shadow-sm">
+            <div className="mt-3 flex flex-wrap justify-between ">
+              <label className="inline-flex items-start cursor-pointer">
                 <input
-                  type="date"
-                  id="date"
-                  className="bg-gray-50 border border-marron font-lato text-gray-900 text-sm sm:text-base rounded-md block w-full p-2.5"
-                  required
+                  type="checkbox"
+                  className="w-4 h-4 border border-gray-300 rounded-sm text-marron focus:ring-0 focus:ring-marron mt-1"
                 />
-              </div>
-              <div className="mt-3 flex flex-wrap justify-between ">
-                <label className="inline-flex items-start cursor-pointer">
-                  <input
-                    type="checkbox"
-                    className="w-4 h-4 border border-gray-300 rounded-sm text-marron focus:ring-0 focus:ring-marron mt-1"
-                  />
 
-                  <span className="ml-2 font-lato text-sm sm:text-base">
-                    J’accepte{" "}
-                    <a href="" className="underline font-medium">
-                      les conditions d’utilisation
-                    </a>{" "}
-                    et{" "}
-                    <a href="" className="underline font-medium">
-                      politique de confidentialité
-                    </a>
-                  </span>
-                </label>
-              </div>
+                <span className="ml-2 font-lato text-sm sm:text-base">
+                  J’accepte{" "}
+                  <a href="" className="underline font-medium">
+                    les conditions d’utilisation
+                  </a>{" "}
+                  et{" "}
+                  <a href="" className="underline font-medium">
+                    politique de confidentialité
+                  </a>
+                </span>
+              </label>
             </div>
             <button
               type="submit"
@@ -428,12 +412,15 @@ export function RegisterForm({
             </div>
           </form>
         </div>
+
+        {/* image */}
         <div className="relative md:w-[50%] max-md:absolute tr">
           <img
             src={login_pic}
             alt=""
             className="h-[550px] sm:h-[865px] object-cover"
           />
+          <div></div>
           <div className="absolute inset-0 bg-gradient-to-t from-black to-[70%] rounded-lg opacity-70" />
         </div>
       </div>
