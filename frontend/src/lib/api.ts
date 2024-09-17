@@ -2,10 +2,13 @@ import axios from "axios";
 import { jwtDecode as jwt_decode } from "jwt-decode";
 import dayjs from "dayjs";
 
+
+
 const accessToken = localStorage.getItem('token') || "";
 const refresh_token = localStorage.getItem('refresh_token') || "";
 
 console.log('access: ', accessToken);
+console.log('Current Time:', dayjs().format());
 const baseURL = 'http://localhost:8000/api/';
 
 const api = axios.create({

@@ -4,14 +4,24 @@ import { Toaster } from '@/components/ui/sonner';
 import { ResetPassword } from '@/pages/reset-password';
 import { Dashboard } from './pages/dashboard';
 import { useEffect, useState } from 'react';
-import { Navbar } from '@/components/shared/navbar';
-import Footer from '@/components/shared/footer';
-import Home from '@/pages/home';
+import  Header  from '@/biopilates/layout/Header'
+import Footer from '@/biopilates/layout/Footer'
+
 
 import AdminDashboard from './pages/admin-dashboard';
 import UserProfile from './pages/user-profile';
 import OneCours from './pages/one-cours';
+//site show
 
+import Accueil from '@/biopilates/pages/Accueil/Accueil';
+import Apropos from '@/biopilates/pages/Apropos/Apropos';
+import CoursB from "@/biopilates/pages/Cours/Cours";
+import FormationsB from '@/biopilates/pages/Formations/Formations';
+import BlogB from '@/biopilates/pages/Blog/Blog';
+import ContactB from '@/biopilates/pages/Contact/Contact'
+import StottPilates from '@/biopilates/pages/Apropos/StottPilates';
+import  Evolis from '@/biopilates/pages/Apropos/Evolis';
+import Article from '@/biopilates/pages/Blog/Article'
 // biopilate
 import Teaches from './pages/Teaches';
 import Tages from './pages/Tages';
@@ -28,7 +38,7 @@ import CreatePlanningForm from './components/biopilate/CreatePlanningFrom';
 import EditBlog from './pages/EditBlog';
 import CreateFAQFrom from './components/biopilate/CreateFAQFrom';
 import CreateFormationForm from './components/biopilate/CreateFormationForm';
-
+import Gyrotonic from './biopilates/pages/Apropos/Gyrotonic'
 import EditCourForm from './pages/EditCourForm';
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -54,9 +64,23 @@ function App() {
 
   return (
     <div>
-      <Navbar isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />
+       <Header></Header>
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route path="/" element={<Accueil />} />
+        <Route path="/a-propos" element={<Apropos />}/>
+        <Route path="/cours" element={<CoursB />}/>
+        <Route path="/formations" element={<FormationsB />}/>
+        <Route path="/blog" element={<BlogB />}/>
+        <Route path="/blog/:id" element={<Article />} />
+        <Route path="/contact" element={<ContactB />} />
+        <Route path="/a-propos/stottPilates" element={<StottPilates />} />
+        <Route path="/a-propos/evolis" element={<Evolis />} />
+        <Route path="/a-propos/gyrotonic" element={<Gyrotonic />} />
+
+
+
+
+
         <Route path="/login-register" element={<LogReg  setIsLoggedIn={setIsLoggedIn} />} />
         <Route path="/reset_password/:id/:token" element={<ResetPassword />} />
         <Route path="/dashboard" element={<Dashboard />} />
