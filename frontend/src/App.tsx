@@ -6,7 +6,7 @@ import { Dashboard } from './pages/dashboard';
 import { useEffect, useState } from 'react';
 import  Header  from '@/biopilates/layout/Header'
 import Footer from '@/biopilates/layout/Footer'
-import Home from '@/pages/home';
+
 
 import AdminDashboard from './pages/admin-dashboard';
 import UserProfile from './pages/user-profile';

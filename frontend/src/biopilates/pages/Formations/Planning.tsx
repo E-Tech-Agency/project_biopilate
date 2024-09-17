@@ -15,6 +15,8 @@ type Plan = {
 
 type Calendar = {
   timeSlots: string[];
+  title?: string;  // If there are optional fields
+  date?: string; 
 };
 
 interface PlanningProps {

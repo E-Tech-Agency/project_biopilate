@@ -1,7 +1,8 @@
 import CircleSwiperCarousel from "@/biopilates/components/CircleSwiperCarousel";
-import ImageSliderFormations from "@/biopilates/components/ImageSliderFormations";
-import Planning from "./Planning";
 
+import ImageSliderFormations from "@/biopilates/components/ImageSliderFormations";
+
+import Planning from "./Planning";
 import reformerGyrotonic from "@/assets/images/reformer-gyrotonic.jpg";
 import reformer from "@/assets/images/reformer.jpg";
 import reformerGyrotonicEvolis from "@/assets/images/reformer-gyrotonic-evolis.png";
@@ -13,19 +14,18 @@ import formation1 from "@/assets/images/formation-1.jpg";
 import formation2 from "@/assets/images/formation-2.jpg";
 import formation3 from "@/assets/images/formation-3.png";
 import matworkAvance from "@/assets/images/matwork-avancé.jpg";
-
 export default function Formations() {
   const images = [
     reformerGyrotonic,
-    reformer,
-    reformerGyrotonicEvolis,
     cours1,
+    reformerGyrotonicEvolis,
+    reformer,
     cours2,
-  ];
-
+  ]
   const formations = [
     {
       title: "Formation Anatomie",
+
       image: formation5,
       description:
         "Enseigne les principes anatomiques appliqués à la pratique et à l'enseignement des exercices de Pilates.",
@@ -74,7 +74,6 @@ export default function Formations() {
       formation: "ISP",
     },
   ];
-
   const plans = [
     {
       title: "Intensive Matwork",
@@ -101,19 +100,23 @@ export default function Formations() {
       date: "Du 30/08 au 01/09/2024",
     },
   ];
-
   const calendar = [
-    { timeSlots: ["Mar. 09/07/2024 :  8h - 13.30h", "Mer. 10/07/2024 :  8h - 13.30h","Jeu. 11/07/2024 :  8h - 13.30h",
+    [
+      "Mar. 09/07/2024 :  8h - 13.30h",
+      "Mer. 10/07/2024 :  8h - 13.30h",
+      "Jeu. 11/07/2024 :  8h - 13.30h",
       "Ven. 12/07/2024 :  8h - 13.30h",
       "Off",
       "Dim. 14/07/2024 : 14h - 19.30h",
       "Off",
       "Mar. 16/07/2024 :  8h - 13.30h",
       "Mer. 17/07/2024 :  8h - 13.30h",
-      "Jeu. 18/07/2024 :  8h - 13.30h",] },
-    { timeSlots: ["Ven. 19/07/2024  :  8h - 13.30h"] },
-    { timeSlots: ["Lun. 19/08/2024 :  8h - 13.30h", /* other dates */] },
-    { timeSlots: ["Ven. 19/07/2024  :  8h - 13.30h","Mar. 20/08/2024 :  8h - 13.30h",
+      "Jeu. 18/07/2024 :  8h - 13.30h",
+    ],
+    ["Ven. 19/07/2024  :  8h - 13.30h"],
+    [
+      "Lun. 19/08/2024 :  8h - 13.30h",
+      "Mar. 20/08/2024 :  8h - 13.30h",
       "Mer. 21/08/2024 :  8h - 13.30h",
       "Jeu. 22/08/2024 :  8h - 13.30h",
       "Ven. 23/08/2024 :  8h - 13.30h",
@@ -122,14 +125,20 @@ export default function Formations() {
       "Lun. 26/08/2024 :  8h - 13.30h",
       "Mar. 27/08/2024 :  8h - 13.30h",
       "Mer. 28/08/2024 :  8h - 13.30h",
-      "Jeu. 29/08/2024 :  8h - 13.30h",] },
+      "Jeu. 29/08/2024 :  8h - 13.30h",
+    ],
+    ["Ven. 19/07/2024  :  8h - 13.30h"],
   ];
 
   return (
     <div className="flex flex-col mx-8 md:mx-12">
       <section className="my-14 flex flex-col-reverse lg:flex-row justify-center lg:justify-between gap-8">
+        {/* carousel */}
+
+        {/* <CircleCarousel images={images} /> */}
         <CircleSwiperCarousel images={images} />
 
+        {/* text */}
         <div className="flex flex-col items-center md:items-baseline py-6 min-w-min md:px-2 gap-5 font-lato w-[90%]">
           <p className="text-marron text-4xl leading-snug font-ebGaramond font-bold">
             Formations Biopilates :
@@ -167,6 +176,7 @@ export default function Formations() {
         </div>
       </section>
 
+      {/* formation biopliates */}
       <section className="mt-4">
         <div className="mb-8">
           <p className="text-marron text-3xl leading-snug">Cours Biopilates</p>
@@ -178,6 +188,8 @@ export default function Formations() {
         </div>
         <ImageSliderFormations list={formations} action={"Inscrivez-vous"} />
       </section>
+
+      {/* Planning */}
 
       <section className="mb-14">
         <p className="text-marron text-4xl leading-snug mb-10 font-ebGaramond">
