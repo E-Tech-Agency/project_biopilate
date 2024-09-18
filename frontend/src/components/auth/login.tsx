@@ -10,6 +10,7 @@ import { FaEyeSlash } from "react-icons/fa6";
 import { FaEye } from "react-icons/fa";
 import login_pic from "@/assets/images/login-pic.jpg";
 import "@/styles/index.css";
+import { Link } from "react-router-dom";
 
 export function LoginForm({
   setIsLoggedIn,
@@ -35,7 +36,7 @@ export function LoginForm({
       localStorage.setItem("is_supplier", res.data.is_supplier);
       localStorage.setItem("is_superuser", res.data.is_superuser);
       setIsLoggedIn(true);
-      nav("/dashboard");
+      navigate("/dashboard");
     } catch (error) {
       if (axios.isAxiosError(error)) {
         const errors = error.response?.data;
@@ -142,12 +143,15 @@ export function LoginForm({
     //         </DialogContent>
     // </Dialog>
     // </>
-    <div className="bg-white">
-      <div className="relative flex max-md:flex-wrap justify-evenly items-start sm:items-center min-h-[650px] ">
+    <div className="bg-white w-[100vw]">
+      <div className="w-full relative flex max-md:flex-wrap justify-evenly items-start sm:items-center min-h-[650px] ">
         {/* back button */}
-        <button className="absolute top-0 left-0 w-12 h-12 rounded-full bg-marron flex justify-center items-center mt-8 ml-8 z-10">
+        <Link
+          to="/"
+          className="absolute top-0 left-0 w-12 h-12 rounded-full bg-marron flex justify-center items-center mt-8 ml-8 z-10"
+        >
           <FaArrowLeftLong className="text-bgColor text-xl" />
-        </button>
+        </Link>
 
         <div className="md:w-[50%] max-md:absolute max-md:z-[1] tr">
           <img
@@ -165,7 +169,8 @@ export function LoginForm({
               Vous devez être connecté pour accéder à votre espace.
             </p>
           </div>
-          <form className="w-full">
+          <form onSubmit={handleSubmit} className="w-full">
+            {error && <li className="text-red-500">{error}</li>}
             <div className="mb-5">
               <label
                 className="block text-sm sm:text-xl font-bold mb-2"
@@ -196,13 +201,17 @@ export function LoginForm({
               </label>
               <div className="mt-1 flex rounded-md shadow-sm">
                 <input
-                  type="password"
                   id="password"
-                  className="bg-gray-50 border border-marron border-r-0 font-lato text-gray-900 text-sm sm:text-base rounded-l-md block w-full p-2.5"
+                  type="password"
                   required
+                  value={data.password}
+                  onChange={(e) =>
+                    setData({ ...data, password: e.target.value })
+                  }
+                  className="bg-gray-50 border border-marron border-r-0 font-lato text-gray-900 text-sm sm:text-base rounded-l-md block w-full p-2.5"
                 />
                 <div className="inline-flex items-center px-3 rounded-r-md border border-l-0 border-marron bg-gray-50 text-gray-800 text-lg cursor-pointer">
-                  <PasswordHide visible={visible} setVisible={setVisible} />
+                  {/* <PasswordHide visible={visible} setVisible={setVisible} /> */}
                 </div>
               </div>
               <div className="mt-4 flex flex-wrap justify-between ">

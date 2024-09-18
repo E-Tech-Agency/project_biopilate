@@ -1,31 +1,23 @@
-import SideNav from '@/components/shared/side-nav';
+import TeachesShow from "@/components/biopilate/TeachesShow";
 
-
-import TeachesShow from '@/components/biopilate/TeachesShow';
-
-import { useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 export default function Teaches() {
-    const navigate = useNavigate();
+  const navigate = useNavigate();
 
-    useEffect(() => {
-        const isSupplier = localStorage.getItem('is_supplier');
-        if (!isSupplier || isSupplier !== "true") {
-            navigate('/login-register');
-        }
-    }, [navigate]);
+  useEffect(() => {
+    const isSupplier = localStorage.getItem("is_supplier");
+    if (!isSupplier || isSupplier !== "true") {
+      navigate("/login-register");
+    }
+  }, [navigate]);
 
-    return (
-        <div className='grid min-h-screen w-full lg:grid-cols-[280px_1fr]'>
-            <SideNav/>
-            <div>
-                <div className='justify-evenly items-center m-6'>
-                <TeachesShow/>
-                
-                </div>
-                
-            </div>
-        </div>
-    );
+  return (
+    <div>
+      <div className="justify-evenly items-center m-6">
+        <TeachesShow />
+      </div>
+    </div>
+  );
 }

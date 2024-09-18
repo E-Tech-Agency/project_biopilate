@@ -27,8 +27,9 @@ import { FaEyeSlash } from "react-icons/fa6";
 import { FaRegUser } from "react-icons/fa";
 import { FaEye } from "react-icons/fa";
 import { LuPhone } from "react-icons/lu";
-import { LuCalendar } from "react-icons/lu";
+
 import login_pic from "@/assets/images/login-pic.jpg";
+import { Link } from "react-router-dom";
 import "@/styles/index.css";
 
 // Declare the google object globally
@@ -276,12 +277,15 @@ export function RegisterForm({
     //         <AlertDialogAfterRegister setAlert={setAlert} />
     //     </AlertDialog>
     // </>
-    <div className="bg-white ">
+    <div className="bg-white w-[100vw]">
       <div className="relative flex max-md:flex-wrap justify-evenly items-start sm:items-center min-h-[650px] ">
         {/* back button */}
-        <button className="absolute top-0 left-0 w-12 h-12 rounded-full bg-marron flex justify-center items-center mt-8 ml-8 z-10">
+        <Link
+          to="/"
+          className="absolute top-0 left-0 w-12 h-12 rounded-full bg-marron flex justify-center items-center mt-8 ml-8 z-10"
+        >
           <FaArrowLeftLong className="text-bgColor text-xl" />
-        </button>
+        </Link>
 
         <div className="py-8 px-4 sm:px-8 text-gray-950 font-ebGaramond bg-white sm:bg-opacity-80 rounded-[20px] w-full max-w-md xl:max-w-lg flex flex-grow flex-col min-w-[290px] mx-4 sm:mx-auto max-sm:my-auto z-[1] max-sm:shadow-lg max-sm:mt-64">
           <div className="mb-6">
@@ -300,6 +304,9 @@ export function RegisterForm({
               >
                 Nom et prénom
               </label>
+              {error?.first_name && (
+                <p className="text-red-500">{error.first_name[0]}</p>
+              )}
               <div className="mt-1 flex rounded-md shadow-sm">
                 <span className="inline-flex items-center px-3 rounded-l-md border border-r-0 border-marron bg-gray-50 text-gray-500 text-lg">
                   <FaRegUser />
@@ -307,8 +314,12 @@ export function RegisterForm({
                 <input
                   type="text"
                   id="name"
-                  className="bg-gray-50 border border-marron border-l-0 text-gray-900 text-sm sm:text-base rounded-none rounded-r-md block w-full p-2.5"
                   required
+                  value={data.first_name}
+                  onChange={(e) =>
+                    setData({ ...data, first_name: e.target.value })
+                  }
+                  className="bg-gray-50 border border-marron border-l-0 text-gray-900 text-sm sm:text-base rounded-none rounded-r-md block w-full p-2.5"
                 />
               </div>
             </div>
@@ -319,6 +330,7 @@ export function RegisterForm({
               >
                 Adresse Email
               </label>
+              {error?.email && <p className="text-red-500">{error.email[0]}</p>}
               <div className="mt-1 flex rounded-md shadow-sm">
                 <span className="inline-flex items-center px-3 rounded-l-md border border-r-0 border-marron bg-gray-50 text-gray-800 text-lg">
                   <HiOutlineEnvelope />
@@ -367,7 +379,7 @@ export function RegisterForm({
                   required
                 />
                 <div className="inline-flex items-center px-3 rounded-r-md border border-l-0 border-marron bg-gray-50 text-gray-800 text-lg cursor-pointer">
-                  <PasswordHide visible={visible} setVisible={setVisible} />
+                  {/* <PasswordHide visible={visible} setVisible={setVisible} /> */}
                 </div>
               </div>
             </div>
@@ -390,12 +402,14 @@ export function RegisterForm({
                 </span>
               </label>
             </div>
+            <div id="signInDiv" className="w-full  rounded-md"></div>
             <button
               type="submit"
               className="reserver-button flex mx-auto mb-2.5 flex-col justify-center items-center text-sm sm:text-base font-bold font-lato rounded-lg w-full py-2 sm:py-3 bg-bgColor text-marron"
             >
               Créer un compte
             </button>
+
             <div className="flex flex-wrap justify-between">
               <div className="flex items-center gap-2">
                 <p className="font-lato text-sm sm:text-base">

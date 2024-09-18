@@ -3,10 +3,11 @@
 // import { PassThrough } from "stream";
 
 export default function Home() {
-    return (
-        //<Hero/
-        <>
-        <p>biopilates</p>
-        </>
-    )
+  return (
+    //<Hero/
+
+    <div className="w-full">
+      <p>biopilates</p>
+    </div>
+  );
 }
