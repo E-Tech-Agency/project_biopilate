@@ -11,6 +11,16 @@ import { FaEye } from "react-icons/fa";
 import login_pic from "@/assets/images/login-pic.jpg";
 import "@/styles/index.css";
 import { Link } from "react-router-dom";
+import {
+  Dialog,
+  DialogOverlay,
+  DialogContent,
+  DialogTitle,
+  DialogDescription,
+} from "@radix-ui/react-dialog";
+import { Label } from "@radix-ui/react-label";
+import { DialogHeader, DialogFooter } from "../ui/dialog";
+import { Input } from "../ui/input";
 
 export function LoginForm({
   setIsLoggedIn,
@@ -258,6 +268,37 @@ export function LoginForm({
           </form>
         </div>
       </div>
+      <Dialog open={dialogOpen}>
+        <DialogOverlay />
+        <DialogContent className="sm:max-w-[425px]">
+          <DialogHeader>
+            <DialogTitle>Password reset</DialogTitle>
+            <DialogDescription>
+              Please enter email to reset your password
+            </DialogDescription>
+          </DialogHeader>
+          <form onSubmit={handleForgotPassword}>
+            <div className="grid gap-4 py-4">
+              <div className="grid grid-cols-4 items-center gap-4">
+                <Label htmlFor="code" className="text-right">
+                  Email
+                </Label>
+                <Input
+                  id="email"
+                  className="col-span-3"
+                  required
+                  type="email"
+                  value={data.email}
+                  onChange={(e) => setData({ ...data, email: e.target.value })}
+                />
+              </div>
+            </div>
+            <DialogFooter>
+              <Button type="submit"> submit</Button>
+            </DialogFooter>
+          </form>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 }

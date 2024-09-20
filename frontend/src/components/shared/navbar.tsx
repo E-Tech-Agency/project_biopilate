@@ -26,7 +26,7 @@ export function Navbar({
   const logout = async () => {
     localStorage.clear();
     setIsLoggedIn(false);
-    navigate("/login-register");
+    navigate("/register");
   };
 
   const handleSmoothScroll = (
