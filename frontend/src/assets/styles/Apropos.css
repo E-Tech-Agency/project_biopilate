@@ -1,0 +1,47 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.animated-pics{
+    margin-top: 900px;
+    height: auto;
+}
+.animated-pics img {
+    position: relative;
+    animation-timing-function: ease;
+    animation-name: example;
+    animation-duration: 1.5s;  
+    animation-fill-mode: forwards;
+}
+
+@keyframes example {
+    from {bottom: 0px;}
+    to {bottom: 3050px; }
+  }
+
+@keyframes transformImage {
+  0% {
+    
+  }
+  100%{
+    width: 90%;
+    height: 680px;
+    transform: rotate(0deg);
+    border-radius: 0.125rem; /* rounded-sm */
+    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1); /* shadow-lg */
+    margin: 0 4rem; /* my-6 */
+    margin-top: 7.5rem;
+    margin-right: 6rem;
+    
+  }
+}
+
+.animate-transformImage {
+  animation: transformImage 2.2s forwards;
+  animation-timing-function: ease;
+  animation-delay: 1.5s;
+}
+
+.animated-pics img:last-child {
+    animation: example 1.5s ease forwards, transformImage 2s 1.5s ease forwards;
+  }

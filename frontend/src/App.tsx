@@ -2,21 +2,28 @@ import { Route, Routes, useLocation } from "react-router-dom";
 import "./styles/index.css";
 
 import LogReg from "@/pages/logReg";
-import { LoginForm } from "@/components/auth/login";
-import { RegisterForm } from "@/components/auth/register";
 import { Toaster } from "@/components/ui/sonner";
 import { ResetPassword } from "@/pages/reset-password";
 import { Dashboard } from "./pages/dashboard";
 import { useEffect, useState } from "react";
-import SideNav from "@/components/shared/side-nav";
-import { Navbar } from "@/components/shared/navbar";
-import Footer from "@/components/shared/footer";
-import Home from "@/pages/home";
+import Header from "@/biopilates/layout/Header";
+import Footer from "@/biopilates/layout/Footer";
+
 import AdminDashboard from "./pages/admin-dashboard";
 import UserProfile from "./pages/user-profile";
 import OneCours from "./pages/one-cours";
+//site show
 
-// biopilate pages
+import Accueil from "@/biopilates/pages/Accueil/Accueil";
+import Apropos from "@/biopilates/pages/Apropos/Apropos";
+import CoursB from "@/biopilates/pages/Cours/Cours";
+import FormationsB from "@/biopilates/pages/Formations/Formations";
+import BlogB from "@/biopilates/pages/Blog/Blog";
+import ContactB from "@/biopilates/pages/Contact/Contact";
+import StottPilates from "@/biopilates/pages/Apropos/StottPilates";
+import Evolis from "@/biopilates/pages/Apropos/Evolis";
+import Article from "@/biopilates/pages/Blog/Article";
+// biopilate
 import Teaches from "./pages/Teaches";
 import Tages from "./pages/Tages";
 import Services from "./pages/Services";
@@ -32,8 +39,11 @@ import CreatePlanningForm from "./components/biopilate/CreatePlanningFrom";
 import EditBlog from "./pages/EditBlog";
 import CreateFAQFrom from "./components/biopilate/CreateFAQFrom";
 import CreateFormationForm from "./components/biopilate/CreateFormationForm";
+import Gyrotonic from "./biopilates/pages/Apropos/Gyrotonic";
 import EditCourForm from "./pages/EditCourForm";
-
+import SideNav from "./components/shared/side-nav";
+import { LoginForm } from "./components/auth/login";
+import { RegisterForm } from "./components/auth/register";
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
@@ -58,6 +68,9 @@ function App() {
     location.pathname === "/login" ||
     location.pathname === "/register" ||
     location.pathname === "/login-register";
+  location.pathname === "/";
+  location.pathname === "/login-register";
+  location.pathname === "/login-register";
 
   return (
     <div className={`w-full min-h-screen ${!hideNavAndSideNav && "flex"}`}>
@@ -65,9 +78,7 @@ function App() {
       {!hideNavAndSideNav && <SideNav />}
       <div>
         {/* Conditionally render Navbar */}
-        {!hideNavAndSideNav && (
-          <Navbar isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />
-        )}
+        {!hideNavAndSideNav && <Header isLoggedIn={isLoggedIn} />}
 
         <div
           className={`w-[100vw] ${
@@ -75,7 +86,17 @@ function App() {
           }  min-h-[calc(100vh-5rem)] bg-gray-50`}
         >
           <Routes>
-            <Route path="/" element={<Home />} />
+            <Route path="/" element={<Accueil />} />
+            <Route path="/a-propos" element={<Apropos />} />
+            <Route path="/cours" element={<CoursB />} />
+            <Route path="/formations" element={<FormationsB />} />
+            <Route path="/blog" element={<BlogB />} />
+            <Route path="/blog/:id" element={<Article />} />
+            <Route path="/contact" element={<ContactB />} />
+            <Route path="/a-propos/stottPilates" element={<StottPilates />} />
+            <Route path="/a-propos/evolis" element={<Evolis />} />
+            <Route path="/a-propos/gyrotonic" element={<Gyrotonic />} />
+
             <Route
               path="/login-register"
               element={<LogReg setIsLoggedIn={setIsLoggedIn} />}
@@ -133,7 +154,7 @@ function App() {
       </div>
       {/* Conditionally render Footer if needed */}
       {hideNavAndSideNav && <Footer />}
-      {/* <Toaster /> */}
+      <Toaster />
     </div>
   );
 }
