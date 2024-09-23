@@ -18,9 +18,9 @@ export const theme = {
   extend: {
     colors: {
       bgColor: '#EBDCCD', // Adding custom color with the name 'customColor'
-        marron: '#756E66',
-        blueText:'#666975',
-        grayText: '#495057',
+      marron: '#756E66',
+      blueText:'#666975',
+      grayText: '#495057',
       border: "hsl(var(--border))",
       input: "hsl(var(--input))",
       ring: "hsl(var(--ring))",
