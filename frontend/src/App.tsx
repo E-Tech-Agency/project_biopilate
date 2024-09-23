@@ -1,19 +1,22 @@
 import { Route, Routes, useLocation } from "react-router-dom";
+import { useEffect, useState } from "react";
+
 import "./styles/index.css";
 
 import LogReg from "@/pages/logReg";
 import { Toaster } from "@/components/ui/sonner";
 import { ResetPassword } from "@/pages/reset-password";
 import { Dashboard } from "./pages/dashboard";
-import { useEffect, useState } from "react";
 import Header from "@/biopilates/layout/Header";
 import Footer from "@/biopilates/layout/Footer";
+import SideNav from "./components/shared/side-nav";
+import { Navbar } from "./components/shared/navbar";
 
-import AdminDashboard from "./pages/admin-dashboard";
-import UserProfile from "./pages/user-profile";
-import OneCours from "./pages/one-cours";
-//site show
+// Authentication
+import { LoginForm } from "./components/auth/login";
+import { RegisterForm } from "./components/auth/register";
 
+// Site pages
 import Accueil from "@/biopilates/pages/Accueil/Accueil";
 import Apropos from "@/biopilates/pages/Apropos/Apropos";
 import CoursB from "@/biopilates/pages/Cours/Cours";
@@ -23,30 +26,36 @@ import ContactB from "@/biopilates/pages/Contact/Contact";
 import StottPilates from "@/biopilates/pages/Apropos/StottPilates";
 import Evolis from "@/biopilates/pages/Apropos/Evolis";
 import Article from "@/biopilates/pages/Blog/Article";
-// biopilate
+import Gyrotonic from "@/biopilates/pages/Apropos/Gyrotonic";
+
+// Biopilates-specific pages
 import Teaches from "./pages/Teaches";
 import Tages from "./pages/Tages";
 import Services from "./pages/Services";
 import EditService from "./pages/EditService";
 import Planning from "./pages/Planning";
 import Blog from "./pages/Blog";
-import CreateBlogForm from "./components/biopilate/CreateBlogForm";
 import FAQ from "./pages/FAQ";
 import Formation from "./pages/Formation";
 import Cours from "./pages/Cours";
+import OneCours from "./pages/one-cours";
+import AdminDashboard from "./pages/admin-dashboard";
+import UserProfile from "./pages/user-profile";
+
+// Forms
+import CreateBlogForm from "./components/biopilate/CreateBlogForm";
 import CreateServicesForm from "./components/biopilate/CreateServicesFrom";
 import CreatePlanningForm from "./components/biopilate/CreatePlanningFrom";
-import EditBlog from "./pages/EditBlog";
 import CreateFAQFrom from "./components/biopilate/CreateFAQFrom";
 import CreateFormationForm from "./components/biopilate/CreateFormationForm";
-import Gyrotonic from "./biopilates/pages/Apropos/Gyrotonic";
+import EditBlog from "./pages/EditBlog";
 import EditCourForm from "./pages/EditCourForm";
-import SideNav from "./components/shared/side-nav";
-import { LoginForm } from "./components/auth/login";
-import { RegisterForm } from "./components/auth/register";
+
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const location = useLocation();
 
+  // Function to check login status based on token
   const checkLoginStatus = () => {
     const token = localStorage.getItem("token");
     setIsLoggedIn(!!token);
@@ -54,38 +63,83 @@ function App() {
 
   useEffect(() => {
     checkLoginStatus();
-    const handleStorageChange = () => {
-      checkLoginStatus();
-    };
+    const handleStorageChange = () => checkLoginStatus();
     window.addEventListener("storage", handleStorageChange);
-    return () => {
-      window.removeEventListener("storage", handleStorageChange);
-    };
+    return () => window.removeEventListener("storage", handleStorageChange);
   }, []);
 
-  const location = useLocation(); // Hook to get the current route
-  const hideNavAndSideNav =
-    location.pathname === "/login" ||
-    location.pathname === "/register" ||
-    location.pathname === "/login-register";
-  location.pathname === "/";
-  location.pathname === "/login-register";
-  location.pathname === "/login-register";
+  // Consolidated routes that hide certain components
+  const hiddenRoutes = {
+    nav: [
+      "/login",
+      "/register",
+      "/login-register",
+      "/reset_password/:id/:token",
+      "/dashboard",
+      "/admin",
+      "/user",
+      "/cour/:id",
+      "/Teaches-biopilates",
+      "/Tages-biopilates",
+      "/Service-biopilates",
+      "/edit-service/:id",
+      "/planning-biopilates",
+      "/blog-biopilates",
+      "/add-article-biopilates",
+      "/FAQ-biopilates",
+      "/Formation-biopilates",
+      "/Cours-biopilates",
+      "/ajouter-service-biopilates",
+      "/ajouter-planning-biopilates",
+      "/edit-article-biopilates/:id",
+      "/add-FAQ-biopilates",
+      "/add-Formation-biopilates",
+      "/edit-cours-biopilates/:id",
+    ],
+    sideNav: [
+      "/login",
+      "/register",
+      "/login-register",
+      "/",
+      "/a-propos",
+      "/cours",
+      "/formations",
+      "/blog",
+      "/blog/:id",
+      "/contact",
+      "/a-propos/stottPilates",
+      "/a-propos/evolis",
+      "/a-propos/gyrotonic",
+    ],
+    footer: ["/login", "/register", "/login-register"],
+  };
+
+  // Helper functions to check if the current route matches hidden routes
+  const isNavHidden = hiddenRoutes.nav.includes(location.pathname);
+  const isSideNavHidden = hiddenRoutes.sideNav.includes(location.pathname);
+  const isFooterHidden = hiddenRoutes.footer.includes(location.pathname);
 
   return (
-    <div className={`w-full min-h-screen ${!hideNavAndSideNav && "flex"}`}>
+    <div className={`w-full min-h-screen ${!isSideNavHidden && "flex"}`}>
       {/* Conditionally render SideNav */}
-      {!hideNavAndSideNav && <SideNav />}
+      {!isSideNavHidden && <SideNav />}
+
       <div>
+        {/* Conditionally render Header */}
+        {!isNavHidden && <Header isLoggedIn={isLoggedIn} />}
+
         {/* Conditionally render Navbar */}
-        {!hideNavAndSideNav && <Header isLoggedIn={isLoggedIn} />}
+        {!isFooterHidden && isNavHidden && (
+          <Navbar isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />
+        )}
 
         <div
           className={`w-[100vw] ${
-            !hideNavAndSideNav && "lg:w-[calc(100vw-265px)]"
-          }  min-h-[calc(100vh-5rem)] bg-gray-50`}
+            !isSideNavHidden && "lg:w-[calc(100vw-265px)]"
+          } min-h-[calc(100vh-5rem)] bg-gray-50`}
         >
           <Routes>
+            {/* Public Routes */}
             <Route path="/" element={<Accueil />} />
             <Route path="/a-propos" element={<Apropos />} />
             <Route path="/cours" element={<CoursB />} />
@@ -97,6 +151,7 @@ function App() {
             <Route path="/a-propos/evolis" element={<Evolis />} />
             <Route path="/a-propos/gyrotonic" element={<Gyrotonic />} />
 
+            {/* Dashboard & Auth */}
             <Route
               path="/login-register"
               element={<LogReg setIsLoggedIn={setIsLoggedIn} />}
@@ -117,7 +172,8 @@ function App() {
             <Route path="/admin" element={<AdminDashboard />} />
             <Route path="/user" element={<UserProfile />} />
             <Route path="/cour/:id" element={<OneCours />} />
-            {/* biopilate  */}
+
+            {/* Biopilates-specific Routes */}
             <Route path="/Teaches-biopilates" element={<Teaches />} />
             <Route path="/Tages-biopilates" element={<Tages />} />
             <Route path="/Service-biopilates" element={<Services />} />
@@ -152,8 +208,11 @@ function App() {
           </Routes>
         </div>
       </div>
-      {/* Conditionally render Footer if needed */}
-      {hideNavAndSideNav && <Footer />}
+
+      {/* Conditionally render Footer */}
+      {!isFooterHidden && <Footer />}
+
+      {/* Toast notifications */}
       <Toaster />
     </div>
   );
