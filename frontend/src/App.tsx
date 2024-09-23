@@ -68,6 +68,13 @@ function App() {
     return () => window.removeEventListener("storage", handleStorageChange);
   }, []);
 
+  const isRouteHidden = (patterns: string[], currentRoute: string) => {
+    return patterns.some((pattern) => {
+      const regex = new RegExp(`^${pattern.replace(/:\w+/g, "\\w+")}$`);
+      return regex.test(currentRoute);
+    });
+  };
+
   // Consolidated routes that hide certain components
   const hiddenRoutes = {
     nav: [
@@ -114,10 +121,11 @@ function App() {
     footer: ["/login", "/register", "/login-register"],
   };
 
-  // Helper functions to check if the current route matches hidden routes
-  const isNavHidden = hiddenRoutes.nav.includes(location.pathname);
-  const isSideNavHidden = hiddenRoutes.sideNav.includes(location.pathname);
-  const isFooterHidden = hiddenRoutes.footer.includes(location.pathname);
+  const currentRoute = location.pathname;
+
+  const isNavHidden = isRouteHidden(hiddenRoutes.nav, currentRoute);
+  const isSideNavHidden = isRouteHidden(hiddenRoutes.sideNav, currentRoute);
+  const isFooterHidden = isRouteHidden(hiddenRoutes.footer, currentRoute);
 
   return (
     <div className={`w-full min-h-screen ${!isSideNavHidden && "flex"}`}>
