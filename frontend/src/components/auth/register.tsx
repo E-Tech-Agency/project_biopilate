@@ -172,111 +172,18 @@ export function RegisterForm({
       }
     }
   };
-  const [visible, setVisible] = useState(false);
+  // const [visible, setVisible] = useState(false);
 
-  const PasswordHide = ({ visible, setVisible }) => {
-    return (
-      <div onClick={setVisible(!visible)}>
-        {visible ? <FaEyeSlash /> : <FaEye />}
-      </div>
-    );
-  };
+  // const PasswordHide = ({ visible, setVisible }) => {
+  //   return (
+  //     <div onClick={setVisible(!visible)}>
+  //       {visible ? <FaEyeSlash /> : <FaEye />}
+  //     </div>
+  //   );
+  // };
 
   return (
-    // <>
-    //     <Card className="mx-auto max-w-sm">
-    //         <CardHeader>
-    //             <CardTitle className="text-xl">Sign Up</CardTitle>
-    //             <CardDescription>
-    //                 Enter your information to create an account
-    //             </CardDescription>
-    //         </CardHeader>
-    //         <CardContent>
-    //             <form onSubmit={handleSubmit}>
-    //                 <div className="grid gap-4">
-    //                     <div className="grid grid-cols-2 gap-4">
-    //                         <div className="grid gap-2">
-    //                             <Label htmlFor="first-name">First name</Label>
-    //                             {error?.first_name && <p className="text-red-500">{error.first_name[0]}</p>}
-    //                             <Input id="first-name" placeholder="Max" required value={data.first_name} onChange={(e) => setData({ ...data, first_name: e.target.value })} />
-    //                         </div>
-    //                         <div className="grid gap-2">
-    //                             <Label htmlFor="last-name">Last name</Label>
-    //                             {error?.last_name && <p className="text-red-500">{error.last_name[0]}</p>}
-    //                             <Input id="last-name" placeholder="Robinson" required value={data.last_name} onChange={(e) => setData({ ...data, last_name: e.target.value })} />
-    //                         </div>
-    //                     </div>
-    //                     <div className="grid gap-2">
-    //                         <Label htmlFor="email">Email</Label>
-    //                         {error?.email && <p className="text-red-500">{error.email[0]}</p>}
-    //                         <Input
-    //                             id="email"
-    //                             type="email"
-    //                             placeholder="m@example.com"
-    //                             required
-    //                             value={data.email}
-    //                             onChange={(e) => setData({ ...data, email: e.target.value })}
-    //                         />
-    //                     </div>
-    //                     <div className="grid gap-2">
-    //                         <Label htmlFor="password">Password</Label>
-    //                         {error?.password && <li className="text-red-500">{error.password[0]}</li>}
-    //                         <Input id="password" type="password" value={data.password} onChange={(e) => setData({ ...data, password: e.target.value })} />
-    //                     </div>
-    //                     <div className="grid gap-2">
-    //                         <Label htmlFor="password">Confirm Password</Label>
-    //                         {error?.confirm_password && <li className="text-red-500">{error.confirm_password[0]}</li>}
-    //                         <Input id="password" type="password" value={data.confirm_password} onChange={(e) => setData({ ...data, confirm_password: e.target.value })} />
-    //                     </div>
-    //                      <div className="flex items-center space-x-2">
-    //                         <Switch id="supplier-checked" defaultChecked={data.is_supplier} onCheckedChange={(checked) => setData({ ...data, is_supplier: checked })} />
-    //                         <Label htmlFor="supplier-checked">Are you a modirator? <br /> <div className="text-sm text-pretty text-inherit text-start">if you are a modirator, check this box even if you signup with google</div></Label>
-    //                     </div>
-    //                     <Button type="submit" className="w-full">
-    //                         Create an account
-    //                     </Button>
-
-    //                     <div id="signInDiv" className='w-full'></div>
-
-    //                 </div>
-    //             </form>
-    //         </CardContent>
-    //     </Card>
-
-    //     <Dialog open={dialogOpen} onOpenChange={(open) => open && setDialogOpen(true)}>
-    //         <DialogOverlay />
-    //         <DialogContent className="sm:max-w-[425px]">
-    //             <DialogHeader>
-    //                 <DialogTitle>Verification code</DialogTitle>
-    //                 <DialogDescription>
-    //                     Please enter the verification code sent to your email
-    //                 </DialogDescription>
-    //             </DialogHeader>
-    //             <form onSubmit={handleVerify}>
-    //                 <div className="grid gap-4 py-4">
-    //                     <div className="grid grid-cols-4 items-center gap-4">
-    //                         <Label htmlFor="code" className="text-right">
-    //                             Code :
-    //                         </Label>
-    //                         <Input
-    //                             id="code"
-    //                             className="col-span-3"
-    //                             required
-    //                             value={verifyCode.otp}
-    //                             onChange={(e) => setVerifyCode({ ...verifyCode, otp: e.target.value })}
-    //                         />
-    //                     </div>
-    //                 </div>
-    //                 <DialogFooter>
-    //                     <Button type="submit"> submit</Button>
-    //                 </DialogFooter>
-    //             </form>
-    //         </DialogContent>
-    //     </Dialog>
-    //     <AlertDialog open={alert}>
-    //         <AlertDialogAfterRegister setAlert={setAlert} />
-    //     </AlertDialog>
-    // </>
+   
     <div className="bg-white w-[100vw]">
       <div className="relative flex max-md:flex-wrap justify-evenly items-start sm:items-center min-h-[650px] ">
         {/* back button */}

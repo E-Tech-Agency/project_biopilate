@@ -16,7 +16,10 @@ class UserRegisterSerializer(serializers.ModelSerializer):
 
     class Meta:
         model=User
-        fields = ['email', 'first_name', 'last_name', 'password', 'confirm_password','is_supplier']
+        fields = ['email', 'first_name', 'last_name', 'password', 'confirm_password','is_supplier','phone_number','profile_image']
+        extra_kwargs = {
+            'profile_image': {'required': False},
+        }
 
     def validate(self, attrs):
         password=attrs.get('password', '')
@@ -30,6 +33,7 @@ class UserRegisterSerializer(serializers.ModelSerializer):
             email=validated_data['email'],
             first_name=validated_data.get('first_name'),
             last_name=validated_data.get('last_name'),
+            phone_number=validated_data.get('phone_number'),
             password=validated_data.get('password'),
             is_supplier=validated_data.get('is_supplier', False)
             )
@@ -44,7 +48,10 @@ class UserLoginSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        fields = ['email', 'password', 'full_name', 'access_token', 'refresh_token','is_supplier','is_superuser']
+        fields = ['email', 'password', 'full_name', 'access_token', 'refresh_token','is_supplier','is_superuser','phone_number','profile_image']
+        extra_kwargs = {
+            'profile_image': {'required': False},
+        }
 
     
 
@@ -158,4 +165,7 @@ class LogoutUserSerializer(serializers.Serializer):
 class GetOneUserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ['id', 'email', 'first_name', 'last_name', 'is_superuser', 'is_verified', 'is_supplier', 'is_active', 'is_staff', 'date_joined', 'auth_provider']
+        fields = ['id', 'email', 'first_name', 'last_name','phone_number','profile_image' ,'is_superuser', 'is_verified', 'is_supplier', 'is_active', 'is_staff', 'date_joined', 'auth_provider']
+        extra_kwargs = {
+            'profile_image': {'required': False},
+        }

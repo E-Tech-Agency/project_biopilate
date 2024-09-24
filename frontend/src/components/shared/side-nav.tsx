@@ -4,6 +4,8 @@ import { IoMenu } from "react-icons/io5"; // Menu Icon for mobile
 import logo from "@/assets/biopilate-logo.png";
 import { PiPackage } from "react-icons/pi";
 import { FaArrowLeft } from "react-icons/fa";
+import { FaUser } from "react-icons/fa"; // Importing a user icon
+
 import ActiveLinkSVG from "@/components/shared/ActiveLinkSVG"; // Import the SVG
 
 export default function SideNav() {
@@ -65,17 +67,31 @@ export default function SideNav() {
             <nav className="flex-1 overflow-auto py-2 grid items-start text-base font-lato">
               {/* Dashboard Link */}
               <Link
-                to="/dashboard"
-                className={`flex justify-start items-center gap-3 h-[50px] transition-opacity ${
-                  isActive("/dashboard")
-                    ? "bg-gray-100 text-gray-900 ml-0"
-                    : "text-gray-500 hover:text-gray-900 ml-[33px]"
-                } dark:text-gray-400 dark:hover:text-gray-50 dark:bg-gray-800 dark:hover:bg-gray-800`}
-              >
-                {isActive("/dashboard") && <ActiveLinkSVG />}
-                <PiPackage className="text-xl" />
-                <h1>Cours</h1>
-              </Link>
+  to="/dashboard"
+  className={`flex justify-start items-center gap-3 h-[50px] transition-opacity ${
+    isActive("/dashboard")
+      ? "bg-gray-100 text-gray-900 ml-0"
+      : "text-gray-500 hover:text-gray-900 ml-[33px]"
+  } dark:text-gray-400 dark:hover:text-gray-50 dark:bg-gray-800 dark:hover:bg-gray-800`}
+>
+  {isActive("/dashboard") && <ActiveLinkSVG />}
+  <PiPackage className="text-xl" />
+  <h1>Cours</h1>
+</Link>
+
+<Link
+  to="/user"  // Corrected this route from /dashboard to /user
+  className={`flex justify-start items-center gap-3 h-[50px] transition-opacity ${
+    isActive("/user")
+      ? "bg-gray-100 text-gray-900 ml-0"
+      : "text-gray-500 hover:text-gray-900 ml-[33px]"
+  } dark:text-gray-400 dark:hover:text-gray-50 dark:bg-gray-800 dark:hover:bg-gray-800`}
+>
+  {isActive("/user") && <ActiveLinkSVG />}
+  <FaUser className="text-xl" /> 
+  <h1>Profile</h1>
+</Link>
+
 
               {/* Cours Biopilates Link */}
               {localStorage.getItem("is_supplier")?.toString() === "true" && (
@@ -108,6 +124,91 @@ export default function SideNav() {
                   <h1>Biopilates Instructeur</h1>
                 </Link>
               )}
+              {localStorage.getItem("is_supplier")?.toString() === "true" && (
+                <Link
+                  to="/Tages-biopilates"
+                  className={`flex justify-start items-center gap-3 h-[50px] transition-opacity ${
+                    isActive("/Tages-biopilates")
+                      ? "bg-gray-100 text-gray-900 ml-0"
+                      : "text-gray-500 hover:text-gray-900 ml-[33px]"
+                  } dark:text-gray-400 dark:hover:text-gray-50 dark:bg-gray-800 dark:hover:bg-gray-800`}
+                >
+                  {isActive("/Tages-biopilates") && <ActiveLinkSVG />}
+                  <PiPackage className="text-xl" />
+                  <h1>Biopilates Tages</h1>
+                </Link>
+              )}
+              {localStorage.getItem("is_supplier")?.toString() === "true" && (
+                <Link
+                  to="/Service-biopilates"
+                  className={`flex justify-start items-center gap-3 h-[50px] transition-opacity ${
+                    isActive("/Service-biopilates")
+                      ? "bg-gray-100 text-gray-900 ml-0"
+                      : "text-gray-500 hover:text-gray-900 ml-[33px]"
+                  } dark:text-gray-400 dark:hover:text-gray-50 dark:bg-gray-800 dark:hover:bg-gray-800`}
+                >
+                  {isActive("/Service-biopilates") && <ActiveLinkSVG />}
+                  <PiPackage className="text-xl" />
+                  <h1> Biopilates Service</h1>
+                </Link>
+              )}
+              {localStorage.getItem("is_supplier")?.toString() === "true" && (
+                <Link
+                  to="/planning-biopilates"
+                  className={`flex justify-start items-center gap-3 h-[50px] transition-opacity ${
+                    isActive("/planning-biopilates")
+                      ? "bg-gray-100 text-gray-900 ml-0"
+                      : "text-gray-500 hover:text-gray-900 ml-[33px]"
+                  } dark:text-gray-400 dark:hover:text-gray-50 dark:bg-gray-800 dark:hover:bg-gray-800`}
+                >
+                  {isActive("/planning-biopilates") && <ActiveLinkSVG />}
+                  <PiPackage className="text-xl" />
+                  <h1> Biopilates Planning</h1>
+                </Link>
+              )}
+              {localStorage.getItem("is_supplier")?.toString() === "true" && (
+                <Link
+                  to="/blog-biopilates"
+                  className={`flex justify-start items-center gap-3 h-[50px] transition-opacity ${
+                    isActive("/blog-biopilates")
+                      ? "bg-gray-100 text-gray-900 ml-0"
+                      : "text-gray-500 hover:text-gray-900 ml-[33px]"
+                  } dark:text-gray-400 dark:hover:text-gray-50 dark:bg-gray-800 dark:hover:bg-gray-800`}
+                >
+                  {isActive("/blog-biopilates") && <ActiveLinkSVG />}
+                  <PiPackage className="text-xl" />
+                  <h1>Biopilates Blogs</h1>
+                </Link>
+              )}
+              {localStorage.getItem("is_supplier")?.toString() === "true" && (
+                <Link
+                  to="/FAQ-biopilates"
+                  className={`flex justify-start items-center gap-3 h-[50px] transition-opacity ${
+                    isActive("/FAQ-biopilates")
+                      ? "bg-gray-100 text-gray-900 ml-0"
+                      : "text-gray-500 hover:text-gray-900 ml-[33px]"
+                  } dark:text-gray-400 dark:hover:text-gray-50 dark:bg-gray-800 dark:hover:bg-gray-800`}
+                >
+                  {isActive("/FAQ-biopilates") && <ActiveLinkSVG />}
+                  <PiPackage className="text-xl" />
+                  <h1> Biopilates FAQ</h1>
+                </Link>
+              )}
+              {localStorage.getItem("is_supplier")?.toString() === "true" && (
+                <Link
+                  to="/Formation-biopilates"
+                  className={`flex justify-start items-center gap-3 h-[50px] transition-opacity ${
+                    isActive("/Formation-biopilates")
+                      ? "bg-gray-100 text-gray-900 ml-0"
+                      : "text-gray-500 hover:text-gray-900 ml-[33px]"
+                  } dark:text-gray-400 dark:hover:text-gray-50 dark:bg-gray-800 dark:hover:bg-gray-800`}
+                >
+                  {isActive("/Formation-biopilates") && <ActiveLinkSVG />}
+                  <PiPackage className="text-xl" />
+                  <h1>Biopilates Formation</h1>
+                </Link>
+              )}
+              
             </nav>
           </div>
         </div>
@@ -123,13 +224,13 @@ export default function SideNav() {
             <span>Retour à l'acceuil</span>
           </Link>
           {/* Parameters Link */}
-          <Link
+          {/* <Link
             to="/parameters"
             className="flex justify-start items-center gap-2 font-semibold w-full pl-8"
           >
             <PiPackage className="text-xl" />
             <span>Parameters</span>
-          </Link>
+          </Link> */}
         </div>
       </div>
     </>

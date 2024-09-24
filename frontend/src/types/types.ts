@@ -72,7 +72,9 @@ export type User = {
     date_joined: string;
     email: string;
     first_name: string;
+    profile_image: string;
     id: number;
+    phone_number: string;
     is_active: boolean;
     is_staff: boolean;
     is_superuser: boolean;

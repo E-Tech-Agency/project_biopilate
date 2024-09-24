@@ -12,6 +12,8 @@ class User(AbstractUser, PermissionsMixin):
     email = models.EmailField(verbose_name=_('Email Address'), max_length=255, unique=True)
     first_name = models.CharField(verbose_name=_('First Name'), max_length=100)
     last_name = models.CharField(verbose_name=_('Last Name'), max_length=100)
+    phone_number = models.CharField(verbose_name=_('Numéro de téléphone'), max_length=15, blank=True, null=True)
+    profile_image = models.ImageField(upload_to='profile_images/', blank=True, null=True)
     is_staff = models.BooleanField(default=False)
     is_client = models.BooleanField(default=True)
     is_supplier = models.BooleanField('Is Moderator',default=False)
