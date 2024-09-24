@@ -56,7 +56,7 @@ export default function ImageSliderCours({ list, action }: ImageSliderCoursProps
       <div className="flex flex-col justify-center max-md:items-center px-3 xl:px-2 md:px-5 lg:min-w-[40%] lg:max-w-[50%] gap-5 font-lato">
         <div className="text-wrapper overflow-hidden relative h-fit">
           <p
-            className={`text-marron text-3xl leading-snug hidden lg:block title-animation ${
+            className={`text-marron text-3xl leading-snug hidden lg:block title-animation font-ebGaramond  font-bold ${
               isAnimating ? "slide-out-bottom" : "slide-in-top"
             }`}
           >

@@ -13,7 +13,7 @@
         "pack1": "10 cours reformer collectifs",
         "pack2": "Ou",
         "pack3": "5 cours reformer gyrotonic",
-        "validity": "Validité 2 mois"
+        "validity": "Validité 3 mois"
     },
     {
         "title": "1 Cours Privé",
@@ -41,7 +41,7 @@
     },
     {
         "title": "1 Cours Reformer & Gyrotonic     ",
-        "price": "65 €",
+        "price": "70 €",
         "pack1": "",
         "pack2": "",
         "pack3": "",
@@ -49,10 +49,34 @@
     },
     {
         "title": "Cours Reformer",
-        "price": "55 €",
+        "price": "45 €",
         "pack1": "",
         "pack2": "",
         "pack3": "",
+        "validity": "Validité 1 mois"
+    },
+    {
+        "title": "Offre de découverte Reformer",
+        "price": "35 €",
+        "pack1": "1 Cours reformer acheté",
+        "pack2": "d’ou",
+        "pack3": "1 Cours reformer offert",
+        "validity": "Validité 1 mois"
+    },
+    {
+        "title": "Offre de découverte",
+        "price": "70 €",
+        "pack1": "1 Cours reformer &gyrotonic acheté ",
+        "pack2": "d’ou",
+        "pack3": "1 Cours reformer &gyrotonic offert",
+        "validity": "Validité 1 mois"
+    },
+    {
+        "title": "Pack 4 crédits",
+        "price": "100 €",
+        "pack1": "4 cours reformer collectifs",
+        "pack2": "d’ou",
+        "pack3": "2 cours reformer gyrotonic",
         "validity": "Validité 2 mois"
     }
     

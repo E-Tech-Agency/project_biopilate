@@ -179,11 +179,9 @@ export default function Formations() {
       {/* formation biopliates */}
       <section className="mt-4">
         <div className="mb-8">
-          <p className="text-marron text-3xl leading-snug">Cours Biopilates</p>
+          <p className="text-marron text-3xl font-ebGaramond font-bold leading-snug">Formation Biopilates</p>
           <p className="leading-7">
-            Nos cours sont dispensés par des instructeurs expérimentés et
-            certifiés. Réservez votre cours dès aujourd'hui sur l'application
-            Bsport !
+          Devenez <strong>instructeur de Pilates</strong>  : favorisez l'équilibre et le bien-être physique et mental, tout en vous transformant. Rejoignez notre formation et devenez un pilier d'harmonie.
           </p>
         </div>
         <ImageSliderFormations list={formations} action={"Inscrivez-vous"} />

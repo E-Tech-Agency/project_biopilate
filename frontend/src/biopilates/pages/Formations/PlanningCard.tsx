@@ -52,8 +52,8 @@ export default function PlanningCard({ plan, calendar }: PlanningCardProps) {
           />
           <div className="sm:hidden absolute inset-0 size-full text-bgColor">
             <div className="relative max-sm:h-[200px] flex flex-col items-center size-full font-ebGaramond">
-              <div className="top-0 absolute inset-0 bg-gradient-to-t from-black to-[70%] max-sm:rounded-b-none rounded-lg opacity-75" />
-              <h3 className="text-xl font-semibold absolute bottom-0 left-0 right-0 text-center pb-12">
+              <div className="top-0 absolute inset-0 bg-gradient-to-t from-black to-[70%] max-sm:rounded-b-none rounded-lg opacity-75 " />
+              <h3 className="text-xl font-semibold absolute bottom-0 left-0 right-0 text-center pb-12  ">
                 {plan.title}
               </h3>
               <h3 className="text-lg font-normal absolute bottom-0 left-0 right-0 text-center pb-4">
@@ -90,7 +90,7 @@ export default function PlanningCard({ plan, calendar }: PlanningCardProps) {
           />
           <div className="relative flex flex-col items-center size-full font-ebGaramond">
             <h3
-              className={`text-2xl font-semibold absolute bottom-0 left-0 right-0 text-center pb-24 ${transitionClass} ${
+              className={`text-2xl font-semibold absolute bottom-0 left-0 right-0 text-center pb-24  ${transitionClass} ${
                 isActive ? "translate-y-[-150px] opacity-0 text-black" : ""
               }`}
             >

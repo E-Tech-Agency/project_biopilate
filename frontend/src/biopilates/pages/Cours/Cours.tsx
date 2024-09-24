@@ -104,7 +104,7 @@ export default function Cours() {
 
       <section className="mb-14 flex flex-col-reverse lg:flex-row justify-center lg:justify-between items-center gap-8">
         <div className="mb-8 flex flex-col flex-wrap gap-5">
-          <p className="text-marron text-3xl leading-snug">
+          <p className="text-marron text-3xl leading-snug font-ebGaramond font-bold">
             Comment S’incrire au cours?
           </p>
           <p className="leading-7">

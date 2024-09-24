@@ -59,17 +59,17 @@ export default function ImageSliderFormations({
 
   return (
     <div className="mb-14 flex flex-col-reverse lg:flex-row gap-5 xl:gap-8 max-lg:flex-wrap overflow-hidden lg:h-[530px]">
-      <div className="flex flex-col justify-center max-md:items-center px-3 xl:px-2 md:px-5 lg:min-w-[40%] lg:max-w-[50%] gap-5 font-lato">
+      <div className="flex flex-col justify-center max-md:items-center px-3 xl:px-2 md:px-5 lg:min-w-[40%] lg:max-w-[50%] gap-4 font-lato">
         <div className="text-wrapper overflow-hidden relative h-fit">
           <p
-            className={`text-marron text-3xl leading-snug hidden lg:block title-animation ${
+            className={`text-marron text-3xl leading-snug hidden lg:block title-animation font-ebGaramond font-bold ${
               isAnimating ? "slide-out-bottom" : "slide-in-top"
             }`}
           >
             {list[currentIndex].title}
           </p>
         </div>
-        <div className="text-wrapper overflow-hidden relative min-h-[150px]">
+        <div className="text-wrapper overflow-hidden relative min-h-[80px]">
           <p
             className={`leading-7 ${
               isAnimating ? "slide-out-bottom" : "slide-in-top"
