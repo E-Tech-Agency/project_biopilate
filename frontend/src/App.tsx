@@ -67,13 +67,16 @@ function App() {
     return () => window.removeEventListener("storage", handleStorageChange);
   }, []);
 
-  const isRouteHidden = (patterns: string[], currentRoute: string) => {
+  const isRouteHidden = (patterns: string[], currentRoute: string): boolean => {
     return patterns.some((pattern) => {
-      const regexPattern = pattern.replace(/:\w+/g, "\\w+"); // Convert :id or :token into regex to match dynamic segments
-      const regex = new RegExp(`^${regexPattern}$`);
+      // Convert dynamic segments like ":id" or ":token" into regex to match real values
+      const regexPattern = pattern.replace(/:\w+/g, "\\w+");
+      const regex = new RegExp(`^${regexPattern}`);
       return regex.test(currentRoute);
     });
   };
+  
+  
   
 
   // Consolidated routes that hide certain components
@@ -110,6 +113,7 @@ function App() {
       "/login",
       "/",
       "/reset_password/:id/:token",
+    
       "/a-propos",
       "/cours",
       "/formations",
@@ -117,8 +121,11 @@ function App() {
       "/blog/:id",
       "/contact",
       "/a-propos/stottPilates",
+      "/a-propos/Evolis",
       "/a-propos/evolis",
       "/a-propos/gyrotonic",
+      "/a-propos/Gyrotonic",
+     "/a-propos/STOTTPILATES",
      
     ],
     footer: ["/login", "/register", "/login","/reset_password/:id/:token"],

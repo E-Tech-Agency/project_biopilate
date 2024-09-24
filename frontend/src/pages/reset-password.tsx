@@ -52,7 +52,7 @@ export function ResetPassword() {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center h-screen">
+    <div className="flex flex-col items-center justify-center mt-5">
       <form onSubmit={handleSubmit}>
         <Card className="w-full max-w-sm">
           <CardHeader>
