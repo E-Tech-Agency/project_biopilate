@@ -13,11 +13,9 @@
   "dependencies": {
     "@emotion/react": "^11.13.3",
     "@emotion/styled": "^11.13.0",
-<<<<<<< HEAD
+
     "@mui/material": "^6.0.1",
-=======
-    "@mui/material": "^6.0.2",
->>>>>>> integration
+
     "@radix-ui/react-alert-dialog": "^1.0.5",
     "@radix-ui/react-avatar": "^1.0.4",
     "@radix-ui/react-dialog": "^1.0.5",
@@ -46,25 +44,20 @@
     "lodash": "^4.17.21",
     "lucide-react": "^0.383.0",
     "next-themes": "^0.3.0",
-<<<<<<< HEAD
+
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-icons": "^5.3.0",
-=======
-    "react": "^18.3.1",
-    "react-dom": "^18.3.1",
-    "react-icons": "^5.2.1",
->>>>>>> integration
+
     "react-modal": "^3.16.1",
     "react-quill": "^2.0.0",
     "react-router-dom": "^6.23.1",
     "react-scripts": "^5.0.1",
     "sonner": "^1.4.41",
-<<<<<<< HEAD
+
     "styletron-engine-monolithic": "^1.0.0",
     "styletron-react": "^6.1.1",
-=======
->>>>>>> integration
+
     "swiper": "^11.1.12",
     "tailwind-merge": "^2.3.0",
     "tailwindcss-animate": "^1.0.7",
@@ -79,13 +72,9 @@
     "@types/react-dom": "^18.3.0",
     "@typescript-eslint/eslint-plugin": "^7.2.0",
     "@typescript-eslint/parser": "^7.2.0",
-<<<<<<< HEAD
     "@vitejs/plugin-react-swc": "^3.5.0",
     "autoprefixer": "^10.4.20",
-=======
-    "@vitejs/plugin-react-swc": "^3.7.0",
-    "autoprefixer": "^10.4.19",
->>>>>>> integration
+
     "eslint": "^8.57.0",
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.4.6",

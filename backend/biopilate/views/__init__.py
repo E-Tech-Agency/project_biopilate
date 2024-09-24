@@ -5,3 +5,6 @@ from ..serializers.TeacheSerializer import TeachesSerializer
 class TeachesViewSet(viewsets.ModelViewSet):
     queryset = Teaches.objects.all()
     serializer_class = TeachesSerializer
+
+
+

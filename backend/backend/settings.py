@@ -27,7 +27,7 @@ environ.Env.read_env(BASE_DIR / '.env')
 SECRET_KEY = "django-insecure-ck#kon504#qtk$-ojh5rsw_(b0@-$)b*v+7j=+1^70q4(837%t"
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 APPEND_SLASH = False
@@ -44,11 +44,13 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
+   
     'accounts',
     'biopilate',
     'social_accounts',
     'corsheaders',
     'rest_framework_simplejwt.token_blacklist',
+     'admin_honeypot',
 ]
 
 MIDDLEWARE = [

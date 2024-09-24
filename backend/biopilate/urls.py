@@ -9,6 +9,7 @@ from .views.FAQViewSet import FAQViewSet
 from .views.BlogViewSet import BlogViewSet
 from .views.FormationsViewSet import FormationsViewSet, OptionViewSet, SelectedOptionViewSet
 from .views.CoursViewSet import CoursViewSet , CategoryCoursViewSet
+
 router = DefaultRouter()
 router.register(r'teaches', TeachesViewSet)
 router.register(r'tarifs', TarifsViewSet)
