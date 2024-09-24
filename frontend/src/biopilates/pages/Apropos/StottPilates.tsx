@@ -179,10 +179,10 @@ export default function StottPilates() {
       <div className="flex flex-col mt-8 mx-8 md:mx-12 mb-12 gap-6 font-lato">
         <div className="flex flex-col-reverse md:flex-col">
           <div className="flex flex-col gap-3">
-            <h1 className="text-2xl font-ebGaramond text-marron font-bold">
+            <h1 className="text-3xl font-ebGaramond text-marron font-bold">
               Formation et Cours STOTT PILATES à Paris - Studio Biopilates
             </h1>
-            <h2 className="text-xl font-ebGaramond text-blueText">
+            <h2 className="text-xl font-ebGaramond text-blueText font-medium">
               Découvrez les cours et formations STOTT PILATES à Paris.
               Techniques modernes pour rééquilibrer les muscles et restaurer la
               courbe naturelle du rachis. Rejoignez-nous au Studio Biopilates.
@@ -254,7 +254,7 @@ export default function StottPilates() {
         {/* 3 pics Bénéfices et adaptabilité :  */}
         <div className="flex flex-col gap-6 mt-10">
           <div className="flex flex-col gap-4">
-            <h1 className="text-xl text-marron font-bold">
+            <h1 className="text-3xl text-marron font-ebGaramond font-bold">
               Bénéfices et adaptabilité :{" "}
             </h1>
             <p className="text-base">

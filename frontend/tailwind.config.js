@@ -55,6 +55,15 @@ export const theme = {
         foreground: "hsl(var(--card-foreground))",
       },
     },
+    textShadow: {
+      'default': '0 2px 4px rgba(0, 0, 0, 0.10)',
+      'md': '0 4px 6px rgba(0, 0, 0, 0.10)',
+      'lg': '0 10px 15px rgba(0, 0, 0, 0.10)',
+      'xl': '0 20px 25px rgba(0, 0, 0, 0.10)',
+      '2xl': '0 25px 50px rgba(0, 0, 0, 0.25)',
+      'none': 'none',
+    },
+
     borderRadius: {
       lg: "var(--radius)",
       md: "calc(var(--radius) - 2px)",
@@ -81,4 +90,29 @@ export const theme = {
   },
 };
 // eslint-disable-next-line no-undef
-export const plugins = [require("tailwindcss-animate")];
+export const plugins = [require("tailwindcss-animate"),
+  function({ addUtilities }) {
+      const newUtilities = {
+        '.text-shadow': {
+          textShadow: '0 2px 4px rgba(0, 0, 0, 0.10)',
+        },
+        '.text-shadow-md': {
+          textShadow: '0 4px 6px rgba(0, 0, 0, 0.10)',
+        },
+        '.text-shadow-lg': {
+          textShadow: '0 10px 15px rgba(0, 0, 0, 0.10)',
+        },
+        '.text-shadow-xl': {
+          textShadow: '0 20px 25px rgba(0, 0, 0, 0.10)',
+        },
+        '.text-shadow-2xl': {
+          textShadow: '0 25px 50px rgba(0, 0, 0, 0.25)',
+        },
+        '.text-shadow-none': {
+          textShadow: 'none',
+        },
+      }
+ 
+      addUtilities(newUtilities, ['responsive', 'hover'])
+    }
+];

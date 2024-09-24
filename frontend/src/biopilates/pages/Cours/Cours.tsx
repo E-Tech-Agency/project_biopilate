@@ -65,10 +65,10 @@ export default function Cours() {
 
         {/* text */}
         <div className="flex flex-col items-center md:items-baseline py-6 min-w-min md:px-5 gap-5 font-lato w-[90%]">
-          <p className="text-marron text-3xl leading-snug ">
+          <p className="text-marron text-3xl leading-snug font-bold font-ebGaramond">
             Cours Pilates à Paris – Biopilates
           </p>
-          <p className="leading-7 text-xl text-marron">
+          <p className="leading-7 text-xl text-marron font-medium font-ebGaramond">
             Développez votre potentiel et atteignez vos objectifs grâce à nos
             cours de Pilates pour tous niveaux !
           </p>
@@ -90,7 +90,7 @@ export default function Cours() {
 
       <section className="mt-4">
         <div className="mb-8">
-          <p className="text-marron text-3xl leading-snug">Cours Biopilates</p>
+          <p className="text-marron text-3xl leading-snug font-bold font-ebGaramond">Cours Biopilates</p>
           <p className="leading-7">
             Nos cours sont dispensés par des instructeurs expérimentés et
             certifiés. Réservez votre cours dès aujourd'hui sur l'application

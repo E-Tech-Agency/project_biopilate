@@ -165,10 +165,10 @@ export default function Evolis() {
       <div className="flex flex-col mt-8 mx-8 md:mx-12 mb-12 gap-6 font-lato">
         <div className="flex flex-col-reverse md:flex-col">
           <div className="flex flex-col gap-3">
-            <h1 className="text-2xl font-ebGaramond text-marron font-bold">
+            <h1 className="text-3xl font-ebGaramond text-marron font-bold">
               Formation et Cours EVOLIS à Paris - Studio Biopilates
             </h1>
-            <h2 className="text-xl font-ebGaramond text-blueText">
+            <h2 className="text-xl font-ebGaramond text-blueText  font-medium">
               Découvrez les cours et formations Evolis à Paris au Studio
               Biopilates. Une méthode innovante pour améliorer posture,
               souplesse et bien-être général. Réservez votre séance dès
@@ -270,13 +270,16 @@ export default function Evolis() {
         {/* Reserver */}
         <div className="flex max-md:flex-wrap justify-center xl:justify-between items-center gap-10 rounded-lg min-h-[300px] py-8 xl:py-4 px-6 xl:px-10 bg-marron text-white max-md:mx-[-26px]">
           <div className="flex flex-col gap-4 w-full">
-            <p className="font-ebGaramond font-medium text-xl md:text-2xl text-bgColor">
-              Réservez Votre Premier Atelier :
+            <p className="font-ebGaramond font-bold text-2xl md:text-2xl ">
+            Pour découvrir les bienfaits de la méthode Evolis®
             </p>
-            <p className="font-lato max-md:text-sm">
-              N'attendez plus pour découvrir les secrets de la méthode
-              GYROTONIC® et ses nombreux bienfaits. Réservez dès maintenant et
-              commencez votre transformation.
+            <p className="font-lato max-md:text-sm text-bgColor">
+            Réservez dès maintenant une séance isitué au 1 rue Boyer, 75020 Paris.Tarif de la séance : 64€ndividuelle au Studio Biopilates, 
+
+            </p>
+            <p className="font-lato max-md:text-sm text-bgColor">
+           75020 Paris.Tarif de la séance : 64€ndividuelle au Studio Biopilates, 
+
             </p>
 
             <button className=" reserver-button flex mr-auto flex-col justify-center text-base rounded-lg px-9 py-3 bg-white text-marron font-lato font-bold">

@@ -32,10 +32,10 @@ export default function StottPilates() {
       <div className="flex flex-col mt-8 mx-8 md:mx-12 mb-12 gap-6 font-lato">
         <div className="flex flex-col-reverse md:flex-col">
           <div className="flex flex-col gap-3">
-            <h1 className="text-2xl font-ebGaramond text-marron font-bold">
+            <h1 className="text-3xl font-ebGaramond text-marron font-bold">
               Formation et Cours GYROTONIC® à Paris - Studio Biopilates
             </h1>
-            <h2 className="text-xgyrotonicCoordinationl font-ebGaramond text-blueText">
+            <h2 className="text-xl font-ebGaramond text-blueText font-medium">
               Découvrez les cours et formations GYROTONIC® à Paris. Méthode
               innovante pour améliorer la force, la souplesse et l'équilibre.
               Rejoignez nous au Studio Biopilates pour des séances adaptées à
@@ -66,7 +66,7 @@ export default function StottPilates() {
           <div className="flex justify-start items-center gap-10 p-6 shadow-lg">
             <img
               loading="lazy"
-              src={gyrotonic}
+              src={gyrokinesis}
               alt="stott posture"
               className="rounded-full w-[150px] h-[150px] sm:w-[280px] sm:h-[280px] object-cover shadow-lg"
             />
@@ -121,7 +121,7 @@ export default function StottPilates() {
               />
               <h2 className="w-[150px]  sm:w-[165px] ">
                 {" "}
-                Améliorer la posture
+                Endurance musculaire
               </h2>
             </div>
             <div className="flex justify-center items-center flex-col gap-4">
@@ -132,7 +132,7 @@ export default function StottPilates() {
                 className="rounded-full w-[150px] h-[150px] sm:w-[165px] sm:h-[165px] object-cover shadow-lg"
               />
               <h2 className="w-[150px]  sm:w-[165px] ">
-                Soulager les douleurs dorsales
+              Flexibilité
               </h2>
             </div>
             <div className="flex justify-center items-center flex-col gap-4">
@@ -144,7 +144,7 @@ export default function StottPilates() {
               />
               <h2 className="w-[150px]  sm:w-[165px] ">
                 {" "}
-                Augmenter la flexibilité
+                Coordination neuromusculaire
               </h2>
             </div>
           </div>
@@ -172,7 +172,7 @@ export default function StottPilates() {
               />
               <h2 className="w-[150px]  sm:w-[270px] ">
                 {" "}
-                Améliorer la posture
+                Le banc du Pulley Tower
               </h2>
             </div>
             <div className="flex justify-center items-center flex-col gap-4">
@@ -183,7 +183,7 @@ export default function StottPilates() {
                 className="rounded-full w-[150px] h-[150px] sm:w-[270px] sm:h-[270px] object-cover shadow-lg"
               />
               <h2 className="w-[150px]  sm:w-[270px] ">
-                Soulager les douleurs dorsales
+              L'Archway
               </h2>
             </div>
             <div className="flex justify-center items-center flex-col gap-4">
@@ -195,7 +195,7 @@ export default function StottPilates() {
               />
               <h2 className="w-[150px]  sm:w-[270px] ">
                 {" "}
-                Augmenter la flexibilité
+                Le Jumping Stretching Board
               </h2>
             </div>
           </div>

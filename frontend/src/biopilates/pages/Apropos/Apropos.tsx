@@ -62,14 +62,14 @@ export default function Apropos() {
 
         {/* text bio */}
         <div className="flex flex-col items-center md:items-baseline py-6 md:px-5 gap-5 font-lato xl:w-[85%] text-justify">
-          <p className="text-marron text-xl sm:text-3xl leading-snug ">
+          <p className="text-blueText text-3xl sm:text-3xl leading-snug font-ebGaramond font-bold">
             Caroline,
           </p>
-          <p className="leading-7 text-xl text-marron">
+          <p className="leading-7 text-2xl text-marron font-ebGaramond font-bold">
             Fondatrice du studio Biopilates : passionnée de mouvement et experte
             en Pilates
           </p>
-          <div className="text-base">
+          <div className="text-base font-lato">
             <p className="leading-7">
               Caroline est une experte en Pilates et en mouvement avec{" "}
               <strong>plus de 15 ans d’expérience.</strong> Fondatrice du Studio
@@ -102,7 +102,7 @@ export default function Apropos() {
 
       {/* Approches */}
       <div className="mb-8">
-        <p className="text-marron text-3xl leading-snug">
+        <p className="text-marron text-3xl leading-snug font-ebGaramond font-bold">
           Des approches uniques : Stott Pilates®, Gyrotonic, Evolis
         </p>
         <p className="leading-7">
