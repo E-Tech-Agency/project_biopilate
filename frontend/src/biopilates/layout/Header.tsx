@@ -2,9 +2,9 @@ import { useState } from "react";
 import { IoMdSearch, IoIosMenu } from "react-icons/io";
 import { LuUserCircle2 } from "react-icons/lu";
 
-
 // Import the logo image
-import logoImage from '@/assets/images/biopilate-logo.png';
+import logoImage from "@/assets/images/biopilate-logo.png";
+import { Link } from "react-router-dom";
 
 const navItems = [
   { label: "Accueil", href: "/" },
@@ -15,7 +15,7 @@ const navItems = [
   { label: "Contact", href: "/contact" },
 ];
 
-export default function Header() {
+export default function Header({ isLoggedIn }: { isLoggedIn: boolean }) {
   const [showSearch, setShowSearch] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
@@ -90,17 +90,29 @@ export default function Header() {
             )}
           </div>
         </div>
-        <div className="flex justify-center items-center gap-2">
-          <div className="flex gap-4 pl-auto font-bold text-center text-stone-500">
-            <button className="flex items-center justify-center gap-3 my-auto text-lg">
+
+        <div className="flex gap-4 pl-auto font-bold text-center text-stone-500">
+          {isLoggedIn ? (
+            <Link
+              to="/dashboard"
+              className="hidden md:flex items-center justify-center gap-3 my-auto text-lg border border-bgColor rounded-lg px-6 py-4"
+            >
+              <div className="max-md:hidden leading-5">Dashboard</div>
+            </Link>
+          ) : (
+            <Link
+              to="/login"
+              className="flex items-center justify-center gap-3 my-auto text-lg"
+            >
               <LuUserCircle2 className="text-2xl" />
               <div className="max-md:hidden leading-5">Se connecter</div>
+            </Link>
+          )}
+
+          <div className="button-wrapper rounded-lg overflow-hidden">
+            <button className="reserver-button button-content flex-col justify-center text-base leading-6 rounded-lg px-10 py-4 bg-bgColor hidden md:flex text-current transition duration-300 ease-in-out transform">
+              Réserver
             </button>
-            <div className="button-wrapper rounded-lg overflow-hidden">
-              <button className="reserver-button button-content flex-col justify-center text-base leading-6 rounded-lg px-10 py-4 bg-bgColor hidden md:flex text-current transition duration-300 ease-in-out transform">
-                Réserver
-              </button>
-            </div>
           </div>
         </div>
 
