@@ -14,7 +14,7 @@ export function Navbar({
   console.log(isLoggedIn);
 
   const navigate = useNavigate();
-  // const nav = () => { navigate("/login-register") }
+  // const nav = () => { navigate("/login") }
   const login = () => {
     navigate("/login");
   };

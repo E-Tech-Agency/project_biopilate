@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import  { useState, useEffect } from "react";
 import "@/assets/styles/image-slider.css";
 import "swiper/swiper-bundle.css";
 import "@/assets/styles/swiper.css";
@@ -8,6 +8,7 @@ import "swiper/css/pagination";
 import "swiper/css/navigation";
 import { Pagination, Navigation } from "swiper/modules";
 import { BsArrowUpRight } from "react-icons/bs";
+import { Swiper as SwiperType } from "swiper";
 type ListItem = {
   title: string;
   description: string;
@@ -32,6 +33,8 @@ export default function ImageSliderFormations({
   useEffect(() => {
     const checkIsMobile = () => {
       setIsMobile(window.innerWidth <= 768);
+      console.log(setIsAnimating);//check the set
+      
     };
 
     checkIsMobile();
@@ -86,7 +89,7 @@ export default function ImageSliderFormations({
   loop={true}
   spaceBetween={10}
   slideToClickedSlide={true}
-  onSlideChange={(swiper) => handleImageClick(swiper.realIndex)}
+  onSlideChange={(swiper: SwiperType) => handleImageClick(swiper.realIndex)}
   pagination={{ el: ".swiper-pagination", clickable: true }} // Corrected to lowercase 'pagination'
   modules={[Pagination, Navigation]}
   initialSlide={1}

@@ -3,7 +3,6 @@ import { useEffect, useState } from "react";
 
 import "./styles/index.css";
 
-import LogReg from "@/pages/logReg";
 import { Toaster } from "@/components/ui/sonner";
 import { ResetPassword } from "@/pages/reset-password";
 import { Dashboard } from "./pages/dashboard";
@@ -70,17 +69,19 @@ function App() {
 
   const isRouteHidden = (patterns: string[], currentRoute: string) => {
     return patterns.some((pattern) => {
-      const regex = new RegExp(`^${pattern.replace(/:\w+/g, "\\w+")}$`);
+      const regexPattern = pattern.replace(/:\w+/g, "\\w+"); // Convert :id or :token into regex to match dynamic segments
+      const regex = new RegExp(`^${regexPattern}$`);
       return regex.test(currentRoute);
     });
   };
+  
 
   // Consolidated routes that hide certain components
   const hiddenRoutes = {
     nav: [
       "/login",
       "/register",
-      "/login-register",
+      "/login",
       "/reset_password/:id/:token",
       "/dashboard",
       "/admin",
@@ -106,8 +107,9 @@ function App() {
     sideNav: [
       "/login",
       "/register",
-      "/login-register",
+      "/login",
       "/",
+      "/reset_password/:id/:token",
       "/a-propos",
       "/cours",
       "/formations",
@@ -117,8 +119,9 @@ function App() {
       "/a-propos/stottPilates",
       "/a-propos/evolis",
       "/a-propos/gyrotonic",
+     
     ],
-    footer: ["/login", "/register", "/login-register"],
+    footer: ["/login", "/register", "/login","/reset_password/:id/:token"],
   };
 
   const currentRoute = location.pathname;
@@ -160,10 +163,7 @@ function App() {
             <Route path="/a-propos/gyrotonic" element={<Gyrotonic />} />
 
             {/* Dashboard & Auth */}
-            <Route
-              path="/login-register"
-              element={<LogReg setIsLoggedIn={setIsLoggedIn} />}
-            />
+            
             <Route
               path="/login"
               element={<LoginForm setIsLoggedIn={setIsLoggedIn} />}

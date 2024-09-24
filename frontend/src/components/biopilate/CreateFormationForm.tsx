@@ -24,7 +24,7 @@ const CreateFormationForm: React.FC = () => {
   useEffect(() => {
     const isSupplier = localStorage.getItem("is_supplier");
     if (!isSupplier || isSupplier !== "true") {
-      navigate("/login-register");
+      navigate("/login");
     }
   }, [navigate]);
 
@@ -108,16 +108,16 @@ const CreateFormationForm: React.FC = () => {
     ]);
   };
 
-  const validateForm = () => {
-    const newErrors: CreateFormationErrors = {};
-    if (!formation.title) newErrors.title = ["Title is required"];
-    if (!formation.description)
-      newErrors.description = ["Description is required"];
-    if (!formation.status) newErrors.status = ["Status is required"];
+  // const validateForm = () => {
+  //   const newErrors: CreateFormationErrors = {};
+  //   if (!formation.title) newErrors.title = ["Title is required"];
+  //   if (!formation.description)
+  //     newErrors.description = ["Description is required"];
+  //   if (!formation.status) newErrors.status = ["Status is required"];
 
-    setErrors(newErrors);
-    return Object.keys(newErrors).length === 0;
-  };
+  //   setErrors(newErrors);
+  //   return Object.keys(newErrors).length === 0;
+  // };
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -141,8 +141,9 @@ const CreateFormationForm: React.FC = () => {
       console.log("Payload being sent:", payload);
 
       // Send the formation data to the backend
-      const response = await api.post("formations/", payload);
-      const formationId = response.data.id;
+    //  <<<<<<<<<<<<<<<<<<<CHECK THIS SET    >>>>>>>>>>>>>>>>>>>
+          // const response = await api.post("formations/", payload);
+      // const formationId = response.data.id;
 
       // Handle successful creation
       toast.success("Formation created successfully");

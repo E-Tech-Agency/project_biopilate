@@ -1,4 +1,3 @@
-import React from "react";
 
 export default function BlogSection() {
   const articles = [
@@ -75,5 +74,7 @@ export default function BlogSection() {
       image: "",
     },
   ];
+  console.log(articles);
+  
   return <div>BlogSection</div>;
 }

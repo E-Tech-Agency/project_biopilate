@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import  { useEffect, useState } from "react";
 import "@/assets/styles/Apropos.css";
 
 // Define the type for the images array as a prop

@@ -1,7 +1,10 @@
 import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
+interface ScrollToTopProps {
+  onScrollFinish?: () => void; // Optional function type
+}
 
-export default function ScrollToTop({ onScrollFinish }) {
+export default function ScrollToTop({ onScrollFinish }: ScrollToTopProps) {
   const { pathname } = useLocation();
   const [scrollFinished, setScrollFinished] = useState(false);
 
@@ -34,6 +37,11 @@ export default function ScrollToTop({ onScrollFinish }) {
       window.removeEventListener("scroll", handleScroll);
     };
   }, [pathname, onScrollFinish]);
+  useEffect(() => {
+    if (scrollFinished) {
+      console.log("Scrolling has finished");
+    }
+  }, [scrollFinished]);
 
   return null;
 }

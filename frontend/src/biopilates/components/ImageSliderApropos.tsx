@@ -8,6 +8,8 @@ import "swiper/swiper-bundle.css";
 import { Pagination } from "swiper/modules";
 import { BsArrowUpRight } from "react-icons/bs";
 import { useNavigate } from "react-router-dom";
+import { Swiper as SwiperType } from 'swiper/types';
+
 
 // Define types for the props
 type ListItem = {
@@ -38,7 +40,14 @@ export default function ImageSliderApropos({ list, action }: ImageSliderAproposP
 
     return () => window.removeEventListener("resize", checkIsMobile);
   }, []);
+  useEffect(() => {
+    setIsAnimating(true); // Start animation when currentIndex changes
+    const timer = setTimeout(() => {
+      setIsAnimating(false); // Reset animation state after some time
+    }, 500); // Duration of the animation
 
+    return () => clearTimeout(timer);
+  }, [currentIndex]);
   const handleMouseEnter = (index: number) => {
     if (!isMobile) setHoverIndex(index);
   };
@@ -88,7 +97,8 @@ export default function ImageSliderApropos({ list, action }: ImageSliderAproposP
           loop={true}
           spaceBetween={10}
           slideToClickedSlide={true}
-          onSlideChange={(swiper) => handleImageClick(swiper.realIndex)}
+          onSlideChange={(swiper: SwiperType) => handleImageClick(swiper.realIndex)} // Type the swiper parameter
+
           pagination={{ el: ".swiper-pagination", clickable: true }} // Correct property name
           modules={[Pagination]}
           initialSlide={1}

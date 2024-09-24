@@ -82,7 +82,7 @@ export default function ContactForm() {
         </div>
         <div className="mb-5">
   <label
-    className="block font-ebGaramond text-sm sm:text-xl font-bold mb-2 text-marron"
+    className="block font-ebGaramond text-sm sm:text-xl font-bold mb-2 "
     htmlFor="message"
   >
     Message

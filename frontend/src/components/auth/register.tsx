@@ -1,14 +1,14 @@
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
+
 import { SetStateAction, useEffect, useState } from "react";
 import * as React from "react";
 import axios from "axios";
 import { toast } from "sonner";
 import { LogRegError } from "@/types/types";
-import { Switch } from "../ui/switch";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
 import {
   Dialog,
   DialogContent,
@@ -18,20 +18,21 @@ import {
   DialogFooter,
   DialogDescription,
 } from "../ui/dialog";
-import { AlertDialog } from "../ui/alert-dialog";
-import { AlertDialogAfterRegister } from "./alert-dialog";
-
 import { FaArrowLeftLong } from "react-icons/fa6";
 import { HiOutlineEnvelope } from "react-icons/hi2";
-import { FaEyeSlash } from "react-icons/fa6";
-import { FaRegUser } from "react-icons/fa";
-import { FaEye } from "react-icons/fa";
+import { AlertDialog } from "../ui/alert-dialog";
+import { AlertDialogAfterRegister } from "./alert-dialog";
+import { FaRegUser, FaLock, FaEye, FaEyeSlash } from "react-icons/fa";
+
 import { LuPhone } from "react-icons/lu";
 
 import login_pic from "@/assets/images/login-pic.jpg";
 import { Link } from "react-router-dom";
 import "@/styles/index.css";
-
+interface PasswordHideProps {
+  visible: boolean;
+  setVisible: (visible: boolean) => void; // Function to set the visibility state
+}
 // Declare the google object globally
 declare global {
   interface Window {
@@ -56,6 +57,7 @@ export function RegisterForm({
     first_name: "",
     last_name: "",
     email: "",
+    phone_number:"",
     password: "",
     confirm_password: "",
     is_supplier: false,
@@ -109,6 +111,7 @@ export function RegisterForm({
         first_name: "",
         last_name: "",
         email: "",
+        phone_number:"",
         password: "",
         confirm_password: "",
         is_supplier: false,
@@ -122,6 +125,7 @@ export function RegisterForm({
           first_name: errors.first_name,
           last_name: errors.last_name,
           email: errors.email,
+          phone_number: errors.phone_number,
           password: errors.password,
           confirm_password: errors.confirm_password,
         });
@@ -165,6 +169,7 @@ export function RegisterForm({
       toast.success(res.data.message);
       setDialogOpen(false);
       setAlert(true);
+      navigate("/login");
     } catch (err) {
       if (axios.isAxiosError(err)) {
         const errors = err.response?.data;
@@ -172,18 +177,18 @@ export function RegisterForm({
       }
     }
   };
-  // const [visible, setVisible] = useState(false);
+  const [visible, setVisible] = useState(false);
 
-  // const PasswordHide = ({ visible, setVisible }) => {
-  //   return (
-  //     <div onClick={setVisible(!visible)}>
-  //       {visible ? <FaEyeSlash /> : <FaEye />}
-  //     </div>
-  //   );
-  // };
+  const PasswordHide = ({ visible, setVisible }: PasswordHideProps) => {
+    return (
+        <div onClick={() => setVisible(!visible)}> {/* Wrap in an arrow function */}
+            {visible ? <FaEyeSlash /> : <FaEye />}
+        </div>
+    );
+};
 
   return (
-   
+   <>
     <div className="bg-white w-[100vw]">
       <div className="relative flex max-md:flex-wrap justify-evenly items-start sm:items-center min-h-[650px] ">
         {/* back button */}
@@ -203,33 +208,52 @@ export function RegisterForm({
               Rejoignez la communauté Biopilates gratuitement
             </p>
           </div>
-          <form className="w-full">
-            <div className="mb-5">
-              <label
-                className="block font-ebGaramond text-sm sm:text-xl font-bold mb-2"
-                htmlFor="name"
-              >
-                Nom et prénom
-              </label>
-              {error?.first_name && (
-                <p className="text-red-500">{error.first_name[0]}</p>
-              )}
-              <div className="mt-1 flex rounded-md shadow-sm">
-                <span className="inline-flex items-center px-3 rounded-l-md border border-r-0 border-marron bg-gray-50 text-gray-500 text-lg">
-                  <FaRegUser />
-                </span>
-                <input
-                  type="text"
-                  id="name"
-                  required
-                  value={data.first_name}
-                  onChange={(e) =>
-                    setData({ ...data, first_name: e.target.value })
-                  }
-                  className="bg-gray-50 border border-marron border-l-0 text-gray-900 text-sm sm:text-base rounded-none rounded-r-md block w-full p-2.5"
-                />
-              </div>
-            </div>
+          <form className="w-full" onSubmit={handleSubmit}>
+          <div className="mb-5">
+    <label
+        className="block font-ebGaramond text-sm sm:text-xl font-bold mb-2"
+        htmlFor=" first_name"
+    >
+        Nom et prénom
+    </label>
+    {error?.first_name && (
+        <p className="text-red-500">{error.first_name[0]}</p>
+    )}
+    {error?.last_name && <p className="text-red-500">{error.last_name[0]}</p>}
+    <div className="mt-1 flex space-x-2">
+    <div className="flex-grow flex rounded-md shadow-sm">
+        <span className="inline-flex items-center px-3 rounded-l-md border border-r-0 border-marron bg-gray-50 text-gray-500 text-lg">
+            <FaRegUser />
+        </span>
+        <input
+            type="text"
+            id=" first_name"
+            
+            placeholder="Prénom"
+            value={data.first_name}
+            onChange={(e) =>
+                setData({ ...data, first_name: e.target.value })
+            }
+            className="bg-gray-50 border border-marron border-l-0 text-gray-900 text-sm sm:text-base rounded-none rounded-r-md block w-full p-2.5"
+        />
+    </div>
+    <div className="flex-grow flex rounded-md shadow-sm">
+        <span className="inline-flex items-center px-3 rounded-l-md border border-r-0 border-marron bg-gray-50 text-gray-500 text-lg">
+            <FaRegUser />
+        </span>
+        <input
+            id="last-name"
+            placeholder="Nom"
+            
+            value={data.last_name}
+            onChange={(e) => setData({ ...data, last_name: e.target.value })}
+            className="bg-gray-50 border border-marron border-l-0 text-gray-900 text-sm sm:text-base rounded-none rounded-r-md block w-full p-2.5"
+        />
+    </div>
+</div>
+
+</div>
+
             <div className="mb-5">
               <label
                 className="block text-sm sm:text-xl font-bold mb-2"
@@ -246,7 +270,6 @@ export function RegisterForm({
                   type="email"
                   id="email"
                   className="bg-gray-50 border border-marron border-l-0 font-lato text-gray-900 text-sm sm:text-base rounded-none rounded-r-md block w-full p-2.5"
-                  required
                   value={data.email}
                   onChange={(e) => setData({ ...data, email: e.target.value })}
                 />
@@ -255,8 +278,9 @@ export function RegisterForm({
             <div className="mb-5">
               <label
                 className="block font-ebGaramond text-sm sm:text-xl font-bold mb-2"
-                htmlFor="phone"
+                htmlFor="phone_number"
               >
+                 {error?.phone_number && <p className="text-red-500">{error.phone_number[0]}</p>}
                 Numéro de téléphone
               </label>
               <div className="mt-1 flex rounded-md shadow-sm">
@@ -265,31 +289,65 @@ export function RegisterForm({
                 </span>
                 <input
                   type="number"
-                  id="phone"
+                  id="phone_number"
                   className="bg-gray-50 border border-marron border-l-0 text-gray-900 text-sm sm:text-base rounded-none rounded-r-md block w-full p-2.5"
-                  required
+                  value={data.phone_number} onChange={(e) => setData({ ...data, phone_number: e.target.value })}
                 />
               </div>
             </div>
             <div className="mb-5">
-              <label
-                className="block text-sm sm:text-xl font-bold mb-2"
+            <label
+                className="block text-sm sm:text-xl font-bold mb-2 text-gray-700"
                 htmlFor="password"
-              >
+            >
                 Mot de passe
-              </label>
-              <div className="mt-1 flex rounded-md shadow-sm">
+            </label>
+            {error?.password && (
+                <li className="text-red-500 mb-1">{error.password[0]}</li>
+            )}
+            <div className="mt-1 flex rounded-md shadow-sm">
+                <span className="inline-flex items-center px-3 rounded-l-md border border-r-0 border-marron bg-gray-100 text-gray-500 text-lg">
+                    <FaLock />
+                </span>
                 <input
-                  type="password"
-                  id="password"
-                  className="bg-gray-50 border border-marron border-r-0 font-lato text-gray-900 text-sm sm:text-base rounded-l-md block w-full p-2.5"
-                  required
+                    type={visible ? "text" : "password"} // Toggle between text and password
+                    id="password"
+                    className="bg-gray-100 border border-marron border-l-0 font-lato text-gray-900 text-sm sm:text-base block w-full p-2.5 transition duration-150 ease-in-out focus:outline-none focus:ring focus:ring-blue-500"
+                    value={data.password}
+                    onChange={(e) => setData({ ...data, password: e.target.value })}
+                    placeholder="Entrez votre mot de passe"
                 />
-                <div className="inline-flex items-center px-3 rounded-r-md border border-l-0 border-marron bg-gray-50 text-gray-800 text-lg cursor-pointer">
-                  {/* <PasswordHide visible={visible} setVisible={setVisible} /> */}
+                <div className="inline-flex items-center px-3 rounded-r-md border border-l-0 border-marron bg-gray-100 text-gray-800 text-lg cursor-pointer hover:bg-gray-200 transition duration-150 ease-in-out">
+                    <PasswordHide visible={visible} setVisible={setVisible} />
                 </div>
-              </div>
             </div>
+        </div>
+        <div className="mb-5">
+            <label
+                className="block text-sm sm:text-xl font-bold mb-2 text-gray-700"
+                htmlFor="password"
+            >
+                Confirmer le mot de passe
+            </label>
+            {error?.confirm_password && <li className="text-red-500">{error.confirm_password[0]}</li>}
+            <div className="mt-1 flex rounded-md shadow-sm">
+                <span className="inline-flex items-center px-3 rounded-l-md border border-r-0 border-marron bg-gray-100 text-gray-500 text-lg">
+                    <FaLock />
+                </span>
+                <input
+                    type={visible ? "text" : "password"} // Toggle between text and password
+                    id="password"
+                    className="bg-gray-100 border border-marron border-l-0 font-lato text-gray-900 text-sm sm:text-base block w-full p-2.5 transition duration-150 ease-in-out focus:outline-none focus:ring focus:ring-blue-500"
+                    value={data.confirm_password} onChange={(e) => setData({ ...data, confirm_password: e.target.value })} 
+                    placeholder="Entrez votre mot de passe"
+                />
+                <div className="inline-flex items-center px-3 rounded-r-md border border-l-0 border-marron bg-gray-100 text-gray-800 text-lg cursor-pointer hover:bg-gray-200 transition duration-150 ease-in-out">
+                    <PasswordHide visible={visible} setVisible={setVisible} />
+                </div>
+            </div>
+        </div>
+
+           
             <div className="mt-3 flex flex-wrap justify-between ">
               <label className="inline-flex items-start cursor-pointer">
                 <input
@@ -346,5 +404,39 @@ export function RegisterForm({
         </div>
       </div>
     </div>
+    <Dialog open={dialogOpen} onOpenChange={(open) => open && setDialogOpen(true)}>
+                <DialogOverlay />
+                <DialogContent className="sm:max-w-[425px]">
+                    <DialogHeader>
+                        <DialogTitle>Verification code</DialogTitle>
+                        <DialogDescription>
+                            Please enter the verification code sent to your email
+                        </DialogDescription>
+                    </DialogHeader>
+                    <form onSubmit={handleVerify}>
+                        <div className="grid gap-4 py-4">
+                            <div className="grid grid-cols-4 items-center gap-4">
+                                <Label htmlFor="code" className="text-right">
+                                    Code :
+                                </Label>
+                                <Input
+                                    id="code"
+                                    className="col-span-3"
+                                    required
+                                    value={verifyCode.otp}
+                                    onChange={(e) => setVerifyCode({ ...verifyCode, otp: e.target.value })}
+                                />
+                            </div>
+                        </div>
+                        <DialogFooter>
+                            <Button type="submit"> submit</Button>
+                        </DialogFooter>
+                    </form>
+                </DialogContent>
+            </Dialog>
+            <AlertDialog open={alert}>
+                <AlertDialogAfterRegister setAlert={setAlert} />
+            </AlertDialog>
+    </>
   );
 }

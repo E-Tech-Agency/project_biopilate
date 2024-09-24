@@ -47,7 +47,7 @@ const EditBlog: React.FC = () => {
   useEffect(() => {
     const isSupplier = localStorage.getItem("is_supplier");
     if (!isSupplier || isSupplier !== "true") {
-      navigate("/login-register");
+      navigate("/login");
     }
   }, [navigate]);
 

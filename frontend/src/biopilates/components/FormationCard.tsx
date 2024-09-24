@@ -1,6 +1,18 @@
-import React from "react";
+import React from 'react';
 
-export default function FormationCard({ formation }) {
+// Define TypeScript interface for formation data
+interface Formation {
+  title: string;
+  image: string;
+  prices: string[];
+  levels?: string[];
+}
+
+interface FormationCardProps {
+  formation: Formation;
+}
+
+const FormationCard: React.FC<FormationCardProps> = ({ formation }) => {
   const isLevelNotFound = !formation.levels?.[0] || !formation.levels?.[1];
   return (
     <div className="py-4 sm:py-0 flex flex-col justify-between items-center w-[232px] h-[368px] sm:w-[300px] sm:h-[524px] rounded-lg shadow-lg">
@@ -38,3 +50,4 @@ export default function FormationCard({ formation }) {
     </div>
   );
 }
+export default FormationCard;

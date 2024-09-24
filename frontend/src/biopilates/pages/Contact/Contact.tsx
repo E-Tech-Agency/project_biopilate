@@ -1,5 +1,7 @@
 
 import { LuPhone } from "react-icons/lu";
+import { LuClock } from "react-icons/lu";
+
 import { PiMapPinLight } from "react-icons/pi";
 import ContactForm from "./ContactForm";
 import contactBg from "@/assets/images/contact-bg.jpg"; // Import the image here
@@ -29,6 +31,10 @@ export default function Contact() {
               passionné de Pilates, notre équipe dévouée est prête à vous
               guider.
             </p>
+            <div className="flex gap-4">
+              <LuClock className="w-4 h-4 md:w-6 md:h-6" />
+              <p className="text-sm md:text-lg">Du Lundi à Dimanche : du 8h à 21h</p>
+            </div>
             <div className="flex gap-4">
               <LuPhone className="w-4 h-4 md:w-6 md:h-6" />
               <p className="text-sm md:text-lg">01 23 45 67 89</p>
