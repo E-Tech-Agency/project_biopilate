@@ -5,5 +5,3 @@ __pycache__
 *.sqlite3
 node_modules
 */migrations/
-backend/settings.py
-backend
