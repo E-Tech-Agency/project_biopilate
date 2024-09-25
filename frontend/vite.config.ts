@@ -24,7 +24,7 @@ export default defineConfig({
     open: true,
     proxy: {
       '/api': {
-        target: 'http://localhost:8000', // Your backend server URL
+        target: 'http://141.94.23.119:8000', 
         changeOrigin: true, // Changes the origin of the host header to the target URL
         rewrite: (path) => path.replace(/^\/api/, '') // Optional: rewrite path if necessary
       }
@@ -32,7 +32,7 @@ export default defineConfig({
   },
   define: {
     'process.env': {
-      API_BASE_URL: 'http://141.94.23.119:8000/api/'|| 'http://localhost:8000/api/',
+      API_BASE_URL: 'http://141.94.23.119:8000/api/',
     }
   }
 });
