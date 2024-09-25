@@ -7,6 +7,7 @@ import "swiper/css";
 import "swiper/css/pagination";
 import { Pagination } from "swiper/modules";
 import { BsArrowUpRight } from "react-icons/bs";
+import { Swiper as SwiperType } from 'swiper/types';
 interface Course {
   title: string;
   image: string;
@@ -39,6 +40,8 @@ export default function ImageSliderCours({ list, action }: ImageSliderCoursProps
   }, []);
 
   const handleMouseEnter = (index: number) => {
+    console.log(index);
+    
     if (!isMobile) setHoverIndex(null);
   };
 
@@ -83,7 +86,7 @@ export default function ImageSliderCours({ list, action }: ImageSliderCoursProps
           loop={true}
           spaceBetween={10}
           slideToClickedSlide={true}
-          onSlideChange={(swiper) => handleImageClick(swiper.realIndex)}
+          onSlideChange={(swiper: SwiperType) => handleImageClick(swiper.realIndex)}
           pagination={{ el: ".swiper-pagination", clickable: true }} // lowercase "pagination"
 
           modules={[Pagination]}

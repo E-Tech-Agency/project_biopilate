@@ -1,4 +1,4 @@
-import bioPilateLogo from "@/assets/images/biopilate-logo.png";
+// import bioPilateLogo from "@/assets/images/biopilate-logo.png";
 
 // Define the type for the service prop
 interface Service {

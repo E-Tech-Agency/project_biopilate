@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-
 type Plan = {
   title: string;
   image: string;
@@ -7,9 +6,15 @@ type Plan = {
   niveau: string;
 };
 
+type Calendar = {
+  timeSlots: string[];
+  title?: string;
+  date?: string;
+};
+
 type PlanningCardProps = {
   plan: Plan;
-  calendar: string[];
+  calendar: Calendar; // Update to Calendar type
 };
 
 export default function PlanningCard({ plan, calendar }: PlanningCardProps) {
@@ -59,7 +64,6 @@ export default function PlanningCard({ plan, calendar }: PlanningCardProps) {
               <h3 className="text-lg font-normal absolute bottom-0 left-0 right-0 text-center pb-4">
                 {plan.niveau}
               </h3>
-              <p className="text-sm leading-4 italic text-center text-wrap line-clamp-6 px-2"></p>
             </div>
           </div>
 
@@ -67,8 +71,8 @@ export default function PlanningCard({ plan, calendar }: PlanningCardProps) {
           <div className="sm:hidden rounded-md flex flex-col flex-nowrap items-center gap-4 py-5 px-2 font-lato text-center bottom-0">
             <div className="text-marron text-lg font-bold">{plan.date}</div>
             <div className="flex flex-col justify-center items-center">
-              {Array.isArray(calendar) &&
-                calendar.map((day, index) => (
+              {Array.isArray(calendar.timeSlots) &&
+                calendar.timeSlots.map((day, index) => (
                   <h1 className="text-sm" key={index}>
                     {day}
                   </h1>
@@ -103,7 +107,6 @@ export default function PlanningCard({ plan, calendar }: PlanningCardProps) {
             >
               {plan.niveau}
             </h3>
-            <p className="text-sm leading-4 italic text-center text-wrap line-clamp-6 px-2"></p>
             <div
               className={`flex flex-col pb-2 gap-5 ml-[-315px] ${transitionClass} ${
                 isActive ? "opacity-100" : "opacity-0"
@@ -114,8 +117,8 @@ export default function PlanningCard({ plan, calendar }: PlanningCardProps) {
                   {plan.date}
                 </div>
                 <div className="flex flex-col justify-center items-center">
-                  {Array.isArray(calendar) &&
-                    calendar.map((day, index) => (
+                  {Array.isArray(calendar.timeSlots) &&
+                    calendar.timeSlots.map((day, index) => (
                       <h1 key={index}>{day}</h1>
                     ))}
                 </div>

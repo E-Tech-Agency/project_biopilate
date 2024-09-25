@@ -1,4 +1,3 @@
-
 import PlanningCard from "./PlanningCard";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/swiper-bundle.css";
@@ -6,6 +5,7 @@ import "swiper/css";
 import "swiper/css/pagination";
 import "@/assets/styles/swiper.css";
 import { Pagination } from "swiper/modules";
+
 type Plan = {
   title: string;
   niveau: string;
@@ -15,14 +15,15 @@ type Plan = {
 
 type Calendar = {
   timeSlots: string[];
-  title?: string;  // If there are optional fields
-  date?: string; 
+  title?: string;
+  date?: string;
 };
 
 interface PlanningProps {
   plans: Plan[];
   calendar: Calendar[];
 }
+
 export default function Planning({ plans, calendar }: PlanningProps) {
   return (
     <div className="mb-8">
@@ -70,7 +71,6 @@ export default function Planning({ plans, calendar }: PlanningProps) {
             slidesPerView: 2,
             spaceBetween: 5,
           },
-
           640: {
             slidesPerView: 2,
             spaceBetween: 2,
@@ -83,7 +83,11 @@ export default function Planning({ plans, calendar }: PlanningProps) {
               key={index}
               className="flex flex-col justify-center items-center"
             >
-              <PlanningCard key={index} plan={plan} calendar={calendar[index]} />
+              <PlanningCard
+                key={index}
+                plan={plan}
+                calendar={calendar[index] || { timeSlots: [] }} // Provide fallback for missing calendar
+              />
             </SwiperSlide>
           ))}
         </div>

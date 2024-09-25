@@ -14,6 +14,7 @@ import formation1 from "@/assets/images/formation-1.jpg";
 import formation2 from "@/assets/images/formation-2.jpg";
 import formation3 from "@/assets/images/formation-3.png";
 import matworkAvance from "@/assets/images/matwork-avancé.jpg";
+
 export default function Formations() {
   const images = [
     reformerGyrotonic,
@@ -101,34 +102,47 @@ export default function Formations() {
     },
   ];
   const calendar = [
-    [
-      "Mar. 09/07/2024 :  8h - 13.30h",
-      "Mer. 10/07/2024 :  8h - 13.30h",
-      "Jeu. 11/07/2024 :  8h - 13.30h",
-      "Ven. 12/07/2024 :  8h - 13.30h",
-      "Off",
-      "Dim. 14/07/2024 : 14h - 19.30h",
-      "Off",
-      "Mar. 16/07/2024 :  8h - 13.30h",
-      "Mer. 17/07/2024 :  8h - 13.30h",
-      "Jeu. 18/07/2024 :  8h - 13.30h",
-    ],
-    ["Ven. 19/07/2024  :  8h - 13.30h"],
-    [
-      "Lun. 19/08/2024 :  8h - 13.30h",
-      "Mar. 20/08/2024 :  8h - 13.30h",
-      "Mer. 21/08/2024 :  8h - 13.30h",
-      "Jeu. 22/08/2024 :  8h - 13.30h",
-      "Ven. 23/08/2024 :  8h - 13.30h",
-      "Off",
-      "Dim. 25/08/2024 :  14h - 19.30h",
-      "Lun. 26/08/2024 :  8h - 13.30h",
-      "Mar. 27/08/2024 :  8h - 13.30h",
-      "Mer. 28/08/2024 :  8h - 13.30h",
-      "Jeu. 29/08/2024 :  8h - 13.30h",
-    ],
-    ["Ven. 19/07/2024  :  8h - 13.30h"],
+    {
+      date: "Du 09/07/2024 au 18/07/2024",
+      timeSlots: [
+        "Mar. 09/07/2024 :  8h - 13.30h",
+        "Mer. 10/07/2024 :  8h - 13.30h",
+        "Jeu. 11/07/2024 :  8h - 13.30h",
+        "Ven. 12/07/2024 :  8h - 13.30h",
+        "Off",
+        "Dim. 14/07/2024 : 14h - 19.30h",
+        "Off",
+        "Mar. 16/07/2024 :  8h - 13.30h",
+        "Mer. 17/07/2024 :  8h - 13.30h",
+        "Jeu. 18/07/2024 :  8h - 13.30h",
+      ],
+    },
+    {
+      date: "Le 19/07/2024",
+      timeSlots: ["Ven. 19/07/2024  :  8h - 13.30h"],
+    },
+    {
+      date: "Du 19/08/2024 au 29/08/2024",
+      timeSlots: [
+        "Lun. 19/08/2024 :  8h - 13.30h",
+        "Mar. 20/08/2024 :  8h - 13.30h",
+        "Mer. 21/08/2024 :  8h - 13.30h",
+        "Jeu. 22/08/2024 :  8h - 13.30h",
+        "Ven. 23/08/2024 :  8h - 13.30h",
+        "Off",
+        "Dim. 25/08/2024 :  14h - 19.30h",
+        "Lun. 26/08/2024 :  8h - 13.30h",
+        "Mar. 27/08/2024 :  8h - 13.30h",
+        "Mer. 28/08/2024 :  8h - 13.30h",
+        "Jeu. 29/08/2024 :  8h - 13.30h",
+      ],
+    },
+    {
+      date: "Le 19/07/2024",
+      timeSlots: ["Ven. 19/07/2024  :  8h - 13.30h"],
+    },
   ];
+  
 
   return (
     <div className="flex flex-col mx-8 md:mx-12">
