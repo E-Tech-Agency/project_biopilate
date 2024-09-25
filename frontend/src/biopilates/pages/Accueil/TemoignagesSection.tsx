@@ -10,40 +10,27 @@ import { Pagination } from "swiper/modules";
 export default function TemoignagesSection() {
   const temoignages = [
     {
-      user: "Nom d'utilisateur",
+      user: "Lyly de la Vallée",
       note: 5,
       title: "Cette adresse n'en est que plus précieuse.",
       review:
         "Un très beau studio à l'ambiance unique à Paris. Caro est une grande pro, incollable sur l'anatomie, à même d'adapter son cours à chacun quelle que soit sa condition pour progresser, récupérer d'une blessure, se remettre en forme, s'entretenir... Les endroits où chaque élève est considéré autrement que comme un numéro sont rares, cette adresse n'en est que plus précieuse.",
     },
     {
-      user: "Nom d'utilisateur",
+      user: "Mathilde Paquelier",
       note: 5,
-      title: "Cette adresse n'en est que plus précieuse.",
+      title: "Les cours sont variés, ludiques et très efficaces!",
       review:
-        "Un très beau studio à l'ambiance unique à Paris. Caro est une grande pro, incollable sur l'anatomie, à même d'adapter son cours à chacun quelle que soit sa condition pour progresser, récupérer d'une blessure, se remettre en forme, s'entretenir... Les endroits où chaque élève est considéré autrement que comme un numéro sont rares, cette adresse n'en est que plus précieuse.",
+        "J'ai la chance d'aller au studio depuis maintenant plusieurs années... c'est un vrai plaisir de faire du sport dans un tel environnement. Caroline est attentive et les cours sont variés, ludiques et très efficaces!",
     },
     {
-      user: "Nom d'utilisateur",
+      user: "Julia",
       note: 5,
-      title: "Cette adresse n'en est que plus précieuse.",
+      title: "Excellent Studio de Caroline BERGER.",
       review:
-        "Un très beau studio à l'ambiance unique à Paris. Caro est une grande pro, incollable sur l'anatomie, à même d'adapter son cours à chacun quelle que soit sa condition pour progresser, récupérer d'une blessure, se remettre en forme, s'entretenir... Les endroits où chaque élève est considéré autrement que comme un numéro sont rares, cette adresse n'en est que plus précieuse.",
+        "Excellent Studio de Caroline BERGER ! Caroline est très attentive à nos besoins et nous suit avec beaucoup d'attention. C'est un grand plaisir faire du sport, s'occuper de son corps avec une grande professionnelle, dans un beau studio et le tout accompagné de plein de petit poissons! 😍",
     },
-    {
-      user: "Nom d'utilisateur",
-      note: 5,
-      title: "Cette adresse n'en est que plus précieuse.",
-      review:
-        "Un très beau studio à l'ambiance unique à Paris. Caro est une grande pro, incollable sur l'anatomie, à même d'adapter son cours à chacun quelle que soit sa condition pour progresser, récupérer d'une blessure, se remettre en forme, s'entretenir... Les endroits où chaque élève est considéré autrement que comme un numéro sont rares, cette adresse n'en est que plus précieuse.",
-    },
-    {
-      user: "Nom d'utilisateur",
-      note: 5,
-      title: "Cette adresse n'en est que plus précieuse.",
-      review:
-        "Un très beau studio à l'ambiance unique à Paris. Caro est une grande pro, incollable sur l'anatomie, à même d'adapter son cours à chacun quelle que soit sa condition pour progresser, récupérer d'une blessure, se remettre en forme, s'entretenir... Les endroits où chaque élève est considéré autrement que comme un numéro sont rares, cette adresse n'en est que plus précieuse.",
-    },
+    
   ];
   return (
     <div>

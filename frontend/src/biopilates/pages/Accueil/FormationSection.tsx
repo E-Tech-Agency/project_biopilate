@@ -15,7 +15,8 @@ import formation2Image from '@/assets/images/formation-2.jpg';
 import reformerGyrotonicImage from '@/assets/images/reformer-gyrotonic.jpg';
 import formation1Image from '@/assets/images/formation-1.jpg';
 import formation5Image from '@/assets/images/formation-5.png';
-
+import Matwork from '@/assets/images/formation-6.jpg';
+import Blessures from '@/assets/images/formation-3.png'
 // Define TypeScript interface for formation data
 interface Formation {
   title: string;
@@ -34,7 +35,7 @@ export default function FormationSection() {
     },
     {
       title: "Matwork",
-      image: reformerImage,
+      image: Matwork,
       prices: ["1599 €", "399 €"],
       levels: ["Débutant et intermédiaire", "Avancé"],
     },
@@ -62,8 +63,8 @@ export default function FormationSection() {
       prices: ["1199 €"],
     },
     {
-      title: "Reformer",
-      image: reformerImage,
+      title: "Blessures et Population spécifiques et prénatal et postnatal-ISP",
+      image: Blessures,
       prices: ["1599 €"],
     },
   ];

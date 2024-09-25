@@ -17,7 +17,7 @@ export default function TemoignageCard({ temoignage }: { temoignage: Temoignage 
           alt="User"
           className="rounded-full w-[35px] h-[35px] sm:w-[60px] sm:h-[60px] mt-1 sm:mt-0"
         />
-        <div className="mb-4 sm:mb-8 flex flex-col sm:gap-2">
+        <div className="mb-4 sm:mb-8 flex flex-col sm:gap-2 font-ebGaramond font-bold">
           <p className="font-ebGaramond font-boldX">{temoignage.user}</p>
           <div className="flex gap-1 text-yellow-300 text-lg">
             {[...Array(temoignage.note)].map((_, index) => (
