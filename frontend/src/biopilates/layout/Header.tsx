@@ -1,12 +1,13 @@
 import { useState } from "react";
 import { IoMdSearch, IoIosMenu } from "react-icons/io";
 import { LuUserCircle2 } from "react-icons/lu";
-
-// Import the logo image
 import logoImage from "@/assets/images/biopilate-logo.png";
 import { Link } from "react-router-dom";
 
-const navItems = [
+// Define a type for navigation items
+type NavItem = { label: string; href: string };
+
+const navItems: NavItem[] = [
   { label: "Accueil", href: "/" },
   { label: "À propos", href: "/a-propos" },
   { label: "Cours", href: "/cours" },
@@ -18,15 +19,26 @@ const navItems = [
 export default function Header({ isLoggedIn }: { isLoggedIn: boolean }) {
   const [showSearch, setShowSearch] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [searchQuery, setSearchQuery] = useState("");
+  const [searchResults, setSearchResults] = useState<NavItem[]>([]); // Explicitly define the type
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
 
+  const handleSearch = () => {
+    const results = navItems.filter(item => 
+      item.label.toLowerCase().includes(searchQuery.toLowerCase())
+    );
+    console.log('Search Query:', searchQuery);  // Log the search query
+    console.log('Filtered Results:', results);  // Log the filtered results
+    setSearchResults(results);
+  };
+  
+
   return (
     <header>
       <div className="flex gap-5 justify-between items-center px-14 py-1.5 w-full border-b border-solid bg-white border-bgColor md:flex-wrap max-md:border-none max-md:px-5 max-md:max-w-full font-lato">
-        {/* Navbar */}
         <div className="flex gap-7">
           <nav className="mx-auto gap-6 flex items-center">
             <a href="/" className=" text-2xl">
@@ -54,7 +66,6 @@ export default function Header({ isLoggedIn }: { isLoggedIn: boolean }) {
             </div>
           </nav>
 
-          {/* Search Bar */}
           <div className="flex flex-col justify-center">
             {!showSearch && (
               <button
@@ -67,25 +78,32 @@ export default function Header({ isLoggedIn }: { isLoggedIn: boolean }) {
             {showSearch && (
               <div>
                 <div className="flex flex-row justify-center items-center">
-                  {/* Search Bar */}
                   <input
                     type="text"
                     className="border-b border-gray-300 focus:border-gray-500 outline-none px-4 py-2"
                     placeholder="Search..."
+                    value={searchQuery}
+                    onChange={(e) => setSearchQuery(e.target.value)}
                   />
                   <button
                     className="py-7"
-                    onClick={() => setShowSearch(!showSearch)}
+                    onClick={() => {
+                      handleSearch();
+                      setShowSearch(!showSearch);
+                    }}
                   >
                     <IoMdSearch className="text-2xl text-stone-500" />
                   </button>
                 </div>
-
-                {/* Recent Search Items */}
-                <div className="">
-                  <div>Item 1</div>
-                  <div>Item 2</div>
-                </div>
+                {searchResults.length > 0 && (
+                  <div className="search-results mt-2">
+                    {searchResults.map((item, index) => (
+                      <a key={index} href={item.href} className="block py-1">
+                        {item.label}
+                      </a>
+                    ))}
+                  </div>
+                )}
               </div>
             )}
           </div>
@@ -121,7 +139,6 @@ export default function Header({ isLoggedIn }: { isLoggedIn: boolean }) {
             <IoIosMenu className="text-4xl text-stone-500" />
           </button>
         </div>
-        {/* Hamburger Menu */}
       </div>
       {isMenuOpen && (
         <div className="md:hidden flex items-center justify-center flex-col space-y-2 mt-2">

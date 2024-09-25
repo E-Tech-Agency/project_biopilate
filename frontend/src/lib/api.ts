@@ -9,8 +9,7 @@ const refresh_token = localStorage.getItem('refresh_token') || "";
 
 console.log('access: ', accessToken);
 console.log('Current Time:', dayjs().format());
-const baseURL = 'http://localhost:8000/api/';
-
+const baseURL = 'http://141.94.23.119/api/';
 const api = axios.create({
     baseURL: baseURL,
     headers: { 
