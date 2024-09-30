@@ -1,10 +1,9 @@
-
 import engagement1 from "@/assets/images/engagement-1.jpg";
 import engagement2 from "@/assets/images/engagement-2.jpg";
 
 export default function Engagement() {
   return (
-    <section className="mb-14 2xl:mx-6">
+    <section className="mb-14 2xl:mx-6 flex flex-col justify-center items-center">
       <p className="text-marron text-2xl mb-20 font-ebGaramond font-bold">
         Engagement envers nos clients
       </p>

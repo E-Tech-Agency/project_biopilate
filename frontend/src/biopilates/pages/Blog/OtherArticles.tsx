@@ -1,12 +1,11 @@
-
 import "swiper/swiper-bundle.css";
-import '@/assets/styles/swiper.css';
+import "@/assets/styles/swiper.css";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/effect-coverflow";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
-import {  Pagination, Navigation } from "swiper/modules";
+import { Pagination, Navigation } from "swiper/modules";
 import { FaArrowLeftLong, FaArrowRightLong } from "react-icons/fa6";
 import BlogCard from "@/biopilates/components/BlogCard";
 
@@ -19,10 +18,9 @@ interface Article {
   image: string;
 }
 
-
 export default function OtherArticles({ articles }: { articles: Article[] }) {
   return (
-    <div className="container w-full">
+    <div className="w-full">
       <Swiper
         effect={"coverflow"}
         grabCursor={true}

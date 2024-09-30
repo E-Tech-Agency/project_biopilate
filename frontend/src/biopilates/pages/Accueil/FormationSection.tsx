@@ -1,4 +1,3 @@
-
 import FormationCard from "@/biopilates/components/FormationCard";
 import { FaArrowLeftLong, FaArrowRightLong } from "react-icons/fa6";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -6,17 +5,17 @@ import "swiper/swiper-bundle.css";
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
-import '@/assets/styles/swiper.css';
+import "@/assets/styles/swiper.css";
 import { Pagination, Navigation } from "swiper/modules";
 
 // Import images directly
-import reformerImage from '@/assets/images/reformer.jpg';
-import formation2Image from '@/assets/images/formation-2.jpg';
-import reformerGyrotonicImage from '@/assets/images/reformer-gyrotonic.jpg';
-import formation1Image from '@/assets/images/formation-1.jpg';
-import formation5Image from '@/assets/images/formation-5.png';
-import Matwork from '@/assets/images/formation-6.jpg';
-import Blessures from '@/assets/images/formation-3.png'
+import reformerImage from "@/assets/images/reformer.jpg";
+import formation2Image from "@/assets/images/formation-2.jpg";
+import reformerGyrotonicImage from "@/assets/images/reformer-gyrotonic.jpg";
+import formation1Image from "@/assets/images/formation-1.jpg";
+import formation5Image from "@/assets/images/formation-5.png";
+import Matwork from "@/assets/images/formation-6.jpg";
+import Blessures from "@/assets/images/formation-3.png";
 // Define TypeScript interface for formation data
 interface Formation {
   title: string;
@@ -72,7 +71,7 @@ export default function FormationSection() {
   return (
     <div>
       <div className="mb-6 flex flex-col justify-center items-center gap-4 md:gap-2">
-        <p className="text-blueText text-3xl font-ebGaramond font-bold">
+        <p className="text-gray-500 text-3xl font-ebGaramond font-bold">
           Formations professionnelles pour devenir instructeur Pilates
         </p>
         <p className="lg:mx-40 text-center text-xl max-w-[1200px]">
@@ -89,8 +88,11 @@ export default function FormationSection() {
         loop={true}
         spaceBetween={30}
         slideToClickedSlide={true}
-        pagination={{ clickable: true }}
-        navigation={{}}
+        pagination={{ el: ".swiper-pagination", clickable: true }} // Move clickable here
+        navigation={{
+          nextEl: ".swiper-but-next",
+          prevEl: ".swiper-but-prev",
+        }}
         modules={[Pagination, Navigation]}
         breakpoints={{
           1920: {

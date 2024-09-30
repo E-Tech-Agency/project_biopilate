@@ -22,17 +22,11 @@ export default defineConfig({
   server: {
     port: 5173,
     open: true,
-    proxy: {
-      '/api': {
-        target: 'http://141.94.23.119:8000', 
-        changeOrigin: true, // Changes the origin of the host header to the target URL
-        rewrite: (path) => path.replace(/^\/api/, '') // Optional: rewrite path if necessary
-      }
-    }
+   
   },
   define: {
     'process.env': {
-      API_BASE_URL: 'http://141.94.23.119:8000/api/',
+      API_BASE_URL: 'http://localhost:8000/api/',
     }
   }
 });

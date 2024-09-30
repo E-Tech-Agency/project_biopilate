@@ -141,6 +141,11 @@ export default function Accueil() {
       {/* Services */}
       <ServicesSection />
 
+      {/* tarif button */}
+      <div className="mx-auto my-10 flex flex-col justify-center items-center text-base leading-6 rounded-md px-5 py-3 bg-bgColor text-marron font-bold w-fit">
+        Voir nos tarifs
+      </div>
+
       {/* Formations */}
       <FormationSection />
 
@@ -160,7 +165,8 @@ export default function Accueil() {
         <div className="flex justify-between items-center gap-4 z-[1] mx-6 sm:mx-10 w-full">
           <div className="flex flex-col justify-center gap-4 text-xs ">
             <p className="text-white text-3xl">
-              Découvrez le Polates chez nous</p>
+              Découvrez le Polates chez nous
+            </p>
             <p className="text-white sm:text-lg md:text-xl text-shadow-2xl">
               Profitez d’un offre découverte à un prix raisonnable pour
               découvrir les bienfaits du Pilates.
@@ -182,11 +188,7 @@ export default function Accueil() {
       {/* Blog */}
       <section className="mb-16">
         <div className="relative flex flex-col justify-center items-center gap-4">
-          <img
-            src={blogBg}
-            alt=""
-            className="absolute blur-3xl opacity-65"
-          />
+          <img src={blogBg} alt="" className="absolute blur-3xl opacity-65" />
           <div className="relative flex flex-col justify-center items-center gap-4 w-full overflow-hidden">
             <div className="mb-6 flex flex-col justify-center items-center gap-1">
               <p className="text-3xl font-ebGaramond text-marron font-bold">

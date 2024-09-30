@@ -75,9 +75,6 @@ function App() {
       return regex.test(currentRoute);
     });
   };
-  
-  
-  
 
   // Consolidated routes that hide certain components
   const hiddenRoutes = {
@@ -113,7 +110,7 @@ function App() {
       "/login",
       "/",
       "/reset_password/:id/:token",
-    
+
       "/a-propos",
       "/cours",
       "/formations",
@@ -125,10 +122,9 @@ function App() {
       "/a-propos/evolis",
       "/a-propos/gyrotonic",
       "/a-propos/Gyrotonic",
-     "/a-propos/STOTTPILATES",
-     
+      "/a-propos/STOTTPILATES",
     ],
-    footer: ["/login", "/register", "/login","/reset_password/:id/:token"],
+    footer: ["/login", "/register", "/login", "/reset_password/:id/:token"],
   };
 
   const currentRoute = location.pathname;
@@ -170,7 +166,7 @@ function App() {
             <Route path="/a-propos/gyrotonic" element={<Gyrotonic />} />
 
             {/* Dashboard & Auth */}
-            
+
             <Route
               path="/login"
               element={<LoginForm setIsLoggedIn={setIsLoggedIn} />}
@@ -228,7 +224,7 @@ function App() {
       {!isFooterHidden && <Footer />}
 
       {/* Toast notifications */}
-      <Toaster />
+      {/* <Toaster /> */}
     </div>
   );
 }

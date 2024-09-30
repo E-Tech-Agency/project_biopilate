@@ -66,12 +66,9 @@ MIDDLEWARE = [
 CORS_ALLOW_ALL_ORIGINS=True
 CORS_ALLOW_CREDENTIALS=True
 CSRF_TRUSTED_ORIGINS = [
-    "http://localhost:5173","http://141.94.23.119",
+    "http://localhost:5173",
 ]
 ROOT_URLCONF = 'backend.urls'
-CORS_ALLOWED_ORIGINS = [
-    "http://141.94.23.119",
-]
 
 TEMPLATES = [
     {
@@ -99,7 +96,7 @@ MEDIA_ROOT = BASE_DIR / 'media'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'biopilate',
+        'NAME': 'dev_biopilates',
         'USER': 'multilab',
         'PASSWORD': 'root',
         'HOST': 'localhost',
