@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 
 import "./styles/index.css";
 
-import { Toaster } from "@/components/ui/sonner";
+// import { Toaster } from "@/components/ui/sonner";
 import { ResetPassword } from "@/pages/reset-password";
 import { Dashboard } from "./pages/dashboard";
 import Header from "@/biopilates/layout/Header";
@@ -49,6 +49,7 @@ import CreateFAQFrom from "./components/biopilate/CreateFAQFrom";
 import CreateFormationForm from "./components/biopilate/CreateFormationForm";
 import EditBlog from "./pages/EditBlog";
 import EditCourForm from "./pages/EditCourForm";
+import ScrollToTop from "./biopilates/components/ScrollToTop";
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -108,7 +109,7 @@ function App() {
       "/login",
       "/register",
       "/login",
-      "/",
+
       "/reset_password/:id/:token",
 
       "/a-propos",
@@ -124,14 +125,15 @@ function App() {
       "/a-propos/Gyrotonic",
       "/a-propos/STOTTPILATES",
     ],
-    footer: ["/login", "/register", "/login", "/reset_password/:id/:token"],
   };
 
   const currentRoute = location.pathname;
 
   const isNavHidden = isRouteHidden(hiddenRoutes.nav, currentRoute);
-  const isSideNavHidden = isRouteHidden(hiddenRoutes.sideNav, currentRoute);
-  const isFooterHidden = isRouteHidden(hiddenRoutes.footer, currentRoute);
+  const isSideNavHidden =
+    isRouteHidden(hiddenRoutes.sideNav, currentRoute) || currentRoute === "/";
+
+  const isFooterHidden = isNavHidden;
 
   return (
     <div className={`w-full min-h-screen ${!isSideNavHidden && "flex"}`}>
@@ -143,7 +145,7 @@ function App() {
         {!isNavHidden && <Header isLoggedIn={isLoggedIn} />}
 
         {/* Conditionally render Navbar */}
-        {!isFooterHidden && isNavHidden && (
+        {isNavHidden && (
           <Navbar isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />
         )}
 
@@ -152,6 +154,7 @@ function App() {
             !isSideNavHidden && "lg:w-[calc(100vw-265px)]"
           } min-h-[calc(100vh-5rem)] bg-gray-50`}
         >
+          <ScrollToTop />
           <Routes>
             {/* Public Routes */}
             <Route path="/" element={<Accueil />} />

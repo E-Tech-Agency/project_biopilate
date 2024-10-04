@@ -34,7 +34,6 @@ export default function BlogCard({ article }: BlogCardProps) {
   return (
     <div
       className="bg-white flex flex-col justify-center items-center shadow-2xl gap-2 rounded-3xl w-[260px] sm:w-[410px] max-h-[600px] p-4"
-      onClick={navigateToArticle} // Navigate on card click
       style={{ cursor: "pointer" }} // Show pointer cursor to indicate clickable card
     >
       <div className="flex flex-col items-end bg-white">

@@ -1,10 +1,9 @@
-
 import TemoignageCard from "./TemoignageCard";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/swiper-bundle.css";
 import "swiper/css";
 import "swiper/css/pagination";
-import'@/assets/styles/swiper.css';
+import "@/assets/styles/swiper.css";
 import { Pagination } from "swiper/modules";
 
 export default function TemoignagesSection() {
@@ -30,7 +29,13 @@ export default function TemoignagesSection() {
       review:
         "Excellent Studio de Caroline BERGER ! Caroline est très attentive à nos besoins et nous suit avec beaucoup d'attention. C'est un grand plaisir faire du sport, s'occuper de son corps avec une grande professionnelle, dans un beau studio et le tout accompagné de plein de petit poissons! 😍",
     },
-    
+    {
+      user: "Julia",
+      note: 5,
+      title: "Excellent Studio de Caroline BERGER.",
+      review:
+        "Excellent Studio de Caroline BERGER ! Caroline est très attentive à nos besoins et nous suit avec beaucoup d'attention. C'est un grand plaisir faire du sport, s'occuper de son corps avec une grande professionnelle, dans un beau studio et le tout accompagné de plein de petit poissons! 😍",
+    },
   ];
   return (
     <div>

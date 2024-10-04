@@ -1,11 +1,12 @@
 import "swiper/swiper-bundle.css";
 import "@/assets/styles/swiper.css";
+import "@/assets/styles/middleCard.css";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/effect-coverflow";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
-import { Pagination, Navigation } from "swiper/modules";
+import { Pagination, Navigation, EffectCoverflow } from "swiper/modules";
 import { FaArrowLeftLong, FaArrowRightLong } from "react-icons/fa6";
 import BlogCard from "@/biopilates/components/BlogCard";
 
@@ -24,8 +25,17 @@ export default function OtherArticles({ articles }: { articles: Article[] }) {
       <Swiper
         effect={"coverflow"}
         grabCursor={true}
-        loop={true}
+        centeredSlides={true} // Center the active slide
+        loop={true} // Allow infinite looping
         slideToClickedSlide={true}
+        initialSlide={1}
+        coverflowEffect={{
+          rotate: 0, // No rotation
+          stretch: 0, // No stretch effect
+          depth: 190, // Depth of the 3D effect
+          modifier: 1, // Modify how strong the effect is
+          slideShadows: false, // Disable shadows to simplify the look
+        }}
         pagination={{
           el: ".swiper-pagination",
           clickable: true,
@@ -34,10 +44,10 @@ export default function OtherArticles({ articles }: { articles: Article[] }) {
           nextEl: ".swiper-but-next",
           prevEl: ".swiper-but-prev",
         }}
-        modules={[Pagination, Navigation]}
+        modules={[Pagination, Navigation, EffectCoverflow]} // Include coverflow effect
         breakpoints={{
           1920: {
-            slidesPerView: 4,
+            slidesPerView: 3,
             spaceBetween: 25,
           },
           1600: {
@@ -56,36 +66,27 @@ export default function OtherArticles({ articles }: { articles: Article[] }) {
             slidesPerView: 2,
             spaceBetween: 10,
           },
-          990: {
-            slidesPerView: 2,
-            spaceBetween: 8,
-          },
           768: {
             slidesPerView: 1,
             spaceBetween: 5,
           },
-
           640: {
-            slidesPerView: 1,
-            spaceBetween: 4,
-          },
-          550: {
             slidesPerView: 1,
             spaceBetween: 4,
           },
         }}
       >
-        <div className="flex flex-nowrap justify-center items-center gap-2 overflow-hidden w-full">
+        <div className="flex flex-nowrap justify-center items-center gap-2 overflow-hidden w-full ">
           {articles.map((article) => (
             <SwiperSlide
               key={article.id}
-              className="flex flex-col justify-center items-center"
+              className="flex flex-col justify-center items-center swiper-slide-custom " // Custom class for further styling
             >
               <BlogCard article={article} />
             </SwiperSlide>
           ))}
         </div>
-        <div className="slider-controler flex justify-center items-ce gap-4 mb-10">
+        <div className="slider-controller flex justify-center items-center gap-4 mb-10">
           <div className="cursor-pointer swiper-but-prev slider-arrow hidden sm:flex justify-center items-center bg-bgColor rounded-full w-10 h-10">
             <FaArrowLeftLong className="text-marron" />
           </div>

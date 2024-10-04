@@ -7,7 +7,7 @@ export default function Engagement() {
       <p className="text-marron text-2xl mb-20 font-ebGaramond font-bold">
         Engagement envers nos clients
       </p>
-      <div className="flex justify-center flex-row flex-wrap gap-2 md:gap-10 2xl:gap-8">
+      <div className="flex justify-center flex-row max-lg:flex-wrap gap-2 md:gap-10 2xl:gap-8">
         <div className="justify-center items-center gap-4 mr-4 rounded-full w-[402px] h-[402px] pr-9 hidden md:flex">
           <img
             loading="lazy"
@@ -23,8 +23,8 @@ export default function Engagement() {
             className="custom-half-circle-left h-[314px] shadow-lg pt-4"
           />
         </div>
-        <div className="grid grid-cols-1 grid-rows-2 md:grid-cols-2 gap-y-16 gap-x-16 md:gap-y-6 xl:gap-y-4 lg:gap-x-6 w-[90%] 2xl:w-[60%]">
-          <div className="flex items-center self-center gap-4  ">
+        <div className="grid grid-cols-1 grid-rows-2 md:grid-cols-2 gap-y-16 md:gap-y-6 xl:gap-y-4 gap-x-16 lg:gap-x-14 w-[80%] 2xl:w-[60%]">
+          <div className="flex items-center self-center gap-4 z-10 ">
             <div>
               <div className="bg-bgColor rounded-full w-[36px] h-[36px] absolute mt-[-8px] z-[-1]"></div>
               <svg
@@ -43,7 +43,7 @@ export default function Engagement() {
             </div>
             Amélioration de la condition physique et de la santé.
           </div>
-          <div className="flex items-center self-center gap-4  ">
+          <div className="flex items-center self-center gap-4 z-10 ">
             <div>
               <div className="bg-bgColor rounded-full w-[36px] h-[36px] absolute mt-[-8px] z-[-1]"></div>
               <svg
@@ -61,7 +61,7 @@ export default function Engagement() {
             </div>
             Diminution du stress et amélioration du bien être.{" "}
           </div>
-          <div className="flex items-center self-center gap-4  ">
+          <div className="flex items-center self-center gap-4 z-10 ">
             <div>
               <div className="bg-bgColor rounded-full w-[36px] h-[36px] absolute mt-[-8px] z-[-1]"></div>
               <svg
@@ -79,7 +79,7 @@ export default function Engagement() {
             </div>
             Renforcement musculaire et gain de souplesse.{" "}
           </div>
-          <div className="flex items-center self-center gap-4  ">
+          <div className="flex items-center self-center gap-4 z-10 ">
             <div>
               <div className="bg-bgColor rounded-full w-[36px] h-[36px] absolute mt-[-8px] z-[-1]"></div>
               <svg

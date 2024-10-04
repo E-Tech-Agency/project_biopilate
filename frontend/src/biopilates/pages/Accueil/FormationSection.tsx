@@ -142,7 +142,7 @@ export default function FormationSection() {
           </SwiperSlide>
         ))}
 
-        <div className="slider-controler flex justify-center gap-4 mb-10">
+        <div className="slider-controler flex justify-center gap-10 mb-10">
           <div className="cursor-pointer swiper-but-prev slider-arrow hidden sm:flex justify-center items-center bg-bgColor rounded-full w-10 h-10">
             <FaArrowLeftLong className="text-marron" />
           </div>

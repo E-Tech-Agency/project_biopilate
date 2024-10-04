@@ -2,12 +2,12 @@ import hero from "@/assets/images/hero-pic.png";
 
 export default function Hero() {
   return (
-    <section className="relative mt-14 mb-20 py-10 flex max-lg:flex-wrap justify-center lg:justify-end items-center gap-5 md:gap-9 lg:gap-14 xl:gap-20 min-h-[610px] bg-bgColor rounded-md">
-      <h1 className="absolute inset-0 flex justify-center items-center sm:text-[100px] md:text-[160px] lg:text-[220px] xl:text-[280px] font-ebGaramond text-lightBgColor font-bold tracking-wider">
+    <section className="relative mt-14 mb-20 py-10 flex max-lg:flex-wrap justify-center lg:justify-between items-center gap-5 md:gap-9 lg:gap-14 xl:gap-16 min-h-[610px] bg-bgColor rounded-md">
+      <h1 className="absolute inset-0 flex justify-center items-center text-6xl sm:text-[100px] md:text-[160px] lg:text-[220px] xl:text-[280px] font-ebGaramond text-lightBgColor font-bold tracking-wider">
         PILATES
       </h1>
 
-      <div className="flex flex-col px-3 xl:px-10 md:px-6 w-[600px] gap-5 font-lato z-10 ">
+      <div className="flex flex-col pl-8 md:pl-14 xl:pl-24 w-[600px] gap-5 font-lato z-10 ">
         <div>
           <p className="text-marron text-3xl leading-10 font-bold font-ebGaramond">
             Équilibre et Élégance :
@@ -28,7 +28,7 @@ export default function Hero() {
         loading="lazy"
         src={hero}
         alt="Biopilate trainer"
-        className="h-[350px] z-10 object-cover "
+        className="max-h-[250px] lg:max-h-[350px] z-10 object-cover max-lg:px-10"
       />
 
       {/* <div className="flex justify-center items-center gap-3 sm:gap-4 mr-2 sm:mr-4 border border-solid border-marron rounded-full w-[233px] h-[233px] sm:w-[428px] sm:h-[428px] pr-5 sm:pr-9 z-10">

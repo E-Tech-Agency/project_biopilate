@@ -1,29 +1,27 @@
-
 import StartupAnimation from "./StartupAnimation";
 import gyrotonic1 from "@/assets/images/gyrotonic-1.jpg";
 import reformerGyrotonicEvolis from "@/assets/images/reformer-gyrotonic-evolis.png";
 import gyrotonic3 from "@/assets/images/gyrotonic-3.png";
 import gyrotonic4 from "@/assets/images/gyrotonic-4.png";
-import gyrotonic5 from "@/assets/images/gyrotonic-5.png"
+import gyrotonic5 from "@/assets/images/gyrotonic-5.png";
 import gyrotonic from "@/assets/images/gyrotonic.jpg";
 import gyrokinesis from "@/assets/images/gyrokinesis.jpg";
 import gyrotonicEndurance from "@/assets/images/gyrotonic-endurance.png";
 import gyrotonicFlexibilite from "@/assets/images/gyrotonic-flexibilite.jpg";
 import gyrotonicCoordination from "@/assets/images/gyrotonic-coordination.jpg";
 export default function StottPilates() {
-    const images = [
-        gyrotonic1,
-        reformerGyrotonicEvolis,
-        gyrotonic3,
-        gyrotonic4,
-        gyrotonic,
-        gyrokinesis,
-        gyrotonicEndurance,
-        gyrotonicFlexibilite,
-        gyrotonicCoordination,
-        gyrotonic5,
-
-      ];
+  const images = [
+    gyrotonic1,
+    reformerGyrotonicEvolis,
+    gyrotonic3,
+    gyrotonic4,
+    gyrotonic,
+    gyrokinesis,
+    gyrotonicEndurance,
+    gyrotonicFlexibilite,
+    gyrotonicCoordination,
+    gyrotonic5,
+  ];
   return (
     <div className="relative overflow-hidden">
       <StartupAnimation images={images} />
@@ -131,9 +129,7 @@ export default function StottPilates() {
                 alt="stott posture"
                 className="rounded-full w-[150px] h-[150px] sm:w-[165px] sm:h-[165px] object-cover shadow-lg"
               />
-              <h2 className="w-[150px]  sm:w-[165px] ">
-              Flexibilité
-              </h2>
+              <h2 className="w-[150px]  sm:w-[165px] ">Flexibilité</h2>
             </div>
             <div className="flex justify-center items-center flex-col gap-4">
               <img
@@ -182,9 +178,7 @@ export default function StottPilates() {
                 alt="stott posture"
                 className="rounded-full w-[150px] h-[150px] sm:w-[270px] sm:h-[270px] object-cover shadow-lg"
               />
-              <h2 className="w-[150px]  sm:w-[270px] ">
-              L'Archway
-              </h2>
+              <h2 className="w-[150px]  sm:w-[270px] ">L'Archway</h2>
             </div>
             <div className="flex justify-center items-center flex-col gap-4">
               <img
@@ -213,7 +207,7 @@ export default function StottPilates() {
               commencez votre transformation.
             </p>
 
-            <button className=" reserver-button flex mr-auto flex-col justify-center text-base rounded-lg px-9 py-3 bg-white text-marron font-lato font-bold">
+            <button className=" flex mr-auto flex-col justify-center text-base rounded-lg px-9 py-3 bg-white text-marron font-lato font-bold">
               Réserver
             </button>
           </div>

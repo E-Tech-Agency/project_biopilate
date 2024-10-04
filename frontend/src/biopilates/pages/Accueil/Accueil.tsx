@@ -18,15 +18,6 @@ import blogBg from "@/assets/images/blog-bg.jpg";
 
 const articles = [
   {
-    id: 1,
-    title: "La maison vieille",
-    ecrivain: "Véronique Fournier",
-    description:
-      "La Maison Vieille est un lieu de soutien et de bien-être pour les personnes âgées, visant à briser leur isolement et à offrir des moments enrichissants.",
-    jaimes: 49,
-    image: articleImage1,
-  },
-  {
     id: 2,
     title: "Titre",
     ecrivain: "Par Biopilates",
@@ -34,6 +25,15 @@ const articles = [
       "Vous êtes débutant en Pilates et vous vous demandez comment bien commencer ? Découvrez nos 5 conseils pour débuter le Pilates.",
     jaimes: 39,
     image: placeholderImage,
+  },
+  {
+    id: 1,
+    title: "La maison vieille",
+    ecrivain: "Véronique Fournier",
+    description:
+      "La Maison Vieille est un lieu de soutien et de bien-être pour les personnes âgées, visant à briser leur isolement et à offrir des moments enrichissants.",
+    jaimes: 49,
+    image: articleImage1,
   },
   {
     id: 3,
@@ -109,12 +109,12 @@ export default function Accueil() {
             className="rounded-full w-[220px] h-[220px] sm:w-[312px] sm:h-[312px] object-cover md:hidden mb-2"
           />
           <div className="text-sm sm:text-base">
-            <p className="leading-7">
+            <p className="leading-9">
               Premier studio <strong>STOTT Pilates</strong> en France, nous vous
               offrons une expérience unique pour une transformation physique et
               mentale profonde.
             </p>
-            <p className="leading-7">
+            <p className="leading-9">
               Cours de Pilates pour tous niveaux{" "}
               <strong>
                 Reformer , Reformer et Gyrotonic , Reformer Gyrotonic
@@ -122,7 +122,7 @@ export default function Accueil() {
               et Evolis dispensés par des{" "}
               <strong>instructeurs certifiés</strong>.
             </p>
-            <p className="leading-7">
+            <p className="leading-9">
               Renforcez vos muscles, perdez du poids, développez votre souplesse
               et atteignez vos objectifs grâce à nos cours de Pilates
               personnalisés. Profitez d'une <strong>séance découverte</strong>{" "}
@@ -164,10 +164,10 @@ export default function Accueil() {
         />
         <div className="flex justify-between items-center gap-4 z-[1] mx-6 sm:mx-10 w-full">
           <div className="flex flex-col justify-center gap-4 text-xs ">
-            <p className="text-white text-3xl">
+            <p className="text-white font-ebGaramond text-lg sm:text-2xl md:text-3xl text-shadow-2xl">
               Découvrez le Polates chez nous
             </p>
-            <p className="text-white sm:text-lg md:text-xl text-shadow-2xl">
+            <p className="text-white sm:text-base md:text-xl text-shadow-2xl">
               Profitez d’un offre découverte à un prix raisonnable pour
               découvrir les bienfaits du Pilates.
             </p>
