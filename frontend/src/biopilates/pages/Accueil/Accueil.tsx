@@ -186,7 +186,7 @@ export default function Accueil() {
       </section>
 
       {/* Blog */}
-      <section className="mb-16">
+      <section className="mb-8">
         <div className="relative flex flex-col justify-center items-center gap-4">
           <img src={blogBg} alt="" className="absolute blur-3xl opacity-65" />
           <div className="relative flex flex-col justify-center items-center gap-4 w-full overflow-hidden">

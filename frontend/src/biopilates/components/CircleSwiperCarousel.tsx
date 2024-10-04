@@ -12,7 +12,9 @@ interface CircleSwiperCarouselProps {
   images: string[];
 }
 
-const CircleSwiperCarousel: React.FC<CircleSwiperCarouselProps> = ({ images }) => {
+const CircleSwiperCarousel: React.FC<CircleSwiperCarouselProps> = ({
+  images,
+}) => {
   return (
     <div className="container overflow-hidden">
       <Swiper
@@ -22,6 +24,29 @@ const CircleSwiperCarousel: React.FC<CircleSwiperCarouselProps> = ({ images }) =
         spaceBetween={-160}
         loop={true}
         slidesPerView={4}
+        breakpoints={{
+          1920: {
+            slidesPerView: 4,
+          },
+          1600: {
+            slidesPerView: 4,
+          },
+          1440: {
+            slidesPerView: 4,
+          },
+          1280: {
+            slidesPerView: 4,
+          },
+          1028: {
+            slidesPerView: 3,
+          },
+          768: {
+            slidesPerView: 2,
+          },
+          640: {
+            slidesPerView: 2,
+          },
+        }}
         coverflowEffect={{
           rotate: 0,
           stretch: 0,
@@ -47,15 +72,15 @@ const CircleSwiperCarousel: React.FC<CircleSwiperCarouselProps> = ({ images }) =
             />
           </SwiperSlide>
         ))}
-        
+
         <div className="slider-controler flex justify-center gap-20">
-          <div className="swiper-but-prev slider-arrow cursor-pointer">
+          <div className="swiper-but-prev slider-arrow cursor-pointer max-sm:hidden">
             <IoIosArrowBack className="text-marron text-4xl" />
           </div>
-          <div className="swiper-but-next slider-arrow cursor-pointer">
+          <div className="swiper-but-next slider-arrow cursor-pointer max-sm:hidden">
             <IoIosArrowForward className="text-marron text-4xl" />
           </div>
-          <div className="swiper-pagination"></div>
+          <div className="swiper-pagination m-auto z-[1] block sm:hidden"></div>
         </div>
       </Swiper>
     </div>
