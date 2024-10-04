@@ -21,6 +21,7 @@ export const theme = {
       marron: '#756E66',
       blueText:'#666975',
       grayText: '#495057',
+      lightBgColor: '#f1e8df',
       border: "hsl(var(--border))",
       input: "hsl(var(--input))",
       ring: "hsl(var(--ring))",
@@ -63,7 +64,6 @@ export const theme = {
       '2xl': '0 25px 50px rgba(0, 0, 0, 0.25)',
       'none': 'none',
     },
-
     borderRadius: {
       lg: "var(--radius)",
       md: "calc(var(--radius) - 2px)",
@@ -85,7 +85,7 @@ export const theme = {
     },
     fontFamily: {
       lato: ['Lato', 'sans-serif'],
-      ebGaramond: ['"EB Garamond"', 'serif'],
+      ebGaramond: ['EB Garamond', 'serif'],
     },
   },
 };
