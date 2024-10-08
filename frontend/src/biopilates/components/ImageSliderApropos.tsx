@@ -8,8 +8,7 @@ import "swiper/swiper-bundle.css";
 import { Pagination } from "swiper/modules";
 import { BsArrowUpRight } from "react-icons/bs";
 import { useNavigate } from "react-router-dom";
-import { Swiper as SwiperType } from 'swiper/types';
-
+import { Swiper as SwiperType } from "swiper/types";
 
 // Define types for the props
 type ListItem = {
@@ -23,7 +22,10 @@ interface ImageSliderAproposProps {
   action: string;
 }
 
-export default function ImageSliderApropos({ list, action }: ImageSliderAproposProps) {
+export default function ImageSliderApropos({
+  list,
+  action,
+}: ImageSliderAproposProps) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [hoverIndex, setHoverIndex] = useState<number | null>(null);
   const [isMobile, setIsMobile] = useState(false);
@@ -67,7 +69,7 @@ export default function ImageSliderApropos({ list, action }: ImageSliderAproposP
 
   return (
     <div className="mb-14 flex flex-col-reverse lg:flex-row gap-5 xl:gap-8 max-lg:flex-wrap overflow-hidden lg:h-[530px]">
-      <div className="flex flex-col justify-center max-md:items-center px-3 xl:px-2 md:px-5 lg:min-w-[35%] lg:max-w-[50%] gap-4 font-lato">
+      <div className="flex flex-col justify-center max-md:items-center px-3 xl:px-2 md:px-5 lg:min-w-[35%] lg:max-w-[60%] gap-4 font-lato">
         <div className="text-wrapper overflow-hidden relative h-[50px]">
           <p
             className={`text-blueText text-3xl leading-snug hidden font-ebGaramond font-bold  lg:block title-animation ${
@@ -89,7 +91,7 @@ export default function ImageSliderApropos({ list, action }: ImageSliderAproposP
           <div>{action}</div>
         </button>
       </div>
-      <div className="container">
+      <div className="container w-full">
         <Swiper
           className="relative"
           grabCursor={true}
@@ -97,51 +99,42 @@ export default function ImageSliderApropos({ list, action }: ImageSliderAproposP
           loop={true}
           spaceBetween={10}
           slideToClickedSlide={true}
-          onSlideChange={(swiper: SwiperType) => handleImageClick(swiper.realIndex)} // Type the swiper parameter
-
+          onSlideChange={(swiper: SwiperType) =>
+            handleImageClick(swiper.realIndex)
+          } // Type the swiper parameter
           pagination={{ el: ".swiper-pagination", clickable: true }} // Correct property name
           modules={[Pagination]}
           initialSlide={1}
           breakpoints={{
             1920: {
-              slidesPerView: 5,
-              spaceBetween: 20,
+              slidesPerView: 4,
             },
             1600: {
               slidesPerView: 4,
-              spaceBetween: 20,
             },
             1440: {
               slidesPerView: 4,
-              spaceBetween: 15,
             },
             1280: {
-              slidesPerView: 3,
-              spaceBetween: 10,
+              slidesPerView: 4,
             },
             1028: {
               slidesPerView: 3,
-              spaceBetween: 10,
             },
             990: {
               slidesPerView: 2,
-              spaceBetween: 8,
             },
             768: {
               slidesPerView: 2,
-              spaceBetween: 5,
             },
             640: {
               slidesPerView: 1,
-              spaceBetween: 4,
             },
             550: {
               slidesPerView: 1,
-              spaceBetween: 4,
             },
             310: {
               slidesPerView: 1,
-              spaceBetween: 4,
             },
           }}
         >
@@ -153,10 +146,10 @@ export default function ImageSliderApropos({ list, action }: ImageSliderAproposP
               }`}
             >
               <div
-                className={`relative rounded-lg cursor-pointer transition-all duration-400 ${
+                className={`relative rounded-lg transition-all duration-400 ${
                   currentIndex === index
                     ? "w-[300px] h-[450px]"
-                    : "w-[206px] h-[309px] sm:w-[240px] sm:h-[360px]"
+                    : "w-[206px] h-[309px] sm:w-[240px] sm:h-[360px] mt-[90px] "
                 }`}
                 onClick={() => handleImageClick(index)}
                 onMouseEnter={() => handleMouseEnter(index)}
@@ -186,7 +179,7 @@ export default function ImageSliderApropos({ list, action }: ImageSliderAproposP
                         Découvrir notre méthode
                       </h3>
                       <div
-                        className="flex justify-center items-center text-lg font-semibold absolute bottom-0 left-0 right-0 text-center pb-12"
+                        className="flex justify-center items-center text-lg font-semibold absolute bottom-0 left-0 right-0 text-center cursor-pointer pb-12"
                         onClick={(e) => {
                           e.stopPropagation(); // Prevent card click when button is clicked
                           navigateToMethode(item.title); // Navigate when button is clicked

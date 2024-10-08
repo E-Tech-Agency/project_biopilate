@@ -82,7 +82,6 @@ function App() {
     nav: [
       "/login",
       "/register",
-      "/login",
       "/reset_password/:id/:token",
       "/dashboard",
       "/admin",
@@ -108,10 +107,7 @@ function App() {
     sideNav: [
       "/login",
       "/register",
-      "/login",
-
       "/reset_password/:id/:token",
-
       "/a-propos",
       "/cours",
       "/formations",
@@ -125,6 +121,7 @@ function App() {
       "/a-propos/Gyrotonic",
       "/a-propos/STOTTPILATES",
     ],
+    reg: ["/login", "/register"],
   };
 
   const currentRoute = location.pathname;
@@ -132,11 +129,13 @@ function App() {
   const isNavHidden = isRouteHidden(hiddenRoutes.nav, currentRoute);
   const isSideNavHidden =
     isRouteHidden(hiddenRoutes.sideNav, currentRoute) || currentRoute === "/";
-
+  const isRegOrLogin = isRouteHidden(hiddenRoutes.reg, currentRoute);
   const isFooterHidden = isNavHidden;
 
   return (
-    <div className={`w-full min-h-screen ${!isSideNavHidden && "flex"}`}>
+    <div
+      className={`w-full min-h-screen bg-gray-50 ${!isSideNavHidden && "flex"}`}
+    >
       {/* Conditionally render SideNav */}
       {!isSideNavHidden && <SideNav />}
 
@@ -145,14 +144,14 @@ function App() {
         {!isNavHidden && <Header isLoggedIn={isLoggedIn} />}
 
         {/* Conditionally render Navbar */}
-        {isNavHidden && (
+        {isNavHidden && !isRegOrLogin && (
           <Navbar isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />
         )}
 
         <div
           className={`w-[100vw] ${
             !isSideNavHidden && "lg:w-[calc(100vw-265px)]"
-          } min-h-[calc(100vh-5rem)] bg-gray-50`}
+          } min-h-[calc(100vh-5rem)] `}
         >
           <ScrollToTop />
           <Routes>

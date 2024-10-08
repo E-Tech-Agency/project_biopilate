@@ -7,7 +7,7 @@ import "swiper/css";
 import "swiper/css/pagination";
 import { Pagination } from "swiper/modules";
 import { BsArrowUpRight } from "react-icons/bs";
-import { Swiper as SwiperType } from 'swiper/types';
+import { Swiper as SwiperType } from "swiper/types";
 interface Course {
   title: string;
   image: string;
@@ -20,14 +20,16 @@ interface ImageSliderCoursProps {
   action: string;
 }
 
-export default function ImageSliderCours({ list, action }: ImageSliderCoursProps) {
-
+export default function ImageSliderCours({
+  list,
+  action,
+}: ImageSliderCoursProps) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [hoverIndex, setHoverIndex] = useState(null);
   const [isMobile, setIsMobile] = useState(false);
   const [isAnimating, setIsAnimating] = useState(false);
   console.log(setIsAnimating);
-  
+
   useEffect(() => {
     const checkIsMobile = () => {
       setIsMobile(window.innerWidth <= 768);
@@ -41,7 +43,7 @@ export default function ImageSliderCours({ list, action }: ImageSliderCoursProps
 
   const handleMouseEnter = (index: number) => {
     console.log(index);
-    
+
     if (!isMobile) setHoverIndex(null);
   };
 
@@ -52,7 +54,6 @@ export default function ImageSliderCours({ list, action }: ImageSliderCoursProps
   const handleImageClick = (index: number) => {
     setCurrentIndex(index);
   };
-
 
   return (
     <div className="mb-14 flex flex-col-reverse lg:flex-row gap-5 xl:gap-8 max-lg:flex-wrap overflow-hidden lg:h-[530px]">
@@ -86,51 +87,42 @@ export default function ImageSliderCours({ list, action }: ImageSliderCoursProps
           loop={true}
           spaceBetween={10}
           slideToClickedSlide={true}
-          onSlideChange={(swiper: SwiperType) => handleImageClick(swiper.realIndex)}
+          onSlideChange={(swiper: SwiperType) =>
+            handleImageClick(swiper.realIndex)
+          }
           pagination={{ el: ".swiper-pagination", clickable: true }} // lowercase "pagination"
-
           modules={[Pagination]}
           initialSlide={1}
           breakpoints={{
             1920: {
-              slidesPerView: 5,
-              spaceBetween: 20,
+              slidesPerView: 4,
             },
             1600: {
               slidesPerView: 4,
-              spaceBetween: 20,
             },
             1440: {
               slidesPerView: 4,
-              spaceBetween: 15,
             },
             1280: {
-              slidesPerView: 3,
-              spaceBetween: 10,
+              slidesPerView: 4,
             },
             1028: {
               slidesPerView: 3,
-              spaceBetween: 10,
             },
             990: {
               slidesPerView: 2,
-              spaceBetween: 8,
             },
             768: {
               slidesPerView: 2,
-              spaceBetween: 5,
             },
             640: {
               slidesPerView: 1,
-              spaceBetween: 4,
             },
             550: {
               slidesPerView: 1,
-              spaceBetween: 4,
             },
             310: {
               slidesPerView: 1,
-              spaceBetween: 4,
             },
           }}
         >
@@ -146,7 +138,7 @@ export default function ImageSliderCours({ list, action }: ImageSliderCoursProps
                   className={`relative rounded-lg cursor-pointer transition-all duration-400 ${
                     currentIndex === index
                       ? "w-[300px] h-[450px]"
-                      : "w-[206px] h-[309px] sm:w-[240px] sm:h-[360px]"
+                      : "w-[206px] h-[309px] sm:w-[240px] sm:h-[360px]  mt-[90px]"
                   }`}
                   onClick={() => handleImageClick(index)}
                   onMouseEnter={() => handleMouseEnter(index)}
