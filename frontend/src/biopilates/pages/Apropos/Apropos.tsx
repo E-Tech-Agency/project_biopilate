@@ -1,4 +1,3 @@
-
 import CircleSwiperCarousel from "@/biopilates/components/CircleSwiperCarousel";
 import ImageSliderApropos from "@/biopilates/components/ImageSliderApropos";
 import caroline3 from "@/assets/images/caroline-3.jpg";

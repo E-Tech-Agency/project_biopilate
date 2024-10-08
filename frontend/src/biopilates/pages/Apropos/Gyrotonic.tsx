@@ -9,7 +9,8 @@ import gyrokinesis from "@/assets/images/gyrokinesis.jpg";
 import gyrotonicEndurance from "@/assets/images/gyrotonic-endurance.png";
 import gyrotonicFlexibilite from "@/assets/images/gyrotonic-flexibilite.jpg";
 import gyrotonicCoordination from "@/assets/images/gyrotonic-coordination.jpg";
-export default function StottPilates() {
+
+export default function Gyrotonic() {
   const images = [
     gyrotonic1,
     reformerGyrotonicEvolis,
