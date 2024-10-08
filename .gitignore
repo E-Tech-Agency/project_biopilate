@@ -5,13 +5,13 @@ __pycache__
 *.sqlite3
 node_modules
 */migrations/
-backend/settings.py
-backend
+# backend/settings.py
+# backend
 
-frontend/vite.config.ts
-frontend/src/components/auth/login.tsx
-frontend/src/components/auth/register.tsx
+# frontend/vite.config.ts
+# frontend/src/components/auth/login.tsx
+# frontend/src/components/auth/register.tsx
 
-frontend/src/lib/api.ts
-frontend/src/lib/apiCreateProduct.ts
-frontend/src/lib/apiCreateTeache.ts
+# frontend/src/lib/api.ts
+# frontend/src/lib/apiCreateProduct.ts
+# frontend/src/lib/apiCreateTeache.ts
