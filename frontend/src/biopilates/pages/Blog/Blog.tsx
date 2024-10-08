@@ -70,8 +70,8 @@ export default function Blog() {
           </p>
           <p className="leading-6 max-w-[1000px] text-blueText font-lato">
             Bienvenue sur notre <strong>blog dédié au Pilates à Paris !</strong>{" "}
-            Que vous soyez débutant ou passionné, explorez avec nous les nombreux{" "}
-            <strong>bienfaits du Pilates.</strong> Retrouvez{" "}
+            Que vous soyez débutant ou passionné, explorez avec nous les
+            nombreux <strong>bienfaits du Pilates.</strong> Retrouvez{" "}
             <strong>
               des conseils d'experts, des routines inspirantes et des
               témoignages de transformation.
@@ -91,7 +91,7 @@ export default function Blog() {
       </div>
       <div className="flex flex-col justify-center items-center">
         <Stack spacing={2}>
-          <Pagination count={6} variant="outlined" shape="rounded" />
+          <Pagination count={2} variant="outlined" shape="rounded" />
         </Stack>
       </div>
     </div>

@@ -145,8 +145,8 @@ export default function ImageSliderFormations({
               <div
                 className={`relative rounded-lg cursor-pointer transition-all duration-400 ${
                   currentIndex === index
-                    ? "w-[300px] h-[450px]"
-                    : "w-[206px] h-[309px] sm:w-[240px] sm:h-[360px] mt-[90px] mr-[-50px]"
+                    ? "w-[300px] h-[450px] mr-[-50px]"
+                    : "w-[206px] h-[309px] sm:w-[240px] sm:h-[360px] mt-[90px] mr-[-100px]"
                 }`}
                 onClick={() => handleImageClick(index)}
                 onMouseEnter={() => handleMouseEnter(index)}
