@@ -2,7 +2,7 @@ import hero from "@/assets/images/hero-pic.png";
 
 export default function Hero() {
   return (
-    <section className="relative mt-14 mb-20 py-10 flex max-lg:flex-wrap justify-center lg:justify-between items-center gap-5 md:gap-9 lg:gap-14 xl:gap-16 min-h-[610px] bg-bgColor rounded-md">
+    <section className="relative mt-6 mb-20 py-10 flex max-lg:flex-wrap justify-center lg:justify-between items-center gap-5 md:gap-9 lg:gap-14 xl:gap-16 min-h-[610px] bg-bgColor rounded-md">
       <h1 className="absolute inset-0 flex justify-center items-center text-6xl sm:text-[100px] md:text-[160px] lg:text-[220px] xl:text-[280px] font-ebGaramond text-lightBgColor font-bold tracking-wider">
         PILATES
       </h1>
@@ -20,7 +20,15 @@ export default function Hero() {
           Découvrez la force dans la fluidité et la grâce dans le mouvement, au
           cœur de Paris, avec notre approche personnalisée du Pilates.
         </p>
-        <button className="flex mr-auto flex-col justify-center text-base rounded-lg px-10 py-4 text-bgColor bg-marron font-lato">
+        <button
+          className="flex mr-auto flex-col justify-center text-base rounded-lg px-10 py-4 text-bgColor bg-marron font-lato"
+          onClick={() => {
+            window.open(
+              "https://www.facebook.com/STUDIOBIOPILATESPARIS",
+              "_blank"
+            );
+          }}
+        >
           Réserver
         </button>
       </div>

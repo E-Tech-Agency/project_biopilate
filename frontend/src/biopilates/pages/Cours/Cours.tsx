@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 
 import CircleSwiperCarousel from "@/biopilates/components/CircleSwiperCarousel";
 import ImageSliderCours from "@/biopilates/components/ImageSliderCours";
@@ -13,7 +14,7 @@ export default function Cours() {
   const cours = [
     {
       title: "COURS REFORMER",
-      image:  reformerImage,
+      image: reformerImage,
       description:
         "Découvrez le cours <strong>REFORMER</strong> , le plus populaire en cours de groupe (<strong>12 participants max</strong>).Renforcez vos muscles en profondeur,améliorez votre posture etdéveloppez votre souplesse avec notre méthode Pilates. Cours pourtous niveaux. Réservez votre séance découverte dès aujourd'hui.",
       cours: "Reformer",
@@ -34,7 +35,7 @@ export default function Cours() {
     },
     {
       title: "COURS REFORMER",
-      image: reformerImage ,
+      image: reformerImage,
       description:
         "Découvrez le cours <strong>REFORMER</strong> , le plus populaire en cours de groupe (<strong>12 participants max</strong>).Renforcez vos muscles en profondeur,améliorez votre posture etdéveloppez votre souplesse avec notre méthode Pilates. Cours pourtous niveaux. Réservez votre séance découverte dès aujourd'hui.",
       cours: "Reformer",
@@ -54,6 +55,16 @@ export default function Cours() {
       cours: "Evolis",
     },
   ];
+
+  useEffect(() => {
+    const hash = window.location.hash;
+    if (hash) {
+      const element = document.getElementById(hash.substring(1));
+      if (element) {
+        element.scrollIntoView({ behavior: "smooth" });
+      }
+    }
+  }, []);
 
   return (
     <div className="flex flex-col mx-8 md:mx-12">
@@ -90,7 +101,9 @@ export default function Cours() {
 
       <section className="mt-4">
         <div className="mb-8">
-          <p className="text-marron text-3xl leading-snug font-bold font-ebGaramond">Cours Biopilates</p>
+          <p className="text-marron text-3xl leading-snug font-bold font-ebGaramond">
+            Cours Biopilates
+          </p>
           <p className="leading-7">
             Nos cours sont dispensés par des instructeurs expérimentés et
             certifiés. Réservez votre cours dès aujourd'hui sur l'application
@@ -216,12 +229,12 @@ export default function Cours() {
           </div>
         </div>
         <img
-  src={mobileImage}
-  alt="mobileImage"
-  className="sm:max-w-[50%] max-w-[80%]"
-/>
+          src={mobileImage}
+          alt="mobileImage"
+          className="sm:max-w-[50%] max-w-[80%]"
+        />
       </section>
-      <section className="mb-14">
+      <section id="tarifs" className="mb-14">
         <Offres />
       </section>
     </div>

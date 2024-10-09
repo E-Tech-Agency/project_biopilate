@@ -208,7 +208,15 @@ export default function Gyrotonic() {
               commencez votre transformation.
             </p>
 
-            <button className=" flex mr-auto flex-col justify-center text-base rounded-lg px-9 py-3 bg-white text-marron font-lato font-bold">
+            <button
+              className="button-hover flex mr-auto flex-col justify-center text-base rounded-lg px-9 py-3 bg-white text-marron font-lato font-bold"
+              onClick={() => {
+                window.open(
+                  "https://www.facebook.com/STUDIOBIOPILATESPARIS",
+                  "_blank"
+                );
+              }}
+            >
               Réserver
             </button>
           </div>

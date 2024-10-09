@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { MdExpandMore } from "react-icons/md";
-import { BsArrowUpRight } from "react-icons/bs";
+// import { BsArrowUpRight } from "react-icons/bs";
 
 export default function FAQ() {
   const faqs = [
@@ -33,10 +33,10 @@ export default function FAQ() {
   };
 
   return (
-    <section className="mb-16 flex flex-col justify-center items-center gap-4">
-      <div className="flex flex-col justify-center items-center gap-4">
-        <p className="text-3xl text-marron font-ebGaramond font-bold">FAQ</p>
-        <p className="text-2xl font-ebGaramond">
+    <section className="mb-16 flex flex-col justify-center items-center gap-8">
+      <div className="flex flex-col justify-center items-center gap-8">
+        <p className="text-4xl text-marron font-ebGaramond font-bold">FAQ</p>
+        <p className="text-2xl font-ebGaramond font-medium">
           Trouvez ici les réponses aux questions fréquemment posées concernant
           les cours de Pilates, les horaires et les modalités d'inscription.
         </p>
@@ -55,7 +55,7 @@ export default function FAQ() {
               >
                 <div className="flex items-center">
                   <span className="q-mark font-bold text-marron mr-4">Q.</span>
-                  <p className="question text-lg font-semibold m-0 font-ebGaramond">
+                  <p className="question text-[22px] font-semibold m-0 font-ebGaramond">
                     {faq.question}
                   </p>
                 </div>
@@ -82,10 +82,11 @@ export default function FAQ() {
                     __html: faq.answer,
                   }}
                 ></p>
-                <button className="text-lg text-blueText p-4 font-ebGaramond font-bold flex items-center gap-2">
+                {/* temporarly commented */}
+                {/* <button className="text-lg text-blueText p-4 font-ebGaramond font-bold flex items-center gap-2">
                   <p>Découvrir plus de détails</p>
                   <BsArrowUpRight />
-                </button>
+                </button> */}
               </div>
             </div>
           ))}

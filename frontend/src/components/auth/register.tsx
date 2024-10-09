@@ -25,7 +25,7 @@ import { FaRegUser, FaLock, FaEye, FaEyeSlash } from "react-icons/fa";
 
 import { LuPhone } from "react-icons/lu";
 
-import login_pic from "@/assets/images/login-pic.jpg";
+import register_pic from "@/assets/images/register-pic.jpg";
 import { Link } from "react-router-dom";
 import "@/styles/index.css";
 interface PasswordHideProps {
@@ -412,7 +412,7 @@ export function RegisterForm({
           {/* image */}
           <div className="relative md:w-[50%] max-md:absolute tr">
             <img
-              src={login_pic}
+              src={register_pic}
               alt=""
               className="h-[550px] sm:h-[865px] object-cover"
             />

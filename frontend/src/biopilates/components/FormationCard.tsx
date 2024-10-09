@@ -52,7 +52,15 @@ const FormationCard: React.FC<FormationCardProps> = ({ formation }) => {
         </div>
       </div>
 
-      <button className="reserver-button flex flex-col justify-center rounded-lg mb-4 sm:mb-6 px-16 sm:px-24 py-3 bg-bgColor text-marron">
+      <button
+        className="reserver-button flex flex-col justify-center rounded-lg mb-4 sm:mb-6 px-16 sm:px-24 py-3 bg-bgColor text-marron"
+        onClick={() => {
+          window.open(
+            "https://www.facebook.com/STUDIOBIOPILATESPARIS",
+            "_blank"
+          );
+        }}
+      >
         Réserver
       </button>
     </div>

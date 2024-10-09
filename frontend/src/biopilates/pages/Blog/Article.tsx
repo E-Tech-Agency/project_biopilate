@@ -1,5 +1,5 @@
-
 import { useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { LuShare } from "react-icons/lu";
 import OtherArticles from "./OtherArticles";
 import article1Image from "@/assets/images/article-1.png";
@@ -52,7 +52,7 @@ export default function Article() {
       description:
         "Vous êtes débutant en Pilates et vous vous demandez comment bien commencer ? Découvrez nos 5 conseils pour débuter le Pilates.",
       jaimes: 49,
-      image:placeholderImage,
+      image: placeholderImage,
     },
     {
       id: 6,
@@ -86,6 +86,11 @@ export default function Article() {
   const articleId = id ? parseInt(id) : null; // Safely parse the id if it exists
   const article = articleId ? articles.find((a) => a.id === articleId) : null; // Find the article using the parsed ID
 
+  const navigate = useNavigate();
+
+  const navigateToContact = () => {
+    navigate("/contact");
+  };
 
   if (!article) {
     return (
@@ -118,23 +123,23 @@ export default function Article() {
             <p>
               <strong>La maison vieille</strong> est une maison de vacances
               spécialement conçue pour les personnes vieilles ou à mobilité
-              réduite.  Elle propose des services et activités adaptés à leur
+              réduite. Elle propose des services et activités adaptés à leur
               âge.
             </p>
             <p>
               Elle permet aussi de venir entre amis ou en famille dans un lieu
-              qui convient à toutes les générations.  « J’ai conçu cette maison
-              comme un lieu de fraternité  pour y accueillir plus
+              qui convient à toutes les générations. « J’ai conçu cette maison
+              comme un lieu de fraternité pour y accueillir plus
               particulièrement toutes ces vieilles et ces vieux dont j’ai eu à
               prendre soin quand j’étais médecin,et dont j’ai découvert combien
               si souvent ils souffrent de se sentir seuls et en marge de la vie
               qui va. Puisse
-              <strong>la maison vieille</strong> leur permettre de renouer du
+              <strong>la maison vieille</strong> leur permettre de renouer du
               lien social, de rencontrer des pairs, de s’offrir quelques
               plaisirs simples; devenir un lieu où l’on sait que l’on peut aller
               facilement pour briser pendant quelques jours,voire simplement
               pendant quelques heures, le cours infini de la solitude à laquelle
-              on est désormais contraint ». 
+              on est désormais contraint ».
             </p>
           </div>
           <p className="font-bold text-marron text-xl md:text-3xl">
@@ -193,14 +198,18 @@ export default function Article() {
           </div>
         </div>
       </div>
+      {/* temporarly commented */}
+
       <div className="my-12 w-full">
+        {/* 
         <p className="mb-6 font-ebGaramond font-bold text-3xl text-marron">
           D’autres articles
         </p>
         <div className="flex flex-col justify-center items-center max-md:mx-[-26px]">
           <OtherArticles articles={articles} />
-        </div>
+        </div> */}
       </div>
+
       <div className="flex flex-wrap justify-center xl:justify-between items-center gap-10 border border-grayText rounded-lg min-h-[300px] py-8 xl:py-4 px-6 xl:px-10 max-md:bg-marron max-md:text-white max-md:mx-[-26px]">
         <div className="flex flex-col gap-4 w-full xl:w-[400px] xl:max-w-[465px] ">
           <p className="font-lato font-semibold text-grayText text-sm max-md:hidden">
@@ -224,8 +233,8 @@ export default function Article() {
               className="border border-bgColor md:border-marron text-gray-900 text-sm rounded-md min-w-[150px] w-[300px] p-2.5 max-md:bg-marron max-md:text-white placeholder-white md:placeholder-gray-700"
             />
             <button
-              type="submit"
               className=" reserver-button flex mr-auto flex-col justify-center text-base rounded-lg px-3 md:px-10 py-4 text-marron md:text-bgColor bg-bgColor md:bg-marron max-md:font-bold font-lato"
+              onClick={() => navigateToContact()}
             >
               S'inscrire
             </button>

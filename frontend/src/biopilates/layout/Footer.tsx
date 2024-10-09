@@ -14,10 +14,14 @@ export default function Footer() {
     { label: "Blog", href: "/blog" },
     { label: "Contact", href: "/contact" },
   ];
-  
+
   const contactInfo = [
     { icon: LuPhone, text: "+33 6 50 81 18 92", ariaLabel: "Phone number" },
-    { icon: LiaEnvelope, text: "info@email.com", ariaLabel: "Email address" },
+    {
+      icon: LiaEnvelope,
+      text: "studio@biopilates.fr",
+      ariaLabel: "Email address",
+    },
     {
       icon: PiMapPinLight,
       text: "2 Rue Boyer, 75020 Paris, France",

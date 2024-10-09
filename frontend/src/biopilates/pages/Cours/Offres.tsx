@@ -1,4 +1,3 @@
-
 import tarifs from "@/assets/data/tarifs.json"; // Adjust the path as necessary
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/swiper-bundle.css";
@@ -69,8 +68,12 @@ export default function Offres() {
           {tarifs.map((offre, index) => (
             <SwiperSlide key={index}>
               <div className="py-9 m-auto  flex flex-col justify-between items-center bg-bgColor p-4 rounded-lg shadow-md min-w-[240px] sm:min-w-[350px] max-w-[700px] h-[350px] gap-2 font-lato">
-                <h3 className="text-xl  font-ebGaramond font-medium">{offre.title}</h3>
-                <p className="text-2xl text-marron pb-2 font-bold">{offre.price}</p>
+                <h3 className="text-xl  font-ebGaramond font-medium">
+                  {offre.title}
+                </h3>
+                <p className="text-2xl text-marron pb-2 font-bold">
+                  {offre.price}
+                </p>
                 {offre.pack1 !== "" && (
                   <div className="flex flex-col justify-center items-center gap-2">
                     <p>{offre.pack1}</p>
@@ -80,7 +83,12 @@ export default function Offres() {
                 )}
                 <div className="flex flex-col justify-center items-center gap-2">
                   <p className="text-sm text-blueText pt-2">{offre.validity}</p>
-                  <button className="reserver-button font-bold flex flex-col justify-center text-marron rounded-lg px-16 sm:px-24 py-2 bg-white shadow-sm">
+                  <button
+                    className="reserver-button font-bold flex flex-col justify-center text-marron rounded-lg px-16 sm:px-24 py-2 bg-white shadow-sm"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                    }}
+                  >
                     Réserver
                   </button>
                 </div>
