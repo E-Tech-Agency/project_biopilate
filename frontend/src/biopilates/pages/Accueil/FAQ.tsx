@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { MdExpandMore } from "react-icons/md";
-import { BsArrowUpRight } from "react-icons/bs";
+// import { BsArrowUpRight } from "react-icons/bs";
 
 export default function FAQ() {
   const faqs = [
@@ -82,10 +82,11 @@ export default function FAQ() {
                     __html: faq.answer,
                   }}
                 ></p>
-                <button className="text-lg text-blueText p-4 font-ebGaramond font-bold flex items-center gap-2">
+                {/* temporarly commented */}
+                {/* <button className="text-lg text-blueText p-4 font-ebGaramond font-bold flex items-center gap-2">
                   <p>Découvrir plus de détails</p>
                   <BsArrowUpRight />
-                </button>
+                </button> */}
               </div>
             </div>
           ))}

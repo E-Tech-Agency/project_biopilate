@@ -1,4 +1,3 @@
-
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/swiper-bundle.css";
 import "swiper/css";
@@ -13,6 +12,12 @@ import image3 from "@/assets/images/pourqui-3.jpg";
 import image4 from "@/assets/images/pourqui-4.jpg";
 import image5 from "@/assets/images/pourqui-5.jpg";
 import image6 from "@/assets/images/pourqui-6.jpg";
+
+import evolisImage from "@/assets/images/evolis.jpg";
+import evolisEtirementImage from "@/assets/images/evolis-etirement.jpg";
+import evolisSkeletonImage from "@/assets/images/evolis-skeleton.jpg";
+import evolisPostureImage from "@/assets/images/evolis-posture.png";
+
 type PourQui = {
   title: string;
   image: string;
@@ -31,7 +36,7 @@ function PourQuiCard({ pourqui }: { pourqui: PourQui }) {
       </div>
       {/* overlay */}
       <div className="relative size-full ">
-        <button className="absolute reserver-button flex flex-col justify-center text-sm sm:text-base rounded-lg px-4 py-3 bg-white text-black bg-opacity-80 font-lato font-bold mt-4 ml-4">
+        <button className=" absolute flex flex-col justify-center text-sm sm:text-base rounded-lg px-4 py-3 bg-white text-black bg-opacity-80 font-lato font-bold mt-4 ml-4">
           {pourqui.title}
         </button>
         <p className="absolute bg-white h-[86px] rounded-lg rounded-t-none text-sm sm:text-base font-normal bottom-0 left-0 right-0 text-center flex justify-center items-center">
@@ -143,19 +148,13 @@ function Slider() {
   );
 }
 
-import evolisImage from "@/assets/images/evolis.jpg";
-import evolisEtirementImage from "@/assets/images/evolis-etirement.jpg";
-import evolisSkeletonImage from "@/assets/images/evolis-skeleton.jpg";
-import evolisPostureImage from "@/assets/images/evolis-posture.png";
-
 export default function Evolis() {
-  const images = [    
+  const images = [
     evolisImage,
     evolisEtirementImage,
     evolisSkeletonImage,
     evolisPostureImage,
     evolisImage,
-   
   ];
   return (
     <div className="relative overflow-hidden">
@@ -271,18 +270,26 @@ export default function Evolis() {
         <div className="flex max-md:flex-wrap justify-center xl:justify-between items-center gap-10 rounded-lg min-h-[300px] py-8 xl:py-4 px-6 xl:px-10 bg-marron text-white max-md:mx-[-26px]">
           <div className="flex flex-col gap-4 w-full">
             <p className="font-ebGaramond font-bold text-2xl md:text-2xl ">
-            Pour découvrir les bienfaits de la méthode Evolis®
+              Pour découvrir les bienfaits de la méthode Evolis®
             </p>
             <p className="font-lato max-md:text-sm text-bgColor">
-            Réservez dès maintenant une séance isitué au 1 rue Boyer, 75020 Paris.Tarif de la séance : 64€ndividuelle au Studio Biopilates, 
-
+              Réservez dès maintenant une séance isitué au 1 rue Boyer, 75020
+              Paris.Tarif de la séance : 64€ndividuelle au Studio Biopilates,
             </p>
             <p className="font-lato max-md:text-sm text-bgColor">
-           75020 Paris.Tarif de la séance : 64€ndividuelle au Studio Biopilates, 
-
+              75020 Paris.Tarif de la séance : 64€ndividuelle au Studio
+              Biopilates,
             </p>
 
-            <button className=" reserver-button flex mr-auto flex-col justify-center text-base rounded-lg px-9 py-3 bg-white text-marron font-lato font-bold">
+            <button
+              className=" reserver-button flex mr-auto flex-col justify-center text-base rounded-lg px-9 py-3 bg-white text-marron font-lato font-bold"
+              onClick={() => {
+                window.open(
+                  "https://www.facebook.com/STUDIOBIOPILATESPARIS",
+                  "_blank"
+                );
+              }}
+            >
               Réserver
             </button>
           </div>

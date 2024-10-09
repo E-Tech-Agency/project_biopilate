@@ -27,14 +27,13 @@ export default function Header({ isLoggedIn }: { isLoggedIn: boolean }) {
   };
 
   const handleSearch = () => {
-    const results = navItems.filter(item => 
+    const results = navItems.filter((item) =>
       item.label.toLowerCase().includes(searchQuery.toLowerCase())
     );
-    console.log('Search Query:', searchQuery);  // Log the search query
-    console.log('Filtered Results:', results);  // Log the filtered results
+    console.log("Search Query:", searchQuery); // Log the search query
+    console.log("Filtered Results:", results); // Log the filtered results
     setSearchResults(results);
   };
-  
 
   return (
     <header>
@@ -128,7 +127,15 @@ export default function Header({ isLoggedIn }: { isLoggedIn: boolean }) {
           )}
 
           <div className="button-wrapper rounded-lg overflow-hidden">
-            <button className="reserver-button button-content flex-col justify-center text-base leading-6 rounded-lg px-10 py-4 bg-bgColor hidden md:flex text-current transition duration-300 ease-in-out transform">
+            <button
+              className="reserver-button button-content flex-col justify-center text-base leading-6 rounded-lg px-10 py-4 bg-bgColor hidden md:flex text-current transition duration-300 ease-in-out transform"
+              onClick={() => {
+                window.open(
+                  "https://www.facebook.com/STUDIOBIOPILATESPARIS",
+                  "_blank"
+                );
+              }}
+            >
               Réserver
             </button>
           </div>

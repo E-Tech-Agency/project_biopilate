@@ -1,4 +1,5 @@
 import Hero from "./Hero";
+import { useNavigate } from "react-router-dom";
 import Engagement from "./Engagement";
 import CallToActionImg from "./CallToActionImg";
 
@@ -11,21 +12,12 @@ import OtherArticles from "../Blog/OtherArticles";
 
 // Importing images
 import articleImage1 from "@/assets/images/article-1.png";
-import placeholderImage from "@/assets/images/Placeholder_view_vector.png";
+// import placeholderImage from "@/assets/images/Placeholder_view_vector.png";
 import gymImage from "@/assets/images/gym.jpg";
 import bgImgReserver from "@/assets/images/bg-img-reserver.jpg";
 import blogBg from "@/assets/images/blog-bg.jpg";
 
 const articles = [
-  {
-    id: 2,
-    title: "Titre",
-    ecrivain: "Par Biopilates",
-    description:
-      "Vous êtes débutant en Pilates et vous vous demandez comment bien commencer ? Découvrez nos 5 conseils pour débuter le Pilates.",
-    jaimes: 39,
-    image: placeholderImage,
-  },
   {
     id: 1,
     title: "La maison vieille",
@@ -35,63 +27,18 @@ const articles = [
     jaimes: 49,
     image: articleImage1,
   },
-  {
-    id: 3,
-    title: "Titre",
-    ecrivain: "Par Biopilates",
-    description:
-      "Vous êtes débutant en Pilates et vous vous demandez comment bien commencer ? Découvrez nos 5 conseils pour débuter le Pilates.",
-    jaimes: 67,
-    image: placeholderImage,
-  },
-  {
-    id: 4,
-    title: "Titre",
-    ecrivain: "Par Biopilates",
-    description:
-      "Vous êtes débutant en Pilates et vous vous demandez comment bien commencer ? Découvrez nos 5 conseils pour débuter le Pilates.",
-    jaimes: 25,
-    image: placeholderImage,
-  },
-  {
-    id: 5,
-    title: "Titre",
-    ecrivain: "Par Biopilates",
-    description:
-      "Vous êtes débutant en Pilates et vous vous demandez comment bien commencer ? Découvrez nos 5 conseils pour débuter le Pilates.",
-    jaimes: 49,
-    image: placeholderImage,
-  },
-  {
-    id: 6,
-    title: "Titre",
-    ecrivain: "Par Biopilates",
-    description:
-      "Vous êtes débutant en Pilates et vous vous demandez comment bien commencer ? Découvrez nos 5 conseils pour débuter le Pilates.",
-    jaimes: 49,
-    image: placeholderImage,
-  },
-  {
-    id: 7,
-    title: "Titre",
-    ecrivain: "Par Biopilates",
-    description:
-      "Vous êtes débutant en Pilates et vous vous demandez comment bien commencer ? Découvrez nos 5 conseils pour débuter le Pilates.",
-    jaimes: 49,
-    image: placeholderImage,
-  },
-  {
-    id: 8,
-    title: "Titre",
-    ecrivain: "Par Biopilates",
-    description:
-      "Vous êtes débutant en Pilates et vous vous demandez comment bien commencer ? Découvrez nos 5 conseils pour débuter le Pilates.",
-    jaimes: 49,
-    image: placeholderImage,
-  },
 ];
 
 export default function Accueil() {
+  const navigate = useNavigate();
+
+  const navigateToContact = () => {
+    navigate("/contact");
+  };
+
+  const navigateToTarifs = () => {
+    navigate("/cours#tarifs");
+  };
   return (
     <div className="flex flex-col mx-8 md:mx-12 ">
       {/* Hero */}
@@ -142,9 +89,12 @@ export default function Accueil() {
       <ServicesSection />
 
       {/* tarif button */}
-      <div className="mx-auto my-10 flex flex-col justify-center items-center text-base leading-6 rounded-md px-5 py-3 bg-bgColor text-marron font-bold w-fit">
+      <button
+        className="mx-auto my-10 flex flex-col justify-center items-center text-base leading-6 rounded-md px-5 py-3 bg-bgColor text-marron font-bold w-fit"
+        onClick={navigateToTarifs}
+      >
         Voir nos tarifs
-      </div>
+      </button>
 
       {/* Formations */}
       <FormationSection />
@@ -172,10 +122,21 @@ export default function Accueil() {
               découvrir les bienfaits du Pilates.
             </p>
             <div className="flex gap-2">
-              <button className="button-hover flex flex-col justify-center text-marron sm:text-base rounded-lg px-4 sm:px-8 sm:py-3 bg-white shadow-sm font-lato font-bold">
+              <button
+                className="button-hover flex flex-col justify-center text-marron sm:text-base rounded-lg px-4 sm:px-8 sm:py-3 bg-white shadow-sm font-lato font-bold"
+                onClick={() => {
+                  window.open(
+                    "https://www.facebook.com/STUDIOBIOPILATESPARIS",
+                    "_blank"
+                  );
+                }}
+              >
                 Réserver
               </button>
-              <button className="button-hover flex flex-col justify-center text-white sm:text-base rounded-lg px-8 py-3 border border-solid border-white shadow-sm">
+              <button
+                className="button-hover flex flex-col justify-center text-white sm:text-base rounded-lg px-8 py-3 border border-solid border-white shadow-sm"
+                onClick={navigateToContact}
+              >
                 Contactez-nous
               </button>
             </div>
