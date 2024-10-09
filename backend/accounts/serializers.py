@@ -86,7 +86,7 @@ class PasswordResetSerializer(serializers.Serializer):
     def validate(self, attrs):
         email = attrs.get('email')
         user = User.objects.filter(email=email).first()
-        image_url = "http://141.94.23.119/static/biopilate-logo.png"
+        # image_url = "http://141.94.23.119/static/biopilate-logo.png"
 
         if not user:
             raise serializers.ValidationError("Invalid email")
@@ -112,7 +112,7 @@ Si vous n'avez pas demandé de réinitialisation de mot de passe, veuillez ignor
 Meilleures salutations,
 L'équipe Studio Biopilates Paris
 
-<img src="{image_url}" alt="Studio Biopilates Paris" style="width: 300px; height: auto;">
+
 """
 
         data = {
