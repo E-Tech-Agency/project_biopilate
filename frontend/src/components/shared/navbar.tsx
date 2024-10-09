@@ -66,7 +66,7 @@ export function Navbar({
       <div className="ml-auto flex items-center gap-2">
         {isLoggedIn ? (
           <Button variant="destructive" onClick={logout}>
-            Logout
+            déconnexion
           </Button>
         ) : (
           <div>
@@ -78,7 +78,7 @@ export function Navbar({
             </Button>
           </div>
         )}
-        <ModeToggle />
+        {/* <ModeToggle /> */}
       </div>
     </header>
   );

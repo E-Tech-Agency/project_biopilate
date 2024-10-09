@@ -1,15 +1,32 @@
 from rest_framework.permissions import IsAuthenticated
+from django.http import JsonResponse
 from rest_framework.generics import GenericAPIView,RetrieveAPIView,ListAPIView,UpdateAPIView,DestroyAPIView
-from .utils import send_code_to_user,send_normal_email
+from .utils import send_code_to_user,send_normal_email,send_contact_form_email
 from .serializers import UserRegisterSerializer, UserLoginSerializer,PasswordResetSerializer,SetNewPasswordSerializer, LogoutUserSerializer,GetOneUserSerializer
 from rest_framework.response import Response
 from rest_framework import status
 from .models import OneTimePassword,User
 from django.utils.encoding import DjangoUnicodeDecodeError
 from django.contrib.auth.tokens import PasswordResetTokenGenerator
-
+import json
+from rest_framework.decorators import api_view
 # Create your views here.
+@api_view(['POST'])
+def send_contact_email(request):
+    if request.method == 'POST':
+        data = json.loads(request.body)
+        name = data.get('name')
+        email = data.get('email')
+        phone = data.get('phone')
+        subject = data.get('subject')
+        message = data.get('message')
 
+        try:
+            # Call the utility function to send the email
+            send_contact_form_email(name, email, phone, subject, message)
+            return JsonResponse({'message': 'Email sent successfully'}, status=200)
+        except Exception as e:
+            return JsonResponse({'error': str(e)}, status=500)
 class RegisterUserView(GenericAPIView):
     serializer_class = UserRegisterSerializer
 

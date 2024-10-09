@@ -11,7 +11,10 @@ html {
     position: relative;
     text-decoration: none;
   }
-  
+   /* for conatct message succes */
+  .text-burlywood {
+    color: DarkSlateGray; /* or use the hex code #DEB887 */
+  }
 .custom-underline::after {
   content: '';
   position: absolute;

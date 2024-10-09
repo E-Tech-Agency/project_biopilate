@@ -190,9 +190,9 @@ export default function Article() {
               <p>Fondatrice du projet et hôtesse des lieux</p>
             </div>
             <div className="flex flex-col">
-              <button>
+              {/* <button>
                 <LuShare className="text-blueText text-3xl mx-6 md:mx-10" />
-              </button>
+              </button> */}
               <ul className="flex gap-3"></ul>
             </div>
           </div>

@@ -4,7 +4,7 @@ from django.core.mail import EmailMessage
 from django.core.exceptions import ObjectDoesNotExist
 from rest_framework.exceptions import ValidationError
 from .models import User, OneTimePassword
-
+from django.core.mail import send_mail
 def generateOtp():
     otp = ''.join(str(random.randint(0, 9)) for _ in range(6))  # Generate a 6-digit OTP
     return otp
@@ -61,3 +61,27 @@ def send_normal_email(data):
     except Exception as e:
         # Handle the error as needed
         print(f"Erreur lors de l'envoi de l'email normal : {e}")
+
+
+def send_contact_form_email(name, email, phone, subject, message):
+   
+    email_subject = f"Contact Form Submission: {subject}"
+    email_message = (
+        f"Name: {name}\n"
+        f"Email: {email}\n"
+        f"Phone: {phone}\n\n"
+        f"Message:\n{message}"
+    )
+
+    try:
+        send_mail(
+            email_subject,
+            email_message,
+            'administration@biopilates.fr',  # From email (OVH email)
+            ['administration@biopilates.fr'],  # To email (where you receive contact form submissions)
+            fail_silently=False,
+        )
+    except Exception as e:
+        print(f"Error while sending email: {e}")
+        raise e
+

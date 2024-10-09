@@ -27,7 +27,8 @@ export function EditForm() {
         is_verified: false,
         last_name: "", 
         phone_number: "",  
-        profile_image: ""  
+        profile_image: "",
+        password:"",
     });
     const [profileImageFile, setProfileImageFile] = useState<File | null>(null);  
     const [imagePreview, setImagePreview] = useState<string | null>(null);  // State for image preview
@@ -64,6 +65,7 @@ export function EditForm() {
         formData.append("first_name", user.first_name);
         formData.append("last_name", user.last_name);
         formData.append("phone_number", user.phone_number || "");
+        formData.append("password", user.password || "");
         if (profileImageFile) {
             formData.append("profile_image", profileImageFile);
         }
@@ -82,80 +84,101 @@ export function EditForm() {
     };
 
     return (
-        <Card className="mt-4 mx-auto  shadow-lg">
-            <CardHeader>
-                <CardTitle className="text-xl font-semibold">Modifier le profil</CardTitle>
-                <CardDescription>
-                    Modifiez les informations de votre profil
-                </CardDescription>
-            </CardHeader>
+        <Card className="flex flex-col md:flex-row shadow-lg rounded-xl bg-gradient-to-r  bg-bgColor    p-6 text-white mx-auto w-full max-w-4xl">
+        <div className="md:w-1/3 flex flex-col items-center justify-center">
+            {imagePreview ? (
+                <img 
+                    src={imagePreview} 
+                    alt="Profile Preview" 
+                    className="h-48 w-48 object-cover rounded-full shadow-lg mb-4 border-4 border-white" 
+                />
+            ) : (
+                <div className="h-48 w-48 flex items-center justify-center bg-gray-300 rounded-full mb-4">
+                    <span className="text-gray-700 text-xl">No Image</span>
+                </div>
+            )}
+            <h2 className="text-2xl text-marron font-semibold">{user.first_name} {user.last_name}</h2>
+            <p className="italic text-marron text-lg">{user.email}</p>
+        </div>
+        <div className="md:w-2/3 mt-4 md:mt-0 md:ml-8 bg-white rounded-lg p-6 text-gray-800 shadow-md">
+            <h3 className="text-3xl font-bold text-center mb-6 gradient-text">Modifier le profil</h3>
             <form onSubmit={handleSubmit} encType="multipart/form-data">
-                <CardContent>
-                    <div className="grid gap-4">
-                        {imagePreview && (
-                            <div className="mb-4">
-                                <img
-                                    src={imagePreview}
-                                    alt="Profile Preview"
-                                    className=" h-32 object-cover rounded-md border border-gray-300"
-                                />
-                            </div>
-                        )}
-                        <div className="grid grid-cols-2 gap-4">
-                            <div className="grid gap-2">
-                                <Label htmlFor="first-name">Prénom</Label>
-                                <Input 
-                                    id="first-name" 
-                                    value={user.first_name} 
-                                    onChange={(e) => setUser({ ...user, first_name: e.target.value })} 
-                                    placeholder="Jean" 
-                                    required 
-                                />
-                            </div>
-                            <div className="grid gap-2">
-                                <Label htmlFor="last-name">Nom</Label>
-                                <Input 
-                                    id="last-name" 
-                                    value={user.last_name} 
-                                    onChange={(e) => setUser({ ...user, last_name: e.target.value })} 
-                                    required 
-                                />
-                            </div>
-                        </div>
-                        <div className="grid gap-2">
-                            <Label htmlFor="email">Email</Label>
-                            <Input
-                                id="email"
-                                type="email"
-                                value={user.email}
-                                onChange={(e) => setUser({ ...user, email: e.target.value })}
-                                required
-                            />
-                        </div>
-                        <div className="grid gap-2">
-                            <Label htmlFor="phone-number">Numéro de téléphone</Label>
-                            <Input
-                                id="phone-number"
-                                value={user.phone_number || ""}
-                                onChange={(e) => setUser({ ...user, phone_number: e.target.value })}
-                                placeholder="0612345678"
-                            />
-                        </div>
-                        <div className="grid gap-2">
-                            <Label htmlFor="profile-image">Image de profil</Label>
-                            <Input
-                                id="profile-image"
-                                type="file"
-                                accept="image/*"
-                                onChange={handleImageChange}
-                            />
-                        </div>
-                        <Button type="submit" className="w-full bg-blue-600 hover:bg-blue-700 text-white">
-                            Modifier
-                        </Button>
+                <div className="grid gap-6">
+                    <div className="grid gap-2">
+                        <Label htmlFor="first-name" className="text-gray-700">Prénom</Label>
+                        <Input 
+                            id="first-name" 
+                            value={user.first_name} 
+                            onChange={(e) => setUser({ ...user, first_name: e.target.value })} 
+                            placeholder="Jean" 
+                            required 
+                            className="border rounded-lg p-2"
+                        />
                     </div>
-                </CardContent>
+                    <div className="grid gap-2">
+                        <Label htmlFor="last-name" className="text-gray-700">Nom</Label>
+                        <Input 
+                            id="last-name" 
+                            value={user.last_name} 
+                            onChange={(e) => setUser({ ...user, last_name: e.target.value })} 
+                            required 
+                            className="border rounded-lg p-2"
+                        />
+                    </div>
+                    <div className="grid gap-2">
+                        <Label htmlFor="email" className="text-gray-700">Email</Label>
+                        <Input
+                            id="email"
+                            type="email"
+                            value={user.email}
+                            onChange={(e) => setUser({ ...user, email: e.target.value })}
+                            required
+                            className="border rounded-lg p-2"
+                        />
+                    </div>
+                    <div className="grid gap-2">
+                        <Label htmlFor="phone-number" className="text-gray-700">Numéro de téléphone</Label>
+                        <Input
+                            id="phone-number"
+                            value={user.phone_number || ""}
+                            onChange={(e) => setUser({ ...user, phone_number: e.target.value })}
+                            placeholder="0612345678"
+                            className="border rounded-lg p-2"
+                        />
+                    </div>
+                    <div className="grid gap-2">
+                        <Label htmlFor="profile-image" className="text-gray-700">Image de profil</Label>
+                        <Input
+                            id="profile-image"
+                            type="file"
+                            accept="image/*"
+                            onChange={handleImageChange}
+                            className="border rounded-lg p-2"
+                        />
+                    </div>
+                    <div className="grid gap-2">
+                        <Label htmlFor="password" className="text-gray-700">Mot de passe</Label>
+                        <Input
+                            id="password"
+                            type="password"
+                            value={user.password}
+                            onChange={(e) => setUser({ ...user, password: e.target.value })}
+                            placeholder="Entrez votre mot de passe"
+                            className="border rounded-lg p-2"
+                        />
+                    </div>
+                </div>
+                <Button 
+                    type="submit"  
+                    className="mt-6 bg-bgColor text-marron font-bold py-2 px-4 rounded-lg "
+                >
+                    Modifier
+                </Button>
             </form>
-        </Card>
+        </div>
+    </Card>
+    
+    
+
     );
 }

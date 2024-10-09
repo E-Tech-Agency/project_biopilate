@@ -46,15 +46,7 @@ export default function Blog() {
       jaimes: 49,
       image: articleImage1,
     },
-    {
-      id: 2,
-      title: "Titre",
-      ecrivain: "Par Biopilates",
-      description:
-        "Vous êtes débutant en Pilates et vous vous demandez comment bien commencer ? Découvrez nos 5 conseils pour débuter le Pilates.",
-      jaimes: 39,
-      image: placeholderImage,
-    },
+   
     // Add other articles here similarly...
   ];
 
