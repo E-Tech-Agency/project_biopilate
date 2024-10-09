@@ -29,7 +29,7 @@ SECRET_KEY = "django-insecure-ck#kon504#qtk$-ojh5rsw_(b0@-$)b*v+7j=+1^70q4(837%t
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['141.94.23.119']
 APPEND_SLASH = False
 
 
@@ -70,7 +70,7 @@ CSRF_TRUSTED_ORIGINS = [
 ]
 CORS_ALLOWED_ORIGINS = [
     "http://141.94.23.119",
-      "http://localhost:5173",
+    "http://localhost:5173",
 ]
 
 ROOT_URLCONF = 'backend.urls'
@@ -168,9 +168,9 @@ STATICFILES_DIRS = [os.path.join(BASE_DIR, '../frontend/dist')]
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
-#EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+# EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-EMAIL_HOST = 'ssl0.ovh.net' 
+EMAIL_HOST = 'ssl0.ovh.net'
 EMAIL_HOST_USER = 'administration@biopilates.fr'
 EMAIL_HOST_PASSWORD = 'SoniaCaroline'
 EMAIL_PORT = 465
