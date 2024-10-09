@@ -180,7 +180,7 @@ class LogoutUserSerializer(serializers.Serializer):
 class GetOneUserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ['id', 'email', 'first_name', 'last_name', 'phone_number', 'profile_image', 'is_superuser', 'is_verified', 'is_supplier', 'is_active', 'is_staff', 'date_joined', 'auth_provider']
+        fields = ['id', 'email', 'first_name', 'last_name','password' ,'phone_number', 'profile_image', 'is_superuser', 'is_verified', 'is_supplier', 'is_active', 'is_staff', 'date_joined', 'auth_provider']
         extra_kwargs = {
             'profile_image': {'required': False},
         }
