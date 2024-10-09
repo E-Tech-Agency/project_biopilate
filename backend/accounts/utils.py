@@ -20,7 +20,7 @@ def send_code_to_user(email):
 
     # Update current_site to use get_current_site if in a request context
     current_site = "test.com"  # Adjust this if you have access to the request context
-    image_url = "http://localhost:8000/static/biopilate-logo.png"  # Use your actual image path
+    image_url = "http://141.94.23.119/static/biopilate-logo.png"  # Use your actual image path
     email_body = (
         f"Bonjour {user.first_name},\n\n"
         f"Votre code de vérification unique est : {otp_code}\n\n"

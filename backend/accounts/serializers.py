@@ -86,7 +86,7 @@ class PasswordResetSerializer(serializers.Serializer):
     def validate(self, attrs):
         email = attrs.get('email')
         user = User.objects.filter(email=email).first()
-        image_url = "http://localhost:8000/static/biopilate-logo.png"
+        image_url = "http://141.94.23.119/static/biopilate-logo.png"
 
         if not user:
             raise serializers.ValidationError("Invalid email")

@@ -3,7 +3,7 @@ import BlogCard from "@/biopilates/components/BlogCard";
 import Pagination from "@mui/material/Pagination";
 import Stack from "@mui/material/Stack";
 import articleImage1 from "@/assets/images/article-1.png";
-import placeholderImage from "@/assets/images/Placeholder_view_vector.png";
+// import placeholderImage from "@/assets/images/Placeholder_view_vector.png";
 
 function Filter() {
   const [selectedCategories, setSelectedCategories] = useState<number[]>([]);

@@ -1,7 +1,7 @@
 import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
-import { LuShare } from "react-icons/lu";
-import OtherArticles from "./OtherArticles";
+// import { LuShare } from "react-icons/lu";
+// import OtherArticles from "./OtherArticles";
 import article1Image from "@/assets/images/article-1.png";
 import placeholderImage from "@/assets/images/Placeholder_view_vector.png";
 import image1 from "@/assets/images/caroline-article-1.jpeg";
