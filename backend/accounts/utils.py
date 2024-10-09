@@ -1,32 +1,52 @@
 import random
 from django.conf import settings
 from django.core.mail import EmailMessage
-from .models import User ,OneTimePassword
+from django.core.exceptions import ObjectDoesNotExist
+from rest_framework.exceptions import ValidationError
+from .models import User, OneTimePassword
 
 def generateOtp():
-    otp=""
-    for i in range(6):
-        otp+=str(random.randint(0,9))
+    otp = ''.join(str(random.randint(0, 9)) for _ in range(6))  # Generate a 6-digit OTP
     return otp
 
 def send_code_to_user(email):
-    Subject = "One time code for your account"
+    subject = "Code de vérification pour votre compte"
     otp_code = generateOtp()
-    user = User.objects.get(email=email)
-    current_site = "test.com"
-    email_body = f"Hi {user.first_name} Your one time code is {otp_code}"
+    
+    try:
+        user = User.objects.get(email=email)
+    except ObjectDoesNotExist:
+        raise ValidationError("Aucun utilisateur avec cet e-mail n'existe.")
+
+    # Update current_site to use get_current_site if in a request context
+    current_site = "test.com"  # Adjust this if you have access to the request context
+    image_url = "http://localhost:8000/static/biopilate-logo.png"  # Use your actual image path
+    email_body = (
+        f"Bonjour {user.first_name},\n\n"
+        f"Votre code de vérification unique est : {otp_code}\n\n"
+        "Veuillez ne pas partager ce code avec d'autres personnes.\n"
+        "Meilleures salutations,\n"
+        "L'équipe Studio Biopilates Paris\n\n"
+        f'<img src="{image_url}" alt="Studio Biopilates Paris" style="width: 300px; height: auto;">'
+    )
+    
     from_email = settings.DEFAULT_FROM_EMAIL
-    OneTimePassword.objects.create(user=user,code=otp_code)
+    OneTimePassword.objects.create(user=user, code=otp_code)  # Store OTP in the database
+    
     send_email = EmailMessage(
-        subject=Subject,
+        subject=subject,
         body=email_body,
         from_email=from_email,
         to=[email],
         bcc=[current_site],
         headers={"Reply-To": email},
-        )
-    send_email.send(fail_silently=True)
-
+    )
+    
+    try:
+        send_email.send(fail_silently=False)  # Set to False to raise exceptions if email fails to send
+    except Exception as e:
+        # Handle the error as needed
+        print(f"Erreur lors de l'envoi de l'email : {e}")
 
 def send_normal_email(data):
     email = EmailMessage(
@@ -35,4 +55,9 @@ def send_normal_email(data):
         from_email=settings.EMAIL_HOST_USER,
         to=[data["to_email"]],
     )
-    email.send()
+    
+    try:
+        email.send(fail_silently=False)  # Raise exceptions if email fails to send
+    except Exception as e:
+        # Handle the error as needed
+        print(f"Erreur lors de l'envoi de l'email normal : {e}")

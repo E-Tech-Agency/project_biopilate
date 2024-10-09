@@ -13,7 +13,7 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 from pathlib import Path
 from datetime import timedelta
 import environ
-
+import os
 env = environ.Env()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -43,14 +43,14 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
-   
+
     'accounts',
-    
+
     'biopilate',
     'social_accounts',
     'corsheaders',
     'rest_framework_simplejwt.token_blacklist',
-     'admin_honeypot',
+    'admin_honeypot',
 ]
 
 MIDDLEWARE = [
@@ -63,8 +63,8 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
-CORS_ALLOW_ALL_ORIGINS=True
-CORS_ALLOW_CREDENTIALS=True
+CORS_ALLOW_ALL_ORIGINS = True
+CORS_ALLOW_CREDENTIALS = True
 CSRF_TRUSTED_ORIGINS = [
     "http://localhost:5173",
 ]
@@ -96,7 +96,7 @@ MEDIA_ROOT = BASE_DIR / 'media'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'dev_biopilates',
+        'NAME': 'biopilate',
         'USER': 'multilab',
         'PASSWORD': 'root',
         'HOST': 'localhost',
@@ -104,9 +104,9 @@ DATABASES = {
     }
 }
 
-REST_FRAMEWORK={
-    'NON_FIELD_ERRORS_KEY':'error',
-        'DEFAULT_AUTHENTICATION_CLASSES': (
+REST_FRAMEWORK = {
+    'NON_FIELD_ERRORS_KEY': 'error',
+    'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework.authentication.SessionAuthentication',
         'rest_framework_simplejwt.authentication.JWTAuthentication',
     )
@@ -118,7 +118,7 @@ SIMPLE_JWT = {
     'AUTH_HEADER_TYPES': ('Bearer',),
 }
 
-DOMAIN='localhost:5173'
+DOMAIN = 'localhost:5173'
 SITE_NAME = 'Test Technique'
 
 AUTH_USER_MODEL = 'accounts.User'
@@ -158,18 +158,21 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
 STATIC_URL = 'static/'
+STATICFILES_DIRS = [os.path.join(BASE_DIR, '../frontend/dist')]
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
-#EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
+#EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_HOST_USER = 'nourderouich159@gmail.com'
-EMAIL_HOST_PASSWORD =  'gmby dkdj wlmo nojv'
-EMAIL_PORT = 587
-EMAIL_USE_TLS = True
-
+EMAIL_HOST = 'ssl0.ovh.net' 
+EMAIL_HOST_USER = 'administration@biopilates.fr'
+EMAIL_HOST_PASSWORD = 'SoniaCaroline'
+EMAIL_PORT = 465
+EMAIL_USE_SSL = True
+EMAIL_USE_TLS = False
+DEFAULT_FROM_EMAIL = 'administration@biopilates.fr'
+EMAIL_USE_LOCALTIME = True
 GOOGLE_CLIENT_ID = '84824279187-i984iquv2b83e4gf9b5jort0p770v21g.apps.googleusercontent.com'
 GOOGLE_CLIENT_SECRET = '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'
-SOCIAL_AUTH_PASSWORD='efzmefjfeqffsjm'
+SOCIAL_AUTH_PASSWORD = 'efzmefjfeqffsjm'
