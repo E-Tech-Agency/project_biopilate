@@ -131,7 +131,7 @@ export default function Header({ isLoggedIn }: { isLoggedIn: boolean }) {
               className="reserver-button button-content flex-col justify-center text-base leading-6 rounded-lg px-10 py-4 bg-bgColor hidden md:flex text-current transition duration-300 ease-in-out transform"
               onClick={() => {
                 window.open(
-                  "https://www.facebook.com/STUDIOBIOPILATESPARIS",
+                  "backoffice.bsport.io/m/Studio%20Biopilates%20Paris",
                   "_blank"
                 );
               }}

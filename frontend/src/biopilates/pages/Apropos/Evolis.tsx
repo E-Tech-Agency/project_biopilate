@@ -285,7 +285,7 @@ export default function Evolis() {
               className=" reserver-button flex mr-auto flex-col justify-center text-base rounded-lg px-9 py-3 bg-white text-marron font-lato font-bold"
               onClick={() => {
                 window.open(
-                  "https://www.facebook.com/STUDIOBIOPILATESPARIS",
+                  "backoffice.bsport.io/m/Studio%20Biopilates%20Paris",
                   "_blank"
                 );
               }}

@@ -126,7 +126,7 @@ export default function Accueil() {
                 className="button-hover flex flex-col justify-center text-marron sm:text-base rounded-lg px-4 sm:px-8 sm:py-3 bg-white shadow-sm font-lato font-bold"
                 onClick={() => {
                   window.open(
-                    "https://www.facebook.com/STUDIOBIOPILATESPARIS",
+                    "backoffice.bsport.io/m/Studio%20Biopilates%20Paris",
                     "_blank"
                   );
                 }}

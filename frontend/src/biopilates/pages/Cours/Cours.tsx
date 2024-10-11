@@ -7,9 +7,17 @@ import reformerImage from "@/assets/images/reformer.jpg";
 import reformerGyrotonicImage from "@/assets/images/reformer-gyrotonic.jpg";
 import evolisImage from "@/assets/images/reformer-gyrotonic-evolis.png";
 import mobileImage from "@/assets/images/mobile.png";
+import cours2 from "@/assets/images/cours-2.jpg";
+import cours1 from "@/assets/images/cours-1.jpg";
 
 export default function Cours() {
-  const images = [evolisImage, reformerImage, reformerGyrotonicImage];
+  const images = [
+    cours2,
+    cours1,
+    reformerGyrotonicImage,
+    reformerImage,
+    evolisImage,
+  ];
 
   const cours = [
     {
