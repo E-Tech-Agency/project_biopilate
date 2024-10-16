@@ -3,6 +3,7 @@ import { IoMdSearch, IoIosMenu } from "react-icons/io";
 import { LuUserCircle2 } from "react-icons/lu";
 import logoImage from "@/assets/images/biopilate-logo.png";
 import { Link } from "react-router-dom";
+import ReserverButton from "../components/ReserverButton";
 
 // Define a type for navigation items
 type NavItem = { label: string; href: string };
@@ -119,25 +120,15 @@ export default function Header({ isLoggedIn }: { isLoggedIn: boolean }) {
           ) : (
             <Link
               to="/login"
-              className="flex items-center justify-center gap-3 my-auto text-lg"
+              className="connecter flex items-center justify-center gap-3 my-auto text-lg"
             >
               <LuUserCircle2 className="text-2xl" />
-              <div className="max-md:hidden leading-5">Se connecter</div>
+              <div className="max-md:hidden  leading-5">Se connecter</div>
             </Link>
           )}
 
-          <div className="button-wrapper rounded-lg overflow-hidden">
-            <button
-              className="reserver-button button-content flex-col justify-center text-base leading-6 rounded-lg px-10 py-4 bg-bgColor hidden md:flex text-current transition duration-300 ease-in-out transform"
-              onClick={() => {
-                window.open(
-                  "backoffice.bsport.io/m/Studio%20Biopilates%20Paris",
-                  "_blank"
-                );
-              }}
-            >
-              Réserver
-            </button>
+          <div className="hidden md:flex">
+            <ReserverButton />
           </div>
         </div>
 

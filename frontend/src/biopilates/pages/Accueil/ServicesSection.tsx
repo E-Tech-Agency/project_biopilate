@@ -119,7 +119,7 @@ export default function ServicesSection() {
             </SwiperSlide>
           ))}
         </div>
-        <div className="swiper-pagination m-auto z-[1]"></div>
+        <div className="swiper-pagination m-auto z-[1] block sm:hidden"></div>
       </Swiper>
     </div>
   );

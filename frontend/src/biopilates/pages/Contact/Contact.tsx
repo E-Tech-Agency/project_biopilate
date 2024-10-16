@@ -1,4 +1,3 @@
-
 import { LuPhone } from "react-icons/lu";
 import { LuClock } from "react-icons/lu";
 
@@ -14,12 +13,12 @@ export default function Contact() {
           <img
             src={contactBg} // Use the imported image here
             alt="Contact bg"
-            className="size-full object-cover"
+            className="size-full object-cover max-md:max-h-[500px]"
           />
         </div>
-        <div className="absolute inset-0 bg-black from-black rounded-lg opacity-25"></div>
+        <div className="absolute inset-0 bg-black from-black rounded-lg opacity-25 max-md:max-h-[500px]"></div>
         {/* contact info */}
-        <section className="relative flex flex-wrap m-8 justify-center lg:justify-between items-center gap-10">
+        <section className="relative flex max-lg:flex-wrap m-8 md:m-20 justify-center lg:justify-between items-center gap-12">
           <div className="flex flex-col justify-center items-start gap-4 text-white font-lato max-w-[90%] lg:max-w-[35%]">
             <p className="text-3xl md:text-5xl font-bold font-ebGaramond">
               Contactez-nous{" "}
@@ -33,7 +32,9 @@ export default function Contact() {
             </p>
             <div className="flex gap-4">
               <LuClock className="w-4 h-4 md:w-6 md:h-6" />
-              <p className="text-sm md:text-lg">Du Lundi à Dimanche : du 8h à 21h</p>
+              <p className="text-sm md:text-lg">
+                Du Lundi à Dimanche : du 8h à 21h
+              </p>
             </div>
             <div className="flex gap-4">
               <LuPhone className="w-4 h-4 md:w-6 md:h-6" />

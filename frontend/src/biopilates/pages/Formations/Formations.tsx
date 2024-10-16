@@ -8,21 +8,15 @@ import reformer from "@/assets/images/reformer.jpg";
 import reformerGyrotonicEvolis from "@/assets/images/reformer-gyrotonic-evolis.png";
 import cours1 from "@/assets/images/cours-1.jpg";
 import cours2 from "@/assets/images/cours-2.jpg";
-import formation5 from "@/assets/images/formation-5.png";
-import formation6 from "@/assets/images/formation-6.jpg";
 import formation1 from "@/assets/images/formation-1.jpg";
 import formation2 from "@/assets/images/formation-2.jpg";
 import formation3 from "@/assets/images/formation-3.png";
+import formation5 from "@/assets/images/formation-5.png";
+import formation6 from "@/assets/images/formation-6.jpg";
 import matworkAvance from "@/assets/images/matwork-avancé.jpg";
 
 export default function Formations() {
-  const images = [
-    reformerGyrotonic,
-    cours1,
-    reformerGyrotonicEvolis,
-    reformer,
-    cours2,
-  ]
+  const images = [formation3, reformer, formation5, formation1, formation2];
   const formations = [
     {
       title: "Formation Anatomie",
@@ -142,7 +136,6 @@ export default function Formations() {
       timeSlots: ["Ven. 19/07/2024  :  8h - 13.30h"],
     },
   ];
-  
 
   return (
     <div className="flex flex-col mx-8 md:mx-12">
@@ -155,47 +148,32 @@ export default function Formations() {
         {/* text */}
         <div className="flex flex-col items-center md:items-baseline py-6 min-w-min md:px-2 gap-5 font-lato w-[90%]">
           <p className="text-marron text-4xl leading-snug font-ebGaramond font-bold">
-            Formations Biopilates :
+            Formations Biopilates
           </p>
-          <p className="leading-7 text-3xl text-marron font-ebGaramond font-normal">
+          <p className="leading-7 text-3xl text-blueText font-ebGaramond font-normal">
             Devenez instructeur certifié avec Biopilates
           </p>
-          <p className="leading-7 text-lg">
+          <p className="leading-8 text-lg">
             <strong>Biopilates</strong>, pionnier du{" "}
-            <strong>Stott Pilates</strong> en France depuis 2008, vous propose
-            une expérience unique pour devenir un{" "}
-            <strong>instructeur Pilates certifié</strong> et accompli.
+            <strong>Stott Pilates</strong> en France depuis{" "}
+            <strong>2008</strong>, vous propose une expérience unique pour
+            devenir un <strong>instructeur Pilates certifié</strong> et
+            accompli.
           </p>
-          <p className="leading-7 text-2xl text-marron font-ebGaramond font-bold">
-            Pourquoi choisir Biopilates ?
-          </p>
-
-          <div className="text-base">
-            <p className="leading-7">
-              Plus qu'une simple formation, une véritable immersion dans
-              l'univers du Pilates :
-              <ul className="list-disc ml-5">
-                <li>Pédagogie innovante et interactive</li>
-                <li>Formateurs expérimentés et passionnés</li>
-                <li>Suivi individualisé et mentorat</li>
-                <li>Certifications reconnues</li>
-                <li>
-                  Réseau d'anciens élèves dynamiques Biopilates, c'est
-                  l'assurance d'une formation d'excellence pour une carrière
-                  épanouissante.
-                </li>
-              </ul>
-            </p>
-          </div>
         </div>
       </section>
 
       {/* formation biopliates */}
       <section className="mt-4">
         <div className="mb-8">
-          <p className="text-marron text-3xl font-ebGaramond font-bold leading-snug">Formation Biopilates</p>
+          <p className="text-marron text-3xl font-ebGaramond font-bold leading-snug">
+            Formation Biopilates
+          </p>
           <p className="leading-7">
-          Devenez <strong>instructeur de Pilates</strong>  : favorisez l'équilibre et le bien-être physique et mental, tout en vous transformant. Rejoignez notre formation et devenez un pilier d'harmonie.
+            Devenez <strong>instructeur de Pilates</strong> : favorisez
+            l'équilibre et le bien-être physique et mental, tout en vous
+            transformant. Rejoignez notre formation et devenez un pilier
+            d'harmonie.
           </p>
         </div>
         <ImageSliderFormations list={formations} action={"Inscrivez-vous"} />

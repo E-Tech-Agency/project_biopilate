@@ -129,9 +129,9 @@ export default function Cours() {
             Comment S’incrire au cours?
           </p>
           <p className="leading-7">
-            Nous utilisons un logiciel français BSport.  Nous vous invitons à
+            Nous utilisons un logiciel français BSport. Nous vous invitons à
             suivre les instructions suivantes pour vous inscrire sur la
-            plateforme accessible sur votre ordinateur et y réserver vos
+            plateforme accessible sur votre ordinateur et y réserver vos
             prochains cours. Merci de vérifier, compléter et éventuellement
             modifier les informations qui vous concernent, en particulier
             l'ajout de vos méthodes de paiement afin de relancer vos

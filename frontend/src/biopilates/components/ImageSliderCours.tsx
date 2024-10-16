@@ -79,7 +79,7 @@ export default function ImageSliderCours({
           <div>{action}</div>
         </button>
       </div>
-      <div className="container">
+      <div className="container w-full">
         <Swiper
           className="relative"
           grabCursor={true}

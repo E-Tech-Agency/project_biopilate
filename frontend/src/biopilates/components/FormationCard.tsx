@@ -53,14 +53,15 @@ const FormationCard: React.FC<FormationCardProps> = ({ formation }) => {
       </div>
 
       <button
-        className="reserver-button flex flex-col justify-center rounded-lg mb-4 sm:mb-6 px-16 sm:px-24 py-3 bg-bgColor text-marron"
+        className="reserver-button flex flex-col justify-center rounded-lg mb-4 sm:mb-6 px-16 sm:px-24 py-3 transform"
         onClick={() => {
           window.open(
-            "backoffice.bsport.io/m/Studio%20Biopilates%20Paris",
+            "https://backoffice.bsport.io/m/Studio%20Biopilates%20Paris/878/calendar/?isPreview=true&tabSelected=0 ",
             "_blank"
           );
         }}
       >
+        <div className="hover-circle overflow-hidden" />
         Réserver
       </button>
     </div>

@@ -86,7 +86,7 @@ export function RegisterForm({
           document.getElementById("signInDiv"),
           {
             text: "continue_with",
-            width: "350px",
+            width: "100%",
             shape: "circle",
             size: "large",
             theme: "outline",
@@ -191,7 +191,7 @@ export function RegisterForm({
   return (
     <>
       <div className="bg-white w-[100vw]">
-        <div className="relative flex max-md:flex-wrap justify-evenly items-start sm:items-center min-h-[650px] ">
+        <div className="relative flex max-md:flex-wrap justify-evenly items-start sm:items-center">
           {/* back button */}
           <Link
             to="/"
@@ -384,7 +384,7 @@ export function RegisterForm({
                   </span>
                 </label>
               </div>
-              <div id="signInDiv" className="w-full  rounded-md"></div>
+              <div id="signInDiv" className="w-full rounded-lg"></div>
               <button
                 type="submit"
                 className="reserver-button flex mx-auto mb-2.5 flex-col justify-center items-center text-sm sm:text-base font-bold font-lato rounded-lg w-full py-2 sm:py-3 bg-bgColor text-marron"
@@ -416,8 +416,19 @@ export function RegisterForm({
               alt=""
               className="h-[550px] sm:h-[865px] object-cover"
             />
-            <div></div>
-            <div className="absolute inset-0 bg-gradient-to-t from-black to-[70%] rounded-lg opacity-70" />
+            <div className="absolute bottom-0 left-0 right-0 text-left  px-10 pb-20 z-10">
+              <h1 className="text-5xl leading-[62px] text-bgColor font-normal font-ebGaramond mb-4">
+                La forme physique, condition première du bonheur
+              </h1>
+              <h2 className="text-4xl text-white mb-1">
+                Joseph Hubertus Pilates
+              </h2>
+              <h3 className="text-xl font-light text-white ">
+                Inventeur de la méthode Pilates
+              </h3>
+            </div>
+
+            <div className="absolute inset-0 bg-gradient-to-t from-black to-[70%] rounded-lg opacity-70 " />
           </div>
         </div>
       </div>

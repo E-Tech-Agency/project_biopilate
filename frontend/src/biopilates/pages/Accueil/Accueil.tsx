@@ -90,9 +90,10 @@ export default function Accueil() {
 
       {/* tarif button */}
       <button
-        className="mx-auto my-10 flex flex-col justify-center items-center text-base leading-6 rounded-md px-5 py-3 bg-bgColor text-marron font-bold w-fit"
+        className="mx-auto my-10 overflow-hidden reserver-button flex flex-col justify-center items-center text-base leading-6 rounded-md transform"
         onClick={navigateToTarifs}
       >
+        <div className="hover-circle overflow-hidden" />
         Voir nos tarifs
       </button>
 
@@ -123,20 +124,22 @@ export default function Accueil() {
             </p>
             <div className="flex gap-2">
               <button
-                className="button-hover flex flex-col justify-center text-marron sm:text-base rounded-lg px-4 sm:px-8 sm:py-3 bg-white shadow-sm font-lato font-bold"
+                className="button-hover flex flex-col justify-center text-marron sm:text-base rounded-lg px-4 sm:px-8 sm:py-3 bg-white shadow-sm font-lato font-bold transform"
                 onClick={() => {
                   window.open(
-                    "backoffice.bsport.io/m/Studio%20Biopilates%20Paris",
+                    "https://backoffice.bsport.io/m/Studio%20Biopilates%20Paris/878/calendar/?isPreview=true&tabSelected=0 ",
                     "_blank"
                   );
                 }}
               >
+                <div className="hover-circle-2 overflow-hidden" />
                 Réserver
               </button>
               <button
-                className="button-hover flex flex-col justify-center text-white sm:text-base rounded-lg px-8 py-3 border border-solid border-white shadow-sm"
+                className="button-hover flex flex-col justify-center text-white sm:text-base rounded-lg font-bold px-8 py-3 border border-solid border-white shadow-sm"
                 onClick={navigateToContact}
               >
+                <div className="hover-circle-2 overflow-hidden" />
                 Contactez-nous
               </button>
             </div>

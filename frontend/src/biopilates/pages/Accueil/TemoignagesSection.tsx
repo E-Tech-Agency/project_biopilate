@@ -1,5 +1,6 @@
 import TemoignageCard from "./TemoignageCard";
 import { Swiper, SwiperSlide } from "swiper/react";
+
 import "swiper/swiper-bundle.css";
 import "swiper/css";
 import "swiper/css/pagination";
@@ -122,10 +123,10 @@ export default function TemoignagesSection() {
               </SwiperSlide>
             ))}
           </div>
+          <div className="slider-controler flex justify-center gap-10 mb-10">
+            <div className="swiper-pagination m-auto z-[1]"></div>
+          </div>
         </Swiper>
-        <div className="slider-controler flex justify-center gap-4 mb-10">
-          <div className="swiper-pagination m-auto z-[1] block sm:hidden"></div>
-        </div>
       </section>
     </div>
   );

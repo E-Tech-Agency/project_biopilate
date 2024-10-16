@@ -1,5 +1,7 @@
 import tarifs from "@/assets/data/tarifs.json"; // Adjust the path as necessary
 import { Swiper, SwiperSlide } from "swiper/react";
+import { FaArrowLeftLong, FaArrowRightLong } from "react-icons/fa6";
+
 import "swiper/swiper-bundle.css";
 import "swiper/css";
 import "swiper/css/pagination";
@@ -24,6 +26,10 @@ export default function Offres() {
           disableOnInteraction: false, // Continue autoplay after user interactions
         }}
         modules={[Pagination, Navigation]}
+        navigation={{
+          nextEl: ".swiper-but-next",
+          prevEl: ".swiper-but-prev",
+        }}
         pagination={{
           el: ".swiper-pagination",
           clickable: true,
@@ -31,19 +37,19 @@ export default function Offres() {
         breakpoints={{
           1920: {
             slidesPerView: 5,
-            spaceBetween: 25,
+            spaceBetween: 35,
           },
           1600: {
             slidesPerView: 4,
-            spaceBetween: 20,
+            spaceBetween: 35,
           },
           1440: {
-            slidesPerView: 3,
-            spaceBetween: 10,
+            slidesPerView: 4,
+            spaceBetween: 35,
           },
           1280: {
             slidesPerView: 3,
-            spaceBetween: 15,
+            spaceBetween: 25,
           },
           1028: {
             slidesPerView: 2,
@@ -67,7 +73,7 @@ export default function Offres() {
         <div className="flex flex-nowrap justify-center items-center gap-8 overflow-hidden">
           {tarifs.map((offre, index) => (
             <SwiperSlide key={index}>
-              <div className="py-9 m-auto  flex flex-col justify-between items-center bg-bgColor p-4 rounded-lg shadow-md min-w-[240px] sm:min-w-[350px] max-w-[700px] h-[350px] gap-2 font-lato">
+              <div className="py-9 m-auto  flex flex-col justify-between items-center bg-bgColor p-4 rounded-lg shadow-md min-w-[240px] sm:min-w-[300px] max-w-[500px] h-[400px] gap-2 font-lato">
                 <h3 className="text-xl  font-ebGaramond font-medium">
                   {offre.title}
                 </h3>
@@ -84,7 +90,7 @@ export default function Offres() {
                 <div className="flex flex-col justify-center items-center gap-2">
                   <p className="text-sm text-blueText pt-2">{offre.validity}</p>
                   <button
-                    className="reserver-button font-bold flex flex-col justify-center text-marron rounded-lg px-16 sm:px-24 py-2 bg-white shadow-sm"
+                    className="button-offre-hover font-bold flex flex-col justify-center text-marron rounded-lg px-16 sm:px-24 py-2 bg-white shadow-sm"
                     onClick={(e) => {
                       e.stopPropagation();
                     }}
@@ -96,7 +102,15 @@ export default function Offres() {
             </SwiperSlide>
           ))}
         </div>
-        <div className="swiper-pagination m-auto z-[1]"></div>
+        <div className="slider-controler flex justify-center gap-10 mb-10">
+          <div className="cursor-pointer swiper-but-prev slider-arrow hidden sm:flex justify-center items-center bg-bgColor rounded-full w-10 h-10">
+            <FaArrowLeftLong className="text-marron" />
+          </div>
+          <div className="cursor-pointer swiper-but-next slider-arrow hidden sm:flex justify-center items-center bg-bgColor rounded-full w-10 h-10">
+            <FaArrowRightLong className="text-marron" />
+          </div>
+          <div className="swiper-pagination m-auto z-[1] block sm:hidden"></div>
+        </div>
       </Swiper>
     </div>
   );

@@ -1,4 +1,5 @@
 import hero from "@/assets/images/hero-caroline.jpg";
+import ReserverButton from "@/biopilates/components/ReserverButton";
 
 export default function Hero() {
   return (
@@ -9,7 +10,7 @@ export default function Hero() {
         alt="Biopilate trainer"
         className="absolute h-full w-full object-cover rounded-md"
       />
-      <div className="absolute h-full w-full bg-black opacity-30" />
+      <div className="absolute h-full w-full bg-black opacity-30 rounded-md" />
 
       <div className="flex flex-col pl-8 md:pl-14 xl:pl-24 w-[600px] gap-5 font-lato z-10 ">
         <div>
@@ -24,17 +25,7 @@ export default function Hero() {
           Découvrez la force dans la fluidité et la grâce dans le mouvement, au
           cœur de Paris, avec notre approche personnalisée du Pilates.
         </p>
-        <button
-          className="reserver-button flex mr-auto flex-col justify-center text-base rounded-lg px-9 py-3 text-bgColor bg-marron font-bold font-lato"
-          onClick={() => {
-            window.open(
-              "backoffice.bsport.io/m/Studio%20Biopilates%20Paris",
-              "_blank"
-            );
-          }}
-        >
-          Réserver
-        </button>
+        <ReserverButton />
       </div>
 
       {/* <h1 className="absolute inset-0 flex justify-center items-center text-6xl sm:text-[100px] md:text-[160px] lg:text-[220px] xl:text-[280px] font-ebGaramond text-lightBgColor font-bold tracking-wider">
@@ -58,7 +49,7 @@ export default function Hero() {
           className="flex mr-auto flex-col justify-center text-base rounded-lg px-10 py-4 text-bgColor bg-marron font-lato"
           onClick={() => {
             window.open(
-              "backoffice.bsport.io/m/Studio%20Biopilates%20Paris",
+              "https://backoffice.bsport.io/m/Studio%20Biopilates%20Paris/878/calendar/?isPreview=true&tabSelected=0 ",
               "_blank"
             );
           }}
