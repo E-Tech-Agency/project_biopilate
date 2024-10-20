@@ -3,25 +3,25 @@ import ReserverButton from "@/biopilates/components/ReserverButton";
 
 export default function Hero() {
   return (
-    <section className="relative mt-6 mb-20 py-10 flex max-lg:flex-wrap justify-center lg:justify-between items-center gap-5 md:gap-9 lg:gap-14 xl:gap-16 min-h-[610px] rounded-md">
+    <section className=" relative max-sm:mx-[-32px] mt-6 mb-14 py-10 flex max-lg:flex-wrap justify-between lg:justify-between items-center gap-5 md:gap-9 lg:gap-14 xl:gap-16 min-h-[440px] md:min-h-[610px] xl:min-h-[680px] md:rounded-md">
       <img
         loading="lazy"
         src={hero}
         alt="Biopilate trainer"
-        className="absolute h-full w-full object-cover rounded-md"
+        className="absolute h-full w-full object-cover sm:rounded-md"
       />
-      <div className="absolute h-full w-full bg-black opacity-30 rounded-md" />
+      <div className="absolute h-full w-full bg-black opacity-30 sm:rounded-md" />
 
-      <div className="flex flex-col pl-8 md:pl-14 xl:pl-24 w-[600px] gap-5 font-lato z-10 ">
+      <div className="flex flex-col px-6 md:pl-14 xl:pl-24 w-[600px] gap-5 font-lato z-10 ">
         <div>
-          <p className="text-bgColor text-3xl leading-10 font-bold font-ebGaramond">
+          <p className="text-bgColor text-xl md:text-3xl md:leading-10 font-bold font-ebGaramond">
             Équilibre et Élégance :
           </p>
-          <p className="text-white text-3xl leading-10 font-bold font-ebGaramond">
+          <p className="text-white text-xl md:text-3xl md:leading-10 font-bold font-ebGaramond">
             BioPilates votre Studio de Pilates à Paris
           </p>{" "}
         </div>
-        <p className="text-white leading-7">
+        <p className="text-white text-base leading-normal md:leading-7">
           Découvrez la force dans la fluidité et la grâce dans le mouvement, au
           cœur de Paris, avec notre approche personnalisée du Pilates.
         </p>

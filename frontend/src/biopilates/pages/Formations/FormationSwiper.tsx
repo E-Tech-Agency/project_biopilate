@@ -1,4 +1,3 @@
-import FormationCard from "@/biopilates/components/FormationCard";
 import { FaArrowLeftLong, FaArrowRightLong } from "react-icons/fa6";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/swiper-bundle.css";
@@ -17,56 +16,56 @@ import formation1Image from "@/assets/images/formation-1.jpg";
 import formation5Image from "@/assets/images/formation-5.png";
 import Matwork from "@/assets/images/formation-6.jpg";
 import Blessures from "@/assets/images/formation-3.png";
+import FormationTarifCard from "@/biopilates/components/FormationTarifCard";
 // Define TypeScript interface for formation data
 interface Formation {
   title: string;
   image: string;
-  description: string;
+  prices: string[];
+  levels?: string[];
 }
 
-export default function FormationSection() {
+export default function FormationSwiper() {
   const formations: Formation[] = [
     {
       title: "Reformer",
       image: reformerImage,
-      description:
-        "Devenez instructeur <strong>Reformer Pilates</strong> et transformez la posture et la force de vos élèves.",
+      prices: ["2299 €", "999 €"],
+      levels: ["Débutant et intermédiaire", "Avancé"],
     },
     {
       title: "Matwork",
       image: Matwork,
-      description:
-        "Devenez instructeur <strong>Matwork Pilates</strong> et maîtrisez l’art du renforcement et de la mobilité.",
+      prices: ["1599 €", "399 €"],
+      levels: ["Débutant et intermédiaire", "Avancé"],
     },
     {
       title: "Chaise",
       image: formation2Image,
-      description:
-        "Devenez instructeur de la Chaise Pilates <strong></strong> et optimisez la force et l'équilibre de vos élèves.",
+      prices: ["699 €", "299 €"],
+      levels: ["Débutant et intermédiaire", "Avancé"],
     },
     {
       title: "Cadillac",
       image: reformerGyrotonicImage,
-      description:
-        "Devenez instructeur <strong>Cadillac Pilates</strong> et explorez de nouvelles dimensions de force et de flexibilité.",
+      prices: ["999 €", "399 €"],
+      levels: ["Débutant et intermédiaire", "Avancé"],
     },
     {
-      title: "Barril",
+      title: "Barrils",
       image: formation1Image,
-      description:
-        "Devenez instructeur <strong>Barril Pilates</strong> et développez la puissance et la fluidité de vos élèves.",
+      prices: ["399 €", "299 €"],
+      levels: ["Débutant et intermédiaire", "Avancé"],
     },
     {
       title: "Anatomie Fonctionnelle et biomécanique en privée",
       image: formation5Image,
-      description:
-        "Devenez instructeur en <strong>anatomie</strong> et améliorez votre compréhension du corps pour mieux guider vos élèves.",
+      prices: ["1199 €"],
     },
     {
       title: "Blessures et Population spécifiques et prénatal et postnatal-ISP",
       image: Blessures,
-      description:
-        "Devenez instructeur en <strong>ISP</strong> et apprenez à équilibrer corps et esprit pour optimiser la performance.",
+      prices: ["1599 €"],
     },
   ];
 
@@ -144,7 +143,7 @@ export default function FormationSection() {
             key={index}
             className="flex flex-col justify-center items-center"
           >
-            <FormationCard formation={formation} />
+            <FormationTarifCard formation={formation} />
           </SwiperSlide>
         ))}
 
