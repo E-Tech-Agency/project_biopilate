@@ -72,7 +72,7 @@ export default function FormationSection() {
 
   const navigate = useNavigate();
   const navigateToTarifs = () => {
-    navigate("/cours#tarifs");
+    navigate("/formations#formations-prix");
   };
   return (
     <div>

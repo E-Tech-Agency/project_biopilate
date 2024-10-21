@@ -6,7 +6,6 @@ import "swiper/css/pagination";
 import "swiper/css/navigation";
 import "@/assets/styles/swiper.css";
 import { Pagination, Navigation } from "swiper/modules";
-import { useNavigate } from "react-router-dom";
 
 // Import images directly
 import reformerImage from "@/assets/images/reformer.jpg";
@@ -69,23 +68,8 @@ export default function FormationSwiper() {
     },
   ];
 
-  const navigate = useNavigate();
-  const navigateToTarifs = () => {
-    navigate("/cours#tarifs");
-  };
   return (
     <div>
-      <div className="mb-6 flex flex-col text-center justify-center items-center gap-4 md:gap-2">
-        <p className="text-gray-500 text-xl md:text-3xl font-ebGaramond font-bold">
-          Formations professionnelles pour devenir instructeur Pilates
-        </p>
-        <p className="lg:mx-40 text-center text-sm md:text-xl max-w-[1200px]">
-          Explorez les bénéfices de sélectionner notre centre pour votre
-          formation en Pilates : Nos programmes de premier ordre sont dirigés
-          par des instructeurs chevronnés qui vous guideront tout au long de
-          votre parcours.
-        </p>
-      </div>
       <Swiper
         className="centered-slide-carousel swiper-container relative"
         centeredSlides={true}
@@ -157,13 +141,6 @@ export default function FormationSwiper() {
           <div className="swiper-pagination m-auto z-[1] block sm:hidden"></div>
         </div>
       </Swiper>
-      <button
-        className="mx-auto max-md:my-8 md:mb-10 overflow-hidden reserver-button flex flex-col justify-center items-center text-base leading-6 rounded-md transform"
-        onClick={navigateToTarifs}
-      >
-        <div className="hover-circle overflow-hidden" />
-        Voir nos tarifs
-      </button>
     </div>
   );
 }
