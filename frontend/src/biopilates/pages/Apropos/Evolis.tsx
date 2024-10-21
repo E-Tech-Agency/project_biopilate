@@ -3,9 +3,9 @@ import "swiper/swiper-bundle.css";
 import "swiper/css";
 import "swiper/css/pagination";
 import "@/assets/styles/swiper.css";
-import StartupAnimation from "./StartupAnimation";
-
 import { Pagination } from "swiper/modules";
+
+import StartupAnimation from "./StartupAnimation";
 import image1 from "@/assets/images/pourqui-1.jpg";
 import image2 from "@/assets/images/pourqui-2.jpg";
 import image3 from "@/assets/images/pourqui-3.jpg";
@@ -46,6 +46,7 @@ function PourQuiCard({ pourqui }: { pourqui: PourQui }) {
     </div>
   );
 }
+
 function Slider() {
   const principes = [
     {

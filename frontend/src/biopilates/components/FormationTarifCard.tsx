@@ -15,7 +15,7 @@ interface FormationCardProps {
 const FormationCard: React.FC<FormationCardProps> = ({ formation }) => {
   const isLevelNotFound = !formation.levels?.[0] || !formation.levels?.[1];
   return (
-    <div className="py-4 sm:py-0 flex flex-col items-center w-[232px] h-[368px] sm:w-[300px] sm:h-[524px] rounded-lg shadow-lg">
+    <div className="py-4 sm:py-0 flex flex-col items-center w-[232px] h-[456px] sm:w-[300px] sm:h-[580px] rounded-lg shadow-lg">
       <div className="px-6 py-2 sm:py-6 flex flex-col justify-center items-center gap-3 sm:gap-6">
         <img
           loading="lazy"
@@ -63,6 +63,18 @@ const FormationCard: React.FC<FormationCardProps> = ({ formation }) => {
       >
         <div className="hover-circle overflow-hidden" />
         Réserver
+      </button>
+      <button
+        className="border border-marron text-marron flex flex-col justify-center rounded-lg mb-4 sm:mb-6 px-16 sm:px-20 py-3 transform shadow-sm"
+        onClick={() => {
+          window.open(
+            "https://backoffice.bsport.io/m/Studio%20Biopilates%20Paris/878/calendar/?isPreview=true&tabSelected=0 ",
+            "_blank"
+          );
+        }}
+      >
+        <div className="hover-circle overflow-hidden" />
+        Telecharger
       </button>
     </div>
   );

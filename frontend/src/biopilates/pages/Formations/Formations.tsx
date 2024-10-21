@@ -7,8 +7,10 @@ import formation2 from "@/assets/images/formation-2.jpg";
 import formation3 from "@/assets/images/formation-3.png";
 import formation5 from "@/assets/images/formation-5.png";
 import formation6 from "@/assets/images/formation-6.jpg";
+
 import matworkAvance from "@/assets/images/matwork-avancé.jpg";
 import FormationSwiper from "./FormationSwiper";
+import PourquoiBiopilates from "./PourquoiBiopilates";
 
 export default function Formations() {
   const images = [formation3, reformer, formation5, formation1, formation2];
@@ -108,51 +110,8 @@ export default function Formations() {
       </section>
 
       {/* pourquoi biopilates */}
-      <div className="parent max-md:gap-y-2 max-md:hidden">
-        <div className="div1 md:max-w-[325px] h-[263px] relative rounded-lg">
-          <img
-            loading="lazy"
-            src={reformer}
-            alt="Biopilate trainer"
-            className="absolute h-full object-cover sm:rounded-md"
-          />{" "}
-        </div>
-        <div className="div2 md:max-w-[325px] h-[200px] md:h-[263px] bg-marron rounded-lg">
-          {" "}
-        </div>
-        <div className="div3 md:max-w-[330px] h-[200px] md:h-[263px] bg-marron rounded-lg">
-          {" "}
-        </div>
-        <div className="div4 md:max-w-[300px] h-[200px] md:h-[263px] bg-marron rounded-lg">
-          {" "}
-        </div>
-        <div className="div5 md:max-w-[700px] h-[200px] md:h-[263px] bg-marron rounded-lg">
-          {" "}
-        </div>
-        <div className="div6 md:max-w-[330px] h-[200px] md:h-[180px] bg-marron rounded-lg">
-          {" "}
-        </div>
-        <div className="div7 md:max-w-[330px] h-[200px] md:h-[334px] bg-marron rounded-lg">
-          {" "}
-        </div>
-      </div>
-      <div className="flex flex-col gap-4 md:hidden">
-        <div className="div2 md:max-w-[325px] h-[200px] md:h-[263px] bg-marron rounded-lg">
-          {" "}
-        </div>
-        <div className="div3 md:max-w-[330px] h-[200px] md:h-[263px] bg-marron rounded-lg">
-          {" "}
-        </div>
-        <div className="div4 md:max-w-[300px] h-[200px] md:h-[263px] bg-marron rounded-lg">
-          {" "}
-        </div>
-        <div className="div5 md:max-w-[700px] h-[200px] md:h-[263px] bg-marron rounded-lg">
-          {" "}
-        </div>
-        <div className="div6 md:max-w-[330px] h-[200px] md:h-[191px] bg-marron rounded-lg">
-          {" "}
-        </div>
-      </div>
+      <PourquoiBiopilates />
+
       {/* formation biopliates */}
       <section className="mt-4" id="formation-prix">
         <div className="mb-8">

@@ -72,7 +72,7 @@ export default function ImageSliderApropos({
       <div className="flex flex-col justify-center max-md:items-center px-3 xl:px-2 md:px-5 lg:min-w-[35%] lg:max-w-[60%] gap-4 font-lato">
         <div className="text-wrapper overflow-hidden relative h-[50px]">
           <p
-            className={`text-blueText text-3xl leading-snug hidden font-ebGaramond font-bold  lg:block title-animation ${
+            className={`text-blueText text-3xl leading-snug hidden font-lato font-bold  lg:block title-animation ${
               isAnimating ? "slide-out-bottom" : "slide-in-top"
             }`}
           >
