@@ -75,8 +75,8 @@ export default function Cours() {
   }, []);
 
   return (
-    <div className="flex flex-col mx-8 md:mx-12">
-      <section className="my-14 flex flex-col-reverse lg:flex-row justify-center lg:justify-between gap-8">
+    <div className="flex flex-col mx-5 md:mx-12">
+      <section className="mb-10 flex flex-col-reverse lg:flex-row justify-center lg:justify-between gap-8">
         {/* carousel */}
 
         {/* <CircleCarousel images={images} /> */}
@@ -92,14 +92,18 @@ export default function Cours() {
             cours de Pilates pour tous niveaux !
           </p>
           <div className="text-base">
-            <p className="leading-7">
-              Nos instructeurs certifiés et expérimentés vous accompagnent dans
-              votre progression et vous guident vers :
-              <ul className="list-disc ml-5">
-                <li>Une meilleure condition physique</li>
-                <li>Un corps plus fort et plus souple</li>
-                <li>Un esprit plus serein</li>
-              </ul>
+            <p className="leading-6">
+              Nos <strong>instructeurs certifiés et expérimentés</strong> vous
+              accompagnent dans votre progression et vous guident vers :
+              <p className="mt-2">
+                <ul className="list-disc ml-5">
+                  <li>
+                    Une meilleure <strong>condition physique</strong>
+                  </li>
+                  <li>Un corps plus fort et plus souple</li>
+                  <li>Un esprit plus serein</li>
+                </ul>
+              </p>
             </p>
           </div>
         </div>
@@ -128,7 +132,12 @@ export default function Cours() {
           <p className="text-marron text-3xl leading-snug font-ebGaramond font-bold">
             Comment S’incrire au cours?
           </p>
-          <p className="leading-7">
+          <img
+            src={mobileImage}
+            alt="mobileImage"
+            className="sm:max-w-[50%] max-w-[80%] lg:hidden self-center"
+          />
+          <p className="max-sm:text-sm">
             Nous utilisons un logiciel français BSport. Nous vous invitons à
             suivre les instructions suivantes pour vous inscrire sur la
             plateforme accessible sur votre ordinateur et y réserver vos
@@ -137,13 +146,14 @@ export default function Cours() {
             l'ajout de vos méthodes de paiement afin de relancer vos
             abonnements. L'équipe Studio Biopilates
           </p>
-          <div className="flex max-sm:justify-center gap-5 max-sm:w-64">
+          <div className="flex max-sm:justify-center gap-5 md:w-[50%] max-lg:mx-auto lg:w-[60%]">
             <svg
               width="164"
               height="70"
               viewBox="0 0 164 70"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
+              className="size-full"
             >
               <rect
                 x="0.5"
@@ -192,6 +202,7 @@ export default function Cours() {
               viewBox="0 0 164 70"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
+              className="size-full"
             >
               <rect
                 x="0.5"
@@ -239,10 +250,10 @@ export default function Cours() {
         <img
           src={mobileImage}
           alt="mobileImage"
-          className="sm:max-w-[50%] max-w-[80%]"
+          className="sm:max-w-[50%] max-w-[80%] max-lg:hidden"
         />
       </section>
-      <section id="tarifs" className="mb-14">
+      <section id="tarifs" className="mb-16">
         <Offres />
       </section>
     </div>

@@ -2,8 +2,8 @@ import engagement from "@/assets/images/engagement.png";
 
 export default function Engagement() {
   return (
-    <section className="mb-14 2xl:mx-6 flex flex-col justify-center items-center">
-      <p className="text-marron text-2xl mb-8 lg:mb-6 font-ebGaramond font-bold">
+    <section className="mb-20 2xl:mx-6 flex flex-col justify-center items-center">
+      <p className="text-marron text-2xl mb-8 lg:mb-12 font-ebGaramond font-bold">
         Engagement envers nos clients
       </p>
       <div className="flex justify-center flex-row max-lg:flex-wrap gap-2 md:gap-10 2xl:gap-8 max-md:hidden">

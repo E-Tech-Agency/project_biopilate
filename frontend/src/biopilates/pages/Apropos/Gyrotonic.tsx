@@ -28,7 +28,7 @@ export default function Gyrotonic() {
       <StartupAnimation images={images} />
 
       {/* Page Content */}
-      <div className="flex flex-col mt-8 mx-8 md:mx-12 mb-12 gap-6 font-lato">
+      <div className="flex flex-col mt-8 mx-5 md:mx-12 mb-12 gap-6 font-lato">
         <div className="flex flex-col-reverse md:flex-col">
           <div className="flex flex-col gap-3">
             <h1 className="text-3xl font-ebGaramond text-marron font-bold">

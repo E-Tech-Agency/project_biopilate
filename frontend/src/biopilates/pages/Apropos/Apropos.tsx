@@ -53,7 +53,7 @@ export default function Apropos() {
   ];
 
   return (
-    <div className="flex flex-col mx-8 md:mx-12">
+    <div className="flex flex-col mx-5 md:mx-12">
       {/* Bio */}
       <section className="my-14 flex flex-col-reverse xl:flex-row justify-center lg:justify-between gap-8">
         {/* carousel */}

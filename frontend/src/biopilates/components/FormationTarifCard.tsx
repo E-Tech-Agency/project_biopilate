@@ -1,4 +1,5 @@
 import React from "react";
+import { FaArrowDown } from "react-icons/fa6";
 
 // Define TypeScript interface for formation data
 interface Formation {
@@ -53,7 +54,7 @@ const FormationCard: React.FC<FormationCardProps> = ({ formation }) => {
       </div>
 
       <button
-        className="reserver-button flex flex-col justify-center rounded-lg mb-4 sm:mb-6 px-16 sm:px-24 py-3 transform"
+        className="reserver-button flex flex-col justify-center rounded-lg mb-3 sm:mb-4 max-sm:px-14 sm:px-24 py-3 transform"
         onClick={() => {
           window.open(
             "https://backoffice.bsport.io/m/Studio%20Biopilates%20Paris/878/calendar/?isPreview=true&tabSelected=0 ",
@@ -65,7 +66,7 @@ const FormationCard: React.FC<FormationCardProps> = ({ formation }) => {
         Réserver
       </button>
       <button
-        className="border border-marron text-marron flex flex-col justify-center rounded-lg mb-4 sm:mb-6 px-16 sm:px-20 py-3 transform shadow-sm"
+        className="border border-marron text-marron text-base font-bold flex justify-center items-center gap-4 rounded-lg sm:mb-4 px-6 sm:px-16 py-3 transform shadow-sm"
         onClick={() => {
           window.open(
             "https://backoffice.bsport.io/m/Studio%20Biopilates%20Paris/878/calendar/?isPreview=true&tabSelected=0 ",
@@ -74,7 +75,8 @@ const FormationCard: React.FC<FormationCardProps> = ({ formation }) => {
         }}
       >
         <div className="hover-circle overflow-hidden" />
-        Telecharger
+        <FaArrowDown />
+        Télecharger
       </button>
     </div>
   );

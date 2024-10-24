@@ -37,7 +37,7 @@ export default function Accueil() {
   };
 
   return (
-    <div className="flex flex-col mx-8 md:mx-12 ">
+    <div className="flex flex-col mx-5 md:mx-12 ">
       {/* Hero */}
       <Hero />
       {/* Intro */}

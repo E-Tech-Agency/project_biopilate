@@ -40,7 +40,7 @@ export default function TemoignagesSection() {
   ];
   return (
     <div>
-      <section className="mb-16 flex flex-col justify-center items-center gap-8 w-full h-[480px] sm:h-[530px]">
+      <section className="mb-10 flex flex-col justify-center items-center gap-12 w-full h-[480px] sm:h-[530px]">
         <div className="flex justify-center items-center gap-8">
           <svg
             width="111"

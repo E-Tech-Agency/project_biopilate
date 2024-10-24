@@ -51,7 +51,7 @@ export default function Blog() {
   ];
 
   return (
-    <div className="flex flex-col mt-4 mx-8 md:mx-12 mb-12">
+    <div className="flex flex-col mt-4 mx-5 md:mx-12 mb-12">
       <div className="mb-12">
         <div className="mb-8 flex flex-col justify-center items-center gap-6">
           <div className="flex flex-col justify-center text-base leading-6 rounded-lg px-4 py-1 bg-bgColor text-marron font-medium">

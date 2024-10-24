@@ -148,7 +148,7 @@ export default function FormationSection() {
           </SwiperSlide>
         ))}
 
-        <div className="slider-controler flex justify-center gap-10 mb-10">
+        <div className="slider-controler flex justify-center gap-10 mb-8">
           <div className="cursor-pointer swiper-but-prev slider-arrow hidden sm:flex justify-center items-center bg-bgColor rounded-full w-10 h-10">
             <FaArrowLeftLong className="text-marron" />
           </div>
@@ -159,7 +159,7 @@ export default function FormationSection() {
         </div>
       </Swiper>
       <button
-        className="mx-auto max-md:my-8 md:mb-10 overflow-hidden reserver-button flex flex-col justify-center items-center text-base leading-6 rounded-md transform"
+        className="mx-auto max-md:my-8 md:mb-16 overflow-hidden reserver-button flex flex-col justify-center items-center text-base leading-6 rounded-md transform"
         onClick={navigateToTarifs}
       >
         <div className="hover-circle overflow-hidden" />

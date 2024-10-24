@@ -19,7 +19,7 @@ export default function PourquoiBiopilates() {
 
       {/* desktop */}
       <div className="parent max-md:gap-y-2 max-lg:hidden font-lato mb-14">
-        <div className="div1 md:max-w-[340px] h-[263px] relative rounded-lg">
+        <div className="div1 md:max-w-[400px] h-[263px] 2xl:h-[280px] relative rounded-lg">
           <img
             loading="lazy"
             src={formation8}
@@ -28,8 +28,8 @@ export default function PourquoiBiopilates() {
           />
         </div>
 
-        <div className="div2 md:max-w-[340px] h-[200px] md:h-[263px] bg-marron relative rounded-lg overflow-hidden">
-          <div className="flex flex-col justify-around gap-4 py-8 px-5 xl:py-12 xl:px-10 z-20">
+        <div className="div2 md:max-w-[400px] h-[200px] md:h-[263px] 2xl:h-[280px]  bg-marron relative rounded-lg overflow-hidden">
+          <div className="flex flex-col justify-around gap-4 py-6 px-5 xl:py-8 xl:px-7 2xl:py-12 2xl:px-10 z-20">
             <div className="flex justify-center items-center gap-2">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -111,8 +111,8 @@ export default function PourquoiBiopilates() {
           <div className="absolute inset-0 mx-auto bg-black mt-40 rounded-full blur-3xl opacity-70 sm:rounded-md size-[80%] z-[0]" />{" "}
         </div>
 
-        <div className="div3 md:max-w-[360px] h-[200px] md:h-[263px] bg-marron relative rounded-lg overflow-hidden">
-          <div className="flex flex-col justify-around gap-4 py-8 px-5 xl:py-12 xl:px-8 z-20">
+        <div className="div3 md:max-w-[460px] h-[200px] md:h-[263px] 2xl:h-[280px]  bg-marron relative rounded-lg overflow-hidden">
+          <div className="flex flex-col justify-around gap-4 py-6 px-5 xl:py-8 xl:px-7 2xl:py-12 2xl:px-10 z-20">
             <div className="flex justify-center items-center gap-2">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -138,8 +138,8 @@ export default function PourquoiBiopilates() {
           <div className="absolute inset-0 mx-auto bg-black mt-40 rounded-full blur-3xl opacity-70 sm:rounded-md size-[80%]" />{" "}
         </div>
 
-        <div className="div4 md:max-w-[360px] h-[200px] md:h-[263px] bg-marron relative rounded-lg overflow-hidden">
-          <div className="flex flex-col justify-around gap-4 py-8 px-5 xl:py-12 xl:px-10 z-20">
+        <div className="div4 md:max-w-[460px] h-[200px] md:h-[263px] 2xl:h-[280px]  bg-marron relative rounded-lg overflow-hidden">
+          <div className="flex flex-col justify-around gap-4 py-6 px-5 xl:py-8 xl:px-7 2xl:py-12 2xl:px-10 z-20">
             <div className="flex justify-center items-center gap-2">
               <img
                 loading="lazy"
@@ -159,7 +159,7 @@ export default function PourquoiBiopilates() {
           <div className="absolute inset-0 mx-auto bg-black mt-40 rounded-full blur-3xl opacity-70 sm:rounded-md size-[80%]" />{" "}
         </div>
 
-        <div className="div5 md:max-w-[800px] h-[200px] md:h-[263px] relative rounded-lg">
+        <div className="div5 md:max-w-[880px] h-[200px] md:h-[263px] 2xl:h-[280px]  relative rounded-lg">
           <img
             loading="lazy"
             src={formation10}
@@ -169,8 +169,8 @@ export default function PourquoiBiopilates() {
           <div className="absolute h-full w-full bg-black opacity-50 sm:rounded-md" />
         </div>
 
-        <div className="div6 md:max-w-[360px] h-[200px] md:h-[184px] bg-marron relative rounded-lg overflow-hidden">
-          <div className="flex flex-col justify-around gap-4 py-8 px-5 xl:py-6 xl:px-8 z-20">
+        <div className="div6 md:max-w-[400px] h-[200px] md:h-[184px] 2xl:h-[196px] bg-marron relative rounded-lg overflow-hidden">
+          <div className="flex flex-col justify-around gap-2 py-3 px-5 xl:py-4 xl:px-7 2xl:py-10 2xl:px-10 z-20">
             <div className="flex justify-center items-center gap-2">
               <img
                 loading="lazy"
@@ -188,7 +188,7 @@ export default function PourquoiBiopilates() {
           <div className="absolute inset-0 mx-auto bg-black mt-32 rounded-full blur-3xl opacity-70 sm:rounded-md size-[80%]" />{" "}
         </div>
 
-        <div className="div7 md:max-w-[360px] h-[200px] md:h-[342px] relative rounded-lg">
+        <div className="div7 md:max-w-[400px] h-[200px] md:h-[342px] 2xl:h-[360px] relative rounded-lg">
           <img
             loading="lazy"
             src={formation9}
