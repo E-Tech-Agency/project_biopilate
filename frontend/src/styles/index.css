@@ -71,16 +71,6 @@
 }
 
 
-.button-hover{
-    transition: 0.3s ease-in-out;
-
-}
-
-.button-hover:hover {
-    background-color: #EBDCCD;
-    color:#756E66;
-    font-size: large;
-}
 .tr{
     transition: 0.3s ease-in-out;
 }

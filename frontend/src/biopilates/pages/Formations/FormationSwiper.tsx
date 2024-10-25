@@ -71,7 +71,7 @@ export default function FormationSwiper() {
   return (
     <div>
       <Swiper
-        className="centered-slide-carousel swiper-container relative"
+        className="centered-slide-carousel swiper-container relative mb-10"
         centeredSlides={true}
         grabCursor={true}
         loop={true}
@@ -131,7 +131,7 @@ export default function FormationSwiper() {
           </SwiperSlide>
         ))}
 
-        <div className="slider-controler flex justify-center gap-10 mb-10">
+        <div className="slider-controler flex justify-center gap-10 mt-4 ">
           <div className="cursor-pointer swiper-but-prev slider-arrow hidden sm:flex justify-center items-center bg-bgColor rounded-full w-10 h-10">
             <FaArrowLeftLong className="text-marron" />
           </div>

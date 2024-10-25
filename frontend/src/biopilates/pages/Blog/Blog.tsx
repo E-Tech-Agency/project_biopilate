@@ -3,7 +3,7 @@ import BlogCard from "@/biopilates/components/BlogCard";
 import Pagination from "@mui/material/Pagination";
 import Stack from "@mui/material/Stack";
 import articleImage1 from "@/assets/images/article-1.png";
-import placeholderImage from "@/assets/images/Placeholder_view_vector.png";
+// import placeholderImage from "@/assets/images/Placeholder_view_vector.png";
 
 function Filter() {
   const [selectedCategories, setSelectedCategories] = useState<number[]>([]);
@@ -51,32 +51,32 @@ export default function Blog() {
   ];
 
   return (
-    <div className="flex flex-col mt-4 mx-5 md:mx-12 mb-12">
-      <div className="mb-12">
-        <div className="mb-8 flex flex-col justify-center items-center gap-6">
-          <div className="flex flex-col justify-center text-base leading-6 rounded-lg px-4 py-1 bg-bgColor text-marron font-medium">
-            Biopilates blog
-          </div>
-          <p className="text-marron text-3xl leading-snug font-ebGaramond font-bold">
-            Découvrez le Pouvoir Transformateur du Pilates à Paris
-          </p>
-          <p className="leading-6 max-w-[1000px] text-blueText font-lato">
-            Bienvenue sur notre <strong>blog dédié au Pilates à Paris !</strong>{" "}
-            Que vous soyez débutant ou passionné, explorez avec nous les
-            nombreux <strong>bienfaits du Pilates.</strong> Retrouvez{" "}
-            <strong>
-              des conseils d'experts, des routines inspirantes et des
-              témoignages de transformation.
-            </strong>{" "}
-            Découvrez comment le Pilates peut améliorer votre bien-être
-            physique, mental et enrichir votre vie quotidienne.{" "}
-            <strong>Rejoignez-nous</strong> pour un voyage vers une meilleure
-            version de vous-même, un mouvement à la fois.
-          </p>
+    <div className="flex flex-col mt-4 mx-5 md:mx-12 mb-12 ">
+      <div className="mb-8 flex flex-col justify-center items-center gap-6">
+        <div className="flex flex-col justify-center text-base leading-6 rounded-lg px-4 py-1 bg-bgColor text-marron font-medium">
+          Biopilates blog
         </div>
-        <Filter />
-        <div className="relative flex justify-center overflow-hidden mx-[-48px]">
-          <div className="absolute object-cover z-[0] scale-50 sm:scale-75 md:scale-90 lg:scale-110 xl:scale-125 ">
+        <p className="text-marron text-3xl leading-snug font-ebGaramond font-bold">
+          Découvrez le Pouvoir Transformateur du Pilates à Paris
+        </p>
+        <p className="leading-6 max-w-[1000px] text-blueText font-lato">
+          Bienvenue sur notre <strong>blog dédié au Pilates à Paris !</strong>{" "}
+          Que vous soyez débutant ou passionné, explorez avec nous les nombreux{" "}
+          <strong>bienfaits du Pilates.</strong> Retrouvez{" "}
+          <strong>
+            des conseils d'experts, des routines inspirantes et des témoignages
+            de transformation.
+          </strong>{" "}
+          Découvrez comment le Pilates peut améliorer votre bien-être physique,
+          mental et enrichir votre vie quotidienne.{" "}
+          <strong>Rejoignez-nous</strong> pour un voyage vers une meilleure
+          version de vous-même, un mouvement à la fois.
+        </p>
+      </div>
+      <Filter />
+      <div className="mb-12 overflow-hidden mx-[-20px] md:mx-[-48px] relative">
+        <div className=" flex justify-center overflow-hidden mx-[-48px]">
+          <div className="absolute object-cover z-[0] scale-50 sm:scale-75 md:scale-90 lg:scale-110 xl:scale-125 mt-4">
             <svg
               width="1440"
               height="417"

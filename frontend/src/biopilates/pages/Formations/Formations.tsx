@@ -8,78 +8,48 @@ import formation3 from "@/assets/images/formation-3.png";
 import formation5 from "@/assets/images/formation-5.png";
 import formation6 from "@/assets/images/formation-6.jpg";
 
-import matworkAvance from "@/assets/images/matwork-avancé.jpg";
 import FormationSwiper from "./FormationSwiper";
 import PourquoiBiopilates from "./PourquoiBiopilates";
+import FinancerVotreFormation from "./FinancerVotreFormation";
+import WorkshopSlider from "./WorkshopSlider";
 
 export default function Formations() {
   const images = [formation3, reformer, formation5, formation1, formation2];
 
   const plans = [
     {
+      title: "Reformer",
+      niveau: "débutant et intermédiare",
+      image: reformer,
+      date: "Du 21 au 25/10/2024 et du 4 au 8/11/2024",
+      timeSlots: [
+        "Lun.21/10/2024 :  8h - 13h",
+        "Mar. 22/10/2024 :  8h - 13h",
+        "Mer. 23/10/2024 :  8h - 13h",
+        "Jeu. 24/10/2024 :  8h - 13h",
+        "Ven. 25/10/2024 :  8h - 13h",
+        "Lun. 04/11/2024 : 14h - 19.30h",
+        "Mar. 05/11/2024 :  8h - 13.30h",
+        "Mer. 06/11/2024 :  8h - 13.30h",
+        "Jeu. 07/11/2024 :  8h - 13.30h",
+        "Ven. 08/11/2024 :  8h - 13.30h",
+      ],
+    },
+    {
       title: "Intensive Matwork",
       niveau: "débutant et intermédiare",
       image: formation6,
-      date: "Du 09/07 au 18/07/2024",
-    },
-    {
-      title: "Matwork",
-      niveau: "avancé",
-      image: matworkAvance,
-      date: "Le 19/07/2024",
-    },
-    {
-      title: "Reformer",
-      niveau: "débutant et intermédiare",
-      image: reformer,
-      date: "Du 19/07 au 29/08/2024",
-    },
-    {
-      title: "Reformer",
-      niveau: "avancé",
-      image: reformer,
-      date: "Du 30/08 au 01/09/2024",
-    },
-  ];
-  const calendar = [
-    {
-      date: "Du 09/07/2024 au 18/07/2024",
+      date: "Du 18 au 22/11/2024 et du 03 au 06/12/2024",
       timeSlots: [
-        "Mar. 09/07/2024 :  8h - 13.30h",
-        "Mer. 10/07/2024 :  8h - 13.30h",
-        "Jeu. 11/07/2024 :  8h - 13.30h",
-        "Ven. 12/07/2024 :  8h - 13.30h",
-        "Off",
-        "Dim. 14/07/2024 : 14h - 19.30h",
-        "Off",
-        "Mar. 16/07/2024 :  8h - 13.30h",
-        "Mer. 17/07/2024 :  8h - 13.30h",
-        "Jeu. 18/07/2024 :  8h - 13.30h",
+        "Mar. 19/10/2024 :  8h - 13h",
+        "Mer. 20/10/2024 :  8h - 13h",
+        "Jeu. 21/10/2024 :  8h - 13h",
+        "Ven. 22/10/2024 :  8h - 13h",
+        "Mar. 03/12/2024 :  8h - 13h",
+        "Mer. 04/12/2024 :  8h - 13h",
+        "Jeu. 05/12/2024 :  8h - 13h",
+        "Ven. 06/12/2024 :  8h - 13h",
       ],
-    },
-    {
-      date: "Le 19/07/2024",
-      timeSlots: ["Ven. 19/07/2024  :  8h - 13.30h"],
-    },
-    {
-      date: "Du 19/08/2024 au 29/08/2024",
-      timeSlots: [
-        "Lun. 19/08/2024 :  8h - 13.30h",
-        "Mar. 20/08/2024 :  8h - 13.30h",
-        "Mer. 21/08/2024 :  8h - 13.30h",
-        "Jeu. 22/08/2024 :  8h - 13.30h",
-        "Ven. 23/08/2024 :  8h - 13.30h",
-        "Off",
-        "Dim. 25/08/2024 :  14h - 19.30h",
-        "Lun. 26/08/2024 :  8h - 13.30h",
-        "Mar. 27/08/2024 :  8h - 13.30h",
-        "Mer. 28/08/2024 :  8h - 13.30h",
-        "Jeu. 29/08/2024 :  8h - 13.30h",
-      ],
-    },
-    {
-      date: "Le 19/07/2024",
-      timeSlots: ["Ven. 19/07/2024  :  8h - 13.30h"],
     },
   ];
 
@@ -113,29 +83,36 @@ export default function Formations() {
       <PourquoiBiopilates />
 
       {/* formation biopliates */}
-      <section className="mt-4" id="formation-prix">
+      <section className="mt-8" id="formation-prix">
         <div className="mb-8">
-          <p className="text-marron text-3xl font-ebGaramond font-bold leading-snug">
+          <p className="text-marron text-3xl font-ebGaramond font-bold leading-snug mb-4">
             Formation Biopilates
           </p>
-          <p className="leading-7">
+          <p className="leading-6">
             Devenez <strong>instructeur de Pilates</strong> : favorisez
             l'équilibre et le bien-être physique et mental, tout en vous
-            transformant. Rejoignez notre formation et devenez un pilier
-            d'harmonie.
+            transformant.{" "}
+          </p>
+          <p className="leading-6">
+            Rejoignez notre formation et devenez un pilier d'harmonie.
           </p>
         </div>
         <FormationSwiper />
       </section>
 
-      {/* Planning */}
+      {/* Fianncer votre formation */}
+      <FinancerVotreFormation />
 
-      <section className="mb-14">
-        <p className="text-marron text-4xl leading-snug mb-10 font-ebGaramond">
+      {/* workshop */}
+      <WorkshopSlider />
+
+      {/* Planning */}
+      <section className="mb-14 mt-2">
+        <p className="text-marron text-4xl leading-snug mb-10 font-ebGaramond font-bold">
           Planning
         </p>
 
-        <Planning plans={plans} calendar={calendar} />
+        <Planning plans={plans} />
       </section>
     </div>
   );

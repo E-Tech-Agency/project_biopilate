@@ -1,3 +1,4 @@
+import React, { useState } from "react";
 import PlanningCard from "./PlanningCard";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/swiper-bundle.css";
@@ -10,29 +11,32 @@ type Plan = {
   title: string;
   niveau: string;
   image: string;
-  date: string;
-};
-
-type Calendar = {
-  timeSlots: string[];
-  title?: string;
   date?: string;
+  timeSlots: string[];
 };
 
 interface PlanningProps {
   plans: Plan[];
-  calendar: Calendar[];
 }
 
-export default function Planning({ plans, calendar }: PlanningProps) {
+export default function Planning({ plans }: PlanningProps) {
+  const [showMoreStates, setShowMoreStates] = useState<boolean[]>(
+    plans.map(() => false)
+  );
+
+  const toggleShowMore = (index: number) => {
+    setShowMoreStates((prevStates) =>
+      prevStates.map((state, i) => (i === index ? !state : state))
+    );
+  };
+
   return (
     <div className="mb-8">
       <Swiper
         className="centered-slide-carousel swiper-container relative"
         grabCursor={true}
-        loop={true}
         spaceBetween={30}
-        slideToClickedSlide={true}
+        slideToClickedSlide={false}
         pagination={{
           el: ".swiper-pagination",
           clickable: true,
@@ -45,34 +49,33 @@ export default function Planning({ plans, calendar }: PlanningProps) {
             allowSlideNext: false,
             allowSlidePrev: false,
           },
-          1600: {
+          1650: {
             slidesPerView: 4,
             spaceBetween: 20,
             allowSlideNext: false,
             allowSlidePrev: false,
           },
           1440: {
-            slidesPerView: 4,
+            slidesPerView: 3,
             spaceBetween: 15,
+            allowSlideNext: false,
+            allowSlidePrev: false,
           },
           1280: {
-            slidesPerView: 3,
+            slidesPerView: 2,
             spaceBetween: 10,
           },
-          1028: {
-            slidesPerView: 3,
-            spaceBetween: 10,
-          },
-          990: {
+
+          900: {
             slidesPerView: 2,
             spaceBetween: 8,
           },
           768: {
-            slidesPerView: 2,
+            slidesPerView: 1,
             spaceBetween: 5,
           },
           640: {
-            slidesPerView: 2,
+            slidesPerView: 1,
             spaceBetween: 2,
           },
         }}
@@ -84,9 +87,9 @@ export default function Planning({ plans, calendar }: PlanningProps) {
               className="flex flex-col justify-center items-center"
             >
               <PlanningCard
-                key={index}
                 plan={plan}
-                calendar={calendar[index] || { timeSlots: [] }} // Provide fallback for missing calendar
+                showMore={showMoreStates[index]}
+                toggleShowMore={() => toggleShowMore(index)}
               />
             </SwiperSlide>
           ))}
