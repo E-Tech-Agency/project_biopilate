@@ -81,8 +81,8 @@ export default function BlogCard({ article }: BlogCardProps) {
           {article.description}
         </p>
         <div className="flex items-center gap-2 text-sm">
-          <FaHeart className="text-blueText" />
-          <p>{likes} j'aimes</p>
+          {/* <FaHeart className="text-blueText" /> */}
+          {/* <p>{likes} j'aimes</p> */}
         </div>
       </div>
 

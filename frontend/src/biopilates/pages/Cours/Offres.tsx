@@ -135,8 +135,11 @@ export default function Offres() {
                   </p>
                   <button
                     className="button-offre-hover font-bold flex flex-col justify-center text-marron rounded-md px-16 sm:px-24 py-2 bg-white shadow-sm"
-                    onClick={(e) => {
-                      e.stopPropagation();
+                    onClick={() => {
+                      window.open(
+                        "https://backoffice.bsport.io/m/Studio%20Biopilates%20Paris/878/calendar/?isPreview=true&tabSelected=0 ",
+                        "_blank"
+                      );
                     }}
                   >
                     Réserver
