@@ -16,11 +16,20 @@ import formation5Image from "@/assets/images/formation-5.png";
 import Matwork from "@/assets/images/formation-6.jpg";
 import Blessures from "@/assets/images/formation-3.png";
 import FormationTarifCard from "@/biopilates/components/FormationTarifCard";
+
+import formation1 from "@/assets/doc/1-Formation-Anatomie.pdf";
+import formation2 from "@/assets/doc/2-Formation-Matwork.pdf";
+import formation3 from "@/assets/doc/3-Formation-Reformer.pdf";
+import formation4 from "@/assets/doc/4-Formation-Cadillac.pdf";
+import formation5 from "@/assets/doc/5-Formation-Barils.pdf";
+import formation6 from "@/assets/doc/6-Formation-Chaise.pdf";
+import formation7 from "@/assets/doc/7-Formation-ISP.pdf";
 // Define TypeScript interface for formation data
 interface Formation {
   title: string;
   image: string;
   prices: string[];
+  pdf: string;
   levels?: string[];
 }
 
@@ -30,41 +39,48 @@ export default function FormationSwiper() {
       title: "Reformer",
       image: reformerImage,
       prices: ["2299 €", "999 €"],
+      pdf: formation1,
       levels: ["Débutant et intermédiaire", "Avancé"],
     },
     {
       title: "Matwork",
       image: Matwork,
       prices: ["1599 €", "399 €"],
+      pdf: formation2,
       levels: ["Débutant et intermédiaire", "Avancé"],
     },
     {
       title: "Chaise",
       image: formation2Image,
       prices: ["699 €", "299 €"],
+      pdf: formation3,
       levels: ["Débutant et intermédiaire", "Avancé"],
     },
     {
       title: "Cadillac",
       image: reformerGyrotonicImage,
       prices: ["999 €", "399 €"],
+      pdf: formation4,
       levels: ["Débutant et intermédiaire", "Avancé"],
     },
     {
       title: "Barrils",
       image: formation1Image,
       prices: ["399 €", "299 €"],
+      pdf: formation5,
       levels: ["Débutant et intermédiaire", "Avancé"],
     },
     {
       title: "Anatomie Fonctionnelle et biomécanique en privée",
       image: formation5Image,
       prices: ["1199 €"],
+      pdf: formation6,
     },
     {
       title: "Blessures et Population spécifiques et prénatal et postnatal-ISP",
       image: Blessures,
       prices: ["1599 €"],
+      pdf: formation7,
     },
   ];
 
@@ -73,10 +89,10 @@ export default function FormationSwiper() {
       <Swiper
         className="centered-slide-carousel swiper-container relative mb-10"
         centeredSlides={true}
-        grabCursor={true}
+        // grabCursor={true}
         loop={true}
         spaceBetween={30}
-        slideToClickedSlide={true}
+        // slideToClickedSlide={true}
         pagination={{ el: ".swiper-pagination", clickable: true }} // Move clickable here
         navigation={{
           nextEl: ".swiper-but-next",

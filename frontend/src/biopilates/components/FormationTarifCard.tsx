@@ -6,6 +6,7 @@ interface Formation {
   title: string;
   image: string;
   prices: string[];
+  pdf: string;
   levels?: string[];
 }
 
@@ -54,7 +55,7 @@ const FormationCard: React.FC<FormationCardProps> = ({ formation }) => {
       </div>
 
       <button
-        className="reserver-button flex flex-col justify-center rounded-lg mb-3 sm:mb-4 max-sm:px-14 sm:px-24 py-3 transform"
+        className="reserver-button bg-bgColor flex flex-col justify-center rounded-lg mb-3 sm:mb-4 max-sm:px-14 sm:px-24 py-3 transform"
         onClick={() => {
           window.open(
             "https://backoffice.bsport.io/m/Studio%20Biopilates%20Paris/878/calendar/?isPreview=true&tabSelected=0 ",
@@ -65,19 +66,19 @@ const FormationCard: React.FC<FormationCardProps> = ({ formation }) => {
         <div className="hover-circle overflow-hidden" />
         Réserver
       </button>
-      <button
+      <a
         className="border border-marron text-marron text-base font-bold flex justify-center items-center gap-4 rounded-lg sm:mb-4 px-6 sm:px-16 py-3 transform shadow-sm"
-        onClick={() => {
-          window.open(
-            "https://backoffice.bsport.io/m/Studio%20Biopilates%20Paris/878/calendar/?isPreview=true&tabSelected=0 ",
-            "_blank"
-          );
+        onClick={(e) => {
+          e.stopPropagation();
         }}
+        href={formation.pdf}
+        target="_blank"
+        download
       >
         <div className="hover-circle overflow-hidden" />
         <FaArrowDown />
         Télecharger
-      </button>
+      </a>
     </div>
   );
 };

@@ -37,7 +37,9 @@ export default function Header({ isLoggedIn }: { isLoggedIn: boolean }) {
   };
 
   return (
-    <header>
+    <header className="sticky top-0 z-50 shadow-sm bg-white">
+      {" "}
+      {/* Sticky Header */}
       <div className="flex gap-5 justify-between items-center px-14 py-1.5 w-full border-b border-solid bg-white border-bgColor md:flex-wrap max-md:border-none max-md:px-5 max-md:max-w-full font-lato">
         <div className="flex gap-7">
           <nav className="mx-auto gap-6 flex items-center">

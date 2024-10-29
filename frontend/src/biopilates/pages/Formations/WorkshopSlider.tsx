@@ -15,7 +15,7 @@ import workshop5 from "@/assets/images/workshop-2.jpg";
 import workshop6 from "@/assets/images/workshop-3.jpg";
 import workshop7 from "@/assets/images/formation-5.png";
 import workshop8 from "@/assets/images/workshop-4.jpg";
-import ReserverButton from "@/biopilates/components/ReserverButton";
+// import ReserverButton from "@/biopilates/components/ReserverButton";
 
 type Workshop = {
   title: string;
@@ -24,11 +24,23 @@ type Workshop = {
 function WorkshopCard({ workshop }: { workshop: Workshop }) {
   return (
     <div className="relative w-[206px] h-[270px] sm:w-[300px] sm:h-[360px] rounded-lg shadow-lg font-lato">
-      <div className="absolute flex flex-col justify-center items-center gap-4 bottom-0 w-full rounded-lg mb-7 z-10">
+      <div className="absolute flex flex-col justify-center items-center gap-4 bottom-0 w-full rounded-lg mb-7 z-20">
         <p className="text-center text-sm sm:text-2xl text-white font-bold font-ebGaramond">
           {workshop.title}
         </p>
-        <ReserverButton text={"Découvrir"} />
+        <button
+          className="reserver-button bg-bgColor flex flex-col justify-center rounded-lg transform cursor-pointer"
+          onClick={(e) => {
+            e.stopPropagation(); // Prevent Swiper's click event from firing
+            window.open(
+              "https://backoffice.bsport.io/m/Studio%20Biopilates%20Paris/878/calendar/?isPreview=true&tabSelected=0 ",
+              "_blank"
+            );
+          }}
+        >
+          <div className="hover-circle overflow-hidden" />
+          Découvrir
+        </button>
       </div>
 
       <div className="absolute inset-0 size-full self-start">
@@ -122,7 +134,7 @@ export default function WorkshopSlider() {
 
       <Swiper
         className="centered-slide-carousel swiper-container relative w-full overflow-hidden "
-        grabCursor={true}
+        // grabCursor={true}
         loop={true}
         // spaceBetween={40}
         slideToClickedSlide={true}
