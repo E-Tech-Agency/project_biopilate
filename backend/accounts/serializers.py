@@ -10,13 +10,17 @@ from django.urls import reverse
 from .utils import send_normal_email
 from rest_framework_simplejwt.tokens import RefreshToken
 
+
 class UserRegisterSerializer(serializers.ModelSerializer):
-    password = serializers.CharField(max_length=68, min_length=6, write_only=True)
-    confirm_password = serializers.CharField(max_length=68, min_length=6, write_only=True)
+    password = serializers.CharField(
+        max_length=68, min_length=6, write_only=True)
+    confirm_password = serializers.CharField(
+        max_length=68, min_length=6, write_only=True)
 
     class Meta:
         model = User
-        fields = ['email', 'first_name', 'last_name', 'password', 'confirm_password', 'is_supplier', 'phone_number', 'profile_image']
+        fields = ['email', 'first_name', 'last_name', 'password',
+                  'confirm_password', 'is_supplier', 'phone_number', 'profile_image']
         extra_kwargs = {
             'profile_image': {'required': False},
         }
@@ -49,7 +53,8 @@ class UserLoginSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        fields = ['email', 'password', 'full_name', 'access_token', 'refresh_token', 'is_supplier', 'is_superuser', 'phone_number', 'profile_image']
+        fields = ['email', 'password', 'full_name', 'access_token', 'refresh_token',
+                  'is_supplier', 'is_superuser', 'phone_number', 'profile_image']
         extra_kwargs = {
             'profile_image': {'required': False},
         }
@@ -62,7 +67,7 @@ class UserLoginSerializer(serializers.ModelSerializer):
 
         if not user:
             raise AuthenticationFailed("Invalid credentials, try again")
-        
+
         if not user.is_verified:
             raise AuthenticationFailed("Email is not verified")
 
@@ -86,21 +91,23 @@ class PasswordResetSerializer(serializers.Serializer):
     def validate(self, attrs):
         email = attrs.get('email')
         user = User.objects.filter(email=email).first()
-     
 
         if not user:
             raise serializers.ValidationError("Invalid email")
-        
+
         if not user.is_verified:
             raise serializers.ValidationError("Email is not verified")
 
-        uid64 = urlsafe_base64_encode(force_str(user.id).encode())  # Encode user ID
+        uid64 = urlsafe_base64_encode(
+            force_str(user.id).encode())  # Encode user ID
         token = PasswordResetTokenGenerator().make_token(user)
         request = self.context.get('request')
         site_domain = get_current_site(request).domain
-        relative_link = reverse('password_reset_confirm', kwargs={'uidb64': uid64, 'token': token})
-        abslink = f'http://{site_domain}{relative_link}'  # Use the actual site domain
-        
+        relative_link = reverse('password_reset_confirm', kwargs={
+                                'uidb64': uid64, 'token': token})
+        # abslink = f'http://{site_domain}{relative_link}'  # Use the actual site domain
+        abslink = f'http://141.94.23.119/reset_password/{uid64}/{token}'
+
         email_body = f"""Bonjour {user.first_name},
 
 Vous pouvez réinitialiser votre mot de passe en cliquant sur le lien ci-dessous :
@@ -126,8 +133,10 @@ L'équipe Studio Biopilates Paris
 
 
 class SetNewPasswordSerializer(serializers.Serializer):
-    password = serializers.CharField(max_length=68, min_length=6, write_only=True)
-    confirm_password = serializers.CharField(max_length=68, min_length=6, write_only=True)
+    password = serializers.CharField(
+        max_length=68, min_length=6, write_only=True)
+    confirm_password = serializers.CharField(
+        max_length=68, min_length=6, write_only=True)
     id = serializers.CharField(max_length=255)
     token = serializers.CharField(max_length=255)
 
@@ -142,7 +151,7 @@ class SetNewPasswordSerializer(serializers.Serializer):
 
         if password != confirm_password:
             raise serializers.ValidationError("Passwords do not match")
-        
+
         try:
             user = User.objects.get(id=uid)
 
@@ -180,7 +189,8 @@ class LogoutUserSerializer(serializers.Serializer):
 class GetOneUserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ['id', 'email', 'first_name', 'last_name','password' ,'phone_number', 'profile_image', 'is_superuser', 'is_verified', 'is_supplier', 'is_active', 'is_staff', 'date_joined', 'auth_provider']
+        fields = ['id', 'email', 'first_name', 'last_name', 'password', 'phone_number', 'profile_image',
+                  'is_superuser', 'is_verified', 'is_supplier', 'is_active', 'is_staff', 'date_joined', 'auth_provider']
         extra_kwargs = {
             'profile_image': {'required': False},
         }
