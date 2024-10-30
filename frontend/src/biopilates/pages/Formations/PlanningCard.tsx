@@ -1,6 +1,6 @@
 import { LuCalendarDays } from "react-icons/lu";
 import { FaChevronDown } from "react-icons/fa";
-import ReserverButton from "@/biopilates/components/ReserverButton";
+
 
 type Plan = {
   title: string;
@@ -92,7 +92,21 @@ export default function PlanningCard({
             showMore={showMore}
             toggleShowMore={toggleShowMore}
           />
-          <ReserverButton text={"Rejoignez-nous"} />
+        
+          <div className="rounded-lg">
+      <button
+        className={`flex overflow-hidden reserver-button cursor-pointer bg-bgColor flex-col justify-center text-base leading-6 rounded-lg text-current transition duration-300 ease-in-out transform`}
+        onClick={() => {
+          window.open(
+            "https://forms.zohopublic.com/virtualoffice707/form/AnalysedesbesoinsbnficiairesFormationscourtesouper/formperma/0Yyw-9wbvHRQB_Xb63QniT0EDrnKuekcjjfWvZC8PMg",
+            "_blank"
+          );
+        }}
+      >
+        <div className="hover-circle overflow-hidden" />
+        Rejoignez-nous
+      </button>
+    </div>
         </div>
       </div>
     </div>
