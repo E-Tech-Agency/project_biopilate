@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import PlanningCard from "./PlanningCard";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/swiper-bundle.css";
