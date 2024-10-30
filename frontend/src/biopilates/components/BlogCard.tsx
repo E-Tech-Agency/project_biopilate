@@ -87,7 +87,7 @@ export default function BlogCard({ article }: BlogCardProps) {
       </div>
 
       <button
-        className="reserver-button flex mt-1  flex-col justify-center items-center text-base rounded-lg w-[90%] py-3 transform"
+        className="reserver-button flex mt-1 bg-bgColor flex-col justify-center items-center text-base rounded-lg w-[90%] py-3 transform"
         onClick={(e) => {
           e.stopPropagation(); // Prevent card click when button is clicked
           navigateToArticle(); // Navigate when button is clicked

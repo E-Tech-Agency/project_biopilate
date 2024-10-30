@@ -6,7 +6,7 @@ import "@/assets/styles/swiper.css";
 import { Pagination, Navigation } from "swiper/modules";
 
 import { FaArrowLeftLong, FaArrowRightLong } from "react-icons/fa6";
-
+import { useNavigate } from "react-router-dom";
 import workshop1 from "@/assets/images/workshop-1.jpg";
 import workshop2 from "@/assets/images/formation-6.jpg";
 import workshop3 from "@/assets/images/reformer.jpg";
@@ -22,6 +22,11 @@ type Workshop = {
   image: string;
 };
 function WorkshopCard({ workshop }: { workshop: Workshop }) {
+  const navigate = useNavigate();
+
+  const navigateToContact = () => {
+    navigate("/login");
+  };
   return (
     <div className="relative w-[206px] h-[270px] sm:w-[300px] sm:h-[360px] rounded-lg shadow-lg font-lato">
       <div className="absolute flex flex-col justify-center items-center gap-4 bottom-0 w-full rounded-lg mb-7 z-20">
@@ -30,13 +35,7 @@ function WorkshopCard({ workshop }: { workshop: Workshop }) {
         </p>
         <button
           className="reserver-button bg-bgColor flex flex-col justify-center rounded-lg transform cursor-pointer"
-          onClick={(e) => {
-            e.stopPropagation(); // Prevent Swiper's click event from firing
-            window.open(
-              "https://backoffice.bsport.io/m/Studio%20Biopilates%20Paris/878/calendar/?isPreview=true&tabSelected=0 ",
-              "_blank"
-            );
-          }}
+          onClick={navigateToContact}
         >
           <div className="hover-circle overflow-hidden" />
           Découvrir

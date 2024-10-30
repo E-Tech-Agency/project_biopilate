@@ -24,7 +24,10 @@ interface Formation {
   description: string;
 }
 
-export default function FormationSection() {
+export default function FormationSection({
+  text = "Voir nos tarifs",
+  bgColor = "bg-bgColor",
+}) {
   const formations: Formation[] = [
     {
       title: "Reformer",
@@ -159,11 +162,11 @@ export default function FormationSection() {
         </div>
       </Swiper>
       <button
-        className="mx-auto max-md:my-8 md:mb-16 overflow-hidden reserver-button flex flex-col justify-center items-center text-base leading-6 rounded-md transform"
+        className={`mx-auto max-md:my-8 md:mb-16 overflow-hidden reserver-button ${bgColor} flex flex-col justify-center items-center text-base leading-6 rounded-md transform`}
         onClick={navigateToTarifs}
       >
         <div className="hover-circle overflow-hidden" />
-        Voir nos tarifs
+        {text}
       </button>
     </div>
   );

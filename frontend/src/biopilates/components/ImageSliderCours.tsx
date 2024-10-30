@@ -75,7 +75,12 @@ export default function ImageSliderCours({
             dangerouslySetInnerHTML={{ __html: list[currentIndex].description }}
           ></p>
         </div>
-        <button className="reserver-button flex justify-center md:mr-auto text-base rounded-lg px-10 py-4 max-md:w-full bg-bgColor text-marron font-lato">
+        <button onClick={() => {
+          window.open(
+            "https://backoffice.bsport.io/m/Studio%20Biopilates%20Paris/878/calendar/?isPreview=true&tabSelected=0",
+            "_blank"
+          );
+        }} className="reserver-button flex justify-center md:mr-auto text-base rounded-lg px-10 py-4 max-md:w-full bg-bgColor text-marron font-lato">
           <div>{action}</div>
         </button>
       </div>

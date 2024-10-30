@@ -1,8 +1,11 @@
 import image1 from "@/assets/images/financer-formation-1.jpg";
 import image2 from "@/assets/images/financer-formation-2.jpg";
-import ReserverButton from "@/biopilates/components/ReserverButton";
 
+import FINANCER from "@/assets/doc/FINANCER SA FORMATION_.pdf";
 export default function FinancerVotreFormation() {
+  const handleOpenPdf = () => {
+    window.open(FINANCER, "_blank");
+  };
   return (
     <section className="relative flex justify-between items-center gap-10 2xl:gap-4 mb-10 bg-bgColor max-md:h-[230px] h-[420px] overflow-hidden max-md:mx-[-20px] md:rounded-lg">
       <div className="absolute max-md:hidden top-0 left-0 mt-[-10px] ml-[-60px] ">
@@ -51,8 +54,15 @@ export default function FinancerVotreFormation() {
           Investissez en vous avec une formation Pilates : pour votre
           équilibre,votre bien-être ,et une carrière épanouie
         </p>
-
-        <ReserverButton text="Financez votre formation" bgColor="bg-white" />
+        <div className="rounded-lg">
+      <button
+        className={`flex overflow-hidden reserver-button cursor-pointer bg-white flex-col justify-center text-base leading-6 rounded-lg text-current transition duration-300 ease-in-out transform`}
+        onClick={handleOpenPdf}
+      >
+        <div className="hover-circle overflow-hidden" />
+        Financez votre formation
+      </button>
+    </div>
       </div>
     </section>
   );

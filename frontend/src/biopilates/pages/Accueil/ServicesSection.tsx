@@ -11,7 +11,11 @@ import ServiceCard from "@/biopilates/components/ServiceCard";
 import reformerImg from "@/assets/images/reformer.jpg";
 import reformerGyrotonicImg from "@/assets/images/reformer-gyrotonic.jpg";
 import reformerGyrotonicEvolisImg from "@/assets/images/reformer-gyrotonic-evolis.png";
-export default function ServicesSection() {
+
+export default function ServicesSection({
+  text = "Voir nos tarifs",
+  bgColor = "bg-bgColor",
+}) {
   const services = [
     {
       id: 1,
@@ -32,10 +36,12 @@ export default function ServicesSection() {
       image: reformerGyrotonicEvolisImg,
     },
   ];
+
   const navigate = useNavigate();
   const navigateToTarifs = () => {
     navigate("/cours#tarifs");
   };
+
   return (
     <div>
       <div className="flex flex-col justify-center items-center gap-4">
@@ -103,7 +109,6 @@ export default function ServicesSection() {
             slidesPerView: 2,
             spaceBetween: 5,
           },
-
           640: {
             slidesPerView: 1,
             spaceBetween: 2,
@@ -114,25 +119,23 @@ export default function ServicesSection() {
           },
         }}
       >
-        <div className="flex flex-nowrap gap-2 overflow-hidden justify-around">
-          {services.map((service, index) => (
-            <SwiperSlide
-              key={index}
-              className="flex flex-col justify-center items-center"
-            >
-              <ServiceCard service={service} />
-            </SwiperSlide>
-          ))}
-        </div>
+        {services.map((service, index) => (
+          <SwiperSlide
+            key={index}
+            className="flex flex-col justify-center items-center"
+          >
+            <ServiceCard service={service} />
+          </SwiperSlide>
+        ))}
         <div className="swiper-pagination m-auto z-[1] block sm:hidden"></div>
       </Swiper>
       {/* tarif button */}
       <button
-        className="mx-auto max-md:my-8 md:mb-10 overflow-hidden reserver-button flex flex-col justify-center items-center text-base leading-6 rounded-md transform"
+        className={`mx-auto max-md:my-8 md:mb-10 overflow-hidden reserver-button ${bgColor} flex flex-col justify-center items-center text-base leading-6 rounded-md transform`}
         onClick={navigateToTarifs}
       >
         <div className="hover-circle overflow-hidden" />
-        Voir nos tarifs
+        {text}
       </button>
     </div>
   );

@@ -39,7 +39,7 @@ export default function FormationSwiper() {
       title: "Reformer",
       image: reformerImage,
       prices: ["2299 €", "999 €"],
-      pdf: formation1,
+      pdf: formation3,
       levels: ["Débutant et intermédiaire", "Avancé"],
     },
     {
@@ -53,7 +53,7 @@ export default function FormationSwiper() {
       title: "Chaise",
       image: formation2Image,
       prices: ["699 €", "299 €"],
-      pdf: formation3,
+      pdf: formation6,
       levels: ["Débutant et intermédiaire", "Avancé"],
     },
     {
@@ -74,7 +74,7 @@ export default function FormationSwiper() {
       title: "Anatomie Fonctionnelle et biomécanique en privée",
       image: formation5Image,
       prices: ["1199 €"],
-      pdf: formation6,
+      pdf: formation1,
     },
     {
       title: "Blessures et Population spécifiques et prénatal et postnatal-ISP",

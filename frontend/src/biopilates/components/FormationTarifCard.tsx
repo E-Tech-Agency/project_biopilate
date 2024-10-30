@@ -58,7 +58,7 @@ const FormationCard: React.FC<FormationCardProps> = ({ formation }) => {
         className="reserver-button bg-bgColor flex flex-col justify-center rounded-lg mb-3 sm:mb-4 max-sm:px-14 sm:px-24 py-3 transform"
         onClick={() => {
           window.open(
-            "https://backoffice.bsport.io/m/Studio%20Biopilates%20Paris/878/calendar/?isPreview=true&tabSelected=0 ",
+            "https://forms.zohopublic.com/virtualoffice707/form/AnalysedesbesoinsbnficiairesFormationscourtesouper/formperma/0Yyw-9wbvHRQB_Xb63QniT0EDrnKuekcjjfWvZC8PMg",
             "_blank"
           );
         }}
