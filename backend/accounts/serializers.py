@@ -106,7 +106,7 @@ class PasswordResetSerializer(serializers.Serializer):
         relative_link = reverse('password_reset_confirm', kwargs={
                                 'uidb64': uid64, 'token': token})
         # abslink = f'http://{site_domain}{relative_link}'  # Use the actual site domain
-        abslink = f'http://141.94.23.119/reset_password/{uid64}/{token}'
+        abslink = f'http://localhost:5173/reset_password/{uid64}/{token}'
 
         email_body = f"""Bonjour {user.first_name},
 
