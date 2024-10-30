@@ -1,5 +1,6 @@
 import TemoignageCard from "./TemoignageCard";
 import { Swiper, SwiperSlide } from "swiper/react";
+
 import "swiper/swiper-bundle.css";
 import "swiper/css";
 import "swiper/css/pagination";
@@ -39,7 +40,7 @@ export default function TemoignagesSection() {
   ];
   return (
     <div>
-      <section className="mb-16 flex flex-col justify-center items-center gap-8 w-full h-[480px] sm:h-[530px]">
+      <section className="mb-10 flex flex-col justify-center items-center gap-12 w-full h-[480px] sm:h-[530px]">
         <div className="flex justify-center items-center gap-8">
           <svg
             width="111"
@@ -122,10 +123,10 @@ export default function TemoignagesSection() {
               </SwiperSlide>
             ))}
           </div>
+          <div className="slider-controler flex justify-center gap-10 mb-10">
+            <div className="swiper-pagination m-auto z-[1]"></div>
+          </div>
         </Swiper>
-        <div className="slider-controler flex justify-center gap-4 mb-10">
-          <div className="swiper-pagination m-auto z-[1] block sm:hidden"></div>
-        </div>
       </section>
     </div>
   );

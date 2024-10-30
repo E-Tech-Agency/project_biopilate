@@ -93,24 +93,22 @@ export function LoginForm({
 
   return (
     <>
-      <div className="bg-white w-[100vw]">
-        <div className="w-full relative flex max-md:flex-wrap justify-evenly items-start sm:items-center min-h-[650px] ">
+      <div className="bg-gray-100 w-[100vw] h-[100vh]">
+        <div className="w-full relative flex max-md:flex-wrap justify-evenly items-start sm:items-center min-h-[650px] h-full ">
           {/* back button */}
           <Link
             to="/"
-            className="absolute top-0 left-0 w-12 h-12 rounded-full bg-marron flex justify-center items-center mt-8 ml-8 z-10"
+            className="absolute top-0 left-0 w-12 h-12 rounded-full bg-marron flex justify-center items-center mt-8 ml-8 z-10 tr"
           >
             <FaArrowLeftLong className="text-bgColor text-xl" />
           </Link>
 
-          <div className="md:w-[50%] max-md:absolute max-md:z-[1] tr">
-            <img
-              src={login_pic}
-              alt=""
-              className="h-[350px] sm:h-[650px] object-cover"
-            />
+          {/* image */}
+          <div className="md:w-[50%] h-full max-md:absolute max-md:z-[1] tr">
+            <img src={login_pic} alt="" className="md:h-full object-cover" />
           </div>
-          <div className="py-8 px-4 sm:px-8 text-gray-950 font-ebGaramond bg-white sm:bg-opacity-80 rounded-[20px] w-full max-w-md xl:max-w-lg flex flex-grow flex-col min-w-[290px] mx-4 sm:mx-auto max-sm:my-auto z-[1] max-sm:shadow-lg max-sm:mt-64">
+
+          <div className="py-8 px-4 sm:px-8 text-gray-950 font-ebGaramond max-md:bg-white sm:bg-opacity-80 rounded-[20px] w-full max-w-md xl:max-w-lg flex flex-grow flex-col min-w-[290px] mx-4 sm:mx-auto max-sm:my-auto z-[1] max-sm:shadow-lg max-sm:mt-64 max-md:mt-44 tr">
             <div className="mb-6">
               <h1 className="text-marron text-3xl sm:text-6xl font-bold">
                 Bienvenue
@@ -138,7 +136,9 @@ export function LoginForm({
                     className="bg-gray-50 border border-marron border-l-0 font-lato text-gray-900 text-sm sm:text-base rounded-none rounded-r-md block w-full p-2.5"
                     required
                     value={data.email}
-                    onChange={(e) => setData({ ...data, email: e.target.value })}
+                    onChange={(e) =>
+                      setData({ ...data, email: e.target.value })
+                    }
                   />
                 </div>
               </div>
@@ -214,37 +214,36 @@ export function LoginForm({
 
       {/* Dialog for password reset */}
       <Dialog open={dialogOpen}>
-                <DialogOverlay />
-                <DialogContent className="sm:max-w-[425px]">
-                    <DialogHeader>
-                        <DialogTitle>Password reset</DialogTitle>
-                        <DialogDescription>
-                            Please enter email to reset your password
-                        </DialogDescription>
-                    </DialogHeader>
-                    <form onSubmit={handleForgotPassword}>
-                        <div className="grid gap-4 py-4">
-                            <div className="grid grid-cols-4 items-center gap-4">
-                                <Label htmlFor="code" className="text-right">
-                                    Email
-                                </Label>
-                                <Input
-                                    id="email"
-                                    className="col-span-3"
-                                    required
-                                    type="email"
-                                    value={data.email}
-                                    onChange={(e) => setData({ ...data, email: e.target.value })}
-                                    
-                                />
-                            </div>
-                        </div>
-                        <DialogFooter>
-                            <Button type="submit"> submit</Button>
-                        </DialogFooter>
-                    </form>
-                </DialogContent>
-            </Dialog>
+        <DialogOverlay />
+        <DialogContent className="sm:max-w-[425px]">
+          <DialogHeader>
+            <DialogTitle>Password reset</DialogTitle>
+            <DialogDescription>
+              Please enter email to reset your password
+            </DialogDescription>
+          </DialogHeader>
+          <form onSubmit={handleForgotPassword}>
+            <div className="grid gap-4 py-4">
+              <div className="grid grid-cols-4 items-center gap-4">
+                <Label htmlFor="code" className="text-right">
+                  Email
+                </Label>
+                <Input
+                  id="email"
+                  className="col-span-3"
+                  required
+                  type="email"
+                  value={data.email}
+                  onChange={(e) => setData({ ...data, email: e.target.value })}
+                />
+              </div>
+            </div>
+            <DialogFooter>
+              <Button type="submit"> submit</Button>
+            </DialogFooter>
+          </form>
+        </DialogContent>
+      </Dialog>
     </>
   );
 }

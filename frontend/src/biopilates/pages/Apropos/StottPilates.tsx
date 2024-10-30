@@ -1,4 +1,3 @@
-
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/swiper-bundle.css";
 import "swiper/css";
@@ -30,22 +29,22 @@ interface Principe {
 }
 function PrincipeCard({ principe }: { principe: Principe }) {
   return (
-    <div className=" flex justify-center items-center max-w-[630px] xl:max-w-[680px] min-w-[220px] min-h-[350px] shadow-xl rounded-lg py-2 sm:py-4 px-4 sm:px-8 gap-4 mx-2">
+    <div className=" flex justify-center items-center max-w-[630px] xl:max-w-[680px] min-w-[230px] min-h-[350px] shadow-xl rounded-lg py-2 sm:py-4 px-4 sm:px-8 gap-4 mx-2">
       <img
         loading="lazy"
         src={principe.image}
         alt="Principe"
-        className="rounded-full w-[150px] h-[150px] sm:w-[200px] sm:h-[200px] object-cover"
+        className="rounded-full w-[100px] h-[100px] sm:w-[150px] sm:h-[150px] md:w-[200px] md:h-[200px] object-cover max-sm:mt-[-100px]"
       />
       <div className="flex flex-col gap-3 w-[62%]">
-        <h1 className="text-2xl font-ebGaramond text-marron font-bold">
+        <h1 className="text-lg sm:text-xl md:text-2xl font-ebGaramond text-marron font-bold">
           {principe.title}
         </h1>
         <p
           dangerouslySetInnerHTML={{
             __html: principe.description,
           }}
-          className="text-justify text-[#5a5a5a] text-sm sm:text-base"
+          className="text-justify text-[#5a5a5a] text-xs sm:text-sm md:text-base"
         ></p>
       </div>
     </div>
@@ -86,97 +85,89 @@ function Slider() {
     },
   ];
   return (
-    <section className="flex flex-col justify-center items-center gap-8 w-full h-[480px] sm:h-[530px]">
+    <section className="flex flex-col justify-center items-center gap-8 w-full h-[480px] sm:h-[530px] ">
       <Swiper
-  className="centered-slide-carousel swiper-container relative w-full"
-  grabCursor={true}
-  spaceBetween={40}
-  slideToClickedSlide={true}
-  pagination={{
-    el: ".swiper-pagination",
-    clickable: true, // Keep clickable here for pagination
-  }}
-  navigation={{
-    nextEl: ".swiper-but-next",
-    prevEl: ".swiper-but-prev",
-  }} // Remove clickable from navigation
-  modules={[Pagination, Navigation]}
-  breakpoints={{
-    1920: {
-      slidesPerView: 3,
-      spaceBetween: 25,
-    },
-    1750: {
-      slidesPerView: 3,
-      spaceBetween: 20,
-    },
-    1440: {
-      slidesPerView: 2,
-      spaceBetween: 18,
-    },
-    1280: {
-      slidesPerView: 2,
-      spaceBetween: 16,
-    },
-    1028: {
-      slidesPerView: 1,
-      spaceBetween: 14,
-    },
-    990: {
-      slidesPerView: 1,
-      spaceBetween: 10,
-    },
-    768: {
-      slidesPerView: 1,
-      spaceBetween: 5,
-    },
-    640: {
-      slidesPerView: 1,
-      spaceBetween: 2,
-    },
-  }}
->
-  <div className="flex flex-nowrap gap-2 overflow-hidden">
-    {principes.map((principe, index) => (
-      <SwiperSlide
-        key={index}
-        className="flex flex-col justify-center items-center xl:items-start"
+        className="centered-slide-carousel swiper-container relative w-full "
+        grabCursor={true}
+        spaceBetween={40}
+        slideToClickedSlide={true}
+        pagination={{
+          el: ".swiper-pagination",
+          clickable: true, // Keep clickable here for pagination
+        }}
+        navigation={{
+          nextEl: ".swiper-but-next",
+          prevEl: ".swiper-but-prev",
+        }} // Remove clickable from navigation
+        modules={[Pagination, Navigation]}
+        breakpoints={{
+          1920: {
+            slidesPerView: 3,
+            spaceBetween: 25,
+          },
+          1750: {
+            slidesPerView: 3,
+            spaceBetween: 20,
+          },
+          1440: {
+            slidesPerView: 2,
+            spaceBetween: 18,
+          },
+          1280: {
+            slidesPerView: 2,
+            spaceBetween: 16,
+          },
+          1028: {
+            slidesPerView: 1,
+            spaceBetween: 14,
+          },
+          990: {
+            slidesPerView: 1,
+            spaceBetween: 10,
+          },
+          768: {
+            slidesPerView: 1,
+            spaceBetween: 5,
+          },
+          640: {
+            slidesPerView: 1,
+            spaceBetween: 2,
+          },
+        }}
       >
-        <PrincipeCard principe={principe} />
-      </SwiperSlide>
-    ))}
-  </div>
-</Swiper>
+        <div className="flex flex-nowrap gap-2 overflow-hidden">
+          {principes.map((principe, index) => (
+            <SwiperSlide
+              key={index}
+              className="flex flex-col justify-center items-center xl:items-start "
+            >
+              <PrincipeCard principe={principe} />
+            </SwiperSlide>
+          ))}
+        </div>
+      </Swiper>
 
-      <div className="slider-controler hidden sm:flex justify-center gap-4">
+      <div className="slider-controler flex justify-center gap-10 mb-10">
         <div className="cursor-pointer swiper-but-prev slider-arrow hidden sm:flex justify-center items-center bg-bgColor rounded-full w-10 h-10">
           <FaArrowLeftLong className="text-marron" />
         </div>
         <div className="cursor-pointer swiper-but-next slider-arrow hidden sm:flex justify-center items-center bg-bgColor rounded-full w-10 h-10">
           <FaArrowRightLong className="text-marron" />
         </div>
-      </div>
-      <div className="slider-controler sm:hidden flex justify-center items-center">
-        <div className="swiper-pagination m-auto z-[1] block"></div>
+        <div className="swiper-pagination m-auto z-[1] block sm:hidden"></div>
       </div>
     </section>
   );
 }
 
 export default function StottPilates() {
-  const images = [
-    reformer,
-    stott2,
-    stott3,
-    formation1,
-    stott,
-  ];
+  const images = [reformer, stott2, stott3, formation1, stott];
 
   return (
     <div className="relative overflow-hidden">
       <StartupAnimation images={images} />
       {/* Page Content */}
-      <div className="flex flex-col mt-8 mx-8 md:mx-12 mb-12 gap-6 font-lato">
+      <div className="flex flex-col mt-8 mx-5 md:mx-12 mb-12 gap-6 font-lato">
         <div className="flex flex-col-reverse md:flex-col">
           <div className="flex flex-col gap-3">
             <h1 className="text-3xl font-ebGaramond text-marron font-bold">
@@ -252,7 +243,7 @@ export default function StottPilates() {
         </div>
 
         {/* 3 pics Bénéfices et adaptabilité :  */}
-        <div className="flex flex-col gap-6 mt-10">
+        <div className="flex flex-col gap-6">
           <div className="flex flex-col gap-4">
             <h1 className="text-3xl text-marron font-ebGaramond font-bold">
               Bénéfices et adaptabilité :{" "}

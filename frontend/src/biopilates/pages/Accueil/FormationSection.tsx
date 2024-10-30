@@ -7,6 +7,7 @@ import "swiper/css/pagination";
 import "swiper/css/navigation";
 import "@/assets/styles/swiper.css";
 import { Pagination, Navigation } from "swiper/modules";
+import { useNavigate } from "react-router-dom";
 
 // Import images directly
 import reformerImage from "@/assets/images/reformer.jpg";
@@ -20,61 +21,69 @@ import Blessures from "@/assets/images/formation-3.png";
 interface Formation {
   title: string;
   image: string;
-  prices: string[];
-  levels?: string[];
+  description: string;
 }
 
-export default function FormationSection() {
+export default function FormationSection({
+  text = "Voir nos tarifs",
+  bgColor = "bg-bgColor",
+}) {
   const formations: Formation[] = [
     {
       title: "Reformer",
       image: reformerImage,
-      prices: ["2299 €", "999 €"],
-      levels: ["Débutant et intermédiaire", "Avancé"],
+      description:
+        "Devenez instructeur <strong>Reformer Pilates</strong> et transformez la posture et la force de vos élèves.",
     },
     {
       title: "Matwork",
       image: Matwork,
-      prices: ["1599 €", "399 €"],
-      levels: ["Débutant et intermédiaire", "Avancé"],
+      description:
+        "Devenez instructeur <strong>Matwork Pilates</strong> et maîtrisez l’art du renforcement et de la mobilité.",
     },
     {
       title: "Chaise",
       image: formation2Image,
-      prices: ["699 €", "299 €"],
-      levels: ["Débutant et intermédiaire", "Avancé"],
+      description:
+        "Devenez instructeur de la Chaise Pilates <strong></strong> et optimisez la force et l'équilibre de vos élèves.",
     },
     {
       title: "Cadillac",
       image: reformerGyrotonicImage,
-      prices: ["999 €", "399 €"],
-      levels: ["Débutant et intermédiaire", "Avancé"],
+      description:
+        "Devenez instructeur <strong>Cadillac Pilates</strong> et explorez de nouvelles dimensions de force et de flexibilité.",
     },
     {
-      title: "Barrils",
+      title: "Barril",
       image: formation1Image,
-      prices: ["399 €", "299 €"],
-      levels: ["Débutant et intermédiaire", "Avancé"],
+      description:
+        "Devenez instructeur <strong>Barril Pilates</strong> et développez la puissance et la fluidité de vos élèves.",
     },
     {
       title: "Anatomie Fonctionnelle et biomécanique en privée",
       image: formation5Image,
-      prices: ["1199 €"],
+      description:
+        "Devenez instructeur en <strong>anatomie</strong> et améliorez votre compréhension du corps pour mieux guider vos élèves.",
     },
     {
       title: "Blessures et Population spécifiques et prénatal et postnatal-ISP",
       image: Blessures,
-      prices: ["1599 €"],
+      description:
+        "Devenez instructeur en <strong>ISP</strong> et apprenez à équilibrer corps et esprit pour optimiser la performance.",
     },
   ];
 
+  const navigate = useNavigate();
+  const navigateToTarifs = () => {
+    navigate("/formations#formations-prix");
+  };
   return (
     <div>
-      <div className="mb-6 flex flex-col justify-center items-center gap-4 md:gap-2">
-        <p className="text-gray-500 text-3xl font-ebGaramond font-bold">
+      <div className="mb-6 flex flex-col text-center justify-center items-center gap-4 md:gap-2">
+        <p className="text-gray-500 text-xl md:text-3xl font-ebGaramond font-bold">
           Formations professionnelles pour devenir instructeur Pilates
         </p>
-        <p className="lg:mx-40 text-center text-xl max-w-[1200px]">
+        <p className="lg:mx-40 text-center text-sm md:text-xl max-w-[1200px]">
           Explorez les bénéfices de sélectionner notre centre pour votre
           formation en Pilates : Nos programmes de premier ordre sont dirigés
           par des instructeurs chevronnés qui vous guideront tout au long de
@@ -142,7 +151,7 @@ export default function FormationSection() {
           </SwiperSlide>
         ))}
 
-        <div className="slider-controler flex justify-center gap-10 mb-10">
+        <div className="slider-controler flex justify-center gap-10 mb-8">
           <div className="cursor-pointer swiper-but-prev slider-arrow hidden sm:flex justify-center items-center bg-bgColor rounded-full w-10 h-10">
             <FaArrowLeftLong className="text-marron" />
           </div>
@@ -152,6 +161,13 @@ export default function FormationSection() {
           <div className="swiper-pagination m-auto z-[1] block sm:hidden"></div>
         </div>
       </Swiper>
+      <button
+        className={`mx-auto max-md:my-8 md:mb-16 overflow-hidden reserver-button ${bgColor} flex flex-col justify-center items-center text-base leading-6 rounded-md transform`}
+        onClick={navigateToTarifs}
+      >
+        <div className="hover-circle overflow-hidden" />
+        {text}
+      </button>
     </div>
   );
 }

@@ -33,7 +33,7 @@ export default function BlogCard({ article }: BlogCardProps) {
 
   return (
     <div
-      className="bg-white flex flex-col justify-center items-center shadow-2xl gap-2 rounded-3xl w-[260px] sm:w-[410px] max-h-[600px] p-4"
+      className="bg-white flex flex-col justify-center items-center shadow-2xl gap-2 rounded-3xl w-[260px] sm:w-[410px] max-h-[606px] p-4"
       style={{ cursor: "pointer" }} // Show pointer cursor to indicate clickable card
     >
       <div className="flex flex-col items-end bg-white">
@@ -65,7 +65,9 @@ export default function BlogCard({ article }: BlogCardProps) {
       </div>
 
       <div className="px-4 flex flex-col gap-3">
-        <p className="text-marron text-xl">{article.title}</p>
+        <p className="text-black text-[28px] font-semibold font-ebGaramond">
+          {article.title}
+        </p>
         <div className="flex items-center gap-2">
           <img
             loading="lazy"
@@ -73,22 +75,25 @@ export default function BlogCard({ article }: BlogCardProps) {
             alt="User"
             className="rounded-full w-[22px] h-[22px]"
           />
-          <p className="text-sm text-gray-500">{article.ecrivain}</p>
+          <p className="text-sm text-gray-700">{article.ecrivain}</p>
         </div>
-        <p className="text-base overflow-hidden">{article.description}</p>
+        <p className="text-base leading-5 overflow-hidden h-[60px]">
+          {article.description}
+        </p>
         <div className="flex items-center gap-2 text-sm">
-          <FaHeart className="text-blueText" />
-          <p>{likes} j'aimes</p>
+          {/* <FaHeart className="text-blueText" /> */}
+          {/* <p>{likes} j'aimes</p> */}
         </div>
       </div>
 
       <button
-        className="reserver-button flex mb-3 flex-col justify-center items-center text-base rounded-lg w-[90%] py-2 bg-bgColor text-marron"
+        className="reserver-button flex mt-1 bg-bgColor flex-col justify-center items-center text-base rounded-lg w-[90%] py-3 transform"
         onClick={(e) => {
           e.stopPropagation(); // Prevent card click when button is clicked
           navigateToArticle(); // Navigate when button is clicked
         }}
       >
+        <div className="hover-circle" />
         Lire la suite
       </button>
     </div>

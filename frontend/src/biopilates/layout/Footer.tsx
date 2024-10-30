@@ -84,13 +84,13 @@ export default function Footer() {
         </div>
       </div>
       <div className="flex items-center gap-2 lg:gap-4 md:gap-5 mt-10 text-xs tracking-tight text-center capitalize text-neutral-900 md:flex-row md:justify-center md:mt-10">
-        <div className="shrink-0 mt-1 max-w-full h-px bg-neutral-900 w-[50px] md:w-16 lg:w-[410px] xl:w-[450px] 2xl:w-[730px]" />
+        <div className="shrink-0 mt-1 max-w-full h-px bg-neutral-900 w-[50px] md:w-48 lg:w-[410px] xl:w-[450px] 2xl:w-[710px]" />
         <div className="flex-auto">
           Copyright by{" "}
           <span className="font-bold text-neutral-900">Brand & COM</span> @ 2024
           All rights reserved
         </div>
-        <div className="shrink-0 mt-1 max-w-full h-px bg-neutral-900 w-[50px] md:w-16 lg:w-[410px] xl:w-[450px] 2xl:w-[730px]" />
+        <div className="shrink-0 mt-1 max-w-full h-px bg-neutral-900 w-[50px] md:w-48 lg:w-[410px] xl:w-[450px] 2xl:w-[710px]" />
       </div>
     </footer>
   );

@@ -16,7 +16,9 @@ export default function ContactForm() {
   const [statusMessage, setStatusMessage] = useState("");
   const [isSuccess, setIsSuccess] = useState(false); // New state for success status
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
     const { id, value } = e.target; // Destructure to get id and value
     setFormData((prev) => ({
       ...prev,
@@ -42,26 +44,37 @@ export default function ContactForm() {
           message: "",
         });
       } else {
-        setStatusMessage("Une erreur est survenue lors de l'envoi de votre message."); // Handle non-200 responses
+        setStatusMessage(
+          "Une erreur est survenue lors de l'envoi de votre message."
+        ); // Handle non-200 responses
         setIsSuccess(false); // Reset success status on error
       }
     } catch (error) {
       console.error(error); // Log the error for debugging
-      setStatusMessage("Une erreur est survenue lors de l'envoi de votre message.");
+      setStatusMessage(
+        "Une erreur est survenue lors de l'envoi de votre message."
+      );
       setIsSuccess(false); // Reset success status on error
     }
   };
 
   return (
-    <div className="py-8 px-4 sm:px-8 bg-white bg-opacity-50 rounded-[20px] w-full max-w-md xl:max-w-lg flex flex-grow min-w-[300px] mx-auto">
+    <div className="py-8 px-4 sm:px-8 bg-white bg-opacity-50 rounded-[20px] w-full min-w-[300px] 2xl:max-w-[640px] max-w-[545px] flex flex-grow mx-auto max-md:bg-opacity-95 shadow-sm">
       <form className="w-full" onSubmit={handleSubmit}>
         <div className="mb-5">
-        {statusMessage && (
-          <div className={`text-center font-ebGaramond text-sm sm:text-xl font-bold mt-3 ${isSuccess ? 'text-burlywood' : 'text-red-500'}`}>
-            {statusMessage}
-          </div>
-        )}
-          <label className="block font-ebGaramond text-sm sm:text-xl font-bold mb-2" htmlFor="name">
+          {statusMessage && (
+            <div
+              className={`text-center font-ebGaramond text-sm sm:text-xl font-bold mt-3 ${
+                isSuccess ? "text-burlywood" : "text-red-500"
+              }`}
+            >
+              {statusMessage}
+            </div>
+          )}
+          <label
+            className="block font-ebGaramond text-sm sm:text-xl font-bold mb-2"
+            htmlFor="name"
+          >
             Nom et prénom
           </label>
           <div className="mt-1 flex rounded-md shadow-sm">
@@ -79,7 +92,10 @@ export default function ContactForm() {
           </div>
         </div>
         <div className="mb-5">
-          <label className="block font-ebGaramond text-sm sm:text-xl font-bold mb-2" htmlFor="email">
+          <label
+            className="block font-ebGaramond text-sm sm:text-xl font-bold mb-2"
+            htmlFor="email"
+          >
             Adresse Email
           </label>
           <div className="mt-1 flex rounded-md shadow-sm">
@@ -97,7 +113,10 @@ export default function ContactForm() {
           </div>
         </div>
         <div className="mb-5">
-          <label className="block font-ebGaramond text-sm sm:text-xl font-bold mb-2" htmlFor="phone">
+          <label
+            className="block font-ebGaramond text-sm sm:text-xl font-bold mb-2"
+            htmlFor="phone"
+          >
             Numéro de téléphone
           </label>
           <div className="mt-1 flex rounded-md shadow-sm">
@@ -115,7 +134,10 @@ export default function ContactForm() {
           </div>
         </div>
         <div className="mb-5">
-          <label className="block font-ebGaramond text-sm sm:text-xl font-bold mb-2" htmlFor="subject">
+          <label
+            className="block font-ebGaramond text-sm sm:text-xl font-bold mb-2"
+            htmlFor="subject"
+          >
             Objet
           </label>
           <div className="mt-1 flex rounded-md shadow-sm">
@@ -130,7 +152,10 @@ export default function ContactForm() {
           </div>
         </div>
         <div className="mb-5">
-          <label className="block font-ebGaramond text-sm sm:text-xl font-bold mb-2" htmlFor="message">
+          <label
+            className="block font-ebGaramond text-sm sm:text-xl font-bold mb-2"
+            htmlFor="message"
+          >
             Message
           </label>
           <div className="mt-1 flex rounded-md shadow-sm">
@@ -151,7 +176,6 @@ export default function ContactForm() {
         >
           Envoyer
         </button>
-       
       </form>
     </div>
   );

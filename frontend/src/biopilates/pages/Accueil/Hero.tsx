@@ -1,9 +1,34 @@
-import hero from "@/assets/images/hero-pic.png";
+import hero from "@/assets/images/hero-caroline.jpg";
+import ReserverButton from "@/biopilates/components/ReserverButton";
 
 export default function Hero() {
   return (
-    <section className="relative mt-6 mb-20 py-10 flex max-lg:flex-wrap justify-center lg:justify-between items-center gap-5 md:gap-9 lg:gap-14 xl:gap-16 min-h-[610px] bg-bgColor rounded-md">
-      <h1 className="absolute inset-0 flex justify-center items-center text-6xl sm:text-[100px] md:text-[160px] lg:text-[220px] xl:text-[280px] font-ebGaramond text-lightBgColor font-bold tracking-wider">
+    <section className=" relative max-sm:mx-[-20px] mt-6 mb-14 py-10 flex max-lg:flex-wrap justify-between lg:justify-between items-center gap-5 md:gap-9 lg:gap-14 xl:gap-16 min-h-[440px] md:min-h-[610px] xl:min-h-[840px] md:rounded-md">
+      <img
+        loading="lazy"
+        src={hero}
+        alt="Biopilate trainer"
+        className="absolute h-full w-full object-cover sm:rounded-md"
+      />
+      <div className="absolute h-full w-full bg-black opacity-30 sm:rounded-md" />
+
+      <div className="flex flex-col px-6 md:pl-14 xl:pl-24 w-[600px] gap-5 font-lato z-10 ">
+        <div>
+          <p className="text-bgColor text-xl md:text-3xl md:leading-10 font-bold font-ebGaramond">
+            Équilibre et Élégance :
+          </p>
+          <p className="text-white text-xl md:text-3xl md:leading-10 font-bold font-ebGaramond">
+            BioPilates votre Studio de Pilates à Paris
+          </p>{" "}
+        </div>
+        <p className="text-white text-base leading-normal md:leading-7">
+          Découvrez la force dans la fluidité et la grâce dans le mouvement, au
+          cœur de Paris, avec notre approche personnalisée du Pilates.
+        </p>
+        <ReserverButton />
+      </div>
+
+      {/* <h1 className="absolute inset-0 flex justify-center items-center text-6xl sm:text-[100px] md:text-[160px] lg:text-[220px] xl:text-[280px] font-ebGaramond text-lightBgColor font-bold tracking-wider">
         PILATES
       </h1>
 
@@ -24,7 +49,7 @@ export default function Hero() {
           className="flex mr-auto flex-col justify-center text-base rounded-lg px-10 py-4 text-bgColor bg-marron font-lato"
           onClick={() => {
             window.open(
-              "https://www.facebook.com/STUDIOBIOPILATESPARIS",
+              "https://backoffice.bsport.io/m/Studio%20Biopilates%20Paris/878/calendar/?isPreview=true&tabSelected=0 ",
               "_blank"
             );
           }}
@@ -37,7 +62,7 @@ export default function Hero() {
         src={hero}
         alt="Biopilate trainer"
         className="max-h-[250px] lg:max-h-[350px] z-10 object-cover max-lg:px-10"
-      />
+      /> */}
 
       {/* <div className="flex justify-center items-center gap-3 sm:gap-4 mr-2 sm:mr-4 border border-solid border-marron rounded-full w-[233px] h-[233px] sm:w-[428px] sm:h-[428px] pr-5 sm:pr-9 z-10">
         <div className="z-[1] absolute mr-[165px] mt-[170px] sm:mr-[290px] sm:mt-[280px]">

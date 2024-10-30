@@ -94,7 +94,7 @@ export default function Article() {
 
   if (!article) {
     return (
-      <div className="flex flex-col mx-8 md:mx-12 my-12">
+      <div className="flex flex-col mx-5 md:mx-12 my-12">
         <h1 className="font-bold text-4xl text-marron m-auto">
           Article not found
         </h1>
@@ -102,7 +102,7 @@ export default function Article() {
     );
   }
   return (
-    <div className="mt-8 mx-8 md:mx-12 mb-12 gap-3">
+    <div className="mt-8 mx-5 md:mx-12 mb-12 gap-3">
       <div className="flex flex-col justify-center items-center">
         <p className="text-marron text-xl md:text-6xl leading-snug font-ebGaramond font-semibold text-center max-w-[1100px] mx-8">
           Ce n'est pas parce qu'on est vieux qu'on n'a pas besoin ni envie de

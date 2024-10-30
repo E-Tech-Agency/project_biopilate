@@ -3,9 +3,9 @@ import "swiper/swiper-bundle.css";
 import "swiper/css";
 import "swiper/css/pagination";
 import "@/assets/styles/swiper.css";
-import StartupAnimation from "./StartupAnimation";
-
 import { Pagination } from "swiper/modules";
+
+import StartupAnimation from "./StartupAnimation";
 import image1 from "@/assets/images/pourqui-1.jpg";
 import image2 from "@/assets/images/pourqui-2.jpg";
 import image3 from "@/assets/images/pourqui-3.jpg";
@@ -46,6 +46,7 @@ function PourQuiCard({ pourqui }: { pourqui: PourQui }) {
     </div>
   );
 }
+
 function Slider() {
   const principes = [
     {
@@ -87,9 +88,9 @@ function Slider() {
   return (
     <section className="flex flex-col justify-center items-center w-full h-[480px] sm:h-[530px]">
       <Swiper
-        className="centered-slide-carousel swiper-container relative w-full"
+        className="centered-slide-carousel swiper-container relative w-full overflow-hidden"
         grabCursor={true}
-        spaceBetween={40}
+        // spaceBetween={40}
         slideToClickedSlide={true}
         pagination={{
           el: ".swiper-pagination",
@@ -139,11 +140,10 @@ function Slider() {
             <PourQuiCard pourqui={pourqui} />
           </SwiperSlide>
         ))}
+        <div className="slider-controler flex justify-center items-center">
+          <div className="swiper-pagination m-auto z-[1] block md:hidden"></div>
+        </div>
       </Swiper>
-
-      <div className="slider-controler flex justify-center items-center">
-        <div className="swiper-pagination m-auto z-[1]"></div>
-      </div>
     </section>
   );
 }
@@ -161,7 +161,7 @@ export default function Evolis() {
       <StartupAnimation images={images} />
 
       {/* Page Content */}
-      <div className="flex flex-col mt-8 mx-8 md:mx-12 mb-12 gap-6 font-lato">
+      <div className="flex flex-col mt-8 mx-5 md:mx-12 mb-12 gap-6 font-lato">
         <div className="flex flex-col-reverse md:flex-col">
           <div className="flex flex-col gap-3">
             <h1 className="text-3xl font-ebGaramond text-marron font-bold">
@@ -267,29 +267,60 @@ export default function Evolis() {
         </div>
 
         {/* Reserver */}
-        <div className="flex max-md:flex-wrap justify-center xl:justify-between items-center gap-10 rounded-lg min-h-[300px] py-8 xl:py-4 px-6 xl:px-10 bg-marron text-white max-md:mx-[-26px]">
+        <div className="relative overflow-hidden flex max-md:flex-wrap justify-center xl:justify-between items-center gap-10 rounded-lg min-h-[300px] py-8 xl:py-4 px-6 xl:px-10 bg-marron text-white max-md:mx-[-26px]">
+          <div className="max-lg:hidden absolute right-0 mr-10 max-xl:opacity-30 transition duration-300 ease-in-out transform">
+            <svg
+              width="571"
+              height="314"
+              viewBox="0 0 571 314"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M567.5 182C567.5 332.387 441.357 454.5 285.5 454.5C129.643 454.5 3.5 332.387 3.5 182C3.5 31.6131 129.643 -90.5 285.5 -90.5C441.357 -90.5 567.5 31.6131 567.5 182Z"
+                stroke="#EBDCCD"
+                stroke-width="7"
+              />
+            </svg>
+          </div>
+          <div className="max-lg:hidden absolute right-0">
+            <svg
+              width="370"
+              height="314"
+              viewBox="0 0 370 314"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                opacity="0.8"
+                d="M625.7 93.3906C625.7 255.608 486.624 387.438 314.65 387.438C142.676 387.438 3.59961 255.608 3.59961 93.3906C3.59961 -68.8263 142.676 -200.656 314.65 -200.656C486.624 -200.656 625.7 -68.8263 625.7 93.3906Z"
+                stroke="#EBDCCD"
+                stroke-width="7"
+              />
+            </svg>
+          </div>
           <div className="flex flex-col gap-4 w-full">
             <p className="font-ebGaramond font-bold text-2xl md:text-2xl ">
               Pour découvrir les bienfaits de la méthode Evolis®
             </p>
             <p className="font-lato max-md:text-sm text-bgColor">
-              Réservez dès maintenant une séance isitué au 1 rue Boyer, 75020
-              Paris.Tarif de la séance : 64€ndividuelle au Studio Biopilates,
+              Réservez dès maintenant une séance individuelle au Studio
+              Biopilates,
             </p>
             <p className="font-lato max-md:text-sm text-bgColor">
-              75020 Paris.Tarif de la séance : 64€ndividuelle au Studio
-              Biopilates,
+              situé au 1 rue Boyer, 75020 Paris.Tarif de la séance : 64€
             </p>
 
             <button
-              className=" reserver-button flex mr-auto flex-col justify-center text-base rounded-lg px-9 py-3 bg-white text-marron font-lato font-bold"
+              className="button-hover flex mr-auto flex-col justify-center text-base rounded-lg px-9 py-3 bg-white text-marron font-lato font-bold"
               onClick={() => {
                 window.open(
-                  "https://www.facebook.com/STUDIOBIOPILATESPARIS",
+                  "https://backoffice.bsport.io/m/Studio%20Biopilates%20Paris/878/calendar/?isPreview=true&tabSelected=0 ",
                   "_blank"
                 );
               }}
             >
+              <div className="hover-circle-2" />
               Réserver
             </button>
           </div>

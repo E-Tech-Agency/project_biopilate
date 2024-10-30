@@ -8,10 +8,9 @@ node_modules
 backend/settings.py
 backend
 
-# frontend/vite.config.ts
-# frontend/src/components/auth/login.tsx
-# frontend/src/components/auth/register.tsx
+frontend/vite.config.ts
 
-# frontend/src/lib/api.ts
-# frontend/src/lib/apiCreateProduct.ts
-# frontend/src/lib/apiCreateTeache.ts
+
+frontend/src/lib/api.ts
+frontend/src/lib/apiCreateProduct.ts
+frontend/src/lib/apiCreateTeache.ts

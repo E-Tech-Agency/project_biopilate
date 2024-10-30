@@ -36,44 +36,44 @@ export default function Accueil() {
     navigate("/contact");
   };
 
-  const navigateToTarifs = () => {
-    navigate("/cours#tarifs");
-  };
   return (
-    <div className="flex flex-col mx-8 md:mx-12 ">
+    <div className="flex flex-col mx-5 md:mx-12 ">
       {/* Hero */}
       <Hero />
       {/* Intro */}
-      <section className="mb-14 flex flex-col-reverse sm:flex-row flex-wrap justify-center lg:justify-between gap-10 font-lato">
-        <div className="flex flex-col items-center md:items-baseline py-6  md:px-5 lg:w-[60%] gap-5 font-lato">
-          <p className="text-marron text-xl sm:text-3xl leading-10 font-bold opacity-75 font-ebGaramond">
-            Studio Biopilates Paris, votre havre de paix dédié au mieux être
-          </p>
+      <section className="mb-10 flex flex-col-reverse sm:flex-row flex-wrap justify-center lg:justify-between gap-10 font-lato">
+        <div className="flex flex-col items-center md:items-baseline pb-6 md:py-6 md:px-5 lg:w-[65%] gap-5 font-lato">
+          <div className="flex flex-col w-full">
+            <p className="text-marron text-xl sm:text-3xl md:leading-10 font-bold font-ebGaramond">
+              Studio Biopilates Paris,
+            </p>
+            <p className="text-blueText text-xl sm:text-2xl md:leading-10 font-bold font-ebGaramond">
+              votre havre de paix dédié au mieux être
+            </p>
+          </div>
+
           <img
             loading="lazy"
             src={gymImage}
             alt="Gym"
-            className="rounded-full w-[220px] h-[220px] sm:w-[312px] sm:h-[312px] object-cover md:hidden mb-2"
+            className="rounded-full w-[220px] h-[220px] sm:w-[312px] sm:h-[312px] object-cover md:hidden mb-2 shadow-lg"
           />
           <div className="text-sm sm:text-base">
-            <p className="leading-9">
+            <p className="md:leading-8">
               Premier studio <strong>STOTT Pilates</strong> en France, nous vous
               offrons une expérience unique pour une transformation physique et
-              mentale profonde.
-            </p>
-            <p className="leading-9">
-              Cours de Pilates pour tous niveaux{" "}
+              mentale profonde. Cours de Pilates pour tous niveaux{" "}
               <strong>
-                Reformer , Reformer et Gyrotonic , Reformer Gyrotonic
+                Reformer , Reformer et Gyrotonic , Reformer Gyrotonic et Evolis
               </strong>{" "}
-              et Evolis dispensés par des{" "}
-              <strong>instructeurs certifiés</strong>.
+              dispensés par <strong>des instructeurs certifiés</strong>.
             </p>
-            <p className="leading-9">
+            <p className="md:leading-8">
               Renforcez vos muscles, perdez du poids, développez votre souplesse
-              et atteignez vos objectifs grâce à nos cours de Pilates
-              personnalisés. Profitez d'une <strong>séance découverte</strong>{" "}
-              et laissez-vous guider sur la voie du bien-être.
+              et atteignez vos objectifs grâce à nos{" "}
+              <strong>cours de Pilates personnalisés.</strong> Profitez d'une{" "}
+              <strong>séance découverte</strong> et laissez-vous guider sur la
+              voie du bien-être.
             </p>
           </div>
         </div>
@@ -87,14 +87,6 @@ export default function Accueil() {
 
       {/* Services */}
       <ServicesSection />
-
-      {/* tarif button */}
-      <button
-        className="mx-auto my-10 flex flex-col justify-center items-center text-base leading-6 rounded-md px-5 py-3 bg-bgColor text-marron font-bold w-fit"
-        onClick={navigateToTarifs}
-      >
-        Voir nos tarifs
-      </button>
 
       {/* Formations */}
       <FormationSection />
@@ -114,29 +106,28 @@ export default function Accueil() {
         />
         <div className="flex justify-between items-center gap-4 z-[1] mx-6 sm:mx-10 w-full">
           <div className="flex flex-col justify-center gap-4 text-xs ">
-            <p className="text-white font-ebGaramond text-lg sm:text-2xl md:text-3xl text-shadow-2xl">
-              Découvrez le Polates chez nous
-            </p>
             <p className="text-white sm:text-base md:text-xl text-shadow-2xl">
               Profitez d’un offre découverte à un prix raisonnable pour
               découvrir les bienfaits du Pilates.
             </p>
             <div className="flex gap-2">
               <button
-                className="button-hover flex flex-col justify-center text-marron sm:text-base rounded-lg px-4 sm:px-8 sm:py-3 bg-white shadow-sm font-lato font-bold"
+                className="button-hover flex flex-col justify-center text-marron sm:text-base rounded-lg px-4 sm:px-8 sm:py-3 bg-white shadow-sm font-lato font-bold transform"
                 onClick={() => {
                   window.open(
-                    "https://www.facebook.com/STUDIOBIOPILATESPARIS",
+                    "https://backoffice.bsport.io/m/Studio%20Biopilates%20Paris/878/calendar/?isPreview=true&tabSelected=0 ",
                     "_blank"
                   );
                 }}
               >
+                <div className="hover-circle-2 overflow-hidden" />
                 Réserver
               </button>
               <button
-                className="button-hover flex flex-col justify-center text-white sm:text-base rounded-lg px-8 py-3 border border-solid border-white shadow-sm"
+                className="button-hover flex flex-col justify-center text-white sm:text-base rounded-lg font-bold px-8 py-3 border border-solid border-white shadow-sm"
                 onClick={navigateToContact}
               >
+                <div className="hover-circle-2 overflow-hidden" />
                 Contactez-nous
               </button>
             </div>

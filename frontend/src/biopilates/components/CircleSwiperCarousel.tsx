@@ -21,7 +21,7 @@ const CircleSwiperCarousel: React.FC<CircleSwiperCarouselProps> = ({
         effect={"coverflow"}
         grabCursor={true}
         centeredSlides={true}
-        spaceBetween={-160}
+        spaceBetween={-200}
         loop={true}
         slidesPerView={4}
         breakpoints={{
@@ -68,7 +68,7 @@ const CircleSwiperCarousel: React.FC<CircleSwiperCarouselProps> = ({
             <img
               src={image}
               alt={`slide_image_${index}`}
-              className="rounded-full object-cover w-[220px] h-[220px] sm:w-[312px] sm:h-[312px]"
+              className="rounded-full object-cover w-[220px] h-[220px] sm:w-[327px] sm:h-[327px]"
             />
           </SwiperSlide>
         ))}

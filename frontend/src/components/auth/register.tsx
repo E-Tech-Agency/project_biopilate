@@ -86,7 +86,7 @@ export function RegisterForm({
           document.getElementById("signInDiv"),
           {
             text: "continue_with",
-            width: "350px",
+            width: "100%",
             shape: "circle",
             size: "large",
             theme: "outline",
@@ -190,17 +190,35 @@ export function RegisterForm({
 
   return (
     <>
-      <div className="bg-white w-[100vw]">
-        <div className="relative flex max-md:flex-wrap justify-evenly items-start sm:items-center min-h-[650px] ">
+      <div className="bg-white w-[100vw] h-[100vh] overflow-auto">
+        <div className="w-full relative flex flex-row-reverse max-md:flex-wrap justify-evenly items-start sm:items-center min-h-[650px] h-full">
           {/* back button */}
           <Link
             to="/"
-            className="absolute top-0 left-0 w-12 h-12 rounded-full bg-marron flex justify-center items-center mt-8 ml-8 z-10"
+            className="absolute top-0 left-0 w-12 h-12 rounded-full bg-marron flex justify-center items-center mt-4 lg:mt-8 ml-4 lg:ml-8 z-10 tr"
           >
             <FaArrowLeftLong className="text-bgColor text-xl" />
           </Link>
 
-          <div className="py-8 px-4 sm:px-8 text-gray-950 font-ebGaramond bg-white sm:bg-opacity-80 rounded-[20px] w-full max-w-md xl:max-w-lg flex flex-grow flex-col min-w-[290px] mx-4 sm:mx-auto max-sm:my-auto z-[1] max-sm:shadow-lg max-sm:mt-64">
+          {/* image */}
+          <div className="relative md:w-[50%] md:h-full  max-md:absolute tr">
+            <img src={register_pic} alt="" className="md:h-full object-cover" />
+            <div className="absolute bottom-0 left-0 right-0 text-left  px-10 pb-20 z-10">
+              <h1 className="text-base sm:text-lg md:text-2xl lg:text-5xl leading-normal text-white md:text-bgColor font-semibold font-ebGaramond mb-4">
+                La forme physique, condition première du bonheur
+              </h1>
+              <h2 className="text-sm sm:text-base md:text-xl lg:text-4xl text-white mb-1">
+                Joseph Hubertus Pilates
+              </h2>
+              <h3 className="text-xs sm:text-sm md:text-base lg:text-xl font-light text-white max-lg:mb-2 ">
+                Inventeur de la méthode Pilates
+              </h3>
+            </div>
+
+            <div className="absolute inset-0 bg-gradient-to-t from-black to-[70%] opacity-75 max-md:h-full " />
+          </div>
+
+          <div className="py-8 px-8 sm:px-8 text-gray-950 font-ebGaramond bg-white sm:bg-opacity-80 rounded-[20px] w-full h-[100vh] max-w-md xl:max-w-lg flex flex-grow flex-col min-w-[290px] mx-4 sm:mx-auto max-sm:my-auto z-30 max-sm:shadow-lg max-sm:mt-64 max-md:mt-44 max-lg:mt-20 tr">
             <div className="mb-6">
               <h1 className="text-marron text-3xl sm:text-6xl font-bold">
                 Créer un compte
@@ -384,7 +402,7 @@ export function RegisterForm({
                   </span>
                 </label>
               </div>
-              <div id="signInDiv" className="w-full  rounded-md"></div>
+              <div id="signInDiv" className="w-full rounded-lg"></div>
               <button
                 type="submit"
                 className="reserver-button flex mx-auto mb-2.5 flex-col justify-center items-center text-sm sm:text-base font-bold font-lato rounded-lg w-full py-2 sm:py-3 bg-bgColor text-marron"
@@ -407,17 +425,6 @@ export function RegisterForm({
                 </Button>
               </div>
             </form>
-          </div>
-
-          {/* image */}
-          <div className="relative md:w-[50%] max-md:absolute tr">
-            <img
-              src={register_pic}
-              alt=""
-              className="h-[550px] sm:h-[865px] object-cover"
-            />
-            <div></div>
-            <div className="absolute inset-0 bg-gradient-to-t from-black to-[70%] rounded-lg opacity-70" />
           </div>
         </div>
       </div>

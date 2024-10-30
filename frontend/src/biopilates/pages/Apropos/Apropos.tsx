@@ -8,6 +8,8 @@ import caroline2 from "@/assets/images/caroline-2.jpg";
 import stott from "@/assets/images/stott.jpg";
 import gyrotonic from "@/assets/images/gyrotonic.jpg";
 import evolis from "@/assets/images/evolis.jpg";
+import NosInstructeurs from "./NosInstructeurs";
+
 export default function Apropos() {
   const images = [caroline3, caroline4, caroline5, caroline1, caroline2];
 
@@ -51,7 +53,7 @@ export default function Apropos() {
   ];
 
   return (
-    <div className="flex flex-col mx-8 md:mx-12">
+    <div className="flex flex-col mx-5 md:mx-12">
       {/* Bio */}
       <section className="my-14 flex flex-col-reverse xl:flex-row justify-center lg:justify-between gap-8">
         {/* carousel */}
@@ -112,22 +114,25 @@ export default function Apropos() {
       </div>
       <ImageSliderApropos list={list} action={"Réserver"} />
 
+      {/* nos instructeurs */}
+      <NosInstructeurs />
+
       {/* Biopilates */}
 
-      <section className="mb-14">
+      <section className="mb-20">
         <div className="mb-12">
-          <p className="text-marron text-3xl leading-snug">
+          <p className="text-marron text-xl lg:text-3xl leading-snug font-ebGaramond font-bold mb-2">
             Biopilates : Un Label de Qualité Unique - Bio de La Biomécanique
           </p>
-          <p className="leading-7">
-            Biopilates se distingue par son label de qualité unique, Bio de La
-            Biomécanique, qui garantit une pratique du Pilates et du Gyrotonic
-            sûre, efficace et sans douleur. Ce label repose sur trois piliers
-            fondamentaux :
+          <p className="leading-7 max-lg:text-sm">
+            Biopilates se distingue par son label de qualité unique,{" "}
+            <strong>Bio de La Biomécanique</strong>, qui garantit une pratique
+            du Pilates et du Gyrotonic sûre, efficace et sans douleur. Ce label
+            repose sur trois piliers fondamentaux :
           </p>
         </div>
-        <div className="flex gap-10 sm:gap-20 justify-center text-center">
-          <div className="flex flex-col justify-center items-center gap-5">
+        <div className="flex flex-wrap gap-10 sm:gap-20 justify-center text-center">
+          <div className="flex flex-col justify-center items-center gap-5 w-[170px]">
             <svg
               width="66"
               height="68"
@@ -174,7 +179,7 @@ export default function Apropos() {
             </svg>
             <p>Expertise et expérience</p>
           </div>
-          <div className="flex flex-col justify-center items-center gap-5">
+          <div className="flex flex-col justify-center items-center gap-5 w-[170px]">
             <svg
               width="70"
               height="69"
@@ -209,7 +214,7 @@ export default function Apropos() {
             </svg>
             <p>Pédagogie innovante</p>
           </div>
-          <div className="flex flex-col justify-center items-center gap-5">
+          <div className="flex flex-col justify-center items-center gap-5 w-[170px]">
             <svg
               width="70"
               height="69"

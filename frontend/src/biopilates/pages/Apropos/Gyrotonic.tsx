@@ -28,7 +28,7 @@ export default function Gyrotonic() {
       <StartupAnimation images={images} />
 
       {/* Page Content */}
-      <div className="flex flex-col mt-8 mx-8 md:mx-12 mb-12 gap-6 font-lato">
+      <div className="flex flex-col mt-8 mx-5 md:mx-12 mb-12 gap-6 font-lato">
         <div className="flex flex-col-reverse md:flex-col">
           <div className="flex flex-col gap-3">
             <h1 className="text-3xl font-ebGaramond text-marron font-bold">
@@ -209,14 +209,15 @@ export default function Gyrotonic() {
             </p>
 
             <button
-              className="button-hover flex mr-auto flex-col justify-center text-base rounded-lg px-9 py-3 bg-white text-marron font-lato font-bold"
+              className="button-hover flex mr-auto flex-col justify-center text-base rounded-lg px-8 py-3 bg-white text-marron font-lato font-bold"
               onClick={() => {
                 window.open(
-                  "https://www.facebook.com/STUDIOBIOPILATESPARIS",
+                  "https://backoffice.bsport.io/m/Studio%20Biopilates%20Paris/878/calendar/?isPreview=true&tabSelected=0 ",
                   "_blank"
                 );
               }}
             >
+              <div className="hover-circle-2 overflow-hidden" />
               Réserver
             </button>
           </div>
