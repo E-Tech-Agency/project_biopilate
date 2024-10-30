@@ -107,7 +107,7 @@ export default function Accueil() {
         <div className="flex justify-between items-center gap-4 z-[1] mx-6 sm:mx-10 w-full">
           <div className="flex flex-col justify-center gap-4 text-xs ">
           <p className="text-white font-ebGaramond text-lg sm:text-2xl md:text-3xl text-shadow-2xl">
-              Découvrez le Polates chez nous
+              Découvrez le Pilates chez nous
             </p>
             <p className="text-white sm:text-base md:text-xl text-shadow-2xl">
               Profitez d’un offre découverte à un prix raisonnable pour
