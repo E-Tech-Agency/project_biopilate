@@ -9,8 +9,7 @@ backend/settings.py
 backend
 
 frontend/vite.config.ts
-frontend/src/components/auth/login.tsx
-frontend/src/components/auth/register.tsx
+
 
 frontend/src/lib/api.ts
 frontend/src/lib/apiCreateProduct.ts
