@@ -218,7 +218,7 @@ export function RegisterForm({
             <div className="absolute inset-0 bg-gradient-to-t from-black to-[70%] opacity-75 max-md:h-full " />
           </div>
 
-          <div className="py-8 px-8 sm:px-8 text-gray-950 font-ebGaramond bg-white sm:bg-opacity-80 rounded-[20px] w-full h-[100vh] max-w-md xl:max-w-lg flex flex-grow flex-col min-w-[290px] mx-4 sm:mx-auto max-sm:my-auto z-[1] max-sm:shadow-lg max-sm:mt-64 max-md:mt-44 max-lg:mt-20 tr">
+          <div className="py-8 px-8 sm:px-8 text-gray-950 font-ebGaramond bg-white sm:bg-opacity-80 rounded-[20px] w-full h-[100vh] max-w-md xl:max-w-lg flex flex-grow flex-col min-w-[290px] mx-4 sm:mx-auto max-sm:my-auto z-30 max-sm:shadow-lg max-sm:mt-64 max-md:mt-44 max-lg:mt-20 tr">
             <div className="mb-6">
               <h1 className="text-marron text-3xl sm:text-6xl font-bold">
                 Créer un compte
