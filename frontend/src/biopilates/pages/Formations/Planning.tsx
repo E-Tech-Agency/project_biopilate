@@ -31,7 +31,10 @@ export default function Planning({ plans }: PlanningProps) {
   };
 
   return (
-    <div className="mb-8">
+    <section className="mb-14 mt-2">
+      <p className="text-marron text-4xl leading-snug mb-10 font-ebGaramond font-bold">
+        Planning
+      </p>
       <Swiper
         className="centered-slide-carousel swiper-container relative"
         grabCursor={true}
@@ -96,6 +99,6 @@ export default function Planning({ plans }: PlanningProps) {
         </div>
         <div className="swiper-pagination m-auto z-[1]"></div>
       </Swiper>
-    </div>
+    </section>
   );
 }

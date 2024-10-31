@@ -255,7 +255,7 @@ export default function Apropos() {
                 fill="#756E66"
               />
             </svg>
-            <p>Bien etre et santé</p>
+            <p>Bien être et santé</p>
           </div>
         </div>
       </section>

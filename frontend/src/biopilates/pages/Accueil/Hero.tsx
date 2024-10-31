@@ -1,9 +1,9 @@
-import hero from "@/assets/images/hero-caroline.jpg";
+import hero from "@/assets/images/hero-caroline-c.jpg";
 import ReserverButton from "@/biopilates/components/ReserverButton";
 
 export default function Hero() {
   return (
-    <section className=" relative max-sm:mx-[-20px] mt-6 mb-14 py-10 flex max-lg:flex-wrap justify-between lg:justify-between items-center gap-5 md:gap-9 lg:gap-14 xl:gap-16 min-h-[440px] md:min-h-[610px] xl:min-h-[840px] md:rounded-md">
+    <section className=" relative max-sm:mx-[-20px] mt-6 mb-14 py-10 flex max-lg:flex-wrap justify-between lg:justify-between items-center gap-5 md:gap-9 lg:gap-14 xl:gap-16 min-h-[440px] md:min-h-[500px] lg:min-h-[540px] xl:min-h-[730px] md:rounded-md">
       <img
         loading="lazy"
         src={hero}

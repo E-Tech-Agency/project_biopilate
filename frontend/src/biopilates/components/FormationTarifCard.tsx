@@ -67,7 +67,7 @@ const FormationCard: React.FC<FormationCardProps> = ({ formation }) => {
         Réserver
       </button>
       <a
-        className="border border-marron text-marron text-base font-bold flex justify-center items-center gap-4 rounded-lg sm:mb-4 px-6 sm:px-16 py-3 transform shadow-sm"
+        className="border button-offre-hover border-marron text-marron text-base font-bold flex justify-center items-center gap-4 rounded-lg sm:mb-4 px-6 sm:px-16 py-3 transform shadow-sm"
         onClick={(e) => {
           e.stopPropagation();
         }}
@@ -77,7 +77,7 @@ const FormationCard: React.FC<FormationCardProps> = ({ formation }) => {
       >
         <div className="hover-circle overflow-hidden" />
         <FaArrowDown />
-        Télecharger
+        Télécharger
       </a>
     </div>
   );

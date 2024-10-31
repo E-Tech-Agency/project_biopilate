@@ -83,22 +83,7 @@ export default function Formations() {
       <PourquoiBiopilates />
 
       {/* formation biopliates */}
-      <section className="mt-8" id="formation-prix">
-        <div className="mb-8">
-          <p className="text-marron text-3xl font-ebGaramond font-bold leading-snug mb-4">
-            Formation Biopilates
-          </p>
-          <p className="leading-6">
-            Devenez <strong>instructeur de Pilates</strong> : favorisez
-            l'équilibre et le bien-être physique et mental, tout en vous
-            transformant.{" "}
-          </p>
-          <p className="leading-6">
-            Rejoignez notre formation et devenez un pilier d'harmonie.
-          </p>
-        </div>
-        <FormationSwiper />
-      </section>
+      <FormationSwiper />
 
       {/* Fianncer votre formation */}
       <FinancerVotreFormation />
@@ -107,13 +92,7 @@ export default function Formations() {
       <WorkshopSlider />
 
       {/* Planning */}
-      <section className="mb-14 mt-2">
-        <p className="text-marron text-4xl leading-snug mb-10 font-ebGaramond font-bold">
-          Planning
-        </p>
-
-        <Planning plans={plans} />
-      </section>
+      <Planning plans={plans} />
     </div>
   );
 }

@@ -85,7 +85,20 @@ export default function FormationSwiper() {
   ];
 
   return (
-    <div>
+    <section className="mt-8" id="formation-prix">
+      <div className="mb-8">
+        <p className="text-marron text-3xl font-ebGaramond font-bold leading-snug mb-4">
+          Formation Biopilates
+        </p>
+        <p className="leading-6">
+          Devenez <strong>instructeur de Pilates</strong> : favorisez
+          l'équilibre et le bien-être physique et mental, tout en vous
+          transformant.{" "}
+        </p>
+        <p className="leading-6">
+          Rejoignez notre formation et devenez un pilier d'harmonie.
+        </p>
+      </div>
       <Swiper
         className="centered-slide-carousel swiper-container relative mb-10"
         centeredSlides={true}
@@ -147,7 +160,7 @@ export default function FormationSwiper() {
           </SwiperSlide>
         ))}
 
-        <div className="slider-controler flex justify-center gap-10 mt-4 ">
+        <div className="slider-controler flex justify-center gap-10 mb-6 ">
           <div className="cursor-pointer swiper-but-prev slider-arrow hidden sm:flex justify-center items-center bg-bgColor rounded-full w-10 h-10">
             <FaArrowLeftLong className="text-marron" />
           </div>
@@ -157,6 +170,6 @@ export default function FormationSwiper() {
           <div className="swiper-pagination m-auto z-[1] block sm:hidden"></div>
         </div>
       </Swiper>
-    </div>
+    </section>
   );
 }

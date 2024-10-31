@@ -195,7 +195,7 @@ export function RegisterForm({
           {/* back button */}
           <Link
             to="/"
-            className="absolute top-0 left-0 w-12 h-12 rounded-full bg-marron flex justify-center items-center mt-4 lg:mt-8 ml-4 lg:ml-8 z-10 tr"
+            className="absolute top-0 left-0 w-12 h-12 rounded-full bg-marron flex justify-center items-center mt-4 lg:mt-8 ml-4 lg:ml-8 z-40 tr"
           >
             <FaArrowLeftLong className="text-bgColor text-xl" />
           </Link>
@@ -402,7 +402,7 @@ export function RegisterForm({
                   </span>
                 </label>
               </div>
-              <div id="signInDiv" className="w-full rounded-lg"></div>
+              <div id="signInDiv" className="w-full rounded-lg my-3"></div>
               <button
                 type="submit"
                 className="reserver-button flex mx-auto mb-2.5 flex-col justify-center items-center text-sm sm:text-base font-bold font-lato rounded-lg w-full py-2 sm:py-3 bg-bgColor text-marron"

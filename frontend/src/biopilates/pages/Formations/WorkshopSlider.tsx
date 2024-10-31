@@ -30,7 +30,7 @@ function WorkshopCard({ workshop }: { workshop: Workshop }) {
   return (
     <div className="relative w-[206px] h-[270px] sm:w-[300px] sm:h-[360px] rounded-lg shadow-lg font-lato">
       <div className="absolute flex flex-col justify-center items-center gap-4 bottom-0 w-full rounded-lg mb-7 z-20">
-        <p className="text-center text-sm sm:text-2xl text-white font-bold font-ebGaramond">
+        <p className="text-center text-sm sm:text-[23px] leading-normal text-white font-bold font-ebGaramond mx-6">
           {workshop.title}
         </p>
         <button
@@ -87,31 +87,31 @@ export default function WorkshopSlider() {
       image: workshop1,
     },
     {
-      title: "Workshop en ligne",
+      title: "Workshop Matwork",
       image: workshop2,
     },
     {
-      title: "Workshop en ligne",
+      title: "Workshop Reformer",
       image: workshop3,
     },
     {
-      title: "Workshop en ligne",
+      title: "Workshop Cadillac, chaise et barril",
       image: workshop4,
     },
     {
-      title: "Workshop en ligne",
+      title: "Workshop golfeurs",
       image: workshop5,
     },
     {
-      title: "Workshop en ligne",
+      title: "Workshop prénatal et postnatal",
       image: workshop6,
     },
     {
-      title: "Workshop en ligne",
+      title: "Workshop Anatomie et fascias",
       image: workshop7,
     },
     {
-      title: "Workshop en ligne",
+      title: "Workshop de préparation aux examens",
       image: workshop8,
     },
   ];
@@ -136,7 +136,7 @@ export default function WorkshopSlider() {
         // grabCursor={true}
         loop={true}
         // spaceBetween={40}
-        slideToClickedSlide={true}
+        // slideToClickedSlide={true}
         // Move clickable here
         navigation={{
           nextEl: ".swiper-but-next",
@@ -192,7 +192,7 @@ export default function WorkshopSlider() {
             <WorkshopCard workshop={workshop} />
           </SwiperSlide>
         ))}
-        <div className="slider-controler flex justify-center gap-10 mb-8">
+        <div className="slider-controler flex justify-center gap-10 mb-6">
           <div className="cursor-pointer swiper-but-prev slider-arrow hidden sm:flex justify-center items-center bg-bgColor rounded-full w-10 h-10">
             <FaArrowLeftLong className="text-marron" />
           </div>
