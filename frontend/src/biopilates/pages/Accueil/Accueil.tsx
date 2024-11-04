@@ -40,6 +40,7 @@ export default function Accueil() {
     <div className="flex flex-col mx-5 md:mx-12 ">
       {/* Hero */}
       <Hero />
+
       {/* Intro */}
       <section className="mb-10 flex flex-col-reverse sm:flex-row flex-wrap justify-center lg:justify-between gap-10 font-lato">
         <div className="flex flex-col items-center md:items-baseline pb-6 md:py-6 md:px-5 lg:w-[65%] gap-5 font-lato">
@@ -58,7 +59,7 @@ export default function Accueil() {
             alt="Gym"
             className="rounded-full w-[220px] h-[220px] sm:w-[312px] sm:h-[312px] object-cover md:hidden mb-2 shadow-lg"
           />
-          <div className="text-sm sm:text-base">
+          <div className="text-sm sm:text-lg">
             <p className="md:leading-8">
               Premier studio <strong>STOTT Pilates</strong> en France, nous vous
               offrons une expérience unique pour une transformation physique et
@@ -106,7 +107,7 @@ export default function Accueil() {
         />
         <div className="flex justify-between items-center gap-4 z-[1] mx-6 sm:mx-10 w-full">
           <div className="flex flex-col justify-center gap-4 text-xs ">
-          <p className="text-white font-ebGaramond text-lg sm:text-2xl md:text-3xl text-shadow-2xl">
+            <p className="text-white font-ebGaramond text-lg sm:text-2xl md:text-3xl text-shadow-2xl">
               Découvrez le Pilates chez nous
             </p>
             <p className="text-white sm:text-base md:text-xl text-shadow-2xl">
