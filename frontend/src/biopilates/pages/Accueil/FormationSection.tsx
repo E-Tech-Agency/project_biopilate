@@ -91,12 +91,12 @@ export default function FormationSection({
         </p>
       </div>
       <Swiper
-        className="centered-slide-carousel swiper-container relative"
+        className="centered-slide-carousel swiper-container overflow-hidden mx-[-20px] md:mx-[-48px]"
         centeredSlides={true}
         grabCursor={true}
         loop={true}
         spaceBetween={30}
-        slideToClickedSlide={true}
+        // slideToClickedSlide={true}
         pagination={{ el: ".swiper-pagination", clickable: true }} // Move clickable here
         navigation={{
           nextEl: ".swiper-but-next",
@@ -117,21 +117,18 @@ export default function FormationSection({
             spaceBetween: 15,
           },
           1280: {
-            slidesPerView: 3,
+            slidesPerView: 3.5,
             spaceBetween: 10,
           },
           1028: {
             slidesPerView: 3,
             spaceBetween: 10,
           },
-          990: {
-            slidesPerView: 2,
+          820: {
+            slidesPerView: 2.5,
             spaceBetween: 8,
           },
-          768: {
-            slidesPerView: 2,
-            spaceBetween: 5,
-          },
+
           640: {
             slidesPerView: 2,
             spaceBetween: 4,
@@ -151,14 +148,15 @@ export default function FormationSection({
           </SwiperSlide>
         ))}
 
-        <div className="slider-controler flex justify-center gap-10 mb-8">
-          <div className="cursor-pointer swiper-but-prev slider-arrow hidden sm:flex justify-center items-center bg-bgColor rounded-full w-10 h-10">
-            <FaArrowLeftLong className="text-marron" />
-          </div>
-          <div className="cursor-pointer swiper-but-next slider-arrow hidden sm:flex justify-center items-center bg-bgColor rounded-full w-10 h-10">
-            <FaArrowRightLong className="text-marron" />
-          </div>
-          <div className="swiper-pagination m-auto z-[1] block sm:hidden"></div>
+        <div className="cursor-pointer swiper-but-prev slider-arrow hidden sm:flex justify-center items-center bg-bgColor rounded-full w-10 h-10 absolute left-5 top-1/2 transform -translate-y-1/2 z-20">
+          <FaArrowLeftLong className="text-marron" />
+        </div>
+        <div className="cursor-pointer swiper-but-next slider-arrow hidden sm:flex justify-center items-center bg-bgColor rounded-full w-10 h-10 absolute right-5 top-1/2 transform -translate-y-1/2 z-20">
+          <FaArrowRightLong className="text-marron" />
+        </div>
+
+        <div className="slider-controler flex justify-center gap-10 max-sm:mb-8">
+          <div className="swiper-pagination m-auto z-[1] block sm:hidden" />
         </div>
       </Swiper>
       <button

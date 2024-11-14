@@ -10,13 +10,6 @@ import { Pagination } from "swiper/modules";
 export default function TemoignagesSection() {
   const temoignages = [
     {
-      user: "Lyly de la Vallée",
-      note: 5,
-      title: "Cette adresse n'en est que plus précieuse.",
-      review:
-        "Un très beau studio à l'ambiance unique à Paris. Caro est une grande pro, incollable sur l'anatomie, à même d'adapter son cours à chacun quelle que soit sa condition pour progresser, récupérer d'une blessure, se remettre en forme, s'entretenir... Les endroits où chaque élève est considéré autrement que comme un numéro sont rares, cette adresse n'en est que plus précieuse.",
-    },
-    {
       user: "Mathilde Paquelier",
       note: 5,
       title: "Les cours sont variés, ludiques et très efficaces!",
@@ -24,11 +17,11 @@ export default function TemoignagesSection() {
         "J'ai la chance d'aller au studio depuis maintenant plusieurs années... c'est un vrai plaisir de faire du sport dans un tel environnement. Caroline est attentive et les cours sont variés, ludiques et très efficaces!",
     },
     {
-      user: "Julia",
+      user: "Lyly de la Vallée",
       note: 5,
-      title: "Excellent Studio de Caroline BERGER.",
+      title: "Cette adresse n'en est que plus précieuse.",
       review:
-        "Excellent Studio de Caroline BERGER ! Caroline est très attentive à nos besoins et nous suit avec beaucoup d'attention. C'est un grand plaisir faire du sport, s'occuper de son corps avec une grande professionnelle, dans un beau studio et le tout accompagné de plein de petit poissons! 😍",
+        "Un très beau studio à l'ambiance unique à Paris. Caro est une grande pro, incollable sur l'anatomie, à même d'adapter son cours à chacun quelle que soit sa condition pour progresser, récupérer d'une blessure, se remettre en forme, s'entretenir... Les endroits où chaque élève est considéré autrement que comme un numéro sont rares, cette adresse n'en est que plus précieuse.",
     },
     {
       user: "Julia",
@@ -69,7 +62,8 @@ export default function TemoignagesSection() {
           className="centered-slide-carousel swiper-container relative w-full"
           centeredSlides={true}
           grabCursor={true}
-          loop={true}
+          initialSlide={1}
+          // loop={true}
           spaceBetween={40}
           slideToClickedSlide={true}
           modules={[Pagination]}

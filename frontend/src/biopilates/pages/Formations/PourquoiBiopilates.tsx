@@ -221,7 +221,7 @@ export default function PourquoiBiopilates() {
         </div>
 
         <div className="div6 md:max-w-[400px] h-[200px] md:h-[184px] 2xl:h-[196px] bg-marron relative rounded-lg overflow-hidden">
-          <div className="flex flex-col justify-around gap-2 py-2.5 px-3.5 xl:py-4 xl:px-7 2xl:py-10 2xl:px-10 z-10 relative">
+          <div className="flex flex-col justify-around items-start gap-2 py-2.5 px-3.5 xl:py-4 xl:px-7 2xl:py-10 2xl:px-10 z-10 relative">
             <div className="flex justify-center items-center gap-2">
               <img
                 loading="lazy"

@@ -16,6 +16,7 @@ import formation5Image from "@/assets/images/formation-5.png";
 import Matwork from "@/assets/images/formation-6.jpg";
 import Blessures from "@/assets/images/formation-3.png";
 import FormationTarifCard from "@/biopilates/components/FormationTarifCard";
+import blogBg from "@/assets/images/blog-bg.jpg";
 
 import formation1 from "@/assets/doc/1-Formation-Anatomie.pdf";
 import formation2 from "@/assets/doc/2-Formation-Matwork.pdf";
@@ -85,91 +86,99 @@ export default function FormationSwiper() {
   ];
 
   return (
-    <section className="mt-8" id="formation-prix">
-      <div className="mb-8">
-        <p className="text-marron text-3xl font-ebGaramond font-bold leading-snug mb-4">
-          Formation Biopilates
-        </p>
-        <p className="leading-6">
-          Devenez <strong>instructeur de Pilates</strong> : favorisez
-          l'équilibre et le bien-être physique et mental, tout en vous
-          transformant.{" "}
-        </p>
-        <p className="leading-6">
-          Rejoignez notre formation et devenez un pilier d'harmonie.
-        </p>
+    <section className="relative mt-8" id="formation-prix">
+      <div className="absolute inset-0">
+        <img
+          src={blogBg}
+          alt=""
+          className="w-full h-full object-cover blur-3xl opacity-65"
+        />
       </div>
-      <Swiper
-        className="centered-slide-carousel swiper-container relative mb-10"
-        centeredSlides={true}
-        // grabCursor={true}
-        loop={true}
-        spaceBetween={30}
-        // slideToClickedSlide={true}
-        pagination={{ el: ".swiper-pagination", clickable: true }} // Move clickable here
-        navigation={{
-          nextEl: ".swiper-but-next",
-          prevEl: ".swiper-but-prev",
-        }}
-        modules={[Pagination, Navigation]}
-        breakpoints={{
-          1920: {
-            slidesPerView: 6,
-            spaceBetween: 25,
-          },
-          1600: {
-            slidesPerView: 5,
-            spaceBetween: 20,
-          },
-          1440: {
-            slidesPerView: 4,
-            spaceBetween: 15,
-          },
-          1280: {
-            slidesPerView: 3,
-            spaceBetween: 10,
-          },
-          1028: {
-            slidesPerView: 3,
-            spaceBetween: 10,
-          },
-          990: {
-            slidesPerView: 2,
-            spaceBetween: 8,
-          },
-          768: {
-            slidesPerView: 2,
-            spaceBetween: 5,
-          },
-          640: {
-            slidesPerView: 2,
-            spaceBetween: 4,
-          },
-          550: {
-            slidesPerView: 2,
-            spaceBetween: 4,
-          },
-        }}
-      >
-        {formations.map((formation, index) => (
-          <SwiperSlide
-            key={index}
-            className="flex flex-col justify-center items-center"
-          >
-            <FormationTarifCard formation={formation} />
-          </SwiperSlide>
-        ))}
-
-        <div className="slider-controler flex justify-center gap-10 mb-6 ">
-          <div className="cursor-pointer swiper-but-prev slider-arrow hidden sm:flex justify-center items-center bg-bgColor rounded-full w-10 h-10">
-            <FaArrowLeftLong className="text-marron" />
-          </div>
-          <div className="cursor-pointer swiper-but-next slider-arrow hidden sm:flex justify-center items-center bg-bgColor rounded-full w-10 h-10">
-            <FaArrowRightLong className="text-marron" />
-          </div>
-          <div className="swiper-pagination m-auto z-[1] block sm:hidden"></div>
+      <div className="relative">
+        <div className="mb-8">
+          <p className="text-marron text-3xl font-ebGaramond font-bold leading-snug mb-4">
+            Formation Biopilates
+          </p>
+          <p className="leading-6">
+            Devenez <strong>instructeur de Pilates</strong> : favorisez
+            l'équilibre et le bien-être physique et mental, tout en vous
+            transformant.{" "}
+          </p>
+          <p className="leading-6">
+            Rejoignez notre formation et devenez un pilier d'harmonie.
+          </p>
         </div>
-      </Swiper>
+        <Swiper
+          className="centered-slide-carousel swiper-container relative mb-10"
+          centeredSlides={true}
+          // grabCursor={true}
+          loop={true}
+          spaceBetween={30}
+          // slideToClickedSlide={true}
+          pagination={{ el: ".swiper-pagination", clickable: true }} // Move clickable here
+          navigation={{
+            nextEl: ".swiper-but-next",
+            prevEl: ".swiper-but-prev",
+          }}
+          modules={[Pagination, Navigation]}
+          breakpoints={{
+            1920: {
+              slidesPerView: 6,
+              spaceBetween: 25,
+            },
+            1600: {
+              slidesPerView: 5,
+              spaceBetween: 20,
+            },
+            1440: {
+              slidesPerView: 4,
+              spaceBetween: 15,
+            },
+            1280: {
+              slidesPerView: 3,
+              spaceBetween: 10,
+            },
+            1028: {
+              slidesPerView: 3,
+              spaceBetween: 10,
+            },
+            990: {
+              slidesPerView: 2,
+              spaceBetween: 8,
+            },
+            768: {
+              slidesPerView: 2,
+              spaceBetween: 5,
+            },
+            640: {
+              slidesPerView: 2,
+              spaceBetween: 4,
+            },
+            550: {
+              slidesPerView: 2,
+              spaceBetween: 4,
+            },
+          }}
+        >
+          {formations.map((formation, index) => (
+            <SwiperSlide
+              key={index}
+              className="flex flex-col justify-center items-center"
+            >
+              <FormationTarifCard formation={formation} />
+            </SwiperSlide>
+          ))}
+          <div className="slider-controler flex justify-center gap-10 mb-6 ">
+            <div className="cursor-pointer swiper-but-prev slider-arrow hidden sm:flex justify-center items-center bg-bgColor rounded-full w-10 h-10">
+              <FaArrowLeftLong className="text-marron" />
+            </div>
+            <div className="cursor-pointer swiper-but-next slider-arrow hidden sm:flex justify-center items-center bg-bgColor rounded-full w-10 h-10">
+              <FaArrowRightLong className="text-marron" />
+            </div>
+            <div className="swiper-pagination m-auto z-[1] block sm:hidden"></div>
+          </div>
+        </Swiper>
+      </div>
     </section>
   );
 }

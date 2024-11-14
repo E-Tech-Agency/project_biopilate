@@ -66,10 +66,9 @@ export function LoginForm({
   const handleForgotPassword = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
-      const res = await axios.post(
-        "http://141.94.23.119/api/password_reset/",
-        { email: data.email }
-      );
+      const res = await axios.post("http://141.94.23.119/api/password_reset/", {
+        email: data.email,
+      });
       toast.success(res.data.message);
       toast.info("Check your email for password reset instructions");
       setDialogOpen(false);
@@ -189,8 +188,9 @@ export function LoginForm({
               </div>
               <button
                 type="submit"
-                className="reserver-button flex mx-auto mb-3 flex-col justify-center items-center text-sm sm:text-base font-bold font-lato rounded-lg w-full py-2 sm:py-3 bg-bgColor text-marron"
+                className="reserver-button overflow-hidden flex mx-auto mb-3 flex-col justify-center items-center text-sm sm:text-base font-bold font-lato rounded-lg w-full py-2 sm:py-3 bg-bgColor text-marron transition duration-300 ease-in-out transform"
               >
+                <div className="hover-circle overflow-hidden" />
                 Connexion
               </button>
               <div className="mt-4 flex flex-wrap justify-between">

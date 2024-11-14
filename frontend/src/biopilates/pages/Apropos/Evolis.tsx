@@ -25,7 +25,7 @@ type PourQui = {
 };
 function PourQuiCard({ pourqui }: { pourqui: PourQui }) {
   return (
-    <div className="relative w-[280px] h-[334px] sm:w-[393px] sm:h-[454px] rounded-lg shadow-lg font-lato">
+    <div className="relative w-[280px] h-[334px] sm:w-[393px] sm:h-[454px] rounded-lg shadow-lg font-lato mx-auto">
       <div className="absolute inset-0 size-full self-start h-[83%]">
         <img
           loading="lazy"
@@ -39,7 +39,7 @@ function PourQuiCard({ pourqui }: { pourqui: PourQui }) {
         <button className=" absolute flex flex-col justify-center text-sm sm:text-base rounded-lg px-4 py-3 bg-white text-black bg-opacity-80 font-lato font-bold mt-4 ml-4">
           {pourqui.title}
         </button>
-        <p className="absolute bg-white h-[86px] rounded-lg rounded-t-none text-sm sm:text-base font-normal bottom-0 left-0 right-0 text-center flex justify-center items-center">
+        <p className="absolute bg-white h-[86px] px-4 rounded-lg rounded-t-none text-sm sm:text-base font-normal bottom-0 left-0 right-0 flex justify-center items-center">
           {pourqui.description}
         </p>
       </div>
@@ -88,10 +88,13 @@ function Slider() {
   return (
     <section className="flex flex-col justify-center items-center w-full h-[480px] sm:h-[530px]">
       <Swiper
-        className="centered-slide-carousel swiper-container relative w-full overflow-hidden"
+        className="centered-slide-carousel swiper-container relative w-full overflow-visible"
+        centeredSlides={true}
         grabCursor={true}
+        loop={true}
+        initialSlide={1}
         // spaceBetween={40}
-        slideToClickedSlide={true}
+        // slideToClickedSlide={true}
         pagination={{
           el: ".swiper-pagination",
           clickable: true,
@@ -99,31 +102,35 @@ function Slider() {
         modules={[Pagination]} // Fix: Wrapping Pagination in an array
         breakpoints={{
           1920: {
-            slidesPerView: 4,
-            spaceBetween: 25,
+            slidesPerView: 5,
+            spaceBetween: 30,
           },
-          1750: {
+          1740: {
             slidesPerView: 4,
-            spaceBetween: 20,
+            spaceBetween: 30,
           },
-          1440: {
+          1600: {
+            slidesPerView: 3.5,
+            spaceBetween: -70,
+          },
+          1400: {
             slidesPerView: 3,
-            spaceBetween: 18,
+            spaceBetween: -50,
           },
           1280: {
             slidesPerView: 3,
-            spaceBetween: 16,
+            spaceBetween: 60,
           },
-          1028: {
-            slidesPerView: 2,
-            spaceBetween: 14,
+          1100: {
+            slidesPerView: 2.5,
+            spaceBetween: 30,
           },
           990: {
-            slidesPerView: 1,
+            slidesPerView: 2,
             spaceBetween: 10,
           },
           768: {
-            slidesPerView: 1,
+            slidesPerView: 1.5,
             spaceBetween: 5,
           },
           640: {
@@ -152,8 +159,8 @@ export default function Evolis() {
   const images = [
     evolisImage,
     evolisEtirementImage,
-    evolisSkeletonImage,
-    evolisPostureImage,
+    evolisImage,
+    evolisEtirementImage,
     evolisImage,
   ];
   return (
@@ -283,6 +290,7 @@ export default function Evolis() {
               />
             </svg>
           </div>
+
           <div className="max-lg:hidden absolute right-0">
             <svg
               width="370"
@@ -299,6 +307,7 @@ export default function Evolis() {
               />
             </svg>
           </div>
+
           <div className="flex flex-col gap-4 w-full">
             <p className="font-ebGaramond font-bold text-2xl md:text-2xl ">
               Pour découvrir les bienfaits de la méthode Evolis®
@@ -312,7 +321,7 @@ export default function Evolis() {
             </p>
 
             <button
-              className="button-hover flex mr-auto flex-col justify-center text-base rounded-lg px-9 py-3 bg-white text-marron font-lato font-bold"
+              className="button-hover flex mr-auto flex-col justify-center text-base rounded-lg bg-white text-marron font-lato font-bold transform"
               onClick={() => {
                 window.open(
                   "https://backoffice.bsport.io/m/Studio%20Biopilates%20Paris/878/calendar/?isPreview=true&tabSelected=0 ",

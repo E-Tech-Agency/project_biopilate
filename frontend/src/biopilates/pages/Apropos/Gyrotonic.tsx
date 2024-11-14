@@ -209,7 +209,7 @@ export default function Gyrotonic() {
             </p>
 
             <button
-              className="button-hover flex mr-auto flex-col justify-center text-base rounded-lg px-8 py-3 bg-white text-marron font-lato font-bold"
+              className="button-hover flex mr-auto flex-col justify-center text-base rounded-lg bg-white text-marron font-lato font-bold transform"
               onClick={() => {
                 window.open(
                   "https://backoffice.bsport.io/m/Studio%20Biopilates%20Paris/878/calendar/?isPreview=true&tabSelected=0 ",
@@ -217,7 +217,7 @@ export default function Gyrotonic() {
                 );
               }}
             >
-              <div className="hover-circle-2 overflow-hidden" />
+              <div className="hover-circle-2" />
               Réserver
             </button>
           </div>

@@ -1,39 +1,39 @@
-import { useState } from "react";
+// import { useState } from "react";
+// import Pagination from "@mui/material/Pagination";
+// import Stack from "@mui/material/Stack";
 import BlogCard from "@/biopilates/components/BlogCard";
-import Pagination from "@mui/material/Pagination";
-import Stack from "@mui/material/Stack";
 import articleImage1 from "@/assets/images/article-1.png";
 // import placeholderImage from "@/assets/images/Placeholder_view_vector.png";
 
-function Filter() {
-  const [selectedCategories, setSelectedCategories] = useState<number[]>([]);
+// function Filter() {
+//   const [selectedCategories, setSelectedCategories] = useState<number[]>([]);
 
-  const categories = ["Tous", "Anatomie", "Pilates"];
+//   const categories = ["Tous", "Anatomie", "Pilates"];
 
-  const toggleCategory = (index: number) => {
-    if (selectedCategories.includes(index)) {
-      setSelectedCategories(selectedCategories.filter((i) => i !== index));
-    } else {
-      setSelectedCategories([...selectedCategories, index]);
-    }
-  };
+//   const toggleCategory = (index: number) => {
+//     if (selectedCategories.includes(index)) {
+//       setSelectedCategories(selectedCategories.filter((i) => i !== index));
+//     } else {
+//       setSelectedCategories([...selectedCategories, index]);
+//     }
+//   };
 
-  return (
-    <div className="flex flex-row items-start gap-2 py-2">
-      {categories.map((category, index) => (
-        <button
-          key={index}
-          onClick={() => toggleCategory(index)}
-          className={`category-hover block rounded-lg py-3 px-4 ${
-            selectedCategories.includes(index) && "category-active"
-          }`}
-        >
-          {category}
-        </button>
-      ))}
-    </div>
-  );
-}
+//   return (
+//     <div className="flex flex-row items-start gap-2 py-2">
+//       {categories.map((category, index) => (
+//         <button
+//           key={index}
+//           onClick={() => toggleCategory(index)}
+//           className={`category-hover block rounded-lg py-3 px-4 ${
+//             selectedCategories.includes(index) && "category-active"
+//           }`}
+//         >
+//           {category}
+//         </button>
+//       ))}
+//     </div>
+//   );
+// }
 
 export default function Blog() {
   const articles = [
@@ -73,7 +73,10 @@ export default function Blog() {
           version de vous-même, un mouvement à la fois.
         </p>
       </div>
-      <Filter />
+
+      {/* Temporarly hiddens */}
+      {/* <Filter /> */}
+
       <div className="mb-12 overflow-hidden mx-[-20px] md:mx-[-48px] relative">
         <div className=" flex justify-center overflow-hidden mx-[-48px]">
           <div className="absolute object-cover z-[0] scale-50 sm:scale-75 md:scale-90 lg:scale-110 xl:scale-125 mt-4">
@@ -145,11 +148,11 @@ export default function Blog() {
           </div>
         </div>
       </div>
-      <div className="flex flex-col justify-center items-center">
+      {/* <div className="flex flex-col justify-center items-center">
         <Stack spacing={2}>
           <Pagination count={2} variant="outlined" shape="rounded" />
         </Stack>
-      </div>
+      </div> */}
     </div>
   );
 }

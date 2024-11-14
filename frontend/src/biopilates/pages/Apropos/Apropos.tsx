@@ -9,6 +9,7 @@ import stott from "@/assets/images/stott.jpg";
 import gyrotonic from "@/assets/images/gyrotonic.jpg";
 import evolis from "@/assets/images/evolis.jpg";
 import NosInstructeurs from "./NosInstructeurs";
+import blogBg from "@/assets/images/blog-bg.jpg";
 
 export default function Apropos() {
   const images = [caroline3, caroline4, caroline5, caroline1, caroline2];
@@ -112,6 +113,7 @@ export default function Apropos() {
           nos trois disciplines phares :
         </p>
       </div>
+
       <ImageSliderApropos list={list} action={"Réserver"} />
 
       {/* nos instructeurs */}
@@ -119,8 +121,15 @@ export default function Apropos() {
 
       {/* Biopilates */}
 
-      <section className="mb-20">
-        <div className="mb-12">
+      <section className="relative mb-20">
+        <div className="absolute inset-0">
+          <img
+            src={blogBg}
+            alt=""
+            className="w-full h-full object-cover blur-3xl opacity-65"
+          />
+        </div>
+        <div className="relative mb-12">
           <p className="text-marron text-xl lg:text-3xl leading-snug font-ebGaramond font-bold mb-2">
             Biopilates : Un Label de Qualité Unique - Bio de La Biomécanique
           </p>
@@ -131,7 +140,7 @@ export default function Apropos() {
             repose sur trois piliers fondamentaux :
           </p>
         </div>
-        <div className="flex flex-wrap gap-10 sm:gap-20 justify-center text-center">
+        <div className="relative flex flex-wrap gap-10 sm:gap-20 justify-center text-center">
           <div className="flex flex-col justify-center items-center gap-5 w-[170px]">
             <svg
               width="66"
@@ -255,7 +264,7 @@ export default function Apropos() {
                 fill="#756E66"
               />
             </svg>
-            <p>Bien être et santé</p>
+            <p>Bien-être et santé</p>
           </div>
         </div>
       </section>

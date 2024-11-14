@@ -10,7 +10,7 @@ import { Pagination, Navigation } from "swiper/modules";
 
 export default function Offres() {
   return (
-    <div>
+    <div className="relative">
       <p className="text-marron text-xl md:text-3xl leading-snug mb-4 font-ebGaramond font-bold">
         Nos offres - tarifs
       </p>

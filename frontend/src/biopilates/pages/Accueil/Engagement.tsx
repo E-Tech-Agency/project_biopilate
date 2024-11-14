@@ -1,9 +1,17 @@
 import engagement from "@/assets/images/engagement.png";
+import blogBg from "@/assets/images/blog-bg.jpg";
 
 export default function Engagement() {
   return (
-    <section className="mb-20 2xl:mx-6 flex flex-col justify-center items-center">
-      <p className="text-marron text-2xl mb-8 lg:mb-12 font-ebGaramond font-bold">
+    <section className="relative mb-20 2xl:mx-6 flex flex-col justify-center items-center">
+      <div className="absolute inset-0">
+        <img
+          src={blogBg}
+          alt=""
+          className="w-full h-full object-cover blur-3xl opacity-65"
+        />
+      </div>
+      <p className="relative text-marron text-2xl mb-8 lg:mb-12 font-ebGaramond font-bold">
         Engagement envers nos clients
       </p>
       <div className="flex justify-center flex-row max-lg:flex-wrap gap-2 md:gap-10 2xl:gap-8 max-md:hidden">
@@ -48,26 +56,12 @@ export default function Engagement() {
           </div>
         </div>
         {/* pic */}
-        {/* <div className="justify-center items-center gap-4 rounded-full w-[410px] h-[402px] mx-12 hidden md:flex">
-          <img
-            loading="lazy"
-            src={engagement1}
-            alt="Biopilate trainer"
-            className="custom-half-circle-right h-[402px] shadow-lg"
-          />
 
-          <img
-            loading="lazy"
-            src={engagement2}
-            alt="Biopilate trainer"
-            className="custom-half-circle-left h-[314px] shadow-lg pt-4"
-          />
-        </div> */}
         <img
           loading="lazy"
           src={engagement}
           alt="Biopilate trainer"
-          className=" h-[360px]  xl:h-[402px] object-cover"
+          className=" h-[360px]  xl:h-[402px] object-cover z-10"
         />
         {/* right */}
         <div className="flex flex-col justify-around items-start max-lg:gap-6 w-[80%] 2xl:w-[60%]">

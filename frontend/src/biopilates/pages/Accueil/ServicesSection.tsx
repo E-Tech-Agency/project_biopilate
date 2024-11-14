@@ -11,6 +11,7 @@ import ServiceCard from "@/biopilates/components/ServiceCard";
 import reformerImg from "@/assets/images/reformer.jpg";
 import reformerGyrotonicImg from "@/assets/images/reformer-gyrotonic.jpg";
 import reformerGyrotonicEvolisImg from "@/assets/images/reformer-gyrotonic-evolis.png";
+import blogBg from "@/assets/images/blog-bg.jpg";
 
 export default function ServicesSection({
   text = "Voir nos tarifs",
@@ -43,20 +44,28 @@ export default function ServicesSection({
   };
 
   return (
-    <div>
-      <div className="flex flex-col justify-center items-center gap-4">
+    <div className="relative">
+      <div className="absolute inset-0">
+        <img
+          src={blogBg}
+          alt=""
+          className="w-full h-full object-cover blur-3xl opacity-65"
+        />
+      </div>
+
+      <div className="relative flex flex-col justify-center items-center gap-4 mb-6 z-10">
         <div className="font-bold font-ebGaramond text-center flex flex-col gap-2 md:gap-4">
           <p className="text-marron text-xl md:text-3xl">Nos services</p>
           <p className="text-blueText text-lg md:text-2xl">
-            Cours de Pilates pour tous niveaux
+            Cours de pilates et gyrotonic pour tous niveaux
           </p>
         </div>
         <div className="md:mx-20 text-center text-sm md:text-xl">
-          <p className="">
+          <p>
             Découvrez une transformation de votre bien-être physique et mental
             grâce à nos cours de Pilates.
           </p>
-          <p className="">
+          <p>
             Chaque mouvement vous guide vers une vitalité et une harmonie
             intérieure.
           </p>

@@ -85,14 +85,14 @@ export default function Formations() {
       {/* formation biopliates */}
       <FormationSwiper />
 
+      {/* Planning */}
+      <Planning plans={plans} />
+
       {/* Fianncer votre formation */}
       <FinancerVotreFormation />
 
       {/* workshop */}
       <WorkshopSlider />
-
-      {/* Planning */}
-      <Planning plans={plans} />
     </div>
   );
 }

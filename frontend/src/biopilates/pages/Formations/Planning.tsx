@@ -31,7 +31,7 @@ export default function Planning({ plans }: PlanningProps) {
   };
 
   return (
-    <section className="mb-14 mt-2">
+    <section className="mb-14">
       <p className="text-marron text-4xl leading-snug mb-10 font-ebGaramond font-bold">
         Planning
       </p>
@@ -53,7 +53,7 @@ export default function Planning({ plans }: PlanningProps) {
             allowSlidePrev: false,
           },
           1650: {
-            slidesPerView: 4,
+            slidesPerView: 4.5,
             spaceBetween: 20,
             allowSlideNext: false,
             allowSlidePrev: false,

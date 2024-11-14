@@ -13,7 +13,7 @@ interface ServiceCardProps {
 }
 export default function ServiceCard({ service }: ServiceCardProps) {
   return (
-    <div className=" sm:py-6 flex flex-col justify-center sm:justify-around items-center gap-8 md:gap-4 rounded-lg shadow-lg min-w-[232px] sm:min-w-[320px] lg:min-w-[350px] max-w-[370px] h-[347px] sm:h-[428px] ">
+    <div className=" sm:py-6 flex flex-col justify-center sm:justify-around items-center gap-8 md:gap-4 rounded-lg shadow-lg min-w-[232px] sm:min-w-[320px] lg:min-w-[350px] max-w-[370px] h-[347px] sm:h-[428px] bg-white">
       <img
         loading="lazy"
         src={service.image}

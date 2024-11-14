@@ -80,8 +80,8 @@ html {
 .button-hover:hover {
   
   color:#756E66;
-  font-size: large;
-  padding: 12px 26px 12px 26px;
+  /* font-size: large; */
+  /* padding: 12px 26px 12px 26px; */
 }
 .hover-circle-2{
   align-self: center;

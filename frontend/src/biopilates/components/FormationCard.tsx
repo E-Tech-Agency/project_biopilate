@@ -13,7 +13,7 @@ interface FormationCardProps {
 
 const FormationCard: React.FC<FormationCardProps> = ({ formation }) => {
   return (
-    <div className="px-6 py-2 sm:py-6 flex flex-col justify-center items-center gap-4 w-[232px] h-[368px] sm:w-[302px] sm:h-[430px] rounded-lg shadow-lg">
+    <div className="px-6 py-2 sm:py-6 flex flex-col justify-center items-center gap-4 w-[232px] h-[368px] sm:w-[302px] sm:h-[430px] rounded-lg shadow-lg bg-white">
       <img
         loading="lazy"
         src={formation.image}
