@@ -2,6 +2,8 @@ import { LuPhone } from "react-icons/lu";
 import { LuClock } from "react-icons/lu";
 
 import { PiMapPinLight } from "react-icons/pi";
+import { TiSocialFacebook } from "react-icons/ti";
+import { RiInstagramFill } from "react-icons/ri";
 import ContactForm from "./ContactForm";
 import contactBg from "@/assets/images/contact-bg.jpg"; // Import the image here
 
@@ -16,7 +18,7 @@ export default function Contact() {
             className="size-full object-cover max-md:max-h-[500px]"
           />
         </div>
-        <div className="absolute inset-0 bg-black from-black rounded-lg opacity-25 max-md:max-h-[500px]"></div>
+        <div className="absolute inset-0 bg-black from-black rounded-lg opacity-50 max-md:max-h-[500px]"></div>
         {/* contact info */}
         <section className="relative flex max-lg:flex-wrap m-8 md:m-20 justify-center lg:justify-between items-center gap-12">
           <div className="flex flex-col justify-center items-start gap-4 text-white font-lato max-w-[90%] lg:max-w-[35%]">
@@ -45,6 +47,33 @@ export default function Contact() {
               <p className="text-sm md:text-lg">
                 2 Rue Boyer, 75020 Paris, France
               </p>
+            </div>
+
+            {/* social media buttons */}
+            <div className="">
+              <button
+                className="text-marron bg-white rounded-sm border border-marron text-lg p-1.5 mr-4
+                "
+                onClick={() => {
+                  window.open(
+                    "https://www.facebook.com/STUDIOBIOPILATESPARIS",
+                    "_blank"
+                  );
+                }}
+              >
+                <TiSocialFacebook />
+              </button>
+              <button
+                className="text-marron bg-white rounded-sm border border-marron text-lg p-1.5"
+                onClick={() => {
+                  window.open(
+                    "https://www.instagram.com/biopilates_studio_paris/",
+                    "_blank"
+                  );
+                }}
+              >
+                <RiInstagramFill />
+              </button>
             </div>
           </div>
           {/* contact form */}

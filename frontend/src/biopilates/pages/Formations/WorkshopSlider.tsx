@@ -119,10 +119,10 @@ export default function WorkshopSlider() {
   return (
     <section className="flex flex-col justify-center items-start w-full">
       <div className="mb-8">
-        <p className="text-marron text-3xl font-ebGaramond font-bold leading-snug mb-4">
+        <p className="text-marron text-xl sm:text-[34px] font-ebGaramond font-bold leading-snug mb-4">
           Workshop
         </p>
-        <p className="leading-6">
+        <p className="leading-6 sm:text-lg">
           Participez à notre workshop pour devenir{" "}
           <strong>instructeur de Pilates</strong> : cultivez l'équilibre et le
           bien-être physique et mental, tout en vous épanouissant
@@ -158,28 +158,28 @@ export default function WorkshopSlider() {
             centeredSlides: false, // Corrected syntax here
           },
           1280: {
-            slidesPerView: 3,
+            slidesPerView: 3.5,
             spaceBetween: 16,
           },
-          1050: {
+          1100: {
             slidesPerView: 3,
             spaceBetween: 14,
           },
           990: {
-            slidesPerView: 2,
+            slidesPerView: 2.7,
             spaceBetween: 10,
             centeredSlides: true, // Corrected syntax here
           },
-          768: {
-            slidesPerView: 2,
+          790: {
+            slidesPerView: 2.2,
             spaceBetween: 5,
           },
           640: {
-            slidesPerView: 1,
+            slidesPerView: 1.7,
             spaceBetween: 5,
           },
           480: {
-            slidesPerView: 2,
+            slidesPerView: 1.9,
             spaceBetween: 5,
           },
         }}
@@ -192,14 +192,13 @@ export default function WorkshopSlider() {
             <WorkshopCard workshop={workshop} />
           </SwiperSlide>
         ))}
-        <div className="slider-controler flex justify-center gap-10 mb-6">
-          <div className="cursor-pointer swiper-but-prev slider-arrow hidden sm:flex justify-center items-center bg-bgColor rounded-full w-10 h-10">
+        <div className="slider-controler flex justify-center gap-10 sm:mb-6">
+          <div className="arrow-hover cursor-pointer swiper-but-prev slider-arrow hidden sm:flex justify-center items-center bg-bgColor rounded-full w-10 h-10">
             <FaArrowLeftLong className="text-marron" />
           </div>
-          <div className="cursor-pointer swiper-but-next slider-arrow hidden sm:flex justify-center items-center bg-bgColor rounded-full w-10 h-10">
+          <div className="arrow-hover cursor-pointer swiper-but-next slider-arrow hidden sm:flex justify-center items-center bg-bgColor rounded-full w-10 h-10">
             <FaArrowRightLong className="text-marron" />
           </div>
-          <div className="swiper-pagination m-auto z-[1] block sm:hidden"></div>
         </div>
       </Swiper>
     </section>

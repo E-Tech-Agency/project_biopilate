@@ -87,10 +87,10 @@ export default function OtherArticles({ articles }: { articles: Article[] }) {
           ))}
         </div>
         <div className="slider-controller flex justify-center items-center gap-10 mb-10">
-          <div className="cursor-pointer swiper-but-prev slider-arrow hidden sm:flex justify-center items-center bg-bgColor rounded-full w-10 h-10">
+          <div className="arrow-hover cursor-pointer swiper-but-prev slider-arrow hidden sm:flex justify-center items-center bg-bgColor rounded-full w-10 h-10">
             <FaArrowLeftLong className="text-marron" />
           </div>
-          <div className="cursor-pointer swiper-but-next slider-arrow hidden sm:flex justify-center items-center bg-bgColor rounded-full w-10 h-10">
+          <div className="arrow-hover cursor-pointer swiper-but-next slider-arrow hidden sm:flex justify-center items-center bg-bgColor rounded-full w-10 h-10">
             <FaArrowRightLong className="text-marron" />
           </div>
           <div className="swiper-pagination m-auto z-[1] block sm:hidden"></div>

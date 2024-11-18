@@ -326,7 +326,7 @@ export function RegisterForm({
               </div>
               <div className="mb-5">
                 <label
-                  className="block text-sm sm:text-xl font-bold mb-2 text-gray-700"
+                  className="block text-sm sm:text-xl font-bold mb-2"
                   htmlFor="password"
                 >
                   Mot de passe
@@ -355,7 +355,7 @@ export function RegisterForm({
               </div>
               <div className="mb-5">
                 <label
-                  className="block text-sm sm:text-xl font-bold mb-2 text-gray-700"
+                  className="block text-sm sm:text-xl font-bold mb-2"
                   htmlFor="password"
                 >
                   Confirmer le mot de passe
@@ -405,8 +405,9 @@ export function RegisterForm({
               <div id="signInDiv" className="w-full rounded-lg my-3"></div>
               <button
                 type="submit"
-                className="reserver-button flex mx-auto mb-2.5 flex-col justify-center items-center text-sm sm:text-base font-bold font-lato rounded-lg w-full py-2 sm:py-3 bg-bgColor text-marron"
+                className="reserver-button button-hover flex mx-auto mb-2.5 flex-col justify-center items-center text-sm sm:text-base font-bold font-lato rounded-lg w-full py-2 sm:py-3 bg-bgColor text-marron transition duration-300 ease-in-out transform"
               >
+                <div className="hover-circle overflow-hidden" />
                 Créer un compte
               </button>
 

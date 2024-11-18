@@ -17,9 +17,9 @@ export default function FAQ() {
     {
       question: "Quels sont les bienfaits du Pilates Postnatal ?",
       answer:
-        "Après l’accouchement, le Pilates postnatal offre de nombreux avantages pour les jeunes mamans. Cette méthode douce et adaptée :<ul><li>·       Cible les muscles sollicités pendant la grossesse.</li><li>·       Renforce le plancher pelvien et les muscles abdominaux profonds.</li><li>·       Améliore la circulation sanguine.</li><li>·       Favorise la relaxation et les étirements profonds.En somme, le Pilates postnatal est un allié précieux pour retrouver forme, équilibre et vitalité après la naissance de bébé</li></ul>",
+        "Après l’accouchement, le Pilates postnatal offre de nombreux avantages pour les jeunes mamans. Cette méthode douce et adaptée :<ul><li>·       Cible les muscles sollicités pendant la grossesse.</li><li>·       Renforce le plancher pelvien et les muscles abdominaux profonds.</li><li>·       Améliore la circulation sanguine.</li><li>·       Favorise la relaxation et les étirements profonds. En somme, le Pilates postnatal est un allié précieux pour retrouver forme, équilibre et vitalité après la naissance de bébé</li></ul>",
     },
-    
+
     {
       question: "Qu’est-ce-que la méthode STOTT PILATES ?",
       answer:
@@ -34,10 +34,12 @@ export default function FAQ() {
   };
 
   return (
-    <section className="mb-16 flex flex-col justify-center items-center gap-8">
-      <div className="flex flex-col justify-center items-center gap-8">
-        <p className="text-4xl text-marron font-ebGaramond font-bold">FAQ</p>
-        <p className="text-2xl font-ebGaramond font-medium">
+    <section className="mb-10 flex flex-col justify-center items-center gap-8">
+      <div className="flex flex-col justify-center items-center gap-6 sm:gap-8">
+        <p className="text-xl sm:text-4xl text-marron font-ebGaramond font-bold">
+          FAQ
+        </p>
+        <p className="text-sm sm:text-xl font-ebGaramond font-medium max-sm:text-center">
           Trouvez ici les réponses aux questions fréquemment posées concernant
           les cours de Pilates, les horaires et les modalités d'inscription.
         </p>
@@ -55,13 +57,15 @@ export default function FAQ() {
                 onClick={() => toggleFAQ(index)}
               >
                 <div className="flex items-center">
-                  <span className="q-mark font-bold text-marron mr-4">Q.</span>
-                  <p className="question text-[22px] font-semibold m-0 font-ebGaramond">
+                  <span className="q-mark font-bold text-marron mr-2 sm:mr-4">
+                    Q.
+                  </span>
+                  <p className="question text-sm sm:text-[22px] leading-7 font-semibold m-0 font-ebGaramond">
                     {faq.question}
                   </p>
                 </div>
                 <div
-                  className={`rounded-full w-[50px] h-[50px] shadow-lg flex justify-center items-center text-marron ml-2 ${
+                  className={`rounded-full w-10 sm:w-[50px] h-10 sm:h-[50px] shadow-lg flex justify-center items-center text-marron ml-2 ${
                     openIndex === index ? "bg-marron text-white" : ""
                   }`}
                 >
@@ -78,7 +82,7 @@ export default function FAQ() {
                 }`}
               >
                 <p
-                  className="answer text-base text-gray-600 p-4"
+                  className="answer text-sm sm:text-base leading-7 text-gray-600 p-4"
                   dangerouslySetInnerHTML={{
                     __html: faq.answer,
                   }}

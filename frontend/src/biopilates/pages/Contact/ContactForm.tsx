@@ -172,8 +172,9 @@ export default function ContactForm() {
         </div>
         <button
           type="submit"
-          className="reserver-button flex mx-auto mb-3 flex-col justify-center items-center text-base sm:text-lg font-bold rounded-lg w-full py-2 sm:py-3 bg-bgColor text-marron"
+          className="reserver-button flex mx-auto mb-3 flex-col justify-center items-center text-base sm:text-lg font-bold rounded-lg w-full py-2 sm:py-3 bg-bgColor text-marron transition duration-300 ease-in-out transform"
         >
+          <div className="hover-circle overflow-hidden" />
           Envoyer
         </button>
       </form>

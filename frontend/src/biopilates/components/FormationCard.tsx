@@ -18,11 +18,11 @@ const FormationCard: React.FC<FormationCardProps> = ({ formation }) => {
         loading="lazy"
         src={formation.image}
         alt="Formation"
-        className="rounded-full w-[170px] h-[170px] sm:w-[230px] sm:h-[230px] object-cover shadow-lg"
+        className="rounded-full w-[158px] h-[158px] sm:w-[230px] sm:h-[230px] object-cover shadow-lg"
       />
 
       <div className="flex flex-col justify-between gap-3 h-32">
-        <p className="text-marron sm:text-lg sm:leading-[22px] text-center font-bold font-ebGaramond">
+        <p className="text-marron sm:text-lg leading-5 sm:leading-[22px] text-center font-bold font-ebGaramond">
           {formation.title}
         </p>
         <p

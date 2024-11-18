@@ -192,9 +192,9 @@ export default function Evolis() {
         <p className="text-justify leading-8">
           Bienvenue au Studio Biopilates, situé au cœur de Paris, où nous
           proposons <strong>la méthode Evolis®</strong>, développée par{" "}
-          <strong>Jean Frelat</strong>
-          Frelat . Cette approche globale de santé repose sur un réflexe
-          proprioceptif et une nouvelle manière de renforcer les muscles.
+          <strong>Jean Frelat</strong>. Cette approche globale de santé repose
+          sur un réflexe proprioceptif et une nouvelle manière de renforcer les
+          muscles.
         </p>
 
         <h1 className="text-3xl text-marron font-bold font-ebGaramond">

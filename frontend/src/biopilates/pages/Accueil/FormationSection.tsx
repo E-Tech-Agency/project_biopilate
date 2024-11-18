@@ -45,7 +45,7 @@ export default function FormationSection({
       title: "Chaise",
       image: formation2Image,
       description:
-        "Devenez instructeur de la Chaise Pilates <strong></strong> et optimisez la force et l'équilibre de vos élèves.",
+        "Devenez instructeur de la <strong>Chaise Pilates</strong> et optimisez la force et l'équilibre de vos élèves.",
     },
     {
       title: "Cadillac",
@@ -54,7 +54,7 @@ export default function FormationSection({
         "Devenez instructeur <strong>Cadillac Pilates</strong> et explorez de nouvelles dimensions de force et de flexibilité.",
     },
     {
-      title: "Barril",
+      title: "Barrils",
       image: formation1Image,
       description:
         "Devenez instructeur <strong>Barril Pilates</strong> et développez la puissance et la fluidité de vos élèves.",
@@ -78,9 +78,9 @@ export default function FormationSection({
     navigate("/formations#formations-prix");
   };
   return (
-    <div>
+    <div className="z-20">
       <div className="mb-6 flex flex-col text-center justify-center items-center gap-4 md:gap-2">
-        <p className="text-gray-500 text-xl md:text-3xl font-ebGaramond font-bold">
+        <p className="text-gray-500 text-xl md:text-[28px] font-ebGaramond font-bold">
           Formations professionnelles pour devenir instructeur Pilates
         </p>
         <p className="lg:mx-40 text-center text-sm md:text-xl max-w-[1200px]">
@@ -148,19 +148,16 @@ export default function FormationSection({
           </SwiperSlide>
         ))}
 
-        <div className="cursor-pointer swiper-but-prev slider-arrow hidden sm:flex justify-center items-center bg-bgColor rounded-full w-10 h-10 absolute left-5 top-1/2 transform -translate-y-1/2 z-20">
+        <div className="arrow-hover cursor-pointer swiper-but-prev slider-arrow hidden sm:flex justify-center items-center bg-bgColor rounded-full w-10 h-10 absolute left-5 top-1/2 transform -translate-y-1/2 z-20">
           <FaArrowLeftLong className="text-marron" />
         </div>
-        <div className="cursor-pointer swiper-but-next slider-arrow hidden sm:flex justify-center items-center bg-bgColor rounded-full w-10 h-10 absolute right-5 top-1/2 transform -translate-y-1/2 z-20">
+        <div className="arrow-hover cursor-pointer swiper-but-next slider-arrow hidden sm:flex justify-center items-center bg-bgColor rounded-full w-10 h-10 absolute right-5 top-1/2 transform -translate-y-1/2 z-20">
           <FaArrowRightLong className="text-marron" />
         </div>
-
-        <div className="slider-controler flex justify-center gap-10 max-sm:mb-8">
-          <div className="swiper-pagination m-auto z-[1] block sm:hidden" />
-        </div>
       </Swiper>
+
       <button
-        className={`mx-auto max-md:my-8 md:mb-16 overflow-hidden reserver-button ${bgColor} flex flex-col justify-center items-center text-base leading-6 rounded-md transform`}
+        className={`mx-auto max-md:mb-8 md:mb-16 overflow-hidden reserver-button ${bgColor} flex flex-col justify-center items-center text-base leading-6 rounded-md transform`}
         onClick={navigateToTarifs}
       >
         <div className="hover-circle overflow-hidden" />

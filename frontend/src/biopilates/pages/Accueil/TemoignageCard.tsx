@@ -1,4 +1,4 @@
-import BiopilateLogo from '@/assets/images/biopilate-logo.png';
+import BiopilateLogo from "@/assets/images/biopilate-logo.png";
 import { FaStar } from "react-icons/fa";
 interface Temoignage {
   user: string;
@@ -7,9 +7,13 @@ interface Temoignage {
   review: string;
 }
 
-export default function TemoignageCard({ temoignage }: { temoignage: Temoignage }) {
+export default function TemoignageCard({
+  temoignage,
+}: {
+  temoignage: Temoignage;
+}) {
   return (
-    <div className="flex flex-col max-w-[850px] min-w-[220px] md:h-[300px] shadow-xl rounded-lg py-6 sm:py-4 px-4 sm:px-8">
+    <div className="flex flex-col max-w-[850px] min-w-[220px] md:h-[300px] shadow-xl rounded-lg bg-white py-6 sm:py-4 px-4 sm:px-8">
       <div className="flex gap-4">
         <img
           loading="lazy"
@@ -30,7 +34,9 @@ export default function TemoignageCard({ temoignage }: { temoignage: Temoignage 
         <p className="text-sm sm:text-2xl mb-4 sm:mb-6 text-marron font-lato font-bold">
           {temoignage.title}
         </p>
-        <p className="text-xs sm:text-[16px] leading-5">{temoignage.review}</p>
+        <p className="text-xs sm:text-[16px] leading-normal sm:leading-5">
+          {temoignage.review}
+        </p>
       </div>
     </div>
   );

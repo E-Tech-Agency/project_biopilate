@@ -114,6 +114,7 @@ export default function FormationSwiper() {
           // grabCursor={true}
           loop={true}
           spaceBetween={30}
+          initialSlide={2}
           // slideToClickedSlide={true}
           pagination={{ el: ".swiper-pagination", clickable: true }} // Move clickable here
           navigation={{
@@ -126,28 +127,28 @@ export default function FormationSwiper() {
               slidesPerView: 6,
               spaceBetween: 25,
             },
-            1600: {
+            1650: {
               slidesPerView: 5,
               spaceBetween: 20,
             },
-            1440: {
-              slidesPerView: 4,
+            1500: {
+              slidesPerView: 4.5,
               spaceBetween: 15,
             },
-            1280: {
-              slidesPerView: 3,
+            1340: {
+              slidesPerView: 4,
               spaceBetween: 10,
             },
-            1028: {
-              slidesPerView: 3,
+            1200: {
+              slidesPerView: 3.5,
               spaceBetween: 10,
             },
-            990: {
-              slidesPerView: 2,
+            1020: {
+              slidesPerView: 3,
               spaceBetween: 8,
             },
-            768: {
-              slidesPerView: 2,
+            860: {
+              slidesPerView: 2.5,
               spaceBetween: 5,
             },
             640: {
@@ -169,10 +170,10 @@ export default function FormationSwiper() {
             </SwiperSlide>
           ))}
           <div className="slider-controler flex justify-center gap-10 mb-6 ">
-            <div className="cursor-pointer swiper-but-prev slider-arrow hidden sm:flex justify-center items-center bg-bgColor rounded-full w-10 h-10">
+            <div className="arrow-hover cursor-pointer swiper-but-prev slider-arrow hidden sm:flex justify-center items-center bg-bgColor rounded-full w-10 h-10">
               <FaArrowLeftLong className="text-marron" />
             </div>
-            <div className="cursor-pointer swiper-but-next slider-arrow hidden sm:flex justify-center items-center bg-bgColor rounded-full w-10 h-10">
+            <div className="arrow-hover cursor-pointer swiper-but-next slider-arrow hidden sm:flex justify-center items-center bg-bgColor rounded-full w-10 h-10">
               <FaArrowRightLong className="text-marron" />
             </div>
             <div className="swiper-pagination m-auto z-[1] block sm:hidden"></div>

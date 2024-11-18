@@ -1,6 +1,7 @@
 import tarifs from "@/assets/data/tarifs.json"; // Adjust the path as necessary
 import { Swiper, SwiperSlide } from "swiper/react";
 import { FaArrowLeftLong, FaArrowRightLong } from "react-icons/fa6";
+import { CiMail } from "react-icons/ci";
 
 import "swiper/swiper-bundle.css";
 import "swiper/css";
@@ -11,16 +12,16 @@ import { Pagination, Navigation } from "swiper/modules";
 export default function Offres() {
   return (
     <div className="relative">
-      <p className="text-marron text-xl md:text-3xl leading-snug mb-4 font-ebGaramond font-bold">
+      <p className="text-marron text-xl md:text-[34px] leading-snug mb-4 font-ebGaramond font-bold">
         Nos offres - tarifs
       </p>
       <p className="text-sm md:text-lg leading-snug mb-6 ">
         Les <strong>annulations</strong> sont à{" "}
-        <strong>12h pour les cours collectifs</strong>, à
+        <strong>12h pour les cours collectifs</strong>, à{" "}
         <strong>24h pour les cours semi-privés</strong> et{" "}
         <strong>48h pour les cours privés</strong>, en avance sinon le cours est
-        prélevé. Pas de changement possible .Un client ne peut pas s’inscrire
-        via Classpass, si il est déjà venu au préalable au studio biopilates en
+        prélevé. Pas de changement possible. Un client ne peut pas s’inscrire
+        via Classpass, s'il est déjà venu au préalable au studio biopilates en
         direct.
       </p>
       <Swiper
@@ -134,7 +135,7 @@ export default function Offres() {
                     {offre.validity}
                   </p>
                   <button
-                    className="button-offre-hover font-bold flex flex-col justify-center text-marron rounded-md px-16 sm:px-24 py-2 bg-white shadow-sm"
+                    className="button-offre-hover font-bold flex justify-center items-center gap-2 text-marron rounded-md px-16 sm:px-24 py-2 bg-white shadow-sm"
                     onClick={() => {
                       window.open(
                         "https://backoffice.bsport.io/m/Studio%20Biopilates%20Paris/878/calendar/?isPreview=true&tabSelected=0 ",
@@ -142,7 +143,13 @@ export default function Offres() {
                       );
                     }}
                   >
-                    Réserver
+                    {offre.action == "Envoyer" && (
+                      <div className="text-[22px]">
+                        {" "}
+                        <CiMail />
+                      </div>
+                    )}
+                    {offre.action}
                   </button>
                 </div>
               </div>
@@ -150,10 +157,10 @@ export default function Offres() {
           ))}
         </div>
         <div className="slider-controler flex justify-center gap-10 sm:mt-[-24px]">
-          <div className="cursor-pointer swiper-but-prev slider-arrow hidden sm:flex justify-center items-center bg-bgColor rounded-full w-10 h-10">
+          <div className="arrow-hover cursor-pointer swiper-but-prev slider-arrow hidden sm:flex justify-center items-center bg-bgColor rounded-full w-10 h-10">
             <FaArrowLeftLong className="text-marron" />
           </div>
-          <div className="cursor-pointer swiper-but-next slider-arrow hidden sm:flex justify-center items-center bg-bgColor rounded-full w-10 h-10">
+          <div className="arrow-hover cursor-pointer swiper-but-next slider-arrow hidden sm:flex justify-center items-center bg-bgColor rounded-full w-10 h-10">
             <FaArrowRightLong className="text-marron" />
           </div>
           <div className="swiper-pagination m-auto z-[1] block sm:hidden"></div>

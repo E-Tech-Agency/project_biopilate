@@ -14,10 +14,10 @@ interface FormationCardProps {
   formation: Formation;
 }
 
-const FormationCard: React.FC<FormationCardProps> = ({ formation }) => {
+const FormationTarifCard: React.FC<FormationCardProps> = ({ formation }) => {
   const isLevelNotFound = !formation.levels?.[0] || !formation.levels?.[1];
   return (
-    <div className="py-4 sm:py-0 flex flex-col items-center w-[232px] h-[456px] sm:w-[300px] sm:h-[580px] rounded-lg shadow-lg">
+    <div className="py-4 sm:py-0 flex flex-col items-center bg-white w-[232px] h-[456px] sm:w-[300px] sm:h-[580px] rounded-lg shadow-lg">
       <div className="px-6 py-2 sm:py-6 flex flex-col justify-center items-center gap-3 sm:gap-6">
         <img
           loading="lazy"
@@ -82,4 +82,4 @@ const FormationCard: React.FC<FormationCardProps> = ({ formation }) => {
     </div>
   );
 };
-export default FormationCard;
+export default FormationTarifCard;

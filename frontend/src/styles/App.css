@@ -4,19 +4,19 @@
 
 html {
   scroll-behavior: smooth;
-  overflow-x: hidden; 
+  overflow-x: hidden;
 }
 
 .custom-underline {
-    position: relative;
-    text-decoration: none;
-  }
-   /* for conatct message succes */
-  .text-burlywood {
-    color: DarkSlateGray; /* or use the hex code #DEB887 */
-  }
+  position: relative;
+  text-decoration: none;
+}
+/* for conatct message succes */
+.text-burlywood {
+  color: DarkSlateGray; /* or use the hex code #DEB887 */
+}
 .custom-underline::after {
-  content: '';
+  content: "";
   position: absolute;
   width: 100%;
   height: 1px; /* Thickness of the underline */
@@ -30,7 +30,7 @@ html {
 }
 
 .custom-half-circle-right {
-  clip-path: circle(50.0% at 100% 50%);
+  clip-path: circle(50% at 100% 50%);
 }
 
 .reserver-button {
@@ -38,7 +38,7 @@ html {
   padding: 10px 34px 10px 34px;
   font-weight: bold;
   overflow: hidden;
-  color:#756E66;
+  color: #756e66;
   transition: 0.3s ease-out;
 }
 .reserver-button:hover {
@@ -47,15 +47,15 @@ html {
 
 /* circle for reserver hover */
 
-.hover-circle{
+.hover-circle {
   align-self: center;
   position: absolute;
   width: 100%;
   height: 100%;
   overflow: hidden;
-  background-color: #756E66;
+  background-color: #756e66;
   border-radius: 50%;
-  object-fit:cover ;
+  object-fit: cover;
   transition: 0.3s ease-out;
   z-index: -1;
   opacity: 0;
@@ -66,32 +66,37 @@ html {
   opacity: 1;
   transform: scale(1.8);
 }
+button:hover .hover-circle {
+  opacity: 1;
+  transform: scale(1.8);
+}
 
 /* ------------------------- */
 
-.button-hover{
+.button-hover {
   transition: 0.3s ease-out;
   overflow: hidden;
   position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   padding: 12px 32px 12px 32px;
-
 }
 
 .button-hover:hover {
-  
-  color:#756E66;
+  color: #756e66;
   /* font-size: large; */
   /* padding: 12px 26px 12px 26px; */
 }
-.hover-circle-2{
+.hover-circle-2 {
   align-self: center;
   position: absolute;
   width: 100%;
   height: 100%;
   overflow: hidden;
-  background-color: #EBDCCD;
+  background-color: #ebdccd;
   border-radius: 50%;
-  object-fit:cover ;
+  object-fit: cover;
   transition: 0.3s ease-out;
   z-index: -1;
   opacity: 0;
@@ -102,53 +107,87 @@ html {
   opacity: 1;
   transform: scale(1.8);
 }
+button:hover .hover-circle-2 {
+  /* color: #756e66 */
+  background-color: #ebdccd;
+  opacity: 1;
+  transform: scale(1.8);
+}
+
+.hover-circle-3 {
+  align-self: center;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background-color: white;
+  border-radius: 50%;
+  object-fit: cover;
+  transition: 0.3s ease-out;
+  z-index: -1;
+  opacity: 0;
+  transform: scale(0.1);
+  transform-origin: center;
+}
+.button-hover:hover .hover-circle-3 {
+  opacity: 1;
+  transform: scale(1.8);
+}
 
 /* ------------------------- */
 
-
-.button-offre-hover{
+.button-offre-hover {
   transition: 0.3s ease-in-out;
 }
 
 .button-offre-hover:hover {
-  background-color:  #756E66;
-  color:#EBDCCD;
-
-  
+  background-color: #756e66;
+  color: #ebdccd;
 }
 
-.text-hover{
+.arrow-hover {
   transition: 0.2s ease-in-out;
-  color:black;
+  border-width: 0px;
+}
+
+.arrow-hover:hover {
+  background-color: white;
+  color: #756e66;
+  border-width: 1px;
+  border-color: #756e66;
+}
+
+.text-hover {
+  transition: 0.2s ease-in-out;
+  color: black;
   font-weight: 400;
 }
-.text-hover:hover{
-  color:#756E66;
+.text-hover:hover {
+  color: #756e66;
   font-weight: 500;
 }
 
-
-.category-hover{
+.category-hover {
   transition: 0.2s ease-in-out;
   border: hidden;
-  color:#666975;
+  color: #666975;
   font-weight: 400;
 }
-.category-hover:hover{
-  border: 1px #756E66 solid;
-  color:#756E66;
+.category-hover:hover {
+  border: 1px #756e66 solid;
+  color: #756e66;
   font-weight: 700;
 }
-.category-active{
-  color:#756E66;
-  background-color: #EBDCCD;
+.category-active {
+  color: #756e66;
+  background-color: #ebdccd;
   font-weight: 700;
 }
 
-.connecter{
+.connecter {
   transition: 0.2s ease-in-out;
 }
-.connecter:hover{
+.connecter:hover {
   color: #121212;
   font-weight: 700;
 }
@@ -163,13 +202,27 @@ html {
   grid-row-gap: 24px;
 }
 
-.div1 { grid-area: 1 / 1 / 3 / 2; }
-.div2 { grid-area: 3 / 1 / 5 / 2; }
-.div3 { grid-area: 1 / 2 / 3 / 3; }
-.div4 { grid-area: 1 / 3 / 3 / 4; }
-.div5 { grid-area: 3 / 2 / 5 / 4; }
-.div6 { grid-area: 4 / 4 / 5 / 5; }
-.div7 { grid-area: 1 / 4 / 4 / 5; }
+.div1 {
+  grid-area: 1 / 1 / 3 / 2;
+}
+.div2 {
+  grid-area: 3 / 1 / 5 / 2;
+}
+.div3 {
+  grid-area: 1 / 2 / 3 / 3;
+}
+.div4 {
+  grid-area: 1 / 3 / 3 / 4;
+}
+.div5 {
+  grid-area: 3 / 2 / 5 / 4;
+}
+.div6 {
+  grid-area: 4 / 4 / 5 / 5;
+}
+.div7 {
+  grid-area: 1 / 4 / 4 / 5;
+}
 
 @media (max-width: 1024px) {
   .parent {
@@ -177,13 +230,27 @@ html {
     grid-template-rows: repeat(5, 1fr);
   }
 
-  .div1 { grid-area: 1 / 1 / 2 / 4; }
-  .div2 { grid-area: 2 / 1 / 3 / 2; }
-  .div3 { grid-area: 2 / 2 / 3 / 4; }
-  .div4 { grid-area: 3 / 1 / 4 / 4; }
-  .div5 { grid-area: 4 / 1 / 5 / 4; }
-  .div6 { grid-area: 5 / 1 / 6 / 2; }
-  .div7 { grid-area: 5 / 2 / 6 / 4; }
+  .div1 {
+    grid-area: 1 / 1 / 2 / 4;
+  }
+  .div2 {
+    grid-area: 2 / 1 / 3 / 2;
+  }
+  .div3 {
+    grid-area: 2 / 2 / 3 / 4;
+  }
+  .div4 {
+    grid-area: 3 / 1 / 4 / 4;
+  }
+  .div5 {
+    grid-area: 4 / 1 / 5 / 4;
+  }
+  .div6 {
+    grid-area: 5 / 1 / 6 / 2;
+  }
+  .div7 {
+    grid-area: 5 / 2 / 6 / 4;
+  }
 }
 
 @media (max-width: 768px) {
@@ -192,11 +259,25 @@ html {
     grid-template-rows: repeat(7, 1fr);
   }
 
-  .div1 { grid-area: 1 / 1 / 2 / 2; }
-  .div2 { grid-area: 2 / 1 / 3 / 2; }
-  .div3 { grid-area: 3 / 1 / 4 / 2; }
-  .div4 { grid-area: 4 / 1 / 5 / 2; }
-  .div5 { grid-area: 5 / 1 / 6 / 2; }
-  .div6 { grid-area: 6 / 1 / 7 / 2; }
-  .div7 { grid-area: 7 / 1 / 8 / 2; }
+  .div1 {
+    grid-area: 1 / 1 / 2 / 2;
+  }
+  .div2 {
+    grid-area: 2 / 1 / 3 / 2;
+  }
+  .div3 {
+    grid-area: 3 / 1 / 4 / 2;
+  }
+  .div4 {
+    grid-area: 4 / 1 / 5 / 2;
+  }
+  .div5 {
+    grid-area: 5 / 1 / 6 / 2;
+  }
+  .div6 {
+    grid-area: 6 / 1 / 7 / 2;
+  }
+  .div7 {
+    grid-area: 7 / 1 / 8 / 2;
+  }
 }

@@ -1,22 +1,23 @@
 import CircleSwiperCarousel from "@/biopilates/components/CircleSwiperCarousel";
-
-import Planning from "./Planning";
 import reformer from "@/assets/images/reformer.jpg";
 import formation1 from "@/assets/images/formation-1.jpg";
 import formation2 from "@/assets/images/formation-2.jpg";
 import formation3 from "@/assets/images/formation-3.png";
 import formation5 from "@/assets/images/formation-5.png";
 import formation6 from "@/assets/images/formation-6.jpg";
+import Img from "@/assets/images/Placeholder_view_vector.png";
 
 import FormationSwiper from "./FormationSwiper";
 import PourquoiBiopilates from "./PourquoiBiopilates";
 import FinancerVotreFormation from "./FinancerVotreFormation";
 import WorkshopSlider from "./WorkshopSlider";
+import PlanningFormations from "./PlanningFormations";
+import PlanningWorkshops from "./PlanningWorkshops";
 
 export default function Formations() {
   const images = [formation3, reformer, formation5, formation1, formation2];
 
-  const plans = [
+  const plansFormation = [
     {
       title: "Reformer",
       niveau: "débutant et intermédiare",
@@ -53,6 +54,30 @@ export default function Formations() {
     },
   ];
 
+  const plansWorkshop = [
+    {
+      title: "ONLINE Workshop",
+      niveau: "Beyond the Biomechanical Principles",
+      image: Img,
+      date: "Le 16/11/2024",
+      timeSlots: ["Sam 16/11/2024 de 14h à 18h"],
+    },
+    {
+      title: "ONLINE Workshop",
+      niveau: "Prénatal stabilité Ball et Flex band",
+      image: Img,
+      date: "Le 21/12/2024",
+      timeSlots: ["Sam 21/12/2024 de 14h à 16h"],
+    },
+    {
+      title: "ONLINE Workshop",
+      niveau: "Postnatal Pilates",
+      image: Img,
+      date: "Le 21/12/2024",
+      timeSlots: ["Sam 21/12/2024 de 16h15 à 18h15"],
+    },
+  ];
+
   return (
     <div className="flex flex-col mx-5 md:mx-12">
       <section className="my-14 flex flex-col-reverse lg:flex-row justify-center lg:justify-between gap-8">
@@ -63,13 +88,13 @@ export default function Formations() {
 
         {/* text */}
         <div className="flex flex-col items-center md:items-baseline py-6 min-w-min md:px-2 gap-5 font-lato w-[90%]">
-          <p className="text-marron text-4xl leading-snug font-ebGaramond font-bold">
+          <p className="text-marron text-xl sm:text-[34px] leading-snug font-ebGaramond font-bold">
             Formations Biopilates
           </p>
           <p className="leading-7 text-3xl text-blueText font-ebGaramond font-normal">
             Devenez instructeur certifié avec Biopilates
           </p>
-          <p className="leading-8 text-lg">
+          <p className="leading-normal text-sm sm:text-lg">
             <strong>Biopilates</strong>, pionnier du{" "}
             <strong>Stott Pilates</strong> en France depuis{" "}
             <strong>2008</strong>, vous propose une expérience unique pour
@@ -85,14 +110,17 @@ export default function Formations() {
       {/* formation biopliates */}
       <FormationSwiper />
 
-      {/* Planning */}
-      <Planning plans={plans} />
+      {/* Planning formation*/}
+      <PlanningFormations plans={plansFormation} />
 
       {/* Fianncer votre formation */}
       <FinancerVotreFormation />
 
       {/* workshop */}
       <WorkshopSlider />
+
+      {/* Planning workshop */}
+      <PlanningWorkshops plans={plansWorkshop} />
     </div>
   );
 }

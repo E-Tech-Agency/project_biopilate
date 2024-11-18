@@ -67,11 +67,11 @@ export default function ImageSliderCours({
           className="w-full h-full object-cover blur-3xl opacity-65"
         />
       </div>
-      <div className="mb-14 flex flex-col-reverse lg:flex-row gap-5 xl:gap-8 max-lg:flex-wrap overflow-hidden lg:h-[530px] ">
+      <div className="mb-14 flex flex-col-reverse lg:flex-row gap-5 xl:gap-10 max-lg:flex-wrap overflow-hidden lg:h-[530px] ">
         <div className="relative flex flex-col justify-center max-md:items-center px-3 xl:px-2 md:px-5 lg:min-w-[40%] lg:max-w-[50%] gap-5 font-lato">
           <div className="text-wrapper overflow-hidden relative h-fit">
             <p
-              className={`text-marron text-3xl leading-snug hidden lg:block title-animation font-ebGaramond font-bold ${
+              className={`text-marron text-3xl leading-snug hidden lg:block title-animation font-bold ${
                 isAnimating ? "slide-out-bottom" : "slide-in-top"
               }`}
             >
@@ -94,7 +94,7 @@ export default function ImageSliderCours({
           <Swiper
             className="relative"
             grabCursor={true}
-            slidesPerView={3}
+            slidesPerView={1}
             loop={true}
             spaceBetween={10}
             slideToClickedSlide={true}
@@ -121,19 +121,13 @@ export default function ImageSliderCours({
                 slidesPerView: 3,
               },
               990: {
-                slidesPerView: 2,
+                slidesPerView: 2.5,
               },
               768: {
                 slidesPerView: 2,
               },
-              640: {
-                slidesPerView: 1,
-              },
-              550: {
-                slidesPerView: 1,
-              },
-              310: {
-                slidesPerView: 1,
+              400: {
+                slidesPerView: 1.5,
               },
             }}
           >
@@ -148,8 +142,8 @@ export default function ImageSliderCours({
                   <div
                     className={`relative rounded-lg cursor-pointer transition-all duration-400 ${
                       currentIndex === index
-                        ? "w-[300px] h-[450px]"
-                        : "w-[206px] h-[309px] sm:w-[240px] sm:h-[360px]  mt-[90px]"
+                        ? "w-[206px] h-[309px] sm:w-[300px] sm:h-[450px]"
+                        : "w-[151px] h-[226px] sm:w-[240px] sm:h-[360px] mt-[90px] "
                     }`}
                     onClick={() => handleImageClick(index)}
                     onMouseEnter={() => handleMouseEnter(index)}
@@ -192,7 +186,7 @@ export default function ImageSliderCours({
             <div className="swiper-pagination m-auto z-[1]"></div>
           </Swiper>
         </div>
-        <p className="relative text-marron text-3xl leading-snug text-center lg:hidden title-animation font-bold font-ebGaramond">
+        <p className="relative text-marron text-lg leading-snug text-center lg:hidden title-animation font-bold">
           {list[currentIndex].title}
         </p>
       </div>

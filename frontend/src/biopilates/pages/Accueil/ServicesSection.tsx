@@ -54,9 +54,9 @@ export default function ServicesSection({
       </div>
 
       <div className="relative flex flex-col justify-center items-center gap-4 mb-6 z-10">
-        <div className="font-bold font-ebGaramond text-center flex flex-col gap-2 md:gap-4">
-          <p className="text-marron text-xl md:text-3xl">Nos services</p>
-          <p className="text-blueText text-lg md:text-2xl">
+        <div className="font-bold font-ebGaramond text-center flex flex-col gap-2 md:gap-6">
+          <p className="text-marron text-xl md:text-[34px]">Nos services</p>
+          <p className="text-blueText text-lg md:text-[28px]">
             Cours de pilates et gyrotonic pour tous niveaux
           </p>
         </div>
@@ -136,11 +136,10 @@ export default function ServicesSection({
             <ServiceCard service={service} />
           </SwiperSlide>
         ))}
-        <div className="swiper-pagination m-auto z-[1] block sm:hidden"></div>
       </Swiper>
       {/* tarif button */}
       <button
-        className={`mx-auto max-md:my-8 md:mb-10 overflow-hidden reserver-button ${bgColor} flex flex-col justify-center items-center text-base leading-6 rounded-md transform`}
+        className={`mx-auto max-md:mb-8 md:mb-10 overflow-hidden reserver-button ${bgColor} flex flex-col justify-center items-center text-base leading-6 rounded-md transform`}
         onClick={navigateToTarifs}
       >
         <div className="hover-circle overflow-hidden" />

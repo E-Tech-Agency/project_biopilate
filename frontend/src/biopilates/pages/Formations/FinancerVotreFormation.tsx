@@ -51,18 +51,18 @@ export default function FinancerVotreFormation() {
           Boostez votre avenir Pilates grâce à un financement sur-mesure
         </p>
         <p className="font-lato text-sm md:text-lg max-md:leading-5">
-          Investissez en vous avec une formation Pilates : pour votre
-          équilibre,votre bien-être ,et une carrière épanouie
+          Investissez en vous avec une formation Pilates : pour votre équilibre,
+          votre bien-être et une carrière épanouie
         </p>
         <div className="rounded-lg">
-      <button
-        className={`flex overflow-hidden reserver-button cursor-pointer bg-white flex-col justify-center text-base leading-6 rounded-lg text-current transition duration-300 ease-in-out transform`}
-        onClick={handleOpenPdf}
-      >
-        <div className="hover-circle overflow-hidden" />
-        Financez votre formation
-      </button>
-    </div>
+          <button
+            className={`flex overflow-hidden reserver-button cursor-pointer bg-white flex-col justify-center text-base leading-6 rounded-lg text-current transition duration-300 ease-in-out transform`}
+            onClick={handleOpenPdf}
+          >
+            <div className="hover-circle overflow-hidden" />
+            Financez votre formation
+          </button>
+        </div>
       </div>
     </section>
   );

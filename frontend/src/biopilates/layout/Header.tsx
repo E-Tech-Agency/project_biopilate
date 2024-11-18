@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { IoMdSearch, IoIosMenu } from "react-icons/io";
+import { IoMdSearch, IoIosMenu, IoMdClose } from "react-icons/io";
 import { LuUserCircle2 } from "react-icons/lu";
 import logoImage from "@/assets/images/biopilate-logo.png";
 import { Link } from "react-router-dom";
@@ -135,18 +135,26 @@ export default function Header({ isLoggedIn }: { isLoggedIn: boolean }) {
         </div>
 
         <div className="md:hidden">
-          <button onClick={toggleMenu} className="">
-            <IoIosMenu className="text-4xl text-stone-500" />
+          <button onClick={toggleMenu} className="text-4xl text-stone-500">
+            {!isMenuOpen && <IoIosMenu />}
+            {isMenuOpen && <IoMdClose />}
           </button>
         </div>
       </div>
       {isMenuOpen && (
-        <div className="md:hidden flex items-center justify-center flex-col space-y-2 mt-2">
+        <div className="md:hidden flex items-center justify-center flex-col space-y-2 mt-2  text-marron font-bold py-2 text-gl">
           {navItems.map((item, index) => (
             <a
               key={index}
               href={item.href}
-              className="py-1.5 whitespace-nowrap"
+              className="py-1.5 whitespace-nowrap w-full text-center"
+              onClick={() => setIsMenuOpen(false)}
+              style={{
+                backgroundColor:
+                  window.location.pathname === item.href
+                    ? "bg-bgColor"
+                    : "bg-white",
+              }}
             >
               {item.label}
             </a>

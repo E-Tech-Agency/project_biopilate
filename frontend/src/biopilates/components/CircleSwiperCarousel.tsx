@@ -80,7 +80,7 @@ const CircleSwiperCarousel: React.FC<CircleSwiperCarouselProps> = ({
           <div className="swiper-but-next slider-arrow cursor-pointer max-sm:hidden">
             <IoIosArrowForward className="text-marron text-4xl" />
           </div>
-          <div className="swiper-pagination m-auto z-[1] block sm:hidden"></div>
+          {/* <div className="swiper-pagination m-auto z-[1] block sm:hidden"></div> */}
         </div>
       </Swiper>
     </div>

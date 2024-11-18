@@ -6,16 +6,18 @@
         "pack2": "d’ou",
         "pack3": "1 Cours reformer offert",
         "validity": "Validité 1 mois",
-        "status": "Nouveau"
+        "status": "Nouveau",
+        "action" : "Réserver"    
     },
     {
         "title": "Offre de découverte",
         "price": "70 €",
-        "pack1": "1 Cours reformer &gyrotonic acheté ",
+        "pack1": "1 Cours reformer & gyrotonic acheté ",
         "pack2": "d’ou",
-        "pack3": "1 Cours reformer &gyrotonic offert",
+        "pack3": "1 Cours reformer & gyrotonic offert",
         "validity": "Validité 1 mois",
-        "status": "Nouveau"
+        "status": "Nouveau",
+        "action" : "Réserver"    
     },
     {
         "title": "Pack 4 crédits",
@@ -24,7 +26,8 @@
         "pack2": "Ou",
         "pack3": "2 cours reformer gyrotonic",
         "validity": "Validité 2 mois",
-        "status": ""
+        "status": "",
+        "action" : "Réserver"    
     },
     {
         "title": "Pack 10 crédits",
@@ -33,7 +36,8 @@
         "pack2": "Ou",
         "pack3": "5 cours reformer gyrotonic",
         "validity": "Validité 3 mois",
-        "status": ""
+        "status": "",
+        "action" : "Réserver"    
     },
     {
         "title": "1 Cours Reformer",
@@ -42,7 +46,8 @@
         "pack2": "",
         "pack3": "",
         "validity": "Validité 1 mois",
-        "status": ""
+        "status": "",
+        "action" : "Réserver"    
     },
     {
         "title": "1 Cours Reformer & Gyrotonic",
@@ -51,7 +56,8 @@
         "pack2": "&",
         "pack3": "1 cours gyrotonic",
         "validity": "Validité 1 mois",
-        "status": ""
+        "status": "",
+        "action" : "Réserver"    
     },
     {
         "title": "1 Cours Privé",
@@ -60,16 +66,28 @@
         "pack2": "Gyrotonic",
         "pack3": "Evolis",
         "validity": "Validité 1 mois",
-        "status": ""
+        "status": "",
+        "action" : "Réserver"    
     },
     {
-        "title": "1 Cours Duo",
-        "price": "140 €",
-        "pack1": "Reformer",
-        "pack2": "Gyrotonic",
-        "pack3": "Evolis",
+        "title": "Abonnement 1 cours par semaine",
+        "price": "18,60€/semaine",
+        "pack1": "Engagement de 52 semaines",
+        "pack2": "Pour souscrire à un abonnement,",
+        "pack3": "il faudra envoyer votre IBAN",
         "validity": "Validité 1 mois",
-        "status": ""
+        "status": "",
+        "action" : "Envoyer"    
+    },
+    {
+        "title": "Abonnement 2 cours par semaine",
+        "price": "35€/semaine",
+        "pack1": "Engagement de 52 semaines",
+        "pack2": "Pour souscrire à un abonnement,",
+        "pack3": "il faudra envoyer votre IBAN",
+        "validity": "Validité 1 mois",
+        "status": "",
+        "action" : "Envoyer"    
     }
     
 ]

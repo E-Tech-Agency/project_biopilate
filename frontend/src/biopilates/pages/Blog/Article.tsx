@@ -7,6 +7,16 @@ import placeholderImage from "@/assets/images/Placeholder_view_vector.png";
 import image1 from "@/assets/images/caroline-article-1.jpeg";
 import image2 from "@/assets/images/caroline-article-2.jpg";
 import blogTrainer from "@//assets/images/blog-trainer.jpg";
+import { LuShare } from "react-icons/lu";
+import { IoIosLink } from "react-icons/io";
+import { RiTwitterXLine, RiInstagramFill } from "react-icons/ri";
+import { TiSocialFacebook } from "react-icons/ti";
+
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover";
 export default function Article() {
   const articles = [
     {
@@ -118,7 +128,7 @@ export default function Article() {
         <div className="min-w-[200px] text-marron font-bold">
           Date de l'article
         </div>
-        <div className="font-lato flex flex-col gap-6 text-justify">
+        <div className="font-lato flex flex-col gap-6 text-justify pr-6">
           <div>
             <p>
               <strong>La maison vieille</strong> est une maison de vacances
@@ -133,13 +143,12 @@ export default function Article() {
               particulièrement toutes ces vieilles et ces vieux dont j’ai eu à
               prendre soin quand j’étais médecin,et dont j’ai découvert combien
               si souvent ils souffrent de se sentir seuls et en marge de la vie
-              qui va. Puisse
-              <strong>la maison vieille</strong> leur permettre de renouer du
-              lien social, de rencontrer des pairs, de s’offrir quelques
-              plaisirs simples; devenir un lieu où l’on sait que l’on peut aller
-              facilement pour briser pendant quelques jours,voire simplement
-              pendant quelques heures, le cours infini de la solitude à laquelle
-              on est désormais contraint ».
+              qui va. Puisse <strong>la maison vieille</strong> leur permettre
+              de renouer du lien social, de rencontrer des pairs, de s’offrir
+              quelques plaisirs simples; devenir un lieu où l’on sait que l’on
+              peut aller facilement pour briser pendant quelques jours,voire
+              simplement pendant quelques heures, le cours infini de la solitude
+              à laquelle on est désormais contraint ».
             </p>
           </div>
           <p className="font-bold text-marron text-xl md:text-3xl">
@@ -161,12 +170,12 @@ export default function Article() {
           <p>
             “Cela fait plus de 15 ans que je connais Véronique Fournier et j’ai
             toujours été très respectueuse de ses idées et très engagée à y
-            adhérer dès que je le pouvais.Nous avons tous des parents ou des
+            adhérer dès que je le pouvais. Nous avons tous des parents ou des
             proches vieillissants. Après avoir vécu ma première maison de de
             retraite avec ma grand-mère, je me suis promise d’accompagner mes
             proches et de leur offrir la possibilité d’être autonome le plus
             longtemps possible et cela passe aussi par une activité physique
-            adaptée. “
+            adaptée.“
           </p>
 
           <ul className="flex flex-wrap gap-3 pt-2">
@@ -184,20 +193,53 @@ export default function Article() {
             </li>
           </ul>
           <hr />
-          <div className="flex justify-between items-center">
-            <div className="flex flex-col">
+          <div className="flex justify-between items-center mt-2">
+            <div className="flex flex-col gap-2">
               <p>Véronique Fournier</p>
-              <p>Fondatrice du projet et hôtesse des lieux</p>
+              <p className="text-gray-500">
+                Fondatrice du projet et hôtesse des lieux
+              </p>
             </div>
-            <div className="flex flex-col">
-              {/* <button>
-                <LuShare className="text-blueText text-3xl mx-6 md:mx-10" />
-              </button> */}
-              <ul className="flex gap-3"></ul>
-            </div>
+
+            {/* social media */}
+            <Popover>
+              <PopoverTrigger asChild>
+                <button>
+                  <LuShare className="text-blueText text-3xl mx-6 md:mx-12" />
+                </button>
+              </PopoverTrigger>
+              <PopoverContent className="w-[220px] text-gray-900 font-lato flex flex-col gap-4 text-[15px]">
+                <button className=" flex justify-start items-center gap-1.5">
+                  <div className="text-xl">
+                    <IoIosLink />
+                  </div>
+                  Copier lien
+                </button>
+                <hr className="mx-[-14px]" />
+                <button className=" flex justify-start items-center gap-1.5">
+                  <div className="text-white bg-black rounded-full text-lg p-1">
+                    <TiSocialFacebook />
+                  </div>
+                  Partager sur Facebook
+                </button>
+                <button className=" flex justify-start items-center gap-1.5">
+                  <div className="text-white bg-black rounded-full text-lg p-1">
+                    <RiInstagramFill />
+                  </div>
+                  Partager sur Instagram
+                </button>
+                <button className=" flex justify-start items-center gap-1.5">
+                  <div className="text-white bg-black rounded-full text-lg p-1">
+                    <RiTwitterXLine />
+                  </div>
+                  Partager sur X
+                </button>
+              </PopoverContent>
+            </Popover>
           </div>
         </div>
       </div>
+
       {/* temporarly commented */}
 
       <div className="my-12 w-full">
@@ -220,22 +262,22 @@ export default function Article() {
           </p>
           <p className="font-lato max-md:text-sm">
             Plongez dans un espace où chaque mouvement est une note de musique,
-            chaque respiration une mélodie de bien-être. rejoignez notre
+            chaque respiration une mélodie de bien-être. Rejoignez notre
             communauté de Pilates et laissez la symphonie du corps et de
-            l’esprit commencer
+            l’esprit commencer.
           </p>
           <form action="post" className="flex gap-2 md:gap-4 h-8">
             <input
               type="email"
               name="email"
-              id=""
               placeholder="Adresse Email"
               className="border border-bgColor md:border-marron text-gray-900 text-sm rounded-md min-w-[150px] w-[300px] p-2.5 max-md:bg-marron max-md:text-white placeholder-white md:placeholder-gray-700"
             />
             <button
-              className=" reserver-button flex mr-auto flex-col justify-center text-base rounded-lg px-3 md:px-10 py-4 text-marron md:text-bgColor bg-bgColor md:bg-marron max-md:font-bold font-lato"
+              className="inscrire button-hover mr-auto text-base rounded-lg px-3 md:px-7 py-4 text-marron md:text-bgColor bg-bgColor md:bg-marron font-lato transition duration-300 ease-in-out transform"
               onClick={() => navigateToContact()}
             >
+              <div className="hover-circle-3 hover-circle-2 overflow-hidden" />
               S'inscrire
             </button>
           </form>

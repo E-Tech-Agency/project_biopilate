@@ -1,11 +1,12 @@
 import { useState } from "react";
-import PlanningCard from "./PlanningCard";
+
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/swiper-bundle.css";
 import "swiper/css";
 import "swiper/css/pagination";
 import "@/assets/styles/swiper.css";
 import { Pagination } from "swiper/modules";
+import PlanningFormationCard from "./PlanningFormationCard";
 
 type Plan = {
   title: string;
@@ -19,7 +20,7 @@ interface PlanningProps {
   plans: Plan[];
 }
 
-export default function Planning({ plans }: PlanningProps) {
+export default function PlanningFormations({ plans }: PlanningProps) {
   const [showMoreStates, setShowMoreStates] = useState<boolean[]>(
     plans.map(() => false)
   );
@@ -32,8 +33,8 @@ export default function Planning({ plans }: PlanningProps) {
 
   return (
     <section className="mb-14">
-      <p className="text-marron text-4xl leading-snug mb-10 font-ebGaramond font-bold">
-        Planning
+      <p className="text-marron text-xl sm:text-[34px] leading-snug mb-10 font-ebGaramond font-bold">
+        Planning des formations
       </p>
       <Swiper
         className="centered-slide-carousel swiper-container relative"
@@ -53,7 +54,7 @@ export default function Planning({ plans }: PlanningProps) {
             allowSlidePrev: false,
           },
           1650: {
-            slidesPerView: 4.5,
+            slidesPerView: 4,
             spaceBetween: 20,
             allowSlideNext: false,
             allowSlidePrev: false,
@@ -65,7 +66,7 @@ export default function Planning({ plans }: PlanningProps) {
             allowSlidePrev: false,
           },
           1280: {
-            slidesPerView: 2,
+            slidesPerView: 2.5,
             spaceBetween: 10,
           },
 
@@ -89,7 +90,7 @@ export default function Planning({ plans }: PlanningProps) {
               key={index}
               className="flex flex-col justify-center items-center"
             >
-              <PlanningCard
+              <PlanningFormationCard
                 plan={plan}
                 showMore={showMoreStates[index]}
                 toggleShowMore={() => toggleShowMore(index)}

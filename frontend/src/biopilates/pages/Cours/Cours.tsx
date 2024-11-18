@@ -32,7 +32,7 @@ export default function Cours() {
       title: "COURS REFORMER & GYROTONIC",
       image: reformerGyrotonicImage,
       description:
-        "Découvrez nos cours semi-privés,(à <strong>6 participants max</strong>), avec un accès à un équipement complet :REFORMER,CADILLAC, CHAISE, TOUR GYROTONIC et tous lesaccessoires. Unique cours à Paris offrant autant d'équipement pour un seul participant.Bénéficiez d'une expérience Pilates unique et personnalisée au Studio Biopilates",
+        "Découvrez nos cours semi-privés,(à <strong>6 participants max</strong>), avec un accès à un équipement complet :REFORMER,CADILLAC, CHAISE, TOUR GYROTONIC et tous les accessoires. Unique cours à Paris offrant autant d'équipement pour un seul participant. Bénéficiez d'une expérience Pilates unique et personnalisée au Studio Biopilates.",
       cours: "Gyrotonoic",
     },
     {
@@ -51,7 +51,7 @@ export default function Cours() {
     },
     {
       title: "COURS REFORMER & GYROTONIC",
-      image: evolisImage,
+      image: reformerGyrotonicImage,
       description:
         "Découvrez nos cours semi-privés,(à <strong>6 participants max</strong>), avec un accès à un équipement complet :REFORMER,CADILLAC, CHAISE, TOUR GYROTONIC et tous lesaccessoires. Unique cours à Paris offrant autant d'équipement pour un seul participant.Bénéficiez d'une expérience Pilates unique et personnalisée au Studio Biopilates",
       cours: "Gyrotonoic",
@@ -76,7 +76,7 @@ export default function Cours() {
   }, []);
 
   return (
-    <div className="flex flex-col mx-5 md:mx-12">
+    <div className="flex flex-col mx-5 md:mx-12 my-4 ">
       <section className="mb-10 flex flex-col-reverse lg:flex-row justify-center lg:justify-between gap-8">
         {/* carousel */}
 
@@ -84,29 +84,28 @@ export default function Cours() {
         <CircleSwiperCarousel images={images} />
 
         {/* text */}
-        <div className="flex flex-col items-center md:items-baseline py-6 min-w-min md:px-5 gap-5 font-lato w-[90%]">
-          <p className="text-marron text-3xl leading-snug font-bold font-ebGaramond">
+        <div className="flex flex-col items-center md:items-baseline py-6 min-w-min md:px-5 gap-5 font-lato md:w-[90%]">
+          <p className="text-marron text-xl sm:text-[34px] leading-snug font-bold font-ebGaramond">
             Cours Pilates à Paris – Biopilates
           </p>
-          <p className="leading-7 text-xl text-marron font-medium font-ebGaramond">
+          <p className="leading-normal text-lg sm:text-[28px] text-marron font-medium font-ebGaramond">
             Développez votre potentiel et atteignez vos objectifs grâce à nos
             cours de Pilates pour tous niveaux !
           </p>
-          <div className="text-base">
-            <p className="leading-6">
-              Nos <strong>instructeurs certifiés et expérimentés</strong> vous
-              accompagnent dans votre progression et vous guident vers :
-              <p className="mt-2">
-                <ul className="list-disc ml-5">
-                  <li>
-                    Une meilleure <strong>condition physique</strong>
-                  </li>
-                  <li>Un corps plus fort et plus souple</li>
-                  <li>Un esprit plus serein</li>
-                </ul>
-              </p>
+
+          <p className="text-sm sm:text-lg leading-normal">
+            Nos <strong>instructeurs certifiés et expérimentés</strong> vous
+            accompagnent dans votre progression et vous guident vers :
+            <p className="mt-2">
+              <ul className="list-disc ml-5">
+                <li>
+                  Une meilleure <strong>condition physique</strong>
+                </li>
+                <li>Un corps plus fort et plus souple</li>
+                <li>Un esprit plus serein</li>
+              </ul>
             </p>
-          </div>
+          </p>
         </div>
       </section>
 
@@ -119,8 +118,17 @@ export default function Cours() {
           </p>
           <p className="leading-7">
             Nos cours sont dispensés par des instructeurs expérimentés et
-            certifiés. Réservez votre cours dès aujourd'hui sur l'application
-            Bsport !
+            certifiés. <strong>Réservez</strong> votre cours dès aujourd'hui sur
+            l'application{" "}
+            <a
+              href="https://backoffice.bsport.io/m/Studio%20Biopilates%20Paris/878/calendar/?isPreview=true&tabSelected=0"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <strong>
+                <u>Bsport !</u>
+              </strong>
+            </a>
           </p>
         </div>
         <ImageSliderCours list={cours} action={"Réserver"} />
@@ -129,8 +137,8 @@ export default function Cours() {
       {/* mobile app */}
 
       <section className="mb-14 flex flex-col-reverse lg:flex-row justify-center lg:justify-between items-center gap-8">
-        <div className="mb-8 flex flex-col flex-wrap gap-5">
-          <p className="text-marron text-3xl leading-snug font-ebGaramond font-bold">
+        <div className="mb-8 flex flex-col flex-wrap gap-6">
+          <p className="text-marron text-xl sm:text-[34px] leading-snug font-ebGaramond font-bold">
             Comment S’incrire au cours?
           </p>
           <img
@@ -138,17 +146,34 @@ export default function Cours() {
             alt="mobileImage"
             className="sm:max-w-[50%] max-w-[80%] lg:hidden self-center"
           />
-          <p className="max-sm:text-sm">
-            Nous utilisons un logiciel français BSport. Nous vous invitons à
-            suivre les instructions suivantes pour vous inscrire sur la
-            plateforme accessible sur votre ordinateur et y réserver vos
-            prochains cours. Merci de vérifier, compléter et éventuellement
-            modifier les informations qui vous concernent, en particulier
-            l'ajout de vos méthodes de paiement afin de relancer vos
+          <p className="max-sm:text-sm text-lg leading-normal">
+            Nous utilisons un logiciel français{" "}
+            <a
+              href="https://backoffice.bsport.io/m/Studio%20Biopilates%20Paris/878/calendar/?isPreview=true&tabSelected=0"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <strong>
+                <u>Bsport</u>
+              </strong>
+            </a>
+            . Nous vous invitons à suivre les instructions suivantes pour vous
+            inscrire sur la plateforme accessible sur votre ordinateur et y
+            réserver vos prochains cours. Merci de vérifier, compléter et
+            éventuellement modifier les informations qui vous concernent, en
+            particulier l'ajout de vos méthodes de paiement afin de relancer vos
             abonnements. L'équipe Studio Biopilates
           </p>
           <div className="flex max-sm:justify-center gap-5 md:w-[50%] max-lg:mx-auto lg:w-[60%] mx-1">
-            <button className="size-full">
+            <button
+              className="size-full"
+              onClick={() => {
+                window.open(
+                  "https://play.google.com/store/apps/details?id=com.bsport&hl=en",
+                  "_blank"
+                );
+              }}
+            >
               <svg
                 width="164"
                 height="70"
@@ -199,7 +224,15 @@ export default function Cours() {
                 </defs>
               </svg>
             </button>
-            <button className="size-full">
+            <button
+              className="size-full"
+              onClick={() => {
+                window.open(
+                  "https://apps.apple.com/gb/app/bsport-solutions/id1356621554",
+                  "_blank"
+                );
+              }}
+            >
               <svg
                 width="164"
                 height="70"

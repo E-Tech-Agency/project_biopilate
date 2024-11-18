@@ -50,10 +50,10 @@ export default function TemoignagesSection() {
             />
           </svg>
           <div className="flex flex-col justify-center items-center gap-2 sm:gap-4">
-            <p className="text-marron text-xl sm:text-2xl font-ebGaramond font-bold">
+            <p className="text-marron text-xl sm:text-[34px] font-ebGaramond font-bold">
               Témoignages clients{" "}
             </p>
-            <p className="text-gray-400 text-lg md:text-4xl font-bold">
+            <p className="text-gray-400 text-lg md:text-[40px] font-bold">
               Nos clients formidables
             </p>
           </div>

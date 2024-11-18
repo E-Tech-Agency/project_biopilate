@@ -1,6 +1,8 @@
 import { LuPhone } from "react-icons/lu";
 import { LiaEnvelope } from "react-icons/lia";
 import { PiMapPinLight } from "react-icons/pi";
+import { TiSocialFacebook } from "react-icons/ti";
+import { RiInstagramFill } from "react-icons/ri";
 
 // Import the logo image
 import logoImage from "@/assets/images/biopilate-logo.png";
@@ -43,12 +45,32 @@ export default function Footer() {
             <div className="self-stretch mt-6 text-xs sm:text-base">
               L'Équilibre en Mouvement, la Pureté en Action
             </div>
-            <img
-              loading="lazy"
-              src="https://cdn.builder.io/api/v1/image/assets/TEMP/426a28c3bcf35cf010b72e8c3551ce7234b6cbe02571fe649248a199df2c7562?apiKey=bd2f05ff851942b7ba465ac3aba2ff1b&"
-              alt=""
-              className="mt-5 aspect-[2.56] w-[76px]"
-            />
+            {/* social media buttons */}
+            <div className="mt-4">
+              <button
+                className="text-bgColor bg-black rounded-sm text-lg p-1.5 mr-4
+                "
+                onClick={() => {
+                  window.open(
+                    "https://www.facebook.com/STUDIOBIOPILATESPARIS",
+                    "_blank"
+                  );
+                }}
+              >
+                <TiSocialFacebook />
+              </button>
+              <button
+                className="text-bgColor bg-black rounded-sm text-lg p-1.5"
+                onClick={() => {
+                  window.open(
+                    "https://www.instagram.com/biopilates_studio_paris/",
+                    "_blank"
+                  );
+                }}
+              >
+                <RiInstagramFill />
+              </button>
+            </div>
           </div>
         </div>
         <div className="flex ml-5 w-[50%] max-md:ml-0 max-md:w-full mt-6 sm:mt-8 max-md:max-w-full gap-5 max-md:flex-col max-md:gap-0">
@@ -83,14 +105,13 @@ export default function Footer() {
           </section>
         </div>
       </div>
-      <div className="flex items-center gap-2 lg:gap-4 md:gap-5 mt-10 text-xs tracking-tight text-center capitalize text-neutral-900 md:flex-row md:justify-center md:mt-10">
-        <div className="shrink-0 mt-1 max-w-full h-px bg-neutral-900 w-[50px] md:w-48 lg:w-[410px] xl:w-[450px] 2xl:w-[710px]" />
+      <div className="flex items-center gap-2 lg:gap-4 md:gap-5 mt-10 text-sm tracking-tight text-center capitalize text-neutral-900 md:flex-row md:justify-center md:mt-10">
+        <div className="shrink-0 mt-1 max-w-full h-px bg-neutral-900 w-[50px] md:w-48 lg:w-[410px] xl:w-[450px] 2xl:w-[700px]" />
         <div className="flex-auto">
-          Copyright by{" "}
-          <span className="font-bold text-neutral-900">Brand & COM</span> @ 2024
-          All rights reserved
+          ©2024.Biopilate Crée et développé par {""}
+          <strong>BRAND AND COM</strong>
         </div>
-        <div className="shrink-0 mt-1 max-w-full h-px bg-neutral-900 w-[50px] md:w-48 lg:w-[410px] xl:w-[450px] 2xl:w-[710px]" />
+        <div className="shrink-0 mt-1 max-w-full h-px bg-neutral-900 w-[50px] md:w-48 lg:w-[410px] xl:w-[450px] 2xl:w-[700px]" />
       </div>
     </footer>
   );

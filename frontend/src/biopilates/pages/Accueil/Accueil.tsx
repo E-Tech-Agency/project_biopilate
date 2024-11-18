@@ -42,13 +42,13 @@ export default function Accueil() {
       <Hero />
 
       {/* Intro */}
-      <section className="mb-10 flex flex-col-reverse sm:flex-row flex-wrap justify-center lg:justify-between gap-10 font-lato">
+      <section className="mb-8 flex flex-col-reverse sm:flex-row flex-wrap justify-center lg:justify-between gap-10 font-lato">
         <div className="flex flex-col items-center md:items-baseline pb-6 md:py-6 md:px-5 lg:w-[65%] gap-5 font-lato">
-          <div className="flex flex-col w-full">
-            <p className="text-marron text-xl sm:text-3xl md:leading-10 font-bold font-ebGaramond">
+          <div className="flex flex-col w-full gap-4">
+            <p className="text-marron text-xl sm:text-[34px] md:leading-10 font-bold font-ebGaramond">
               Studio Biopilates Paris,
             </p>
-            <p className="text-blueText text-xl sm:text-2xl md:leading-10 font-bold font-ebGaramond">
+            <p className="text-blueText text-xl sm:text-[28px] md:leading-10 font-bold font-ebGaramond">
               votre havre de paix dédié au mieux être
             </p>
           </div>
@@ -99,7 +99,7 @@ export default function Accueil() {
       <TemoignagesSection />
 
       {/* CTA v2 */}
-      <section className="relative flex mb-16 justify-between items-center w-full h-[200px] md:h-[410px]">
+      <section className="max-sm:mx-[-20px] relative flex mb-16 justify-between items-center w-full h-[200px] md:h-[410px]">
         <img
           className="absolute w-full h-full object-cover rounded-md"
           src={bgImgReserver}
@@ -142,21 +142,19 @@ export default function Accueil() {
       </section>
 
       {/* Blog */}
-      <section className="mb-8">
-        <div className="relative flex flex-col justify-center items-center gap-4">
-          <img src={blogBg} alt="" className="absolute blur-3xl opacity-65" />
-          <div className="relative flex flex-col justify-center items-center gap-4 w-full overflow-hidden">
-            <div className="mb-6 flex flex-col justify-center items-center gap-1">
-              <p className="text-3xl font-ebGaramond text-marron font-bold">
-                Blog
-              </p>
-              <p className=" text-xs sm:text-xl max-sm:text-center font-lato">
-                Trouvez l'harmonie entre corps et esprit : Bienvenue dans notre
-                rubrique blog.
-              </p>
-            </div>
-            <OtherArticles articles={articles} />
+      <section className="relative flex flex-col justify-center items-center gap-4">
+        <img src={blogBg} alt="" className="absolute blur-3xl opacity-65" />
+        <div className="relative flex flex-col justify-center items-center gap-4 w-full overflow-hidden">
+          <div className="mb-6 flex flex-col justify-center items-center gap-1">
+            <p className="text-xl sm:text-3xl font-ebGaramond text-marron font-bold">
+              Blog
+            </p>
+            <p className="text-sm sm:text-xl max-sm:text-center font-lato">
+              Trouvez l'harmonie entre corps et esprit : Bienvenue dans notre
+              rubrique blog.
+            </p>
           </div>
+          <OtherArticles articles={articles} />
         </div>
       </section>
 

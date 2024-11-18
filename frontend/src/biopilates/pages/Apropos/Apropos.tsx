@@ -56,42 +56,44 @@ export default function Apropos() {
   return (
     <div className="flex flex-col mx-5 md:mx-12">
       {/* Bio */}
-      <section className="my-14 flex flex-col-reverse xl:flex-row justify-center lg:justify-between gap-8">
+      <section className="mb-0 sm:mb-12 flex flex-col-reverse xl:flex-row justify-center lg:justify-between gap-8">
         {/* carousel */}
 
         {/* <CircleCarousel images={images} /> */}
         <CircleSwiperCarousel images={images} />
 
         {/* text bio */}
-        <div className="flex flex-col items-center md:items-baseline py-6 md:px-5 gap-5 font-lato xl:w-[85%] text-justify">
-          <p className="text-blueText text-3xl sm:text-3xl leading-snug font-ebGaramond font-bold">
+        <div className="flex flex-col items-center md:items-baseline py-6 md:px-5 gap-4 sm:gap-5 font-lato xl:w-[85%] text-justify">
+          <p className="text-marron text-xl sm:text-[34px] leading-snug text-start font-ebGaramond font-bold w-full">
             Caroline,
           </p>
-          <p className="leading-7 text-2xl text-marron font-ebGaramond font-bold">
+          <p className="sm:leading-normal tex-xl sm:text-[28px] text-marron font-ebGaramond">
             Fondatrice du studio Biopilates : passionnée de mouvement et experte
             en Pilates
           </p>
-          <div className="text-base font-lato">
-            <p className="leading-7">
-              Caroline est une experte en Pilates et en mouvement avec{" "}
-              <strong>plus de 15 ans d’expérience.</strong> Fondatrice du Studio
-              Biopilates, elle est{" "}
+          <div className="text-sm sm:text-lg font-lato leading-7">
+            <p>
+              Caroline est une <strong>experte en Pilates</strong> et en
+              mouvement avec <strong>plus de 15 ans d’expérience.</strong>
+            </p>
+            <p>
+              <strong>Fondatrice du Studio Biopilates</strong>, elle est{" "}
               <strong>spécialisée dans la méthode STOTT PILATES</strong> et
               propose des entraînements personnalisés pour tous niveaux.
             </p>
-            <p className="leading-7">
+            <p>
               Formée en <strong>Gyrotonic, Evolis</strong> et{" "}
               <strong>Etiopathie</strong>, Caroline s'est également
               perfectionnée en <strong>biomécanique</strong> pour proposer une
               approche holistique du mouvement.
             </p>
-            <p className="leading-7">
+            <p>
               Animée par la passion de la danse, Caroline se consacre aux
               danseurs et aide les gens à trouver un moyen{" "}
               <strong>sans douleur</strong> de rester en{" "}
               <strong>bonne santé</strong> et <strong>actif</strong>.
             </p>
-            <p className="leading-7">
+            <p>
               <strong>
                 Son label de qualité Biopilates - Bio de La Biomécanique
               </strong>{" "}
@@ -104,10 +106,10 @@ export default function Apropos() {
 
       {/* Approches */}
       <div className="mb-8">
-        <p className="text-marron text-3xl leading-snug font-ebGaramond font-bold">
+        <p className="text-marron text-xl sm:text-[34px] leading-snug font-ebGaramond font-bold mb-4">
           Des approches uniques : Stott Pilates®, Gyrotonic, Evolis
         </p>
-        <p className="leading-7">
+        <p className="text-sm sm:text-lg sm:leading-7">
           Biopilates se distingue par son approche unique et personnalisée,
           combinant différentes techniques pour un bien-être optimal. Découvrez
           nos trois disciplines phares :
@@ -130,10 +132,10 @@ export default function Apropos() {
           />
         </div>
         <div className="relative mb-12">
-          <p className="text-marron text-xl lg:text-3xl leading-snug font-ebGaramond font-bold mb-2">
+          <p className="text-marron text-xl md:text-[34px] leading-snug font-ebGaramond font-bold mb-2">
             Biopilates : Un Label de Qualité Unique - Bio de La Biomécanique
           </p>
-          <p className="leading-7 max-lg:text-sm">
+          <p className="leading-7 text-sm md:text-lg">
             Biopilates se distingue par son label de qualité unique,{" "}
             <strong>Bio de La Biomécanique</strong>, qui garantit une pratique
             du Pilates et du Gyrotonic sûre, efficace et sans douleur. Ce label
