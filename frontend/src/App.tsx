@@ -51,6 +51,7 @@ import CreateFormationForm from "./components/biopilate/CreateFormationForm";
 import EditBlog from "./pages/EditBlog";
 import EditCourForm from "./pages/EditCourForm";
 import ScrollToTop from "./biopilates/components/ScrollToTop";
+import Vlog from "./biopilates/pages/Vlog/Vlog";
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -134,6 +135,7 @@ function App() {
       "/cours",
       "/formations",
       "/blog",
+      "/vlog",
       "/blog/:id",
       "/contact",
       "/a-propos/stottPilates",
@@ -194,6 +196,7 @@ function App() {
             <Route path="/a-propos" element={<Apropos />} />
             <Route path="/cours" element={<CoursB />} />
             <Route path="/formations" element={<FormationsB />} />
+            <Route path="/vlog" element={<Vlog />} />
             <Route path="/blog" element={<BlogB />} />
             <Route path="/blog/:id" element={<Article />} />
             <Route path="/contact" element={<ContactB />} />

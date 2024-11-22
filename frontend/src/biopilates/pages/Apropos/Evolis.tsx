@@ -36,9 +36,9 @@ function PourQuiCard({ pourqui }: { pourqui: PourQui }) {
       </div>
       {/* overlay */}
       <div className="relative size-full ">
-        <button className=" absolute flex flex-col justify-center text-sm sm:text-base rounded-lg px-4 py-3 bg-white text-black bg-opacity-80 font-lato font-bold mt-4 ml-4">
+        <p className=" absolute flex flex-col justify-center text-sm sm:text-base rounded-lg px-4 py-3 bg-white text-black bg-opacity-80 font-lato font-bold mt-4 ml-4">
           {pourqui.title}
-        </button>
+        </p>
         <p className="absolute bg-white h-[86px] px-4 rounded-lg rounded-t-none text-sm sm:text-base font-normal bottom-0 left-0 right-0 flex justify-center items-center">
           {pourqui.description}
         </p>
