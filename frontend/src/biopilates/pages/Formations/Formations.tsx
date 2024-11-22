@@ -80,21 +80,21 @@ export default function Formations() {
 
   return (
     <div className="flex flex-col mx-5 md:mx-12">
-      <section className="my-14 flex flex-col-reverse lg:flex-row justify-center lg:justify-between gap-8">
+      <section className="mt-2 mb-14 flex flex-col-reverse lg:flex-row justify-center lg:justify-between gap-8">
         {/* carousel */}
 
         {/* <CircleCarousel images={images} /> */}
         <CircleSwiperCarousel images={images} />
 
         {/* text */}
-        <div className="flex flex-col items-center md:items-baseline py-6 min-w-min md:px-2 gap-5 font-lato w-[90%]">
+        <div className="flex flex-col items-start md:items-baseline py-6 min-w-min md:px-2  sm:gap-5 font-lato w-[90%]">
           <p className="text-marron text-xl sm:text-[34px] leading-snug font-ebGaramond font-bold">
             Formations Biopilates
           </p>
-          <p className="leading-7 text-3xl text-blueText font-ebGaramond font-normal">
+          <p className="leading-7 text-xl sm:text-3xl text-blueText font-ebGaramond font-normal">
             Devenez instructeur certifié avec Biopilates
           </p>
-          <p className="leading-normal text-sm sm:text-lg">
+          <p className="leading-normal text-sm sm:text-lg mt-4">
             <strong>Biopilates</strong>, pionnier du{" "}
             <strong>Stott Pilates</strong> en France depuis{" "}
             <strong>2008</strong>, vous propose une expérience unique pour

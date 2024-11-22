@@ -1,7 +1,8 @@
 import { Route, Routes, useLocation } from "react-router-dom";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import "./styles/index.css";
+import { IoIosArrowUp } from "react-icons/io";
 
 // import { Toaster } from "@/components/ui/sonner";
 import { ResetPassword } from "@/pages/reset-password";
@@ -54,6 +55,20 @@ import ScrollToTop from "./biopilates/components/ScrollToTop";
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const location = useLocation();
+  const [showButton, setShowButton] = React.useState(false);
+
+  const handleScroll = () => {
+    if (window.scrollY > 150) {
+      setShowButton(true);
+    } else {
+      setShowButton(false);
+    }
+  };
+
+  React.useEffect(() => {
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   // Function to check login status based on token
   const checkLoginStatus = () => {
@@ -67,6 +82,13 @@ function App() {
     window.addEventListener("storage", handleStorageChange);
     return () => window.removeEventListener("storage", handleStorageChange);
   }, []);
+
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  };
 
   const isRouteHidden = (patterns: string[], currentRoute: string): boolean => {
     return patterns.some((pattern) => {
@@ -148,11 +170,23 @@ function App() {
           <Navbar isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />
         )}
 
+        {/* scroll to top button */}
+        <button
+          className={`size-11 text-2xl bg-marron opacity-0 text-white rounded-full fixed transform duration-300 ease-in-out z-50 right-16 bottom-20 cursor-pointer ${
+            showButton ? "opacity-100 block" : "opacity-0"
+          }`}
+          onClick={scrollToTop}
+        >
+          {/* <FontAwesomeIcon icon={faArrowUp} /> */}
+          <IoIosArrowUp className="m-auto" />
+        </button>
+
         <div
           className={`w-[100vw] ${
             !isSideNavHidden && "lg:w-[calc(100vw-265px)]"
           } min-h-[calc(100vh-5rem)] `}
         >
+          {/* scroll tp top when refresh or starting a new page*/}
           <ScrollToTop />
           <Routes>
             {/* Public Routes */}

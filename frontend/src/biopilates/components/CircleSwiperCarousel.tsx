@@ -16,7 +16,7 @@ const CircleSwiperCarousel: React.FC<CircleSwiperCarouselProps> = ({
   images,
 }) => {
   return (
-    <div className="container overflow-hidden">
+    <div className="container overflow-hidden sm:mt-12">
       <Swiper
         effect={"coverflow"}
         grabCursor={true}
