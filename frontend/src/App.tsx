@@ -52,6 +52,9 @@ import EditBlog from "./pages/EditBlog";
 import EditCourForm from "./pages/EditCourForm";
 import ScrollToTop from "./biopilates/components/ScrollToTop";
 import Vlog from "./biopilates/pages/Vlog/Vlog";
+import Manuel from "./pages/Manuel";
+import Workshops from "./pages/Workshops";
+import FinancerVotreFormationDash from "./pages/FinancerVotreFormationDash";
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -109,6 +112,9 @@ function App() {
       "/dashboard",
       "/admin",
       "/user",
+      "/manuel",
+      "/workshop",
+      "/financer-votre-formation",
       "/cour/:id",
       "/Teaches-biopilates",
       "/Tages-biopilates",
@@ -221,6 +227,12 @@ function App() {
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/admin" element={<AdminDashboard />} />
             <Route path="/user" element={<UserProfile />} />
+            <Route path="/manuel" element={<Manuel />} />
+            <Route path="/workshop" element={<Workshops />} />
+            <Route
+              path="/financer-votre-formation"
+              element={<FinancerVotreFormationDash />}
+            />
             <Route path="/cour/:id" element={<OneCours />} />
 
             {/* Biopilates-specific Routes */}

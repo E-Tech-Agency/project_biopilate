@@ -100,8 +100,7 @@ export default function Header({ isLoggedIn }: { isLoggedIn: boolean }) {
                 </PopoverTrigger>
                 <PopoverContent className="w-[220px] font-lato flex flex-col gap-2 text-[15px] py-3 shadow-lg border bg-white rounded-md">
                   <a
-                    href="
-                    "
+                    href="/blog"
                     className="flex justify-start items-center gap-2 hover:underline px-4"
                   >
                     Blog
