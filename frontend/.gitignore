@@ -6,9 +6,13 @@ yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
-
+*/migrations/
+backend/settings.py
+backend
 node_modules
-
+frontend/src/lib/api.ts
+frontend/src/lib/apiCreateProduct.ts
+frontend/src/lib/apiCreateTeache.ts
 dist-ssr
 *.local
 
