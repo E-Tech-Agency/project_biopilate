@@ -5,12 +5,13 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/swiper-bundle.css";
-import { Pagination } from "swiper/modules";
+import { Pagination, Navigation } from "swiper/modules";
 import { BsArrowUpRight } from "react-icons/bs";
 import { useNavigate } from "react-router-dom";
 import { Swiper as SwiperType } from "swiper/types";
 import blogBg from "@/assets/images/blog-bg.jpg";
 import ReserverButton from "./ReserverButton";
+// import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 
 // Define types for the props
 type ListItem = {
@@ -84,7 +85,7 @@ export default function ImageSliderApropos({
         />
       </div>
       <div className="mb-14 flex flex-col-reverse lg:flex-row gap-5 xl:gap-8 max-lg:flex-wrap overflow-hidden lg:h-[530px]">
-        <div className="relative flex flex-col justify-center max-md:items-center px-3 xl:px-2 md:px-5 lg:min-w-[35%] lg:max-w-[60%] gap-4 font-lato">
+        <div className="relative flex flex-col grow justify-center max-md:items-center px-3 xl:px-2 md:px-5 lg:min-w-[35%] lg:max-w-[60%] gap-4 font-lato">
           <div className="text-wrapper overflow-hidden relative sm:h-[50px]">
             <p
               className={`text-blueText text-[28px] leading-snug hidden font-bold lg:block title-animation ${
@@ -106,11 +107,14 @@ export default function ImageSliderApropos({
           </div>
           <ReserverButton text={action} />
         </div>
+
+        {/* swiper */}
         <div className="container w-full">
           <Swiper
             className="relative"
             grabCursor={true}
-            slidesPerView={1}
+            slidesPerView={3}
+            // width={isMobile ? 200 : 1000}
             loop={true}
             spaceBetween={10}
             slideToClickedSlide={true}
@@ -118,11 +122,12 @@ export default function ImageSliderApropos({
               handleImageClick(swiper.realIndex)
             } // Type the swiper parameter
             pagination={{ el: ".swiper-pagination", clickable: true }} // Correct property name
-            modules={[Pagination]}
+            navigation={{
+              nextEl: ".swiper-but-next",
+              prevEl: ".swiper-but-prev",
+            }}
+            modules={[Pagination, Navigation]}
             breakpoints={{
-              1920: {
-                slidesPerView: 4,
-              },
               1600: {
                 slidesPerView: 4,
               },
@@ -130,7 +135,7 @@ export default function ImageSliderApropos({
                 slidesPerView: 4,
               },
               1280: {
-                slidesPerView: 4,
+                slidesPerView: 3,
               },
               1028: {
                 slidesPerView: 3,
@@ -157,7 +162,7 @@ export default function ImageSliderApropos({
                   className={`relative rounded-lg transition-all duration-400 ${
                     currentIndex === index
                       ? "w-[206px] h-[309px] sm:w-[300px] sm:h-[450px]"
-                      : "w-[151px] h-[226px] sm:w-[240px] sm:h-[360px] mt-[90px] "
+                      : "w-[151px] h-[226px] sm:w-[240px] sm:h-[360px] mt-[90px] ml-[60px] "
                   }`}
                   onClick={() => handleImageClick(index)}
                   onMouseEnter={() => handleMouseEnter(index)}
@@ -202,6 +207,12 @@ export default function ImageSliderApropos({
                 </div>
               </SwiperSlide>
             ))}
+            {/* <div className="arrow-hover cursor-pointer swiper-but-prev slider-arrow hidden sm:flex justify-center items-center bg-marron text-bgColor hover:text-marron rounded-full w-10 h-10 absolute left-[-20px] top-1/2 transform -translate-y-1/2 z-20">
+              <IoIosArrowBack className="" />
+            </div>
+            <div className="arrow-hover cursor-pointer swiper-but-next slider-arrow hidden sm:flex justify-center items-center bg-marron text-bgColor hover:text-marron rounded-full w-10 h-10 absolute right-[-20px] top-1/2 transform -translate-y-1/2 z-20">
+              <IoIosArrowForward className="" />
+            </div> */}
             <div className="swiper-pagination m-auto z-[1] block"></div>
           </Swiper>
         </div>

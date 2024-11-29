@@ -23,7 +23,7 @@ function Filter() {
   };
 
   return (
-    <div className="flex flex-row max-md:justify-center items-start gap-2 py-2">
+    <div className="flex flex-row max-md:justify-center items-start gap-2 py-2 h-20">
       {categories.map((category, index) => (
         <button
           key={index}

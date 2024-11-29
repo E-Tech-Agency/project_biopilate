@@ -105,15 +105,6 @@ export default function ImageSliderCours({
             modules={[Pagination]}
             initialSlide={1}
             breakpoints={{
-              1920: {
-                slidesPerView: 4,
-              },
-              1600: {
-                slidesPerView: 4,
-              },
-              1440: {
-                slidesPerView: 4,
-              },
               1280: {
                 slidesPerView: 4,
               },
