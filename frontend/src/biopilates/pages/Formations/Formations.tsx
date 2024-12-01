@@ -204,6 +204,7 @@ export default function Formations() {
       image: Img,
       date: "Le 16/11/2024",
       timeSlots: ["Sam 16/11/2024 de 14h à 18h"],
+      price: "Prix 3h :189€",
     },
     {
       title: "ONLINE Workshop",
@@ -211,6 +212,7 @@ export default function Formations() {
       image: Img,
       date: "Le 21/12/2024",
       timeSlots: ["Sam 21/12/2024 de 14h à 16h"],
+      price: "Prix 2h :126€",
     },
     {
       title: "ONLINE Workshop",
@@ -218,6 +220,7 @@ export default function Formations() {
       image: Img,
       date: "Le 21/12/2024",
       timeSlots: ["Sam 21/12/2024 de 16h15 à 18h15"],
+      price: "Prix 2h :126€",
     },
   ];
 
