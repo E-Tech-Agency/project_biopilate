@@ -16,26 +16,26 @@ const CircleSwiperCarousel: React.FC<CircleSwiperCarouselProps> = ({
   images,
 }) => {
   return (
-    <div className="container overflow-hidden sm:mt-12">
+    <div className="container overflow-hidden sm:mt-12 px-0">
       <Swiper
         effect={"coverflow"}
         grabCursor={true}
         centeredSlides={true}
         spaceBetween={-200}
         loop={true}
-        slidesPerView={4}
+        slidesPerView={2}
         breakpoints={{
           1280: {
             slidesPerView: 4,
           },
           1028: {
-            slidesPerView: 3,
+            slidesPerView: 4,
           },
           768: {
-            slidesPerView: 2,
+            slidesPerView: 3,
           },
           640: {
-            slidesPerView: 2,
+            slidesPerView: 2.5,
           },
         }}
         coverflowEffect={{
@@ -59,7 +59,7 @@ const CircleSwiperCarousel: React.FC<CircleSwiperCarouselProps> = ({
             <img
               src={image}
               alt={`slide_image_${index}`}
-              className="rounded-full object-cover w-[220px] h-[220px] sm:w-[327px] sm:h-[327px]"
+              className="rounded-full object-cover w-[220px] h-[220px] sm:w-[327px] sm:h-[327px] mx-auto"
             />
           </SwiperSlide>
         ))}

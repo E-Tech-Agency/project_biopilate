@@ -180,7 +180,7 @@ function App() {
 
         {/* scroll to top button */}
         <button
-          className={`size-11 text-2xl bg-marron opacity-0 text-white rounded-full fixed transform duration-300 ease-in-out z-50 right-16 bottom-20 cursor-pointer ${
+          className={`max-md:hidden size-11 text-2xl bg-marron opacity-0 text-white rounded-full fixed transform duration-300 ease-in-out z-50 right-16 bottom-20 cursor-pointer ${
             showButton ? "opacity-100 block" : "opacity-0"
           }`}
           onClick={scrollToTop}

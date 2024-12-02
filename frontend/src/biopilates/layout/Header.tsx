@@ -49,7 +49,7 @@ export default function Header({ isLoggedIn }: { isLoggedIn: boolean }) {
                 className="rounded-full w-20"
               />
             </a>
-            <div className="hidden md:flex gap-8">
+            <div className="hidden lg:flex gap-8">
               {/* Individual Navigation Items */}
               <a
                 href="/"
@@ -201,7 +201,7 @@ export default function Header({ isLoggedIn }: { isLoggedIn: boolean }) {
         </div>
 
         {/* Mobile Menu */}
-        <div className="md:hidden">
+        <div className="lg:hidden">
           <button onClick={toggleMenu} className="text-4xl text-stone-500">
             {!isMenuOpen && <IoIosMenu />}
             {isMenuOpen && <IoMdClose />}
@@ -211,7 +211,7 @@ export default function Header({ isLoggedIn }: { isLoggedIn: boolean }) {
 
       {/* Mobile Dropdown */}
       {isMenuOpen && (
-        <div className="md:hidden flex items-center justify-center flex-col space-y-2 mt-2">
+        <div className="lg:hidden flex items-center justify-center flex-col space-y-2 mt-2">
           <a href="/">Accueil</a>
           <a href="/a-propos">À propos</a>
           <a href="/cours">Cours</a>
@@ -234,6 +234,9 @@ export default function Header({ isLoggedIn }: { isLoggedIn: boolean }) {
             </PopoverContent>
           </Popover>
           <a href="/contact">Contact</a>
+          <a href="https://backoffice.bsport.io/m/Studio%20Biopilates%20Paris/878/calendar/?isPreview=true&tabSelected=0">
+            Réserver
+          </a>
         </div>
       )}
     </header>
