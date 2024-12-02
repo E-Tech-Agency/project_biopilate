@@ -50,20 +50,14 @@ export default function PlanningFormations({ plans }: PlanningProps) {
           1920: {
             slidesPerView: 5,
             spaceBetween: 25,
-            allowSlideNext: false,
-            allowSlidePrev: false,
           },
           1650: {
             slidesPerView: 4,
             spaceBetween: 20,
-            allowSlideNext: false,
-            allowSlidePrev: false,
           },
           1440: {
             slidesPerView: 3,
             spaceBetween: 15,
-            allowSlideNext: false,
-            allowSlidePrev: false,
           },
           1280: {
             slidesPerView: 2.5,

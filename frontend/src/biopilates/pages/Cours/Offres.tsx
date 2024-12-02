@@ -46,11 +46,11 @@ export default function Offres() {
         }}
         breakpoints={{
           1920: {
-            slidesPerView: 5,
+            slidesPerView: 5.5,
             spaceBetween: 40,
           },
           1600: {
-            slidesPerView: 4,
+            slidesPerView: 4.5,
             spaceBetween: 40,
           },
           1380: {
@@ -58,7 +58,7 @@ export default function Offres() {
             spaceBetween: 40,
           },
           1230: {
-            slidesPerView: 3,
+            slidesPerView: 3.4,
             spaceBetween: 40,
           },
           1100: {
@@ -66,7 +66,7 @@ export default function Offres() {
             spaceBetween: 40,
           },
           990: {
-            slidesPerView: 2,
+            slidesPerView: 2.4,
             spaceBetween: 40,
           },
           768: {
@@ -75,8 +75,8 @@ export default function Offres() {
           },
 
           640: {
-            slidesPerView: 1,
-            spaceBetween: 10,
+            slidesPerView: 1.5,
+            spaceBetween: 20,
           },
         }}
       >

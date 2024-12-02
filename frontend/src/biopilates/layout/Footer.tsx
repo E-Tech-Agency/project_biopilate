@@ -32,55 +32,54 @@ export default function Footer() {
   ];
 
   return (
-    <footer className="bottom-0 w-full flex justify-center items-center flex-col flex-wrap px-2 sm:px-2 sm:py-16 pb-7 bg-bgColor max-md:pr-5 sm:mt-auto">
-      <div className="flex sm:justify-center sm:items-center gap-5 max-md:flex-col max-md:gap-0 self-center w-full max-w-[1310px] px-4 sm:pr-12 pl-8 max-md:max-w-full max-md:ml-4">
-        <div className="flex flex-col w-[50%] max-md:ml-0 max-md:w-full">
-          <div className="flex flex-col grow items-start text-base leading-7 text-neutral-900 max-md:mt-10">
-            <img
-              loading="lazy"
-              src={logoImage}
-              alt="Company logo"
-              className="max-w-full rounded-full aspect-square w-[103px]"
-            />
-            <div className="self-stretch mt-6 text-xs sm:text-base">
-              L'Équilibre en Mouvement, la Pureté en Action
-            </div>
-            {/* social media buttons */}
-            <div className="mt-4">
-              <button
-                className="text-bgColor bg-black rounded-sm text-lg p-1.5 mr-4
+    <footer className="bottom-0 w-full flex justify-center items-center flex-col flex-wrap px-2 sm:py-16 pb-7 bg-bgColor sm:mt-auto">
+      <div className="flex sm:justify-center sm:items-center md:gap-4 max-md:flex-col self-center w-[95%] max-w-full px-4 md:pl-8 max-md:max-w-full max-md:ml-4">
+        <div className="flex flex-col max-md:w-full grow items-start text-base leading-7 text-neutral-900 max-md:mt-8">
+          <img
+            loading="lazy"
+            src={logoImage}
+            alt="Company logo"
+            className="max-w-full rounded-full aspect-square w-[103px]"
+          />
+          <div className="mt-6 text-xs sm:text-base">
+            L'Équilibre en Mouvement, la Pureté en Action
+          </div>
+          {/* social media buttons */}
+          <div className="mt-4">
+            <button
+              className="text-bgColor bg-black rounded-sm text-lg p-1.5 mr-4
                 "
-                onClick={() => {
-                  window.open(
-                    "https://www.facebook.com/STUDIOBIOPILATESPARIS",
-                    "_blank"
-                  );
-                }}
-              >
-                <TiSocialFacebook />
-              </button>
-              <button
-                className="text-bgColor bg-black rounded-sm text-lg p-1.5"
-                onClick={() => {
-                  window.open(
-                    "https://www.instagram.com/biopilates_studio_paris/",
-                    "_blank"
-                  );
-                }}
-              >
-                <RiInstagramFill />
-              </button>
-            </div>
+              onClick={() => {
+                window.open(
+                  "https://www.facebook.com/STUDIOBIOPILATESPARIS",
+                  "_blank"
+                );
+              }}
+            >
+              <TiSocialFacebook />
+            </button>
+            <button
+              className="text-bgColor bg-black rounded-sm text-lg p-1.5"
+              onClick={() => {
+                window.open(
+                  "https://www.instagram.com/biopilates_studio_paris/",
+                  "_blank"
+                );
+              }}
+            >
+              <RiInstagramFill />
+            </button>
           </div>
         </div>
-        <div className="flex ml-5 w-[50%] max-md:ml-0 max-md:w-full mt-6 sm:mt-8 max-md:max-w-full gap-5 max-md:flex-col max-md:gap-0">
-          <nav className="flex w-[49%] max-md:ml-0 max-md:w-full flex-wrap gap-2 sm:gap-4 text-base max-w-[257px] text-neutral-900">
+
+        <div className="flex md:w-[50%] w-full mt-6 sm:mt-8 max-md:max-w-full md:gap-4 max-md:flex-col">
+          <nav className="flex md:w-[55%] w-full flex-wrap gap-2 sm:gap-4 text-base max-w-[257px] text-neutral-900">
             <h2 className="text-lg sm:text-xl font-semibold">Menu</h2>
-            <ul className="flex flex-wrap gap-2">
+            <ul className="flex flex-wrap grow gap-2">
               {menuItems.map((item, index) => (
                 <li
                   key={index}
-                  className="w-[calc(50%-45px)] sm:w-[calc(50%-15px)]"
+                  className="w-[calc(50%-45px)] sm:w-[calc(50%-5px)]"
                 >
                   <a href={item.href} className="block text-xs sm:text-base">
                     {item.label}
@@ -89,11 +88,15 @@ export default function Footer() {
               ))}
             </ul>
           </nav>
-          <section className="flex flex-col justify-between md:ml-5 max-md:w-full grow text-base text-neutral-900 max-md:mt-4">
+          <section className="flex flex-col justify-between max-md:w-full w-[72%] grow text-base text-neutral-900 max-md:mt-4">
             <h2 className="text-lg sm:text-xl font-semibold block">Contact</h2>
             <ul className="mt-4 md:mt-5 space-y-3">
               {contactInfo.map((item, index) => (
-                <li key={index} className="flex gap-3">
+                <li
+                  key={index}
+                  className="flex gap-3 shrink
+                "
+                >
                   <item.icon
                     className="shrink-0 w-5 h-5"
                     aria-label={item.ariaLabel}
@@ -105,13 +108,12 @@ export default function Footer() {
           </section>
         </div>
       </div>
-      <div className="flex items-center gap-2 lg:gap-4 md:gap-5 mt-10 text-sm tracking-tight text-center capitalize text-neutral-900 md:flex-row md:justify-center md:mt-10">
-        <div className="shrink-0 mt-1 max-w-full h-px bg-neutral-900 w-[50px] md:w-48 lg:w-[410px] xl:w-[450px] 2xl:w-[700px]" />
-        <div className="flex-auto">
+      <div className="relative flex justify-center items-center mt-10 text-[10px] sm:text-sm tracking-tight text-center capitalize text-neutral-900 md:mt-10 w-full">
+        <div className="absolute w-full h-px bg-neutral-900" />
+        <div className="bg-bgColor z-10 inline-block px-3">
           ©2024.Biopilate Crée et développé par {""}
           <strong>BRAND AND COM</strong>
         </div>
-        <div className="shrink-0 mt-1 max-w-full h-px bg-neutral-900 w-[50px] md:w-48 lg:w-[410px] xl:w-[450px] 2xl:w-[700px]" />
       </div>
     </footer>
   );

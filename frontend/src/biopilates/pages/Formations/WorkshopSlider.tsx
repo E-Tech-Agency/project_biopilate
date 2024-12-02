@@ -81,7 +81,7 @@ function WorkshopCard({ workshop }: { workshop: Workshop }) {
 }
 
 export default function WorkshopSlider() {
-  const wrokshops = [
+  const workshops = [
     {
       title: "Workshop en ligne",
       image: workshop1,
@@ -184,7 +184,7 @@ export default function WorkshopSlider() {
           },
         }}
       >
-        {wrokshops.map((workshop, index) => (
+        {workshops.map((workshop, index) => (
           <SwiperSlide
             key={index}
             className="flex flex-col justify-center items-center"

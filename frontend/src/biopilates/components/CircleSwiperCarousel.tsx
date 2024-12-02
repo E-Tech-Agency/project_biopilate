@@ -25,15 +25,6 @@ const CircleSwiperCarousel: React.FC<CircleSwiperCarouselProps> = ({
         loop={true}
         slidesPerView={4}
         breakpoints={{
-          1920: {
-            slidesPerView: 4,
-          },
-          1600: {
-            slidesPerView: 4,
-          },
-          1440: {
-            slidesPerView: 4,
-          },
           1280: {
             slidesPerView: 4,
           },
