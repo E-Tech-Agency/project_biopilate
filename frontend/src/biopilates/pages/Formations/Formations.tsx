@@ -148,7 +148,7 @@ export default function Formations() {
       title: "Intensive Cadillac",
       niveau: "Debutant et intermédiare",
       image: reformerGyrotonicImage,
-      date: "du 30/06/2025 au 04/07/2025",
+      date: "Du 30/06/2025 au 04/07/2025",
       timeSlots: [
         "Lun. 30/06/2025 : 1.pm - 6.30.pm",
         "Mar. 01/07/2025 : 8am - 1.pm",
@@ -161,7 +161,7 @@ export default function Formations() {
       title: "Intensive Chaise",
       niveau: "Debutant et intermédiare",
       image: formation2,
-      date: "du 07/07/2025 au 09/07/2025",
+      date: "Du 07/07/2025 au 09/07/2025",
       timeSlots: [
         "Lun. 07/07/2025 : 1pm - 6:30pm",
         "Mar. 08/07/2025 : 8am - 1pm",
@@ -172,14 +172,14 @@ export default function Formations() {
       title: "Intensive Barils",
       niveau: "Debutant et intermédiare",
       image: formation2,
-      date: "du 07/07/2025 au 09/07/2025",
+      date: "Du 07/07/2025 au 09/07/2025",
       timeSlots: ["Jeu. 10/07/2025 : 8am - 1pm", "Ven. 11/07/2025 : 8am - 1pm"],
     },
     {
       title: "Intensive Reformer",
       niveau: "Debutant et intermédiare",
       image: reformer,
-      date: "du 28/08/2025 au 05/09/2025",
+      date: "Du 28/08/2025 au 05/09/2025",
       timeSlots: [
         "Lun. 25/08/2025 : 1pm - 6pm",
         "Mar. 26/08/2025 : 8am - 1pm",
@@ -226,14 +226,14 @@ export default function Formations() {
 
   return (
     <div className="flex flex-col mx-5 md:mx-12">
-      <section className="mt-2 mb-14 flex flex-col-reverse lg:flex-row justify-center lg:justify-between gap-8">
+      <section className="mt-2 mb-14 flex flex-col-reverse lg:flex-row justify-center lg:justify-between items-center gap-8">
         {/* carousel */}
 
         {/* <CircleCarousel images={images} /> */}
         <CircleSwiperCarousel images={images} />
 
         {/* text */}
-        <div className="flex flex-col items-start md:items-baseline py-6 min-w-min md:px-2  sm:gap-5 font-lato w-[90%]">
+        <div className="flex flex-col justify-center items-start md:items-baseline py-6 min-w-min md:px-2 sm:gap-5 font-lato w-[90%]">
           <p className="text-marron text-xl sm:text-[34px] leading-snug font-ebGaramond font-bold">
             Formations Biopilates
           </p>

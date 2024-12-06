@@ -191,11 +191,11 @@ export function RegisterForm({
   return (
     <>
       <div className="bg-white w-[100vw] h-[100vh] overflow-auto">
-        <div className="w-full relative flex flex-row-reverse max-md:flex-wrap justify-evenly items-start sm:items-center min-h-[650px] h-full">
+        <div className="w-full relative flex flex-row-reverse max-md:flex-wrap justify-evenly items-start sm:items-center min-h-[650px] h-[1100px]">
           {/* back button */}
           <Link
             to="/"
-            className="absolute top-0 left-0 w-12 h-12 rounded-full bg-marron flex justify-center items-center mt-4 lg:mt-8 ml-4 lg:ml-8 z-40 tr"
+            className="absolute top-0 left-0 w-12 h-12 rounded-full bg-marron flex justify-center items-center mt-8 ml-4 lg:ml-8 z-40 tr"
           >
             <FaArrowLeftLong className="text-bgColor text-xl" />
           </Link>
@@ -215,10 +215,10 @@ export function RegisterForm({
               </h3>
             </div>
 
-            <div className="absolute inset-0 bg-gradient-to-t from-black to-[70%] opacity-75 max-md:h-full " />
+            <div className="absolute inset-0 bg-gradient-to-t from-black to-[85%] sm:to-[70%] opacity-90 sm:opacity-75 max-md:h-full " />
           </div>
 
-          <div className="py-8 px-8 sm:px-8 text-gray-950 font-ebGaramond bg-white sm:bg-opacity-80 rounded-[20px] w-full h-[100vh] max-w-md xl:max-w-lg flex flex-grow flex-col min-w-[290px] mx-4 sm:mx-auto max-sm:my-auto z-30 max-sm:shadow-lg max-sm:mt-64 max-md:mt-44 max-lg:mt-20 tr">
+          <div className="py-8 px-8 sm:px-8 text-gray-950 font-ebGaramond bg-white sm:bg-opacity-80 rounded-[20px] w-full max-w-md xl:max-w-lg flex flex-grow flex-col min-w-[290px] mx-4 sm:mx-auto max-sm:my-auto z-30 max-sm:shadow-lg max-sm:mt-64 max-md:mt-44 max-lg:mt-20 tr">
             <div className="mb-6">
               <h1 className="text-marron text-3xl sm:text-6xl font-bold">
                 Créer un compte

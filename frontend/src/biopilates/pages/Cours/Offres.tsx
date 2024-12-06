@@ -37,8 +37,8 @@ export default function Offres() {
         }}
         modules={[Pagination, Navigation]}
         navigation={{
-          nextEl: ".swiper-but-next",
-          prevEl: ".swiper-but-prev",
+          nextEl: ".swiper-but-next1",
+          prevEl: ".swiper-but-prev1",
         }}
         pagination={{
           el: ".swiper-pagination",
@@ -119,7 +119,7 @@ export default function Offres() {
                     </svg>
                   </div>
                 )}
-                <h3 className="text-lg md:text-2xl text-center font-ebGaramond font-bold h-20 max-md:w-48">
+                <h3 className="text-lg md:text-2xl text-center font-ebGaramond font-bold h-20 max-w-[240px] max-md:w-48">
                   {offre.title}
                 </h3>
                 <p className="text-2xl text-marron font-bold">{offre.price}</p>
@@ -157,15 +157,15 @@ export default function Offres() {
           ))}
         </div>
         <div className="slider-controler flex justify-center gap-10 sm:mt-[-24px]">
-          <div className="arrow-hover cursor-pointer swiper-but-prev slider-arrow hidden sm:flex justify-center items-center bg-bgColor rounded-full w-10 h-10">
-            <FaArrowLeftLong className="text-marron" />
-          </div>
-          <div className="arrow-hover cursor-pointer swiper-but-next slider-arrow hidden sm:flex justify-center items-center bg-bgColor rounded-full w-10 h-10">
-            <FaArrowRightLong className="text-marron" />
-          </div>
           <div className="swiper-pagination m-auto z-[1] block sm:hidden"></div>
         </div>
       </Swiper>
+      <div className="arrow-hover cursor-pointer swiper-but-prev1 slider-arrow hidden sm:flex justify-center items-center bg-marron rounded-full w-10 h-10 absolute left-[-15px] top-[60%] transform -translate-y-1/2 z-20">
+        <FaArrowLeftLong className="text-bgColor b" />
+      </div>
+      <div className="arrow-hover cursor-pointer swiper-but-next1 slider-arrow hidden sm:flex justify-center items-center bg-marron rounded-full w-10 h-10 absolute right-[-15px] top-[60%] transform -translate-y-1/2 z-20">
+        <FaArrowRightLong className="text-bgColor b" />
+      </div>
     </div>
   );
 }

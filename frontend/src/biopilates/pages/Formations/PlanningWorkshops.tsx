@@ -35,7 +35,7 @@ export default function PlanningWorkshops({ plans }: PlanningProps) {
   return (
     <section className="mb-14">
       <p className="text-marron text-xl sm:text-[34px] leading-snug mb-10 font-ebGaramond font-bold">
-        Tarifs et Planning des formations
+        Tarifs et Planning des workshop
       </p>
       <Swiper
         className="centered-slide-carousel swiper-container relative"

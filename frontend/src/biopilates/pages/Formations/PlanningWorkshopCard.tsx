@@ -17,8 +17,8 @@ type PlanningCardProps = {
 
 export default function PlanningFormationCard({ plan }: PlanningCardProps) {
   return (
-    <div className="rounded-lg shadow-lg overflow-hidden transition-all duration-500 ease-in-out w-[274px] sm:w-[364px] max-md:h-[400px] h-[514px]">
-      <div className="relative inset-0 top-0 max-md:h-[200px] h-[250px]">
+    <div className="rounded-lg shadow-lg overflow-hidden transition-all duration-500 ease-in-out w-[274px] sm:w-[364px] max-md:h-[420px] h-[514px]">
+      <div className="relative inset-0 top-0 max-md:h-[190px] h-[250px]">
         <img
           loading="lazy"
           src={plan.image}

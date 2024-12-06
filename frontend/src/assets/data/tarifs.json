@@ -1,5 +1,25 @@
 [
     {
+        "title": "Abonnement 1 cours par semaine",
+        "price": "18,60€/semaine",
+        "pack1": "Engagement de 52 semaines",
+        "pack2": "Pour souscrire à un abonnement,",
+        "pack3": "il faudra envoyer votre IBAN",
+        "validity": "Validité 1 mois",
+        "status": "Nouveau",
+        "action" : "Envoyer"    
+    },
+    {
+        "title": "Abonnement 2 cours par semaine",
+        "price": "35€/semaine",
+        "pack1": "Engagement de 52 semaines",
+        "pack2": "Pour souscrire à un abonnement,",
+        "pack3": "il faudra envoyer votre IBAN",
+        "validity": "Validité 1 mois",
+        "status": "Nouveau",
+        "action" : "Envoyer"    
+    },
+    {
         "title": "Offre de découverte Reformer",
         "price": "35 €",
         "pack1": "1 Cours reformer acheté",
@@ -68,26 +88,7 @@
         "validity": "Validité 1 mois",
         "status": "",
         "action" : "Réserver"    
-    },
-    {
-        "title": "Abonnement 1 cours par semaine",
-        "price": "18,60€/semaine",
-        "pack1": "Engagement de 52 semaines",
-        "pack2": "Pour souscrire à un abonnement,",
-        "pack3": "il faudra envoyer votre IBAN",
-        "validity": "Validité 1 mois",
-        "status": "",
-        "action" : "Envoyer"    
-    },
-    {
-        "title": "Abonnement 2 cours par semaine",
-        "price": "35€/semaine",
-        "pack1": "Engagement de 52 semaines",
-        "pack2": "Pour souscrire à un abonnement,",
-        "pack3": "il faudra envoyer votre IBAN",
-        "validity": "Validité 1 mois",
-        "status": "",
-        "action" : "Envoyer"    
     }
+    
     
 ]

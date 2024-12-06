@@ -1,6 +1,5 @@
 import "swiper/swiper-bundle.css";
 import "@/assets/styles/swiper.css";
-import "@/assets/styles/middleCard.css";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/effect-coverflow";

@@ -16,26 +16,30 @@ const CircleSwiperCarousel: React.FC<CircleSwiperCarouselProps> = ({
   images,
 }) => {
   return (
-    <div className="container overflow-hidden sm:mt-12 px-0">
+    <div className="container sm:overflow-hidden sm:mt-12 px-0 max-sm:mx-[-20px]">
       <Swiper
         effect={"coverflow"}
         grabCursor={true}
         centeredSlides={true}
         spaceBetween={-200}
         loop={true}
-        slidesPerView={2}
+        slidesPerView={3}
         breakpoints={{
           1280: {
             slidesPerView: 4,
           },
           1028: {
-            slidesPerView: 4,
+            slidesPerView: 3.5,
           },
           768: {
             slidesPerView: 3,
           },
           640: {
-            slidesPerView: 2.5,
+            slidesPerView: 3,
+          },
+          320: {
+            slidesPerView: 3.5,
+            spaceBetween: -100,
           },
         }}
         coverflowEffect={{
@@ -52,26 +56,32 @@ const CircleSwiperCarousel: React.FC<CircleSwiperCarouselProps> = ({
         }}
         modules={[EffectCoverflow, Pagination, Navigation]}
         initialSlide={3}
-        className="swiper_container"
+        className="swiper_container pb-[-64px]"
       >
         {images.map((image, index) => (
           <SwiperSlide key={index}>
             <img
               src={image}
               alt={`slide_image_${index}`}
-              className="rounded-full object-cover w-[220px] h-[220px] sm:w-[327px] sm:h-[327px] mx-auto"
+              className="rounded-full object-cover w-[170px] h-[170px] sm:w-[327px] sm:h-[327px] mx-auto"
             />
           </SwiperSlide>
         ))}
 
-        <div className="slider-controler flex justify-center gap-20">
+        {/* <div className="slider-controler flex justify-center gap-20">
           <div className="swiper-but-prev slider-arrow cursor-pointer max-sm:hidden">
             <IoIosArrowBack className="text-marron text-4xl" />
           </div>
           <div className="swiper-but-next slider-arrow cursor-pointer max-sm:hidden">
             <IoIosArrowForward className="text-marron text-4xl" />
           </div>
-          {/* <div className="swiper-pagination m-auto z-[1] block sm:hidden"></div> */}
+        </div> */}
+
+        <div className="cursor-pointer swiper-but-prev slider-arrow hidden sm:flex justify-center items-center w-10 h-10 absolute left-5 top-[45%] transform -translate-y-1/2 z-20">
+          <IoIosArrowBack className="text-marron text-5xl" />
+        </div>
+        <div className="cursor-pointer swiper-but-next slider-arrow hidden sm:flex justify-center items-center w-10 h-10 absolute right-5 top-[45%] transform -translate-y-1/2 z-20">
+          <IoIosArrowForward className="text-marron text-5xl" />
         </div>
       </Swiper>
     </div>
