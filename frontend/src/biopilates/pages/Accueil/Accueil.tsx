@@ -49,7 +49,7 @@ export default function Accueil() {
               Studio Biopilates Paris,
             </p>
             <p className="text-blueText text-xl sm:text-[28px] md:leading-10 font-bold font-ebGaramond">
-              votre havre de paix dédié au mieux être
+              Votre havre de paix dédié au mieux être
             </p>
           </div>
 
@@ -99,53 +99,54 @@ export default function Accueil() {
       <TemoignagesSection />
 
       {/* CTA v2 */}
-      <section className="max-sm:mx-[-20px] relative flex mb-16 justify-between items-center w-full h-[200px] md:h-[410px]">
-        <img
-          className="absolute w-full h-full object-cover rounded-md"
-          src={bgImgReserver}
-          alt=""
-        />
-        <div className="flex justify-between items-center gap-4 z-[1] mx-6 sm:mx-10 w-full">
-          <div className="flex flex-col justify-center gap-4 text-xs ">
-            <p className="text-white font-ebGaramond text-lg sm:text-2xl md:text-3xl text-shadow-2xl">
-              Découvrez le Pilates chez nous
-            </p>
-            <p className="text-white sm:text-base md:text-xl text-shadow-2xl">
-              Profitez d’un offre découverte à un prix raisonnable pour
-              découvrir les bienfaits du Pilates.
-            </p>
-            <div className="flex gap-2">
-              <button
-                className="button-hover flex flex-col justify-center text-marron sm:text-base rounded-lg px-4 sm:px-8 sm:py-3 bg-white shadow-sm font-lato font-bold transform"
-                onClick={() => {
-                  window.open(
-                    "https://backoffice.bsport.io/m/Studio%20Biopilates%20Paris/878/calendar/?isPreview=true&tabSelected=0 ",
-                    "_blank"
-                  );
-                }}
-              >
-                <div className="hover-circle-2 overflow-hidden" />
-                Réserver
-              </button>
-              <button
-                className="button-hover flex flex-col justify-center text-white sm:text-base rounded-lg font-bold px-8 py-3 border border-solid border-white shadow-sm"
-                onClick={navigateToContact}
-              >
-                <div className="hover-circle-2 overflow-hidden" />
-                Contactez-nous
-              </button>
+      <div className="max-sm:mx-[-20px]">
+        <section className="relative flex mb-12 md:mb-16 justify-between items-center w-full h-[200px] md:h-[410px]">
+          <img
+            className="absolute w-full h-full object-cover sm:rounded-md"
+            src={bgImgReserver}
+            alt=""
+          />
+          <div className="flex justify-between items-center gap-4 z-[1] mx-6 sm:mx-10 w-full">
+            <div className="flex flex-col justify-center gap-4 text-xs ">
+              <p className="text-white font-ebGaramond text-lg sm:text-2xl md:text-3xl text-shadow-2xl">
+                Découvrez le Pilates chez nous
+              </p>
+              <p className="text-white sm:text-base md:text-xl text-shadow-2xl">
+                Profitez d’un offre découverte à un prix raisonnable pour
+                découvrir les bienfaits du Pilates.
+              </p>
+              <div className="flex gap-2">
+                <button
+                  className="button-hover flex flex-col justify-center text-marron sm:text-base rounded-lg px-4 sm:px-8 sm:py-3 bg-white shadow-sm font-lato font-bold transform"
+                  onClick={() => {
+                    window.open(
+                      "https://backoffice.bsport.io/m/Studio%20Biopilates%20Paris/878/calendar/?isPreview=true&tabSelected=0 ",
+                      "_blank"
+                    );
+                  }}
+                >
+                  <div className="hover-circle-2 overflow-hidden" />
+                  Réserver
+                </button>
+                <button
+                  className="button-hover flex flex-col justify-center text-white sm:text-base rounded-lg font-bold px-8 py-3 border border-solid border-white shadow-sm"
+                  onClick={navigateToContact}
+                >
+                  <div className="hover-circle-2 overflow-hidden" />
+                  Contactez-nous
+                </button>
+              </div>
             </div>
+            <CallToActionImg />
           </div>
-
-          <CallToActionImg />
-        </div>
-      </section>
+        </section>
+      </div>
 
       {/* Blog */}
       <section className="relative flex flex-col justify-center items-center gap-4">
         <img src={blogBg} alt="" className="absolute blur-3xl opacity-65" />
         <div className="relative flex flex-col justify-center items-center gap-4 w-full overflow-hidden">
-          <div className="mb-6 flex flex-col justify-center items-center gap-1">
+          <div className="mb-6 flex flex-col justify-center items-center gap-2">
             <p className="text-xl sm:text-3xl font-ebGaramond text-marron font-bold">
               Blog
             </p>

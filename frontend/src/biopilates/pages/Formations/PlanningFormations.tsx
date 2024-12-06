@@ -39,7 +39,7 @@ export default function PlanningFormations({ plans }: PlanningProps) {
       <Swiper
         className="centered-slide-carousel swiper-container relative"
         grabCursor={true}
-        spaceBetween={30}
+        spaceBetween={10}
         slideToClickedSlide={false}
         pagination={{
           el: ".swiper-pagination",
@@ -56,25 +56,29 @@ export default function PlanningFormations({ plans }: PlanningProps) {
             spaceBetween: 20,
           },
           1440: {
-            slidesPerView: 3,
+            slidesPerView: 3.5,
             spaceBetween: 15,
           },
           1280: {
+            slidesPerView: 3.1,
+            spaceBetween: 10,
+          },
+          1060: {
             slidesPerView: 2.5,
             spaceBetween: 10,
           },
 
-          900: {
-            slidesPerView: 2,
-            spaceBetween: 8,
+          930: {
+            slidesPerView: 2.1,
+            spaceBetween: 6,
           },
           768: {
-            slidesPerView: 1,
+            slidesPerView: 1.7,
             spaceBetween: 5,
           },
           640: {
-            slidesPerView: 1,
-            spaceBetween: 2,
+            slidesPerView: 1.3,
+            spaceBetween: 5,
           },
         }}
       >

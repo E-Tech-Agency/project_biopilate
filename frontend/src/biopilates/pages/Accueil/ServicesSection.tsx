@@ -139,7 +139,7 @@ export default function ServicesSection({
       </Swiper>
       {/* tarif button */}
       <button
-        className={`mx-auto max-md:mb-8 md:mb-10 overflow-hidden reserver-button ${bgColor} flex flex-col justify-center items-center text-base leading-6 rounded-md transform`}
+        className={`mx-auto max-md:mb-8 md:mb-10 overflow-hidden bg-bgColor px-4 py-2 font-semibold text-marron hover:text-white ${bgColor} flex flex-col justify-center items-center text-base leading-6 rounded-md transform ease-in-out tr `}
         onClick={navigateToTarifs}
       >
         <div className="hover-circle overflow-hidden" />

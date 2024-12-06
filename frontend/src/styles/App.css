@@ -151,10 +151,14 @@ button:hover .hover-circle-2 {
 }
 
 .arrow-hover:hover {
-  background-color: white;
+  background-color: hsla(0, 0%, 100%, 0.5) ;
   color: #756e66;
   border-width: 1px;
   border-color: #756e66;
+}
+
+.arrow-hover:hover .b{
+  color:#756e66;
 }
 
 .text-hover {
@@ -280,4 +284,27 @@ button:hover .hover-circle-2 {
   .div7 {
     grid-area: 7 / 1 / 8 / 2;
   }
+}
+
+.download-hover {
+  opacity: 0;
+  transition: 0.2s ease-in-out;
+}
+.button-offre-hover:hover .download-hover {
+  animation: fadeIn 0.2s ease-in-out 0.2s forwards;
+}
+
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+  }
+}
+
+.button-offre-hover p {
+  transform: translateX(-20px);
+  transition: 0.2s ease-in-out;
+}
+
+.button-offre-hover:hover p {
+  transform: translateX(0px);
 }

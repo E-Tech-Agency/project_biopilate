@@ -6,6 +6,7 @@ type Plan = {
   niveau: string;
   date?: string;
   timeSlots: string[];
+  price: string;
 };
 
 type PlanningCardProps = {
@@ -16,8 +17,8 @@ type PlanningCardProps = {
 
 export default function PlanningFormationCard({ plan }: PlanningCardProps) {
   return (
-    <div className="rounded-lg shadow-lg overflow-hidden transition-all duration-500 ease-in-out w-[274px] sm:w-[364px] max-md:h-[400px] h-[480px]">
-      <div className="relative inset-0 top-0 max-md:h-[200px] h-[250px]">
+    <div className="rounded-lg shadow-lg overflow-hidden transition-all duration-500 ease-in-out w-[274px] sm:w-[364px] max-md:h-[420px] h-[514px]">
+      <div className="relative inset-0 top-0 max-md:h-[190px] h-[250px]">
         <img
           loading="lazy"
           src={plan.image}
@@ -46,7 +47,7 @@ export default function PlanningFormationCard({ plan }: PlanningCardProps) {
             <h1 className="text-sm sm:text-lg">{day}</h1>
           </div>
         ))}
-
+        <p className="text-lg font-bold">{plan.price}</p>
         <div className="rounded-lg">
           <button
             className={`flex overflow-hidden reserver-button cursor-pointer bg-bgColor flex-col justify-center text-sm sm:text-base leading-6 rounded-lg text-current transition duration-300 ease-in-out transform`}

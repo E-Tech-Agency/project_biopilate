@@ -58,7 +58,7 @@ function Slider() {
     },
   ];
   return (
-    <section className="flex flex-col justify-center items-center gap-8 w-full h-[390px] sm:h-[440px] ">
+    <section className="flex flex-col justify-center items-center gap-8 w-full  sm:h-[440px] ">
       <Swiper
         className="centered-slide-carousel swiper-container relative w-full"
         grabCursor={true}
@@ -118,17 +118,18 @@ function Slider() {
             </SwiperSlide>
           ))}
         </div>
+        <div className="swiper-pagination m-auto z-[1] block mt-2"></div>
       </Swiper>
 
-      <div className="slider-controler flex justify-center gap-10 mb-6">
+      <div className="slider-controler flex justify-center gap-10 mb-0 sm:mb-6">
         <div className="arrow-hover cursor-pointer swiper-but-prev slider-arrow hidden sm:flex justify-center items-center bg-bgColor rounded-full w-10 h-10">
           <FaArrowLeftLong className="text-marron" />
         </div>
         <div className="arrow-hover cursor-pointer swiper-but-next slider-arrow hidden sm:flex justify-center items-center bg-bgColor rounded-full w-10 h-10">
           <FaArrowRightLong className="text-marron" />
         </div>
-        <div className="swiper-pagination m-auto z-[1] block sm:hidden"></div>
       </div>
+      {/* <div className="swiper-pagination m-auto z-[1] block"></div> */}
     </section>
   );
 }
@@ -141,12 +142,12 @@ export default function StottPilates() {
       <StartupAnimation images={images} />
       {/* Page Content */}
       <div className="flex flex-col mt-8 mx-5 md:mx-12 mb-12 gap-6 font-lato">
-        <div className="flex flex-col-reverse md:flex-col">
+        <div className="flex flex-col">
           <div className="flex flex-col gap-3">
             <h1 className="text-3xl font-ebGaramond text-marron font-bold">
               Formation et Cours STOTT PILATES à Paris - Studio Biopilates
             </h1>
-            <h2 className="text-xl font-ebGaramond text-blueText font-medium">
+            <h2 className="text-xl font-ebGaramond text-blueText font-medium max-md:hidden">
               Découvrez les cours et formations STOTT PILATES à Paris.
               Techniques modernes pour rééquilibrer les muscles et restaurer la
               courbe naturelle du rachis. Rejoignez-nous au Studio Biopilates.
@@ -158,6 +159,11 @@ export default function StottPilates() {
             alt="Stott Pilates"
             className="rounded-sm w-full max-h-[680px] object-cover shadow-lg my-6"
           />
+          <h2 className="text-xl font-ebGaramond text-blueText font-medium md:hidden">
+            Découvrez les cours et formations STOTT PILATES à Paris. Techniques
+            modernes pour rééquilibrer les muscles et restaurer la courbe
+            naturelle du rachis. Rejoignez-nous au Studio Biopilates.
+          </h2>
         </div>
         <div className="text-justify">
           <p>
@@ -184,7 +190,7 @@ export default function StottPilates() {
             cette méthode innovante.
           </p>
         </div>
-        <div className="flex flex-col justify-center m-auto text-xl leading-6 rounded-md px-4 py-1 bg-bgColor text-marron font-medium font-ebGaramond w-fit">
+        <div className="flex flex-col justify-center m-auto text-2xl leading-6 rounded-md px-5 py-2 bg-bgColor font-ebGaramond w-fit">
           Découvrez
         </div>
         <div className="flex flex-col justify-center items-center gap-6">

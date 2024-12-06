@@ -11,7 +11,7 @@ export default function PrincipeCard({ principe }: { principe: info }) {
         loading="lazy"
         src={principe.image}
         alt="Principe"
-        className="rounded-full w-[100px] h-[100px] sm:w-[150px] sm:h-[150px] md:w-[200px] md:h-[200px] object-cover max-sm:mt-[-100px]"
+        className="rounded-full w-[100px] h-[100px] sm:w-[150px] sm:h-[150px] md:w-[200px] md:h-[200px] object-cover max-sm:mt-[-50px]"
       />
       <div className="flex flex-col gap-3 w-[62%]">
         <h1 className="text-lg sm:text-xl md:text-2xl font-ebGaramond text-marron font-bold">
@@ -21,7 +21,7 @@ export default function PrincipeCard({ principe }: { principe: info }) {
           dangerouslySetInnerHTML={{
             __html: principe.description,
           }}
-          className="text-justify text-[#5a5a5a] text-xs sm:text-sm md:text-base leading-normal overflow-y-auto max-h-44 font-lato"
+          className="text-justify text-[#5a5a5a] text-xs sm:text-sm md:text-base leading-normal font-lato"
         ></p>
       </div>
     </div>

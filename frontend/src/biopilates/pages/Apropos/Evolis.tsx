@@ -147,9 +147,7 @@ function Slider() {
             <PourQuiCard pourqui={pourqui} />
           </SwiperSlide>
         ))}
-        <div className="slider-controler flex justify-center items-center">
-          <div className="swiper-pagination m-auto z-[1] block md:hidden"></div>
-        </div>
+        <div className="swiper-pagination m-auto z-[1] block"></div>
       </Swiper>
     </section>
   );
@@ -169,12 +167,12 @@ export default function Evolis() {
 
       {/* Page Content */}
       <div className="flex flex-col mt-8 mx-5 md:mx-12 mb-12 gap-6 font-lato">
-        <div className="flex flex-col-reverse md:flex-col">
+        <div className="flex flex-col">
           <div className="flex flex-col gap-3">
-            <h1 className="text-3xl font-ebGaramond text-marron font-bold">
+            <h1 className="text-xl sm:text-3xl font-ebGaramond text-marron font-bold">
               Formation et Cours EVOLIS à Paris - Studio Biopilates
             </h1>
-            <h2 className="text-xl font-ebGaramond text-blueText  font-medium">
+            <h2 className="text-xl font-ebGaramond text-blueText font-medium max-md:hidden">
               Découvrez les cours et formations Evolis à Paris au Studio
               Biopilates. Une méthode innovante pour améliorer posture,
               souplesse et bien-être général. Réservez votre séance dès
@@ -187,9 +185,14 @@ export default function Evolis() {
             alt="Stott Pilates"
             className="rounded-sm w-full max-h-[680px] object-cover shadow-lg my-6"
           />
+          <h2 className="text-lg font-ebGaramond text-blueText font-medium md:hidden">
+            Découvrez les cours et formations Evolis à Paris au Studio
+            Biopilates. Une méthode innovante pour améliorer posture, souplesse
+            et bien-être général. Réservez votre séance dès aujourd'hui !
+          </h2>
         </div>
 
-        <p className="text-justify leading-8">
+        <p className="text-sm sm:text-base text-justify  sm:leading-8">
           Bienvenue au Studio Biopilates, situé au cœur de Paris, où nous
           proposons <strong>la méthode Evolis®</strong>, développée par{" "}
           <strong>Jean Frelat</strong>. Cette approche globale de santé repose
@@ -197,10 +200,10 @@ export default function Evolis() {
           muscles.
         </p>
 
-        <h1 className="text-3xl text-marron font-bold font-ebGaramond">
+        <h1 className="text-xl sm:text-3xl text-marron font-bold font-ebGaramond">
           Les Principes de la Méthode Evolis® :
         </h1>
-        <ul className="text-lg font-lato list-disc ml-5">
+        <ul className="text-sm sm:text-lg font-lato list-disc ml-5">
           <li>
             <strong>Travail Musculaire Excentrique : </strong>
             Renforcement des muscles superficiels et profonds sans effort
@@ -217,12 +220,12 @@ export default function Evolis() {
         </ul>
 
         {/* Bénefices: */}
-        <div className="flex flex-col gap-4 mt-10">
+        <div className="flex flex-col gap-4 mt-4 sm:mt-10">
           <div className="flex flex-col gap-4">
-            <h1 className="text-3xl text-marron font-bold font-ebGaramond">
-              Bénéfices :{" "}
+            <h1 className="text-xl sm:text-3xl text-marron font-bold font-ebGaramond">
+              Bénéfices et adaptabilité :{" "}
             </h1>
-            <p className="text-base mb-4">
+            <p className="text-sm sm:text-base mb-4">
               <strong>La méthode Evolis®</strong> favorise:
             </p>
           </div>
@@ -235,7 +238,7 @@ export default function Evolis() {
                 alt="stott posture"
                 className="rounded-full w-[150px] h-[150px] sm:w-[165px] sm:h-[165px] object-cover shadow-lg"
               />
-              <h2 className="w-[150px]  sm:w-[165px] ">
+              <h2 className="w-[150px] sm:w-[165px] text-sm sm:text-base ">
                 la réorganisation du squelette
               </h2>
             </div>
@@ -246,7 +249,9 @@ export default function Evolis() {
                 alt="stott posture"
                 className="rounded-full w-[150px] h-[150px] sm:w-[165px] sm:h-[165px] object-cover shadow-lg"
               />
-              <h2 className="w-[150px]  sm:w-[165px] ">améliore la posture</h2>
+              <h2 className="w-[150px] sm:w-[165px] text-sm sm:text-base ">
+                améliore la posture
+              </h2>
             </div>
             <div className="flex justify-center items-center flex-col gap-4">
               <img
@@ -255,7 +260,7 @@ export default function Evolis() {
                 alt="stott posture"
                 className="rounded-full w-[150px] h-[150px] sm:w-[165px] sm:h-[165px] object-cover shadow-lg"
               />
-              <h2 className="w-[150px] sm:w-[165px] ">
+              <h2 className="w-[150px] sm:w-[165px] text-sm sm:text-base ">
                 l'amplitude des mouvements
               </h2>
             </div>
@@ -266,8 +271,8 @@ export default function Evolis() {
         </div>
 
         {/* Pour qui */}
-        <div className="flex flex-col gap-4 mt-10">
-          <h1 className="text-3xl text-marron font-bold font-ebGaramond">
+        <div className="flex flex-col gap-4 mt-4 sm:mt-10">
+          <h1 className="text-xl sm:text-3xl text-marron font-bold font-ebGaramond">
             Pour Qui ?
           </h1>
           <Slider />
@@ -309,14 +314,14 @@ export default function Evolis() {
           </div>
 
           <div className="flex flex-col gap-4 w-full">
-            <p className="font-ebGaramond font-bold text-2xl md:text-2xl ">
+            <p className="font-ebGaramond font-bold text-2xl md:text-2xl max-sm:text-bgColor">
               Pour découvrir les bienfaits de la méthode Evolis®
             </p>
-            <p className="font-lato max-md:text-sm text-bgColor">
+            <p className="font-lato max-md:text-sm sm:text-bgColor">
               Réservez dès maintenant une séance individuelle au Studio
               Biopilates,
             </p>
-            <p className="font-lato max-md:text-sm text-bgColor">
+            <p className="font-lato max-md:text-sm sm:text-bgColor">
               situé au 1 rue Boyer, 75020 Paris.Tarif de la séance : 64€
             </p>
 

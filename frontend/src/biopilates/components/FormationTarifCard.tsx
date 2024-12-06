@@ -17,7 +17,7 @@ interface FormationCardProps {
 const FormationTarifCard: React.FC<FormationCardProps> = ({ formation }) => {
   const isLevelNotFound = !formation.levels?.[0] || !formation.levels?.[1];
   return (
-    <div className="py-4 sm:py-0 flex flex-col items-center bg-white w-[232px] h-[456px] sm:w-[300px] sm:h-[580px] rounded-lg shadow-lg">
+    <div className="py-4 sm:py-0 flex flex-col justify-between items-center bg-white w-[232px] h-[450px] sm:w-[300px] sm:h-[580px] rounded-lg shadow-lg">
       <div className="px-6 py-2 sm:py-6 flex flex-col justify-center items-center gap-3 sm:gap-6">
         <img
           loading="lazy"
@@ -54,31 +54,33 @@ const FormationTarifCard: React.FC<FormationCardProps> = ({ formation }) => {
         </div>
       </div>
 
-      <button
-        className="reserver-button bg-bgColor flex flex-col justify-center rounded-lg mb-3 sm:mb-4 max-sm:px-14 sm:px-24 py-3 transform"
-        onClick={() => {
-          window.open(
-            "https://forms.zohopublic.com/virtualoffice707/form/AnalysedesbesoinsbnficiairesFormationscourtesouper/formperma/0Yyw-9wbvHRQB_Xb63QniT0EDrnKuekcjjfWvZC8PMg",
-            "_blank"
-          );
-        }}
-      >
-        <div className="hover-circle overflow-hidden" />
-        Réserver
-      </button>
-      <a
-        className="border button-offre-hover border-marron text-marron text-base font-bold flex justify-center items-center gap-4 rounded-lg sm:mb-4 px-6 sm:px-16 py-3 transform shadow-sm"
-        onClick={(e) => {
-          e.stopPropagation();
-        }}
-        href={formation.pdf}
-        target="_blank"
-        download
-      >
-        <div className="hover-circle overflow-hidden" />
-        <FaArrowDown />
-        Télécharger
-      </a>
+      <div>
+        <button
+          className="reserver-button bg-bgColor flex flex-col justify-center rounded-lg mb-3 sm:mb-4 max-sm:px-10 sm:px-[70px] py-3 transform"
+          onClick={() => {
+            window.open(
+              "https://forms.zohopublic.com/virtualoffice707/form/AnalysedesbesoinsbnficiairesFormationscourtesouper/formperma/0Yyw-9wbvHRQB_Xb63QniT0EDrnKuekcjjfWvZC8PMg",
+              "_blank"
+            );
+          }}
+        >
+          <div className="hover-circle overflow-hidden" />
+          Rejoignez -nous
+        </button>
+        <a
+          className="border button-offre-hover border-marron text-marron text-base font-bold flex justify-center items-center gap-4 rounded-lg sm:mb-4 px-6 sm:px-16 py-3 transform shadow-sm"
+          onClick={(e) => {
+            e.stopPropagation();
+          }}
+          href={formation.pdf}
+          target="_blank"
+          download
+        >
+          <div className="hover-circle overflow-hidden" />
+          <FaArrowDown className="download-hover" />
+          <p>En savoir plus</p>
+        </a>
+      </div>
     </div>
   );
 };

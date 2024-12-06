@@ -57,10 +57,7 @@ export default function FAQ() {
                 onClick={() => toggleFAQ(index)}
               >
                 <div className="flex items-center">
-                  <span className="q-mark font-bold text-marron mr-2 sm:mr-4">
-                    Q.
-                  </span>
-                  <p className="question text-sm sm:text-[22px] leading-7 font-semibold m-0 font-ebGaramond">
+                  <p className="question text-sm sm:text-[22px] leading-7 font-semibold m-0 sm:ml-6 font-ebGaramond">
                     {faq.question}
                   </p>
                 </div>

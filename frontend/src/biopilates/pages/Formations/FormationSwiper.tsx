@@ -96,15 +96,15 @@ export default function FormationSwiper() {
       </div>
       <div className="relative">
         <div className="mb-8">
-          <p className="text-marron text-3xl font-ebGaramond font-bold leading-snug mb-4">
+          <p className="text-marron text-xl sm:text-3xl font-ebGaramond font-bold leading-snug mb-4">
             Formation Biopilates
           </p>
-          <p className="leading-6">
+          <p className="text-sm sm:text-base leading-6">
             Devenez <strong>instructeur de Pilates</strong> : favorisez
             l'équilibre et le bien-être physique et mental, tout en vous
             transformant.{" "}
           </p>
-          <p className="leading-6">
+          <p className="text-sm sm:text-base leading-6">
             Rejoignez notre formation et devenez un pilier d'harmonie.
           </p>
         </div>
@@ -152,12 +152,20 @@ export default function FormationSwiper() {
               spaceBetween: 5,
             },
             640: {
-              slidesPerView: 2,
+              slidesPerView: 1.8,
               spaceBetween: 4,
             },
             550: {
               slidesPerView: 2,
               spaceBetween: 4,
+            },
+            400: {
+              slidesPerView: 1.5,
+              spaceBetween: 2,
+            },
+            310: {
+              slidesPerView: 1.1,
+              spaceBetween: 2,
             },
           }}
         >

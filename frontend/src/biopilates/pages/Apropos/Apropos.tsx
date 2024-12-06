@@ -56,7 +56,7 @@ export default function Apropos() {
   return (
     <div className="flex flex-col mx-5 md:mx-12">
       {/* Bio */}
-      <section className="mb-0 sm:mb-12 flex flex-col-reverse xl:flex-row justify-center lg:justify-between gap-8">
+      <section className="mb-0 sm:mb-12 flex flex-col-reverse xl:flex-row justify-center lg:justify-between items-center">
         {/* carousel */}
 
         {/* <CircleCarousel images={images} /> */}

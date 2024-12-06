@@ -29,12 +29,12 @@ export default function Gyrotonic() {
 
       {/* Page Content */}
       <div className="flex flex-col mt-8 mx-5 md:mx-12 mb-12 gap-6 font-lato">
-        <div className="flex flex-col-reverse md:flex-col">
+        <div className="flex flex-col">
           <div className="flex flex-col gap-3">
             <h1 className="text-3xl font-ebGaramond text-marron font-bold">
               Formation et Cours GYROTONIC® à Paris - Studio Biopilates
             </h1>
-            <h2 className="text-xl font-ebGaramond text-blueText font-medium">
+            <h2 className="text-xl font-ebGaramond text-blueText font-medium max-md:hidden">
               Découvrez les cours et formations GYROTONIC® à Paris. Méthode
               innovante pour améliorer la force, la souplesse et l'équilibre.
               Rejoignez nous au Studio Biopilates pour des séances adaptées à
@@ -47,6 +47,12 @@ export default function Gyrotonic() {
             alt="Stott Pilates"
             className="rounded-sm w-full max-h-[680px] object-cover shadow-lg my-6"
           />
+          <h2 className="text-lg font-ebGaramond text-blueText font-medium md:hidden">
+            Découvrez les cours et formations GYROTONIC® à Paris. Méthode
+            innovante pour améliorer la force, la souplesse et l'équilibre.
+            Rejoignez nous au Studio Biopilates pour des séances adaptées à tous
+            les niveaux.
+          </h2>
         </div>
 
         <p className="text-justify leading-8">
@@ -57,11 +63,11 @@ export default function Gyrotonic() {
           pour mobiliser le corps dans sa globalité.
         </p>
 
-        <h1 className="text-3xl text-marron font-bold font-ebGaramond">
+        <h1 className="text-xl sm:text-3xl text-marron font-bold font-ebGaramond">
           Les Ateliers GYROTONIC® et GYROKINESIS® :
         </h1>
-        {/* 2 cards */}
-        <div className="flex flex-col gap-6 mt-4">
+        {/* 2 cards desktop */}
+        <div className="flex flex-col gap-6 mt-4 max-sm:hidden">
           <div className="flex justify-start items-center gap-10 p-6 shadow-lg">
             <img
               loading="lazy"
@@ -97,20 +103,52 @@ export default function Gyrotonic() {
           </div>
         </div>
 
+        {/* 2 cards mobile */}
+        <div className="flex flex-col sm:hidden gap-7">
+          <div className="flex flex-col justify-start items-center gap-4 ">
+            <h1 className="font-bold text-lg font-ebGaramond">GYROKINESIS®</h1>
+            <img
+              loading="lazy"
+              src={gyrokinesis}
+              alt="stott posture"
+              className="rounded-full w-[140px] h-[150px] sm:w-[280px] sm:h-[280px] object-cover shadow-lg"
+            />
+
+            <p className="text-sm text-center">
+              Commencez sur un tabouret et évoluez vers des exercices au sol,
+              visant l'éveil des sens et la mobilisation complète du corps.
+            </p>
+          </div>
+          <div className="flex flex-col justify-between items-center gap-5 ">
+            <h1 className="font-bold text-lg font-ebGaramond">GYROTONIC®</h1>
+            <img
+              loading="lazy"
+              src={reformerGyrotonicEvolis}
+              alt="stott posture"
+              className="rounded-full w-[150px] h-[150px] sm:w-[280px] sm:h-[280px] object-cover shadow-lg"
+            />
+            <p className="text-sm text-center">
+              Utilisez des machines innovantes comme le Pulley Tower et
+              l'Archway pour améliorer la force, la souplesse, la coordination
+              et l'équilibre.
+            </p>
+          </div>
+        </div>
+
         {/* Bénefices: */}
-        <div className="flex flex-col gap-10 mt-10">
+        <div className="flex flex-col gap-10 mt-6 sm:mt-10">
           <div className="flex flex-col gap-4">
-            <h1 className="text-3xl text-marron font-bold font-ebGaramond">
-              Bénéfices :{" "}
+            <h1 className="text-xl sm:text-3xl text-marron font-bold font-ebGaramond">
+              Bénéfices et adaptabilité :{" "}
             </h1>
-            <p className="text-base">
+            <p className="text-sm sm:text-base">
               <strong>La méthode GYROTONIC®</strong> est accessible à tous et
               vise à améliorer le confort musculaire et articulaire. Elle est
               idéale pour ceux cherchant à augmenter leur :
             </p>
           </div>
 
-          <div className="flex justify-evenly md:items-start max-md:flex-col gap-16 md:m-auto text-center">
+          <div className="flex justify-evenly md:items-start max-md:flex-col gap-8 sm:gap-16 md:m-auto text-center">
             <div className="flex justify-center items-center flex-col gap-4">
               <img
                 loading="lazy"
@@ -118,7 +156,7 @@ export default function Gyrotonic() {
                 alt="stott posture"
                 className="rounded-full w-[150px] h-[150px] sm:w-[165px] sm:h-[165px] object-cover shadow-lg"
               />
-              <h2 className="w-[150px]  sm:w-[165px] ">
+              <h2 className="w-[150px] sm:w-[165px] text-sm sm:text-base ">
                 {" "}
                 Endurance musculaire
               </h2>
@@ -130,7 +168,9 @@ export default function Gyrotonic() {
                 alt="stott posture"
                 className="rounded-full w-[150px] h-[150px] sm:w-[165px] sm:h-[165px] object-cover shadow-lg"
               />
-              <h2 className="w-[150px]  sm:w-[165px] ">Flexibilité</h2>
+              <h2 className="w-[150px] sm:w-[165px] text-sm sm:text-base ">
+                Flexibilité
+              </h2>
             </div>
             <div className="flex justify-center items-center flex-col gap-4">
               <img
@@ -139,7 +179,7 @@ export default function Gyrotonic() {
                 alt="stott posture"
                 className="rounded-full w-[150px] h-[150px] sm:w-[165px] sm:h-[165px] object-cover shadow-lg"
               />
-              <h2 className="w-[150px]  sm:w-[165px] ">
+              <h2 className="w-[150px] sm:w-[165px] text-sm sm:text-base ">
                 {" "}
                 Coordination neuromusculaire
               </h2>
@@ -150,10 +190,10 @@ export default function Gyrotonic() {
         {/* Matériel Utilisé :  */}
         <div className="flex flex-col gap-10 mt-4">
           <div className="flex flex-col gap-4">
-            <h1 className="text-3xl text-marron font-bold font-ebGaramond">
+            <h1 className="text-xl sm:text-3xl text-marron font-bold font-ebGaramond">
               Matériel Utilisé :{" "}
             </h1>
-            <p className="text-base">
+            <p className="text-sm sm:text-base">
               Au Studio Biopilates, nous utilisons des équipements spécialisés
               tels que :
             </p>
@@ -167,7 +207,7 @@ export default function Gyrotonic() {
                 alt="stott posture"
                 className="rounded-full w-[150px] h-[150px] sm:w-[270px] sm:h-[270px] object-cover shadow-lg"
               />
-              <h2 className="w-[150px]  sm:w-[270px] ">
+              <h2 className="w-[150px] sm:w-[270px] text-sm sm:text-base ">
                 {" "}
                 Le banc du Pulley Tower
               </h2>
@@ -179,7 +219,9 @@ export default function Gyrotonic() {
                 alt="stott posture"
                 className="rounded-full w-[150px] h-[150px] sm:w-[270px] sm:h-[270px] object-cover shadow-lg"
               />
-              <h2 className="w-[150px]  sm:w-[270px] ">L'Archway</h2>
+              <h2 className="w-[150px] sm:w-[270px] text-sm sm:text-base ">
+                L'Archway
+              </h2>
             </div>
             <div className="flex justify-center items-center flex-col gap-4">
               <img
@@ -188,7 +230,7 @@ export default function Gyrotonic() {
                 alt="stott posture"
                 className="rounded-full w-[150px] h-[150px] sm:w-[270px] sm:h-[270px] object-cover shadow-lg"
               />
-              <h2 className="w-[150px]  sm:w-[270px] ">
+              <h2 className="w-[150px] sm:w-[270px] text-sm sm:text-base ">
                 {" "}
                 Le Jumping Stretching Board
               </h2>
@@ -202,7 +244,14 @@ export default function Gyrotonic() {
             <p className="font-ebGaramond font-medium text-xl md:text-2xl text-bgColor">
               Réservez Votre Premier Atelier :
             </p>
-            <p className="font-lato max-md:text-sm">
+            <p className="max-md:hidden font-lato max-md:text-sm">
+              N'attendez plus pour découvrir les secrets de la méthode
+              GYROTONIC® et ses nombreux bienfaits. Réservez dès maintenant
+              <div className="font-lato max-md:text-sm">
+                et commencez votre transformation.
+              </div>
+            </p>
+            <p className="md:hidden font-lato max-md:text-sm">
               N'attendez plus pour découvrir les secrets de la méthode
               GYROTONIC® et ses nombreux bienfaits. Réservez dès maintenant et
               commencez votre transformation.

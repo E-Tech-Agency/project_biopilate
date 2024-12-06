@@ -141,7 +141,7 @@ export default function Article() {
               qui convient à toutes les générations. « J’ai conçu cette maison
               comme un lieu de fraternité pour y accueillir plus
               particulièrement toutes ces vieilles et ces vieux dont j’ai eu à
-              prendre soin quand j’étais médecin,et dont j’ai découvert combien
+              prendre soin quand j’étais médecin, et dont j’ai découvert combien
               si souvent ils souffrent de se sentir seuls et en marge de la vie
               qui va. Puisse <strong>la maison vieille</strong> leur permettre
               de renouer du lien social, de rencontrer des pairs, de s’offrir

@@ -7,11 +7,11 @@ import icon2 from "@/assets/images/icon-2.png";
 export default function PourquoiBiopilates() {
   return (
     <div>
-      <div className="mb-12">
-        <p className="text-marron text-xl sm:text-[34px] font-ebGaramond font-bold leading-snug mb-4">
+      <div className="mb-10 sm:mb-12">
+        <p className="text-marron text-xl sm:text-[34px] font-ebGaramond font-bold sm:leading-snug mb-4">
           Pourquoi choisir Biopilates ?
         </p>
-        <p className="leading-7 sm:text-lg">
+        <p className="sm:leading-7 sm:text-lg">
           <strong>Biopilates</strong> pour une approche holistique, alliant
           bien-être naturel et résultats durables.
         </p>
@@ -100,7 +100,7 @@ export default function PourquoiBiopilates() {
                 />
               </svg>
               <p className="text-xl text-bgColor ">
-                Suivi individualisé et mentorat
+                Suivi individualisé <div>et mentorat</div>
               </p>
             </div>
             <p className="text-base text-white">
@@ -127,7 +127,7 @@ export default function PourquoiBiopilates() {
                 />
               </svg>
               <p className="text-xl text-bgColor ">
-                Formateurs expérimentés et passionnés
+                Formateurs expérimentés <div>et passionnés</div>
               </p>
             </div>
             <p className="text-base text-white">
@@ -148,12 +148,15 @@ export default function PourquoiBiopilates() {
                 className="h-[45px] w-[45px]"
               />
               <p className="text-xl text-bgColor ">
-                Pédagogie innovante et interactive
+                Pédagogie innovante <div>et interactive</div>
               </p>
             </div>
             <p className="text-base text-white">
-              Découvrez une pédagogie innovante et interactive en Pilates pour
-              un apprentissage dynamique et engageant.
+              Découvrez une pédagogie innovante
+              <div>
+                et interactive en Pilates pour un apprentissage dynamique et
+                engageant.
+              </div>
             </p>
           </div>
           <div className="absolute inset-0 mx-auto bg-black mt-40 rounded-full blur-3xl opacity-70 sm:rounded-md size-[80%]" />{" "}
@@ -234,8 +237,11 @@ export default function PourquoiBiopilates() {
               </p>
             </div>
             <p className="text-base text-white max-2xl:leading-5">
-              Assurez un enseignement de qualité et une expertise certifiée en
-              Pilates, pour une pratique sûre et adaptée à tous.
+              Assurez un enseignement de qualité{" "}
+              <div>
+                et une expertise certifiée en Pilates, pour une pratique sûre et
+                adaptée à tous.
+              </div>
             </p>
           </div>
           <div className="absolute inset-0 mx-auto bg-black mt-32 rounded-full blur-3xl opacity-70 sm:rounded-md size-[80%]" />{" "}
@@ -269,7 +275,7 @@ export default function PourquoiBiopilates() {
                 />
               </svg>
               <p className="text-xl text-bgColor max-sm:w-[80%]">
-                Formateurs expérimentés et passionnés
+                Formateurs expérimentés <div>et passionnés</div>
               </p>
             </div>
             <p className="text-sm sm:text-base text-white">
@@ -289,7 +295,7 @@ export default function PourquoiBiopilates() {
                 className="h-[45px] w-[45px]"
               />
               <p className="text-xl text-bgColor max-sm:w-[80%]">
-                Pédagogie innovante et interactive
+                Pédagogie innovante <div>et interactive</div>
               </p>
             </div>
             <p className="text-sm sm:text-base text-white">
@@ -371,7 +377,7 @@ export default function PourquoiBiopilates() {
                 />
               </svg>
               <p className="text-xl text-bgColor max-sm:w-[80%]">
-                Suivi individualisé et mentorat
+                Suivi individualisé <div>et mentorat</div>
               </p>
             </div>
             <p className="text-sm sm:text-base text-white">
@@ -447,7 +453,7 @@ export default function PourquoiBiopilates() {
                 </defs>
               </svg>
               <p className="text-xl text-bgColor max-sm:w-[80%]">
-                Réseau Biopilates : Excellence et Épanouissement
+                Réseau Biopilates : Excellence <div>et Épanouissement</div>
               </p>
             </div>
             <p className="text-sm sm:text-base text-white">
