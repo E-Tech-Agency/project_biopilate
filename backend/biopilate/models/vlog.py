@@ -3,23 +3,23 @@ from django.utils.html import mark_safe
 
 
 
-class CategoryWorkShop(models.Model):
+class CategoryVlog(models.Model):
     name = models.CharField(max_length=100)
     class Meta:
-        verbose_name_plural = "category workshops"
+        verbose_name_plural = "category vlogs"
     def __str__(self):
         return self.name
        
-class WorkShop(models.Model):
+class Vlog(models.Model):
     STATUS_CHOICES = [
         ('pending', 'En attente de publication'),
         ('approved', 'Publiée'),
         ]
     title = models.CharField('Titre',max_length=255)
     description = models.TextField()
-    image = models.ImageField(upload_to='workshop_images/')
-    category = models.ForeignKey(CategoryWorkShop, on_delete=models.CASCADE, blank=True, null=True, related_name='category')
-    pdf_workshop = models.FileField(upload_to='workshop_pdfs/', blank=True, null=True)  
+    image = models.ImageField(upload_to='vlogs_images/')
+    category = models.ForeignKey(CategoryVlog, on_delete=models.CASCADE, blank=True, null=True, related_name='category')
+    date=models.DateField(auto_now_add=True)
 
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
@@ -28,7 +28,7 @@ class WorkShop(models.Model):
 
     class Meta:
         
-        verbose_name_plural = "biopilates WorkShops"
+        verbose_name_plural = "biopilates vlogs"
 
     def __str__(self):
         return self.title
