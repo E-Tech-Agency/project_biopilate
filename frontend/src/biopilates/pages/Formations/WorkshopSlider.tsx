@@ -81,7 +81,7 @@ function WorkshopCard({ workshop }: { workshop: Workshop }) {
 }
 
 export default function WorkshopSlider() {
-  const wrokshops = [
+  const workshops = [
     {
       title: "Workshop en ligne",
       image: workshop1,
@@ -122,7 +122,7 @@ export default function WorkshopSlider() {
         <p className="text-marron text-xl sm:text-[34px] font-ebGaramond font-bold leading-snug mb-4">
           Workshop
         </p>
-        <p className="leading-6 sm:text-lg">
+        <p className="sm:leading-6 text-sm sm:text-lg">
           Participez à notre workshop pour devenir{" "}
           <strong>instructeur de Pilates</strong> : cultivez l'équilibre et le
           bien-être physique et mental, tout en vous épanouissant
@@ -182,9 +182,13 @@ export default function WorkshopSlider() {
             slidesPerView: 1.9,
             spaceBetween: 5,
           },
+          320: {
+            slidesPerView: 1.4,
+            spaceBetween: 5,
+          },
         }}
       >
-        {wrokshops.map((workshop, index) => (
+        {workshops.map((workshop, index) => (
           <SwiperSlide
             key={index}
             className="flex flex-col justify-center items-center"

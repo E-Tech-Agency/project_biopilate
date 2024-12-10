@@ -33,7 +33,7 @@ export default function BlogCard({ article }: BlogCardProps) {
 
   return (
     <div
-      className="bg-white flex flex-col justify-center items-center shadow-2xl gap-2 rounded-2xl w-[260px] sm:w-[410px] max-h-[606px] p-4"
+      className="bg-white flex flex-col justify-center items-center shadow-2xl gap-2 rounded-2xl w-[260px] sm:w-[410px] max-h-[610px] p-4"
       style={{ cursor: "pointer" }} // Show pointer cursor to indicate clickable card
     >
       <div className="flex flex-col items-end bg-white">
@@ -80,7 +80,7 @@ export default function BlogCard({ article }: BlogCardProps) {
           />
           <p className="text-sm text-gray-700">{article.ecrivain}</p>
         </div>
-        <p className="text-xs sm:text-base sm:leading-5 overflow-hidden h-[60px] overflow-y-scroll">
+        <p className="text-xs sm:text-base sm:leading-5 overflow-hidden h-[78px]">
           {article.description}
         </p>
         <div className="flex items-center gap-2 text-sm">

@@ -21,10 +21,13 @@ const FormationCard: React.FC<FormationCardProps> = ({ formation }) => {
         className="rounded-full w-[158px] h-[158px] sm:w-[230px] sm:h-[230px] object-cover shadow-lg"
       />
 
-      <div className="flex flex-col justify-between gap-3 h-32">
-        <p className="text-marron sm:text-lg leading-5 sm:leading-[22px] text-center font-bold font-ebGaramond">
-          {formation.title}
-        </p>
+      <div className="flex flex-col justify-between gap-3 sm:w-[250px] h-32">
+        <p
+          className="text-marron grow sm:text-lg leading-5 sm:leading-[22px] text-center font-bold font-ebGaramond"
+          dangerouslySetInnerHTML={{
+            __html: formation.title,
+          }}
+        ></p>
         <p
           className="text-sm leading-[18px] text-center"
           dangerouslySetInnerHTML={{

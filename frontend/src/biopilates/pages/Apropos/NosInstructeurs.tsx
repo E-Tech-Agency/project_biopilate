@@ -10,8 +10,40 @@ import instructeur3 from "@/assets/images/instructeur-3.png";
 import instructeur4 from "@/assets/images/instructeur-4.png";
 import instructeur5 from "@/assets/images/instructeur-5.png";
 import instructeur6 from "@/assets/images/instructeur-6.png";
-import PrincipeCard from "@/biopilates/components/PrincipeCard";
 import { FaArrowLeftLong, FaArrowRightLong } from "react-icons/fa6";
+
+interface info {
+  name: string;
+  image: string;
+  description: string;
+}
+
+function PrincipeCard({ principe }: { principe: info }) {
+  return (
+    <div className=" flex justify-center items-center max-w-[630px] xl:max-w-[680px] min-w-[230px] h-[280px] sm:h-[300px] shadow-xl rounded-lg bg-white py-2 sm:py-4 px-4 sm:px-8 gap-4 mx-2">
+      <div className="flex justify-center items-center bg-bgColor rounded-full w-[100px] h-[100px] sm:w-[150px] sm:h-[150px] md:w-[200px] md:h-[200px] max-sm:mt-[-50px] shadow-lg">
+        <img
+          loading="lazy"
+          src={principe.image}
+          alt="Principe"
+          className="rounded-full w-[90px] h-[90px] sm:w-[130px] sm:h-[130px] md:w-[170px] md:h-[170px] object-cover "
+        />
+      </div>
+
+      <div className="flex flex-col gap-3 w-[60%]">
+        <h1 className="text-lg sm:text-xl md:text-2xl font-ebGaramond text-marron font-bold">
+          {principe.name}
+        </h1>
+        <p
+          dangerouslySetInnerHTML={{
+            __html: principe.description,
+          }}
+          className="text-justify text-[#5a5a5a] text-xs sm:text-sm md:text-base leading-normal overflow-y-auto max-h-44 font-lato"
+        ></p>
+      </div>
+    </div>
+  );
+}
 
 export default function NosInstructeurs() {
   const instructeurs = [
@@ -55,7 +87,7 @@ export default function NosInstructeurs() {
 
   return (
     <section className="relative flex flex-col justify-center items-center w-full h-[440px] sm:h-[470px]">
-      <p className="text-marron text-start w-full text-[34px] leading-snug font-ebGaramond font-bold mb-8">
+      <p className="text-marron text-start w-full text-xl sm:text-[34px] leading-snug font-ebGaramond font-bold mb-8">
         Nos instructeurs
       </p>
       <Swiper
@@ -121,9 +153,7 @@ export default function NosInstructeurs() {
       <div className="arrow-hover cursor-pointer swiper-but-next slider-arrow hidden sm:flex justify-center items-center bg-marron text-bgColor hover:text-marron rounded-full w-10 h-10 absolute right-[-20px] top-1/2 transform -translate-y-1/2 z-20">
         <FaArrowRightLong className="" />
       </div>
-      <div className="slider-controler flex justify-center gap-10 mb-10">
-        <div className="swiper-pagination m-auto z-[1] block sm:hidden"></div>
-      </div>
+      <div className="swiper-pagination m-auto z-[1] block"></div>
     </section>
   );
 }

@@ -61,7 +61,7 @@ export default function Engagement() {
           loading="lazy"
           src={engagement}
           alt="Biopilate trainer"
-          className=" h-[360px]  xl:h-[402px] object-cover z-10"
+          className=" h-[360px] xl:h-[402px] object-cover z-10"
         />
         {/* right */}
         <div className="flex flex-col justify-around items-start max-lg:gap-6 w-[80%] 2xl:w-[60%]">

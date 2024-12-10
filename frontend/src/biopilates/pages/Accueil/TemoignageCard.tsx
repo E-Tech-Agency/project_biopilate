@@ -13,7 +13,7 @@ export default function TemoignageCard({
   temoignage: Temoignage;
 }) {
   return (
-    <div className="flex flex-col max-w-[850px] min-w-[220px] md:h-[300px] shadow-xl rounded-lg bg-white py-6 sm:py-4 px-4 sm:px-8">
+    <div className="flex flex-col max-w-[850px] min-w-[220px] h-[300px] md:h-[300px] shadow-xl rounded-lg bg-white py-6 sm:py-4 px-4 sm:px-8">
       <div className="flex gap-4">
         <img
           loading="lazy"
@@ -34,7 +34,7 @@ export default function TemoignageCard({
         <p className="text-sm sm:text-2xl mb-4 sm:mb-6 text-marron font-lato font-bold">
           {temoignage.title}
         </p>
-        <p className="text-xs sm:text-[16px] leading-normal sm:leading-5">
+        <p className="text-xs sm:text-[16px] leading-4 sm:leading-5">
           {temoignage.review}
         </p>
       </div>

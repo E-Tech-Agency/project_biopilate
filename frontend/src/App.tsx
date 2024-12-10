@@ -1,5 +1,6 @@
 import { Route, Routes, useLocation } from "react-router-dom";
 import React, { useEffect, useState } from "react";
+import { Helmet } from "react-helmet";
 
 import "./styles/index.css";
 import { IoIosArrowUp } from "react-icons/io";
@@ -52,6 +53,9 @@ import EditBlog from "./pages/EditBlog";
 import EditCourForm from "./pages/EditCourForm";
 import ScrollToTop from "./biopilates/components/ScrollToTop";
 import Vlog from "./biopilates/pages/Vlog/Vlog";
+import Manuel from "./pages/Manuel";
+import Workshops from "./pages/Workshops";
+import FinancerVotreFormationDash from "./pages/FinancerVotreFormationDash";
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -109,6 +113,9 @@ function App() {
       "/dashboard",
       "/admin",
       "/user",
+      "/manuel",
+      "/workshop",
+      "/financer-votre-formation",
       "/cour/:id",
       "/Teaches-biopilates",
       "/Tages-biopilates",
@@ -156,10 +163,92 @@ function App() {
   const isRegOrLogin = isRouteHidden(hiddenRoutes.reg, currentRoute);
   const isFooterHidden = isNavHidden;
 
+  const getTitle = (route: string) => {
+    switch (route) {
+      case "/":
+        return "Accueil - BioPilates";
+      case "/a-propos":
+        return "À propos - BioPilates";
+      case "/cours":
+        return "Cours - BioPilates";
+      case "/formations":
+        return "Formations - BioPilates";
+      case "/blog":
+        return "Blog - BioPilates";
+      case "/contact":
+        return "Contact - BioPilates";
+      case "/vlog":
+        return "Vlog - BioPilates";
+      case "/a-propos/stottPilates":
+        return "Stott Pilates - BioPilates";
+      case "/a-propos/evolis":
+        return "Evolis - BioPilates";
+      case "/a-propos/gyrotonic":
+        return "Gyrotonic - BioPilates";
+      case "/login":
+        return "Login - BioPilates";
+      case "/register":
+        return "Register - BioPilates";
+      case "/reset_password/:id/:token":
+        return "Reset Password - BioPilates";
+      case "/dashboard":
+        return "Dashboard - BioPilates";
+      case "/admin":
+        return "Admin Dashboard - BioPilates";
+      case "/user":
+        return "User Profile - BioPilates";
+      case "/manuel":
+        return "Manuel - BioPilates";
+      case "/workshop":
+        return "Workshop - BioPilates";
+      case "/financer-votre-formation":
+        return "Financer Votre Formation - BioPilates";
+      case "/cour/:id":
+        return "Cours - BioPilates";
+      case "/Teaches-biopilates":
+        return "Teaches - BioPilates";
+      case "/Tages-biopilates":
+        return "Tages - BioPilates";
+      case "/Service-biopilates":
+        return "Service - BioPilates";
+      case "/edit-service/:id":
+        return "Edit Service - BioPilates";
+      case "/planning-biopilates":
+        return "Planning - BioPilates";
+      case "/blog-biopilates":
+        return "Blog - BioPilates";
+      case "/add-article-biopilates":
+        return "Add Article - BioPilates";
+      case "/FAQ-biopilates":
+        return "FAQ - BioPilates";
+      case "/Formation-biopilates":
+        return "Formation - BioPilates";
+      case "/Cours-biopilates":
+        return "Cours - BioPilates";
+      case "/ajouter-service-biopilates":
+        return "Ajouter Service - BioPilates";
+      case "/ajouter-planning-biopilates":
+        return "Ajouter Planning - BioPilates";
+      case "/edit-article-biopilates/:id":
+        return "Edit Article - BioPilates";
+      case "/add-FAQ-biopilates":
+        return "Add FAQ - BioPilates";
+      case "/add-Formation-biopilates":
+        return "Add Formation - BioPilates";
+      case "/edit-cours-biopilates/:id":
+        return "Edit Cours - BioPilates";
+      default:
+        return "BioPilates";
+    }
+  };
+
   return (
     <div
       className={`w-full min-h-screen bg-gray-50 ${!isSideNavHidden && "flex"}`}
     >
+      <Helmet>
+        <title>{getTitle(currentRoute)}</title>
+      </Helmet>
       {/* Conditionally render SideNav */}
       {!isSideNavHidden && <SideNav />}
 
@@ -174,7 +263,7 @@ function App() {
 
         {/* scroll to top button */}
         <button
-          className={`size-11 text-2xl bg-marron opacity-0 text-white rounded-full fixed transform duration-300 ease-in-out z-50 right-16 bottom-20 cursor-pointer ${
+          className={`max-md:hidden size-11 text-2xl bg-marron opacity-0 text-white rounded-full fixed transform duration-300 ease-in-out z-50 right-16 bottom-20 cursor-pointer ${
             showButton ? "opacity-100 block" : "opacity-0"
           }`}
           onClick={scrollToTop}
@@ -221,6 +310,12 @@ function App() {
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/admin" element={<AdminDashboard />} />
             <Route path="/user" element={<UserProfile />} />
+            <Route path="/manuel" element={<Manuel />} />
+            <Route path="/workshop" element={<Workshops />} />
+            <Route
+              path="/financer-votre-formation"
+              element={<FinancerVotreFormationDash />}
+            />
             <Route path="/cour/:id" element={<OneCours />} />
 
             {/* Biopilates-specific Routes */}

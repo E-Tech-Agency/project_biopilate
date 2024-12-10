@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import "@/assets/styles/image-slider.css";
 import "swiper/swiper-bundle.css";
 import "@/assets/styles/swiper.css";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -9,7 +8,6 @@ import { Pagination } from "swiper/modules";
 import { BsArrowUpRight } from "react-icons/bs";
 import { Swiper as SwiperType } from "swiper/types";
 import blogBg from "@/assets/images/blog-bg.jpg";
-import ReserverButton from "./ReserverButton";
 
 interface Course {
   title: string;
@@ -23,10 +21,7 @@ interface ImageSliderCoursProps {
   action: string;
 }
 
-export default function ImageSliderCours({
-  list,
-  action,
-}: ImageSliderCoursProps) {
+export default function ImageSliderCours({ list }: ImageSliderCoursProps) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [hoverIndex, setHoverIndex] = useState(null);
   const [isMobile, setIsMobile] = useState(false);
@@ -80,7 +75,7 @@ export default function ImageSliderCours({
           </div>
           <div className="text-wrapper overflow-hidden relative min-h-[150px]">
             <p
-              className={`leading-7 ${
+              className={`text-center leading-7 ${
                 isAnimating ? "slide-out-bottom" : "slide-in-top"
               }`}
               dangerouslySetInnerHTML={{
@@ -88,7 +83,18 @@ export default function ImageSliderCours({
               }}
             ></p>
           </div>
-          <ReserverButton text={action} />
+          <button
+            className={`flex overflow-hidden reserver-button cursor-pointer bg-bgColor flex-col justify-center items-center text-base leading-6 rounded-lg text-current max-sm:w-full w-fit transition duration-300 ease-in-out transform`}
+            onClick={() => {
+              window.open(
+                "https://backoffice.bsport.io/m/Studio%20Biopilates%20Paris/878/calendar/?isPreview=true&tabSelected=0",
+                "_blank"
+              );
+            }}
+          >
+            <div className="hover-circle overflow-hidden" />
+            Réserver
+          </button>
         </div>
         <div className="container w-full ">
           <Swiper
@@ -103,17 +109,8 @@ export default function ImageSliderCours({
             }
             pagination={{ el: ".swiper-pagination", clickable: true }} // lowercase "pagination"
             modules={[Pagination]}
-            initialSlide={1}
+            // initialSlide={1}
             breakpoints={{
-              1920: {
-                slidesPerView: 4,
-              },
-              1600: {
-                slidesPerView: 4,
-              },
-              1440: {
-                slidesPerView: 4,
-              },
               1280: {
                 slidesPerView: 4,
               },

@@ -1,3 +1,5 @@
+import { useState, useEffect } from "react";
+
 import FormationCard from "@/biopilates/components/FormationCard";
 import { FaArrowLeftLong, FaArrowRightLong } from "react-icons/fa6";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -23,60 +25,131 @@ interface Formation {
   image: string;
   description: string;
 }
+const formations: Formation[] = [
+  {
+    title: "Reformer",
+    image: reformerImage,
+    description:
+      "Devenez instructeur <strong>Reformer Pilates</strong> <p>et transformez la posture et la force de vos élèves.</p>",
+  },
+  {
+    title: "Matwork",
+    image: Matwork,
+    description:
+      "Devenez instructeur <strong>Matwork Pilates</strong> <p>et maîtrisez l’art du renforcement et de la mobilité.</p>",
+  },
+  {
+    title: "Chaise",
+    image: formation2Image,
+    description:
+      "Devenez instructeur de la <strong>Chaise Pilates</strong> et optimisez la force et l'équilibre de vos élèves.",
+  },
+  {
+    title: "Cadillac",
+    image: reformerGyrotonicImage,
+    description:
+      "Devenez instructeur <strong>Cadillac Pilates</strong> <p>et explorez de nouvelles dimensions de force et de flexibilité.</p>",
+  },
+  {
+    title: "Barrils",
+    image: formation1Image,
+    description:
+      "Devenez instructeur <strong>Barril Pilates</strong> <p>et développez la puissance et la fluidité de vos élèves.</p>",
+  },
+  {
+    title: "<p>Anatomie Fonctionnelle </p>et biomécanique en privée",
+    image: formation5Image,
+    description:
+      "Devenez instructeur en <strong>anatomie</strong> <p>et améliorez votre compréhension du corps pour mieux guider vos élèves.</p>",
+  },
+  {
+    title:
+      "<p>Blessures et Population spécifiques et prénatal</p> et postnatal-ISP",
+    image: Blessures,
+    description:
+      "<p>Devenez instructeur en <strong>ISP</strong> </p>et apprenez à équilibrer corps <p>et esprit pour optimiser la performance.</p>",
+  },
+];
+
+const formationsSmallScreen: Formation[] = [
+  {
+    title: "Reformer",
+    image: reformerImage,
+    description:
+      "Devenez instructeur <strong>Reformer Pilates</strong> <p>et transformez la posture </p>et la force de vos élèves.",
+  },
+  {
+    title: "Matwork",
+    image: Matwork,
+    description:
+      "Devenez instructeur <strong>Matwork Pilates</strong> <p>et maîtrisez l’art du renforcement et de la mobilité.</p>",
+  },
+  {
+    title: "Chaise",
+    image: formation2Image,
+    description:
+      "Devenez instructeur de la <strong>Chaise Pilates</strong> et optimisez la force et l'équilibre de vos élèves.",
+  },
+  {
+    title: "Cadillac",
+    image: reformerGyrotonicImage,
+    description:
+      "Devenez instructeur <strong>Cadillac Pilates</strong> et explorez de<p> nouvelles dimensions de force et de flexibilité.</p>",
+  },
+  {
+    title: "Barrils",
+    image: formation1Image,
+    description:
+      "Devenez instructeur <strong>Barril Pilates</strong> et développez<p> la puissance et la fluidité de vos élèves.</p>",
+  },
+  {
+    title: "<p>Anatomie Fonctionnelle </p>et biomécanique en privée",
+    image: formation5Image,
+    description:
+      "Devenez instructeur en <strong>anatomie</strong> et améliorez votre<p> compréhension du corps pour mieux guider vos élèves.</p>",
+  },
+  {
+    title:
+      "<p>Blessures et Population spécifiques et prénatal</p> et postnatal-ISP",
+    image: Blessures,
+    description:
+      "<p>Devenez instructeur en <strong>ISP</strong> </p>et apprenez à équilibrer corps et esprit  optimiser la performance.",
+  },
+];
 
 export default function FormationSection({
   text = "Voir nos tarifs",
   bgColor = "bg-bgColor",
 }) {
-  const formations: Formation[] = [
-    {
-      title: "Reformer",
-      image: reformerImage,
-      description:
-        "Devenez instructeur <strong>Reformer Pilates</strong> et transformez la posture et la force de vos élèves.",
-    },
-    {
-      title: "Matwork",
-      image: Matwork,
-      description:
-        "Devenez instructeur <strong>Matwork Pilates</strong> et maîtrisez l’art du renforcement et de la mobilité.",
-    },
-    {
-      title: "Chaise",
-      image: formation2Image,
-      description:
-        "Devenez instructeur de la <strong>Chaise Pilates</strong> et optimisez la force et l'équilibre de vos élèves.",
-    },
-    {
-      title: "Cadillac",
-      image: reformerGyrotonicImage,
-      description:
-        "Devenez instructeur <strong>Cadillac Pilates</strong> et explorez de nouvelles dimensions de force et de flexibilité.",
-    },
-    {
-      title: "Barrils",
-      image: formation1Image,
-      description:
-        "Devenez instructeur <strong>Barril Pilates</strong> et développez la puissance et la fluidité de vos élèves.",
-    },
-    {
-      title: "Anatomie Fonctionnelle et biomécanique en privée",
-      image: formation5Image,
-      description:
-        "Devenez instructeur en <strong>anatomie</strong> et améliorez votre compréhension du corps pour mieux guider vos élèves.",
-    },
-    {
-      title: "Blessures et Population spécifiques et prénatal et postnatal-ISP",
-      image: Blessures,
-      description:
-        "Devenez instructeur en <strong>ISP</strong> et apprenez à équilibrer corps et esprit pour optimiser la performance.",
-    },
-  ];
+  const [isSmallScreen, setIsSmallScreen] = useState(false);
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia("(max-width: 640px)");
+    const handleMediaQueryChange = (e: MediaQueryListEvent) => {
+      setIsSmallScreen(e.matches);
+    };
+
+    // Initial check
+    setIsSmallScreen(mediaQuery.matches);
+
+    // Add listener
+    mediaQuery.addEventListener("change", handleMediaQueryChange);
+
+    // Cleanup listener on unmount
+    return () => {
+      mediaQuery.removeEventListener("change", handleMediaQueryChange);
+    };
+  }, []);
 
   const navigate = useNavigate();
   const navigateToTarifs = () => {
     navigate("/formations#formations-prix");
   };
+
+  const formationsToDisplay = isSmallScreen
+    ? formationsSmallScreen
+    : formations;
+
   return (
     <div className="z-20">
       <div className="mb-6 flex flex-col text-center justify-center items-center gap-4 md:gap-2">
@@ -92,7 +165,7 @@ export default function FormationSection({
       </div>
       <Swiper
         className="centered-slide-carousel swiper-container overflow-hidden mx-[-20px] md:mx-[-48px]"
-        centeredSlides={true}
+        // centeredSlides={true}
         grabCursor={true}
         loop={true}
         spaceBetween={30}
@@ -139,7 +212,7 @@ export default function FormationSection({
           },
         }}
       >
-        {formations.map((formation, index) => (
+        {formationsToDisplay.map((formation, index) => (
           <SwiperSlide
             key={index}
             className="flex flex-col justify-center items-center"
@@ -157,7 +230,7 @@ export default function FormationSection({
       </Swiper>
 
       <button
-        className={`mx-auto max-md:mb-8 md:mb-16 overflow-hidden reserver-button ${bgColor} flex flex-col justify-center items-center text-base leading-6 rounded-md transform`}
+        className={`mx-auto max-md:mb-8 md:mb-10 overflow-hidden bg-bgColor px-4 py-2 font-semibold text-marron hover:text-white ${bgColor} flex flex-col justify-center items-center text-base leading-6 rounded-md transform ease-in-out tr `}
         onClick={navigateToTarifs}
       >
         <div className="hover-circle overflow-hidden" />
