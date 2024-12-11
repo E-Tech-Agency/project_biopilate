@@ -1,4 +1,4 @@
-import React, { useEffect, useState, Suspense } from "react";
+import React, { useEffect, useState, Suspense, useRef } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -29,7 +29,14 @@ export default function CreatePlanningForm() {
     status: "",
     category: "",
   });
+  const [isCategoryModalOpen, setIsCategoryModalOpen] = useState(false); // State for the category modal
   const navigate = useNavigate();
+  const planningRef = useRef<{ fetchCategories: () => void } | null>(null); // Typed ref for TagesShow
+  const handlePlanningAdded = () => {
+    if (planningRef.current) {
+      planningRef.current.fetchCategories(); 
+    }
+  };
 
   useEffect(() => {
     const fetchCategories = async () => {
@@ -85,16 +92,16 @@ export default function CreatePlanningForm() {
   };
 
   return (
-    <div>
-      <div className="flex flex-rowjustify-evenly items-center m-6">
-        <Card className="w-full max-w-2xl mx-auto p-6 my-8">
+    <div className="container mx-auto p-6">
+      
+        <Card className="bg-white shadow-md rounded-lg p-6 m-7">
           <CardHeader>
-            <CardTitle>Ajouter un Planning</CardTitle>
+            <CardTitle >Créer un Nouveau Planning</CardTitle>
           </CardHeader>
           <CardContent>
-            <form onSubmit={handleSubmit}>
-              <div className="grid gap-6">
-                <div className="grid gap-3">
+            <form onSubmit={handleSubmit} className="space-y-6">
+              <div className="grid md:grid-cols-2 gap-4">
+                <div>
                   <Label htmlFor="title">
                     Titre
                     {errors.title && (
@@ -111,7 +118,7 @@ export default function CreatePlanningForm() {
                     className="w-full"
                   />
                 </div>
-                <div className="grid gap-3">
+                <div>
                   <Label htmlFor="duree">
                     Durée
                     {errors.duree && (
@@ -128,8 +135,8 @@ export default function CreatePlanningForm() {
                     className="w-full"
                   />
                 </div>
-                <div className="grid gap-6">
-                  <div className="grid gap-3">
+                <div className="grid md:grid-cols-2 gap-4">
+                  <div>
                     <Label htmlFor="category">
                       Niveau
                       {errors.category && (
@@ -138,22 +145,31 @@ export default function CreatePlanningForm() {
                         </span>
                       )}
                     </Label>
-                    <select
-                      id="category"
-                      name="category"
-                      value={planning.category}
-                      onChange={(e) =>
-                        setPlanning({ ...planning, category: e.target.value })
-                      }
-                      className="mt-1 block w-full rounded-md border-gray-300 shadow-sm"
-                    >
-                      <option value="">Sélectionner un Niveau</option>
-                      {categories.map((niveau) => (
-                        <option key={niveau.id} value={niveau.id}>
-                          {niveau.name}
-                        </option>
-                      ))}
-                    </select>
+                    <div className="flex items-center">
+                      <select
+                        id="category"
+                        name="category"
+                        value={planning.category}
+                        onChange={(e) =>
+                          setPlanning({ ...planning, category: e.target.value })
+                        }
+                        className="mt-1 block w-full rounded-md border-gray-300 shadow-sm"
+                      >
+                        <option value="">Sélectionner un Niveau</option>
+                        {categories.map((niveau) => (
+                          <option key={niveau.id} value={niveau.id}>
+                            {niveau.name}
+                          </option>
+                        ))}
+                      </select>
+                      <Button
+                        type="button"
+                        onClick={() => setIsCategoryModalOpen(true)}
+                        className="ml-2"
+                      >
+                        Ajouter un Niveau
+                      </Button>
+                    </div>
                   </div>
                   <div className="grid gap-3">
                     <Label htmlFor="range">
@@ -219,19 +235,31 @@ export default function CreatePlanningForm() {
                     />
                   </Suspense>
                 </div>
-                <div className="flex justify-end mt-6">
-                  <Button type="submit" className="w-44" size="lg">
-                    Ajouter
+               
+              </div>
+              <div className="flex justify-end space-x-4">
+                  <Button
+                    type="submit"
+                    className="bg-primary hover:bg-opacity-90 transition-colors duration-300"
+                  >
+                    Ajouter le Service
+                  </Button>
+                  <Button
+                    type="button"
+                    onClick={() => navigate("/planning-biopilates")}
+                    className="bg-gray-300 hover:bg-opacity-80 transition-colors duration-300"
+                  >
+                    Annuler
                   </Button>
                 </div>
-              </div>
             </form>
           </CardContent>
         </Card>
-        <div className="flex  gap-3">
-          <CreateCategory />
-        </div>
-      </div>
+
+        {/* Category modal */}
+        {isCategoryModalOpen && (
+          <CreateCategory onClose={() => setIsCategoryModalOpen(false)} onTagAdded={handlePlanningAdded} />
+        )}
     </div>
   );
 }

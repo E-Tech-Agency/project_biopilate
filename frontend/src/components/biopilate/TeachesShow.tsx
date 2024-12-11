@@ -24,7 +24,7 @@ import api from "@/lib/api";
 import { toast } from "sonner";
 import axios, { AxiosError } from "axios";
 import { Teache, TeacherFormType, TeacherFormEditType } from "@/types/types";
-
+import { Camera, Upload } from 'lucide-react';
 export default function TeachesShow() {
     const [teaches, setTeaches] = useState<Teache[]>([]);
     const [filteredTeaches, setFilteredTeaches] = useState<Teache[]>([]);
@@ -36,6 +36,7 @@ export default function TeachesShow() {
         nomber_phone: 0,
         specialite: "",
         image: null,
+        description: "",
     });
     const [searchTerm, setSearchTerm] = useState("");
     const [isEditing, setIsEditing] = useState(false); // Track whether modal is for editing or adding
@@ -90,7 +91,7 @@ export default function TeachesShow() {
             formData.append("email", data.email);
             formData.append("nomber_phone", data.nomber_phone.toString());
             formData.append("specialite", data.specialite);
-    
+            formData.append("description", data.description);
             if (data.image instanceof File) {
                 formData.append("image", data.image);
             }
@@ -119,7 +120,7 @@ export default function TeachesShow() {
             formData.append("email", teache.email);
             formData.append("specialite", teache.specialite);
             formData.append("nomber_phone", teache.nomber_phone.toString());
-
+            formData.append("description", teache.description);
             if (teache.image) {
                 formData.append("image", teache.image);
             }
@@ -136,6 +137,7 @@ export default function TeachesShow() {
                 nomber_phone: 0,
                 specialite: "",
                 image: null,
+                description: "",
             });
             setIsModalOpen(false);
             getTeaches();
@@ -275,64 +277,101 @@ export default function TeachesShow() {
                         <TeachesEditForm teache={selectedTeache as Teache} onSave={updateTeaches} onClose={() => setIsModalOpen(false)} />
                     ) : (
                         <form onSubmit={handleSubmit}>
-                            <div className="grid gap-6">
-                                <div className="grid gap-3">
-                                    <Label htmlFor="fullname">Prénom et Nom</Label>
-                                    <Input
-                                        id="fullname"
-                                        type="text"
-                                        className="w-full"
-                                        placeholder="Prénom et Nom"
-                                        value={teache.fullname}
-                                        onChange={(e) => setTeache({ ...teache, fullname: e.target.value })}
-                                    />
-                                </div>
-                                <div className="grid gap-3">
-                                    <Label htmlFor="email">Email</Label>
-                                    <Input
-                                        id="email"
-                                        placeholder="Instructeur Email"
-                                        className="w-full"
-                                        value={teache.email}
-                                        onChange={(e) => setTeache({ ...teache, email: e.target.value })}
-                                    />
-                                </div>
-                                <div className="flex flex-col gap-6 items-center">
-                                    <div className="flex flex-row justify-center gap-3 items-center">
-                                        <Label htmlFor="nomber_phone">Numéro téléphone</Label>
-                                        <Input
-                                            id="nomber_phone"
-                                            type="number"
-                                            className="w-25"
-                                            placeholder="Numéro téléphone"
-                                            value={teache.nomber_phone}
-                                            onChange={(e) => setTeache({ ...teache, nomber_phone: Number(e.target.value) })}
-                                        />
-                                        <Label htmlFor="specialite">Spécialité</Label>
-                                        <Input
-                                            id="specialite"
-                                            type="text"
-                                            className="w-25"
-                                            placeholder="Spécialité"
-                                            value={teache.specialite}
-                                            onChange={(e) => setTeache({ ...teache, specialite: e.target.value })}
-                                        />
-                                    </div>
-                                    <div className="grid gap-3">
-                                        <Label htmlFor="image">Ajouter une image</Label>
-                                        <Input
-                                            id="image"
-                                            type="file"
-                                            className="w-full"
-                                            onChange={handleImageChange}
-                                        />
-                                    </div>
-                                    <div>
-                                    <Button type="submit" className="w-44" size="lg">Ajouter</Button>
-                                    </div>
-                                </div>
+                        <div className="text-center mb-6">
+                          <h2 className="text-2xl font-bold text-gray-800">Inscription Instructeur</h2>
+                          <p className="text-gray-500">Remplissez les détails de l'instructeur</p>
+                        </div>
+                      
+                        <div className="flex justify-center mb-6">
+                          <div className="relative">
+                            <div className="w-32 h-32 bg-gray-200 rounded-full flex items-center justify-center">
+                              <Camera className="text-gray-500" size={48} />
                             </div>
-                        </form>
+                            <label htmlFor="image" className="absolute bottom-0 right-0 bg-blue-500 text-white rounded-full p-2 cursor-pointer">
+                              <Upload size={20} />
+                              <input 
+                                id="image" 
+                                type="file" 
+                                className="hidden" 
+                                onChange={handleImageChange} 
+                              />
+                            </label>
+                          </div>
+                        </div>
+                      
+                        <div className="grid gap-6">
+                          <div className="grid md:grid-cols-2 gap-4">
+                            <div>
+                              <Label htmlFor="fullname" className="block mb-2 text-gray-700">Prénom et Nom</Label>
+                              <Input
+                                id="fullname"
+                                type="text"
+                                placeholder="Ex: Marie Dupont"
+                                value={teache.fullname}
+                                onChange={(e) => setTeache({ ...teache, fullname: e.target.value })}
+                                className="w-full border-gray-300 focus:border-blue-500 focus:ring focus:ring-blue-200"
+                              />
+                            </div>
+                            <div>
+                              <Label htmlFor="email" className="block mb-2 text-gray-700">Email</Label>
+                              <Input
+                                id="email"
+                                type="email"
+                                placeholder="instructeur@example.com"
+                                value={teache.email}
+                                onChange={(e) => setTeache({ ...teache, email: e.target.value })}
+                                className="w-full border-gray-300 focus:border-blue-500 focus:ring focus:ring-blue-200"
+                              />
+                            </div>
+                          </div>
+                      
+                          <div className="grid md:grid-cols-2 gap-4">
+                            <div>
+                              <Label htmlFor="nomber_phone" className="block mb-2 text-gray-700">Numéro de téléphone</Label>
+                              <Input
+                                id="nomber_phone"
+                                type="tel"
+                                placeholder="+33 6 12 34 56 78"
+                                value={teache.nomber_phone}
+                                onChange={(e) => setTeache({ ...teache, nomber_phone: Number(e.target.value) })}
+                                className="w-full border-gray-300 focus:border-blue-500 focus:ring focus:ring-blue-200"
+                              />
+                            </div>
+                            <div>
+                              <Label htmlFor="specialite" className="block mb-2 text-gray-700">Spécialité</Label>
+                              <Input
+                                id="specialite"
+                                type="text"
+                                placeholder="Ex: Pilates"
+                                value={teache.specialite}
+                                onChange={(e) => setTeache({ ...teache, specialite: e.target.value })}
+                                className="w-full border-gray-300 focus:border-blue-500 focus:ring focus:ring-blue-200"
+                              />
+                            </div>
+                          </div>
+                      
+                          <div>
+                            <Label htmlFor="description" className="block mb-2 text-gray-700">Biographie</Label>
+                            <textarea
+                              id="description"
+                              placeholder="Parlez-nous de votre parcours et de votre expertise..."
+                              value={teache.description}
+                              onChange={(e) => setTeache({ ...teache, description: e.target.value })}
+                              className="w-full h-40 p-3 border border-gray-300 rounded-md focus:border-blue-500 focus:ring focus:ring-blue-200"
+                            />
+                          </div>
+                      
+                          <div className="text-center">
+                            <Button 
+                              type="submit" 
+                              className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-full transition duration-300 ease-in-out transform hover:scale-105"
+                            >
+                              Ajouter Instructeur
+                            </Button>
+                          </div>
+                        </div>
+                      </form>
+                      
                     )}
                 </Modal>
             )}

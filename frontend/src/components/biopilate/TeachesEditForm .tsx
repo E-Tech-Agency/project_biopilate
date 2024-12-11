@@ -17,7 +17,9 @@ const TeachesEditForm: React.FC<TeachesEditFormProps> = ({ teache, onSave, onClo
         nomber_phone: teache.nomber_phone,
         specialite: teache.specialite,
         image: teache.image,
+        description: teache.description,
     });
+
     const [errors, setErrors] = useState<CreateTeacherErrors>({});
     const [imagePreviewUrl, setImagePreviewUrl] = useState<string | undefined>(teache.image);
 
@@ -28,19 +30,20 @@ const TeachesEditForm: React.FC<TeachesEditFormProps> = ({ teache, onSave, onClo
             nomber_phone: teache.nomber_phone,
             specialite: teache.specialite,
             image: teache.image,
+            description: teache.description,
         });
         setImagePreviewUrl(teache.image);
     }, [teache]);
 
     useEffect(() => {
         return () => {
-            if (imagePreviewUrl && imagePreviewUrl.startsWith('blob:')) {
+            if (imagePreviewUrl && imagePreviewUrl.startsWith("blob:")) {
                 URL.revokeObjectURL(imagePreviewUrl);
             }
         };
     }, [imagePreviewUrl]);
 
-    const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         const { id, value } = e.target;
         setFormState((prev) => ({
             ...prev,
@@ -55,40 +58,42 @@ const TeachesEditForm: React.FC<TeachesEditFormProps> = ({ teache, onSave, onClo
                 ...prev,
                 image: file,
             }));
-            setImagePreviewUrl(URL.createObjectURL(file)); // Update preview URL
+            setImagePreviewUrl(URL.createObjectURL(file));
         }
     };
 
     const validateForm = (): boolean => {
         let isValid = true;
-        const newErrors: CreateTeacherErrors = {};
-
-        // Initialize errors arrays
-        newErrors.fullname = [];
-        newErrors.email = [];
-        newErrors.nomber_phone = [];
-        newErrors.specialite = [];
-        newErrors.image = [];
+        const newErrors: CreateTeacherErrors = {
+            fullname: [],
+            email: [],
+            nomber_phone: [],
+            specialite: [],
+            image: [],
+            description: [],
+        };
 
         if (!formState.fullname) {
-            newErrors.fullname.push("Full name is required.");
+            newErrors.fullname.push("Le nom complet est requis.");
             isValid = false;
         }
         if (!formState.email) {
-            newErrors.email.push("Email is required.");
+            newErrors.email.push("L'email est requis.");
             isValid = false;
         }
         if (!formState.nomber_phone || isNaN(formState.nomber_phone)) {
-            newErrors.nomber_phone.push("Valid phone number is required.");
+            newErrors.nomber_phone.push("Un numéro de téléphone valide est requis.");
             isValid = false;
         }
         if (!formState.specialite) {
-            newErrors.specialite.push("Speciality is required.");
+            newErrors.specialite.push("La spécialité est requise.");
             isValid = false;
         }
-        // Add more validation rules as needed
+        if (!formState.description) {
+            newErrors.description.push("La biographie est requise.");
+            isValid = false;
+        }
 
-        // Update state directly with errors
         setErrors(newErrors);
         return isValid;
     };
@@ -109,63 +114,26 @@ const TeachesEditForm: React.FC<TeachesEditFormProps> = ({ teache, onSave, onClo
             <div className="grid gap-4 sm:grid-cols-2">
                 {imagePreviewUrl && (
                     <div className="mb-4">
-                        <img src={imagePreviewUrl} alt="Current" className="w-32 h-32 object-cover" />
+                        <img
+                            src={imagePreviewUrl}
+                            alt="Image actuelle"
+                            className="w-32 h-32 object-cover rounded-md border"
+                        />
                     </div>
                 )}
+
                 <div>
-                    <Label htmlFor="fullname">Prénom et Nom</Label>
+                    <Label htmlFor="fullname">Nom complet</Label>
                     <Input
                         id="fullname"
                         type="text"
                         value={formState.fullname}
                         onChange={handleInputChange}
-                        placeholder="Prénom et Nom"
+                        placeholder="Nom complet"
                         className="w-full"
                     />
-                    {errors.fullname && errors.fullname.map((error, index) => (
-                        <p key={index} className="text-red-500 mt-1">{error}</p>
-                    ))}
-                </div>
-                <div>
-                    <Label htmlFor="email">Email</Label>
-                    <Input
-                        id="email"
-                        type="email"
-                        value={formState.email}
-                        onChange={handleInputChange}
-                        placeholder="Instructeur Email"
-                        className="w-full"
-                    />
-                    {errors.email && errors.email.map((error, index) => (
-                        <p key={index} className="text-red-500 mt-1">{error}</p>
-                    ))}
-                </div>
-                <div>
-                    <Label htmlFor="nomber_phone">Numéro Téléphone</Label>
-                    <Input
-                        id="nomber_phone"
-                        type="number"
-                        value={formState.nomber_phone}
-                        onChange={handleInputChange}
-                        placeholder="Numéro Téléphone"
-                        className="w-full"
-                    />
-                    {errors.nomber_phone && errors.nomber_phone.map((error, index) => (
-                        <p key={index} className="text-red-500 mt-1">{error}</p>
-                    ))}
-                </div>
-                <div>
-                    <Label htmlFor="specialite">Spécialité</Label>
-                    <Input
-                        id="specialite"
-                        type="text"
-                        value={formState.specialite}
-                        onChange={handleInputChange}
-                        placeholder="Spécialité"
-                        className="w-full"
-                    />
-                    {errors.specialite && errors.specialite.map((error, index) => (
-                        <p key={index} className="text-red-500 mt-1">{error}</p>
+                    {errors.fullname?.map((error, index) => (
+                        <p key={index} className="text-red-500 mt-1 text-sm">{error}</p>
                     ))}
                 </div>
                 <div className="sm:col-span-2">
@@ -176,14 +144,75 @@ const TeachesEditForm: React.FC<TeachesEditFormProps> = ({ teache, onSave, onClo
                         onChange={handleImageChange}
                         className="w-full"
                     />
-                    {errors.image && errors.image.map((error, index) => (
-                        <p key={index} className="text-red-500 mt-1">{error}</p>
+                    {errors.image?.map((error, index) => (
+                        <p key={index} className="text-red-500 mt-1 text-sm">{error}</p>
+                    ))}
+                </div>
+                <div>
+                    <Label htmlFor="email">Email</Label>
+                    <Input
+                        id="email"
+                        type="email"
+                        value={formState.email}
+                        onChange={handleInputChange}
+                        placeholder="Adresse email"
+                        className="w-full"
+                    />
+                    {errors.email?.map((error, index) => (
+                        <p key={index} className="text-red-500 mt-1 text-sm">{error}</p>
+                    ))}
+                </div>
+
+                <div>
+                    <Label htmlFor="nomber_phone">Numéro de téléphone</Label>
+                    <Input
+                        id="nomber_phone"
+                        type="number"
+                        value={formState.nomber_phone}
+                        onChange={handleInputChange}
+                        placeholder="Numéro de téléphone"
+                        className="w-full"
+                    />
+                    {errors.nomber_phone?.map((error, index) => (
+                        <p key={index} className="text-red-500 mt-1 text-sm">{error}</p>
+                    ))}
+                </div>
+
+                <div>
+                    <Label htmlFor="specialite">Spécialité</Label>
+                    <Input
+                        id="specialite"
+                        type="text"
+                        value={formState.specialite}
+                        onChange={handleInputChange}
+                        placeholder="Spécialité"
+                        className="w-full"
+                    />
+                    {errors.specialite?.map((error, index) => (
+                        <p key={index} className="text-red-500 mt-1 text-sm">{error}</p>
+                    ))}
+                </div>
+
+                
+
+                <div className="sm:col-span-2">
+                    <Label htmlFor="description">Biographie</Label>
+                    <textarea
+                        id="description"
+                        value={formState.description}
+                        onChange={(e) => handleInputChange(e as React.ChangeEvent<HTMLTextAreaElement>)}
+                        placeholder="Écrivez une brève biographie"
+                        className="w-full h-40 p-3 border border-gray-300 rounded-md focus:ring focus:ring-blue-200"
+                    />
+                    {errors.description?.map((error, index) => (
+                        <p key={index} className="text-red-500 mt-1 text-sm">{error}</p>
                     ))}
                 </div>
             </div>
-            <div className="flex justify-end space-x-4">
-                <Button type="button" variant="secondary" onClick={onClose}>Annuler</Button>
-                <Button type="submit" className="w-full" size="lg">Mettre à jour</Button>
+
+            <div className="flex justify-end space-x-4 mt-6">
+                <Button type="button" variant="secondary" onClick={onClose} className="px-4 py-2">Annuler</Button>
+                <Button type="submit" className="px-4 py-2">Enregistrer les modifications</Button>
             </div>
         </form>
     );

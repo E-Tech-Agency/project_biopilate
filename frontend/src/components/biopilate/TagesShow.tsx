@@ -1,6 +1,6 @@
 import api from "@/lib/api";
 import { Tage } from "@/types/types";
-import { useEffect, useState } from "react";
+import React, { useEffect, useImperativeHandle, forwardRef, useState } from "react";
 import { FaTrash, FaEdit } from "react-icons/fa";
 import {
     Card,
@@ -21,7 +21,8 @@ import { Modal } from "./Modal";
 import TagesForm from "./TagesForm";
 import { Label } from "@/components/ui/label";
 
-export default function TagesShow() {
+const TagesShow = forwardRef((props, ref) => {
+
     const [tages, setTages] = useState<Tage[]>([]);
     const [filteredTages, setFilteredTages] = useState<Tage[]>([]);
     const [selectedTage, setSelectedTage] = useState<Tage | null>(null);
@@ -34,6 +35,9 @@ export default function TagesShow() {
     useEffect(() => {
         getTages();
     }, []);
+    useImperativeHandle(ref, () => ({
+        getTages,
+      }));
 
     const getTages = async () => {
         try {
@@ -230,4 +234,6 @@ export default function TagesShow() {
             )}
         </Card>
     );
-}
+});
+
+export default TagesShow;

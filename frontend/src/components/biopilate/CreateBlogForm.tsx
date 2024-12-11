@@ -1,7 +1,8 @@
 import { useNavigate } from "react-router-dom";
-import { CreateBlogErrors, BlogFormType } from "@/types/types";
+import { CreateBlogErrors, BlogFormType , Tage } from "@/types/types";
 import { useEffect, useState } from "react";
 import apiCreateTeache from "@/lib/apiCreateTeache";
+import api from "@/lib/api";
 import axios from "axios";
 import { toast } from "sonner";
 import "react-quill/dist/quill.snow.css"; // Import styles for React Quill
@@ -17,7 +18,7 @@ export default function CreateBlogForm() {
       navigate("/login");
     }
   }, [navigate]);
-
+    const [tages,setTages]= useState<Tage[]>([]);
   const [errors, setErrors] = useState<CreateBlogErrors>({});
   const [blog, setBlog] = useState<BlogFormType>({
     title: "",
@@ -30,7 +31,22 @@ export default function CreateBlogForm() {
     date: new Date().toISOString().split("T")[0], // Default to today's date in YYYY-MM-DD format
     range: 0,
     favorites: 0,
+    tages:[],
   });
+  useEffect(() => {
+    const fetchTages = async () => {
+        try {
+            const res = await api.get("tages/");
+            setTages(res.data);
+            console.log(res.data);
+            
+        } catch (error) {
+            console.error("Error fetching tages", error);
+        }
+    };
+
+    fetchTages();
+}, []);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -46,8 +62,9 @@ export default function CreateBlogForm() {
     formData.append(
       "favorites",
       blog.favorites !== null ? blog.favorites.toString() : ""
-    ); // Convert number to string or use empty string // Convert number to string
-
+    );
+    formData.append('tages', blog.tages.toString());
+    
     if (blog.image_1) formData.append("image_1", blog.image_1);
     if (blog.image_2) formData.append("image_2", blog.image_2);
 
@@ -64,6 +81,7 @@ export default function CreateBlogForm() {
         date: new Date().toISOString().split("T")[0], // Reset to today's date
         range: 0,
         favorites: 0,
+        tages:[],
       });
       toast.success("Blog created");
       navigate("/blog-biopilates");
@@ -83,6 +101,7 @@ export default function CreateBlogForm() {
         handleSubmit={handleSubmit}
         errors={errors}
         blog={blog}
+        tages={tages}
         setBlog={setBlog}
       />
     </div>

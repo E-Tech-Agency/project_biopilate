@@ -12,8 +12,10 @@ import apiCreateTeache from "@/lib/apiCreateTeache";
 import axios from "axios";
 import { toast } from "sonner";
 import { CreateTagesErrors, TagesFormType } from "@/types/types";
-
-export default function CreateTagesForm() {
+interface CreateTagesFormProps {
+    onTageAdded: () => void; // Callback to notify parent component of new tage
+  }
+export default function CreateTagesForm({ onTageAdded }: CreateTagesFormProps)  {
     const [errors, setErrors] = useState<CreateTagesErrors>({});
     const [tage, setTage] = useState<TagesFormType>({
         title: "",
@@ -26,6 +28,8 @@ export default function CreateTagesForm() {
             await apiCreateTeache.post("tages/", tage);
             toast.success("Biopilate tages created");
             setTage({ title: "", status: "" });
+            setErrors({});
+            onTageAdded();
         } catch (error) {
             if (axios.isAxiosError(error)) {
                 setErrors(error.response?.data);

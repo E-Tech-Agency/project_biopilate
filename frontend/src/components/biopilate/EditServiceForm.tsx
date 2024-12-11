@@ -58,7 +58,6 @@ const ServiceEditForm: React.FC<ServiceEditFormProps> = ({ service, onUpdate }) 
     };
 
     const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        // Ensure files is not null and has at least one file
         const file = e.target.files?.[0] || null;
         setImage(file);
     };
@@ -80,84 +79,86 @@ const ServiceEditForm: React.FC<ServiceEditFormProps> = ({ service, onUpdate }) 
     };
 
     return (
-        <form onSubmit={handleSubmit}>
-            <h1 className="mb-4">Modifier Service</h1>
-            <div className="mb-4">
-                <Label htmlFor="title">Titre</Label>
-                <Input
-                    id="title"
-                    name="title"
-                    type="text"
-                    value={title}
-                    onChange={handleInputChange}
-                    className="mt-1 block w-full rounded-md border-gray-300 shadow-sm"
-                />
-            </div>
-            <div className="mb-4">
-                <Label htmlFor="description">Description</Label>
-                <Input
-                    id="description"
-                    name="description"
-                    type="text"
-                    value={description}
-                    onChange={handleInputChange}
-                    className="mt-1 block w-full rounded-md border-gray-300 shadow-sm"
-                />
-            </div>
-            <div className="mb-4">
-                <Label htmlFor="status">Status</Label>
-                <select
-                    id="status"
-                    name="status"
-                    value={status}
-                    onChange={handleInputChange}
-                    className="mt-1 block w-full rounded-md border-gray-300 shadow-sm"
-                >
-                    <option value="pending">En attente de publication</option>
-                    <option value="approved">Publiée</option>
-                </select>
-            </div>
-            <div className="mb-4">
-                <Label htmlFor="instructeur">Instructeur</Label>
-                <select
-                    id="instructeur"
-                    name="instructeur"
-                    value={instructeur}
-                    onChange={handleInputChange}
-                    className="mt-1 block w-full rounded-md border-gray-300 shadow-sm"
-                >
-                    {instructeurs.map((inst) => (
-                        <option key={inst.id} value={inst.fullname}>
-                            {inst.fullname}
-                        </option>
-                    ))}
-                </select>
-            </div>
-            <div className="mb-4">
-                <Label htmlFor="image">Image</Label>
-                <Input
-                    id="image"
-                    name="image"
-                    type="file"
-                    onChange={handleImageChange}
-                    className="mt-1 block w-full"
-                />
-                {service.image && (
-                    <img src={service.image} alt={service.title} className="w-16 h-16 rounded-full mt-2" />
-                )}
-            </div>
-            <div className="mb-4">
-                <Label htmlFor="full_text">Texte Complet</Label>
-                <ReactQuill
-                    id="full_text"
-                    value={fullText}
-                    onChange={handleQuillChange}
-                    className="w-full"
-                    theme="snow"
-                />
+        <form onSubmit={handleSubmit} className="space-y-8 bg-white p-6 rounded-lg shadow-lg">
+            <h1 className="text-2xl font-semibold mb-6">Modifier Service</h1>
+            <div className="grid md:grid-cols-2 gap-6">
+                <div>
+                    <Label htmlFor="title">Titre du Service</Label>
+                    <Input
+                        id="title"
+                        name="title"
+                        type="text"
+                        value={title}
+                        onChange={handleInputChange}
+                        className="mt-1 block w-full p-2 border rounded-md border-gray-300 focus:outline-none focus:ring focus:ring-blue-500"
+                    />
+                </div>
+                <div>
+                    <Label htmlFor="instructeur">Instructeur</Label>
+                    <select
+                        id="instructeur"
+                        name="instructeur"
+                        value={instructeur}
+                        onChange={handleInputChange}
+                        className="mt-1 block w-full p-2 border rounded-md border-gray-300 focus:outline-none focus:ring focus:ring-blue-500"
+                    >
+                        {instructeurs.map((inst) => (
+                            <option key={inst.id} value={inst.fullname}>
+                                {inst.fullname}
+                            </option>
+                        ))}
+                    </select>
+                </div>
+                <div>
+                    <Label htmlFor="description">Description</Label>
+                    <Input
+                        id="description"
+                        name="description"
+                        type="text"
+                        value={description}
+                        onChange={handleInputChange}
+                        className="mt-1 block w-full p-2 border rounded-md border-gray-300 focus:outline-none focus:ring focus:ring-blue-500"
+                    />
+                </div>
+                <div>
+                    <Label htmlFor="status">Status</Label>
+                    <select
+                        id="status"
+                        name="status"
+                        value={status}
+                        onChange={handleInputChange}
+                        className="mt-1 block w-full p-2 border rounded-md border-gray-300 focus:outline-none focus:ring focus:ring-blue-500"
+                    >
+                        <option value="pending">En attente de publication</option>
+                        <option value="approved">Publiée</option>
+                    </select>
+                </div>
+                <div className="mb-6">
+                    <Label htmlFor="image">Image</Label>
+                    <Input
+                        id="image"
+                        name="image"
+                        type="file"
+                        onChange={handleImageChange}
+                        className="mt-1 block w-full p-2 border rounded-md border-gray-300 focus:outline-none focus:ring focus:ring-blue-500"
+                    />
+                    {service.image && (
+                        <img src={service.image} alt={service.title} className="w-16 h-16 rounded-full mt-2" />
+                    )}
+                </div>
+                <div className="mb-6">
+                    <Label htmlFor="full_text">Texte Complet</Label>
+                    <ReactQuill
+                        id="full_text"
+                        value={fullText}
+                        onChange={handleQuillChange}
+                        className="w-full border rounded-md focus:outline-none focus:ring focus:ring-blue-500"
+                        theme="snow"
+                    />
+                </div>
             </div>
             <div className="flex justify-end space-x-2">
-                <Button type="submit" className="px-4 py-2 bg-blue-600 text-white rounded-md">
+                <Button type="submit" className="px-6 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition">
                     Enregistrer
                 </Button>
             </div>

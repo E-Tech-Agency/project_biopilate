@@ -9,7 +9,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 import "react-quill/dist/quill.snow.css"; // Import styles for React Quill
-import { BlogFormType, CreateBlogErrors } from "@/types/types";
+import { BlogFormType, CreateBlogErrors ,Tage} from "@/types/types";
 const ReactQuill = React.lazy(() => import("react-quill"));
 
 type BlogFormProps = {
@@ -17,16 +17,20 @@ type BlogFormProps = {
     errors: CreateBlogErrors;
     blog: BlogFormType;
     setBlog: React.Dispatch<React.SetStateAction<BlogFormType>>;
+    tages:Tage;
 };
 
-const BlogForm: React.FC<BlogFormProps> = ({ handleSubmit, errors, blog, setBlog }) => {
-    const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+const BlogForm: React.FC<BlogFormProps> = ({ handleSubmit, errors, blog, setBlog ,tages}) => {
+    const handleInputChange = (
+        e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
+      ) => {
         const { name, value } = e.target;
         setBlog((prevBlog) => ({
-            ...prevBlog,
-            [name]: value,
+          ...prevBlog,
+          [name]: value,
         }));
-    };
+      };
+      
 
   
     const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -96,6 +100,23 @@ const BlogForm: React.FC<BlogFormProps> = ({ handleSubmit, errors, blog, setBlog
                                 onChange={handleInputChange}
                                 className="w-full p-2 border rounded-md"
                             />
+                        </div>
+                        <div className="grid gap-3">
+                            <Label htmlFor="tages">tages {errors.tages && <li className="text-red-500 mt-1">{errors.tages}</li>}</Label>
+                            <select
+                                id="tages"
+                                name="tages"
+                                value={blog.tages}
+                                onChange={handleInputChange}
+                                className="mt-1 block w-full rounded-md border-gray-300 shadow-sm"
+                            >
+                                <option value="">Sélectionner un tages</option>
+                                {tages.map((tage) => (
+                                    <option key={tage.id} value={tage.id}>
+                                        {tage.title}
+                                    </option>
+                                ))}
+                            </select>
                         </div>
                         <div className="grid grid-cols-2 gap-4 items-center">
                             <div className="grid gap-3">

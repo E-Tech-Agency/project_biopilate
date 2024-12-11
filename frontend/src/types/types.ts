@@ -51,6 +51,7 @@ export type UserType = {
 export type Teache = {
     id: number;
     fullname : string;
+    description : string;
     image: string;
     email : string;
     nomber_phone : number;
@@ -64,6 +65,7 @@ export type TeacherFormType = {
     email : string;
     nomber_phone : number;
     specialite : string;
+    description : string;
     
 
 }
@@ -73,6 +75,7 @@ export type TeacherFormEditType = {
     email : string;
     nomber_phone : number;
     specialite : string;
+    description : string;
     
 
 }
@@ -82,6 +85,7 @@ export type CreateTeacherErrors = {
     nomber_phone?: string[];
     specialite?: string[];
     image?: string[];
+    description?:string[]
    
 }
 export type Tage = {
@@ -176,6 +180,7 @@ export type Blog = {
     date:Date;
     range:number;
     view:number;
+    tages: string[];
     create_at: Date;
     updated_at: Date;
 }
@@ -190,6 +195,7 @@ export type BlogFormType = {
     date: string | Date;
     range:number;
     favorites:number | null;
+    tages: string[];
      
 
 }
@@ -197,13 +203,15 @@ export type CreateBlogErrors = {
     title?: string[];
     author?: string[];
     description?: string[];
-    
     status?: string[];
     image_1?: string[];
     image_2?: string[];
     full_text?: string[];
     date?: string[];
     range?: string[];
+    favorites?: string[];
+    tages?: string[];
+
    
 }
 
