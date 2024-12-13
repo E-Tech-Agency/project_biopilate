@@ -7,14 +7,14 @@ class CategoryWorkShopSerializer(serializers.ModelSerializer):
         fields = ['id', 'name']
 
 class WorkShopSerializer(serializers.ModelSerializer):
-    category_cours = serializers.CharField(
+    category_workshop = serializers.CharField(
         source='category.name', read_only=True)
 
     class Meta:
         model = WorkShop
         fields = [
             'id', 'title', 'description', 'image',
-            'category', 'category_cours', 'pdf_workshop', 
+            'category', 'category_workshop', 'pdf_workshop', 
             'created_at', 'updated_at', 'status'
         ]
         extra_kwargs = {

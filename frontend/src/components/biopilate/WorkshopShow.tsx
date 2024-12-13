@@ -1,9 +1,9 @@
 import React, { useEffect, useState, Suspense } from "react";
-import { Cours, CoursFormType, CreateCoursErrors, CategoryCours } from "@/types/types";
+import { WorkShop, WorkShopFormType, CreateWorkShopErrors, CategoryWorkShop } from "@/types/types";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
-import { FaTrash, FaEdit } from "react-icons/fa";
-import { useNavigate } from "react-router-dom";
+import { FaTrash, FaEdit, FaFilePdf } from "react-icons/fa";
+import { Link, useNavigate } from "react-router-dom";
 import "react-quill/dist/quill.snow.css"; // Import styles for React Quill
 import { Button } from "@/components/ui/button";
 import api from "@/lib/api";
@@ -13,43 +13,44 @@ import axios, { AxiosError } from "axios";
 import { toast } from "sonner";
 import { Modal } from "./Modal";
 import DOMPurify from 'dompurify'; // Import DOMPurify
-import CreateCategoryCours from "../supplier/create-categorycours";
+import CreateCategoryWOrkShop from "../supplier/create-categoryworkshop";
 const ReactQuill = React.lazy(() => import("react-quill"));
 
 export default function WorkshopShow() {
     const [isModalOpen, setIsModalOpen] = useState(false);
-    const [filteredCours, setFilteredCours] = useState<Cours[]>([]);
-    const [categories, setCategories] = useState<CategoryCours[]>([]);
+    const [filteredWorkShop, setFilteredWorkShop] = useState<WorkShop[]>([]);
+    const [categories, setCategories] = useState<CategoryWorkShop[]>([]);
     const [searchTerm, setSearchTerm] = useState("");
     const [statusFilter, setStatusFilter] = useState("");
     const [categoryFilter, setCategoryFilter] = useState(""); // New state for category filter
     const [rowsPerPage, setRowsPerPage] = useState(10);
     const [currentPage, setCurrentPage] = useState(1);
     const navigate = useNavigate();
-    const [cours, setCours] = useState<Cours[] | null>([]);
-    const [newCours, setNewCours] = useState<CoursFormType>({
+    const [workShops, setWorkShops] = useState<WorkShop[] | null>([]);
+    const [newWorkShop, setNewCWorkShop] = useState<WorkShopFormType>({
         title: "",
         description: "",
         status: "",
         image: null,
         category: "",
+        pdf_workshop: null,
     });
-    const [errors, setErrors] = useState<CreateCoursErrors>({});
+    const [errors, setErrors] = useState<CreateWorkShopErrors>({});
 
-    const getCours = async () => {
+    const getWorkShop = async () => {
         try {
-            const res = await api.get("cours/");
-            setCours(res.data);
-            setFilteredCours(res.data);
+            const res = await api.get("workshops-biopilate/");
+            setWorkShops(res.data);
+            setFilteredWorkShop(res.data);
         } catch (error) {
-            console.error("Error fetching Cours", error);
+            console.error("Error fetching workshops-biopilate", error);
         }
     };
 
     useEffect(() => {
         const fetchCategories = async () => {
             try {
-                const res = await api.get("cours_category/");
+                const res = await api.get("category-workshops/");
                 setCategories(res.data);
             } catch (error) {
                 console.error("Error fetching categories", error);
@@ -60,64 +61,68 @@ export default function WorkshopShow() {
     }, []);
 
     useEffect(() => {
-        getCours();
+        getWorkShop();
     }, []);
 
-    const filterCours = () => {
-        if (cours) {
-            const filtered = cours.filter((cour) => {
-                const formattedDate = new Date(cour.created_at).toLocaleDateString();
-                const fullText = `${cour.title} ${formattedDate}`.toLowerCase();
+    const filterWorkShop = () => {
+        if (workShops) {
+            const filtered = workShops.filter((workShop) => {
+                const formattedDate = new Date(workShop.created_at).toLocaleDateString();
+                const fullText = `${workShop.title} ${formattedDate}`.toLowerCase();
                 const matchesSearchTerm = fullText.includes(searchTerm.toLowerCase());
-                const matchesStatusFilter = statusFilter ? cour.status === statusFilter : true;
-                const matchesCategoryFilter = categoryFilter ? cour.category === Number(categoryFilter) : true;
+                const matchesStatusFilter = statusFilter ? workShop.status === statusFilter : true;
+                const matchesCategoryFilter = categoryFilter ? workShop.category === Number(categoryFilter) : true;
                 return matchesSearchTerm && matchesStatusFilter && matchesCategoryFilter;
             });
-            setFilteredCours(filtered);
+            setFilteredWorkShop(filtered);
         }
     };
 
     useEffect(() => {
-        filterCours();
-    }, [searchTerm, statusFilter, categoryFilter, cours]);
+        filterWorkShop();
+    }, [searchTerm, statusFilter, categoryFilter, workShops]);
 
-    const deleteCours = async (id: number) => {
+    const deleteWorkShop = async (id: number) => {
         try {
-            await api.delete(`cours/${id}/`);
-            getCours();
+            await api.delete(`workshops-biopilate/${id}/`);
+            getWorkShop();
         } catch (error) {
-            console.error("Error deleting Cours", error);
+            console.error("Error deleting workshops-biopilate", error);
         }
     };
 
-    const handleSubmitCours = async (e: React.FormEvent<HTMLFormElement>) => {
+    const handleSubmitWorkShops= async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         try {
             const formData = new FormData();
-            formData.append("title", newCours.title);
-            formData.append("description", newCours.description);
-            formData.append("status", newCours.status);
-            formData.append('category', newCours.category);
-            if (newCours.image) {
-                formData.append("image", newCours.image);
+            formData.append("title", newWorkShop.title);
+            formData.append("description", newWorkShop.description);
+            formData.append("status", newWorkShop.status);
+            formData.append('category', newWorkShop.category);
+            if (newWorkShop.image) {
+                formData.append("image", newWorkShop.image);
+            }
+            if (newWorkShop.pdf_workshop) {
+                formData.append("pdf_workshop", newWorkShop.pdf_workshop);
             }
 
-            await api.post("cours/", formData, {
+            await api.post("workshops-biopilate/", formData, {
                 headers: {
                     "Content-Type": "multipart/form-data",
                 },
             });
-            toast.success("Cours created");
-            setNewCours({
+            toast.success("workshops-biopilate created");
+            setNewCWorkShop({
                 title: "",
                 description: "",
                 status: "",
                 image: null,
                 category: "",
+                pdf_workshop: null,
             });
             setErrors({});
             setIsModalOpen(false);
-            getCours();
+            getWorkShop();
         } catch (error) {
             if (axios.isAxiosError(error)) {
                 const errorsFromDb = (error as AxiosError)?.response?.data;
@@ -128,28 +133,29 @@ export default function WorkshopShow() {
 
     const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const file = e.target.files ? e.target.files[0] : null;
-        setNewCours((prevNewCours) => ({
-            ...prevNewCours,
+        setNewCWorkShop((prevNewWorkshop) => ({
+            ...prevNewWorkshop,
             image: file,
+            pdf_workshop: file,
         }));
     };
-
     const handleQuillChange = (value: string) => {
-        setNewCours((prevNewCours) => ({
-            ...prevNewCours,
+        setNewCWorkShop((prevNewWorkshop) => ({
+            ...prevNewWorkshop,
             description: value,
         }));
     };
+   
 
     const handleChangeRowsPerPage = (value: number) => {
         setRowsPerPage(value);
         setCurrentPage(1); // Reset to first page whenever rows per page change
     };
 
-    const paginatedCours = filteredCours.slice((currentPage - 1) * rowsPerPage, currentPage * rowsPerPage);
+    const paginatedWorkShop = filteredWorkShop.slice((currentPage - 1) * rowsPerPage, currentPage * rowsPerPage);
 
     const handleEditClick = (id: number) => {
-        navigate(`/edit-cours-biopilates/${id}`);
+        navigate(`/edit-workShop-biopilates/${id}`);
     };
 
     return (
@@ -157,33 +163,33 @@ export default function WorkshopShow() {
             <Card className="w-full max-w-6xl mx-auto p-6">
                 <CardHeader className="flex justify-between">
                     <div >
-                        <CardTitle>Liste Cours</CardTitle>
+                        <CardTitle>Liste WorkShops</CardTitle>
                     </div>
                     
                     <div className='flex justify-between '>
                     
             <div><Button variant="default" onClick={() => setIsModalOpen(true)}>
-                            Ajouter un Cours
+                            Ajouter un workShop
                         </Button></div>
                         <div className="mt-2">
-                <CreateCategoryCours />
+                <CreateCategoryWOrkShop />
             </div>
                         
                         
                         <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
-                            <form onSubmit={handleSubmitCours}>
+                            <form onSubmit={handleSubmitWorkShops}>
                                 <div className="grid gap-6">
                                     <div className="grid gap-3">
                                         <Label htmlFor="title">
-                                            Titre du cours
+                                            Titre du workShop
                                             {errors.title && <span className="text-red-500 mt-2">{errors.title}</span>}
                                         </Label>
                                         <Input
                                             id="title"
                                             name="title"
                                             type="text"
-                                            value={newCours.title}
-                                            onChange={(e) => setNewCours({ ...newCours, title: e.target.value })}
+                                            value={newWorkShop.title}
+                                            onChange={(e) => setNewCWorkShop({ ...newWorkShop, title: e.target.value })}
                                         />
                                     </div>
                                     <div className="grid gap-3">
@@ -199,6 +205,18 @@ export default function WorkshopShow() {
                                         />
                                     </div>
                                     <div className="grid gap-3">
+                                        <Label htmlFor="pdf_workshop">
+                                            Ajouter PDf
+                                            {errors.pdf_workshop && <span className="text-red-500 mt-2">{errors.pdf_workshop}</span>}
+                                        </Label>
+                                        <Input
+                                            id="pdf_workshop"
+                                            name="pdf_workshop"
+                                            type="file"
+                                            onChange={handleImageChange}
+                                        />
+                                    </div>
+                                    <div className="grid gap-3">
                                         <Label htmlFor="description">
                                             Description
                                             {errors.description && <span className="text-red-500 mt-1">{errors.description}</span>}
@@ -206,7 +224,7 @@ export default function WorkshopShow() {
                                         <Suspense fallback={<div>Loading...</div>}>
                                             <ReactQuill
                                                 id="description"
-                                                value={newCours.description}
+                                                value={newWorkShop.description}
                                                 onChange={handleQuillChange}
                                                 theme="snow"
                                             />
@@ -220,8 +238,8 @@ export default function WorkshopShow() {
                                         <select
                                             id="category"
                                             name="category"
-                                            value={newCours.category}
-                                            onChange={(e) => setNewCours({ ...newCours, category: e.target.value })}
+                                            value={newWorkShop.category}
+                                            onChange={(e) => setNewCWorkShop({ ...newWorkShop, category: e.target.value })}
                                             className="mt-1 block w-full rounded-md border-gray-300 shadow-sm"
                                         >
                                             <option value="">Sélectionner une Catégorie</option>
@@ -236,8 +254,8 @@ export default function WorkshopShow() {
                                         <Label htmlFor="status">Status</Label>
                                         <select
                                             id="status"
-                                            value={newCours.status}
-                                            onChange={(e) => setNewCours({ ...newCours, status: e.target.value })}
+                                            value={newWorkShop.status}
+                                            onChange={(e) => setNewCWorkShop({ ...newWorkShop, status: e.target.value })}
                                             className="w-full p-2 border border-gray-300 rounded-md"
                                         >
                                             <option value="">Sélectionner un Status</option>
@@ -296,31 +314,44 @@ export default function WorkshopShow() {
                             </TableRow>
                         </TableHeader>
                         <TableBody>
-                            {paginatedCours.map((cour) => (
-                                <TableRow key={cour.id}>
+                            {paginatedWorkShop.map((workshop) => (
+                                <TableRow key={workshop.id}>
                                     <TableCell>
-                                        {cour.image && (
+                                        {workshop.image && (
                                             <img
-                                                src={cour.image}
-                                                alt={cour.title}
+                                                src={workshop.image}
+                                                alt={workshop.title}
                                                 className="w-16 h-16 object-cover"
                                             />
                                         )}
                                     </TableCell>
-                                    <TableCell>{cour.title}</TableCell>
-                                    <TableCell>{cour.category_cours}</TableCell>
+                                    <TableCell>
+                                {workshop.title}
+                                {workshop.pdf_workshop && (
+                                    <a 
+                                        href={workshop.pdf_workshop} 
+                                        target="_blank" 
+                                        rel="noopener noreferrer" 
+                                        className="ml-2 inline-block"
+                                    >
+                                        <FaFilePdf className="text-red-500 hover:text-red-700" />
+                                    </a>
+                                )}
+                            </TableCell>
+                                    <TableCell>{workshop.title}</TableCell>
+                                    <TableCell>{workshop.category_workshop}</TableCell>
                                     <TableCell>
                                         <div
                                             dangerouslySetInnerHTML={{
-                                                __html: DOMPurify.sanitize(cour.description),
+                                                __html: DOMPurify.sanitize(workshop.description),
                                             }}
                                         />
                                     </TableCell>
                                     <TableCell className="space-x-4">
-                                        <Button onClick={() => handleEditClick(cour.id)} variant="secondary">
+                                        <Button onClick={() => handleEditClick(workshop.id)} variant="secondary">
                                             <FaEdit />
                                         </Button>
-                                        <Button onClick={() => deleteCours(cour.id)} variant="destructive">
+                                        <Button onClick={() => deleteWorkShop(workshop.id)} variant="destructive">
                                             <FaTrash />
                                         </Button>
                                     </TableCell>
@@ -350,12 +381,12 @@ export default function WorkshopShow() {
                                 Previous
                             </button>
                             <span>
-                                Page {currentPage} of {Math.ceil(filteredCours.length / rowsPerPage)}
+                                Page {currentPage} of {Math.ceil(filteredWorkShop.length / rowsPerPage)}
                             </span>
                             <button
                                 className="p-2 border border-gray-300 rounded-md"
                                 onClick={() => setCurrentPage(currentPage + 1)}
-                                disabled={currentPage === Math.ceil(filteredCours.length / rowsPerPage)}
+                                disabled={currentPage === Math.ceil(filteredWorkShop.length / rowsPerPage)}
                             >
                                 Next
                             </button>

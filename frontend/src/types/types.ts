@@ -195,7 +195,7 @@ export type BlogFormType = {
     date: string | Date;
     range:number;
     favorites:number | null;
-    tages: string[];
+    tages: string;
      
 
 }
@@ -302,6 +302,40 @@ export type CreateFormationCategoryErrors = {
 export type CategoryCours={
     id: number;
     name : string;
+}
+export type CategoryWorkShop={
+    id: number;
+    name : string;
+}
+export type WorkShop = {
+    id: number;
+    title : string;
+    description : string;
+    status : string;
+    image: string;
+    category: number; // category ID
+    category_workshop: string; // category name
+    pdf_workshop: string;
+    created_at: Date;
+    updated_at: Date;
+}
+export type WorkShopFormType = {
+    title : string;
+    description : string;
+    status : string;
+    image: File | null;
+    pdf_workshop : File | null;
+    category : string
+
+}
+export type CreateWorkShopErrors = {
+    title?: string[];
+    description?: string[];
+    status?: string[];
+    image?: string[];
+    pdf_workshop?: string[];
+    category?: string[];
+   
 }
 
 export type Cours = {

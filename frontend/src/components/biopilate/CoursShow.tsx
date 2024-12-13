@@ -2,7 +2,7 @@ import React, { useEffect, useState, Suspense } from "react";
 import { Cours, CoursFormType, CreateCoursErrors, CategoryCours } from "@/types/types";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
-import { FaTrash, FaEdit } from "react-icons/fa";
+import { FaTrash, FaEdit, FaPlus, FaSearch } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import "react-quill/dist/quill.snow.css"; // Import styles for React Quill
 import { Button } from "@/components/ui/button";
@@ -156,13 +156,24 @@ export default function CoursShow() {
         <div className='flex flex-col items-center m-6'>
             <Card className="w-full max-w-6xl mx-auto p-6">
                 <CardHeader className="flex justify-between">
-                    <div>
-                        <CardTitle>Liste Cours</CardTitle>
-                    </div>
-                    <div>
-                        <Button variant="default" onClick={() => setIsModalOpen(true)}>
-                            Ajouter un Cours
-                        </Button>
+                <CreateCategoryCours />
+                <div>
+               
+           
+    <div className="flex justify-between items-center">
+        <CardTitle>Liste Cours</CardTitle>
+        <div className="space-x-4">
+            <Button variant="default"  onClick={() => setIsModalOpen(true)}>
+                Ajouter un Cours
+            </Button> 
+        </div>
+        
+    </div>
+
+                    
+                       
+                        
+                        
                         <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
                             <form onSubmit={handleSubmitCours}>
                                 <div className="grid gap-6">
@@ -250,16 +261,20 @@ export default function CoursShow() {
                 </CardHeader>
                 <CardContent className="grid gap-3">
                     <div className="grid gap-6 md:grid-cols-3">
-                        <Input
-                            type="text"
-                            placeholder="Recherche..."
-                            value={searchTerm}
-                            onChange={(e) => setSearchTerm(e.target.value)}
-                        />
+                    <div className="relative">
+                            <FaSearch className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
+                            <Input
+                                type="text"
+                                placeholder="Recherche..."
+                                value={searchTerm}
+                                onChange={(e) => setSearchTerm(e.target.value)}
+                                className="pl-10 bg-white border-gray-300"
+                            />
+                        </div>
                         <select
                             value={statusFilter}
                             onChange={(e) => setStatusFilter(e.target.value)}
-                            className="p-2 border border-gray-300 rounded-md"
+                             className="p-2 border border-gray-300 rounded-md bg-white text-gray-700"
                         >
                             <option value="">Sélectionner un Status</option>
                             <option value="pending">En attente de publication</option>
@@ -268,7 +283,7 @@ export default function CoursShow() {
                         <select
                             value={categoryFilter}
                             onChange={(e) => setCategoryFilter(e.target.value)}
-                            className="p-2 border border-gray-300 rounded-md"
+                             className="p-2 border border-gray-300 rounded-md bg-white text-gray-700"
                         >
                             <option value="">Tous les Niveaux</option>
                             {categories.map((category) => (
@@ -356,9 +371,7 @@ export default function CoursShow() {
                     </div>
                 </CardContent>
             </Card>
-            <div className='flex gap-3 mt-6'>
-                <CreateCategoryCours />
-            </div>
+           
         </div>
     );
 }

@@ -7,40 +7,33 @@ import BlogEditForm from "@/components/biopilate/BlogEditForm";
 const EditBlog: React.FC = () => {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
-  const [blogData, setBlogeData] = useState<Blog | null>(null);
+  const [blogData, setBlogData] = useState<Blog | null>(null);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await api.get(`blogs/${id}/`);
-        const blogData = response.data;
-        setBlogeData(blogData);
+        setBlogData(response.data);
       } catch (error) {
-        console.error("Error fetching blog data", error);
+        console.error("Error fetching blog data:", error);
+        alert("Unable to fetch blog details. Please try again later.");
       }
     };
 
     fetchData();
   }, [id]);
 
-  const updateBlog = async (data: any, id?: number) => {
+  const updateBlog = async (data: FormData, id: number) => {
     try {
-      if (data instanceof FormData) {
-        await api.put(`blogs/${id}/`, data, {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
-        });
-      } else {
-        await api.put(`blogs/${data.id}`, data);
-      }
-      // Handle success or navigate back to previous page
-      navigate("/blog-biopilates"); // Navigate to home or previous page on successful update
+      await api.put(`blogs/${id}/`, data, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      });
+      navigate("/blog-biopilates");
     } catch (error) {
-      if (error instanceof Error) {
-        console.error("Error updating blog", error);
-        alert(`Failed to update blog: ${error.message}`);
-      }
+      console.error("Error updating blog:", error);
+      alert("Failed to update the blog. Please check the details and try again.");
     }
   };
 

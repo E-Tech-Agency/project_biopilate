@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import ReactQuill from "react-quill";
-
+import { useNavigate } from "react-router-dom";
 interface EditCourProps {
     cours: Cours;
     categories: CategoryCours[];
@@ -19,6 +19,7 @@ const EditCour: React.FC<EditCourProps> = ({ cours, categories, onUpdate }) => {
         category_cours: cours.category_cours,
         image: null as File | null,
     });
+    const navigate = useNavigate();
 
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
         const { name, value } = e.target;
@@ -126,6 +127,13 @@ const EditCour: React.FC<EditCourProps> = ({ cours, categories, onUpdate }) => {
                     theme="snow"
                 />
             </div>
+            <Button
+                    type="button"
+                    onClick={() => navigate("/Cours-biopilates")}
+                    className="bg-gray-300 hover:bg-opacity-80 transition-colors duration-300"
+                  >
+                    Annuler
+                  </Button>
             <div className="flex justify-end space-x-2">
                 <Button type="submit" className="px-4 py-2 bg-blue-600 text-white rounded-md">
                     Enregistrer

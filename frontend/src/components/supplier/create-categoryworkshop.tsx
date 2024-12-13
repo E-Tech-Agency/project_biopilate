@@ -13,11 +13,11 @@ import { Button } from "@/components/ui/button"
 import { toast } from "sonner"
 import axios from "axios"
 
-interface CreateCategoryCourseProps {
+interface CreateCategoryWOrkShopProps {
     onSuccess?: () => void
 }
 
-export default function CreateCategoryCours({ onSuccess }: CreateCategoryCourseProps) {
+export default function CreateCategoryWOrkShop({ onSuccess }: CreateCategoryWOrkShopProps) {
     const [errors, setErrors] = useState("")
     const [category, setCategory] = useState({
         name: "",
@@ -26,7 +26,7 @@ export default function CreateCategoryCours({ onSuccess }: CreateCategoryCourseP
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
         try {
-            await api.post("cours_category/", category)
+            await api.post("category-workshops/", category)
             toast.success("Catégorie créée avec succès")
             setCategory({ name: "" })
             setErrors("")

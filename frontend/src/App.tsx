@@ -42,6 +42,7 @@ import Cours from "./pages/Cours";
 import OneCours from "./pages/one-cours";
 import AdminDashboard from "./pages/admin-dashboard";
 import UserProfile from "./pages/user-profile";
+import WorkshopShow from "./components/biopilate/WorkshopShow";
 
 // Forms
 import CreateBlogForm from "./components/biopilate/CreateBlogForm";
@@ -332,6 +333,7 @@ function App() {
             <Route path="/FAQ-biopilates" element={<FAQ />} />
             <Route path="/Formation-biopilates" element={<Formation />} />
             <Route path="/Cours-biopilates" element={<Cours />} />
+            <Route path="/WorkshopShow-biopilates" element={<WorkshopShow />} />
             <Route
               path="/ajouter-service-biopilates"
               element={<CreateServicesForm />}
