@@ -307,6 +307,41 @@ export type CategoryWorkShop={
     id: number;
     name : string;
 }
+export type CategoryVlog={
+    id: number;
+    name : string;
+}
+export type Vlog = {
+    id: number;
+    title : string;
+    description : string;
+    status : string;
+    image: string;
+    category: number; // category ID
+    category_vlog: string; // category name
+    created_at: Date;
+    updated_at: Date;
+    date: Date; //
+}
+export type VlogFormType = {
+    title : string;
+    description : string;
+    status : string;
+    image: File | null;
+    category : string;
+    date: string ;
+
+}
+export type CreateVlogErrors = {
+    title?: string[];
+    description?: string[];
+    status?: string[];
+    image?: string[];
+    category?: string[];
+    date?: string[];
+   
+}
+// 
 export type WorkShop = {
     id: number;
     title : string;

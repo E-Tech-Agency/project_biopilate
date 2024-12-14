@@ -43,6 +43,9 @@ import OneCours from "./pages/one-cours";
 import AdminDashboard from "./pages/admin-dashboard";
 import UserProfile from "./pages/user-profile";
 import WorkshopShow from "./components/biopilate/WorkshopShow";
+import EditWorkshop from "./pages/EditWorkShp";
+import VlogShow from "./components/biopilate/VlogShow";
+import EditVlog from "./pages/EditVlog";
 
 // Forms
 import CreateBlogForm from "./components/biopilate/CreateBlogForm";
@@ -134,6 +137,10 @@ function App() {
       "/add-FAQ-biopilates",
       "/add-Formation-biopilates",
       "/edit-cours-biopilates/:id",
+      "/WorkshopShow-biopilates",
+      "/edit-workShop-biopilates/:id",
+      "/vlog-biopilates",
+      "/edit-vlog-biopilates/:id",
     ],
     sideNav: [
       "/login",
@@ -231,7 +238,18 @@ function App() {
       case "/ajouter-planning-biopilates":
         return "Ajouter Planning - BioPilates";
       case "/edit-article-biopilates/:id":
+        return "WorkShopShow - BioPilates";
+        case "/WorkshopShow-biopilates":
         return "Edit Article - BioPilates";
+      case "/edit-workShop-biopilates/:id":
+        return "Edit Workshop - BioPilates";
+      case "/vlog-biopilates":
+        return "Vlog - BioPilates"
+      case "/vlog-biopilates/:id":
+        return "Vlog Show - BioPilates";
+      case "/edit-Vlog-biopilates/:id":
+        return "Edit Vlog - BioPilates";
+    
       case "/add-FAQ-biopilates":
         return "Add FAQ - BioPilates";
       case "/add-Formation-biopilates":
@@ -334,6 +352,8 @@ function App() {
             <Route path="/Formation-biopilates" element={<Formation />} />
             <Route path="/Cours-biopilates" element={<Cours />} />
             <Route path="/WorkshopShow-biopilates" element={<WorkshopShow />} />
+            <Route path="/edit-workShop-biopilates/:id" element={<EditWorkshop />} />
+
             <Route
               path="/ajouter-service-biopilates"
               element={<CreateServicesForm />}
@@ -352,6 +372,11 @@ function App() {
               path="/edit-cours-biopilates/:id"
               element={<EditCourForm />}
             />
+            <Route
+              path="/vlog-biopilates"
+              element={<VlogShow />}
+            />
+            <Route path="/edit-Vlog-biopilates/:id" element={<EditVlog />} />
           </Routes>
         </div>
       </div>
