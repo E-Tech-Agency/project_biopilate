@@ -114,20 +114,24 @@ export default function NosInstructeurs() {
             spaceBetween: 20,
           },
           1540: {
-            slidesPerView: 2.5,
+            slidesPerView: 2.6,
             spaceBetween: 18,
           },
+          1380: {
+            slidesPerView: 2.4,
+            spaceBetween: 16,
+          },
           1280: {
-            slidesPerView: 2,
+            slidesPerView: 2.2,
             spaceBetween: 16,
           },
 
           990: {
-            slidesPerView: 1.7,
+            slidesPerView: 1.9,
             spaceBetween: 10,
           },
           768: {
-            slidesPerView: 1.25,
+            slidesPerView: 1.3,
             spaceBetween: 5,
           },
           640: {

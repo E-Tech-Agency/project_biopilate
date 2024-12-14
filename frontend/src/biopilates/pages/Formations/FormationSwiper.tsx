@@ -86,7 +86,7 @@ export default function FormationSwiper() {
   ];
 
   return (
-    <section className="relative mt-8" id="formation-prix">
+    <section className="relative mt-8">
       <div className="absolute inset-0">
         <img
           src={blogBg}

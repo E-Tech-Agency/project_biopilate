@@ -11,7 +11,7 @@ export default function Hero() {
         className="absolute h-full w-full object-cover sm:rounded-md"
       />
       <div className="absolute max-md:hidden h-full bg-gradient-to-r from-black from-40% to-60% opacity-35 sm:rounded-md w-full" />
-      <div className="absolute md:hidden h-full w-full bg-black opacity-30 sm:rounded-md" />
+      <div className="absolute md:hidden h-full w-full bg-black opacity-50 sm:rounded-md" />
 
       <div className="flex flex-col px-6 md:pl-14 xl:pl-24 md:w-[50%] 2xl:w-[45%] gap-5 font-lato z-10 ">
         <div>

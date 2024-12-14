@@ -143,7 +143,7 @@ export default function FormationSection({
 
   const navigate = useNavigate();
   const navigateToTarifs = () => {
-    navigate("/formations#formations-prix");
+    navigate("/formations#ftarif");
   };
 
   const formationsToDisplay = isSmallScreen

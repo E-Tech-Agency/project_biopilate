@@ -15,6 +15,8 @@ import WorkshopSlider from "./WorkshopSlider";
 import PlanningFormations from "./PlanningFormations";
 import PlanningWorkshops from "./PlanningWorkshops";
 
+import { useEffect } from "react";
+
 export default function Formations() {
   const images = [formation3, reformer, formation5, formation1, formation2];
 
@@ -224,6 +226,16 @@ export default function Formations() {
     },
   ];
 
+  useEffect(() => {
+    const hash = window.location.hash;
+    if (hash) {
+      const element = document.getElementById(hash.substring(1));
+      if (element) {
+        element.scrollIntoView({ behavior: "smooth" });
+      }
+    }
+  }, []);
+
   return (
     <div className="flex flex-col mx-5 md:mx-12">
       <section className="mt-2 mb-14 flex flex-col-reverse lg:flex-row justify-center lg:justify-between items-center gap-8">
@@ -254,7 +266,9 @@ export default function Formations() {
       <PourquoiBiopilates />
 
       {/* formation biopliates */}
-      <FormationSwiper />
+      <section id="ftarif">
+        <FormationSwiper />
+      </section>
 
       {/* Planning formation*/}
       <PlanningFormations plans={plansFormation} />
