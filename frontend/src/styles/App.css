@@ -324,3 +324,7 @@ button:hover .hover-circle-2 {
     display: none;
   }
 }
+
+.border-br {
+  border: 1px oklab(lightness a b) solid;
+}

@@ -78,7 +78,8 @@ export default function Cours() {
 
   return (
     <div className="flex flex-col mx-5 md:mx-12 my-4 ">
-      <section className="mb-10 flex flex-col-reverse lg:flex-row justify-center lg:justify-between items-center gap-8">
+      {/* desktop */}
+      <section className="mb-10 hidden lg:flex flex-col-reverse lg:flex-row justify-center lg:justify-between items-center gap-8">
         {/* carousel */}
 
         {/* <CircleCarousel images={images} /> */}
@@ -89,6 +90,38 @@ export default function Cours() {
           <p className="text-marron text-xl sm:text-[34px] leading-snug font-bold font-ebGaramond">
             Cours Pilates à Paris – Biopilates
           </p>
+          <p className="leading-normal text-lg sm:text-[28px] text-marron font-medium font-ebGaramond">
+            Développez votre potentiel et atteignez vos objectifs grâce à nos
+            cours de Pilates pour tous niveaux !
+          </p>
+
+          <p className="text-sm sm:text-lg leading-normal">
+            Nos <strong>instructeurs certifiés et expérimentés</strong> vous
+            accompagnent dans votre progression et vous guident vers :
+            <p className="mt-2">
+              <ul className="list-disc ml-5">
+                <li>
+                  Une meilleure <strong>condition physique</strong>
+                </li>
+                <li>Un corps plus fort et plus souple</li>
+                <li>Un esprit plus serein</li>
+              </ul>
+            </p>
+          </p>
+        </div>
+      </section>
+
+      {/* mobile */}
+      <section className="mb-12 lg:hidden flex flex-col justify-between items-center ">
+        <p className="text-marron text-xl sm:text-[34px] leading-snug font-bold font-ebGaramond max-sm:mb-4">
+          Cours Pilates à Paris – Biopilates
+        </p>
+
+        {/* carousel */}
+        <CircleSwiperCarousel images={images} />
+
+        {/* text */}
+        <div className="flex flex-col justify-center items-center md:items-baseline min-w-min px-2 gap-5 font-lato">
           <p className="leading-normal text-lg sm:text-[28px] text-marron font-medium font-ebGaramond">
             Développez votre potentiel et atteignez vos objectifs grâce à nos
             cours de Pilates pour tous niveaux !
@@ -164,12 +197,12 @@ export default function Cours() {
             réserver vos prochains cours. Merci de vérifier, compléter et
             éventuellement modifier les informations qui vous concernent, en
             particulier l'ajout de vos méthodes de paiement afin de relancer vos
-            abonnements. L'équipe Studio Biopilates
+            abonnements. <p>L'équipe Studio Biopilates</p>
           </p>
           <div className="flex max-sm:justify-center gap-5 max-lg:mx-auto mx-1">
             <button
               className="h-[50px] sm:h-[70px] flex gap-2 justify-start
-               items-center rounded-md border border-marron shadow-md px-3"
+               items-center rounded-md border border-solid border-marron px-3 "
               onClick={() => {
                 window.open(
                   "https://play.google.com/store/apps/details?id=com.bsport&hl=en",
@@ -189,7 +222,7 @@ export default function Cours() {
             </button>
             <button
               className="h-[50px] sm:h-[70px] flex gap-2 justify-start
-               items-center rounded-md border border-marron shadow-md pl-3 pr-6"
+               items-center rounded-md border border-solid border-marron pl-3 pr-6"
               onClick={() => {
                 window.open(
                   "https://play.google.com/store/apps/details?id=com.bsport&hl=en",
@@ -213,7 +246,7 @@ export default function Cours() {
           className="sm:max-w-[50%] w-[640px] max-lg:hidden"
         />
       </section>
-      <section id="tarifs" className="relative mb-16">
+      <section id="tarifs" className="relative mb-10">
         <div className="absolute inset-0">
           <img
             src={blogBg}
