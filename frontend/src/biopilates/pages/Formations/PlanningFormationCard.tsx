@@ -37,7 +37,7 @@ function TimeSlots({ plan, showMore, toggleShowMore }: TimeSlotsProps) {
 
       {timeSlots.length > 1 && (
         <button
-          className="flex items-center text-marron text-lg font-lato font-bold mt-3 cursor-pointer"
+          className="flex items-center text-marron text-lg font-lato font-bold mt-5 cursor-pointer"
           onClick={toggleShowMore}
         >
           <span className="mr-2">{showMore ? "Voir moins" : "Voir plus"}</span>
@@ -85,16 +85,19 @@ export default function PlanningFormationCard({
             </div>
           </div>
         </div>
-        <div className="rounded-md flex flex-col flex-nowrap items-center gap-4 py-4 font-lato text-center">
-          <div className="flex justify-center items-center gap-2 text-marron font-ebGaramond text-lg w-52">
-            <LuCalendarDays className="block text-4xl" />
-            <p className="font-bold">{plan.date}</p>
+        <div className="rounded-md flex flex-col flex-nowrap items-center gap-5 py-4 font-lato text-center">
+          <div className="flex justify-center items-center gap-4 text-marron font-ebGaramond text-lg w-72 grow">
+            <div className="h-8 w-8">
+              <LuCalendarDays className="block text-4xl" />
+            </div>
+            <p className="md:text-lg font-bold">{plan.date}</p>
           </div>
           <TimeSlots
             plan={plan}
             showMore={showMore}
             toggleShowMore={toggleShowMore}
           />
+          {plan.timeSlots.length < 2 ? <div className="h-8" /> : ""}
 
           <div className="rounded-lg grow">
             <button
