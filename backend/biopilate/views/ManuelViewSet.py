@@ -1,17 +1,12 @@
 from rest_framework import viewsets
 
-from ..models.workshop import CategoryWorkShop, WorkShop
-from ..serializers.WorkShopSerialisers import CategoryWorkShopSerializer, WorkShopSerializer
+from ..models.manuel_biopilates import Manuel
+from ..serializers.manuelSerializer import ManuelSerializer
 
 
-class CategoryWorkShopViewSet(viewsets.ModelViewSet):
-    queryset = CategoryWorkShop.objects.all()
-    serializer_class = CategoryWorkShopSerializer
-
-
-class WorkShopViewSet(viewsets.ModelViewSet):
-    queryset = WorkShop.objects.all().order_by('-created_at')
-    serializer_class = WorkShopSerializer
+class ManuelViewSet(viewsets.ModelViewSet):
+    queryset = Manuel.objects.all().order_by('-created_at')
+    serializer_class = ManuelSerializer
 
     def perform_update(self, serializer):
         # Override perform_update to prevent reordering after edit

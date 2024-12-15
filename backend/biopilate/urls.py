@@ -12,6 +12,8 @@ from .views.CoursViewSet import CoursViewSet , CategoryCoursViewSet
 from .views.WorkShopViewSet import WorkShopViewSet, CategoryWorkShopViewSet
 from .views.TeachesViewSet import TeachesViewSet
 from .views.VlogViewSet import VlogViewSet ,CategoryVlogViewSet
+from .views.ManuelViewSet import ManuelViewSet
+from .views.FinancerFormationViewSet import FinancerFormationViewSet
 router = DefaultRouter()
 router.register(r'teaches', TeachesViewSet)
 
@@ -31,6 +33,8 @@ router.register(r'vlogs', VlogViewSet)
 router.register(r'category-vlogs', CategoryVlogViewSet)
 router.register(r'category-workshops', CategoryWorkShopViewSet)
 router.register(r'blog-images', BlogImageViewSet, basename='blog-image')
+router.register(r'manuels-biopilates', ManuelViewSet)
+router.register(r'financer-formations', FinancerFormationViewSet)
 urlpatterns = [
     path('', include(router.urls)),
 ]

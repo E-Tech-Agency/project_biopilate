@@ -1,18 +1,19 @@
 from rest_framework import serializers
-from ..models.manuel_biopilates import Manuel
+from ..models.financer_fromation import FinancerFormation
 
-class ManuelSerializer(serializers.ModelSerializer):
+
+class FinancerFormationSerializer(serializers.ModelSerializer):
     
 
     class Meta:
-        model = Manuel
+        model = FinancerFormation
         fields = [
             'id', 'title', 'description', 'image',
-           
+            'pdf_financer_formation', 
             'created_at', 'updated_at', 'status'
         ]
         extra_kwargs = {
             'image': {'required': False},
-           
+            'pdf_financer_formation': {'required': False},
         }
     
