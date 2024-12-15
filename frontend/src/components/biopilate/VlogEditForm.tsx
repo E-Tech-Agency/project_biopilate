@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useNavigate } from "react-router-dom";
+import { Upload, XCircle } from 'lucide-react';
 
 interface EditVlogProps {
     vlog: Vlog;
@@ -59,86 +60,132 @@ const EditVlogpForm: React.FC<EditVlogProps> = ({ vlog, categories, onUpdate }) 
 
     return (
         <form onSubmit={handleSubmit}>
-            <h1 className="mb-4">Modifier vlog</h1>
-            <div className="mb-4">
-                <Label htmlFor="title">Titre</Label>
-                <Input
-                    id="title"
-                    name="title"
-                    type="text"
-                    value={formData.title}
-                    onChange={handleInputChange}
-                    className="mt-1 block w-full rounded-md border-gray-300 shadow-sm"
+        {/* Title Input */}
+        <div className="mb-4">
+          <Label htmlFor="title" className="text-gray-700 font-semibold">
+            Titre du Vlog
+          </Label>
+          <Input
+            id="title"
+            name="title"
+            type="text"
+            value={formData.title}
+            onChange={handleInputChange}
+            placeholder="Entrez le titre du vlog"
+            className="mt-2 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+          />
+        </div>
+
+        {/* Status Dropdown */}
+        <div className="mb-4">
+          <Label htmlFor="status" className="text-gray-700 font-semibold">
+            Statut
+          </Label>
+          <select
+            id="status"
+            name="status"
+            value={formData.status}
+            onChange={handleInputChange}
+            className="mt-2 block w-full rounded-md border-gray-300 shadow-sm focus:ring-2 focus:ring-blue-500"
+          >
+            <option value="pending">En attente de publication</option>
+            <option value="approved">Publiée</option>
+          </select>
+        </div>
+
+        {/* Category Dropdown */}
+        <div className="mb-4">
+          <Label htmlFor="category_vlog" className="text-gray-700 font-semibold">
+            Catégorie
+          </Label>
+          <select
+            id="category_vlog"
+            name="category_vlog"
+            value={formData.category_vlog || ''}
+            onChange={handleInputChange}
+            className="mt-2 block w-full rounded-md border-gray-300 shadow-sm focus:ring-2 focus:ring-blue-500"
+          >
+            <option value="">Sélectionner une Catégorie</option>
+            {categories.map((category) => (
+              <option key={category.id} value={category.name}>
+                {category.name}
+              </option>
+            ))}
+          </select>
+        </div>
+
+        {/* Image Upload */}
+        <div className="mb-4">
+          <Label htmlFor="image" className="text-gray-700 font-semibold">
+            Image du Vlog
+          </Label>
+          <div className="mt-2 flex items-center">
+            <Input
+              id="image"
+              name="image"
+              type="file"
+              onChange={handleImageChange}
+              className="hidden"
+            />
+            <label 
+              htmlFor="image" 
+              className="flex items-center px-4 py-2 bg-blue-50 text-blue-600 rounded-md cursor-pointer hover:bg-blue-100 transition-colors"
+            >
+              <Upload className="mr-2" size={20} />
+              Choisir une image
+            </label>
+            {vlog.image && (
+              <div className="ml-4 relative">
+                <img 
+                  src={vlog.image} 
+                  alt={vlog.title} 
+                  className="w-16 h-16 rounded-full object-cover border-2 border-blue-300"
                 />
-            </div>
-            <div className="mb-4">
-                <Label htmlFor="status">Status</Label>
-                <select
-                    id="status"
-                    name="status"
-                    value={formData.status}
-                    onChange={handleInputChange}
-                    className="mt-1 block w-full rounded-md border-gray-300 shadow-sm"
+                <button 
+                  type="button" 
+                  className="absolute -top-2 -right-2 bg-red-500 text-white rounded-full p-1 hover:bg-red-600"
                 >
-                    <option value="pending">En attente de publication</option>
-                    <option value="approved">Publiée</option>
-                </select>
-            </div>
-            <div className="mb-4">
-                <Label htmlFor="category_name">Catégorie</Label>
-                <select
-                    id="category_vlog"
-                    name="category_vlog"
-                    value={formData.category_vlog || ''}
-                    onChange={handleInputChange}
-                    className="w-full mt-2 rounded-md border-gray-300 shadow-sm"
-                >
-                    <option value="">Sélectionner une Catégorie</option>
-                    {categories.map((category) => (
-                        <option key={category.id} value={category.name}>
-                            {category.name}
-                        </option>
-                    ))}
-                </select>
-            </div>
-            <div className="mb-4">
-                <Label htmlFor="image">Image</Label>
-                <Input
-                    id="image"
-                    name="image"
-                    type="file"
-                    onChange={handleImageChange}
-                    className="mt-1 block w-full"
-                />
-                {vlog.image && (
-                    <img src={vlog.image} alt={vlog.title} className="w-16 h-16 rounded-full mt-2" />
-                )}
-            </div>
-           
-            <div className="mb-4">
-                <Label htmlFor="description">Vlog lien</Label>
-                <Input
-                    id="description"
-                    name="description"
-                    type="text"
-                    value={formData.description}
-                    onChange={handleInputChange}
-                    className="mt-1 block w-full rounded-md border-gray-300 shadow-sm"
-                />
-            </div>
-            <Button
-                    type="button"
-                    onClick={() => navigate("/vlog-biopilates")}
-                    className="bg-gray-300 hover:bg-opacity-80 transition-colors duration-300"
-                  >
-                    Annuler
-                  </Button>
-            <div className="flex justify-end space-x-2">
-                <Button type="submit" className="px-4 py-2 bg-blue-600 text-white rounded-md">
-                    Enregistrer
-                </Button>
-            </div>
-        </form>
+                  <XCircle size={16} />
+                </button>
+              </div>
+            )}
+          </div>
+        </div>
+
+        {/* Vlog Link */}
+        <div className="mb-4">
+          <Label htmlFor="description" className="text-gray-700 font-semibold">
+            Lien du Vlog
+          </Label>
+          <Input
+            id="description"
+            name="description"
+            type="text"
+            value={formData.description}
+            onChange={handleInputChange}
+            placeholder="Collez le lien du vlog"
+            className="mt-2 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+          />
+        </div>
+
+        {/* Action Buttons */}
+        <div className="flex justify-between mt-6">
+          <Button
+            type="button"
+            onClick={() => navigate("/vlog-biopilates")}
+            variant="outline"
+            className="px-4 py-2 text-gray-600 hover:bg-gray-100"
+          >
+            Annuler
+          </Button>
+          <Button 
+            type="submit" 
+            className="px-6 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors"
+          >
+            Enregistrer
+          </Button>
+        </div>
+      </form>
     );
 };
 

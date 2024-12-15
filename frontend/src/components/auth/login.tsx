@@ -53,6 +53,8 @@ export function LoginForm({
       localStorage.setItem("refresh_token", res.data.refresh_token);
       localStorage.setItem("is_supplier", res.data.is_supplier);
       localStorage.setItem("is_superuser", res.data.is_superuser);
+      localStorage.setItem("first_name", res.data.first_name);
+      localStorage.setItem("last_name", res.data.last_name);
       setIsLoggedIn(true);
       navigate("/dashboard");
     } catch (error) {

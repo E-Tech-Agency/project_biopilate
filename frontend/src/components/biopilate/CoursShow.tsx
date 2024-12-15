@@ -14,6 +14,8 @@ import { toast } from "sonner";
 import { Modal } from "./Modal";
 import DOMPurify from 'dompurify'; // Import DOMPurify
 import CreateCategoryCours from "../supplier/create-categorycours";
+import { BookOpen, UploadCloud, List, Tag } from 'lucide-react';
+
 const ReactQuill = React.lazy(() => import("react-quill"));
 
 export default function CoursShow() {
@@ -175,87 +177,124 @@ export default function CoursShow() {
                         
                         
                         <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
-                            <form onSubmit={handleSubmitCours}>
-                                <div className="grid gap-6">
-                                    <div className="grid gap-3">
-                                        <Label htmlFor="title">
-                                            Titre du cours
-                                            {errors.title && <span className="text-red-500 mt-2">{errors.title}</span>}
-                                        </Label>
-                                        <Input
-                                            id="title"
-                                            name="title"
-                                            type="text"
-                                            value={newCours.title}
-                                            onChange={(e) => setNewCours({ ...newCours, title: e.target.value })}
-                                        />
-                                    </div>
-                                    <div className="grid gap-3">
-                                        <Label htmlFor="image">
-                                            Image
-                                            {errors.image && <span className="text-red-500 mt-2">{errors.image}</span>}
-                                        </Label>
-                                        <Input
-                                            id="image"
-                                            name="image"
-                                            type="file"
-                                            onChange={handleImageChange}
-                                        />
-                                    </div>
-                                    <div className="grid gap-3">
-                                        <Label htmlFor="description">
-                                            Description
-                                            {errors.description && <span className="text-red-500 mt-1">{errors.description}</span>}
-                                        </Label>
-                                        <Suspense fallback={<div>Loading...</div>}>
-                                            <ReactQuill
-                                                id="description"
-                                                value={newCours.description}
-                                                onChange={handleQuillChange}
-                                                theme="snow"
-                                            />
-                                        </Suspense>
-                                    </div>
-                                    <div className="grid gap-3 mt-9">
-                                        <Label htmlFor="category">
-                                            Catégorie
-                                            {errors.category && <span className="text-red-500 mt-2">{errors.category}</span>}
-                                        </Label>
-                                        <select
-                                            id="category"
-                                            name="category"
-                                            value={newCours.category}
-                                            onChange={(e) => setNewCours({ ...newCours, category: e.target.value })}
-                                            className="mt-1 block w-full rounded-md border-gray-300 shadow-sm"
-                                        >
-                                            <option value="">Sélectionner une Catégorie</option>
-                                            {categories.map((category) => (
-                                                <option key={category.id} value={category.id}>
-                                                    {category.name}
-                                                </option>
-                                            ))}
-                                        </select>
-                                    </div>
-                                    <div className="grid gap-3 mt-5">
-                                        <Label htmlFor="status">Status</Label>
-                                        <select
-                                            id="status"
-                                            value={newCours.status}
-                                            onChange={(e) => setNewCours({ ...newCours, status: e.target.value })}
-                                            className="w-full p-2 border border-gray-300 rounded-md"
-                                        >
-                                            <option value="">Sélectionner un Status</option>
-                                            <option value="pending">En attente de publication</option>
-                                            <option value="approved">Publiée</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div className="mt-4">
-                                    <Button type="submit" className="btn btn-primary">
-                                        Ajouter
-                                    </Button>
-                                </div>
-                            </form>
+                        <form onSubmit={handleSubmitCours} className="space-y-6">
+            {/* Title Input */}
+            <div className="space-y-2">
+              <div className="flex items-center justify-between">
+                <Label htmlFor="title" className="text-gray-700 font-semibold flex items-center">
+                  <Tag className="mr-2 text-blue-600" size={20} />
+                  Titre du Cours
+                </Label>
+                {errors.title && (
+                  <span className="text-red-500 text-sm">{errors.title}</span>
+                )}
+              </div>
+              <Input
+                id="title"
+                name="title"
+                type="text"
+                value={newCours.title}
+                onChange={(e) => setNewCours({ ...newCours, title: e.target.value })}
+                placeholder="Entrez le titre du cours"
+                className="mt-1 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              />
+            </div>
+
+            {/* Image Upload */}
+            <div className="space-y-2">
+              <div className="flex items-center justify-between">
+                <Label htmlFor="image" className="text-gray-700 font-semibold flex items-center">
+                  <UploadCloud className="mr-2 text-blue-600" size={20} />
+                  Image du Cours
+                </Label>
+                {errors.image && (
+                  <span className="text-red-500 text-sm">{errors.image}</span>
+                )}
+              </div>
+              <Input
+                id="image"
+                name="image"
+                type="file"
+                onChange={handleImageChange}
+                className="mt-1 file:mr-4 file:rounded-md file:border-0 file:bg-blue-50 file:text-blue-700 file:px-4 file:py-2 hover:file:bg-blue-100"
+              />
+            </div>
+
+            {/* Description */}
+            <div className="space-y-2">
+              <div className="flex items-center justify-between">
+                <Label htmlFor="description" className="text-gray-700 font-semibold">
+                  Description
+                </Label>
+                {errors.description && (
+                  <span className="text-red-500 text-sm">{errors.description}</span>
+                )}
+              </div>
+              <Suspense fallback={<div className="h-32 bg-gray-100 rounded-md animate-pulse"></div>}>
+                <ReactQuill
+                  id="description"
+                  value={newCours.description}
+                  onChange={handleQuillChange}
+                  theme="snow"
+                  className="mt-1 border-2 border-blue-100 rounded-md"
+                />
+              </Suspense>
+            </div>
+
+            {/* Category Dropdown */}
+            <div className="space-y-2">
+              <div className="flex items-center justify-between">
+                <Label htmlFor="category" className="text-gray-700 font-semibold flex items-center">
+                  <List className="mr-2 text-blue-600" size={20} />
+                  Catégorie
+                </Label>
+                {errors.category && (
+                  <span className="text-red-500 text-sm">{errors.category}</span>
+                )}
+              </div>
+              <select
+                id="category"
+                name="category"
+                value={newCours.category}
+                onChange={(e) => setNewCours({ ...newCours, category: e.target.value })}
+                className="w-full p-2 border-2 border-blue-100 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              >
+                <option value="">Sélectionner une Catégorie</option>
+                {categories.map((category) => (
+                  <option key={category.id} value={category.id}>
+                    {category.name}
+                  </option>
+                ))}
+              </select>
+            </div>
+
+            {/* Status Dropdown */}
+            <div className="space-y-2">
+              <Label htmlFor="status" className="text-gray-700 font-semibold">
+                Statut de Publication
+              </Label>
+              <select
+                id="status"
+                value={newCours.status}
+                onChange={(e) => setNewCours({ ...newCours, status: e.target.value })}
+                className="w-full p-2 border-2 border-blue-100 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              >
+                <option value="">Sélectionner un Statut</option>
+                <option value="pending">En attente de publication</option>
+                <option value="approved">Publiée</option>
+              </select>
+            </div>
+
+            {/* Submit Button */}
+            <div className="mt-6 flex justify-end">
+              <Button 
+                type="submit" 
+                className="px-6 py-3 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors"
+              >
+                Ajouter le Cours
+              </Button>
+            </div>
+          </form>
                         </Modal>
                     </div>
                 </CardHeader>

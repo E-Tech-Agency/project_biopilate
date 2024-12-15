@@ -140,7 +140,7 @@ function App() {
       "/WorkshopShow-biopilates",
       "/edit-workShop-biopilates/:id",
       "/vlog-biopilates",
-      "/edit-vlog-biopilates/:id",
+      "/edit-Vlog-biopilates/:id",
     ],
     sideNav: [
       "/login",
