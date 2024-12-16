@@ -342,6 +342,29 @@ export type CreateVlogErrors = {
    
 }
 // 
+export type Manuel ={
+    id: number;
+    title : string;
+    description : string;
+    status : string;
+    image : string;
+    created_at: Date;
+    updated_at: Date;
+    
+}
+export type ManuelFormType = {
+    title : string;
+    description : string;
+    status : string;
+    image: File | null;
+}
+export type CreateManuelErrors = {
+    title?: string[];
+    description?: string[];
+    status?: string[];
+    image?: string[];
+}
+// 
 export type WorkShop = {
     id: number;
     title : string;

@@ -117,6 +117,18 @@ export default function SideNav() {
       href: "/vlog-biopilates",
       icon: <PiPackage className="text-xl" />,
     },
+    // 
+    {
+      label: "Biopilates Manuel",
+      href: "/manuel-biopilates",
+      icon: <PiPackage className="text-xl" />,
+    },
+    {
+      label: "Financer voter formation",
+      href: "/financer-formation-biopilates",
+      icon: <PiPackage className="text-xl" />,
+    },
+
 
   ];
 

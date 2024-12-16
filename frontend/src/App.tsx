@@ -46,6 +46,10 @@ import WorkshopShow from "./components/biopilate/WorkshopShow";
 import EditWorkshop from "./pages/EditWorkShp";
 import VlogShow from "./components/biopilate/VlogShow";
 import EditVlog from "./pages/EditVlog";
+import ManuelShow from "./components/biopilate/ManuelShow";
+import EditManuel from "./pages/EditManuel";
+
+
 
 // Forms
 import CreateBlogForm from "./components/biopilate/CreateBlogForm";
@@ -141,6 +145,10 @@ function App() {
       "/edit-workShop-biopilates/:id",
       "/vlog-biopilates",
       "/edit-Vlog-biopilates/:id",
+      "/edit-manuel-biopilates/:id",
+  
+      "/biopilates/financer-votre-formation",
+      "/manuel-biopilates",
     ],
     sideNav: [
       "/login",
@@ -249,7 +257,12 @@ function App() {
         return "Vlog Show - BioPilates";
       case "/edit-Vlog-biopilates/:id":
         return "Edit Vlog - BioPilates";
-    
+      case "/edit-manuel-biopilates/:id":
+        return "Edit Manuel - BioPilates";
+      case "/biopilates/financer-votre-formation":
+        return "Financer Votre Formation - BioPilates";
+      case  "/manuel-biopilates":
+        return "Manuel - BioPilates";
       case "/add-FAQ-biopilates":
         return "Add FAQ - BioPilates";
       case "/add-Formation-biopilates":
@@ -377,6 +390,12 @@ function App() {
               element={<VlogShow />}
             />
             <Route path="/edit-Vlog-biopilates/:id" element={<EditVlog />} />
+            {/* <Route
+              path="/edit-manuel-biopilates/:id"
+              element={<EditManuel />}
+            /> */}
+            <Route path= "/manuel-biopilates" element={<ManuelShow />} />
+            <Route path="/edit-manuel-biopilates/:id" element={<EditManuel/>} />
           </Routes>
         </div>
       </div>
