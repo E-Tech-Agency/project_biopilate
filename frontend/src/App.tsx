@@ -48,6 +48,8 @@ import VlogShow from "./components/biopilate/VlogShow";
 import EditVlog from "./pages/EditVlog";
 import ManuelShow from "./components/biopilate/ManuelShow";
 import EditManuel from "./pages/EditManuel";
+import FinancerFormationShow from "./components/biopilate/FinancerFormationShow";
+import EditFormationFinancer from "./pages/EditFormationFinancer";
 
 
 
@@ -146,8 +148,8 @@ function App() {
       "/vlog-biopilates",
       "/edit-Vlog-biopilates/:id",
       "/edit-manuel-biopilates/:id",
-  
-      "/biopilates/financer-votre-formation",
+      "/financer-formation-biopilates",
+      "/edit-formation-finance-biopilates/:id",
       "/manuel-biopilates",
     ],
     sideNav: [
@@ -259,8 +261,11 @@ function App() {
         return "Edit Vlog - BioPilates";
       case "/edit-manuel-biopilates/:id":
         return "Edit Manuel - BioPilates";
-      case "/biopilates/financer-votre-formation":
+      case "/financer-formation-biopilates":
         return "Financer Votre Formation - BioPilates";
+      case "/edit-formation-finance-biopilates/:id":
+        return "Edit Formation Finance - BioPilates";
+     
       case  "/manuel-biopilates":
         return "Manuel - BioPilates";
       case "/add-FAQ-biopilates":
@@ -390,10 +395,12 @@ function App() {
               element={<VlogShow />}
             />
             <Route path="/edit-Vlog-biopilates/:id" element={<EditVlog />} />
-            {/* <Route
-              path="/edit-manuel-biopilates/:id"
-              element={<EditManuel />}
-            /> */}
+           
+            <Route
+              path= "/financer-formation-biopilates"
+              element={<FinancerFormationShow />}
+            />
+             <Route path="/edit-formation-finance-biopilates/:id" element={<EditFormationFinancer />} />
             <Route path= "/manuel-biopilates" element={<ManuelShow />} />
             <Route path="/edit-manuel-biopilates/:id" element={<EditManuel/>} />
           </Routes>

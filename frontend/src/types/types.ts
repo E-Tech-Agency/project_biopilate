@@ -365,6 +365,31 @@ export type CreateManuelErrors = {
     image?: string[];
 }
 // 
+export type FinancerFormation ={
+    id: number;
+    status : string;
+    title: string;
+    description: string;
+    image: string;
+    pdf_financer_formation : string;
+    created_at: Date;
+    updated_at: Date;
+}
+export type CreateFinancerFormationErrors = {
+    status?: string[];
+    title?: string[];
+    description?: string[];
+    image?: string[];
+    pdf_financer_formation?: string[];
+}
+export type FinancerFormationFormType={
+    status : string;
+    title: string;
+    description: string;
+    image: File | null;
+    pdf_financer_formation: File | null;
+}
+// 
 export type WorkShop = {
     id: number;
     title : string;
