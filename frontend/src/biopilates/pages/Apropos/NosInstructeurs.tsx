@@ -19,6 +19,25 @@ interface info {
 }
 
 function PrincipeCard({ principe }: { principe: info }) {
+  function insertBreakBeforeEt(text: string) {
+    return text.replace(/\bet/g, "<br>et");
+  }
+
+  // Apply the function conditionally for mobile screens
+  function applyForMobile(inputText: string) {
+    const isMobile = window.matchMedia("(max-width: 550px)").matches; // Tailwind's max-md breakpoint
+    if (isMobile) {
+      return insertBreakBeforeEt(inputText);
+    }
+    return inputText; // Leave the text unchanged for non-mobile screens
+  }
+
+  // Example usage
+  const inputText =
+    "Lorem ipsum et dolor sit amet, consectetur et adipiscing elit.";
+  const result = applyForMobile(inputText);
+  console.log(result);
+
   return (
     <div className=" flex justify-center items-center max-w-[630px] xl:max-w-[680px] min-w-[230px] h-[280px] sm:h-[300px] shadow-xl rounded-lg bg-white py-2 sm:py-4 px-4 sm:px-8 gap-4 mx-2">
       <div className="flex justify-center items-center bg-bgColor rounded-full w-[100px] h-[100px] sm:w-[150px] sm:h-[150px] md:w-[200px] md:h-[200px] max-sm:mt-[-50px] shadow-lg">
@@ -36,7 +55,7 @@ function PrincipeCard({ principe }: { principe: info }) {
         </h1>
         <p
           dangerouslySetInnerHTML={{
-            __html: principe.description,
+            __html: applyForMobile(principe.description),
           }}
           className="text-justify text-[#5a5a5a] text-xs sm:text-sm md:text-base leading-normal overflow-y-auto max-h-44 font-lato"
         ></p>

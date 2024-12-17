@@ -238,10 +238,10 @@ export default function FormationSection({
           </SwiperSlide>
         ))}
 
-        <div className="arrow-hover cursor-pointer swiper-but-prev slider-arrow hidden sm:flex justify-center items-center bg-bgColor rounded-full w-10 h-10 absolute left-5 top-1/2 transform -translate-y-1/2 z-20">
+        <div className="arrow-hover cursor-pointer swiper-but-prev slider-arrow hidden sm:flex justify-center items-center bg-bgColor rounded-full w-10 h-10 absolute left-5 top-[45%] transform -translate-y-1/2 z-20">
           <FaArrowLeftLong className="text-marron" />
         </div>
-        <div className="arrow-hover cursor-pointer swiper-but-next slider-arrow hidden sm:flex justify-center items-center bg-bgColor rounded-full w-10 h-10 absolute right-5 top-1/2 transform -translate-y-1/2 z-20">
+        <div className="arrow-hover cursor-pointer swiper-but-next slider-arrow hidden sm:flex justify-center items-center bg-bgColor rounded-full w-10 h-10 absolute right-5 top-[45%] transform -translate-y-1/2 z-20">
           <FaArrowRightLong className="text-marron" />
         </div>
       </Swiper>

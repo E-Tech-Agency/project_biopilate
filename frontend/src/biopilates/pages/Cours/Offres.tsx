@@ -78,13 +78,17 @@ export default function Offres() {
             slidesPerView: 1.5,
             spaceBetween: 20,
           },
+          500: {
+            slidesPerView: 1.3,
+            spaceBetween: 20,
+          },
         }}
       >
         <div className="flex flex-nowrap justify-center items-center gap-8 overflow-hidden">
           {tarifs.map((offre, index) => (
             <SwiperSlide key={index}>
               <div
-                className={`relative py-10 mt-10 m-auto flex flex-col justify-between items-center bg-bgColor px-4 rounded-lg shadow-md min-w-[280px] sm:min-w-[300px] max-w-[400px] h-[335px] md:h-[400px] font-lato ${
+                className={`relative py-10 mt-10 m-auto max-sm:mx-2 flex flex-col justify-between items-center bg-bgColor px-4 rounded-lg shadow-md min-w-[260px] sm:min-w-[300px] max-w-[330px] h-[335px] md:h-[400px] font-lato ${
                   index == 0 || index == 1 ? "max-sm:mr-9 max-md:mr-28" : ""
                 }`}
               >
@@ -122,7 +126,9 @@ export default function Offres() {
                 <h3 className="text-lg md:text-2xl text-center font-ebGaramond font-bold h-20 max-w-[240px] max-md:w-48">
                   {offre.title}
                 </h3>
-                <p className="text-2xl text-marron font-bold">{offre.price}</p>
+                <p className="text-xl md:text-2xl text-marron font-bold">
+                  {offre.price}
+                </p>
                 {offre.pack1 !== "" && (
                   <div className="flex flex-col justify-center items-center gap-2 text-sm md:text-base pt-4">
                     <p>{offre.pack1}</p>

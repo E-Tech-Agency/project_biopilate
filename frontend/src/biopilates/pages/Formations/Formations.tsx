@@ -56,20 +56,6 @@ export default function Formations() {
       ],
     },
     {
-      title: "ONLINE Workshop Préntal stabilité Ball et Flex band",
-      niveau: "",
-      image: formation6,
-      date: "21/12/2024",
-      timeSlots: ["Sam. 21/12/2024 de 14h à 16h"],
-    },
-    {
-      title: "ONLINE Workshop Postnatal Pilates",
-      niveau: "",
-      image: formation3,
-      date: "21/12/2024",
-      timeSlots: ["Sam. 21/12/2024 de 16h15 à 18h15"],
-    },
-    {
       title: "Intensive Matwork",
       niveau: "débutant et intermédiare",
       image: formation6,

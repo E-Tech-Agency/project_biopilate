@@ -405,7 +405,7 @@ export function RegisterForm({
               <div id="signInDiv" className="w-full rounded-lg my-3"></div>
               <button
                 type="submit"
-                className="reserver-button button-hover flex mx-auto mb-2.5 flex-col justify-center items-center text-sm sm:text-base font-bold font-lato rounded-lg w-full py-2 sm:py-3 bg-bgColor text-marron transition duration-300 ease-in-out transform"
+                className="reserver-button button-hover flex mx-auto mb-2.5 flex-col justify-center items-center text-sm sm:text-base font-bold font-lato rounded-lg w-full py-2 sm:py-3 bg-bgColor text-marron hover:text-white transition duration-300 ease-in-out transform"
               >
                 <div className="hover-circle overflow-hidden" />
                 Créer un compte

@@ -197,10 +197,10 @@ export default function StottPilates() {
           Découvrez
         </div>
         <div className="flex flex-col justify-center items-center gap-6">
-          <h1 className="text-3xl font-ebGaramond text-marron font-bold">
+          <h1 className="text-3xl font-ebGaramond text-marron font-bold text-center">
             Les cinq principes de base de la méthode Stott Pilates
           </h1>
-          <h2 className="text-xl font-ebGaramond text-blueText">
+          <h2 className="text-xl font-ebGaramond text-blueText text-center">
             <strong>La méthode Stott Pilates</strong> se distingue par 5
             principes de base et offre de nombreux bénéfices pour le corps et
             l’esprit
