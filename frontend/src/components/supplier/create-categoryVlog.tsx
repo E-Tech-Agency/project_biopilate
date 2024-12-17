@@ -43,7 +43,7 @@ export default function CreateCategoryVlog({ onSuccess }: CreateCategoryVlogProp
     }
 
     return (
-        <Card className="w-full max-w-md mx-auto ">
+        <Card className="mx-auto ">
             <CardHeader>
                 <CardTitle>Ajouter une Catégorie</CardTitle>
             </CardHeader>

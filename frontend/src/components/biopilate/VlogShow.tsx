@@ -14,7 +14,7 @@ import { toast } from "sonner";
 import { Modal } from "./Modal";
 import DOMPurify from 'dompurify';
 import CreateCategoryVlog from '../supplier/create-categoryVlog';
-
+import {  Edit2, Link, PlusCircle, Trash2 } from 'lucide-react';
 const ReactQuill = React.lazy(() => import("react-quill"));
 
 export default function VlogShow() {
@@ -195,16 +195,28 @@ export default function VlogShow() {
 
     return (
         <div className='flex flex-col items-center m-6'>
-            <Card className="w-full max-w-6xl mx-auto p-6">
-                <CardHeader className="flex justify-between items-center">
-                    <CardTitle>Liste  Vlog</CardTitle>
-                    
-                    <div className='flex space-x-4 items-center'>
-                        <Button variant="default" onClick={() => setIsModalOpen(true)}>
-                            Ajouter un Vlog
+            <Card className="w-full shadow-lg">
+                <CardHeader className="border-b bg-white">
+                <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
+
+                   
+                    <div>
+              <CardTitle className="text-2xl font-bold text-gray-800">
+                Liste des Vlogs
+              </CardTitle>
+              <p className="text-muted-foreground">
+                Gérez vos Vlogs avec facilité
+              </p>
+            </div>
+                    <Button variant="default"
+                   className="bg-primary hover:bg-primary/90 flex items-center gap-2"
+
+                    onClick={() => setIsModalOpen(true)}>
+                           <PlusCircle className="w-4 h-4" />  Ajouter un Vlog
                         </Button>
-                        <CreateCategoryVlog />
+                        
                     </div>
+                    <CreateCategoryVlog />
                 </CardHeader>
 
                 {/* Modal for creating new workshop */}
@@ -411,18 +423,15 @@ export default function VlogShow() {
                 </TableCell>
                 <TableCell className="px-4 py-3 font-medium text-gray-900">{vlogs.title}</TableCell>
                 <TableCell className="px-4 py-3 text-gray-600">{vlogs.category_vlog}</TableCell>
-                <TableCell className="px-4 py-3">
-                    <div className="w-48 h-28 rounded-md overflow-hidden shadow-md">
-                        <iframe
-                            className="w-full h-full"
-                            src={`${vlogs.description}`}
-                            title='YouTube video player'
-                            frameBorder='0'
-                            allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture'
-                            allowFullScreen
-                        />
-                    </div>
-                </TableCell>
+               
+                    <TableCell className="px-4 py-3">
+            <div >
+                <div className="flex items-center space-x-2 p-4">
+ 
+                    <a href= {vlogs.description}>  <Link className="w-8 h-8 text-gray-600" /></a>
+                </div>
+            </div>
+        </TableCell >
                 <TableCell className="px-4 py-3 text-gray-600">
                     {new Date(vlogs.date).toLocaleDateString('fr-FR')} {/* Specify French locale if needed */}
                 </TableCell>
@@ -433,14 +442,17 @@ export default function VlogShow() {
                             variant="secondary" 
                             className="hover:bg-blue-100 transition-colors"
                         >
-                            <FaEdit className="text-blue-600" />
+                          <Edit2 className="w-4 h-4 text-blue-600" />
+
                         </Button>
                         <Button 
                             onClick={() => deleteVlog(vlogs.id)} 
-                            variant="destructive" 
-                            className=" transition-colors"
-                        >
-                            <FaTrash  />
+                             variant="outline" 
+                            size="icon"
+                            className="hover:bg-red-50"
+                            >
+                            <Trash2 className="w-4 h-4 text-red-600" />
+
                         </Button>
                     </div>
                 </TableCell>
@@ -452,7 +464,7 @@ export default function VlogShow() {
 {/* Pagination Section */}
 <div className="flex justify-between items-center mt-6 px-4 py-3 bg-white border-t rounded-b-lg shadow-md">
     <div className="flex items-center space-x-3">
-        <span className="text-sm text-gray-700">Rows per page:</span>
+
         <select
             value={rowsPerPage}
             onChange={(e) => handleChangeRowsPerPage(parseInt(e.target.value))}
@@ -469,17 +481,17 @@ export default function VlogShow() {
             onClick={() => setCurrentPage(currentPage - 1)}
             disabled={currentPage === 1}
         >
-            Previous
+            Précédent
         </button>
         <span className="text-sm text-gray-700">
-            Page {currentPage} of {Math.ceil(filteredVlog.length / rowsPerPage)}
+            Page {currentPage} de {Math.ceil(filteredVlog.length / rowsPerPage)}
         </span>
         <button
             className="px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed"
             onClick={() => setCurrentPage(currentPage + 1)}
             disabled={currentPage === Math.ceil(filteredVlog.length / rowsPerPage)}
         >
-            Next
+            Suivant
         </button>
     </div>
 </div>

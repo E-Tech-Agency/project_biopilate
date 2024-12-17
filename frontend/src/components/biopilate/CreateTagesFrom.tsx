@@ -12,6 +12,7 @@ import apiCreateTeache from "@/lib/apiCreateTeache";
 import axios from "axios";
 import { toast } from "sonner";
 import { CreateTagesErrors, TagesFormType } from "@/types/types";
+import { PlusCircle } from "lucide-react";
 interface CreateTagesFormProps {
     onTageAdded: () => void; // Callback to notify parent component of new tage
   }
@@ -71,7 +72,7 @@ export default function CreateTagesForm({ onTageAdded }: CreateTagesFormProps)  
                             {errors.status && <span className="text-red-500 mt-2">{errors.status}</span>}
                         </div>
                         <div>
-                            <Button type="submit" className="w-44" size={"lg"}>Ajouter</Button>
+                            <Button type="submit" className="w-44 gap-2 flex items-center" size={"lg"}><PlusCircle className="w-4 h-4" /> Ajouter</Button>
                         </div>
                     </div>
                 </form>

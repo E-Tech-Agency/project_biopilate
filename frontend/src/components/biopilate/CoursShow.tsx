@@ -14,8 +14,14 @@ import { toast } from "sonner";
 import { Modal } from "./Modal";
 import DOMPurify from 'dompurify'; // Import DOMPurify
 import CreateCategoryCours from "../supplier/create-categorycours";
-import { BookOpen, UploadCloud, List, Tag } from 'lucide-react';
-
+import { UploadCloud, List, Tag, PlusCircle, Search, Edit2, Trash2 } from 'lucide-react';
+import { 
+    Select, 
+    SelectContent, 
+    SelectItem, 
+    SelectTrigger, 
+    SelectValue 
+  } from "@/components/ui/select";
 const ReactQuill = React.lazy(() => import("react-quill"));
 
 export default function CoursShow() {
@@ -156,8 +162,8 @@ export default function CoursShow() {
 
     return (
         <div className='flex flex-col items-center m-6'>
-            <Card className="w-full max-w-6xl mx-auto p-6">
-                <CardHeader className="flex justify-between">
+            <Card className="w-full max-w-6xl mx-auto shadow-lg">
+            <CardHeader className="border-b bg-white">
                 <CreateCategoryCours />
                 <div>
                
@@ -165,18 +171,147 @@ export default function CoursShow() {
     <div className="flex justify-between items-center">
         <CardTitle>Liste Cours</CardTitle>
         <div className="space-x-4">
-            <Button variant="default"  onClick={() => setIsModalOpen(true)}>
-                Ajouter un Cours
-            </Button> 
+        <Button 
+              onClick={() => setIsModalOpen(true)} 
+              className="bg-primary hover:bg-primary/90 flex items-center gap-2"
+            >
+              <PlusCircle className="w-4 h-4" />
+              Ajouter un Cours
+            </Button>
         </div>
         
     </div>
 
-                    
-                       
-                        
-                        
-                        <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
+                    </div>
+                </CardHeader>
+                <CardContent >
+                <div className="grid md:grid-cols-3 gap-4 mb-6">
+                <div className="relative">
+              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
+              <Input
+                type="text"
+                placeholder="Rechercher un cours..."
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+                className="pl-10 bg-white border-gray-300"
+              />
+            </div>
+                        <select
+                            value={statusFilter}
+                            onChange={(e) => setStatusFilter(e.target.value)}
+                             className="p-2 border border-gray-300 rounded-md bg-white text-gray-700"
+                        >
+                            <option value="">Sélectionner un Status</option>
+                            <option value="pending">En attente de publication</option>
+                            <option value="approved">Publiée</option>
+                        </select>
+                        <select
+                            value={categoryFilter}
+                            onChange={(e) => setCategoryFilter(e.target.value)}
+                             className="p-2 border border-gray-300 rounded-md bg-white text-gray-700"
+                        >
+                            <option value="">Tous les Niveaux</option>
+                            {categories.map((category) => (
+                                <option key={category.id} value={category.id}>
+                                    {category.name}
+                                </option>
+                            ))}
+                        </select>
+                    </div>
+                    <Table>
+                        <TableHeader  className="bg-gray-100">
+                            <TableRow>
+                                <TableHead>Image</TableHead>
+                                <TableHead>Titre</TableHead>
+                                <TableHead>Catégorie</TableHead>
+                                <TableHead>Description</TableHead>
+                                <TableHead className="text-right">Actions</TableHead>
+                            </TableRow>
+                        </TableHeader>
+                        <TableBody>
+                            {paginatedCours.map((cour) => (
+                                <TableRow key={cour.id}>
+                                    <TableCell>
+                                        {cour.image && (
+                                            <img
+                                                src={cour.image}
+                                                alt={cour.title}
+                                                className="w-16 h-16 object-cover"
+                                            />
+                                        )}
+                                    </TableCell>
+                                    <TableCell>{cour.title}</TableCell>
+                                    <TableCell>{cour.category_cours}</TableCell>
+                                    <TableCell>
+                                        <div
+                                            dangerouslySetInnerHTML={{
+                                                __html: DOMPurify.sanitize(cour.description),
+                                            }}
+                                        />
+                                    </TableCell>
+                                    <TableCell className="text-right">
+                                    <div className="flex justify-end space-x-2">
+                                        <Button onClick={() => handleEditClick(cour.id)} 
+                                         variant="outline" 
+                                          className="hover:bg-blue-50"
+                                        >
+                                             <Edit2 className="w-4 h-4 text-blue-600" />
+                                        </Button>
+                                        <Button onClick={() => deleteCours(cour.id)} 
+                                        variant="outline" 
+                                        className="hover:bg-red-50"
+                                        >
+                                            <Trash2 className="w-4 h-4 text-red-600" />
+                                        </Button>
+                                        </div>
+                                    </TableCell>
+                                </TableRow>
+                            ))}
+                        </TableBody>
+                    </Table>
+                    <div className="flex justify-between items-center mt-4">
+                        <div className="flex items-center space-x-2">
+                        <Select 
+                value={rowsPerPage.toString()} 
+                onValueChange={(value) => setRowsPerPage(Number(value))}
+              >
+                <SelectTrigger className="w-[100px]">
+                  <SelectValue placeholder="Lignes" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="5">5 lignes</SelectItem>
+                  <SelectItem value="10">10 lignes</SelectItem>
+                  <SelectItem value="20">20 lignes</SelectItem>
+                </SelectContent>
+              </Select>
+                        </div>
+                        <div className="flex justify-between items-center p-4 border-t">
+            <div className="text-sm text-muted-foreground">
+              Page {currentPage} sur {Math.ceil(filteredCours.length / rowsPerPage)}
+            </div>
+            <div className="flex space-x-2">
+              <Button
+                variant="outline"
+                onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
+                disabled={currentPage === 1}
+              >
+                Précédent
+              </Button>
+              <Button
+                variant="outline"
+                onClick={() => setCurrentPage(prev => 
+                  (prev * rowsPerPage < filteredCours.length ? prev + 1 : prev)
+                )}
+                disabled={currentPage * rowsPerPage >= filteredCours.length}
+              >
+                Suivant
+              </Button>
+            </div>
+          </div>
+                    </div>
+                </CardContent>
+            </Card>
+            <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
                         <form onSubmit={handleSubmitCours} className="space-y-6">
             {/* Title Input */}
             <div className="space-y-2">
@@ -296,121 +431,6 @@ export default function CoursShow() {
             </div>
           </form>
                         </Modal>
-                    </div>
-                </CardHeader>
-                <CardContent className="grid gap-3">
-                    <div className="grid gap-6 md:grid-cols-3">
-                    <div className="relative">
-                            <FaSearch className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
-                            <Input
-                                type="text"
-                                placeholder="Recherche..."
-                                value={searchTerm}
-                                onChange={(e) => setSearchTerm(e.target.value)}
-                                className="pl-10 bg-white border-gray-300"
-                            />
-                        </div>
-                        <select
-                            value={statusFilter}
-                            onChange={(e) => setStatusFilter(e.target.value)}
-                             className="p-2 border border-gray-300 rounded-md bg-white text-gray-700"
-                        >
-                            <option value="">Sélectionner un Status</option>
-                            <option value="pending">En attente de publication</option>
-                            <option value="approved">Publiée</option>
-                        </select>
-                        <select
-                            value={categoryFilter}
-                            onChange={(e) => setCategoryFilter(e.target.value)}
-                             className="p-2 border border-gray-300 rounded-md bg-white text-gray-700"
-                        >
-                            <option value="">Tous les Niveaux</option>
-                            {categories.map((category) => (
-                                <option key={category.id} value={category.id}>
-                                    {category.name}
-                                </option>
-                            ))}
-                        </select>
-                    </div>
-                    <Table>
-                        <TableHeader>
-                            <TableRow>
-                                <TableHead>Image</TableHead>
-                                <TableHead>Titre</TableHead>
-                                <TableHead>Catégorie</TableHead>
-                                <TableHead>Description</TableHead>
-                                <TableHead>Actions</TableHead>
-                            </TableRow>
-                        </TableHeader>
-                        <TableBody>
-                            {paginatedCours.map((cour) => (
-                                <TableRow key={cour.id}>
-                                    <TableCell>
-                                        {cour.image && (
-                                            <img
-                                                src={cour.image}
-                                                alt={cour.title}
-                                                className="w-16 h-16 object-cover"
-                                            />
-                                        )}
-                                    </TableCell>
-                                    <TableCell>{cour.title}</TableCell>
-                                    <TableCell>{cour.category_cours}</TableCell>
-                                    <TableCell>
-                                        <div
-                                            dangerouslySetInnerHTML={{
-                                                __html: DOMPurify.sanitize(cour.description),
-                                            }}
-                                        />
-                                    </TableCell>
-                                    <TableCell className="space-x-4">
-                                        <Button onClick={() => handleEditClick(cour.id)} variant="secondary">
-                                            <FaEdit />
-                                        </Button>
-                                        <Button onClick={() => deleteCours(cour.id)} variant="destructive">
-                                            <FaTrash />
-                                        </Button>
-                                    </TableCell>
-                                </TableRow>
-                            ))}
-                        </TableBody>
-                    </Table>
-                    <div className="flex justify-between items-center mt-4">
-                        <div className="flex items-center space-x-2">
-                            <span>Rows per page:</span>
-                            <select
-                                value={rowsPerPage}
-                                onChange={(e) => handleChangeRowsPerPage(parseInt(e.target.value))}
-                                className="p-1 border border-gray-300 rounded-md"
-                            >
-                                <option value={5}>5</option>
-                                <option value={10}>10</option>
-                                <option value={20}>20</option>
-                            </select>
-                        </div>
-                        <div className="flex items-center space-x-2">
-                            <button
-                                className="p-2 border border-gray-300 rounded-md"
-                                onClick={() => setCurrentPage(currentPage - 1)}
-                                disabled={currentPage === 1}
-                            >
-                                Previous
-                            </button>
-                            <span>
-                                Page {currentPage} of {Math.ceil(filteredCours.length / rowsPerPage)}
-                            </span>
-                            <button
-                                className="p-2 border border-gray-300 rounded-md"
-                                onClick={() => setCurrentPage(currentPage + 1)}
-                                disabled={currentPage === Math.ceil(filteredCours.length / rowsPerPage)}
-                            >
-                                Next
-                            </button>
-                        </div>
-                    </div>
-                </CardContent>
-            </Card>
-           
         </div>
     );
 }

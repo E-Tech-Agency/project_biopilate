@@ -14,7 +14,14 @@ import { toast } from "sonner";
 import { Modal } from "./Modal";
 import DOMPurify from 'dompurify';
 import CreateCategoryWorkShop from "../supplier/create-categoryworkshop";
-
+import { Edit2, PlusCircle, Search, Trash2 } from "lucide-react";
+import { 
+    Select, 
+    SelectContent, 
+    SelectItem, 
+    SelectTrigger, 
+    SelectValue 
+  } from "@/components/ui/select";
 const ReactQuill = React.lazy(() => import("react-quill"));
 
 export default function WorkshopShow() {
@@ -202,16 +209,27 @@ export default function WorkshopShow() {
 
     return (
         <div className='flex flex-col items-center m-6'>
-            <Card className="w-full max-w-6xl mx-auto p-6">
-                <CardHeader className="flex justify-between items-center">
-                    <CardTitle>Liste des WorkShops</CardTitle>
+            <Card className="w-full shadow-lg">
+                <CardHeader className="border-b bg-white">
+                     <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
+            <div>
+              <CardTitle className="text-2xl font-bold text-gray-800">
+                Liste des WorkShops
+              </CardTitle>
+              <p className="text-muted-foreground">
+                Gérez vos WorkShops avec facilité
+              </p>
+            </div>
+            <Button variant="default" onClick={() => setIsModalOpen(true)}>
+            <PlusCircle className="w-4 h-4" />    Ajouter un WorkShop
+                        </Button></div>
+                    <div className="flex items-center space-x-4">
                     
                     <div className='flex space-x-4 items-center'>
-                        <Button variant="default" onClick={() => setIsModalOpen(true)}>
-                            Ajouter un WorkShop
-                        </Button>
+                      
                         <CreateCategoryWorkShop />
-                    </div>
+                    </div></div>
+               
                 </CardHeader>
 
                 {/* Modal for creating new workshop */}
@@ -324,12 +342,16 @@ export default function WorkshopShow() {
                 {/* Filtering and Search Section */}
                 <CardContent className="grid gap-4">
                     <div className="grid md:grid-cols-3 gap-4">
-                        <Input
-                            type="text"
-                            placeholder="Recherche..."
-                            value={searchTerm}
-                            onChange={(e) => setSearchTerm(e.target.value)}
-                        />
+                    <div className="relative flex-grow">
+                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
+                <Input
+                  type="text"
+                  placeholder="Rechercher ..."
+                  value={searchTerm}
+                  onChange={(e) => setSearchTerm(e.target.value)}
+                  className="pl-10 bg-white border-gray-300"
+                />
+              </div>
                         <select
                             value={statusFilter}
                             onChange={(e) => setStatusFilter(e.target.value)}
@@ -355,7 +377,7 @@ export default function WorkshopShow() {
 
                     {/* Workshops Table */}
                     <Table>
-                        <TableHeader>
+                        <TableHeader className="bg-gray-100">
                             <TableRow>
                                 <TableHead>Image</TableHead>
                                 <TableHead>Titre</TableHead>
@@ -399,11 +421,22 @@ export default function WorkshopShow() {
                                         />
                                     </TableCell>
                                     <TableCell className="space-x-4">
-                                        <Button onClick={() => handleEditClick(workshop.id)} variant="secondary">
-                                            <FaEdit />
+                                        <Button onClick={() => handleEditClick(workshop.id)}
+                                         variant="outline" 
+                                         size="icon" 
+                                        
+                                         className="hover:bg-blue-50">
+                                                                   <Edit2 className="w-4 h-4 text-blue-600" />
+
                                         </Button>
-                                        <Button onClick={() => deleteWorkShop(workshop.id)} variant="destructive">
-                                            <FaTrash />
+                                        <Button onClick={() => deleteWorkShop(workshop.id)}
+                                         variant="outline" 
+                                         size="icon" 
+                                         className="hover:bg-red-50"
+
+                                         >
+                                                                    <Trash2 className="w-4 h-4 text-red-600" />
+
                                         </Button>
                                     </TableCell>
                                 </TableRow>
@@ -412,16 +445,20 @@ export default function WorkshopShow() {
                     </Table>
                     <div className="flex justify-between items-center mt-4">
                         <div className="flex items-center space-x-2">
-                            <span>Rows per page:</span>
-                            <select
-                                value={rowsPerPage}
-                                onChange={(e) => handleChangeRowsPerPage(parseInt(e.target.value))}
-                                className="p-1 border border-gray-300 rounded-md"
-                            >
-                                <option value={5}>5</option>
-                                <option value={10}>10</option>
-                                <option value={20}>20</option>
-                            </select>
+                         
+                            <Select 
+                value={rowsPerPage.toString()} 
+                onValueChange={(value) => setRowsPerPage(Number(value))}
+              >
+                <SelectTrigger className="w-[100px]">
+                  <SelectValue placeholder="Lignes" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="5">5 lignes</SelectItem>
+                  <SelectItem value="10">10 lignes</SelectItem>
+                  <SelectItem value="20">20 lignes</SelectItem>
+                </SelectContent>
+              </Select>
                         </div>
                         <div className="flex items-center space-x-2">
                             <button
@@ -429,17 +466,17 @@ export default function WorkshopShow() {
                                 onClick={() => setCurrentPage(currentPage - 1)}
                                 disabled={currentPage === 1}
                             >
-                                Previous
+                               Précédent
                             </button>
                             <span>
-                                Page {currentPage} of {Math.ceil(filteredWorkShop.length / rowsPerPage)}
+                                Page {currentPage} de {Math.ceil(filteredWorkShop.length / rowsPerPage)}
                             </span>
                             <button
                                 className="p-2 border border-gray-300 rounded-md"
                                 onClick={() => setCurrentPage(currentPage + 1)}
                                 disabled={currentPage === Math.ceil(filteredWorkShop.length / rowsPerPage)}
                             >
-                                Next
+                                Suivant
                             </button>
                         </div>
                     </div>

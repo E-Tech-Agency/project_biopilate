@@ -13,8 +13,14 @@ import axios, { AxiosError } from "axios";
 import { toast } from "sonner";
 import { Modal } from "./Modal";
 import DOMPurify from 'dompurify';
-import { BookOpen, FileText } from 'lucide-react';
-
+import { BookOpen, Edit2, FileText, PlusCircle, Trash2 } from 'lucide-react';
+import { 
+    Select, 
+    SelectContent, 
+    SelectItem, 
+    SelectTrigger, 
+    SelectValue 
+  } from "@/components/ui/select";
 const ReactQuill = React.lazy(() => import("react-quill"));
 
 export default function Manuelhow() {
@@ -171,16 +177,24 @@ export default function Manuelhow() {
 
     return (
         <div className='flex flex-col items-center m-6'>
-            <Card className="w-full max-w-6xl mx-auto p-6">
-                            <CardHeader className="flex  justify-between">
+            <Card className="w-full shadow-lg">
+                            <CardHeader className="border-b bg-white">
                
-                <div className="flex justify-between items-center">
-                <CardTitle>Liste Manuel</CardTitle>
-                    <Button variant="default" onClick={() => setIsModalOpen(true)}>
-                    Ajouter un Manuel
-                    </Button>
-                </div>
+                            <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
+            
+                   
                
+                <div>
+              <CardTitle className="text-2xl font-bold text-gray-800">
+                Liste des Manuels
+              </CardTitle>
+              <p className="text-muted-foreground">
+                Gérez vos instructeurs avec facilité
+              </p>
+            </div>
+            <Button variant="default" onClick={() => setIsModalOpen(true)}>
+            <PlusCircle className="w-4 h-4" />  Ajouter un Manuel
+                    </Button> </div>
                 </CardHeader>
 
                 {/* Modal for creating new workshop */}
@@ -307,7 +321,19 @@ export default function Manuelhow() {
                             <option value="pending">En attente de publication</option>
                             <option value="approved">Publiée</option>
                         </select>
-                       
+                        <Select 
+                value={rowsPerPage.toString()} 
+                onValueChange={(value) => setRowsPerPage(Number(value))}
+              >
+                <SelectTrigger className="w-[100px]">
+                  <SelectValue placeholder="Lignes" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="5">5 lignes</SelectItem>
+                  <SelectItem value="10">10 lignes</SelectItem>
+                  <SelectItem value="20">20 lignes</SelectItem>
+                </SelectContent>
+              </Select>
                     </div>
 
                     {/* Workshops Table */}
@@ -348,11 +374,21 @@ export default function Manuelhow() {
         </TableCell >
         <TableCell className="item-right">
                                     <div className="flex space-x-2">
-                                        <Button variant="secondary" onClick={() => handleEditClick(manuel.id)}>
-                                            <FaEdit />
+                                        <Button 
+                                        variant="secondary" 
+                                        className="hover:bg-blue-50"
+
+                                        onClick={() => handleEditClick(manuel.id)}>
+                                        <Edit2 className="w-4 h-4 text-blue-600" />
+
                                         </Button>
-                                        <Button variant="destructive" onClick={() => deleteManuel(manuel.id)}>
-                                            <FaTrash />
+                                        <Button  variant="outline" 
+                                            size="icon" 
+                                            className="hover:bg-red-50"
+
+                                            onClick={() => deleteManuel(manuel.id)}>
+                                              <Trash2 className="w-4 h-4 text-red-600" />
+
                                         </Button>
                                     </div>
                                 </TableCell>
@@ -363,35 +399,24 @@ export default function Manuelhow() {
 
 {/* Pagination Section */}
 <div className="flex justify-between items-center mt-6 px-4 py-3 bg-white border-t rounded-b-lg shadow-md">
-    <div className="flex items-center space-x-3">
-        <span className="text-sm text-gray-700">Rows per page:</span>
-        <select
-            value={rowsPerPage}
-            onChange={(e) => handleChangeRowsPerPage(parseInt(e.target.value))}
-            className="p-2 border border-gray-300 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
-        >
-            <option value={5}>5</option>
-            <option value={10}>10</option>
-            <option value={20}>20</option>
-        </select>
-    </div>
+    
     <div className="flex items-center space-x-4">
         <button
             className="px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed"
             onClick={() => setCurrentPage(currentPage - 1)}
             disabled={currentPage === 1}
         >
-            Previous
+            Précédent
         </button>
         <span className="text-sm text-gray-700">
-            Page {currentPage} of {Math.ceil(filteredManuel.length / rowsPerPage)}
+            Page {currentPage} de {Math.ceil(filteredManuel.length / rowsPerPage)}
         </span>
         <button
             className="px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed"
             onClick={() => setCurrentPage(currentPage + 1)}
             disabled={currentPage === Math.ceil(filteredManuel.length / rowsPerPage)}
         >
-            Next
+            Suivant
         </button>
     </div>
 </div>

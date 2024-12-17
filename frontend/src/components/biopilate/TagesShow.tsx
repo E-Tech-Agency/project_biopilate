@@ -20,7 +20,15 @@ import { Button } from "@/components/ui/button";
 import { Modal } from "./Modal";
 import TagesForm from "./TagesForm";
 import { Label } from "@/components/ui/label";
-
+import { Edit2, Search, Tag, Trash2 } from "lucide-react";
+import { Input } from "@/components/ui/input";
+import { 
+    Select, 
+    SelectContent, 
+    SelectItem, 
+    SelectTrigger, 
+    SelectValue 
+  } from "@/components/ui/select";
 const TagesShow = forwardRef((props, ref) => {
 
     const [tages, setTages] = useState<Tage[]>([]);
@@ -117,26 +125,52 @@ const TagesShow = forwardRef((props, ref) => {
     const paginatedTages = filteredTages.slice((currentPage - 1) * rowsPerPage, currentPage * rowsPerPage);
 
     return (
-        <Card>
-            <CardHeader>
-                <CardTitle>Liste des Tages</CardTitle>
-                <div className="flex justify-between">
-                    <div className="mt-4">
-                        <Label htmlFor="rowsPerPage">Afficher:</Label>
-                        <select
-                            id="rowsPerPage"
-                            value={rowsPerPage}
-                            onChange={(e) => handleChangeRowsPerPage(Number(e.target.value))}
-                            className="ml-2 border-gray-300 rounded-md"
-                        >
-                            <option value={5}>5</option>
-                            <option value={10}>10</option>
-                            <option value={20}>20</option>
-                        </select>
-                    </div>
-                    <div className="mt-4">
-                        <Label htmlFor="statusFilter">Filtrer par statut:</Label>
-                        <select
+        <Card className="w-full max-w-4xl mx-auto shadow-lg">
+            <CardHeader className="border-b bg-white">
+            <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
+            <div>
+              <CardTitle className="text-2xl font-bold text-gray-800 flex items-center gap-2">
+                <Tag className="w-6 h-6 text-primary" />
+                Liste des Tags
+              </CardTitle>
+              <p className="text-muted-foreground">
+                Gérez vos tags avec facilité
+              </p>
+            </div>
+            </div>
+                
+            </CardHeader>
+            <CardContent>
+            <div className="mb-6 space-y-4">
+            <div className="relative">
+              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
+              <Input
+                type="text"
+                placeholder="Rechercher un tag..."
+                value={searchTerm}
+                onChange={handleSearch}
+                className="pl-10 bg-white border-gray-300"
+              />
+            </div>
+            <div className="grid md:grid-cols-2 gap-4">
+              <div className="flex items-center space-x-4">
+                <span className="text-sm text-muted-foreground">Lignes par page:</span>
+                <Select 
+                  value={rowsPerPage.toString()} 
+                  onValueChange={(value) => setRowsPerPage(Number(value))}
+                >
+                  <SelectTrigger className="w-[100px]">
+                    <SelectValue placeholder={rowsPerPage} />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="5">5</SelectItem>
+                    <SelectItem value="10">10</SelectItem>
+                    <SelectItem value="20">20</SelectItem>
+                  </SelectContent>
+                </Select>
+                </div>
+                <div className="flex items-center space-x-4">
+                <span className="text-sm text-muted-foreground">Statut:</span>                        <select
                             id="statusFilter"
                             value={selectedStatus}
                             onChange={(e) => handleStatusFilterChange(e.target.value)}
@@ -147,18 +181,12 @@ const TagesShow = forwardRef((props, ref) => {
                             <option value="approved">Publiée</option>
                         </select>
                     </div>
-                </div>
-            </CardHeader>
-            <CardContent>
-                <input
-                    type="text"
-                    placeholder="Rechercher..."
-                    value={searchTerm}
-                    onChange={handleSearch}
-                    className="w-full border border-gray-300 rounded-md px-3 py-2"
-                />
+         
+            </div>
+          </div>
+               
                 <Table>
-                    <TableHeader>
+                    <TableHeader  className="bg-gray-100">
                         <TableRow>
                             <TableHead>Titre</TableHead>
                             <TableHead className="hidden sm:table-cell">Status</TableHead>
@@ -188,16 +216,18 @@ const TagesShow = forwardRef((props, ref) => {
                                 <TableCell className="text-right">
                                     <div className="flex space-x-2">
                                         <Button
-                                            variant="secondary"
+                                             variant="outline" 
                                             onClick={() => handleEditClick(tage)}
-                                        >
-                                            <FaEdit />
+                                         className="hover:bg-blue-50"
+                                       >
+                                          <Edit2 className="w-4 h-4 text-blue-600" />
                                         </Button>
                                         <Button
-                                           variant="destructive"
+                                           variant="outline" 
                                             onClick={() => deleteTage(tage.id)}
+                                             className="hover:bg-red-50"
                                         >
-                                            <FaTrash />
+                                           <Trash2 className="w-4 h-4 text-red-600" />
                                         </Button>
                                     </div>
                                 </TableCell>
