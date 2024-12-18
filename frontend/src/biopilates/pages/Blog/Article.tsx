@@ -11,7 +11,7 @@ import { LuShare } from "react-icons/lu";
 import { IoIosLink } from "react-icons/io";
 import { RiTwitterXLine, RiInstagramFill } from "react-icons/ri";
 import { TiSocialFacebook } from "react-icons/ti";
-import { Blog } from "@/types/types";
+import { Blog ,BlogArticle } from "@/types/types";
 import { useEffect, useState } from "react";
 import api from "@/lib/api";
 import {
@@ -117,20 +117,19 @@ export default function Article() {
   const articleId = id ? parseInt(id) : null; // Safely parse the id if it exists
 
   const navigate = useNavigate();
-  const blogData =
-  blogs && blogs.length > 0
-    ? blogs.map((blog) => ({
-        id: blog.id,
-        title: blog.title,
-        ecrivain: blog.author, // Map 'author' to 'ecrivain'
-        description: blog.description,
-        favorites: blog.favorites, // Map 'favorites' to 'favorites'
-        image: blog.image_1, // Use 'image_1' as the main image
-        view: blog.view,
-      }))
-    : articles;
-    const article = articleId ? blogData.find((a) => a.id === articleId) : null; // Find the article using the parsed ID
-
+  const blogData: BlogArticle[] = blogs && blogs.length > 0
+  ? blogs.map((blog) => ({
+      id: blog.id,
+      title: blog.title,
+      ecrivain: blog.author,
+      description: blog.description,
+      favorites: blog.favorites,
+      image: blog.image_1,
+      view: blog.view,
+    }))
+  : articles;
+    
+    const article = blogData.find((blog) => blog.id === articleId);
   const navigateToContact = () => {
     navigate("/contact");
   };

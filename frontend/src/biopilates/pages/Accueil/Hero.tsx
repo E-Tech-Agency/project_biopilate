@@ -26,7 +26,7 @@ export default function Hero() {
           Découvrez la force dans la fluidité et la grâce dans le mouvement, au
           cœur de Paris, avec notre approche personnalisée du Pilates.
         </p>
-        <ReserverButton />
+        <ReserverButton  link="https://backoffice.bsport.io/m/Studio%20Biopilates%20Paris/878/calendar/?isPreview=true&tabSelected=0"/>
       </div>
     </section>
   );

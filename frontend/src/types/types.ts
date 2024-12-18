@@ -184,6 +184,16 @@ export type Blog = {
     create_at: Date;
     updated_at: Date;
 }
+export type BlogArticle = {
+    id: number;
+    title: string;
+    ecrivain: string;
+    description: string;
+    favorites?: number;
+    image: string;
+    view?: number;
+    jaimes?: number;
+  };
 export type BlogShow = {
     id: number;
     title : string;
