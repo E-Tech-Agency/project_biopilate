@@ -143,7 +143,7 @@ export default function FormationSection({
 
   const navigate = useNavigate();
   const navigateToTarifs = () => {
-    navigate("/formations#formations-prix");
+    navigate("/formations#ftarif");
   };
 
   const formationsToDisplay = isSmallScreen
@@ -164,11 +164,12 @@ export default function FormationSection({
         </p>
       </div>
       <Swiper
-        className="centered-slide-carousel swiper-container overflow-hidden mx-[-20px] md:mx-[-48px]"
+        className="centered-slide-carousel swiper-container overflow-hidden mx-[-20px] md:mx-[-10px] px-4"
         // centeredSlides={true}
         grabCursor={true}
         loop={true}
-        spaceBetween={30}
+        spaceBetween={20}
+        slidesOffsetAfter={30}
         // slideToClickedSlide={true}
         pagination={{ el: ".swiper-pagination", clickable: true }} // Move clickable here
         navigation={{
@@ -181,34 +182,50 @@ export default function FormationSection({
             slidesPerView: 6,
             spaceBetween: 25,
           },
-          1600: {
-            slidesPerView: 5,
+          1690: {
+            slidesPerView: 5.15,
             spaceBetween: 20,
           },
-          1440: {
-            slidesPerView: 4,
+          1470: {
+            slidesPerView: 4.4,
             spaceBetween: 15,
           },
-          1280: {
-            slidesPerView: 3.5,
+          1320: {
+            slidesPerView: 3.8,
             spaceBetween: 10,
           },
-          1028: {
-            slidesPerView: 3,
+          1110: {
+            slidesPerView: 3.2,
             spaceBetween: 10,
           },
-          820: {
-            slidesPerView: 2.5,
+          980: {
+            slidesPerView: 2.8,
             spaceBetween: 8,
           },
-
-          640: {
+          850: {
+            slidesPerView: 2.3,
+            spaceBetween: 5,
+          },
+          768: {
             slidesPerView: 2,
+            spaceBetween: 5,
+          },
+
+          620: {
+            slidesPerView: 1.9,
             spaceBetween: 4,
           },
-          550: {
-            slidesPerView: 2,
-            spaceBetween: 4,
+          450: {
+            slidesPerView: 1.7,
+            spaceBetween: 5,
+          },
+          355: {
+            slidesPerView: 1.3,
+            spaceBetween: 3,
+          },
+          320: {
+            slidesPerView: 1.15,
+            spaceBetween: 3,
           },
         }}
       >
@@ -221,10 +238,10 @@ export default function FormationSection({
           </SwiperSlide>
         ))}
 
-        <div className="arrow-hover cursor-pointer swiper-but-prev slider-arrow hidden sm:flex justify-center items-center bg-bgColor rounded-full w-10 h-10 absolute left-5 top-1/2 transform -translate-y-1/2 z-20">
+        <div className="arrow-hover cursor-pointer swiper-but-prev slider-arrow hidden sm:flex justify-center items-center bg-bgColor rounded-full w-10 h-10 absolute left-5 top-[45%] transform -translate-y-1/2 z-20">
           <FaArrowLeftLong className="text-marron" />
         </div>
-        <div className="arrow-hover cursor-pointer swiper-but-next slider-arrow hidden sm:flex justify-center items-center bg-bgColor rounded-full w-10 h-10 absolute right-5 top-1/2 transform -translate-y-1/2 z-20">
+        <div className="arrow-hover cursor-pointer swiper-but-next slider-arrow hidden sm:flex justify-center items-center bg-bgColor rounded-full w-10 h-10 absolute right-5 top-[45%] transform -translate-y-1/2 z-20">
           <FaArrowRightLong className="text-marron" />
         </div>
       </Swiper>

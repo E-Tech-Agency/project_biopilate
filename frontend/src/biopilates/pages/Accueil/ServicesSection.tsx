@@ -73,7 +73,7 @@ export default function ServicesSection({
       </div>
       <Swiper
         className="centered-slide-carousel swiper-container relative"
-        centeredSlides={true}
+        // centeredSlides={true}
         grabCursor={true}
         loop={false}
         spaceBetween={20}
@@ -118,13 +118,21 @@ export default function ServicesSection({
             slidesPerView: 2,
             spaceBetween: 5,
           },
-          640: {
-            slidesPerView: 1,
+          620: {
+            slidesPerView: 1.75,
             spaceBetween: 2,
           },
-          550: {
-            slidesPerView: 1,
-            spaceBetween: 2,
+          445: {
+            slidesPerView: 1.6,
+            spaceBetween: 5,
+          },
+          355: {
+            slidesPerView: 1.3,
+            spaceBetween: 3,
+          },
+          320: {
+            slidesPerView: 1.15,
+            spaceBetween: 3,
           },
         }}
       >

@@ -75,7 +75,7 @@ export default function ImageSliderCours({ list }: ImageSliderCoursProps) {
           </div>
           <div className="text-wrapper overflow-hidden relative min-h-[150px]">
             <p
-              className={`text-center leading-7 ${
+              className={`max-md:text-center leading-7 ${
                 isAnimating ? "slide-out-bottom" : "slide-in-top"
               }`}
               dangerouslySetInnerHTML={{

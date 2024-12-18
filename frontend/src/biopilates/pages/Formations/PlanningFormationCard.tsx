@@ -25,24 +25,32 @@ function TimeSlots({ plan, showMore, toggleShowMore }: TimeSlotsProps) {
   const timeSlots = Array.isArray(plan.timeSlots) ? plan.timeSlots : [];
   const displayedSlots = showMore ? timeSlots : timeSlots.slice(0, 1);
   return (
-    <div className="flex flex-col justify-center items-center w-full">
+    <div
+      className={`flex flex-col justify-center items-center w-full  ${
+        showMore ? "" : ""
+      }`}
+    >
       {displayedSlots.map((day, index) => (
         <div
           className="border border-x-0 border-bgColor w-full py-1.5"
           key={index}
         >
-          <h1 className="text-lg">{day}</h1>
+          <h1 className="text-sm md:text-lg">{day}</h1>
         </div>
       ))}
 
       {timeSlots.length > 1 && (
         <button
-          className="flex items-center text-marron text-lg font-lato font-bold mt-3 cursor-pointer"
+          className="flex items-center text-marron text-lg font-lato font-bold mt-5 cursor-pointer"
           onClick={toggleShowMore}
         >
-          <span className="mr-2">{showMore ? "Voir moins" : "Voir plus"}</span>
+          <span className="text-sm md:text-base mr-2">
+            {showMore ? "Voir moins" : "Voir plus"}
+          </span>
           <FaChevronDown
-            className={`transition-transform ${showMore ? "rotate-180" : ""}`}
+            className={`text-sm md:text-base transition-transform ${
+              showMore ? "rotate-180" : ""
+            }`}
           />
         </button>
       )}
@@ -58,10 +66,11 @@ export default function PlanningFormationCard({
   return (
     <div
       className={`rounded-lg shadow-lg overflow-hidden transition-all duration-500 ease-in-out ${
-        showMore ? "h-auto" : " max-md:h-[450px] h-[500px]"
+        showMore ? "h-auto" : " max-md:h-[420px] h-[500px]"
       }`}
     >
       <div className="w-[274px] sm:w-[364px]">
+        {/* image and title */}
         <div className="relative inset-0 top-0 max-md:h-[200px] h-[250px]">
           <img
             loading="lazy"
@@ -73,22 +82,26 @@ export default function PlanningFormationCard({
             <div className="relative flex flex-col items-center size-full font-ebGaramond">
               <div className="top-0 absolute inset-0 bg-gradient-to-t from-black to-[70%] opacity-75" />
               <h3
-                className={`text-2xl font-semibold absolute bottom-0 left-0 right-0 text-center pb-14 ${
+                className={`text-xl md:text-2xl font-semibold absolute bottom-0 left-0 right-0 text-center pb-14 px-4 ${
                   plan.niveau ? "" : "pb-7"
                 }`}
               >
                 {plan.title}
               </h3>
-              <h3 className="text-xl font-normal absolute bottom-0 left-0 right-0 text-center pb-6">
+              <h3 className="text-lg md:text-xl font-normal absolute bottom-0 left-0 right-0 text-center pb-6">
                 {plan.niveau}
               </h3>
             </div>
           </div>
         </div>
-        <div className="rounded-md flex flex-col flex-nowrap items-center gap-4 py-4 font-lato text-center">
-          <div className="flex justify-center items-center gap-2 text-marron font-ebGaramond text-lg w-52">
-            <LuCalendarDays className="block text-4xl" />
-            <p className="font-bold">{plan.date}</p>
+
+        {/* dates and button */}
+        <div className="rounded-md flex flex-col flex-nowrap items-center gap-5 py-4 font-lato text-center">
+          <div className="flex justify-center items-center gap-2 md:gap-4 text-marron font-ebGaramond text-base md:text-lg w-52 md:w-72 md:grow h-8 md:h-10">
+            <div className="md:h-8 md:w-8">
+              <LuCalendarDays className="block text-2xl md:text-4xl" />
+            </div>
+            <p className="md:text-lg font-bold">{plan.date}</p>
           </div>
           <TimeSlots
             plan={plan}
@@ -96,9 +109,12 @@ export default function PlanningFormationCard({
             toggleShowMore={toggleShowMore}
           />
 
+          {/* space filler */}
+          {plan.timeSlots.length < 2 ? <div className="h-5 md:h-7" /> : ""}
+
           <div className="rounded-lg grow">
             <button
-              className={`flex overflow-hidden reserver-button cursor-pointer bg-bgColor flex-col justify-center text-base leading-6 rounded-lg text-current transition duration-300 ease-in-out transform`}
+              className={`flex overflow-hidden reserver-button cursor-pointer bg-bgColor flex-col justify-center text-sm md:text-base leading-6 rounded-lg text-current transition duration-300 ease-in-out transform`}
               onClick={() => {
                 window.open(
                   "https://forms.zohopublic.com/virtualoffice707/form/AnalysedesbesoinsbnficiairesFormationscourtesouper/formperma/0Yyw-9wbvHRQB_Xb63QniT0EDrnKuekcjjfWvZC8PMg",

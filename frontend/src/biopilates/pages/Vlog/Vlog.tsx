@@ -7,14 +7,14 @@ export default function Vlog() {
     {
       niveau: "Facile",
       image: vlog1,
-      title: "Pilates élastiques bras et jambes en bord du mer ",
+      title: "Pilates élastiques bras <p>et jambes en bord du mer</p> ",
       date: "24 Septembre 2024",
       link: "https://www.youtube.com/watch?v=lnt7ZxXAJwc",
     },
     {
       niveau: "Facile",
       image: vlog2,
-      title: "Pilates sur tapis et stretching en week end",
+      title: "Pilates sur tapis <p>et stretching en week end</p>",
       date: "13 Septembre 2024 ",
       link: "https://www.youtube.com/watch?v=DDA8oJBdjko",
     },
@@ -56,9 +56,12 @@ export default function Vlog() {
               src={video.image}
             ></img>
             <div className="h-[148px] sm:h-[184px] py-4 px-5 flex flex-col justify-between">
-              <p className="text-marron text-lg sm:text-[28px] font-ebGaramond font-bold leading-normal">
-                {video.title}
-              </p>
+              <p
+                className="text-marron text-lg sm:text-[28px] font-ebGaramond font-bold leading-normal"
+                dangerouslySetInnerHTML={{
+                  __html: video.title,
+                }}
+              ></p>
               <p className=" text-sm sm:text-base mb-2">{video.date}</p>
             </div>
           </div>
