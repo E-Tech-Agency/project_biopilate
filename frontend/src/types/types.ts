@@ -184,6 +184,23 @@ export type Blog = {
     create_at: Date;
     updated_at: Date;
 }
+export type BlogShow = {
+    id: number;
+    title : string;
+    author: string;
+    description : string;
+    favorites : number;
+    status : string;
+    image_1 : string;
+    image_2: string;
+    full_text:string;
+    date:Date;
+    range:number;
+    view:number;
+    tages: string[];
+    create_at: Date;
+    updated_at: Date;
+}
 export type BlogFormType = {
     title : string;
     author: string;
@@ -312,6 +329,18 @@ export type CategoryVlog={
     name : string;
 }
 export type Vlog = {
+    id: number;
+    title : string;
+    description : string;
+    status : string;
+    image: string;
+    category: number; // category ID
+    category_vlog: string; // category name
+    created_at: Date;
+    updated_at: Date;
+    date: Date; //
+}
+export type VlogShow = {
     id: number;
     title : string;
     description : string;

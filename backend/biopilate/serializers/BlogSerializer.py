@@ -19,6 +19,16 @@ class BlogSerializer(serializers.ModelSerializer):
             'image_1': {'required': False},
             'image_2': {'required': False},
             'images': {'required': False},
+            'title': {'required': False},
+            'author': {'required': False},
+            'description': {'required': False},
+            'full_text': {'required': False},
+            'date': {'required': False},
+            'range': {'required': False},
+            'status': {'required': False},
+            'favorites': {'required': False},
+            'view': {'required': False},
+            
         }
 
    
