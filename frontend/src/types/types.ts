@@ -352,6 +352,16 @@ export type Manuel ={
     updated_at: Date;
     
 }
+export type ManuelShow ={
+    id: number;
+    title : string;
+    description : string; //link
+    status : string;
+    image : string;
+    created_at: Date;
+    updated_at: Date;
+    
+}
 export type ManuelFormType = {
     title : string;
     description : string;

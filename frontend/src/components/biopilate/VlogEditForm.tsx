@@ -215,12 +215,12 @@ const EditVlogForm: React.FC<EditVlogProps> = ({ vlog, categories, onUpdate }) =
                     >
                         Annuler
                     </Button>
-                    <Button 
+                    <button 
                         type="submit" 
-                        className="w-full py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+                       className=" flex reserver-button text-sm sm:text-base font-bold font-lato rounded-lg  py-2 sm:py-3 bg-bgColor text-marron  duration-300 ease-in-out transform"
                     >
-                        Mettre à jour
-                    </Button>
+                        Modifier
+                    </button>
                 </div>
             </form>
         </div>

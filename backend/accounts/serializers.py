@@ -9,6 +9,7 @@ from django.contrib.sites.shortcuts import get_current_site
 from django.urls import reverse
 from .utils import send_normal_email
 from rest_framework_simplejwt.tokens import RefreshToken
+from django.utils.encoding import force_bytes
 
 
 class UserRegisterSerializer(serializers.ModelSerializer):
@@ -87,44 +88,39 @@ class PasswordResetSerializer(serializers.Serializer):
 
     class Meta:
         fields = ['email']
-
+    
     def validate(self, attrs):
         email = attrs.get('email')
         user = User.objects.filter(email=email).first()
-
         if not user:
             raise serializers.ValidationError("Invalid email")
-
         if not user.is_verified:
             raise serializers.ValidationError("Email is not verified")
 
-        uid64 = urlsafe_base64_encode(
-            force_str(user.id).encode())  # Encode user ID
+        uid64 = user.id
         token = PasswordResetTokenGenerator().make_token(user)
         request = self.context.get('request')
         site_domain = get_current_site(request).domain
-        relative_link = reverse('password_reset_confirm', kwargs={
-                                'uidb64': uid64, 'token': token})
-        abslink = f'http://{site_domain}{relative_link}'  # Use the actual site domain
-        #abslink = f'http://141.94.23.119/reset_password/{uid64}/{token}'
+        relative_link = reverse('password_reset_confirm', kwargs={'uidb64': uid64, 'token': token})
+        abslink = f'http://localhost:5173/reset_password/{uid64}/{token}'
 
-        email_body = f"""Bonjour {user.first_name},
+        # Updated email message
+        email_body = f"""
+        Bonjour {user.first_name},
 
-Vous pouvez réinitialiser votre mot de passe en cliquant sur le lien ci-dessous :
+        Vous avez demandé à réinitialiser votre mot de passe. Veuillez cliquer sur le lien ci-dessous pour procéder :
 
-{abslink}
+        {abslink}
 
-Si vous n'avez pas demandé de réinitialisation de mot de passe, veuillez ignorer cet e-mail.
+        Si vous n'avez pas demandé de réinitialisation de mot de passe, veuillez ignorer cet e-mail.
 
-Meilleures salutations,
-L'équipe Studio Biopilates Paris
-
-
-"""
+        Meilleures salutations,
+        L'équipe Studio Biopilates Paris
+        """
 
         data = {
             'email_body': email_body,
-            'email_subject': 'Réinitialiser votre mot de passe',
+            'email_subject': 'Réinitialisation de mot de passe',
             'to_email': user.email
         }
 

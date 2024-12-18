@@ -149,7 +149,7 @@ export default function PlanningEditModal({ planningId, isOpen, onClose, onSave 
                         </button>
                         <button
                             type="submit"
-                            className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700"
+                            className=" flex reserver-button text-sm sm:text-base font-bold font-lato rounded-lg  py-2 sm:py-3 bg-bgColor text-marron  duration-300 ease-in-out transform"
                         >
                             Enregistrer
                         </button>

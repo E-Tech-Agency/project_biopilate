@@ -68,6 +68,8 @@ CORS_ALLOW_ALL_ORIGINS = True
 CORS_ALLOW_CREDENTIALS = True
 CSRF_TRUSTED_ORIGINS = [
     "http://141.94.23.119",
+     "http://localhost:5173",
+     "http://127.0.0.1:5173",
 ]
 CORS_ALLOWED_ORIGINS = [
     "http://141.94.23.119",
@@ -75,7 +77,11 @@ CORS_ALLOWED_ORIGINS = [
 ]
 
 ROOT_URLCONF = 'backend.urls'
-
+CORS_ALLOW_HEADERS = [
+    'Content-Type',
+    'Authorization',
+    'X-Requested-With',
+]
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',

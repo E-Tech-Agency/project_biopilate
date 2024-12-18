@@ -301,12 +301,12 @@ const BlogForm: React.FC<BlogFormProps> = ({
           </div>
 
           {/* Submit Button */}
-          <Button 
+          <button 
             type="submit" 
-            className="w-full bg-blue-600 hover:bg-blue-700 transition"
+             className=" flex reserver-button text-sm sm:text-base font-bold font-lato rounded-lg  py-2 sm:py-3 bg-bgColor text-marron  duration-300 ease-in-out transform"
           >
             Créer le blog
-          </Button>
+          </button>
         </form>
       </CardContent>
     </Card>

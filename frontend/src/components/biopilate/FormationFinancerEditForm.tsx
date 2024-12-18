@@ -202,12 +202,11 @@ const EditFormationFinanceForm: React.FC<EditFormationFinancerProps> = ({ format
         >
             Annuler
         </Button>
-        <Button
+        <button
             type="submit"
-            className="px-8 py-3 bg-blue-600 text-white rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-all"
-        >
+            className=" flex reserver-button text-sm sm:text-base font-bold font-lato rounded-lg  py-2 sm:py-3 bg-bgColor text-marron  duration-300 ease-in-out transform"        >
             Enregistrer
-        </Button>
+        </button>
     </div>
 </form>
     );

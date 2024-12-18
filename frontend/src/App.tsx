@@ -341,7 +341,7 @@ function App() {
               element={<RegisterForm setIsLoggedIn={setIsLoggedIn} />}
             />
             <Route
-              path="/password_reset_confirm/:id/:token"
+              path="/reset_password/:id/:token"
               element={<ResetPassword />}
             />
             <Route path="/dashboard" element={<Dashboard />} />

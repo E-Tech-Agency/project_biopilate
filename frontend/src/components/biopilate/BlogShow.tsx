@@ -102,8 +102,8 @@ export default function BlogShow() {
               </p>
              </div>
       
-                 <Button    className="bg-primary hover:bg-primary/90 flex items-center gap-2"
-                  onClick={handleAddArticle}> <PlusCircle className="w-4 h-4" />Ajouter un Article du blog</Button>
+                 <button     className=" flex reserver-button text-sm sm:text-base font-bold font-lato rounded-lg  py-2 sm:py-3 bg-bgColor text-marron  duration-300 ease-in-out transform"
+                  onClick={handleAddArticle}> <PlusCircle  />Ajouter un Article du blog</button>
         
               </div>
             </CardHeader>

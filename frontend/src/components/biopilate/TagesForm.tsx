@@ -1,5 +1,6 @@
 import { useState } from "react";
 import * as React from 'react'; 
+import { Input } from "@/components/ui/input";
 interface TagesFormProps {
   initialData?: {
     title?: string;
@@ -20,7 +21,7 @@ interface TagesFormProps {
       onClose(); // Optional: Close the form after saving
     };
   return (
-    <form onSubmit={handleSubmit} className="max-w-lg mx-auto bg-white p-6 rounded-lg shadow-md">
+    <form onSubmit={handleSubmit}>
   <h2 className="text-lg font-semibold text-gray-800 mb-4">Ajouter un Tage</h2>
   
   {/* Title Input */}
@@ -28,7 +29,7 @@ interface TagesFormProps {
     <label htmlFor="title" className="block text-sm font-medium text-gray-700">
       Titre
     </label>
-    <input
+    <Input
       type="text"
       id="title"
       value={title}
@@ -68,7 +69,7 @@ interface TagesFormProps {
     </button>
     <button
       type="submit"
-      className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+      className=" flex reserver-button text-sm sm:text-base font-bold font-lato rounded-lg  py-2 sm:py-3 bg-bgColor text-marron  duration-300 ease-in-out transform"
     >
       Enregistrer
     </button>

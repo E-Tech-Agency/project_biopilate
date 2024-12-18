@@ -158,9 +158,9 @@ const ServiceEditForm: React.FC<ServiceEditFormProps> = ({ service, onUpdate }) 
                 </div>
             </div>
             <div className="flex justify-end space-x-2">
-                <Button type="submit" className="px-6 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition">
+                <button type="submit"  className=" flex reserver-button text-sm sm:text-base font-bold font-lato rounded-lg  py-2 sm:py-3 bg-bgColor text-marron  duration-300 ease-in-out transform">
                     Enregistrer
-                </Button>
+                </button>
             </div>
         </form>
     );

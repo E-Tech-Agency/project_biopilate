@@ -72,7 +72,7 @@ export default function CreateTagesForm({ onTageAdded }: CreateTagesFormProps)  
                             {errors.status && <span className="text-red-500 mt-2">{errors.status}</span>}
                         </div>
                         <div>
-                            <Button type="submit" className="w-44 gap-2 flex items-center" size={"lg"}><PlusCircle className="w-4 h-4" /> Ajouter</Button>
+                            <button type="submit"  className=" flex reserver-button text-sm sm:text-base font-bold font-lato rounded-lg  py-2 sm:py-3 bg-bgColor text-marron  duration-300 ease-in-out transform" ><PlusCircle  /> Ajouter</button>
                         </div>
                     </div>
                 </form>

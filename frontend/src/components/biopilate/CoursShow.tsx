@@ -171,13 +171,13 @@ export default function CoursShow() {
     <div className="flex justify-between items-center">
         <CardTitle>Liste Cours</CardTitle>
         <div className="space-x-4">
-        <Button 
+        <button 
               onClick={() => setIsModalOpen(true)} 
-              className="bg-primary hover:bg-primary/90 flex items-center gap-2"
+               className=" flex reserver-button text-sm sm:text-base font-bold font-lato rounded-lg  py-2 sm:py-3 bg-bgColor text-marron  duration-300 ease-in-out transform"
             >
-              <PlusCircle className="w-4 h-4" />
+              <PlusCircle  />
               Ajouter un Cours
-            </Button>
+            </button>
         </div>
         
     </div>
@@ -422,12 +422,12 @@ export default function CoursShow() {
 
             {/* Submit Button */}
             <div className="mt-6 flex justify-end">
-              <Button 
+              <button 
                 type="submit" 
-                className="px-6 py-3 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors"
+                className=" flex reserver-button text-sm sm:text-base font-bold font-lato rounded-lg  py-2 sm:py-3 bg-bgColor text-marron  duration-300 ease-in-out transform"
               >
                 Ajouter le Cours
-              </Button>
+              </button>
             </div>
           </form>
                         </Modal>

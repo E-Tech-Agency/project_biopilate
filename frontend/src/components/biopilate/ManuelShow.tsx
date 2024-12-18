@@ -192,9 +192,9 @@ export default function Manuelhow() {
                 Gérez vos instructeurs avec facilité
               </p>
             </div>
-            <Button variant="default" onClick={() => setIsModalOpen(true)}>
-            <PlusCircle className="w-4 h-4" />  Ajouter un Manuel
-                    </Button> </div>
+            <button  className=" flex reserver-button text-sm sm:text-base font-bold font-lato rounded-lg  py-2 sm:py-3 bg-bgColor text-marron  duration-300 ease-in-out transform" onClick={() => setIsModalOpen(true)}>
+            <PlusCircle  />  Ajouter un Manuel
+                    </button> </div>
                 </CardHeader>
 
                 {/* Modal for creating new workshop */}
@@ -342,7 +342,7 @@ export default function Manuelhow() {
         <TableRow className="hover:bg-gray-200 transition-colors">
             <TableHead className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Image</TableHead>
             <TableHead className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Lien</TableHead>
-
+            <TableHead className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Statuts</TableHead>
             <TableHead className="px-4 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</TableHead>
         </TableRow>
     </TableHeader>
@@ -371,6 +371,16 @@ export default function Manuelhow() {
                     <a href= {manuel.description}> <BookOpen className="w-8 h-8 text-gray-600" /></a>
                 </div>
             </div>
+        </TableCell >
+        <TableCell className="px-4 py-3">
+        <div className="flex space-x-2">
+                                        {manuel.status === "pending" && (
+                                            <span className="text-danger">En attente</span>
+                                        )}
+                                        {manuel.status === "approved" && (
+                                            <span className="text-emerald-500">Publiée</span>
+                                        )}
+                                    </div>
         </TableCell >
         <TableCell className="item-right">
                                     <div className="flex space-x-2">

@@ -138,10 +138,10 @@ export default function FAQShow() {
                 </SelectContent>
               </Select>
                     </div>
-                    <Button variant="default" onClick={handleAddClick}>
-                    <PlusCircle className="w-4 h-4" />
-                        Ajouter un FAQ
-                    </Button>
+                    <button  className=" flex reserver-button text-sm sm:text-base font-bold font-lato rounded-lg  py-2 sm:py-3 bg-bgColor text-marron   ease-in-out transform" onClick={handleAddClick}>
+                    <PlusCircle />
+                        Ajouter 
+                    </button>
                 </div>
             </CardHeader>
             <CardContent>

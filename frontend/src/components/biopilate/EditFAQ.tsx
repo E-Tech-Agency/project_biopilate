@@ -148,13 +148,13 @@ export default function EditFAQ({ faqId, isOpen, onClose, onSave }: EditFAQModal
                                 >
                                     Annuler
                                 </Button>
-                                <Button 
+                                <button 
                                     type="submit" 
                                     disabled={isLoading}
-                                    className="w-32"
+                                     className=" flex reserver-button text-sm sm:text-base font-bold font-lato rounded-lg  py-2 sm:py-3 bg-bgColor text-marron  duration-300 ease-in-out transform"
                                 >
                                     {isLoading ? 'Saving...' : 'Enregistrer'}
-                                </Button>
+                                </button>
                             </div>
                         </div>
                     </form>

@@ -164,12 +164,12 @@ const EditCour: React.FC<EditCourProps> = ({ cours, categories, onUpdate }) => {
                             >
                                 <X className="mr-2" /> Annuler
                             </Button>
-                            <Button 
+                            <button 
                                 type="submit" 
-                                className="bg-blue-600 text-white hover:bg-blue-700 transition-colors duration-300 flex items-center"
+                                 className=" flex reserver-button text-sm sm:text-base font-bold font-lato rounded-lg  py-2 sm:py-3 bg-bgColor text-marron  duration-300 ease-in-out transform"
                             >
                                 <Check className="mr-2" /> Enregistrer
-                            </Button>
+                            </button>
                         </div>
                     </form>
                 </CardContent>

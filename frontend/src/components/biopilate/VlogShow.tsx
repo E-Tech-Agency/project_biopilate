@@ -208,12 +208,12 @@ export default function VlogShow() {
                 Gérez vos Vlogs avec facilité
               </p>
             </div>
-                    <Button variant="default"
-                   className="bg-primary hover:bg-primary/90 flex items-center gap-2"
+                    <button 
+                  className=" flex reserver-button text-sm sm:text-base font-bold font-lato rounded-lg  py-2 sm:py-3 bg-bgColor text-marron  duration-300 ease-in-out transform"
 
                     onClick={() => setIsModalOpen(true)}>
                            <PlusCircle className="w-4 h-4" />  Ajouter un Vlog
-                        </Button>
+                        </button>
                         
                     </div>
                     <CreateCategoryVlog />

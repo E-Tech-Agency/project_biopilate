@@ -13,7 +13,7 @@ import axios, { AxiosError } from "axios";
 import { toast } from "sonner";
 import { Modal } from "./Modal";
 import DOMPurify from 'dompurify';
-import { BookOpen, FileText, Link } from 'lucide-react';
+import { BookOpen, FileText, Link, PlusCircle } from 'lucide-react';
 
 const ReactQuill = React.lazy(() => import("react-quill"));
 
@@ -191,9 +191,10 @@ export default function FinancerFormationShow() {
                
                 <div className="flex justify-between items-center">
                 <CardTitle>Liste Formation</CardTitle>
-                    <Button variant="default" onClick={() => setIsModalOpen(true)}>
-                    Ajouter un financer formation
-                    </Button>
+                    <button                 className=" flex reserver-button text-sm sm:text-base font-bold font-lato rounded-lg  py-2 sm:py-3 bg-bgColor text-marron  duration-300 ease-in-out transform"
+ onClick={() => setIsModalOpen(true)}>
+                     <PlusCircle  />   Ajouter 
+                    </button>
                 </div>
                
                 </CardHeader>
@@ -307,9 +308,8 @@ export default function FinancerFormationShow() {
     <div className="mt-6">
         <Button 
             type="submit" 
-            className="w-full  hover:bg-blue-700 text-white font-bold py-3 rounded-md transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
-        >
-            Ajouter
+            className=" flex  reserver-button text-sm sm:text-base font-bold font-lato rounded-lg  py-2 sm:py-3 bg-bgColor text-marron  duration-300 ease-in-out transform"        >
+             <PlusCircle className="w-4 h-4" />  Ajouter
         </Button>
     </div>
 </form>

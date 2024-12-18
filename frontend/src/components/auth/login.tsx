@@ -241,7 +241,8 @@ export function LoginForm({
               </div>
             </div>
             <DialogFooter>
-              <Button type="submit"> submit</Button>
+              <button                 className="reserver-button overflow-hidden flex mx-auto mb-3 flex-col justify-center items-center text-sm sm:text-base font-bold font-lato rounded-lg w-full py-2 sm:py-3 bg-bgColor text-marron transition duration-300 ease-in-out transform"
+ type="submit"> submit</button >
             </DialogFooter>
           </form>
         </DialogContent>

@@ -106,9 +106,9 @@ export default function FormationShow() {
             </div>
            
                     
-                    <Button variant="default" onClick={handleAddClick}>
-                    <PlusCircle className="w-4 h-4" />Ajouter une formation
-                    </Button>
+                    <button  className=" flex reserver-button text-sm sm:text-base font-bold font-lato rounded-lg  py-2 sm:py-3 bg-bgColor text-marron  duration-300 ease-in-out transform" onClick={handleAddClick}>
+                    <PlusCircle />Ajouter une formation
+                    </button>
                 </div>
             </CardHeader>
             <CardContent >

@@ -224,13 +224,13 @@ export default function TeachesShow() {
                 </SelectContent>
               </Select>
               
-              <Button 
+              <button 
                 onClick={handleAddClick} 
-                className="bg-primary hover:bg-primary/90 flex items-center gap-2"
+                className=" flex reserver-button text-sm sm:text-base font-bold font-lato rounded-lg  py-2 sm:py-3 bg-bgColor text-marron  duration-300 ease-in-out transform"
               >
-                <PlusCircle className="w-4 h-4" />
+                <PlusCircle  />
                 Ajouter
-              </Button>
+              </button>
             </div>
           </div>
         </CardHeader>
@@ -430,8 +430,7 @@ export default function TeachesShow() {
             <div className="text-center mt-8">
               <button 
                 type="submit" 
-                className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-4 px-8 rounded-full transition duration-300 ease-in-out transform hover:scale-105 shadow-lg hover:shadow-xl"
-              >
+                className=" flex reserver-button text-sm sm:text-base font-bold font-lato rounded-lg  py-2 sm:py-3 bg-bgColor text-marron  duration-300 ease-in-out transform"              >
                 Ajouter Instructeur
               </button>
             </div>

@@ -122,13 +122,13 @@ export default function ServiceShow() {
               </p>
             </div>
                   
-                    <Button 
+                    <button 
                 onClick={handleAddClick} 
-                className="bg-primary hover:bg-primary/90 flex items-center gap-2"
+                className=" flex reserver-button text-sm sm:text-base font-bold font-lato rounded-lg  py-2 sm:py-3 bg-bgColor text-marron  duration-300 ease-in-out transform"
               >
-                <PlusCircle className="w-4 h-4" />
+                <PlusCircle />
                 Ajouter un Service
-              </Button>
+              </button>
                 </div>
                 <div className="mt-4 flex justify-end space-x-4">
                     <div className="flex items-center space-x-2">

@@ -220,9 +220,9 @@ export default function WorkshopShow() {
                 Gérez vos WorkShops avec facilité
               </p>
             </div>
-            <Button variant="default" onClick={() => setIsModalOpen(true)}>
-            <PlusCircle className="w-4 h-4" />    Ajouter un WorkShop
-                        </Button></div>
+            <button  className=" flex reserver-button text-sm sm:text-base font-bold font-lato rounded-lg  py-2 sm:py-3 bg-bgColor text-marron  duration-300 ease-in-out transform" onClick={() => setIsModalOpen(true)}>
+            <PlusCircle  />    Ajouter un WorkShop
+                        </button></div>
                     <div className="flex items-center space-x-4">
                     
                     <div className='flex space-x-4 items-center'>

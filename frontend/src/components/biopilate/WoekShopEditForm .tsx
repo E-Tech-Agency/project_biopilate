@@ -5,7 +5,9 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import ReactQuill from "react-quill";
 import { useNavigate } from "react-router-dom";
-import {  FaFilePdf } from "react-icons/fa";
+import { FaFilePdf, FaFileUpload, FaSave, FaTimes } from "react-icons/fa";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
 interface EditworjShopProps {
     workshop: WorkShop;
@@ -78,105 +80,144 @@ const EditWorkShopForm: React.FC<EditworjShopProps> = ({ workshop, categories, o
     };
 
     return (
-        <form onSubmit={handleSubmit}>
-            <h1 className="mb-4">Modifier WorkShop</h1>
-            <div className="mb-4">
-                <Label htmlFor="title">Titre</Label>
+       
+        <Card>
+          <CardHeader >
+            <span className="block mb-2 text-gray-990">  Modifier Workshop</span>
+            
+            
+          </CardHeader>
+          <CardContent className="p-6 space-y-6">
+            <form onSubmit={handleSubmit}>
+              {/* Title Input */}
+              <div className="mb-4">
+                <Label htmlFor="title" className="block mb-2 text-gray-700">Titre</Label>
                 <Input
-                    id="title"
-                    name="title"
-                    type="text"
-                    value={formData.title}
-                    onChange={handleInputChange}
-                    className="mt-1 block w-full rounded-md border-gray-300 shadow-sm"
+                  id="title"
+                  name="title"
+                  type="text"
+                  value={workshop.title || ''}
+                  onChange={handleInputChange}
+                  className="w-full rounded-md border-gray-300 focus:ring-2 focus:ring-blue-200"
+                  placeholder="Nom du workshop"
                 />
-            </div>
-            <div className="mb-4">
-                <Label htmlFor="status">Status</Label>
+              </div>
+  
+              {/* Status Dropdown */}
+              <div className="mb-4">
+                <Label htmlFor="status" className="block mb-2 text-gray-700">Statut</Label>
                 <select
-                    id="status"
-                    name="status"
-                    value={formData.status}
-                    onChange={handleInputChange}
-                    className="mt-1 block w-full rounded-md border-gray-300 shadow-sm"
+                  id="status"
+                  name="status"
+                  value={workshop.status || 'pending'}
+                  onChange={handleInputChange}
+                  className="w-full p-2 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-200"
                 >
-                    <option value="pending">En attente de publication</option>
-                    <option value="approved">Publiée</option>
+                  <option value="pending">En attente de publication</option>
+                  <option value="approved">Publiée</option>
                 </select>
-            </div>
-            <div className="mb-4">
-                <Label htmlFor="category_name">Catégorie</Label>
+              </div>
+  
+              {/* Category Dropdown */}
+              <div className="mb-4">
+                <Label htmlFor="category_workshop" className="block mb-2 text-gray-700">Catégorie</Label>
                 <select
-                    id="category_workshop"
-                    name="category_workshop"
-                    value={formData.category_workshop || ''}
-                    onChange={handleInputChange}
-                    className="w-full mt-2 rounded-md border-gray-300 shadow-sm"
+                  id="category_workshop"
+                  name="category_workshop"
+                  value={workshop.category_workshop || ''}
+                  onChange={handleInputChange}
+                  className="w-full p-2 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-200"
                 >
-                    <option value="">Sélectionner une Catégorie</option>
-                    {categories.map((category) => (
-                        <option key={category.id} value={category.name}>
-                            {category.name}
-                        </option>
-                    ))}
+                  <option value="">Sélectionner une Catégorie</option>
+                  {categories.map((category) => (
+                    <option key={category.id} value={category.name}>
+                      {category.name}
+                    </option>
+                  ))}
                 </select>
-            </div>
-            <div className="mb-4">
-                <Label htmlFor="image">Image</Label>
-                <Input
+              </div>
+  
+              {/* Image Upload */}
+              <div className="mb-4">
+                <Label htmlFor="image" className="block mb-2 text-gray-700">Image</Label>
+                <div className="flex items-center space-x-4">
+                  <Input
                     id="image"
                     name="image"
                     type="file"
                     onChange={handleImageChange}
-                    className="mt-1 block w-full"
-                />
-                {workshop.image && (
-                    <img src={workshop.image} alt={workshop.title} className="w-16 h-16 rounded-full mt-2" />
-                )}
-            </div>
-            <div className="grid gap-2">
-                            <Label htmlFor="pdf_workshop">Upload PDF</Label>
-                            {workshop.pdf_workshop && (
-                                            <a 
-                                                href={workshop.pdf_workshop} 
-                                                target="_blank" 
-                                                rel="noopener noreferrer" 
-                                                className="ml-2 inline-block"
-                                            >
-                                                <FaFilePdf className="text-red-500 hover:text-red-700" />
-                                            </a>
-                                        )}
-                            <Input
-                                id="pdf_workshop"
-                                type="file"
-                                accept="application/pdf"
-                                onChange={(e) => handleFileChange(e, "pdf_workshop")}
-                            />
-                            
-                            </div>
-            <div className="mb-4">
-                <Label htmlFor="full_text">Description</Label>
+                    className="w-full file:mr-4 file:rounded-md file:border-0 file:bg-blue-50 file:px-4 file:py-2 file:text-sm file:font-medium"
+                  />
+                  {workshop.image && (
+                    <img 
+                      src={workshop.image} 
+                      alt={workshop.title} 
+                      className="w-16 h-16 rounded-full object-cover border-2 border-blue-100" 
+                    />
+                  )}
+                </div>
+              </div>
+  
+              {/* PDF Upload */}
+              <div className="mb-4">
+                <Label htmlFor="pdf_workshop" className="block mb-2 text-gray-700">Upload PDF</Label>
+                <div className="flex items-center space-x-4">
+                  <Input
+                    id="pdf_workshop"
+                    type="file"
+                    accept="application/pdf"
+                    onChange={(e) => handleFileChange(e, "pdf_workshop")}
+                    className="w-full file:mr-4 file:rounded-md file:border-0 file:bg-blue-50 file:px-4 file:py-2 file:text-sm file:font-medium"
+                  />
+                  {workshop.pdf_workshop && (
+                    <a 
+                      href={workshop.pdf_workshop} 
+                      target="_blank" 
+                      rel="noopener noreferrer" 
+                      className="text-blue-600 hover:text-blue-800"
+                    >
+                      <FaFileUpload className="w-6 h-6" />
+                    </a>
+                  )}
+                </div>
+              </div>
+  
+              {/* Description */}
+              <div className="mb-4">
+                <Label htmlFor="full_text" className="block mb-2 text-gray-700">Description</Label>
                 <ReactQuill
-                    id="full_text"
-                    value={formData.description}
-                    onChange={handleQuillChange}
-                    className="w-full"
-                    theme="snow"
+                  id="full_text"
+                  value={workshop.description || ''}
+                  onChange={handleQuillChange}
+                  className="h-48"
+                  theme="snow"
+                  placeholder="Détails du workshop"
                 />
-            </div>
-            <Button
-                    type="button"
-                    onClick={() => navigate("/WorkshopShow-biopilates")}
-                    className="bg-gray-300 hover:bg-opacity-80 transition-colors duration-300"
-                  >
-                    Annuler
-                  </Button>
-            <div className="flex justify-end space-x-2">
-                <Button type="submit" className="px-4 py-2 bg-blue-600 text-white rounded-md">
-                    Enregistrer
+              </div>
+  
+              {/* Action Buttons */}
+              <div className="flex justify-between mt-16">
+                <Button 
+                  type="button"
+                  variant="outline"
+                  onClick={() => navigate("/WorkshopShow-biopilates")}
+                  className="flex items-center space-x-2 text-gray-600 hover:bg-gray-100"
+                >
+                  <FaTimes />
+                  <span>Annuler</span>
                 </Button>
-            </div>
-        </form>
+                <button 
+                  type="submit" 
+                   className=" flex reserver-button text-sm sm:text-base font-bold font-lato rounded-lg  py-2 sm:py-3 bg-bgColor text-marron  duration-300 ease-in-out transform"
+                >
+                  <FaSave />
+                  <span>Enregistrer</span>
+                </button>
+              </div>
+            </form>
+          </CardContent>
+        </Card>
+     
     );
 };
 
