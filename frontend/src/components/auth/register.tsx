@@ -27,11 +27,12 @@ import { Link } from "react-router-dom";
 import "@/styles/index.css";
 import PhoneInput from 'react-phone-number-input'; // Import PhoneInput component
 import 'react-phone-number-input/style.css'; // Import the styles for phone input
+import { E164Number } from "libphonenumber-js";
 
-interface PasswordHideProps {
-  visible: boolean;
-  setVisible: (visible: boolean) => void;
-}
+// interface PasswordHideProps {
+//   visible: boolean;
+//   setVisible: (visible: boolean) => void;
+// }
 
 declare global {
   interface Window {
@@ -176,13 +177,14 @@ export function RegisterForm({
 
   const [visible, setVisible] = useState(false);
 
-  const PasswordHide = ({ visible, setVisible }: PasswordHideProps) => {
-    return (
-      <div onClick={() => setVisible(!visible)}>
-        {visible ? <FaEyeSlash /> : <FaEye />}
-      </div>
-    );
-  };
+  // const PasswordHide = ({ visible, setVisible }: PasswordHideProps) => {
+  //   return (
+  //     <div onClick={() => setVisible(!visible)}>
+  //       {visible ? <FaEyeSlash /> : <FaEye />}
+  //     </div>
+  //   );
+  // };
+  
 
   return (
     <>
@@ -295,57 +297,73 @@ export function RegisterForm({
               </div>
 
               <div className="mb-5">
-  <label
-    className="block font-ebGaramond text-sm sm:text-xl font-bold mb-2"
-    htmlFor="phone_number"
-  >
-    Numéro de téléphone
-  </label>
-  {error?.phone_number && (
-    <p className="text-red-500">{error.phone_number[0]}</p>
-  )}
-  <div className="relative flex rounded-md shadow-sm">
-    <span className="inline-flex items-center px-3 rounded-l-md border border-r-0 border-marron bg-gray-50 text-gray-500 text-lg">
-      <LuPhone />
-    </span>
-    <PhoneInput
-      international
-      defaultCountry="FR"
-      value={data.phone_number}
-      onChange={(value) => setData({ ...data, phone_number: value })}
-      className="bg-gray-50 border border-marron text-gray-900 text-sm sm:text-base rounded-none rounded-r-md block w-full p-2.5 focus:outline-none focus:ring-2 focus:ring-marron"
-    />
-  </div>
-</div>
-
-
-              <div className="mb-5">
-                <label
-                  className="block text-sm sm:text-xl font-bold mb-2"
-                  htmlFor="password"
-                >
-                  Mot de passe
-                </label>
-                {error?.password && (
-                  <li className="text-red-500 mb-1">{error.password[0]}</li>
-                )}
-                <div className="mt-1 flex rounded-md shadow-sm">
-                  <span className="inline-flex items-center px-3 rounded-l-md border border-r-0 border-marron bg-gray-100 text-gray-500 text-lg">
-                    <FaLock />
-                  </span>
-                  <input
-                    type={visible ? "text" : "password"}
-                    id="password"
-                    value={data.password}
-                    onChange={(e) =>
-                      setData({ ...data, password: e.target.value })
+              <label
+                className="block font-ebGaramond text-sm sm:text-xl font-bold mb-2"
+                htmlFor="phone_number"
+              >
+                Numéro de téléphone
+              </label>
+              {error?.phone_number && (
+                <p className="text-red-500">{error.phone_number[0]}</p>
+              )}
+              <div className="relative flex rounded-md shadow-sm">
+                <span className="inline-flex items-center px-3 rounded-l-md border border-r-0 border-marron bg-gray-50 text-gray-500 text-lg">
+                  <LuPhone />
+                </span>
+                <PhoneInput
+                  international
+                  defaultCountry="FR"
+                   id="phone_number"
+                    type="number"
+                  value={data.phone_number}
+                  onChange={(value?: E164Number) => {
+                    if (value) {
+                      setData({ ...data, phone_number: value });
+                    } else {
+                      setData({ ...data, phone_number: "" }); // Handle the undefined case
                     }
-                    className="bg-gray-50 border border-marron border-l-0 text-gray-900 text-sm sm:text-base rounded-none rounded-r-md block w-full p-2.5"
-                    required
-                  />
-                  <PasswordHide visible={visible} setVisible={setVisible} />
-                </div>
+                  }}
+                  
+                  className="bg-gray-50 border border-marron text-gray-900 text-sm sm:text-base rounded-none rounded-r-md block w-full p-2.5 focus:outline-none focus:ring-2 focus:ring-marron"
+                />
               </div>
+            </div>
+
+
+            <div className="mb-5">
+              <label
+                className="block text-sm sm:text-xl font-bold mb-2"
+                htmlFor="password"
+              >
+                Mot de passe
+              </label>
+              {error?.password && (
+                <p className="text-red-500 mb-1">{error.password[0]}</p>
+              )}
+              <div className="relative flex items-center rounded-md shadow-sm">
+                <span className="absolute left-3 text-gray-500 text-lg">
+                  <FaLock />
+                </span>
+                <input
+                  type={visible ? "text" : "password"}
+                  id="password"
+                  value={data.password}
+                  onChange={(e) =>
+                    setData({ ...data, password: e.target.value })
+                  }
+                  className="pl-10 bg-gray-50 border border-marron text-gray-900 text-sm sm:text-base rounded-md block w-full p-2.5"
+                  required
+                />
+                <button
+                  type="button"
+                  onClick={() => setVisible(!visible)}
+                  className="absolute right-3 text-gray-500 text-lg"
+                >
+                  {visible ? <FaEyeSlash /> : <FaEye />}
+                </button>
+              </div>
+            </div>
+
 
               <div className="mb-5">
                 <label
@@ -354,10 +372,13 @@ export function RegisterForm({
                 >
                   Confirmer le mot de passe
                 </label>
-                <div className="mt-1 flex rounded-md shadow-sm">
-                  <span className="inline-flex items-center px-3 rounded-l-md border border-r-0 border-marron bg-gray-100 text-gray-500 text-lg">
+                <div className="relative flex items-center rounded-md shadow-sm">
+                  {/* Left Icon */}
+                  <span className="absolute left-3 text-gray-500 text-lg">
                     <FaLock />
                   </span>
+
+                  {/* Input Field */}
                   <input
                     type={visible ? "text" : "password"}
                     id="confirm_password"
@@ -365,22 +386,105 @@ export function RegisterForm({
                     onChange={(e) =>
                       setData({ ...data, confirm_password: e.target.value })
                     }
-                    className="bg-gray-50 border border-marron border-l-0 text-gray-900 text-sm sm:text-base rounded-none rounded-r-md block w-full p-2.5"
+                    className="pl-10 bg-gray-50 border border-marron text-gray-900 text-sm sm:text-base rounded-md block w-full p-2.5"
                     required
                   />
-                  <PasswordHide visible={visible} setVisible={setVisible} />
+
+                  {/* Password Visibility Toggle */}
+                  <button
+                    type="button"
+                    onClick={() => setVisible(!visible)}
+                    className="absolute right-3 text-gray-500 text-lg"
+                  >
+                    {visible ? <FaEyeSlash /> : <FaEye />}
+                  </button>
                 </div>
               </div>
 
-              <div className="flex justify-center mb-5">
-                <Button className="bg-marron text-white font-semibold sm:text-lg sm:py-4 sm:px-12 text-sm px-6 py-3 w-full" type="submit">
-                  S'inscrire
+              <div className="mt-3 flex flex-wrap justify-between ">
+                <label className="inline-flex items-start cursor-pointer">
+                  <input
+                    type="checkbox"
+                    className="w-4 h-4 border border-gray-300 rounded-sm text-marron focus:ring-0 focus:ring-marron mt-1"
+                  />
+
+                  <span className="ml-2 font-lato text-sm sm:text-base">
+                    J’accepte{" "}
+                    <a href="" className="underline font-medium">
+                      les conditions d’utilisation
+                    </a>{" "}
+                    et{" "}
+                    <a href="" className="underline font-medium">
+                      politique de confidentialité
+                    </a>
+                  </span>
+                </label>
+              </div>
+              <div id="signInDiv" className="w-full rounded-lg my-3"></div>
+              <button
+                type="submit"
+                className="reserver-button button-hover flex mx-auto mb-2.5 flex-col justify-center items-center text-sm sm:text-base font-bold font-lato rounded-lg w-full py-2 sm:py-3 bg-bgColor text-marron transition duration-300 ease-in-out transform"
+              >
+                <div className="hover-circle overflow-hidden" />
+                Créer un compte
+              </button>
+
+              <div className="flex flex-wrap justify-between">
+                <div className="flex items-center gap-2">
+                  <p className="font-lato text-sm sm:text-base">
+                    Vous avez déjà un compte ?
+                  </p>
+                </div>
+                <Button
+                  onClick={login}
+                  variant={"link"}
+                  className="ml-auto pr-0 text-gray-800 text-base font-lato font-medium underline"
+                >
+                  Se connecter
                 </Button>
               </div>
             </form>
           </div>
         </div>
       </div>
+      <Dialog
+        open={dialogOpen}
+        onOpenChange={(open) => open && setDialogOpen(true)}
+      >
+        <DialogOverlay />
+        <DialogContent className="sm:max-w-[425px]">
+          <DialogHeader>
+            <DialogTitle>Verification code</DialogTitle>
+            <DialogDescription>
+              Please enter the verification code sent to your email
+            </DialogDescription>
+          </DialogHeader>
+          <form onSubmit={handleVerify}>
+            <div className="grid gap-4 py-4">
+              <div className="grid grid-cols-4 items-center gap-4">
+                <Label htmlFor="code" className="text-right">
+                  Code :
+                </Label>
+                <Input
+                  id="code"
+                  className="col-span-3"
+                  required
+                  value={verifyCode.otp}
+                  onChange={(e) =>
+                    setVerifyCode({ ...verifyCode, otp: e.target.value })
+                  }
+                />
+              </div>
+            </div>
+            <DialogFooter>
+              <Button type="submit"> submit</Button>
+            </DialogFooter>
+          </form>
+        </DialogContent>
+      </Dialog>
+      <AlertDialog open={alert}>
+        <AlertDialogAfterRegister setAlert={setAlert} />
+      </AlertDialog>
     </>
   );
 }

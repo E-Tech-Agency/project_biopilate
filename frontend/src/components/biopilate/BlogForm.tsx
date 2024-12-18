@@ -10,7 +10,7 @@ import {
 } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Button } from "@/components/ui/button";
+
 import { X } from 'lucide-react';
 
 interface BlogFormProps {
@@ -252,13 +252,14 @@ const BlogForm: React.FC<BlogFormProps> = ({
             <div className="space-y-2">
               <Label htmlFor="date">Date</Label>
               <Input
-                id="date"
-                name="date"
-                type="date"
-                value={blog.date}
-                onChange={handleInputChange}
-                className={`w-full ${errors.date ? 'border-red-500' : ''}`}
-              />
+                  id="date"
+                  name="date"
+                  type="date"
+                  value={blog.date ? new Date(blog.date).toISOString().split('T')[0] : ''}
+                  onChange={handleInputChange}
+                  className={`w-full ${errors.date ? 'border-red-500' : ''}`}
+                />
+
               {errors.date && <p className="text-red-500 text-sm">{errors.date}</p>}
             </div>
 

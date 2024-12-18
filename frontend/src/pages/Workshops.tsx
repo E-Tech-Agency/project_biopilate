@@ -25,7 +25,7 @@ function Filter({
       <button
         onClick={() => onToggleCategory(0)} // "0" represents "Tous" (all workshops)
         className={`hover:border border-black block rounded-lg py-3 px-4 bg-white ${
-          selectedCategories.includes(0) && "category-active"
+          selectedCategories.includes(0) ? "category-active" : ""
         }`}
       >
         Tous
@@ -35,7 +35,7 @@ function Filter({
           key={category.id}
           onClick={() => onToggleCategory(category.id)}
           className={`hover:border border-black block rounded-lg py-3 px-4 bg-white ${
-            selectedCategories.includes(category.id) && "category-active"
+            selectedCategories.includes(category.id) ? "category-active" : ""
           }`}
         >
           {category.name}
@@ -48,7 +48,7 @@ function Filter({
 export default function Workshops() {
   const [workShopsData, setWorkShopsData] = useState<WorkShop[]>([]);
   const [categoriesWorkShop, setCategoriesWorkShop] = useState<CategoryWorkShop[]>([]);
-  const [selectedCategories, setSelectedCategories] = useState<number[]>([0]); // "0" for "Tous" (all workshops)
+  const [selectedCategories, setSelectedCategories] = useState<number[]>([0]);
 
   const getWorkShops = async () => {
     try {
@@ -74,37 +74,145 @@ export default function Workshops() {
     getCategories();
   }, []);
 
-  // Handle category selection toggle
   const onToggleCategory = (categoryId: number) => {
     if (categoryId === 0) {
-      // If "Tous" is selected, reset to show all workshops
       setSelectedCategories([0]);
     } else {
       setSelectedCategories((prev) =>
         prev.includes(categoryId)
           ? prev.filter((id) => id !== categoryId)
-          : [...prev.filter((id) => id !== 0), categoryId] // Remove "Tous" when a specific category is selected
+          : [...prev.filter((id) => id !== 0), categoryId]
       );
     }
   };
 
-  // Filter workshops based on selected categories
-  const filteredWorkShops =
-    selectedCategories.includes(0) || selectedCategories.length === 0
-      ? workShopsData
-      : workShopsData.filter((workshop) => selectedCategories.includes(workshop.category));
+  const defaultCategories = [
+    { id: 0, name: "Tous" },
+    { id: 1, name: "Anatomie" },
+    { id: 2, name: "Pilates" },
+  ];
+
+  const fallbackWorkshops: WorkShop[] = [
+    {
+      id: 1,
+      title: "Workshop en ligne",
+      description: "An online workshop to improve your skills.",
+      status: "approved",
+      image: workshop1,
+      category: defaultCategories[1].id,  // Use only the category ID here
+      category_workshop: defaultCategories[1].name,  // Use the category name here
+      pdf_workshop: "https://fallback-link.example.com",
+      created_at: new Date(),
+      updated_at: new Date(),
+    },
+    {
+      id: 2,
+      title: "Workshop Matwork",
+      description: "A workshop focusing on mat exercises.",
+      status: "approved",
+      image: workshop2,
+      category: defaultCategories[2].id,  // Use only the category ID here
+      category_workshop: defaultCategories[2].name,  // Use the category name here
+      pdf_workshop: "https://fallback-link.example.com",
+      created_at: new Date(),
+      updated_at: new Date(),
+    },
+    {
+      id: 3,
+      title: "Workshop Reformer",
+      description: "Reformer Pilates workshop for all levels.",
+      status: "approved",
+      image: workshop3,
+      category: defaultCategories[1].id,  // Use only the category ID here
+      category_workshop: defaultCategories[1].name,  // Use the category name here
+      pdf_workshop: "https://fallback-link.example.com",
+      created_at: new Date(),
+      updated_at: new Date(),
+    },
+    {
+      id: 4,
+      title: "Workshop Cadillac, chaise et barril",
+      description: "Workshop using Cadillac, chair, and barrel equipment.",
+      status: "approved",
+      image: workshop4,
+      category: defaultCategories[2].id,  // Use only the category ID here
+      category_workshop: defaultCategories[2].name,  // Use the category name here
+      pdf_workshop: "https://fallback-link.example.com",
+      created_at: new Date(),
+      updated_at: new Date(),
+    },
+    {
+      id: 5,
+      title: "Workshop golfeurs",
+      description: "Pilates workshop for golfers to improve flexibility.",
+      status: "approved",
+      image: workshop5,
+      category: defaultCategories[2].id,  // Use only the category ID here
+      category_workshop: defaultCategories[2].name,  // Use the category name here
+      pdf_workshop: "https://fallback-link.example.com",
+      created_at: new Date(),
+      updated_at: new Date(),
+    },
+    {
+      id: 6,
+      title: "Workshop prénatal et postnatal",
+      description: "Workshop for prenatal and postnatal care.",
+      status: "approved",
+      image: workshop6,
+      category: defaultCategories[2].id,  // Use only the category ID here
+      category_workshop: defaultCategories[2].name,  // Use the category name here
+      pdf_workshop: "https://fallback-link.example.com",
+      created_at: new Date(),
+      updated_at: new Date(),
+    },
+    {
+      id: 7,
+      title: "Workshop Anatomie et fascias",
+      description: "A workshop focusing on anatomy and fascia.",
+      status: "approved",
+      image: workshop7,
+      category: defaultCategories[1].id,  // Use only the category ID here
+      category_workshop: defaultCategories[1].name,  // Use the category name here
+      pdf_workshop: "https://fallback-link.example.com",
+      created_at: new Date(),
+      updated_at: new Date(),
+    },
+    {
+      id: 8,
+      title: "Workshop de préparation aux examens",
+      description: "Workshop preparing for exams with focused exercises.",
+      status: "approved",
+      image: workshop8,
+      category: defaultCategories[1].id,  // Use only the category ID here
+      category_workshop: defaultCategories[1].name,  // Use the category name here
+      pdf_workshop: "https://fallback-link.example.com",
+      created_at: new Date(),
+      updated_at: new Date(),
+    },
+  ];
+  
+
+  const showData: WorkShop[] = workShopsData.length > 0 ? workShopsData : fallbackWorkshops;
+
+  const filteredWorkShops = selectedCategories.includes(0) || selectedCategories.length === 0
+    ? showData
+    : showData.filter((workshop: WorkShop) =>
+        typeof workshop.category === "object"
+          ? selectedCategories.includes(workshop.category)
+          : selectedCategories.includes(workshop.category)
+      );
 
   return (
     <div>
       <div className="p-3">
         <Filter
-          categories={categoriesWorkShop}
+          categories={categoriesWorkShop.length > 0 ? categoriesWorkShop : defaultCategories}
           selectedCategories={selectedCategories}
           onToggleCategory={onToggleCategory}
         />
       </div>
       <div className="flex flex-wrap gap-x-6 gap-y-14 justify-center sm:justify-evenly size-full px-4 sm:px-10 2xl:px-12 py-6 md:py-10">
-        {filteredWorkShops.map((workshop) => (
+        {filteredWorkShops.map((workshop: WorkShop) => (
           <div
             key={workshop.id}
             className="w-[182px] flex flex-col justify-start items-center gap-4"

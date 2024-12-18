@@ -1,4 +1,4 @@
-import React, { useEffect, useState, Suspense } from "react";
+import React, { useEffect, useState} from "react";
 import { FinancerFormation,FinancerFormationFormType,CreateFinancerFormationErrors} from "@/types/types";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
@@ -12,10 +12,9 @@ import { Label } from "@/components/ui/label";
 import axios, { AxiosError } from "axios";
 import { toast } from "sonner";
 import { Modal } from "./Modal";
-import DOMPurify from 'dompurify';
-import { BookOpen, FileText, Link, PlusCircle } from 'lucide-react';
 
-const ReactQuill = React.lazy(() => import("react-quill"));
+import {Link, PlusCircle } from 'lucide-react';
+
 
 export default function FinancerFormationShow() {
     const [isModalOpen, setIsModalOpen] = useState(false);
@@ -180,7 +179,7 @@ export default function FinancerFormationShow() {
     };
 
     // Calculate total pages
-    const getTotalPages = () => Math.ceil(filteredManuel.length / rowsPerPage);
+    // const getTotalPages = () => Math.ceil(filteredManuel.length / rowsPerPage);
  
       
 

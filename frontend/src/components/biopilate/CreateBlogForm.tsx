@@ -62,17 +62,7 @@ export default function CreateBlogForm() {
     setErrors({});
 
     // Form validation
-    const validationErrors: CreateBlogErrors = {};
-    if (!blog.title.trim()) validationErrors.title = "Le titre est requis";
-    if (!blog.author.trim()) validationErrors.author = "Le nom de l'auteur est requis";
-    if (!blog.description.trim()) validationErrors.description = "La description est requise";
-    if (!blog.full_text.trim()) validationErrors.full_text = "Le contenu du blog est requis";
-
-    if (Object.keys(validationErrors).length > 0) {
-      setErrors(validationErrors);
-      setIsLoading(false);
-      return;
-    }
+   
 
     const formData = new FormData();
     
@@ -94,6 +84,8 @@ export default function CreateBlogForm() {
       const response = await apiCreateTeache.post("blogs/", formData, {
         headers: { 'Content-Type': 'multipart/form-data' }
       });
+      console.log(response);
+      
 
       // Reset form and show success message
       setBlog({
@@ -129,6 +121,7 @@ export default function CreateBlogForm() {
 
   return (
     <div className="container mx-auto px-4 py-6">
+       {isLoading ? "Submitting..." : "Submit"}
       <BlogForm
         handleSubmit={handleSubmit}
         errors={errors}

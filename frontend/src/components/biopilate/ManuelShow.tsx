@@ -1,8 +1,8 @@
-import React, { useEffect, useState, Suspense } from "react";
+import React, { useEffect, useState } from "react";
 import { Manuel,ManuelFormType,CreateManuelErrors } from "@/types/types";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
-import { FaTrash, FaEdit, FaFilePdf,FaSearch } from "react-icons/fa";
+import {  FaSearch } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import "react-quill/dist/quill.snow.css";
 import { Button } from "@/components/ui/button";
@@ -12,8 +12,8 @@ import { Label } from "@/components/ui/label";
 import axios, { AxiosError } from "axios";
 import { toast } from "sonner";
 import { Modal } from "./Modal";
-import DOMPurify from 'dompurify';
-import { BookOpen, Edit2, FileText, PlusCircle, Trash2 } from 'lucide-react';
+
+import { BookOpen, Edit2,  PlusCircle, Trash2 } from 'lucide-react';
 import { 
     Select, 
     SelectContent, 
@@ -21,7 +21,7 @@ import {
     SelectTrigger, 
     SelectValue 
   } from "@/components/ui/select";
-const ReactQuill = React.lazy(() => import("react-quill"));
+// const ReactQuill = React.lazy(() => import("react-quill"));
 
 export default function Manuelhow() {
     const [isModalOpen, setIsModalOpen] = useState(false);
@@ -154,10 +154,10 @@ export default function Manuelhow() {
   
 
     // Change rows per page
-    const handleChangeRowsPerPage = (value: number) => {
-        setRowsPerPage(value);
-        setCurrentPage(1);
-    };
+    // const handleChangeRowsPerPage = (value: number) => {
+    //     setRowsPerPage(value);
+    //     setCurrentPage(1);
+    // };
 
     // Paginate manuel
     const paginatedManuel = filteredManuel.slice(
@@ -171,7 +171,7 @@ export default function Manuelhow() {
     };
 
     // Calculate total pages
-    const getTotalPages = () => Math.ceil(filteredManuel.length / rowsPerPage);
+    // const getTotalPages = () => Math.ceil(filteredManuel.length / rowsPerPage);
  
       
 

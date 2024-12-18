@@ -1,7 +1,7 @@
 import {
     Card,
     CardContent,
-    CardDescription,
+   
     CardHeader,
     CardTitle,
   } from "@/components/ui/card";
@@ -11,7 +11,7 @@ import {
   import { Button } from "../ui/button";
   import { toast } from "sonner";
   import axios from "axios";
-  import { useNavigate } from 'react-router-dom';
+
   
   interface CreateCategoryProps {
     onClose: () => void; // Properly typed prop
@@ -23,7 +23,7 @@ import {
     const [category, setCategory] = useState({
       name: "",
     });
-    const navigate = useNavigate();
+   
   
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
       e.preventDefault();

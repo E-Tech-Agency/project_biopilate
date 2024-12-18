@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import api from "@/lib/api";
 import { ManuelShow } from "@/types/types";
 
@@ -21,11 +21,75 @@ export default function Manuel() {
 
   // Static fallback data
   const manuelsData = [
-    { id: 1, title: "Manuel Matwork complet", description: null, image: manuel1, status: "approved" },
-    { id: 2, title: "Manuel Reformer débutant", description: "", image: manuel2, status: "approved" },
-    { id: 3, title: "Manuel Reformer intermédiaire", description: null, image: manuel3, status: "approved" },
-    { id: 4, title: "Manuel Reformer avancé", description: null, image: manuel4, status: "approved" },
-    { id: 5, title: "Manuel Cadillac débutant", description: null, image: manuel5, status: "approved" },
+    {
+      id:1,
+      title: "Manuel Matwork complet",
+      image: manuel1,
+      status: "approved",
+      description: "https://backoffice.bsport.io/m/Studio%20Biopilates%20Paris/878/calendar/?isPreview=true&tabSelected=",
+    },
+    {
+      id:2,
+      title: "Manuel Reformer débutant",
+      image: manuel2,
+      status: "approved",
+      description: "https://backoffice.bsport.io/m/Studio%20Biopilates%20Paris/878/calendar/?isPreview=true&tabSelected=",
+    },
+    {
+      id:3,
+      title: "Manuel Reformer intermédiaire",
+      image: manuel3,
+      status: "approved",
+      description: "https://backoffice.bsport.io/m/Studio%20Biopilates%20Paris/878/calendar/?isPreview=true&tabSelected=",
+    },
+    {
+      id:4,
+      title: "Manuel Reformer avancé",
+      image: manuel4,
+      status: "approved",
+      description: "https://backoffice.bsport.io/m/Studio%20Biopilates%20Paris/878/calendar/?isPreview=true&tabSelected=",
+    },
+    {
+      id:5,
+      title: "Manuel Cadillac débutant",
+      image: manuel5,
+      status: "approved",
+      description: "https://backoffice.bsport.io/m/Studio%20Biopilates%20Paris/878/calendar/?isPreview=true&tabSelected=",
+    },
+    {id:6,
+      title: "Manuel Cadillac intermédiaire et avancé",
+      image: manuel6,
+      status: "approved",
+      description: "https://backoffice.bsport.io/m/Studio%20Biopilates%20Paris/878/calendar/?isPreview=true&tabSelected=",
+    },
+    {
+      id:7,
+      title: "Manuel Chaise complet",
+      image: manuel7,
+      status: "approved",
+      description: "https://backoffice.bsport.io/m/Studio%20Biopilates%20Paris/878/calendar/?isPreview=true&tabSelected=",
+    },
+    {
+      id:8,
+      title: "Manuel Ladder Barrel Complet",
+      image: manuel8,
+      status: "approved",
+      description: "https://backoffice.bsport.io/m/Studio%20Biopilates%20Paris/878/calendar/?isPreview=true&tabSelected=",
+    },
+    {
+      id:9,
+      title: "Manuel Arc Barrel Complet",
+      image: manuel9,
+      status: "approved",
+      description: "https://backoffice.bsport.io/m/Studio%20Biopilates%20Paris/878/calendar/?isPreview=true&tabSelected=",
+    },
+    {
+      id:10,
+      title: "Manuel Spine Corrector Complet",
+      image: manuel10,
+      status: "approved",
+      description: "https://backoffice.bsport.io/m/Studio%20Biopilates%20Paris/878/calendar/?isPreview=true&tabSelected=",
+    },
   ];
 
   const getManuel = async () => {

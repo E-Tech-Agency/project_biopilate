@@ -147,7 +147,8 @@ export default function CreatePlanningForm() {
                   <Button
                     type="button"
                     onClick={() => setIsCategoryModalOpen(true)}
-                    className="ml-4 px-4 py-2 bg-primary text-white rounded-lg"
+                   className=" flex reserver-button text-sm sm:text-base font-bold font-lato rounded-lg  py-2 sm:py-3 bg-bgColor text-marron  duration-300 ease-in-out transform"
+
                   >
                     + Ajouter
                   </Button>
@@ -207,7 +208,8 @@ export default function CreatePlanningForm() {
             <div className="flex justify-end space-x-4">
               <Button
                 type="submit"
-                className="bg-primary text-white px-6 py-2 rounded-lg hover:bg-primary-dark transition"
+                className=" flex reserver-button text-sm sm:text-base font-bold font-lato rounded-lg  py-2 sm:py-3 bg-bgColor text-marron  duration-300 ease-in-out transform"
+
               >
                 Ajouter
               </Button>

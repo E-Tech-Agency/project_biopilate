@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { FaTrash, FaEdit, FaSearch } from "react-icons/fa";
+
 import {
     Card,
     CardContent,
@@ -15,7 +15,7 @@ import {
     TableRow,
 } from "@/components/ui/table";
 import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
+
 import { Button } from "../ui/button";
 import { Modal } from "./Modal";
 import TeachesEditForm from "./TeachesEditForm ";
@@ -177,10 +177,10 @@ export default function TeachesShow() {
         }));
     };
 
-    const handleChangeRowsPerPage = (value: number) => {
-        setRowsPerPage(value);
-        setCurrentPage(1); // Reset to first page when changing rows per page
-    };
+    // const handleChangeRowsPerPage = (value: number) => {
+    //     setRowsPerPage(value);
+    //     setCurrentPage(1); // Reset to first page when changing rows per page
+    // };
 
     const paginatedTeaches = filteredTeaches.slice((currentPage - 1) * rowsPerPage, currentPage * rowsPerPage);
 
@@ -389,13 +389,14 @@ export default function TeachesShow() {
                   Numéro de téléphone
                 </label>
                 <input
-                  id="nomber_phone"
-                  type="tel"
-                  placeholder="+33 6 12 34 56 78"
-                  value={teache.nomber_phone}
-                  onChange={(e) => setTeache({ ...teache, nomber_phone: e.target.value })}
-                  className="w-full px-4 py-3 border border-blue-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-400 transition-all"
-                />
+                    id="nomber_phone"
+                    type="tel"
+                    placeholder="+33 6 12 34 56 78"
+                    value={teache.nomber_phone.toString()} // Convert number to string for display
+                    onChange={(e) => setTeache({ ...teache, nomber_phone: Number(e.target.value) })} // Parse to number
+                    className="w-full px-4 py-3 border border-blue-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-400 transition-all"
+                  />
+
               </div>
               <div>
                 <label htmlFor="specialite" className="flex items-center text-gray-700 mb-2">

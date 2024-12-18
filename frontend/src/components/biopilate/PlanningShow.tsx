@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { FaTrash, FaEdit } from "react-icons/fa";
+
 import {
     Card,
     CardContent,
@@ -94,10 +94,10 @@ export default function PlanningShow() {
 
     const paginatedPlanning = filteredPlanning.slice((currentPage - 1) * rowsPerPage, currentPage * rowsPerPage);
 
-    const handleChangeRowsPerPage = (value: number) => {
-        setRowsPerPage(value);
-        setCurrentPage(1);
-    };
+    // const handleChangeRowsPerPage = (value: number) => {
+    //     setRowsPerPage(value);
+    //     setCurrentPage(1);
+    // };
 
     return (
         <Card className="w-full shadow-lg">

@@ -2,7 +2,7 @@ import React, { useEffect, useState, Suspense } from "react";
 import { Cours, CoursFormType, CreateCoursErrors, CategoryCours } from "@/types/types";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
-import { FaTrash, FaEdit, FaPlus, FaSearch } from "react-icons/fa";
+
 import { useNavigate } from "react-router-dom";
 import "react-quill/dist/quill.snow.css"; // Import styles for React Quill
 import { Button } from "@/components/ui/button";
@@ -149,10 +149,10 @@ export default function CoursShow() {
         }));
     };
 
-    const handleChangeRowsPerPage = (value: number) => {
-        setRowsPerPage(value);
-        setCurrentPage(1); // Reset to first page whenever rows per page change
-    };
+    // const handleChangeRowsPerPage = (value: number) => {
+    //     setRowsPerPage(value);
+    //     setCurrentPage(1); // Reset to first page whenever rows per page change
+    // };
 
     const paginatedCours = filteredCours.slice((currentPage - 1) * rowsPerPage, currentPage * rowsPerPage);
 

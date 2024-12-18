@@ -1,7 +1,7 @@
 import api from "@/lib/api";
 import { FAQ } from "@/types/types";
 import { useEffect, useState } from "react";
-import { FaTrash, FaEdit } from "react-icons/fa";
+
 import {
     Card,
     CardContent,
@@ -94,10 +94,10 @@ export default function FAQShow() {
 
     const paginatedFaqs = filteredFaqs.slice((currentPage - 1) * rowsPerPage, currentPage * rowsPerPage);
 
-    const handleChangeRowsPerPage = (value: number) => {
-        setRowsPerPage(value);
-        setCurrentPage(1); // Reset to first page whenever rows per page change
-    };
+    // const handleChangeRowsPerPage = (value: number) => {
+    //     setRowsPerPage(value);
+    //     setCurrentPage(1); // Reset to first page whenever rows per page change
+    // };
 
     return (
         <Card className="w-full shadow-lg">

@@ -62,40 +62,38 @@ const TeachesEditForm: React.FC<TeachesEditFormProps> = ({ teache, onSave, onClo
     };
 
     const validateForm = (): boolean => {
-        let isValid = true;
-        const newErrors: CreateTeacherErrors = {
-            fullname: [],
-            email: [],
-            nomber_phone: [],
-            specialite: [],
-            image: [],
-            description: [],
-        };
+      let isValid = true;
+      const newErrors: CreateTeacherErrors = {};
 
-        if (!formState.fullname) {
-            newErrors.fullname.push("Le nom complet est requis.");
-            isValid = false;
-        }
-        if (!formState.email) {
-            newErrors.email.push("L'email est requis.");
-            isValid = false;
-        }
-        if (!formState.nomber_phone || isNaN(formState.nomber_phone)) {
-            newErrors.nomber_phone.push("Un numéro de téléphone valide est requis.");
-            isValid = false;
-        }
-        if (!formState.specialite) {
-            newErrors.specialite.push("La spécialité est requise.");
-            isValid = false;
-        }
-        if (!formState.description) {
-            newErrors.description.push("La biographie est requise.");
-            isValid = false;
-        }
+      // Initialize errors arrays
+      newErrors.fullname = [];
+      newErrors.email = [];
+      newErrors.nomber_phone = [];
+      newErrors.specialite = [];
+      newErrors.image = [];
 
-        setErrors(newErrors);
-        return isValid;
-    };
+      if (!formState.fullname) {
+          newErrors.fullname.push("Full name is required.");
+          isValid = false;
+      }
+      if (!formState.email) {
+          newErrors.email.push("Email is required.");
+          isValid = false;
+      }
+      if (!formState.nomber_phone || isNaN(formState.nomber_phone)) {
+          newErrors.nomber_phone.push("Valid phone number is required.");
+          isValid = false;
+      }
+      if (!formState.specialite) {
+          newErrors.specialite.push("Speciality is required.");
+          isValid = false;
+      }
+      // Add more validation rules as needed
+
+      // Update state directly with errors
+      setErrors(newErrors);
+      return isValid;
+  };
 
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();

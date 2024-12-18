@@ -2,7 +2,7 @@ import React, { useEffect, useState, Suspense } from "react";
 import { WorkShop, WorkShopFormType, CreateWorkShopErrors, CategoryWorkShop } from "@/types/types";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
-import { FaTrash, FaEdit, FaFilePdf } from "react-icons/fa";
+import { FaFilePdf } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import "react-quill/dist/quill.snow.css";
 import { Button } from "@/components/ui/button";
@@ -177,10 +177,10 @@ export default function WorkshopShow() {
     };
 
     // Change rows per page
-    const handleChangeRowsPerPage = (value: number) => {
-        setRowsPerPage(value);
-        setCurrentPage(1);
-    };
+    // const handleChangeRowsPerPage = (value: number) => {
+    //     setRowsPerPage(value);
+    //     setCurrentPage(1);
+    // };
 
     // Paginate workshops
     const paginatedWorkShop = filteredWorkShop.slice(
@@ -194,7 +194,7 @@ export default function WorkshopShow() {
     };
 
     // Calculate total pages
-    const getTotalPages = () => Math.ceil(filteredWorkShop.length / rowsPerPage);
+    // const getTotalPages = () => Math.ceil(filteredWorkShop.length / rowsPerPage);
     const handleFileChange = (
         e: React.ChangeEvent<HTMLInputElement>,
         field: "image" | "pdf_workshop"

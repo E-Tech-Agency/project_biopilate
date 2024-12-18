@@ -16,7 +16,7 @@ import {
     TableHeader,
     TableRow,
 } from "@/components/ui/table";
-import { Label } from "@/components/ui/label";
+
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useNavigate } from "react-router-dom";
@@ -86,10 +86,10 @@ export default function FormationShow() {
 
     const paginatedFormations = filteredFormations.slice((currentPage - 1) * rowsPerPage, currentPage * rowsPerPage);
 
-    const handleChangeRowsPerPage = (value: number) => {
-        setRowsPerPage(value);
-        setCurrentPage(1); // Reset to first page whenever rows per page change
-    };
+    // const handleChangeRowsPerPage = (value: number) => {
+    //     setRowsPerPage(value);
+    //     setCurrentPage(1); // Reset to first page whenever rows per page change
+    // };
 
     return (
         <Card className="w-full shadow-lg">

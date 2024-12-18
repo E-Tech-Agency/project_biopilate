@@ -9,6 +9,7 @@ import { useEffect, useState } from "react";
 import PhoneInput from "react-phone-input-2";
 import 'react-phone-input-2/lib/style.css';
 import { Upload, AlertCircle, CheckCircle, Loader2 } from "lucide-react";
+import { AxiosError } from "axios";
 
 export function EditForm() {
   // Initial user state
@@ -48,11 +49,17 @@ export function EditForm() {
       setUser(res.data);
       setImagePreview(res.data.profile_image);
     } catch (error) {
-      console.error("Failed to fetch user data:", error);
-      const errorMsg = error.response?.data?.message || 
-                       "Impossible de charger les informations de l'utilisateur";
-      setErrorMessage(errorMsg);
-      toast.error(errorMsg);
+        console.error("Failed to fetch user data:", error);
+    
+      if (error instanceof AxiosError) {
+        const errorMsg =
+          error.response?.data?.message || "Impossible de charger les informations de l'utilisateur";
+        setErrorMessage(errorMsg);
+        toast.error(errorMsg);
+      } else {
+        setErrorMessage("Une erreur inconnue s'est produite.");
+        toast.error("Une erreur inconnue s'est produite.");
+      }
     } finally {
       setIsLoading(false);
     }
@@ -166,12 +173,19 @@ export function EditForm() {
       const successMsg = "Votre profil a été mis à jour avec succès";
       setSuccessMessage(successMsg);
       toast.success(successMsg);
-    } catch (error) {
-      console.error("Failed to update user data:", error);
-      const errorMsg = error.response?.data?.message || 
-                       "Impossible de mettre à jour les informations du profil";
-      setErrorMessage(errorMsg);
-      toast.error(errorMsg);
+    }catch (error) {
+      console.error("Failed to fetch user data:", error);
+    
+      if (error instanceof AxiosError) {
+        const errorMsg =
+          error.response?.data?.message || "Impossible de charger les informations de l'utilisateur";
+        setErrorMessage(errorMsg);
+        toast.error(errorMsg);
+      } else {
+        setErrorMessage("Une erreur inconnue s'est produite.");
+        toast.error("Une erreur inconnue s'est produite.");
+      }
+      
     } finally {
       setIsLoading(false);
     }

@@ -16,7 +16,7 @@ import {
     TableRow,
 } from "@/components/ui/table";
 import { Button } from "../ui/button";
-import { FaTrash, FaEdit } from "react-icons/fa";
+
 import { useNavigate } from "react-router-dom";
 import { Edit2, PlusCircle, Search, Trash2 } from "lucide-react";
 import { 
@@ -79,10 +79,10 @@ export default function BlogShow() {
         navigate("/add-article-biopilates");
     };
 
-    const handleChangeRowsPerPage = (value: number) => {
-        setRowsPerPage(value);
-        setCurrentPage(1); // Reset to first page whenever rows per page change
-    };
+    // const handleChangeRowsPerPage = (value: number) => {
+    //     setRowsPerPage(value);
+    //     setCurrentPage(1); // Reset to first page whenever rows per page change
+    // };
 
     const handleEditClick = (id: number) => {
         navigate(`/edit-article-biopilates/${id}`);

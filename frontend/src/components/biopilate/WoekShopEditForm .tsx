@@ -5,9 +5,9 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import ReactQuill from "react-quill";
 import { useNavigate } from "react-router-dom";
-import { FaFilePdf, FaFileUpload, FaSave, FaTimes } from "react-icons/fa";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { FaFileUpload, FaSave, FaTimes } from "react-icons/fa";
+
+import { Card, CardContent, CardHeader } from "@/components/ui/card";
 
 interface EditworjShopProps {
     workshop: WorkShop;

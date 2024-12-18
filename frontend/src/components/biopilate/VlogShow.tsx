@@ -1,8 +1,8 @@
-import React, { useEffect, useState, Suspense } from "react";
+import React, { useEffect, useState } from "react";
 import { Vlog, VlogFormType, CreateVlogErrors, CategoryVlog } from "@/types/types";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
-import { FaTrash, FaEdit, FaFilePdf, FaSearch } from "react-icons/fa";
+import {  FaSearch } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import "react-quill/dist/quill.snow.css";
 import { Button } from "@/components/ui/button";
@@ -12,10 +12,10 @@ import { Label } from "@/components/ui/label";
 import axios, { AxiosError } from "axios";
 import { toast } from "sonner";
 import { Modal } from "./Modal";
-import DOMPurify from 'dompurify';
+
 import CreateCategoryVlog from '../supplier/create-categoryVlog';
 import {  Edit2, Link, PlusCircle, Trash2 } from 'lucide-react';
-const ReactQuill = React.lazy(() => import("react-quill"));
+// const ReactQuill = React.lazy(() => import("react-quill"));
 
 export default function VlogShow() {
     const [isModalOpen, setIsModalOpen] = useState(false);
@@ -180,17 +180,17 @@ export default function VlogShow() {
     };
 
     // Calculate total pages
-    const getTotalPages = () => Math.ceil(filteredVlog.length / rowsPerPage);
-    const handleFileChange = (
-        e: React.ChangeEvent<HTMLInputElement>,
-        field: "image" 
-      ) => {
-        const file = e.target.files ? e.target.files[0] : null;
-        setNewVlog((prevState) => ({
-          ...prevState,
-          [field]: file,
-        }));
-      };
+    // const getTotalPages = () => Math.ceil(filteredVlog.length / rowsPerPage);
+    // const handleFileChange = (
+    //     e: React.ChangeEvent<HTMLInputElement>,
+    //     field: "image" 
+    //   ) => {
+    //     const file = e.target.files ? e.target.files[0] : null;
+    //     setNewVlog((prevState) => ({
+    //       ...prevState,
+    //       [field]: file,
+    //     }));
+    //   };
       
 
     return (

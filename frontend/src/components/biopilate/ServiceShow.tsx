@@ -1,7 +1,7 @@
 import api from "@/lib/api";
 import { Service, Teache } from "@/types/types";
 import { useEffect, useState } from "react";
-import { FaTrash, FaEdit } from "react-icons/fa";
+
 import {
     Card,
     CardContent,
@@ -19,7 +19,7 @@ import {
 import { Button } from "@/components/ui/button";
 import { useNavigate } from "react-router-dom";
 import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
+
 import { Edit2, PlusCircle, Search, Trash2 } from "lucide-react";
 import { 
     Select, 
@@ -103,10 +103,10 @@ export default function ServiceShow() {
 
     const paginatedServices = filteredServices.slice((currentPage - 1) * rowsPerPage, currentPage * rowsPerPage);
 
-    const handleChangeRowsPerPage = (value: number) => {
-        setRowsPerPage(value);
-        setCurrentPage(1);
-    };
+    // const handleChangeRowsPerPage = (value: number) => {
+    //     setRowsPerPage(value);
+    //     setCurrentPage(1);
+    // };
 
     return (
         <Card className="w-full shadow-lg">

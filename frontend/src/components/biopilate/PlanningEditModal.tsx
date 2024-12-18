@@ -5,7 +5,7 @@ import { Planning, Category } from "@/types/types";
 import api from "@/lib/api";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Button } from "../ui/button";
+
 
 interface PlanningEditModalProps {
     planningId: number | null;

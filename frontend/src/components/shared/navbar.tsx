@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import { Link } from "react-router-dom";
+
 import { useEffect, useState } from "react";
 import { IoMdSearch, IoIosNotifications } from "react-icons/io";
 import { BiSolidDownArrow } from "react-icons/bi";
@@ -48,6 +48,8 @@ export function Navbar({
         const res = await api.get("get_one_user/");
         setUser(res.data);
         setImagePreview(res.data.profile_image); // Set initial image preview
+        console.log(searchResults);
+        
       } catch (error) {
         console.error("Failed to fetch user data:", error);
       }
@@ -61,12 +63,12 @@ export function Navbar({
 
   const navigate = useNavigate();
   // const nav = () => { navigate("/login") }
-  const login = () => {
-    navigate("/login");
-  };
-  const register = () => {
-    navigate("/register");
-  };
+  // const login = () => {
+  //   navigate("/login");
+  // };
+  // const register = () => {
+  //   navigate("/register");
+  // };
 
   const logout = async () => {
     localStorage.clear();

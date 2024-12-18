@@ -1,9 +1,9 @@
-import React from "react";
+
 
 export default function ReserverButton({
   text = "Réserver",
   bgColor = "bg-bgColor",
-  link,
+  link ="",
 }: {
   text?: string;
   bgColor?: string;
