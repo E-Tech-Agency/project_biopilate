@@ -77,7 +77,11 @@ export default function PlanningFormations({ plans }: PlanningProps) {
             spaceBetween: 5,
           },
           640: {
-            slidesPerView: 1.3,
+            slidesPerView: 1.6,
+            spaceBetween: 5,
+          },
+          500: {
+            slidesPerView: 1.5,
             spaceBetween: 5,
           },
         }}

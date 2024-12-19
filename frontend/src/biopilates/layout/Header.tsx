@@ -315,7 +315,7 @@ export default function Header({ isLoggedIn }: { isLoggedIn: boolean }) {
           )}
 
           <div className="hidden md:flex">
-            <ReserverButton />
+            <ReserverButton link="https://backoffice.bsport.io/m/Studio%20Biopilates%20Paris/878/calendar/?isPreview=true&tabSelected=0" />
           </div>
         </div>
 

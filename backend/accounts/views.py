@@ -10,6 +10,8 @@ from django.utils.encoding import DjangoUnicodeDecodeError
 from django.contrib.auth.tokens import PasswordResetTokenGenerator
 import json
 from rest_framework.decorators import api_view
+from django.utils.http import urlsafe_base64_decode
+from django.core.exceptions import ValidationError
 # Create your views here.
 @api_view(['POST'])
 def send_contact_email(request):
@@ -77,14 +79,25 @@ class PasswordResetView(GenericAPIView):
         return Response({'message':'password reset successfully'}, status=status.HTTP_200_OK)
 
 class VerifyPasswordResetView(GenericAPIView):
-    def get(self, request,uidb64,token):
+    def get(self, request, uidb64, token):
         try:
-            user = User.objects.get(id=uidb64)
-            if not PasswordResetTokenGenerator().check_token(user,token):
-                return Response({'message':'token is invalid'}, status=status.HTTP_400_BAD_REQUEST)
-            return Response({'message':'password reset successfully','success':True,'token':token,'id':user.id}, status=status.HTTP_200_OK)
+            # Decode the base64 user ID
+            uid = force_str(urlsafe_base64_decode(uidb64))
+            
+            # Now use the decoded ID to get the user
+            user = User.objects.get(id=uid)
+            
+            if not PasswordResetTokenGenerator().check_token(user, token):
+                return Response({'message': 'Token is invalid'}, status=status.HTTP_400_BAD_REQUEST)
+            
+            return Response({'message': 'Password reset successfully', 'success': True, 'token': token, 'id': user.id}, status=status.HTTP_200_OK)
+        
         except DjangoUnicodeDecodeError:
-            return Response({'message':'invalid token'}, status=status.HTTP_400_BAD_REQUEST)
+            return Response({'message': 'Invalid token'}, status=status.HTTP_400_BAD_REQUEST)
+        except ValidationError:
+            return Response({'message': 'Invalid user ID'}, status=status.HTTP_400_BAD_REQUEST)
+        except User.DoesNotExist:
+            return Response({'message': 'User does not exist'}, status=status.HTTP_404_NOT_FOUND)
         
 
 class SetNewPasswordView(GenericAPIView):

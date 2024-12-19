@@ -107,6 +107,29 @@ export default function SideNav() {
       href: "/Formation-biopilates",
       icon: <PiPackage className="text-xl" />,
     },
+    {
+      label: "Biopilates WorkShop",
+      href: "/WorkshopShow-biopilates",
+      icon: <PiPackage className="text-xl" />,
+    },
+    {
+      label: "Biopilates vlog",
+      href: "/vlog-biopilates",
+      icon: <PiPackage className="text-xl" />,
+    },
+    // 
+    {
+      label: "Biopilates Manuel",
+      href: "/manuel-biopilates",
+      icon: <PiPackage className="text-xl" />,
+    },
+    {
+      label: "Financer voter formation",
+      href: "/financer-formation-biopilates",
+      icon: <PiPackage className="text-xl" />,
+    },
+
+
   ];
 
   const isSupplier = localStorage.getItem("is_supplier")?.toString() === "true";

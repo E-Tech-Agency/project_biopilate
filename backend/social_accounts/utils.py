@@ -59,4 +59,3 @@ def register_social_user(provider,email,first_name,last_name,is_supplier):
             'is_superuser':login_user.is_superuser,
             'is_verified':login_user.is_verified
         }
-

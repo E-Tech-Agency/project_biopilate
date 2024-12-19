@@ -15,6 +15,8 @@ import WorkshopSlider from "./WorkshopSlider";
 import PlanningFormations from "./PlanningFormations";
 import PlanningWorkshops from "./PlanningWorkshops";
 
+import { useEffect } from "react";
+
 export default function Formations() {
   const images = [formation3, reformer, formation5, formation1, formation2];
 
@@ -52,20 +54,6 @@ export default function Formations() {
         "Jeu. 05/12/2024 :  8h - 13h",
         "Ven. 06/12/2024 :  8h - 13h",
       ],
-    },
-    {
-      title: "ONLINE Workshop Préntal stabilité Ball et Flex band",
-      niveau: "",
-      image: formation6,
-      date: "21/12/2024",
-      timeSlots: ["Sam. 21/12/2024 de 14h à 16h"],
-    },
-    {
-      title: "ONLINE Workshop Postnatal Pilates",
-      niveau: "",
-      image: formation3,
-      date: "21/12/2024",
-      timeSlots: ["Sam. 21/12/2024 de 16h15 à 18h15"],
     },
     {
       title: "Intensive Matwork",
@@ -224,6 +212,16 @@ export default function Formations() {
     },
   ];
 
+  useEffect(() => {
+    const hash = window.location.hash;
+    if (hash) {
+      const element = document.getElementById(hash.substring(1));
+      if (element) {
+        element.scrollIntoView({ behavior: "smooth" });
+      }
+    }
+  }, []);
+
   return (
     <div className="flex flex-col mx-5 md:mx-12">
       <section className="mt-2 mb-14 flex flex-col-reverse lg:flex-row justify-center lg:justify-between items-center gap-8">
@@ -254,7 +252,9 @@ export default function Formations() {
       <PourquoiBiopilates />
 
       {/* formation biopliates */}
-      <FormationSwiper />
+      <section id="ftarif">
+        <FormationSwiper />
+      </section>
 
       {/* Planning formation*/}
       <PlanningFormations plans={plansFormation} />

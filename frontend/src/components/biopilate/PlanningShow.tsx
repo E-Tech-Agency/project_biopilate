@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { FaTrash, FaEdit } from "react-icons/fa";
+
 import {
     Card,
     CardContent,
@@ -19,7 +19,15 @@ import PlanningEditModal from "./PlanningEditModal";
 import api from "@/lib/api";
 import { Planning } from "@/types/types";
 import { useNavigate } from "react-router-dom";
-
+import { Edit2, PlusCircle, Search, Trash2 } from "lucide-react";
+import { Input } from "@/components/ui/input";
+import { 
+    Select, 
+    SelectContent, 
+    SelectItem, 
+    SelectTrigger, 
+    SelectValue 
+  } from "@/components/ui/select";
 export default function PlanningShow() {
     const [planning, setPlanning] = useState<Planning[]>([]);
     const [filteredPlanning, setFilteredPlanning] = useState<Planning[]>([]);
@@ -86,41 +94,60 @@ export default function PlanningShow() {
 
     const paginatedPlanning = filteredPlanning.slice((currentPage - 1) * rowsPerPage, currentPage * rowsPerPage);
 
-    const handleChangeRowsPerPage = (value: number) => {
-        setRowsPerPage(value);
-        setCurrentPage(1);
-    };
+    // const handleChangeRowsPerPage = (value: number) => {
+    //     setRowsPerPage(value);
+    //     setCurrentPage(1);
+    // };
 
     return (
-        <Card>
-            <CardHeader className="px-7">
-                <div className="flex justify-between">
-                    <CardTitle>Planning</CardTitle>
-                    <Button variant="default" className="btn btn-primary" onClick={handleAddClick}>
-                        Ajouter un planning
-                    </Button>
+        <Card className="w-full shadow-lg">
+            <CardHeader className="border-b bg-white">
+            <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
+            <div>
+            <CardTitle className="text-2xl font-bold text-gray-800">
+                Liste des planning
+              </CardTitle>
+              <p className="text-muted-foreground">
+                Gérez vos planning avec facilité
+              </p>
+                    </div>
+                    
+                    <Button 
+                onClick={handleAddClick} 
+                className=" flex reserver-button text-sm sm:text-base font-bold font-lato rounded-lg  py-2 sm:py-3 bg-bgColor text-marron  duration-300 ease-in-out transform"
+              >
+                <PlusCircle className="w-4 h-4" />
+                Ajouter un planning
+              </Button>
+                    
                 </div>
-                <div className="mt-4 flex justify-end space-x-4">
+                <div className="flex flex-col md:flex-row gap-4 w-full md:w-auto">
                     <div className="flex items-center space-x-2">
                         <label htmlFor="rowsPerPage">Afficher:</label>
-                        <select
-                            id="rowsPerPage"
-                            value={rowsPerPage}
-                            onChange={(e) => handleChangeRowsPerPage(Number(e.target.value))}
-                            className="border-gray-300 rounded-md"
-                        >
-                            <option value={5}>5</option>
-                            <option value={10}>10</option>
-                            <option value={20}>20</option>
-                        </select>
+                        <Select 
+                value={rowsPerPage.toString()} 
+                onValueChange={(value) => setRowsPerPage(Number(value))}
+              >
+                <SelectTrigger className="w-[100px]">
+                  <SelectValue placeholder="Lignes" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="5">5 lignes</SelectItem>
+                  <SelectItem value="10">10 lignes</SelectItem>
+                  <SelectItem value="20">20 lignes</SelectItem>
+                </SelectContent>
+              </Select>
                     </div>
-                    <input
-                        type="text"
-                        placeholder="Rechercher"
-                        value={searchTerm}
-                        onChange={(e) => setSearchTerm(e.target.value)}
-                        className="w-full border-gray-300 rounded-md"
-                    />
+                    <div className="relative flex-grow">
+                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
+                <Input
+                  type="text"
+                  placeholder="Rechercher un planning..."
+                  value={searchTerm}
+                  onChange={(e) => setSearchTerm(e.target.value)}
+                  className="pl-10 bg-white border-gray-300"
+                />
+              </div>
                     <select
                         value={statusFilter}
                         onChange={(e) => setStatusFilter(e.target.value)}
@@ -134,7 +161,7 @@ export default function PlanningShow() {
             </CardHeader>
             <CardContent>
                 <Table>
-                    <TableHeader>
+                    <TableHeader className="bg-gray-100">
                         <TableRow>
                             <TableHead>Titre</TableHead>
                             <TableHead className="hidden sm:table-cell">Niveau</TableHead>
@@ -147,7 +174,7 @@ export default function PlanningShow() {
                     </TableHeader>
                     <TableBody>
                         {paginatedPlanning.map((plan: Planning) => (
-                            <TableRow key={plan.id} className="bg-accent">
+                            <TableRow key={plan.id} >
                                 <TableCell>
                                     <div className="font-medium">{plan.title}</div>
                                 </TableCell>
@@ -159,12 +186,19 @@ export default function PlanningShow() {
                                 </TableCell>
                                 <TableCell className="hidden sm:table-cell">{new Date(plan.create_at).toLocaleDateString()}</TableCell>
                                 <TableCell className="text-right">
-                                    <div className="flex space-x-2">
-                                        <Button variant="secondary" onClick={() => handleEditClick(plan.id)}>
-                                            <FaEdit />
+                                    <div  className="flex justify-end space-x-2">
+                                        <Button
+                                          variant="outline" 
+                                          size="icon" 
+                                          className="hover:bg-blue-50"
+                                        onClick={() => handleEditClick(plan.id)}>
+                                                                   <Edit2 className="w-4 h-4 text-blue-600" />
                                         </Button>
-                                        <Button variant="destructive" onClick={() => deletePlanning(plan.id)}>
-                                            <FaTrash />
+                                        <Button 
+                                        variant="outline" 
+                                         className="hover:bg-red-50"
+                                        onClick={() => deletePlanning(plan.id)}>
+                                           <Trash2 className="w-4 h-4 text-red-600" />
                                         </Button>
                                     </div>
                                 </TableCell>
@@ -172,22 +206,30 @@ export default function PlanningShow() {
                         ))}
                     </TableBody>
                 </Table>
-                <div className="flex justify-end mt-4">
-                    <Button
-                        variant="secondary"
-                        onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
-                        disabled={currentPage === 1}
-                    >
-                        Previous
-                    </Button>
-                    <Button
-                        variant="secondary"
-                        onClick={() => setCurrentPage((prev) => (prev * rowsPerPage < filteredPlanning.length ? prev + 1 : prev))}
-                        disabled={currentPage * rowsPerPage >= filteredPlanning.length}
-                    >
-                        Next
-                    </Button>
-                </div>
+                <div className="flex justify-between items-center p-4 border-t">
+            <div className="text-sm text-muted-foreground">
+              Page {currentPage} sur {Math.ceil(filteredPlanning.length / rowsPerPage)}
+            </div>
+            <div className="flex space-x-2">
+              <Button
+                variant="outline"
+                onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
+                disabled={currentPage === 1}
+              >
+                Précédent
+              </Button>
+              <Button
+                variant="outline"
+                onClick={() => setCurrentPage(prev => 
+                  (prev * rowsPerPage < filteredPlanning.length ? prev + 1 : prev)
+                )}
+                disabled={currentPage * rowsPerPage >= filteredPlanning.length}
+              >
+                Suivant
+              </Button>
+            </div>
+          </div>
+                
                 {editingId !== null && (
                     <PlanningEditModal
                         planningId={editingId}

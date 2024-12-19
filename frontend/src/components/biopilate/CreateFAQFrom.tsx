@@ -7,11 +7,11 @@ import { Button } from "@/components/ui/button";
 import apiCreateTeache from "@/lib/apiCreateTeache";
 import axios from "axios";
 import { toast } from "sonner";
-import "react-quill/dist/quill.snow.css"; // Import styles for React Quill
+import "react-quill/dist/quill.snow.css";
 
 import { useNavigate } from "react-router-dom";
 
-export default function CreateFAQFrom() {
+export default function CreateFAQForm() {
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -48,7 +48,7 @@ export default function CreateFAQFrom() {
     formData.append("title", faq.title);
     formData.append("description", faq.description);
     formData.append("status", faq.status);
-    formData.append("range", faq.range.toString()); // Convert number to string
+    formData.append("range", faq.range.toString());
 
     try {
       await apiCreateTeache.post("faqs/", formData);
@@ -58,7 +58,7 @@ export default function CreateFAQFrom() {
         status: "",
         range: 0,
       });
-      toast.success("FAQ created");
+      toast.success("FAQ créé avec succès");
       navigate("/FAQ-biopilates");
     } catch (error) {
       if (axios.isAxiosError(error)) {
@@ -71,86 +71,105 @@ export default function CreateFAQFrom() {
   };
 
   return (
-    <div className="justify-evenly items-center m-6">
-      <Card className="w-full">
-        <CardHeader>
-          <CardTitle>Create FAQ</CardTitle>
+    <div className="flex justify-center items-center m-6">
+      <Card className="w-full max-w-3xl shadow-lg rounded-lg">
+        <CardHeader className="bg-gray-100 p-4 rounded-t-lg">
+          <CardTitle className="text-xl font-semibold">Créer une FAQ</CardTitle>
         </CardHeader>
-        <CardContent>
+        <CardContent className="p-6">
           <form onSubmit={handleSubmit}>
             <div className="grid gap-6">
-              <div className="grid gap-3">
-                <Label htmlFor="title">
-                  Question <br />
-                  {errors.title && (
-                    <li className="text-red-500 mt-2">{errors.title}</li>
-                  )}
+              {/* Champ Titre */}
+              <div className="grid gap-2">
+                <Label htmlFor="title" className="font-medium">
+                  Titre
                 </Label>
+                {errors.title && (
+                  <span className="text-red-500 text-sm">{errors.title}</span>
+                )}
                 <Input
                   id="title"
                   name="title"
                   type="text"
-                  className="w-full"
+                  className="w-full border-gray-300 rounded-md"
                   value={faq.title}
                   onChange={handleInputChange}
                 />
               </div>
-              <div className="grid gap-3">
-                <Label htmlFor="description">
-                  Response <br />
-                  {errors.description && (
-                    <li className="text-red-500 mt-2">{errors.description}</li>
-                  )}
+
+              {/* Champ Réponse */}
+              <div className="grid gap-2">
+                <Label htmlFor="description" className="font-medium">
+                  Réponse
                 </Label>
+                {errors.description && (
+                  <span className="text-red-500 text-sm">{errors.description}</span>
+                )}
                 <textarea
                   id="description"
                   name="description"
-                  className="w-full p-2 border rounded-md"
+                  className="w-full p-2 border border-gray-300 rounded-md resize-none"
+                  rows={4}
                   value={faq.description}
                   onChange={handleInputChange}
                 />
               </div>
-              <div className="grid gap-3">
-                <Label htmlFor="range">
-                  Movement <br />
-                  {errors.range && (
-                    <li className="text-red-500 mt-2">{errors.range}</li>
-                  )}
+
+              {/* Champ Mouvement */}
+              <div className="grid gap-2">
+                <Label htmlFor="range" className="font-medium">
+                  Mouvement
                 </Label>
+                {errors.range && (
+                  <span className="text-red-500 text-sm">{errors.range}</span>
+                )}
                 <Input
                   id="range"
                   name="range"
                   type="number"
-                  className="w-full"
+                  className="w-full border-gray-300 rounded-md"
                   value={faq.range}
                   onChange={(e) =>
                     setFaq({ ...faq, range: Number(e.target.value) })
-                  } // Convert string to number
+                  }
                 />
               </div>
-              <div className="grid gap-3">
-                <Label htmlFor="status">
-                  Status
-                  {errors.status && (
-                    <span className="text-red-500 mt-2">{errors.status}</span>
-                  )}
+
+              {/* Champ Statut */}
+              <div className="grid gap-2">
+                <Label htmlFor="status" className="font-medium">
+                  Statut
                 </Label>
+                {errors.status && (
+                  <span className="text-red-500 text-sm">{errors.status}</span>
+                )}
                 <select
                   id="status"
                   name="status"
                   value={faq.status}
                   onChange={handleInputChange}
-                  className="w-full p-2 border rounded-md"
+                  className="w-full p-2 border border-gray-300 rounded-md"
                 >
-                  <option value="">Select Status</option>
-                  <option value="pending">Pending Publication</option>
-                  <option value="approved">Published</option>
+                  <option value="">Sélectionnez un statut</option>
+                  <option value="pending">En attente de publication</option>
+                  <option value="approved">Publié</option>
                 </select>
               </div>
-              <br />
-              <div>
-                <Button type="submit" className="w-44" size={"lg"}>
-                  Add
+
+              {/* Boutons */}
+              <div className="flex justify-between items-center mt-4">
+                <Button
+                  type="submit"
+                  className="bg-blue-600 text-white hover:bg-blue-700 rounded-md px-6 py-2"
+                >
+                  Ajouter
+                </Button>
+                <Button
+                  type="button"
+                  className="bg-gray-500 text-white hover:bg-gray-600 rounded-md px-6 py-2"
+                  onClick={() => navigate("/FAQ-biopilates")}
+                >
+                  Annuler
                 </Button>
               </div>
             </div>

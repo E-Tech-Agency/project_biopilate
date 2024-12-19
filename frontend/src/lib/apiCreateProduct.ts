@@ -6,7 +6,7 @@ const accessToken = localStorage.getItem('token') || "";
 const refresh_token = localStorage.getItem('refresh_token') || "";
 
 console.log('access: ', accessToken);
-const baseURL = 'http://141.94.23.119/api/';
+const baseURL = 'http://localhost:8000/api/';
 
 const apiCreateProduct = axios.create({
     baseURL: baseURL,

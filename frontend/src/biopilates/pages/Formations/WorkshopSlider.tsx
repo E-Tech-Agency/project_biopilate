@@ -16,6 +16,10 @@ import workshop6 from "@/assets/images/workshop-3.jpg";
 import workshop7 from "@/assets/images/formation-5.png";
 import workshop8 from "@/assets/images/workshop-4.jpg";
 // import ReserverButton from "@/biopilates/components/ReserverButton";
+import { WorkShop } from "@/types/types";
+import  { useEffect, useState } from "react";7
+import api from "@/lib/api";
+
 
 type Workshop = {
   title: string;
@@ -81,6 +85,25 @@ function WorkshopCard({ workshop }: { workshop: Workshop }) {
 }
 
 export default function WorkshopSlider() {
+  const [workShops, setWorkShops] = useState<WorkShop[]>([]);
+  const getWorkShop = async () => {
+    try {
+        const res = await api.get("workshops-biopilate/");
+        const workShopsPublic = res.data.filter(
+          (workShops: WorkShop) => workShops.status === "approved"
+        );
+        setWorkShops(workShopsPublic);
+
+       
+    } catch (error) {
+        console.error("Error fetching workshops-biopilate", error);
+        
+    }
+};
+useEffect(() => {
+  getWorkShop();
+}, []);
+
   const workshops = [
     {
       title: "Workshop en ligne",
@@ -115,6 +138,18 @@ export default function WorkshopSlider() {
       image: workshop8,
     },
   ];
+  const workShopsData =
+  workShops && workShops.length > 0
+    ? workShops.map((workShop) => ({
+        id: workShop.id,
+        title: workShop.title,
+       
+        description: workShop.description,
+        
+        image: workShop.image,
+       
+      }))
+    : workshops;
 
   return (
     <section className="flex flex-col justify-center items-start w-full">
@@ -132,12 +167,10 @@ export default function WorkshopSlider() {
       </div>
 
       <Swiper
-        className="centered-slide-carousel swiper-container relative w-full overflow-hidden "
+        className="centered-slide-carousel swiper-container relative w-full overflow-hidde"
         // grabCursor={true}
         loop={true}
         // spaceBetween={40}
-        // slideToClickedSlide={true}
-        // Move clickable here
         navigation={{
           nextEl: ".swiper-but-next",
           prevEl: ".swiper-but-prev",
@@ -149,37 +182,35 @@ export default function WorkshopSlider() {
             spaceBetween: 25,
           },
           1650: {
-            slidesPerView: 5,
+            slidesPerView: 4.8,
             spaceBetween: 20,
           },
           1440: {
-            slidesPerView: 4,
+            slidesPerView: 4.2,
             spaceBetween: 18,
-            centeredSlides: false, // Corrected syntax here
           },
           1280: {
-            slidesPerView: 3.5,
+            slidesPerView: 3.6,
             spaceBetween: 16,
           },
           1100: {
-            slidesPerView: 3,
+            slidesPerView: 3.2,
             spaceBetween: 14,
           },
           990: {
-            slidesPerView: 2.7,
+            slidesPerView: 2.8,
             spaceBetween: 10,
-            centeredSlides: true, // Corrected syntax here
           },
           790: {
             slidesPerView: 2.2,
             spaceBetween: 5,
           },
           640: {
-            slidesPerView: 1.7,
+            slidesPerView: 1.8,
             spaceBetween: 5,
           },
           480: {
-            slidesPerView: 1.9,
+            slidesPerView: 2.1,
             spaceBetween: 5,
           },
           320: {
@@ -188,7 +219,7 @@ export default function WorkshopSlider() {
           },
         }}
       >
-        {workshops.map((workshop, index) => (
+        {workShopsData.map((workshop, index) => (
           <SwiperSlide
             key={index}
             className="flex flex-col justify-center items-center"
@@ -196,13 +227,11 @@ export default function WorkshopSlider() {
             <WorkshopCard workshop={workshop} />
           </SwiperSlide>
         ))}
-        <div className="slider-controler flex justify-center gap-10 sm:mb-6">
-          <div className="arrow-hover cursor-pointer swiper-but-prev slider-arrow hidden sm:flex justify-center items-center bg-bgColor rounded-full w-10 h-10">
-            <FaArrowLeftLong className="text-marron" />
-          </div>
-          <div className="arrow-hover cursor-pointer swiper-but-next slider-arrow hidden sm:flex justify-center items-center bg-bgColor rounded-full w-10 h-10">
-            <FaArrowRightLong className="text-marron" />
-          </div>
+        <div className="arrow-hover cursor-pointer swiper-but-prev slider-arrow hidden sm:flex justify-center items-center bg-bgColor rounded-full w-10 h-10 absolute left-0 top-[45%] transform -translate-y-1/2 z-20">
+          <FaArrowLeftLong className="text-marron" />
+        </div>
+        <div className="arrow-hover cursor-pointer swiper-but-next slider-arrow hidden sm:flex justify-center items-center bg-bgColor rounded-full w-10 h-10 absolute right-0 top-[45%] transform -translate-y-1/2 z-20">
+          <FaArrowRightLong className="text-marron" />
         </div>
       </Swiper>
     </section>

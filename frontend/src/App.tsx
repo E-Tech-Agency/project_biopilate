@@ -42,6 +42,16 @@ import Cours from "./pages/Cours";
 import OneCours from "./pages/one-cours";
 import AdminDashboard from "./pages/admin-dashboard";
 import UserProfile from "./pages/user-profile";
+import WorkshopShow from "./components/biopilate/WorkshopShow";
+import EditWorkshop from "./pages/EditWorkShp";
+import VlogShow from "./components/biopilate/VlogShow";
+import EditVlog from "./pages/EditVlog";
+import ManuelShow from "./components/biopilate/ManuelShow";
+import EditManuel from "./pages/EditManuel";
+import FinancerFormationShow from "./components/biopilate/FinancerFormationShow";
+import EditFormationFinancer from "./pages/EditFormationFinancer";
+
+
 
 // Forms
 import CreateBlogForm from "./components/biopilate/CreateBlogForm";
@@ -133,6 +143,14 @@ function App() {
       "/add-FAQ-biopilates",
       "/add-Formation-biopilates",
       "/edit-cours-biopilates/:id",
+      "/WorkshopShow-biopilates",
+      "/edit-workShop-biopilates/:id",
+      "/vlog-biopilates",
+      "/edit-Vlog-biopilates/:id",
+      "/edit-manuel-biopilates/:id",
+      "/financer-formation-biopilates",
+      "/edit-formation-finance-biopilates/:id",
+      "/manuel-biopilates",
     ],
     sideNav: [
       "/login",
@@ -230,7 +248,26 @@ function App() {
       case "/ajouter-planning-biopilates":
         return "Ajouter Planning - BioPilates";
       case "/edit-article-biopilates/:id":
+        return "WorkShopShow - BioPilates";
+        case "/WorkshopShow-biopilates":
         return "Edit Article - BioPilates";
+      case "/edit-workShop-biopilates/:id":
+        return "Edit Workshop - BioPilates";
+      case "/vlog-biopilates":
+        return "Vlog - BioPilates"
+      case "/vlog-biopilates/:id":
+        return "Vlog Show - BioPilates";
+      case "/edit-Vlog-biopilates/:id":
+        return "Edit Vlog - BioPilates";
+      case "/edit-manuel-biopilates/:id":
+        return "Edit Manuel - BioPilates";
+      case "/financer-formation-biopilates":
+        return "Financer Votre Formation - BioPilates";
+      case "/edit-formation-finance-biopilates/:id":
+        return "Edit Formation Finance - BioPilates";
+     
+      case  "/manuel-biopilates":
+        return "Manuel - BioPilates";
       case "/add-FAQ-biopilates":
         return "Add FAQ - BioPilates";
       case "/add-Formation-biopilates":
@@ -304,7 +341,7 @@ function App() {
               element={<RegisterForm setIsLoggedIn={setIsLoggedIn} />}
             />
             <Route
-              path="/password_reset_confirm/:id/:token"
+              path="/reset_password/:id/:token"
               element={<ResetPassword />}
             />
             <Route path="/dashboard" element={<Dashboard />} />
@@ -332,6 +369,9 @@ function App() {
             <Route path="/FAQ-biopilates" element={<FAQ />} />
             <Route path="/Formation-biopilates" element={<Formation />} />
             <Route path="/Cours-biopilates" element={<Cours />} />
+            <Route path="/WorkshopShow-biopilates" element={<WorkshopShow />} />
+            <Route path="/edit-workShop-biopilates/:id" element={<EditWorkshop />} />
+
             <Route
               path="/ajouter-service-biopilates"
               element={<CreateServicesForm />}
@@ -350,6 +390,19 @@ function App() {
               path="/edit-cours-biopilates/:id"
               element={<EditCourForm />}
             />
+            <Route
+              path="/vlog-biopilates"
+              element={<VlogShow />}
+            />
+            <Route path="/edit-Vlog-biopilates/:id" element={<EditVlog />} />
+           
+            <Route
+              path= "/financer-formation-biopilates"
+              element={<FinancerFormationShow />}
+            />
+             <Route path="/edit-formation-finance-biopilates/:id" element={<EditFormationFinancer />} />
+            <Route path= "/manuel-biopilates" element={<ManuelShow />} />
+            <Route path="/edit-manuel-biopilates/:id" element={<EditManuel/>} />
           </Routes>
         </div>
       </div>

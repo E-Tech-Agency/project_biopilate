@@ -53,6 +53,8 @@ export function LoginForm({
       localStorage.setItem("refresh_token", res.data.refresh_token);
       localStorage.setItem("is_supplier", res.data.is_supplier);
       localStorage.setItem("is_superuser", res.data.is_superuser);
+      localStorage.setItem("first_name", res.data.first_name);
+      localStorage.setItem("last_name", res.data.last_name);
       setIsLoggedIn(true);
       navigate("/dashboard");
     } catch (error) {
@@ -239,7 +241,8 @@ export function LoginForm({
               </div>
             </div>
             <DialogFooter>
-              <Button type="submit"> submit</Button>
+              <button                 className="reserver-button overflow-hidden flex mx-auto mb-3 flex-col justify-center items-center text-sm sm:text-base font-bold font-lato rounded-lg w-full py-2 sm:py-3 bg-bgColor text-marron transition duration-300 ease-in-out transform"
+ type="submit"> submit</button >
             </DialogFooter>
           </form>
         </DialogContent>

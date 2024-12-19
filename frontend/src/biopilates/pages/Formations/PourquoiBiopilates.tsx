@@ -18,7 +18,7 @@ export default function PourquoiBiopilates() {
       </div>
 
       {/* desktop */}
-      <div className="parent max-md:gap-y-2 max-lg:hidden font-lato mb-14">
+      <div className="parent max-md:gap-y-2 hidden-max font-lato mb-14">
         <div className="div1 md:max-w-[400px] h-[263px] 2xl:h-[280px] relative rounded-lg">
           <img
             loading="lazy"
@@ -258,7 +258,7 @@ export default function PourquoiBiopilates() {
       </div>
 
       {/* mobile view */}
-      <div className="flex flex-col gap-4 lg:hidden sm:mx-6 md:mx-10">
+      <div className="flex flex-col gap-4 hidden-min sm:mx-6 md:mx-10">
         <div className="div3 lg:max-w-[360px] h-[200px] lg:h-[263px] bg-marron rounded-lg relative overflow-hidden">
           <div className="flex flex-col justify-around gap-4 py-6 px-5 xl:py-8 xl:px-7 2xl:py-12 2xl:px-10 z-10 relative">
             <div className="flex justify-start items-center gap-2">

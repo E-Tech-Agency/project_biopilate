@@ -27,7 +27,7 @@ environ.Env.read_env(BASE_DIR / '.env')
 SECRET_KEY = "django-insecure-ck#kon504#qtk$-ojh5rsw_(b0@-$)b*v+7j=+1^70q4(837%t"
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['141.94.23.119', 'localhost', '127.0.0.1']
 
@@ -68,6 +68,8 @@ CORS_ALLOW_ALL_ORIGINS = True
 CORS_ALLOW_CREDENTIALS = True
 CSRF_TRUSTED_ORIGINS = [
     "http://141.94.23.119",
+     "http://localhost:5173",
+     "http://127.0.0.1:5173",
 ]
 CORS_ALLOWED_ORIGINS = [
     "http://141.94.23.119",
@@ -75,7 +77,11 @@ CORS_ALLOWED_ORIGINS = [
 ]
 
 ROOT_URLCONF = 'backend.urls'
-
+CORS_ALLOW_HEADERS = [
+    'Content-Type',
+    'Authorization',
+    'X-Requested-With',
+]
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
@@ -102,7 +108,7 @@ MEDIA_ROOT = BASE_DIR / 'media'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'biopilate',
+        'NAME': 'biopilates',
         'USER': 'multilab',
         'PASSWORD': 'root',
         'HOST': 'localhost',
@@ -173,7 +179,7 @@ EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 EMAIL_HOST = 'ssl0.ovh.net'
 EMAIL_HOST_USER = 'administration@biopilates.fr'
-EMAIL_HOST_PASSWORD = 'SoniaCaroline'
+EMAIL_HOST_PASSWORD = 'Plexusbrachial22!'
 EMAIL_PORT = 465
 EMAIL_USE_SSL = True
 EMAIL_USE_TLS = False

@@ -151,14 +151,14 @@ button:hover .hover-circle-2 {
 }
 
 .arrow-hover:hover {
-  background-color: hsla(0, 0%, 100%, 0.5) ;
+  background-color: hsla(0, 0%, 100%, 0.5);
   color: #756e66;
   border-width: 1px;
   border-color: #756e66;
 }
 
-.arrow-hover:hover .b{
-  color:#756e66;
+.arrow-hover:hover .b {
+  color: #756e66;
 }
 
 .text-hover {
@@ -307,4 +307,24 @@ button:hover .hover-circle-2 {
 
 .button-offre-hover:hover p {
   transform: translateX(0px);
+}
+
+.hidden-min {
+  display: flex;
+}
+
+@media (max-width: 1022px) {
+  .hidden-max {
+    display: none;
+  }
+}
+
+@media (min-width: 1022px) {
+  .hidden-min {
+    display: none;
+  }
+}
+
+.border-br {
+  border: 1px oklab(lightness a b) solid;
 }

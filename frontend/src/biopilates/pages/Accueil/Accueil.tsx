@@ -16,21 +16,56 @@ import articleImage1 from "@/assets/images/article-1.png";
 import gymImage from "@/assets/images/gym.jpg";
 import bgImgReserver from "@/assets/images/bg-img-reserver.jpg";
 import blogBg from "@/assets/images/blog-bg.jpg";
+import { Blog } from "@/types/types";
+import { useEffect, useState } from "react";
+import api from "@/lib/api";
 
-const articles = [
-  {
-    id: 1,
-    title: "La maison vieille",
-    ecrivain: "Véronique Fournier",
-    description:
-      "La Maison Vieille est un lieu de soutien et de bien-être pour les personnes âgées, visant à briser leur isolement et à offrir des moments enrichissants.",
-    jaimes: 49,
-    image: articleImage1,
-  },
-];
+
 
 export default function Accueil() {
-  const navigate = useNavigate();
+  const [blogs, setBlogs] = useState<Blog[] | null>([]);
+
+  const getBlogs = async () => {
+    try {
+      const res = await api.get("blogs/");
+      const blogdataPublic = res.data.filter(
+        (blog: Blog) => blog.status === "approved"
+      );
+      setBlogs(blogdataPublic);
+    } catch (error) {
+      console.error("Error fetching blogs", error);
+    }
+  };
+
+  useEffect(() => {
+    getBlogs();
+  }, []);
+
+  const articles = [
+    {
+      id: 1,
+      title: "La maison vieille",
+      ecrivain: "Véronique Fournier",
+      description:
+        "La Maison Vieille est un lieu de soutien et de bien-être pour les personnes âgées, visant à briser leur isolement et à offrir des moments enrichissants.",
+      favorites: 49,
+      image: articleImage1,
+      view:10,
+    },
+  ];
+  const blogData =
+    blogs && blogs.length > 0
+      ? blogs.map((blog) => ({
+          id: blog.id,
+          title: blog.title,
+          ecrivain: blog.author, // Map 'author' to 'ecrivain'
+          description: blog.description,
+          favorites: blog.favorites, // Map 'favorites' to 'favorites'
+          image: blog.image_1, // Use 'image_1' as the main image
+          view: blog.view,
+        }))
+      : articles;
+   const navigate = useNavigate();
 
   const navigateToContact = () => {
     navigate("/contact");
@@ -155,7 +190,7 @@ export default function Accueil() {
               rubrique blog.
             </p>
           </div>
-          <OtherArticles articles={articles} />
+          <OtherArticles articles={blogData} />
         </div>
       </section>
 

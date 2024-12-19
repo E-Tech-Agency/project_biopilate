@@ -1,7 +1,7 @@
 import api from "@/lib/api";
 import { Service, Teache } from "@/types/types";
 import { useEffect, useState } from "react";
-import { FaTrash, FaEdit } from "react-icons/fa";
+
 import {
     Card,
     CardContent,
@@ -19,8 +19,15 @@ import {
 import { Button } from "@/components/ui/button";
 import { useNavigate } from "react-router-dom";
 import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
 
+import { Edit2, PlusCircle, Search, Trash2 } from "lucide-react";
+import { 
+    Select, 
+    SelectContent, 
+    SelectItem, 
+    SelectTrigger, 
+    SelectValue 
+  } from "@/components/ui/select";
 // Extend the Service type to include instructeurFullName
 export type ServiceWithInstructor = Service & {
     instructeurFullName: string;
@@ -96,41 +103,60 @@ export default function ServiceShow() {
 
     const paginatedServices = filteredServices.slice((currentPage - 1) * rowsPerPage, currentPage * rowsPerPage);
 
-    const handleChangeRowsPerPage = (value: number) => {
-        setRowsPerPage(value);
-        setCurrentPage(1);
-    };
+    // const handleChangeRowsPerPage = (value: number) => {
+    //     setRowsPerPage(value);
+    //     setCurrentPage(1);
+    // };
 
     return (
-        <Card>
-            <CardHeader className="px-7">
-                <div className="flex justify-between">
-                    <CardTitle>Liste Service</CardTitle>
-                    <Button variant="default" className="btn btn-primary" onClick={handleAddClick}>
-                        Ajouter un Service
-                    </Button>
+        <Card className="w-full shadow-lg">
+              <CardHeader className="border-b bg-white">
+              <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
+
+              <div>
+              <CardTitle className="text-2xl font-bold text-gray-800">
+                Liste des Services
+              </CardTitle>
+              <p className="text-muted-foreground">
+                Gérez vos services avec facilité
+              </p>
+            </div>
+                  
+                    <button 
+                onClick={handleAddClick} 
+                className=" flex reserver-button text-sm sm:text-base font-bold font-lato rounded-lg  py-2 sm:py-3 bg-bgColor text-marron  duration-300 ease-in-out transform"
+              >
+                <PlusCircle />
+                Ajouter un Service
+              </button>
                 </div>
                 <div className="mt-4 flex justify-end space-x-4">
                     <div className="flex items-center space-x-2">
-                        <Label htmlFor="rowsPerPage">Afficher:</Label>
-                        <select
-                            id="rowsPerPage"
-                            value={rowsPerPage}
-                            onChange={(e) => handleChangeRowsPerPage(Number(e.target.value))}
-                            className="border-gray-300 rounded-md"
-                        >
-                            <option value={5}>5</option>
-                            <option value={10}>10</option>
-                            <option value={20}>20</option>
-                        </select>
+                        <Select 
+                value={rowsPerPage.toString()} 
+                onValueChange={(value) => setRowsPerPage(Number(value))}
+              >
+                <SelectTrigger className="w-[100px]">
+                  <SelectValue placeholder="Lignes" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="5">5 lignes</SelectItem>
+                  <SelectItem value="10">10 lignes</SelectItem>
+                  <SelectItem value="20">20 lignes</SelectItem>
+                </SelectContent>
+              </Select>
                     </div>
-                    <Input
-                        type="text"
-                        placeholder="Rechercher"
-                        value={searchTerm}
-                        onChange={(e) => setSearchTerm(e.target.value)}
-                        className="w-full"
-                    />
+                   
+                       <div className="relative flex-grow">
+                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
+                <Input
+                  type="text"
+                  placeholder="Rechercher un instructeur..."
+                  value={searchTerm}
+                  onChange={(e) => setSearchTerm(e.target.value)}
+                  className="pl-10 bg-white border-gray-300"
+                />
+              </div>
                     <select
                         value={statusFilter}
                         onChange={(e) => setStatusFilter(e.target.value)}
@@ -144,7 +170,7 @@ export default function ServiceShow() {
             </CardHeader>
             <CardContent>
                 <Table>
-                    <TableHeader>
+                    <TableHeader  className="bg-gray-100">
                         <TableRow>
                             <TableHead>Service</TableHead>
                             <TableHead className="hidden sm:table-cell">Instructeur</TableHead>
@@ -155,7 +181,7 @@ export default function ServiceShow() {
                     </TableHeader>
                     <TableBody>
                         {paginatedServices.map((service: ServiceWithInstructor) => (
-                            <TableRow key={service.id} className="bg-accent">
+                            <TableRow key={service.id} >
                                 <TableCell>
                                     <div className="flex items-center space-x-4">
                                         <div className="w-16 h-16 overflow-hidden rounded-full">
@@ -178,12 +204,18 @@ export default function ServiceShow() {
                                 </TableCell>
                                 <TableCell className="hidden md:table-cell">{new Date(service.create_at).toLocaleDateString()}</TableCell>
                                 <TableCell className="text-right">
-                                    <div className="flex space-x-2">
-                                        <Button variant="secondary" onClick={() => handleEditClick(service.id)}>
-                                            <FaEdit />
+                                    <div className="flex justify-end space-x-2">
+                                        <Button  variant="outline" 
+                                         size="icon" 
+                                           className="hover:bg-blue-50"
+                                         onClick={() => handleEditClick(service.id)}>
+                                             <Edit2 className="w-4 h-4 text-blue-600" />
                                         </Button>
-                                        <Button variant="destructive" onClick={() => deleteService(service.id)}>
-                                            <FaTrash />
+                                        <Button  variant="outline" 
+                                         size="icon" 
+                                           className="hover:bg-red-50"
+                                        onClick={() => deleteService(service.id)}>
+                                            <Trash2 className="w-4 h-4 text-red-600" />
                                         </Button>
                                     </div>
                                 </TableCell>

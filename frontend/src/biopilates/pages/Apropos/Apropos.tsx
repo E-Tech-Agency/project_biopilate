@@ -54,12 +54,13 @@ export default function Apropos() {
   ];
 
   return (
-    <div className="flex flex-col mx-5 md:mx-12">
+    <div className="flex flex-col mx-5 md:mx-12 my-4">
       {/* Bio */}
-      <section className="mb-0 sm:mb-12 flex flex-col-reverse xl:flex-row justify-center lg:justify-between items-center">
+
+      {/* desktop */}
+      <section className="mb-0 sm:mb-12 hidden lg:flex flex-col-reverse xl:flex-row justify-center lg:justify-between items-center">
         {/* carousel */}
 
-        {/* <CircleCarousel images={images} /> */}
         <CircleSwiperCarousel images={images} />
 
         {/* text bio */}
@@ -72,6 +73,53 @@ export default function Apropos() {
             en Pilates
           </p>
           <div className="text-sm sm:text-lg font-lato leading-7">
+            <p>
+              Caroline est une <strong>experte en Pilates</strong> et en
+              mouvement avec <strong>plus de 15 ans d’expérience.</strong>
+            </p>
+            <p>
+              <strong>Fondatrice du Studio Biopilates</strong>, elle est{" "}
+              <strong>spécialisée dans la méthode STOTT PILATES</strong> et
+              propose des entraînements personnalisés pour tous niveaux.
+            </p>
+            <p>
+              Formée en <strong>Gyrotonic, Evolis</strong> et{" "}
+              <strong>Etiopathie</strong>, Caroline s'est également
+              perfectionnée en <strong>biomécanique</strong> pour proposer une
+              approche holistique du mouvement.
+            </p>
+            <p>
+              Animée par la passion de la danse, Caroline se consacre aux
+              danseurs et aide les gens à trouver un moyen{" "}
+              <strong>sans douleur</strong> de rester en{" "}
+              <strong>bonne santé</strong> et <strong>actif</strong>.
+            </p>
+            <p>
+              <strong>
+                Son label de qualité Biopilates - Bio de La Biomécanique
+              </strong>{" "}
+              est un gage de l'excellence de ses cours et de son engagement à
+              offrir une expérience unique à ses clients.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* mobile */}
+      <section className="mb-12 lg:hidden flex flex-col justify-between items-center">
+        {/* carousel */}
+        <p className="text-marron text-xl sm:text-[34px] leading-snug text-start font-ebGaramond font-bold w-full max-sm:mb-4">
+          Caroline,
+        </p>
+        <CircleSwiperCarousel images={images} />
+
+        {/* text bio */}
+        <div className="flex flex-col items-baseline md:px-5 gap-4 sm:gap-5 font-lato text-justify">
+          <p className="sm:leading-normal tex-xl sm:text-[28px] text-marron font-ebGaramond">
+            Fondatrice du studio Biopilates : passionnée de mouvement et experte
+            en Pilates
+          </p>
+          <div className="text-sm sm:text-lg font-lato sm:leading-7">
             <p>
               Caroline est une <strong>experte en Pilates</strong> et en
               mouvement avec <strong>plus de 15 ans d’expérience.</strong>

@@ -7,13 +7,16 @@ import {
 } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Button } from "@/components/ui/button";
+
 import apiCreateTeache from "@/lib/apiCreateTeache";
 import axios from "axios";
 import { toast } from "sonner";
 import { CreateTagesErrors, TagesFormType } from "@/types/types";
-
-export default function CreateTagesForm() {
+import { PlusCircle } from "lucide-react";
+interface CreateTagesFormProps {
+    onTageAdded: () => void; // Callback to notify parent component of new tage
+  }
+export default function CreateTagesForm({ onTageAdded }: CreateTagesFormProps)  {
     const [errors, setErrors] = useState<CreateTagesErrors>({});
     const [tage, setTage] = useState<TagesFormType>({
         title: "",
@@ -26,6 +29,8 @@ export default function CreateTagesForm() {
             await apiCreateTeache.post("tages/", tage);
             toast.success("Biopilate tages created");
             setTage({ title: "", status: "" });
+            setErrors({});
+            onTageAdded();
         } catch (error) {
             if (axios.isAxiosError(error)) {
                 setErrors(error.response?.data);
@@ -67,7 +72,7 @@ export default function CreateTagesForm() {
                             {errors.status && <span className="text-red-500 mt-2">{errors.status}</span>}
                         </div>
                         <div>
-                            <Button type="submit" className="w-44" size={"lg"}>Ajouter</Button>
+                            <button type="submit"  className=" flex reserver-button text-sm sm:text-base font-bold font-lato rounded-lg  py-2 sm:py-3 bg-bgColor text-marron  duration-300 ease-in-out transform" ><PlusCircle  /> Ajouter</button>
                         </div>
                     </div>
                 </form>
