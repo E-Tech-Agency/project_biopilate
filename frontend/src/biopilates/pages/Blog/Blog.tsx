@@ -90,7 +90,7 @@ export default function Blog() {
         <div className="flex flex-col justify-center text-base leading-6 rounded-lg px-4 py-1 bg-bgColor text-marron font-medium">
           Biopilates blog
         </div>
-        <p className="text-marron text-xl sm:text-3xl leading-snug font-ebGaramond font-bold text-center">
+        <p className="text-marron text-xl sm:text-[34px] leading-snug font-ebGaramond font-bold text-center">
           Découvrez le Pouvoir Transformateur du Pilates à Paris
         </p>
         <p className="text-sm sm:text-base leading-6 max-w-[1000px] text-blueText font-lato text-center">

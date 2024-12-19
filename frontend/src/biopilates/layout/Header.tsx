@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { IoMdSearch } from "react-icons/io";
 import { LuUserCircle2 } from "react-icons/lu";
 import { IoIosArrowDown } from "react-icons/io";
@@ -104,10 +104,36 @@ export default function Header({ isLoggedIn }: { isLoggedIn: boolean }) {
     );
   };
 
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      const sidebar = document.getElementById("sidebar");
+      const toggleButton = document.querySelector(".lg\\:hidden");
+
+      if (
+        sidebar &&
+        !sidebar.contains(event.target as Node) &&
+        toggleButton &&
+        !toggleButton.contains(event.target as Node)
+      ) {
+        setIsMenuOpen(false);
+      }
+    };
+
+    if (isMenuOpen) {
+      document.addEventListener("click", handleClickOutside);
+    } else {
+      document.removeEventListener("click", handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener("click", handleClickOutside);
+    };
+  }, [isMenuOpen]);
+
   return (
     <header className="sticky top-0 z-50 shadow-sm bg-white font-lato">
       <div className="flex gap-5 justify-between items-center px-14 py-1.5 w-full border-b border-solid bg-white border-bgColor md:flex-wrap max-md:border-none max-md:px-5 max-md:max-w-full font-lato">
-        {/* Logo and Navigation */}
+        {/* Logo and Navigation desktop */}
         <div className="flex gap-7">
           <nav className="mx-auto gap-6 flex items-center">
             <a href="/" className="text-2xl">
@@ -316,7 +342,7 @@ export default function Header({ isLoggedIn }: { isLoggedIn: boolean }) {
           </div>
         </div>
 
-        {/* Mobile Menu */}
+        {/* Mobile Menu button */}
         <div className="lg:hidden flex items-center">
           <button
             onClick={toggleMenu}
@@ -329,13 +355,53 @@ export default function Header({ isLoggedIn }: { isLoggedIn: boolean }) {
 
       {/* Mobile Dropdown */}
       {isMenuOpen && (
-        <div className="lg:hidden flex items-start justify-center flex-col space-y-3 px-4 mt-4 pb-3">
-          <a href="/">Accueil</a>
-          <a href="/a-propos">À propos</a>
-          <a href="/cours">Cours</a>
-          <a href="/formations">Formations</a>
+        <div
+          id="sidebar"
+          className="lg:hidden flex items-start justify-center flex-col space-y-3 px-4 mt-4 pb-3"
+        >
+          <a
+            href="/"
+            className={`text-hover ${
+              window.location.pathname === "/" ? "custom-underline" : ""
+            }`}
+          >
+            Accueil
+          </a>
+          <a
+            href="/a-propos"
+            className={`text-hover ${
+              window.location.pathname === "/a-propos" ? "custom-underline" : ""
+            }`}
+          >
+            À propos
+          </a>
+          <a
+            href="/cours"
+            className={`text-hover ${
+              window.location.pathname === "/cours" ? "custom-underline" : ""
+            }`}
+          >
+            Cours
+          </a>
+          <a
+            href="/formations"
+            className={`text-hover ${
+              window.location.pathname === "/formations"
+                ? "custom-underline"
+                : ""
+            }`}
+          >
+            Formations
+          </a>
           <UniversDropdown />
-          <a href="/contact">Contact</a>
+          <a
+            href="/contact"
+            className={`text-hover ${
+              window.location.pathname === "/contact" ? "custom-underline" : ""
+            }`}
+          >
+            Contact
+          </a>
           <a href="https://backoffice.bsport.io/m/Studio%20Biopilates%20Paris/878/calendar/?isPreview=true&tabSelected=0">
             Réserver
           </a>
