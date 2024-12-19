@@ -17,7 +17,8 @@ class Blog(models.Model):
   range=models.IntegerField(default='1')
   create_at = models.DateTimeField(auto_now_add=True)
   updated_at = models.DateTimeField(auto_now=True)
-  tages = models.ManyToManyField(Tages, related_name='tages', blank=True)
+  tages = models.ManyToManyField(Tages, related_name='blog_tages', blank=True)
+
   status = models.CharField('Status', max_length=10, choices=STATUS_CHOICES, default='pending')
   view=models.IntegerField(default='0')
   def __str__(self):

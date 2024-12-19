@@ -48,7 +48,7 @@ export function LoginForm({
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
-      const res = await axios.post("http://localhost:8000/api/login/", data);
+      const res = await axios.post("http://141.94.23.119/api/login/", data);
       localStorage.setItem("token", res.data.access_token);
       localStorage.setItem("refresh_token", res.data.refresh_token);
       localStorage.setItem("is_supplier", res.data.is_supplier);
@@ -68,7 +68,7 @@ export function LoginForm({
   const handleForgotPassword = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
-      const res = await axios.post("http://localhost:8000/api/password_reset/", {
+      const res = await axios.post("http://141.94.23.119/api/password_reset/", {
         email: data.email,
       });
       toast.success(res.data.message);

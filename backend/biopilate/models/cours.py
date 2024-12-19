@@ -27,7 +27,8 @@ class Cours(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
     status = models.CharField('Status', max_length=10,
                               choices=STATUS_CHOICES, default='pending')
-    tages = models.ManyToManyField(Tages, related_name='tages', blank=True)
+    tages = models.ManyToManyField(Tages, related_name='cours_tages', blank=True)
+
 
     class Meta:
 
