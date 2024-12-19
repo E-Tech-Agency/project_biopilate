@@ -10,6 +10,9 @@ import { Edit } from "lucide-react";
 // Set the app element for accessibility
 Modal.setAppElement('#root');
 
+// Set the app element for accessibility
+Modal.setAppElement('#root');
+
 interface EditFAQModalProps {
     faqId: number | null;
     isOpen: boolean;
@@ -94,10 +97,15 @@ export default function EditFAQ({ faqId, isOpen, onClose, onSave }: EditFAQModal
             contentLabel="Edit FAQ Modal"
         >
             <div>
+<<<<<<< HEAD
             <h2 className="text-2xl font-bold text-gray-800 mb-6 text-center border-b pb-4 flex items-center justify-center">
                 <Edit className="mr-3 text-blue-600" size={28} />
                 Modifier FAQ
             </h2>                
+=======
+                <h2 className="text-2xl font-semibold mb-6">Edit FAQ</h2>
+                
+>>>>>>> e7ae734 (set up the workshop in dash)
                 {error && (
                     <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mb-4">
                         {error}
@@ -107,6 +115,7 @@ export default function EditFAQ({ faqId, isOpen, onClose, onSave }: EditFAQModal
                 {isLoading ? (
                     <div>Loading...</div>
                 ) : (
+<<<<<<< HEAD
                     <form onSubmit={handleSubmit} className="space-y-6">
                         <div className="grid gap-6" >
                             {/* Form fields remain the same as in your original component */}
@@ -114,6 +123,13 @@ export default function EditFAQ({ faqId, isOpen, onClose, onSave }: EditFAQModal
                             <Label htmlFor="title" className="text-gray-700 font-medium mb-2 block">
                         Titre 
                     </Label>
+=======
+                    <form onSubmit={handleSubmit}>
+                        <div className="grid gap-6">
+                            {/* Form fields remain the same as in your original component */}
+                            <div>
+                                <Label htmlFor="title">Titre</Label>
+>>>>>>> e7ae734 (set up the workshop in dash)
                                 <Input
                                     id="title"
                                     name="title"
@@ -148,6 +164,7 @@ export default function EditFAQ({ faqId, isOpen, onClose, onSave }: EditFAQModal
                                 >
                                     Annuler
                                 </Button>
+<<<<<<< HEAD
                                 <button 
                                     type="submit" 
                                     disabled={isLoading}
@@ -155,6 +172,15 @@ export default function EditFAQ({ faqId, isOpen, onClose, onSave }: EditFAQModal
                                 >
                                     {isLoading ? 'Saving...' : 'Enregistrer'}
                                 </button>
+=======
+                                <Button 
+                                    type="submit" 
+                                    disabled={isLoading}
+                                    className="w-32"
+                                >
+                                    {isLoading ? 'Saving...' : 'Enregistrer'}
+                                </Button>
+>>>>>>> e7ae734 (set up the workshop in dash)
                             </div>
                         </div>
                     </form>
