@@ -147,7 +147,7 @@ export default function Cours() {
 
       <section className="mt-4">
         <div className="mb-8">
-          <p className="text-marron text-3xl leading-snug font-bold font-ebGaramond">
+          <p className="text-marron text-xl sm:text-[34px] leading-snug font-bold font-ebGaramond">
             Cours Biopilates
           </p>
           <p className="leading-7">

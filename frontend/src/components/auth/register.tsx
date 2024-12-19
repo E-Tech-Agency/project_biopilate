@@ -21,13 +21,13 @@ import { HiOutlineEnvelope } from "react-icons/hi2";
 import { AlertDialog } from "../ui/alert-dialog";
 import { AlertDialogAfterRegister } from "./alert-dialog";
 import { FaRegUser, FaLock, FaEye, FaEyeSlash } from "react-icons/fa";
-import { LuPhone } from "react-icons/lu";
+
 import register_pic from "@/assets/images/register-pic.jpg";
 import { Link } from "react-router-dom";
 import "@/styles/index.css";
-import PhoneInput from 'react-phone-number-input'; // Import PhoneInput component
+import PhoneInput from "react-phone-input-2";
 import 'react-phone-number-input/style.css'; // Import the styles for phone input
-import { E164Number } from "libphonenumber-js";
+
 
 // interface PasswordHideProps {
 //   visible: boolean;
@@ -296,38 +296,54 @@ export function RegisterForm({
                 </div>
               </div>
 
-              <div className="mb-5">
-              <label
-                className="block font-ebGaramond text-sm sm:text-xl font-bold mb-2"
-                htmlFor="phone_number"
-              >
-                Numéro de téléphone
-              </label>
-              {error?.phone_number && (
-                <p className="text-red-500">{error.phone_number[0]}</p>
-              )}
-              <div className="relative flex rounded-md shadow-sm">
-                <span className="inline-flex items-center px-3 rounded-l-md border border-r-0 border-marron bg-gray-50 text-gray-500 text-lg">
-                  <LuPhone />
-                </span>
-                <PhoneInput
-                  international
-                  defaultCountry="FR"
-                   id="phone_number"
-                    type="number"
-                  value={data.phone_number}
-                  onChange={(value?: E164Number) => {
-                    if (value) {
-                      setData({ ...data, phone_number: value });
-                    } else {
-                      setData({ ...data, phone_number: "" }); // Handle the undefined case
-                    }
-                  }}
-                  
-                  className="bg-gray-50 border border-marron text-gray-900 text-sm sm:text-base rounded-none rounded-r-md block w-full p-2.5 focus:outline-none focus:ring-2 focus:ring-marron"
-                />
-              </div>
-            </div>
+                              <div className="mb-5">
+                  <label
+                    className="block font-ebGaramond text-sm sm:text-xl font-bold mb-2"
+                    htmlFor="phone_number"
+                  >
+                    Numéro de téléphone
+                  </label>
+                  {error?.phone_number && (
+                    <p className="text-red-500">{error.phone_number[0]}</p>
+                  )}
+                  <div className="relative">
+                    <PhoneInput
+                      country={"fr"}
+                      value={data.phone_number}
+                      onChange={(phone) => setData({ ...data, phone_number: phone })}
+                      inputStyle={{
+                        width: '100%',
+                        backgroundColor: '#F8F9FF',
+                        border: '1px solid #000',
+                        borderRadius: '8px',
+                        fontSize: '16px',
+                        padding: '12px 12px 12px 48px',
+                        color: '#111827'
+                      }}
+                      buttonStyle={{
+                        backgroundColor: 'transparent',
+                        border: 'none',
+                        padding: '0',
+                        position: 'absolute',
+                        left: '12px',
+                        top: '50%',
+                        transform: 'translateY(-50%)',
+                      }}
+                      containerStyle={{
+                        width: '100%',
+                      }}
+                      dropdownStyle={{
+                        width: '300px',
+                        margin: '4px 0',
+                        padding: '8px 0',
+                        borderRadius: '8px',
+                        border: '1px solid #E5E7EB',
+                        backgroundColor: 'white',
+                        boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)',
+                      }}
+                    />
+                  </div>
+                </div>
 
 
             <div className="mb-5">

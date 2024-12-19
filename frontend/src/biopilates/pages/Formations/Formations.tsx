@@ -6,7 +6,7 @@ import formation3 from "@/assets/images/formation-3.png";
 import formation5 from "@/assets/images/formation-5.png";
 import formation6 from "@/assets/images/formation-6.jpg";
 import reformerGyrotonicImage from "@/assets/images/reformer-gyrotonic.jpg";
-import Img from "@/assets/images/Placeholder_view_vector.png";
+// import Img from "@/assets/images/Placeholder_view_vector.png";
 
 import FormationSwiper from "./FormationSwiper";
 import PourquoiBiopilates from "./PourquoiBiopilates";
@@ -189,7 +189,7 @@ export default function Formations() {
     {
       title: "ONLINE Workshop",
       niveau: "Beyond the Biomechanical Principles",
-      image: Img,
+      image: formation6,
       date: "Le 16/11/2024",
       timeSlots: ["Sam 16/11/2024 de 14h à 18h"],
       price: "Prix 3h :189€",
@@ -197,7 +197,7 @@ export default function Formations() {
     {
       title: "ONLINE Workshop",
       niveau: "Prénatal stabilité Ball et Flex band",
-      image: Img,
+      image: formation3,
       date: "Le 21/12/2024",
       timeSlots: ["Sam 21/12/2024 de 14h à 16h"],
       price: "Prix 2h :126€",
@@ -205,7 +205,7 @@ export default function Formations() {
     {
       title: "ONLINE Workshop",
       niveau: "Postnatal Pilates",
-      image: Img,
+      image: formation2,
       date: "Le 21/12/2024",
       timeSlots: ["Sam 21/12/2024 de 16h15 à 18h15"],
       price: "Prix 2h :126€",

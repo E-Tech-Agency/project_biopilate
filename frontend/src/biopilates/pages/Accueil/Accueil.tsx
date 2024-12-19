@@ -178,11 +178,11 @@ export default function Accueil() {
       </div>
 
       {/* Blog */}
-      <section className="relative flex flex-col justify-center items-center gap-4">
+      <section className="relative flex flex-col justify-center items-center gap-4 mb-4">
         <img src={blogBg} alt="" className="absolute blur-3xl opacity-65" />
         <div className="relative flex flex-col justify-center items-center gap-4 w-full overflow-hidden">
-          <div className="mb-6 flex flex-col justify-center items-center gap-2">
-            <p className="text-xl sm:text-3xl font-ebGaramond text-marron font-bold">
+          <div className="mb-6 flex flex-col justify-center items-center gap-4">
+            <p className="text-xl sm:text-[34px] font-ebGaramond text-marron font-bold">
               Blog
             </p>
             <p className="text-sm sm:text-xl max-sm:text-center font-lato">

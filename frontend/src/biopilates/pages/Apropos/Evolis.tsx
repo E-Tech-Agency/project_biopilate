@@ -24,6 +24,20 @@ type PourQui = {
   description: string;
 };
 function PourQuiCard({ pourqui }: { pourqui: PourQui }) {
+  // Function to insert a line break before "et" in the text
+  // function insertBreakBeforeEt(text: string) {
+  //   return text.replace(/\bet/g, "<br>et");
+  // }
+
+  // Apply the function conditionally for mobile screens
+  // function applyForMobile(inputText: string) {
+  //   const isMobile = window.matchMedia("(max-width: 550px)").matches; // Tailwind's max-md breakpoint
+  //   if (isMobile) {
+  //     return insertBreakBeforeEt(inputText);
+  //   }
+  //   return inputText; // Leave the text unchanged for non-mobile screens
+  // }
+
   return (
     <div className="relative w-[280px] h-[334px] sm:w-[393px] sm:h-[454px] rounded-lg shadow-lg font-lato mx-auto">
       <div className="absolute inset-0 size-full self-start h-[83%]">
@@ -39,9 +53,12 @@ function PourQuiCard({ pourqui }: { pourqui: PourQui }) {
         <p className=" absolute flex flex-col justify-center text-sm sm:text-base rounded-lg px-4 py-3 bg-white text-black bg-opacity-80 font-lato font-bold mt-4 ml-4">
           {pourqui.title}
         </p>
-        <p className="absolute bg-white h-[86px] px-4 rounded-lg rounded-t-none text-sm sm:text-base font-normal bottom-0 left-0 right-0 flex justify-center items-center">
-          {pourqui.description}
-        </p>
+        <p
+          className="absolute bg-white h-[86px] px-4 rounded-lg rounded-t-none text-sm sm:text-base font-normal bottom-0 left-0 right-0 flex justify-center items-center"
+          dangerouslySetInnerHTML={{
+            __html: pourqui.description,
+          }}
+        ></p>
       </div>
     </div>
   );
@@ -65,7 +82,7 @@ function Slider() {
       title: "Sédentaires",
       image: image3,
       description:
-        "Soulagement des maux de dos et renforcement  musculaire global.",
+        "Soulagement des maux de dos <br>et renforcement  musculaire global.",
     },
     {
       title: "Seniors",
@@ -76,7 +93,7 @@ function Slider() {
     {
       title: "Sportifs",
       image: image5,
-      description: "Conditionnement musculaire et récupération physique.",
+      description: "Conditionnement musculaire <br>et récupération physique.",
     },
     {
       title: "Adolescents",
@@ -314,19 +331,27 @@ export default function Evolis() {
           </div>
 
           <div className="flex flex-col gap-4 w-full">
-            <p className="font-ebGaramond font-bold text-2xl md:text-2xl max-sm:text-bgColor">
+            <p className="font-ebGaramond font-bold text-lg md:text-3xl max-sm:text-bgColor">
               Pour découvrir les bienfaits de la méthode Evolis®
             </p>
-            <p className="font-lato max-md:text-sm sm:text-bgColor">
-              Réservez dès maintenant une séance individuelle au Studio
-              Biopilates,
-            </p>
-            <p className="font-lato max-md:text-sm sm:text-bgColor">
-              situé au 1 rue Boyer, 75020 Paris.Tarif de la séance : 64€
-            </p>
-
+            <div className="md:hidden">
+              <p className="font-lato text-xs md:text-xl sm:text-bgColor mb-2">
+                Réservez dès maintenant une séance individuelle au Studio
+                Biopilates, situé au 1 rue Boyer, 75020 Paris.
+              </p>
+              <p className="text-[13px] md:text-xl font-bold">
+                Tarif de la séance : 64€
+              </p>
+            </div>
+            <div className="max-md:hidden lg:w-[60%] xl:w-[50%]">
+              <p className="font-lato text-xs md:text-xl sm:text-bgColor mb-2">
+                Réservez dès maintenant une séance individuelle au Studio
+                Biopilates, situé au 1 rue Boyer, 75020 Paris.{" "}
+                <strong>Tarif de la séance : 64€</strong>
+              </p>
+            </div>
             <button
-              className="button-hover flex mr-auto flex-col justify-center text-base rounded-lg bg-white text-marron font-lato font-bold transform"
+              className="button-hover flex mr-auto flex-col justify-center text-xs md:text-base rounded-lg bg-white text-marron font-lato font-bold transform"
               onClick={() => {
                 window.open(
                   "https://backoffice.bsport.io/m/Studio%20Biopilates%20Paris/878/calendar/?isPreview=true&tabSelected=0 ",
