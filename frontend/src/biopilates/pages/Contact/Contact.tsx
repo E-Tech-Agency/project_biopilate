@@ -40,7 +40,7 @@ export default function Contact() {
             </div>
             <div className="flex gap-4">
               <LuPhone className="w-4 h-4 md:w-6 md:h-6" />
-              <p className="text-sm md:text-lg">01 23 45 67 89</p>
+              <p className="text-sm md:text-lg">+33 6 50 81 18 92</p>
             </div>
             <div className="flex gap-4">
               <PiMapPinLight className="w-4 h-4 md:w-6 md:h-6" />

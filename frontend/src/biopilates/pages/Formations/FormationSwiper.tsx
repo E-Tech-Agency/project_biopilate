@@ -96,7 +96,7 @@ export default function FormationSwiper() {
       </div>
       <div className="relative">
         <div className="mb-8">
-          <p className="text-marron text-xl sm:text-3xl font-ebGaramond font-bold leading-snug mb-4">
+          <p className="text-marron text-xl sm:text-[34px] font-ebGaramond font-bold leading-snug mb-4">
             Formation Biopilates
           </p>
           <p className="text-sm sm:text-base leading-6">

@@ -59,7 +59,7 @@ export default function ContactForm() {
   };
 
   return (
-    <div className="py-8 px-4 sm:px-8 bg-white bg-opacity-50 rounded-[20px] w-full min-w-[300px] 2xl:max-w-[640px] max-w-[545px] flex flex-grow mx-auto max-md:bg-opacity-95 shadow-sm">
+    <div className="py-8 px-4 sm:px-8 bg-white bg-opacity-50 rounded-[20px] w-full min-w-[300px] 2xl:max-w-[640px] max-w-[545px] flex flex-grow  max-md:bg-opacity-95 shadow-sm">
       <form className="w-full" onSubmit={handleSubmit}>
         <div className="mb-5">
           {statusMessage && (

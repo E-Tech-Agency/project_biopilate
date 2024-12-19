@@ -11,7 +11,7 @@ export default function Engagement() {
           className="w-full h-full object-cover blur-3xl opacity-65"
         />
       </div>
-      <p className="relative text-marron text-xl sm:text-2xl mb-8 lg:mb-12 font-ebGaramond font-bold">
+      <p className="relative text-marron text-xl sm:text-[34px] mb-8 lg:mb-12 font-ebGaramond font-bold">
         Engagement envers nos clients
       </p>
       <div className="flex justify-center flex-row max-lg:flex-wrap gap-2 md:gap-10 2xl:gap-8 text-xs sm:text-sm max-md:hidden">

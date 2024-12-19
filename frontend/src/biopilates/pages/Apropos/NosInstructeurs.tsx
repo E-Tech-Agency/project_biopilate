@@ -19,6 +19,7 @@ interface info {
 }
 
 function PrincipeCard({ principe }: { principe: info }) {
+  // Function to insert a line break before "et" in the text
   function insertBreakBeforeEt(text: string) {
     return text.replace(/\bet/g, "<br>et");
   }
@@ -31,12 +32,6 @@ function PrincipeCard({ principe }: { principe: info }) {
     }
     return inputText; // Leave the text unchanged for non-mobile screens
   }
-
-  // Example usage
-  const inputText =
-    "Lorem ipsum et dolor sit amet, consectetur et adipiscing elit.";
-  const result = applyForMobile(inputText);
-  console.log(result);
 
   return (
     <div className=" flex justify-center items-center max-w-[630px] xl:max-w-[680px] min-w-[230px] h-[280px] sm:h-[300px] shadow-xl rounded-lg bg-white py-2 sm:py-4 px-4 sm:px-8 gap-4 mx-2">

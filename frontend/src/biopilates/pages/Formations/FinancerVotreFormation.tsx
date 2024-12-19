@@ -7,7 +7,7 @@ export default function FinancerVotreFormation() {
     window.open(FINANCER, "_blank");
   };
   return (
-    <section className="relative flex justify-between items-center gap-10 2xl:gap-4 mb-10 bg-bgColor max-md:h-[230px] h-[420px] overflow-hidden max-md:mx-[-20px] md:rounded-lg">
+    <section className="relative flex justify-between items-center gap-10 2xl:gap-4 mb-12 bg-bgColor max-md:h-[230px] h-[420px] overflow-hidden max-md:mx-[-20px] md:rounded-lg">
       <div className="absolute max-md:hidden top-0 left-0 mt-[-10px] ml-[-60px] ">
         <svg
           width="602"
