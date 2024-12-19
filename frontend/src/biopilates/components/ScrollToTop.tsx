@@ -37,11 +37,7 @@ export default function ScrollToTop({ onScrollFinish }: ScrollToTopProps) {
       window.removeEventListener("scroll", handleScroll);
     };
   }, [pathname, onScrollFinish]);
-  useEffect(() => {
-    if (scrollFinished) {
-      console.log("Scrolling has finished");
-    }
-  }, [scrollFinished]);
+  useEffect(() => {}, [scrollFinished]);
 
   return null;
 }

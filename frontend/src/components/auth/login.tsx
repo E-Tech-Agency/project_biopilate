@@ -109,10 +109,10 @@ export function LoginForm({
 
           <div className="py-8 px-4 sm:px-8 text-gray-950 font-ebGaramond max-md:bg-white sm:bg-opacity-80 rounded-[20px] w-full max-w-md xl:max-w-lg flex flex-grow flex-col min-w-[290px] mx-4 sm:mx-auto max-sm:my-auto z-[1] max-sm:shadow-lg max-sm:mt-64 max-md:mt-44 tr">
             <div className="mb-6">
-              <h1 className="text-marron text-3xl sm:text-6xl font-bold">
+              <h1 className="text-marron text-3xl sm:text-[64px]  font-bold">
                 Bienvenue
               </h1>
-              <p className="text-sm sm:text-lg my-2 font-lato">
+              <p className="text-sm sm:text-lg mb-2 mt-5 font-lato">
                 Vous devez être connecté pour accéder à votre espace.
               </p>
             </div>

@@ -201,9 +201,9 @@ export function RegisterForm({
           </Link>
 
           {/* image */}
-          <div className="relative md:w-[50%] md:h-full  max-md:absolute tr">
-            <img src={register_pic} alt="" className="md:h-full object-cover" />
-            <div className="absolute bottom-0 left-0 right-0 text-left  px-10 pb-20 z-10">
+          <div className="relative md:w-[50%] md:h-full max-md:absolute max-md:top-0 tr">
+            <img src={register_pic} className="md:h-full object-cover" />
+            <div className="absolute bottom-0 left-0 right-0 text-left px-10 pb-20 z-10 max-md:hidden">
               <h1 className="text-base sm:text-lg md:text-2xl lg:text-5xl leading-normal text-white md:text-bgColor font-semibold font-ebGaramond mb-4">
                 La forme physique, condition première du bonheur
               </h1>
@@ -218,19 +218,32 @@ export function RegisterForm({
             <div className="absolute inset-0 bg-gradient-to-t from-black to-[85%] sm:to-[70%] opacity-90 sm:opacity-75 max-md:h-full " />
           </div>
 
-          <div className="py-8 px-8 sm:px-8 text-gray-950 font-ebGaramond bg-white sm:bg-opacity-80 rounded-[20px] w-full max-w-md xl:max-w-lg flex flex-grow flex-col min-w-[290px] mx-4 sm:mx-auto max-sm:my-auto z-30 max-sm:shadow-lg max-sm:mt-64 max-md:mt-44 max-lg:mt-20 tr">
+          <div className="relative py-8 px-8 sm:px-8 text-gray-950 font-ebGaramond bg-white sm:bg-opacity-80 rounded-[20px] w-full max-w-md xl:max-w-lg flex flex-grow flex-col min-w-[290px] mx-4 sm:mx-auto max-sm:my-auto z-30 max-sm:shadow-lg max-sm:mt-64 max-md:mt-44 max-lg:mt-20 tr">
+            {/* text on image */}
+            <div className="absolute max-[450px]:top-[-140px] top-[-110px] left-0 right-0 text-left px-6 z-10 md:hidden">
+              <h1 className="text-base sm:text-lg md:text-2xl lg:text-5xl leading-normal text-white md:text-bgColor font-semibold font-ebGaramond mb-4">
+                La forme physique, condition première du bonheur
+              </h1>
+              <h2 className="text-sm sm:text-base md:text-xl lg:text-4xl text-white mb-1">
+                Joseph Hubertus Pilates
+              </h2>
+              <h3 className="text-xs sm:text-sm md:text-base lg:text-xl font-light text-white max-lg:mb-2 ">
+                Inventeur de la méthode Pilates
+              </h3>
+            </div>
+
             <div className="mb-6">
-              <h1 className="text-marron text-3xl sm:text-6xl font-bold">
+              <h1 className="text-marron text-3xl md:text-6xl font-bold">
                 Créer un compte
               </h1>
-              <p className="text-sm sm:text-lg my-2 font-lato">
+              <p className="text-sm md:text-lg my-2 font-lato">
                 Rejoignez la communauté Biopilates gratuitement
               </p>
             </div>
             <form className="w-full" onSubmit={handleSubmit}>
               <div className="mb-5">
                 <label
-                  className="block font-ebGaramond text-sm sm:text-xl font-bold mb-2"
+                  className="block font-ebGaramond text-sm md:text-xl font-bold mb-2"
                   htmlFor=" first_name"
                 >
                   Nom et prénom
@@ -276,7 +289,7 @@ export function RegisterForm({
 
               <div className="mb-5">
                 <label
-                  className="block text-sm sm:text-xl font-bold mb-2"
+                  className="block text-sm md:text-xl font-bold mb-2"
                   htmlFor="email"
                 >
                   Adresse Email
@@ -291,7 +304,7 @@ export function RegisterForm({
                   <input
                     type="email"
                     id="email"
-                    className="bg-gray-50 border border-marron border-l-0 font-lato text-gray-900 text-sm sm:text-base rounded-none rounded-r-md block w-full p-2.5"
+                    className="bg-gray-50 border border-marron border-l-0 font-lato text-gray-900 text-sm md:text-base rounded-none rounded-r-md block w-full p-2.5"
                     value={data.email}
                     onChange={(e) =>
                       setData({ ...data, email: e.target.value })
@@ -301,7 +314,7 @@ export function RegisterForm({
               </div>
               <div className="mb-5">
                 <label
-                  className="block font-ebGaramond text-sm sm:text-xl font-bold mb-2"
+                  className="block font-ebGaramond text-sm md:text-xl font-bold mb-2"
                   htmlFor="phone_number"
                 >
                   {error?.phone_number && (
@@ -316,7 +329,7 @@ export function RegisterForm({
                   <input
                     type="number"
                     id="phone_number"
-                    className="bg-gray-50 border border-marron border-l-0 text-gray-900 text-sm sm:text-base rounded-none rounded-r-md block w-full p-2.5"
+                    className="bg-gray-50 border border-marron border-l-0 text-gray-900 text-sm md:text-base rounded-none rounded-r-md block w-full p-2.5"
                     value={data.phone_number}
                     onChange={(e) =>
                       setData({ ...data, phone_number: e.target.value })
@@ -326,7 +339,7 @@ export function RegisterForm({
               </div>
               <div className="mb-5">
                 <label
-                  className="block text-sm sm:text-xl font-bold mb-2"
+                  className="block text-sm md:text-xl font-bold mb-2"
                   htmlFor="password"
                 >
                   Mot de passe
@@ -341,7 +354,7 @@ export function RegisterForm({
                   <input
                     type={visible ? "text" : "password"} // Toggle between text and password
                     id="password"
-                    className="bg-gray-100 border border-marron border-l-0 font-lato text-gray-900 text-sm sm:text-base block w-full p-2.5 transition duration-150 ease-in-out focus:outline-none focus:ring focus:ring-blue-500"
+                    className="bg-gray-100 border border-marron border-l-0 font-lato text-gray-900 text-sm md:text-base block w-full p-2.5 transition duration-150 ease-in-out focus:outline-none focus:ring focus:ring-blue-500"
                     value={data.password}
                     onChange={(e) =>
                       setData({ ...data, password: e.target.value })
@@ -355,7 +368,7 @@ export function RegisterForm({
               </div>
               <div className="mb-5">
                 <label
-                  className="block text-sm sm:text-xl font-bold mb-2"
+                  className="block text-sm md:text-xl font-bold mb-2"
                   htmlFor="password"
                 >
                   Confirmer le mot de passe
@@ -370,7 +383,7 @@ export function RegisterForm({
                   <input
                     type={visible ? "text" : "password"} // Toggle between text and password
                     id="password"
-                    className="bg-gray-100 border border-marron border-l-0 font-lato text-gray-900 text-sm sm:text-base block w-full p-2.5 transition duration-150 ease-in-out focus:outline-none focus:ring focus:ring-blue-500"
+                    className="bg-gray-100 border border-marron border-l-0 font-lato text-gray-900 text-sm md:text-base block w-full p-2.5 transition duration-150 ease-in-out focus:outline-none focus:ring focus:ring-blue-500"
                     value={data.confirm_password}
                     onChange={(e) =>
                       setData({ ...data, confirm_password: e.target.value })
@@ -390,7 +403,7 @@ export function RegisterForm({
                     className="w-4 h-4 border border-gray-300 rounded-sm text-marron focus:ring-0 focus:ring-marron mt-1"
                   />
 
-                  <span className="ml-2 font-lato text-sm sm:text-base">
+                  <span className="ml-2 font-lato text-sm md:text-base">
                     J’accepte{" "}
                     <a href="" className="underline font-medium">
                       les conditions d’utilisation
@@ -405,7 +418,7 @@ export function RegisterForm({
               <div id="signInDiv" className="w-full rounded-lg my-3"></div>
               <button
                 type="submit"
-                className="reserver-button button-hover flex mx-auto mb-2.5 flex-col justify-center items-center text-sm sm:text-base font-bold font-lato rounded-lg w-full py-2 sm:py-3 bg-bgColor text-marron hover:text-white transition duration-300 ease-in-out transform"
+                className="reserver-button button-hover flex mx-auto mb-2.5 flex-col justify-center items-center text-sm md:text-base font-bold font-lato rounded-lg w-full py-2 md:py-3 bg-bgColor text-marron hover:text-white transition duration-300 ease-in-out transform"
               >
                 <div className="hover-circle overflow-hidden" />
                 Créer un compte

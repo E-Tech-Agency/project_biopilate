@@ -124,8 +124,10 @@ export default function SideNav() {
       {/* Sidebar */}
       <div
         id="sidebar"
-        className={`fixed lg:sticky lg:flex flex-col justify-between border-r border-bgColor bg-white min-w-64 font-lato h-screen top-0 left-0 max-md:shadow-2xl transform ${
-          isSidebarOpen ? "translate-x-0" : "-translate-x-full"
+        className={`fixed lg:sticky lg:flex flex-col justify-between border-r border-bgColor bg-white min-w-64 font-lato h-screen top-0 left-0  transform ${
+          isSidebarOpen
+            ? "translate-x-0 max-md:shadow-2xl"
+            : "-translate-x-full"
         } lg:translate-x-0 transition-transform duration-300 ease-in-out z-50`}
       >
         <div>

@@ -1,21 +1,26 @@
 import financer1 from "@/assets/images/financer1.png";
 import financer2 from "@/assets/images/financer2.png";
 
-import ReserverButton from "@/biopilates/components/ReserverButton";
+import financerPdf1 from "@/assets/doc/Bienvenue aux étudiants.pdf";
+import financerPdf2 from "@/assets/doc/Conditions Générale de vente.pdf";
+import financerPdf3 from "@/assets/doc/Règlement intérieur.pdf";
 
 export default function FinancerVotreFormationDash() {
   const manuelsData = [
     {
       title: "Bienvenue aux étudiants",
       image: financer1,
+      pdf: financerPdf1,
     },
     {
       title: "Conditions Générale de vente",
       image: financer2,
+      pdf: financerPdf2,
     },
     {
       title: "Règlement intérieur",
       image: financer1,
+      pdf: financerPdf3,
     },
   ];
   return (
@@ -34,7 +39,18 @@ export default function FinancerVotreFormationDash() {
           <p className="flex-grow text-marron sm:text-lg text-center font-ebGaramond font-bold leading-normal">
             {manuel.title}
           </p>
-          <ReserverButton text="Commander" />
+          <a
+            className="reserver-button text-marron bg-bgColor text-base font-bold flex justify-center items-center gap-4 rounded-lg sm:mb-4 transform shadow-sm"
+            onClick={(e) => {
+              e.stopPropagation();
+            }}
+            href={manuel.pdf}
+            target="_blank"
+            download
+          >
+            <div className="hover-circle overflow-hidden" />
+            <p>Télécharger</p>
+          </a>
         </div>
       ))}
     </div>

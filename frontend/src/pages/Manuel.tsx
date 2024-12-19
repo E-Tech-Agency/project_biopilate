@@ -9,7 +9,6 @@ import manuel7 from "@/assets/images/manuels/manuel7.jpg";
 import manuel8 from "@/assets/images/manuels/manuel8.jpg";
 import manuel9 from "@/assets/images/manuels/manuel9.jpg";
 import manuel10 from "@/assets/images/manuels/manuel10.jpg";
-import ReserverButton from "@/biopilates/components/ReserverButton";
 
 export default function Manuel() {
   const manuelsData = [
@@ -71,7 +70,18 @@ export default function Manuel() {
           <p className="flex-grow text-marron sm:text-lg text-center font-ebGaramond font-bold leading-normal">
             {manuel.title}
           </p>
-          <ReserverButton text="Commander" />
+          <button
+            className={`flex overflow-hidden reserver-button cursor-pointer bg-bgColor flex-col justify-center text-base leading-6 rounded-lg text-current transition duration-300 ease-in-out transform`}
+            onClick={() => {
+              window.open(
+                "https://www.merrithew.com/shop/education-materials/shop-by-course",
+                "_blank"
+              );
+            }}
+          >
+            <div className="hover-circle overflow-hidden" />
+            Commander
+          </button>
         </div>
       ))}
     </div>

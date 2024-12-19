@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 // import { LuShare } from "react-icons/lu";
@@ -102,6 +103,36 @@ export default function Article() {
     navigate("/contact");
   };
 
+  // popover share button
+  const [linkCopied, setLinkCopied] = useState(false);
+
+  const handleCopyLink = () => {
+    navigator.clipboard.writeText(window.location.href).then(() => {
+      setLinkCopied(true);
+      setTimeout(() => setLinkCopied(false), 2000); // Reset after 2 seconds
+    });
+  };
+
+  const handleShareFacebook = () => {
+    const url = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(
+      window.location.href
+    )}`;
+    console.log(url);
+    window.open(url, "_blank");
+  };
+
+  const handleShareInstagram = () => {
+    // Instagram does not have a direct share URL, so we can guide the user to copy the link
+    alert("Copy the link and share it on Instagram.");
+  };
+
+  const handleShareTwitter = () => {
+    const url = `https://twitter.com/intent/tweet?url=${encodeURIComponent(
+      window.location.href
+    )}`;
+    window.open(url, "_blank");
+  };
+
   if (!article) {
     return (
       <div className="flex flex-col mx-5 md:mx-12 my-12">
@@ -128,7 +159,7 @@ export default function Article() {
         <div className="min-w-[200px] text-marron font-bold">
           Date de l'article
         </div>
-        <div className="font-lato flex flex-col gap-6 text-justify pr-6">
+        <div className="font-lato flex flex-col gap-6 text-justify md:pr-6">
           <div>
             <p>
               <strong>La maison vieille</strong> est une maison de vacances
@@ -141,14 +172,15 @@ export default function Article() {
               qui convient à toutes les générations. « J’ai conçu cette maison
               comme un lieu de fraternité pour y accueillir plus
               particulièrement toutes ces vieilles et ces vieux dont j’ai eu à
-              prendre soin quand j’étais médecin, et dont j’ai découvert combien
-              si souvent ils souffrent de se sentir seuls et en marge de la vie
-              qui va. Puisse <strong>la maison vieille</strong> leur permettre
-              de renouer du lien social, de rencontrer des pairs, de s’offrir
-              quelques plaisirs simples; devenir un lieu où l’on sait que l’on
-              peut aller facilement pour briser pendant quelques jours,voire
-              simplement pendant quelques heures, le cours infini de la solitude
-              à laquelle on est désormais contraint ».
+              prendre soin quand j’étais médecin, <br className="sm:hidden" />{" "}
+              et dont j’ai découvert combien si souvent ils souffrent de se
+              sentir seuls et en marge de la vie qui va. Puisse{" "}
+              <strong>la maison vieille</strong> leur permettre de renouer du
+              lien social, de rencontrer des pairs, de s’offrir quelques
+              plaisirs simples; devenir un lieu où l’on sait que l’on peut aller
+              facilement pour briser pendant quelques jours,voire simplement
+              pendant quelques heures, le cours infini de la solitude à laquelle
+              on est désormais contraint ».
             </p>
           </div>
           <p className="font-bold text-marron text-xl md:text-3xl">
@@ -193,7 +225,9 @@ export default function Article() {
             </li>
           </ul>
           <hr />
-          <div className="flex justify-between items-center mt-2">
+
+          {/* author */}
+          <div className="flex justify-between items-start md:items-center mt-2">
             <div className="flex flex-col gap-2">
               <p>Véronique Fournier</p>
               <p className="text-gray-500">
@@ -205,30 +239,42 @@ export default function Article() {
             <Popover>
               <PopoverTrigger asChild>
                 <button>
-                  <LuShare className="text-blueText text-3xl mx-6 md:mx-12" />
+                  <LuShare className="text-blueText text-xl md:text-3xl mx-5 md:mx-12" />
                 </button>
               </PopoverTrigger>
               <PopoverContent className="w-[220px] text-gray-900 font-lato flex flex-col gap-4 text-[15px]">
-                <button className=" flex justify-start items-center gap-1.5">
+                <button
+                  className="flex justify-start items-center gap-1.5"
+                  onClick={handleCopyLink}
+                >
                   <div className="text-xl">
                     <IoIosLink />
                   </div>
-                  Copier lien
+                  {linkCopied ? "Lien copié!" : "Copier lien"}
                 </button>
                 <hr className="mx-[-14px]" />
-                <button className=" flex justify-start items-center gap-1.5">
+                <button
+                  className="flex justify-start items-center gap-1.5"
+                  onClick={handleShareFacebook}
+                >
                   <div className="text-white bg-black rounded-full text-lg p-1">
                     <TiSocialFacebook />
                   </div>
                   Partager sur Facebook
                 </button>
-                <button className=" flex justify-start items-center gap-1.5">
+                <button
+                  className="flex justify-start items-center gap-1.5"
+                  onClick={handleShareInstagram}
+                >
                   <div className="text-white bg-black rounded-full text-lg p-1">
                     <RiInstagramFill />
                   </div>
                   Partager sur Instagram
                 </button>
-                <button className=" flex justify-start items-center gap-1.5">
+                <button
+                  className="flex justify-start items-center gap-1.5"
+                  onClick={handleShareTwitter}
+                >
                   <div className="text-white bg-black rounded-full text-lg p-1">
                     <RiTwitterXLine />
                   </div>

@@ -6,7 +6,6 @@ import workshop5 from "@/assets/images/workshop-2.jpg";
 import workshop6 from "@/assets/images/workshop-3.jpg";
 import workshop7 from "@/assets/images/formation-5.png";
 import workshop8 from "@/assets/images/workshop-4.jpg";
-import ReserverButton from "@/biopilates/components/ReserverButton";
 import { useState } from "react";
 
 function Filter() {
@@ -94,7 +93,16 @@ export default function Workshops() {
             <p className="flex-grow text-marron sm:text-lg text-center font-ebGaramond font-bold leading-normal">
               {workshop.title}
             </p>
-            <ReserverButton text="Télécharger" />
+
+            <button
+              className={`flex overflow-hidden reserver-button cursor-pointer bg-bgColor flex-col justify-center text-base leading-6 rounded-lg text-current transition duration-300 ease-in-out transform`}
+              // onClick={() => {
+              //   window.open("", "_blank");
+              // }}
+            >
+              <div className="hover-circle overflow-hidden" />
+              Télécharger
+            </button>
           </div>
         ))}
       </div>

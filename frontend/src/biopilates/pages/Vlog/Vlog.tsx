@@ -28,7 +28,7 @@ export default function Vlog() {
   ];
 
   return (
-    <div className="flex flex-col justify-center items-center mt-8 mx-5 md:mx-12 mb-12 ">
+    <div className="flex flex-col justify-center items-center mt-8 md:mt-12 mx-5 md:mx-12 mb-12 ">
       <div className="font-bold font-ebGaramond text-center flex flex-col gap-2 md:gap-6">
         <p className="text-marron text-xl md:text-[34px]">
           Voici un aperçu de nos entraînements

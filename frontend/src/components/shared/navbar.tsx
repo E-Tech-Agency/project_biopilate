@@ -1,5 +1,4 @@
 import { useNavigate } from "react-router-dom";
-import { Link } from "react-router-dom";
 import { useState } from "react";
 import { IoMdSearch, IoIosNotifications } from "react-icons/io";
 import { BiSolidDownArrow } from "react-icons/bi";
@@ -15,7 +14,7 @@ import { Button } from "../ui/button";
 // import { ModeToggle } from "./mode-toggle";
 
 export function Navbar({
-  isLoggedIn,
+  // isLoggedIn,
   setIsLoggedIn,
 }: {
   isLoggedIn: boolean;
@@ -24,16 +23,14 @@ export function Navbar({
   const [searchQuery, setSearchQuery] = useState("");
   const [searchResults, setSearchResults] = useState<string[]>([]);
 
-  console.log(isLoggedIn);
-
   const navigate = useNavigate();
   // const nav = () => { navigate("/login") }
-  const login = () => {
-    navigate("/login");
-  };
-  const register = () => {
-    navigate("/register");
-  };
+  // const login = () => {
+  //   navigate("/login");
+  // };
+  // const register = () => {
+  //   navigate("/register");
+  // };
 
   const logout = async () => {
     localStorage.clear();
