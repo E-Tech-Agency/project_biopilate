@@ -1,9 +1,10 @@
-from rest_framework import viewsets
+from rest_framework import viewsets ,permissions
 
 from ..models.financer_fromation import FinancerFormation
 from ..serializers.FinancerFormationSerializer import FinancerFormationSerializer
 
 class FinancerFormationViewSet(viewsets.ModelViewSet):
+    permission_classes = [permissions.IsAuthenticated] 
     queryset = FinancerFormation.objects.all().order_by('-created_at')
     serializer_class = FinancerFormationSerializer
 

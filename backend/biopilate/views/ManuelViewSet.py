@@ -1,10 +1,11 @@
-from rest_framework import viewsets
+from rest_framework import viewsets ,permissions
 
 from ..models.manuel_biopilates import Manuel
 from ..serializers.manuelSerializer import ManuelSerializer
 
 
 class ManuelViewSet(viewsets.ModelViewSet):
+    permission_classes = [permissions.IsAuthenticated] 
     queryset = Manuel.objects.all().order_by('-created_at')
     serializer_class = ManuelSerializer
 
