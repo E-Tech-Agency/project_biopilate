@@ -15,9 +15,18 @@ import manuel9 from "@/assets/images/manuels/manuel9.jpg";
 import manuel10 from "@/assets/images/manuels/manuel10.jpg";
 
 import ReserverButton from "@/biopilates/components/ReserverButton";
+import { useNavigate } from "react-router-dom";
 
 export default function Manuel() {
   const [manuels, setManuels] = useState<ManuelShow[]>([]);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const isSupplier = localStorage.getItem("is_supplier");
+    if (!isSupplier || isSupplier == "true") {
+      navigate("/login");
+    }
+  }, [navigate]);
 
   // Static fallback data
   const manuelsData = [

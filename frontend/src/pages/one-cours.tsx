@@ -3,8 +3,17 @@ import api from "@/lib/api";
 import { useParams } from "react-router-dom";
 import { Cours } from "@/types/types";
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 export default function OneCours() {
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const isSupplier = localStorage.getItem("is_supplier");
+    if (!isSupplier || isSupplier == "true") {
+      navigate("/login");
+    }
+  }, [navigate]);
   const [cours, setCours] = useState<Cours | null>(null);
 
   const { id } = useParams();

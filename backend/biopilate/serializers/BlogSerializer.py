@@ -13,7 +13,7 @@ class BlogSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Blog
-        fields = ['id', 'title', 'author', 'description', 'favorites', 'image_1', 'image_2','view' ,'full_text', 'date', 'range', 'create_at', 'updated_at', 'status', 'images','tages']
+        fields = '__all__'
         read_only_fields = ['create_at', 'updated_at','tages']
         extra_kwargs = {
             'image_1': {'required': False},

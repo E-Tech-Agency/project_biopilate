@@ -5,12 +5,12 @@ import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 export default function AdminDashboard() {
-  const nav = useNavigate();
+  const navigate = useNavigate();
   useEffect(() => {
-    if (localStorage.getItem("is_superuser") === "false") {
-      nav("/");
-    }
-  }, [nav]);
+    const isSupplier = localStorage.getItem("is_supplier");
+    if (!isSupplier || isSupplier !== "true") {
+      navigate("/login");}
+  }, [navigate]);
   return (
     <div>
       <div className="flex flex-row items-center justify-center gap-9">

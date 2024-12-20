@@ -222,7 +222,7 @@ export type BlogFormType = {
     date: string | Date;
     range:number;
     favorites:number | null;
-    tages: string;
+    tages:[] | string;
      
 
 }
@@ -271,6 +271,7 @@ export type Formation = {
     status: 'pending' | 'approved';  // Reflect the choices from Django
     title: string;
     description: string;
+    related_formation?: Formation; 
     created_at: Date;
     updated_at: Date;
 }
@@ -279,6 +280,7 @@ export type FormationFormType = {
     status: 'pending' | 'approved';  // Reflect the choices from Django
     title: string;
     description: string;
+    related_formation?: number; 
 }
 
 export type CreateFormationErrors = {
@@ -313,6 +315,7 @@ export type FormationCategory = {
 }
 
 export type FormationCategoryType = {
+    id?: number; 
     formation: number;  // Formation ID
     option: number;     // Option ID
     price: number;

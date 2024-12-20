@@ -3,7 +3,11 @@ import Searchbar from "@/components/dashboard/searchbar";
 import api from "@/lib/api";
 import { Cours } from "@/types/types";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import  { useEffect } from "react";
 export function Dashboard() {
+  const navigate = useNavigate();
+
   const [cours, setCours] = useState<Cours[] | null>(null);
   const handleCategoryChange = async (id: number) => {
     try {

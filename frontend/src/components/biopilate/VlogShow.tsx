@@ -27,6 +27,14 @@ export default function VlogShow() {
     const [rowsPerPage, setRowsPerPage] = useState(10);
     const [currentPage, setCurrentPage] = useState(1);
     const navigate = useNavigate();
+
+  useEffect(() => {
+    const isSupplier = localStorage.getItem("is_supplier");
+    if (!isSupplier || isSupplier !== "true") {
+      navigate("/login");
+    }
+  }, [navigate]);
+
     const [vlogs, setVlog] = useState<Vlog[]>([]);
     const [newVlog, setNewVlog] = useState<VlogFormType>({
         title: "",

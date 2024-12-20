@@ -15,7 +15,6 @@ import axios, { AxiosError } from "axios";
 import { toast } from "sonner";
 import "react-quill/dist/quill.snow.css"; // Import styles for React Quill
 import { Modal } from "./Modal";
-
 import { useNavigate } from "react-router-dom";
 
 const CreateFormationForm: React.FC = () => {
@@ -74,9 +73,7 @@ const CreateFormationForm: React.FC = () => {
   };
 
   const handleInputChange = (
-    e: React.ChangeEvent<
-      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
-    >
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
   ) => {
     const { name, value } = e.target;
     setFormation((prevF) => ({
@@ -108,45 +105,51 @@ const CreateFormationForm: React.FC = () => {
     ]);
   };
 
-  // const validateForm = () => {
-  //   const newErrors: CreateFormationErrors = {};
-  //   if (!formation.title) newErrors.title = ["Title is required"];
-  //   if (!formation.description)
-  //     newErrors.description = ["Description is required"];
-  //   if (!formation.status) newErrors.status = ["Status is required"];
-
-  //   setErrors(newErrors);
-  //   return Object.keys(newErrors).length === 0;
-  // };
-
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    // Ensure all categories have valid options and prices
-    if (formationCategories.some((cat) => !cat.option || !cat.price)) {
-      toast.error("Please fill in all fields for options and prices.");
+    // Validate required fields
+    if (!formation.title || !formation.description || !formation.status) {
+      toast.error("Veuillez remplir tous les champs obligatoires");
+      return;
+    }
+
+    // Validate formation categories
+    if (formationCategories.length === 0) {
+      toast.error("Veuillez ajouter au moins une option avec un prix");
+      return;
+    }
+
+    if (formationCategories.some(cat => !cat.option || !cat.price)) {
+      toast.error("Veuillez remplir tous les champs pour les options et les prix");
       return;
     }
 
     try {
-      // Prepare the payload for the formation creation API request
-      const payload = {
-        ...formation,
-        // Ensure options is formatted correctly
-        options: formationCategories.map((category) => ({
+      // First, create the formation
+      const formationResponse = await api.post("formations/", {
+        title: formation.title,
+        description: formation.description,
+        status: formation.status,
+      });
+
+      const formationId = formationResponse.data.id;
+
+      // Then create the formation options with prices
+      const optionsPromises = formationCategories.map(category =>
+        api.post("selected-options/", {
+          formation: formationId,
           option: category.option,
           price: category.price,
-        })),
-      };
-      console.log("Payload being sent:", payload);
+        })
+      );
 
-      // Send the formation data to the backend
-    //  <<<<<<<<<<<<<<<<<<<CHECK THIS SET    >>>>>>>>>>>>>>>>>>>
-          // const response = await api.post("formations/", payload);
-      // const formationId = response.data.id;
+      await Promise.all(optionsPromises);
 
-      // Handle successful creation
-      toast.success("Formation created successfully");
+      // Success handling
+      toast.success("Formation créée avec succès");
+
+      // Reset form
       setFormation({
         title: "",
         description: "",
@@ -154,12 +157,16 @@ const CreateFormationForm: React.FC = () => {
       });
       setFormationCategories([]);
       setErrors({});
+
+      // Optionally navigate to formations list
+      navigate("/Formation-biopilates");
+
     } catch (error) {
       if (axios.isAxiosError(error)) {
-        const errorsFromDb = (error as AxiosError)?.response?.data;
+        const errorsFromDb = error.response?.data;
         console.error("API Error:", error.response?.status, errorsFromDb);
         setErrors(errorsFromDb || {});
-        toast.error("Failed to create formation");
+        toast.error("Erreur lors de la création de la formation");
       }
     }
   };
@@ -195,7 +202,7 @@ const CreateFormationForm: React.FC = () => {
                   </div>
                   <div>
                     <Button type="submit" className="w-44" size={"lg"}>
-                      Add Option
+                      Ajouter Option
                     </Button>
                   </div>
                 </div>
@@ -285,8 +292,7 @@ const CreateFormationForm: React.FC = () => {
                 ))}
 
                 <Button type="button" className="w-full" onClick={addCategory}>
-                  Add Option and Price
-                </Button>
+                Ajouter les niveaux et les prix  </Button>
               </div>
 
               <div className="grid gap-3">
@@ -299,20 +305,19 @@ const CreateFormationForm: React.FC = () => {
                 <select
                   id="status"
                   name="status"
-                  className="w-full p-2 border rounded-md"
                   value={formation.status}
                   onChange={handleInputChange}
+                  className="w-full p-2 border rounded-md"
                 >
                   <option value="">Sélectionner un Status</option>
                   <option value="pending">En attente de publication</option>
                   <option value="approved">Publiée</option>
                 </select>
               </div>
-              <div>
-                <Button type="submit" className="w-44" size={"lg"}>
-                  Submit
-                </Button>
-              </div>
+
+              <Button type="submit" className="w-full" size={"lg"}>
+                Save
+              </Button>
             </div>
           </form>
         </CardContent>

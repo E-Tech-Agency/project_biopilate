@@ -10,6 +10,7 @@ import ReserverButton from "@/biopilates/components/ReserverButton";
 import { useEffect, useState } from "react";
 import api from "@/lib/api";
 import { WorkShop, CategoryWorkShop } from "@/types/types";
+import { useNavigate } from "react-router-dom";
 
 function Filter({
   categories,
@@ -49,7 +50,14 @@ export default function Workshops() {
   const [workShopsData, setWorkShopsData] = useState<WorkShop[]>([]);
   const [categoriesWorkShop, setCategoriesWorkShop] = useState<CategoryWorkShop[]>([]);
   const [selectedCategories, setSelectedCategories] = useState<number[]>([0]);
+  const navigate = useNavigate();
 
+  useEffect(() => {
+    const isSupplier = localStorage.getItem("is_supplier");
+    if (!isSupplier || isSupplier == "true") {
+      navigate("/login");
+    }
+  }, [navigate]);
   const getWorkShops = async () => {
     try {
       const res = await api.get("workshops-biopilate/");

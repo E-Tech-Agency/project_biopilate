@@ -4,10 +4,19 @@ import { useEffect, useState } from "react";
 import ReserverButton from "@/biopilates/components/ReserverButton";
 import { FinancerFormation } from "@/types/types";
 import api from "@/lib/api";
+import { useNavigate } from "react-router-dom";
 
 export default function FinancerVotreFormationDash() {
   const [formations, setFormations] = useState<FinancerFormation[]>([]);
+  const navigate = useNavigate();
 
+  useEffect(() => {
+    const authToken = localStorage.getItem("auth_token");
+    if (!authToken) {
+      navigate("/login");
+    }
+  }, [navigate]);
+  
   const getFormations = async () => {
     try {
       const res = await api.get("financer-formations/");
