@@ -106,7 +106,7 @@ export function RegisterForm({
       return;
     }
     try {
-      const res = await axios.post("http://localhost:8000/api/register/", data);
+      const res = await axios.post("http://141.94.23.119/api/register/", data);
       setData({
         first_name: "",
         last_name: "",
@@ -140,7 +140,7 @@ export function RegisterForm({
     };
     try {
       const server_res = await axios.post(
-        "http://localhost:8000/api/google/",
+        "http://141.94.23.119/api/google/",
         payload
       );
       localStorage.setItem("token", server_res.data.access_token);
@@ -159,7 +159,7 @@ export function RegisterForm({
     toast.loading("Verifying...");
     try {
       const res = await axios.post(
-        "http://localhost:8000/api/verify/",
+        "http://141.94.23.119/api/verify/",
         verifyCode
       );
       toast.dismiss();
