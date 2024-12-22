@@ -1,28 +1,35 @@
 from django.db import models
 from django.utils.html import mark_safe
 from .tages import Tages
+
+
 class Blog(models.Model):
-  STATUS_CHOICES = [
+    STATUS_CHOICES = [
         ('pending', 'En attente de publication'),
         ('approved', 'Publiée'),
-        ]
-  title = models.CharField('Titre',max_length=255)
-  author = models.CharField( 'Nom de l’écrivain', max_length=100)  
-  description = models.TextField()
-  favorites = models.IntegerField(blank=True)
-  image_1 = models.ImageField('Image de coverture ',upload_to='blog_images/')  #  upload path
-  image_2 = models.ImageField('Image de blog', upload_to='blog_images/')  
-  full_text = models.TextField()
-  date = models.DateField()
-  range=models.IntegerField(default='1')
-  create_at = models.DateTimeField(auto_now_add=True)
-  updated_at = models.DateTimeField(auto_now=True)
-  tages = models.ManyToManyField(Tages, related_name='tages', blank=True)
-  status = models.CharField('Status', max_length=10, choices=STATUS_CHOICES, default='pending')
-  view=models.IntegerField(default='0')
-  def __str__(self):
+    ]
+    title = models.CharField('Titre', max_length=255)
+    author = models.CharField('Nom de l’écrivain', max_length=100)
+    description = models.TextField()
+    favorites = models.IntegerField(blank=True)
+    image_1 = models.ImageField(
+        'Image de coverture ', upload_to='blog_images/')  # upload path
+    image_2 = models.ImageField('Image de blog', upload_to='blog_images/')
+    full_text = models.TextField()
+    date = models.DateField()
+    range = models.IntegerField(default='1')
+    create_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+    tages_blog = models.ManyToManyField(
+        Tages, related_name='tages', blank=True)
+    status = models.CharField('Status', max_length=10,
+                              choices=STATUS_CHOICES, default='pending')
+    view = models.IntegerField(default='0')
+
+    def __str__(self):
         return self.title
-  def admin_image(self):
+
+    def admin_image(self):
         if self.image_1:
             return mark_safe('<img src="%s" width="150" height="150" />' % self.image_1.url)
         elif self.image_2:
@@ -30,12 +37,16 @@ class Blog(models.Model):
         else:
             return 'No Image'
 
-  admin_image.short_description = 'Image'
-  admin_image.allow_tag=True
-  class Meta:
+    admin_image.short_description = 'Image'
+    admin_image.allow_tag = True
+
+    class Meta:
         verbose_name_plural = "Blog"
+
+
 class BlogImage(models.Model):
-    blog = models.ForeignKey(Blog, on_delete=models.CASCADE, related_name='images')
+    blog = models.ForeignKey(
+        Blog, on_delete=models.CASCADE, related_name='images')
     image = models.ImageField(upload_to='blog_images/')
 
     def __str__(self):
