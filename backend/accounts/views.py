@@ -12,6 +12,8 @@ import json
 from rest_framework.decorators import api_view
 from django.utils.http import urlsafe_base64_decode
 from django.core.exceptions import ValidationError
+from .permissions import IsSupplier,IsAdmin,IsClient
+from rest_framework.exceptions import PermissionDenied
 # Create your views here.
 @api_view(['POST'])
 def send_contact_email(request):
@@ -142,10 +144,20 @@ class UpdateUserView(UpdateAPIView):
     def get_object(self):
         user = self.request.user
         return user
+    def update(self, request, *args, **kwargs):
+        # Ensure the user is an admin before allowing modification of specific fields
+        if not request.user.IsAdmin:
+            restricted_fields = {'is_client', 'is_staff', 'is_supplier', 'is_active', 'is_superuser', 'is_verified'}
+            for field in restricted_fields:
+                if field in request.data:
+                    raise PermissionDenied(f"You are not allowed to modify the '{field}' field.")
+
+        # Proceed with the update
+        return super().update(request, *args, **kwargs)
 
 class DeleteUserView(DestroyAPIView):
     queryset = User.objects.all()
-    permission_classes = [IsAuthenticated]
+    permission_classes = [IsAuthenticated,IsAdmin]
     lookup_field = 'id'
 
     def delete(self, request, *args, **kwargs):

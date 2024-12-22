@@ -9,10 +9,19 @@ import { BsGearFill } from "react-icons/bs";
 import { PiPackage } from "react-icons/pi";
 import { FaHandHoldingDollar, FaRegFolderOpen } from "react-icons/fa6";
 import { GiTeacher } from "react-icons/gi";
+import { useNavigate } from "react-router-dom";
 
 import ActiveLinkSVG from "@/components/shared/ActiveLinkSVG"; // Active link indicator SVG
 
 export default function SideNav() {
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const isSupplier = localStorage.getItem("token");
+    if (!isSupplier || isSupplier == "true") {
+      navigate("/login");
+    }
+  }, [navigate]);
   const location = useLocation();
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 

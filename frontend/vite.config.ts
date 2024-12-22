@@ -26,7 +26,7 @@ export default defineConfig({
   },
   define: {
     'process.env': {
-      API_BASE_URL: 'http://localhot:127.0.0.1/api/',
+      API_BASE_URL: 'http://141.94.23.119//api/',
     }
   }
 });

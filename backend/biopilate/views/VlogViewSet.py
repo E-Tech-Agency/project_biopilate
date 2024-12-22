@@ -1,13 +1,16 @@
-from rest_framework import viewsets
+from rest_framework import viewsets ,permissions
 
 from ..models.vlog import Vlog , CategoryVlog
 from ..serializers.vlogSerilizer import VlogSerializer , CategoryVlogSerializer
+
 class CategoryVlogViewSet(viewsets.ModelViewSet):
+    permission_classes = [permissions.IsAuthenticated] 
     queryset = CategoryVlog.objects.all()
     serializer_class = CategoryVlogSerializer
    
 
 class VlogViewSet(viewsets.ModelViewSet):
+    permission_classes = [permissions.IsAuthenticated] 
     queryset = Vlog.objects.all().order_by('-created_at')
     serializer_class = VlogSerializer
     def perform_update(self, serializer):

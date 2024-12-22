@@ -325,13 +325,13 @@ export default function TeachesShow() {
                     {isEditing ? (
                         <TeachesEditForm teache={selectedTeache as Teache} onSave={updateTeaches} onClose={() => setIsModalOpen(false)} />
                     ) : (
-                        <form onSubmit={handleSubmit} className=" inset-0 flex items-center justify-center ">
-          <div className="text-center mb-8">
+                        <form onSubmit={handleSubmit} className=" inset-0 flex  ">
+          <div className="text-center ">
             <h2 className="text-3xl font-extrabold text-blue-800 mb-2">Inscription Instructeur</h2>
             <p className="text-gray-500 text-sm">Partagez vos informations professionnelles</p>
           </div>
         
-          <div className="flex justify-center mb-8">
+          <div className=" justify-center mb-8">
             <div className="relative">
               <div className="w-40 h-40 bg-blue-50 rounded-full flex items-center justify-center border-4 border-blue-200 overflow-hidden">
                 

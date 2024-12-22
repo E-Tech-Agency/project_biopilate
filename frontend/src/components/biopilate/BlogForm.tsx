@@ -269,6 +269,7 @@ const BlogForm: React.FC<BlogFormProps> = ({
               <select
                 id="status"
                 name="status"
+                
                 value={blog.status}
                 onChange={handleInputChange}
                 className={`w-full p-2 border rounded-md ${errors.status ? 'border-red-500' : ''}`}
@@ -287,7 +288,7 @@ const BlogForm: React.FC<BlogFormProps> = ({
               id="tages"
               name="tages"
               multiple
-              value={blog.tages ? blog.tages.split(',') : []}
+              value={blog.tages }
               onChange={handleTagChange}
               className="w-full p-2 border rounded-md"
               size={Math.min(5, tages.length)}

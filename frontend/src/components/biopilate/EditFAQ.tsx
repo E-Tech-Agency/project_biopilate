@@ -163,4 +163,3 @@ export default function EditFAQ({ faqId, isOpen, onClose, onSave }: EditFAQModal
         </Modal>
     );
 }
-

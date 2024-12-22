@@ -28,7 +28,7 @@ export default function CreateBlogForm() {
     date: new Date().toISOString().split("T")[0],
     range: 0,
     favorites: 0,
-    tages: "",
+    tages: [],
    
   });
 

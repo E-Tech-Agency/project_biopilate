@@ -43,7 +43,7 @@ export default function CreatePlanningForm() {
         console.error("Error fetching categories", error);
       }
     };
-
+    planningRef.current = { fetchCategories };
     fetchCategories();
   }, []);
 

@@ -1,8 +1,9 @@
-from rest_framework import viewsets
+from rest_framework import viewsets ,permissions
 from ..models.FAQ import FAQ
 from ..serializers.FAQSerializer import FAQSerializer
 
 class FAQViewSet(viewsets.ModelViewSet):
+    permission_classes = [permissions.IsAuthenticated] 
     queryset = FAQ.objects.all().order_by('-create_at')
     serializer_class = FAQSerializer
     def perform_update(self, serializer):

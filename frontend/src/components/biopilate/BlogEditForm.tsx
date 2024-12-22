@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import ReactQuill from "react-quill";
-
+import { useNavigate } from "react-router-dom";
 interface BlogEditFormProps {
   blog: Blog;
   onUpdate: (data: FormData, id: number) => void;
@@ -77,105 +77,158 @@ const BlogEditForm: React.FC<BlogEditFormProps> = ({ blog, onUpdate }) => {
 
     onUpdate(formData, blog.id);
   };
-
+  const navigate = useNavigate();
+  const handleCancel = () => {
+    navigate("/blog-biopilates");
+  };
   return (
-    <form onSubmit={handleSubmit}>
-      <h1 className="mb-4">Modifier Blog</h1>
-      <div className="mb-4">
-        <Label htmlFor="title">Titre</Label>
-        <Input
-          id="title"
-          name="title"
-          type="text"
-          value={title}
-          onChange={handleInputChange}
-          className="mt-1 block w-full rounded-md border-gray-300 shadow-sm"
-        />
-      </div>
-      <div className="mb-4">
-        <Label htmlFor="author">Auteur</Label>
-        <Input
-          id="author"
-          name="author"
-          type="text"
-          value={author}
-          onChange={handleInputChange}
-          className="mt-1 block w-full rounded-md border-gray-300 shadow-sm"
-        />
-      </div>
-      <div className="mb-4">
-        <Label htmlFor="description">Description</Label>
-        <Input
-          id="description"
-          name="description"
-          type="text"
-          value={description}
-          onChange={handleInputChange}
-          className="mt-1 block w-full rounded-md border-gray-300 shadow-sm"
-        />
-      </div>
-      <div className="mb-4">
-        <Label htmlFor="status">Status</Label>
-        <select
-          id="status"
-          name="status"
-          value={status}
-          onChange={handleInputChange}
-          className="mt-1 block w-full rounded-md border-gray-300 shadow-sm"
-        >
-          <option value="pending">En attente de publication</option>
-          <option value="approved">Publiée</option>
-        </select>
-      </div>
-      <div className="mb-4">
-        <Label htmlFor="date">Date</Label>
-        <Input
-          id="date"
-          name="date"
-          type="date"
-          value={typeof date === "string" ? date : date.toISOString().split("T")[0]}
-          onChange={handleInputChange}
-          className="mt-1 block w-full rounded-md border-gray-300 shadow-sm"
-        />
-      </div>
-      <div className="mb-4">
-        <Label htmlFor="image1">Image 1</Label>
-        <Input
-          id="image1"
-          name="image1"
-          type="file"
-          onChange={handleImageChange}
-          className="mt-1 block w-full"
-        />
-        {blog.image_1 && <img src={blog.image_1} alt={blog.title} className="w-16 h-16 rounded-full mt-2" />}
-      </div>
-      <div className="mb-4">
-        <Label htmlFor="image2">Image 2</Label>
-        <Input
-          id="image2"
-          name="image2"
-          type="file"
-          onChange={handleImageChange}
-          className="mt-1 block w-full"
-        />
-        {blog.image_2 && <img src={blog.image_2} alt={blog.title} className="w-16 h-16 rounded-full mt-2" />}
-      </div>
-      <div className="mb-4">
-        <Label htmlFor="full_text">Texte Complet</Label>
-        <ReactQuill
-          id="full_text"
-          value={fullText}
-          onChange={handleQuillChange}
-          className="w-full"
-          theme="snow"
-        />
-      </div>
-      <div className="flex justify-end space-x-2">
-        <Button type="submit" className="px-4 py-2 bg-blue-600 text-white rounded-md">
-          Enregistrer
-        </Button>
-      </div>
-    </form>
+    <div className="max-w-4xl mx-auto p-6 bg-white rounded-lg shadow">
+      <form onSubmit={handleSubmit} className="space-y-8">
+        <div className="border-b pb-6">
+          <h1 className="text-2xl font-bold mb-6">Modifier Blog</h1>
+          
+          <div className="grid md:grid-cols-2 gap-6">
+            <div className="space-y-2">
+              <Label htmlFor="title" className="text-sm font-medium">Titre</Label>
+              <Input
+                id="title"
+                name="title"
+                value={title}
+                onChange={handleInputChange}
+                className="w-full"
+              />
+            </div>
+
+            <div className="space-y-2">
+              <Label htmlFor="author" className="text-sm font-medium">Auteur</Label>
+              <Input
+                id="author"
+                name="author"
+                value={author}
+                onChange={handleInputChange}
+                className="w-full"
+              />
+            </div>
+          </div>
+        </div>
+
+        <div className="space-y-6">
+          <div className="space-y-2">
+            <Label htmlFor="description" className="text-sm font-medium">Description</Label>
+            <Input
+              id="description"
+              name="description"
+              value={description}
+              onChange={handleInputChange}
+              className="w-full"
+            />
+          </div>
+
+          <div className="grid md:grid-cols-2 gap-6">
+            <div className="space-y-2">
+              <Label htmlFor="status" className="text-sm font-medium">Status</Label>
+              <select
+                id="status"
+                name="status"
+                value={status}
+                onChange={handleInputChange}
+                className="w-full p-2 border rounded-md"
+              >
+                <option value="pending">En attente de publication</option>
+                <option value="approved">Publiée</option>
+              </select>
+            </div>
+
+            <div className="space-y-2">
+              <Label htmlFor="date" className="text-sm font-medium">Date</Label>
+              <Input
+                id="date"
+                name="date"
+                type="date"
+                value={typeof date === "string" ? date : date.toISOString().split("T")[0]}
+                onChange={handleInputChange}
+                className="w-full"
+              />
+            </div>
+          </div>
+        </div>
+
+        <div className="border-t border-b py-6 space-y-6">
+          <div className="grid md:grid-cols-2 gap-6">
+            <div className="space-y-2">
+              <Label htmlFor="image1" className="text-sm font-medium">Image 1</Label>
+              <div className="border rounded-lg p-4">
+                <Input
+                  id="image1"
+                  name="image1"
+                  type="file"
+                  onChange={handleImageChange}
+                  className="w-full"
+                />
+                {blog.image_1 && (
+                  <img 
+                    src={blog.image_1} 
+                    alt="Preview 1" 
+                    className="mt-2 h-32 w-full object-cover rounded"
+                  />
+                )}
+              </div>
+            </div>
+
+            <div className="space-y-2">
+              <Label htmlFor="image2" className="text-sm font-medium">Image 2</Label>
+              <div className="border rounded-lg p-4">
+                <Input
+                  id="image2"
+                  name="image2"
+                  type="file"
+                  onChange={handleImageChange}
+                  className="w-full"
+                />
+                {blog.image_2 && (
+                  <img 
+                    src={blog.image_2} 
+                    alt="Preview 2" 
+                    className="mt-2 h-32 w-full object-cover rounded"
+                  />
+                )}
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div className="space-y-2">
+          <Label htmlFor="full_text" className="text-sm font-medium">Contenu</Label>
+          <div className="border rounded-lg">
+            <ReactQuill
+              id="full_text"
+              value={fullText}
+              onChange={handleQuillChange}
+              theme="snow"
+              className="h-64"
+            />
+          </div>
+        </div>
+
+        <div className="flex justify-end space-x-4 pt-6">
+          <Button
+            type="button"
+            variant="outline"
+            className="px-6"
+            onClick={handleCancel}
+          >
+            Annuler
+          </Button>
+          <Button
+            type="submit"
+            className=" flex reserver-button text-sm sm:text-base font-bold font-lato rounded-lg  py-2 sm:py-3 bg-bgColor text-marron  duration-300 ease-in-out transform"
+
+          >
+            Enregistrer
+          </Button>
+        </div>
+      </form>
+    </div>
   );
 };
 

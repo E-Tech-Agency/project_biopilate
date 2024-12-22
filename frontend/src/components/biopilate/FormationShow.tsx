@@ -69,7 +69,7 @@ export default function FormationShow() {
 
     const deleteFormation = async (id: number) => {
         try {
-            await api.delete(`formations/${id}`);
+            await api.delete(`formations/${id}/`);
             getFormations();
         } catch (error) {
             console.error("Error deleting formation", error);
@@ -168,8 +168,8 @@ export default function FormationShow() {
                                 </TableCell>
                                 <TableCell className="hidden md:table-cell">
                                     <div className="flex space-x-2">
-                                        {/* {formation.status === "pending" && <span className="text-danger">En attente</span>}
-                                        {formation.status === "approved" && <span className="text-emerald-500">Publiée</span>} */}
+                                        {formation.status === "pending" && <span className="text-danger">En attente</span>}
+                                        {formation.status === "approved" && <span className="text-emerald-500">Publiée</span>}
                                     </div>
                                 </TableCell>
                                 <TableCell className="hidden md:table-cell">{new Date(formation.created_at).toLocaleDateString()}</TableCell>

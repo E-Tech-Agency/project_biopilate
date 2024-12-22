@@ -27,9 +27,9 @@ environ.Env.read_env(BASE_DIR / '.env')
 SECRET_KEY = "django-insecure-ck#kon504#qtk$-ojh5rsw_(b0@-$)b*v+7j=+1^70q4(837%t"
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = ['141.94.23.119', 'localhost', '127.0.0.1']
+ALLOWED_HOSTS = ['141.94.23.119']
 
 APPEND_SLASH = False
 
@@ -66,12 +66,11 @@ CORS_ALLOW_ALL_ORIGINS = True
 CORS_ALLOW_CREDENTIALS = True
 CSRF_TRUSTED_ORIGINS = [
     "http://141.94.23.119",
-     "http://localhost:5173",
-     "http://127.0.0.1:5173",
+
 ]
 CORS_ALLOWED_ORIGINS = [
     "http://141.94.23.119",
-    "http://localhost:5173",
+
 ]
 
 ROOT_URLCONF = 'backend.urls'
@@ -106,10 +105,10 @@ MEDIA_ROOT = BASE_DIR / 'media'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'biopilates',
-        'USER': 'multilab',
+        'NAME': 'biopilatesbmg',
+        'USER': 'biopilates',
         'PASSWORD': 'root',
-        'HOST': 'localhost',
+        'HOST': '127.0.0.1',
         'PORT': '5432',
     }
 }
@@ -128,8 +127,8 @@ SIMPLE_JWT = {
     'AUTH_HEADER_TYPES': ('Bearer',),
 }
 
-DOMAIN = 'localhost:5173'
-SITE_NAME = 'Test Technique'
+DOMAIN = '141.94.23.119'
+SITE_NAME = 'Biopilates'
 
 AUTH_USER_MODEL = 'accounts.User'
 
