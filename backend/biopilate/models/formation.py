@@ -8,7 +8,6 @@ class Formation(models.Model):
     status = models.CharField('Status', max_length=10, choices=STATUS_CHOICES, default='pending')
     title = models.CharField(max_length=200)
     description = models.TextField()
-    related_formation = models.ForeignKey('self', on_delete=models.CASCADE, null=True, blank=True, related_name='related_formations', verbose_name="Related Formation")
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 

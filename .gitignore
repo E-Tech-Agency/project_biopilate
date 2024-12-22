@@ -9,9 +9,3 @@ node_modules
 */backend/migrations
 
 
-frontend/vite.config.ts
-
-
-frontend/src/lib/api.ts
-frontend/src/lib/apiCreateProduct.ts
-frontend/src/lib/apiCreateTeache.ts
