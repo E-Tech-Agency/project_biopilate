@@ -8,8 +8,28 @@ import "swiper/css";
 import "swiper/css/pagination";
 import "@/assets/styles/swiper.css";
 import { Pagination, Navigation } from "swiper/modules";
-
+type TarifAction = "Envoyer" | "Réserver";
+interface Tarif {
+  title: string;
+  price: string;
+  pack1: string;
+  pack2: string;
+  pack3: string;
+  validity: string;
+  action: TarifAction;
+  status?: "Nouveau";
+}
 export default function Offres() {
+  const handleButtonClick = (action: TarifAction): void => {
+    if (action === "Envoyer") {
+      window.location.href = "mailto:hello@biopilates.fr";
+    } else {
+      window.open(
+        "https://backoffice.bsport.io/m/Studio%20Biopilates%20Paris/878/calendar/?isPreview=true&tabSelected=0",
+        "_blank"
+      );
+    }
+  };
   return (
     <div className="relative">
       <p className="text-marron text-xl md:text-[34px] leading-snug mb-4 font-ebGaramond font-bold">
@@ -85,7 +105,7 @@ export default function Offres() {
         }}
       >
         <div className="flex flex-nowrap justify-center items-center gap-8 overflow-hidden">
-          {tarifs.map((offre, index) => (
+          {(tarifs as Tarif[]).map((offre, index) => (
             <SwiperSlide key={index}>
               <div
                 className={`relative py-10 mt-10 m-auto max-sm:mx-2 flex flex-col justify-between items-center bg-bgColor px-4 rounded-lg shadow-md min-w-[260px] sm:min-w-[300px] max-w-[330px] h-[335px] md:h-[400px] font-lato ${
@@ -142,16 +162,10 @@ export default function Offres() {
                   </p>
                   <button
                     className="button-offre-hover font-bold flex justify-center items-center gap-2 text-marron rounded-md px-16 sm:px-24 py-2 bg-white shadow-sm"
-                    onClick={() => {
-                      window.open(
-                        "https://backoffice.bsport.io/m/Studio%20Biopilates%20Paris/878/calendar/?isPreview=true&tabSelected=0 ",
-                        "_blank"
-                      );
-                    }}
+                    onClick={() => handleButtonClick(offre.action)}
                   >
-                    {offre.action == "Envoyer" && (
+                    {offre.action === "Envoyer" && (
                       <div className="text-[22px]">
-                        {" "}
                         <CiMail />
                       </div>
                     )}

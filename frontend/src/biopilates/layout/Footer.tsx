@@ -7,6 +7,13 @@ import { RiInstagramFill } from "react-icons/ri";
 // Import the logo image
 import logoImage from "@/assets/images/biopilate-logo.png";
 
+type ContactItem = {
+  icon: React.ElementType;
+  text: string;
+  ariaLabel: string;
+  href?: string;
+};
+
 export default function Footer() {
   const menuItems = [
     { label: "Accueil", href: "/" },
@@ -17,12 +24,17 @@ export default function Footer() {
     { label: "Contact", href: "/contact" },
   ];
 
-  const contactInfo = [
-    { icon: LuPhone, text: "+33 6 50 81 18 92", ariaLabel: "Phone number" },
+  const contactInfo: ContactItem[] = [
+    { 
+      icon: LuPhone, 
+      text: "+33 6 50 81 18 92", 
+      ariaLabel: "Phone number" 
+    },
     {
       icon: LiaEnvelope,
       text: "studio@biopilates.fr",
       ariaLabel: "Email address",
+      href: "mailto:studio@biopilates.fr"
     },
     {
       icon: PiMapPinLight,
@@ -30,6 +42,12 @@ export default function Footer() {
       ariaLabel: "Address",
     },
   ];
+
+  const handleContactClick = (item: ContactItem) => {
+    if (item.href) {
+      window.location.href = item.href;
+    }
+  };
 
   return (
     <footer className="bottom-0 w-full flex justify-center items-center flex-col flex-wrap px-2 sm:py-16 pb-7 bg-bgColor sm:mt-auto">
@@ -44,11 +62,9 @@ export default function Footer() {
           <div className="mt-6 text-xs sm:text-base">
             L'Équilibre en Mouvement, la Pureté en Action
           </div>
-          {/* social media buttons */}
           <div className="mt-4">
             <button
-              className="text-bgColor bg-black rounded-sm text-lg p-1.5 mr-4
-                "
+              className="text-bgColor bg-black rounded-sm text-lg p-1.5 mr-4"
               onClick={() => {
                 window.open(
                   "https://www.facebook.com/STUDIOBIOPILATESPARIS",
@@ -94,8 +110,8 @@ export default function Footer() {
               {contactInfo.map((item, index) => (
                 <li
                   key={index}
-                  className="flex gap-3 shrink
-                "
+                  className={`flex gap-3 shrink ${item.href ? 'cursor-pointer hover:text-marron transition-colors' : ''}`}
+                  onClick={() => handleContactClick(item)}
                 >
                   <item.icon
                     className="shrink-0 w-5 h-5"
@@ -111,7 +127,7 @@ export default function Footer() {
       <div className="relative flex justify-center items-center mt-10 text-[10px] sm:text-sm tracking-tight text-center capitalize text-neutral-900 md:mt-10 w-full">
         <div className="absolute w-full h-px bg-neutral-900" />
         <div className="bg-bgColor z-10 inline-block px-3">
-          ©2024.Biopilates Crée et développé par {""}
+          ©2024.Biopilates Crée et développé par {" "}
           <strong>BRAND AND COM</strong>
         </div>
       </div>

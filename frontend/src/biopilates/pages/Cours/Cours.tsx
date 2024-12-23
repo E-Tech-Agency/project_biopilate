@@ -113,23 +113,24 @@ export default function Cours() {
 
       {/* mobile */}
       <section className="mb-12 lg:hidden flex flex-col justify-between items-center ">
-        <p className="text-marron text-xl sm:text-[34px] leading-snug font-bold font-ebGaramond max-sm:mb-4">
+        <p className="text-marron text-xl sm:text-[34px] leading-snug text-start font-bold w-full font-ebGaramond max-sm:mb-4  ">
           Cours Pilates à Paris – Biopilates
         </p>
+        <p className="leading-normal text-lg sm:text-[28px] text-marron font-medium font-ebGaramond">
+            Développez votre potentiel et atteignez vos objectifs grâce à nos
+            cours de Pilates pour tous niveaux !
+          </p>
 
         {/* carousel */}
         <CircleSwiperCarousel images={images} />
 
         {/* text */}
         <div className="flex flex-col justify-center items-center md:items-baseline min-w-min px-2 gap-5 font-lato">
-          <p className="leading-normal text-lg sm:text-[28px] text-marron font-medium font-ebGaramond">
-            Développez votre potentiel et atteignez vos objectifs grâce à nos
-            cours de Pilates pour tous niveaux !
-          </p>
+         
 
           <p className="text-sm sm:text-lg leading-normal">
             Nos <strong>instructeurs certifiés et expérimentés</strong> vous
-            accompagnent dans votre progression et vous guident vers :
+            accompagnent dans votre progression et vous guident vers: 
             <p className="mt-2">
               <ul className="list-disc ml-5">
                 <li>
@@ -225,7 +226,7 @@ export default function Cours() {
                items-center rounded-md border border-solid border-marron pl-3 pr-6"
               onClick={() => {
                 window.open(
-                  "https://play.google.com/store/apps/details?id=com.bsport&hl=en",
+                  "https://apps.apple.com/gb/app/bsport-solutions/id1356621554",
                   "_blank"
                 );
               }}
