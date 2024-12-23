@@ -9,7 +9,7 @@ class BlogImageSerializer(serializers.ModelSerializer):
         fields = ['id', 'image']
 class BlogSerializer(serializers.ModelSerializer):
     images = BlogImageSerializer(many=True, read_only=True)
-    tages = TagesSerializer(many=True, read_only=True)
+    tages = TagesSerializer(many=True, read_only=True, source='tages_blog')
 
     class Meta:
         model = Blog

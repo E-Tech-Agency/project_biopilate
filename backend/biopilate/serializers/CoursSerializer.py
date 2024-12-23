@@ -12,7 +12,7 @@ class CategoryCoursSerializer(serializers.ModelSerializer):
 class CoursSerializer(serializers.ModelSerializer):
     category_cours = serializers.CharField(
         source='category.name', read_only=True)
-    tages = TagesSerializer(many=True, read_only=True)
+    tages = TagesSerializer(many=True, read_only=True, source='tages_cours')
 
     class Meta:
         model = Cours
