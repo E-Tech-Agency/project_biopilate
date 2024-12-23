@@ -111,14 +111,15 @@ export default function Apropos() {
         <p className="text-marron text-xl sm:text-[34px] leading-snug text-start font-ebGaramond font-bold w-full max-sm:mb-4">
           Caroline,
         </p>
+        <p className="sm:leading-normal tex-xl sm:text-[28px] text-marron font-ebGaramond">
+            Fondatrice 1du studio Biopilates : passionnée de mouvement et experte
+            en Pilates
+          </p>
         <CircleSwiperCarousel images={images} />
 
         {/* text bio */}
         <div className="flex flex-col items-baseline md:px-5 gap-4 sm:gap-5 font-lato text-justify">
-          <p className="sm:leading-normal tex-xl sm:text-[28px] text-marron font-ebGaramond">
-            Fondatrice du studio Biopilates : passionnée de mouvement et experte
-            en Pilates
-          </p>
+          
           <div className="text-sm sm:text-lg font-lato sm:leading-7">
             <p>
               Caroline est une <strong>experte en Pilates</strong> et en

@@ -439,7 +439,7 @@ export function RegisterForm({
               <div id="signInDiv" className="w-full rounded-lg my-3"></div>
               <button
                 type="submit"
-                className="reserver-button button-hover flex mx-auto mb-2.5 flex-col justify-center items-center text-sm sm:text-base font-bold font-lato rounded-lg w-full py-2 sm:py-3 bg-bgColor text-marron transition duration-300 ease-in-out transform"
+                className="reserver-button overflow-hidden flex mx-auto mb-3 flex-col justify-center items-center text-sm sm:text-base font-bold font-lato rounded-lg w-full py-2 sm:py-3 bg-bgColor text-marron transition duration-300 ease-in-out transform"
               >
                 <div className="hover-circle overflow-hidden" />
                 Créer un compte
@@ -470,9 +470,9 @@ export function RegisterForm({
         <DialogOverlay />
         <DialogContent className="sm:max-w-[425px]">
           <DialogHeader>
-            <DialogTitle>Verification code</DialogTitle>
+            <DialogTitle>Code de vérification</DialogTitle>
             <DialogDescription>
-              Please enter the verification code sent to your email
+            Veuillez entrer le code de vérification envoyé à votre email.
             </DialogDescription>
           </DialogHeader>
           <form onSubmit={handleVerify}>
@@ -493,7 +493,8 @@ export function RegisterForm({
               </div>
             </div>
             <DialogFooter>
-              <Button type="submit"> submit</Button>
+              <button type="submit"           className="reserver-button overflow-hidden flex mx-auto mb-3 flex-col justify-center items-center text-sm sm:text-base font-bold font-lato rounded-lg w-full py-2 sm:py-3 bg-bgColor text-marron transition duration-300 ease-in-out transform"
+              > submit</button>
             </DialogFooter>
           </form>
         </DialogContent>
