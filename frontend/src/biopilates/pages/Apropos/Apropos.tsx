@@ -112,7 +112,7 @@ export default function Apropos() {
           Caroline,
         </p>
         <p className="sm:leading-normal tex-xl sm:text-[28px] text-marron font-ebGaramond">
-            Fondatrice 1du studio Biopilates : passionnée de mouvement et experte
+            Fondatrice du studio Biopilates : passionnée de mouvement et experte
             en Pilates
           </p>
         <CircleSwiperCarousel images={images} />
