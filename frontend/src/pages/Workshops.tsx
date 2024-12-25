@@ -95,9 +95,9 @@ export default function Workshops() {
   };
 
   const defaultCategories = [
-    { id: 0, name: "Tous" },
-    { id: 1, name: "Anatomie" },
-    { id: 2, name: "Pilates" },
+    { id: 0, name: "Workshop Matwork" },
+    { id: 1, name: "golfeurs" },
+    { id: 2, name: "Reformer" },
   ];
 
   const fallbackWorkshops: WorkShop[] = [
@@ -107,20 +107,20 @@ export default function Workshops() {
       description: "An online workshop to improve your skills.",
       status: "approved",
       image: workshop1,
-      category: defaultCategories[1].id,  // Use only the category ID here
-      category_workshop: defaultCategories[1].name,  // Use the category name here
+      category: defaultCategories[0].id,  // Use only the category ID here
+      category_workshop: defaultCategories[0].name,  // Use the category name here
       pdf_workshop: "",
       created_at: new Date(),
       updated_at: new Date(),
     },
     {
       id: 2,
-      title: "Workshop Matwork",
+      title: "Matwork",
       description: "A workshop focusing on mat exercises.",
       status: "approved",
       image: workshop2,
-      category: defaultCategories[2].id,  // Use only the category ID here
-      category_workshop: defaultCategories[2].name,  // Use the category name here
+      category: defaultCategories[1].id,  // Use only the category ID here
+      category_workshop: defaultCategories[1].name,  // Use the category name here
       pdf_workshop: "",
       created_at: new Date(),
       updated_at: new Date(),
@@ -131,8 +131,8 @@ export default function Workshops() {
       description: "Reformer Pilates workshop for all levels.",
       status: "approved",
       image: workshop3,
-      category: defaultCategories[1].id,  // Use only the category ID here
-      category_workshop: defaultCategories[1].name,  // Use the category name here
+      category: defaultCategories[2].id,  // Use only the category ID here
+      category_workshop: defaultCategories[2].name,  // Use the category name here
       pdf_workshop: "",
       created_at: new Date(),
       updated_at: new Date(),
@@ -155,8 +155,8 @@ export default function Workshops() {
       description: "Pilates workshop for golfers to improve flexibility.",
       status: "approved",
       image: workshop5,
-      category: defaultCategories[2].id,  // Use only the category ID here
-      category_workshop: defaultCategories[2].name,  // Use the category name here
+      category: defaultCategories[1].id,  // Use only the category ID here
+      category_workshop: defaultCategories[1].name,  // Use the category name here
       pdf_workshop: "",
       created_at: new Date(),
       updated_at: new Date(),

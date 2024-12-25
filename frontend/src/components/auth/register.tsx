@@ -148,7 +148,7 @@ export function RegisterForm({
       localStorage.setItem("is_supplier", server_res.data.is_supplier);
       localStorage.setItem("is_supperuser", server_res.data.is_supplier);
       setIsLoggedIn(true);
-      navigate("/dashboard");
+      navigate("/manuel");
     } catch (error) {
       console.log(error);
     }

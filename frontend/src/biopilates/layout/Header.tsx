@@ -325,7 +325,7 @@ export default function Header({ isLoggedIn }: { isLoggedIn: boolean }) {
         <div className="flex gap-4 pl-auto font-bold text-center text-stone-500">
           {isLoggedIn ? (
             <Link
-              to="/dashboard"
+              to="/manuel"
               className="hidden md:flex items-center justify-center gap-3 my-auto text-lg border border-bgColor rounded-lg px-6 py-4"
             >
               <div className="max-md:hidden leading-5">Dashboard</div>

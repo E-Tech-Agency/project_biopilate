@@ -128,7 +128,14 @@ export default function Footer() {
         <div className="absolute w-full h-px bg-neutral-900" />
         <div className="bg-bgColor z-10 inline-block px-3">
           ©2024.Biopilates Crée et développé par {" "}
-          <strong>BRAND AND COM</strong>
+          <strong> <a
+            href="https://www.brandandcom.digital/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="font-bold"
+          >
+            BRAND AND COM
+          </a></strong>
         </div>
       </div>
     </footer>
