@@ -332,7 +332,7 @@ export function EditForm() {
                 />
               </div>
             </div>
-            <Button
+            <button
               type="submit"
               disabled={isLoading}
               className="mt-6 w-full bg-bgColor text-marron font-bold py-2 px-4 rounded-lg hover:opacity-90 transition-opacity disabled:opacity-50"
@@ -345,7 +345,7 @@ export function EditForm() {
               ) : (
                 "Modifier"
               )}
-            </Button>
+            </button>
           </form>
         </div>
       </Card>
