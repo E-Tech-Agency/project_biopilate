@@ -109,7 +109,7 @@ export default function Workshops() {
       image: workshop1,
       category: defaultCategories[1].id,  // Use only the category ID here
       category_workshop: defaultCategories[1].name,  // Use the category name here
-      pdf_workshop: "https://fallback-link.example.com",
+      pdf_workshop: "",
       created_at: new Date(),
       updated_at: new Date(),
     },
@@ -121,7 +121,7 @@ export default function Workshops() {
       image: workshop2,
       category: defaultCategories[2].id,  // Use only the category ID here
       category_workshop: defaultCategories[2].name,  // Use the category name here
-      pdf_workshop: "https://fallback-link.example.com",
+      pdf_workshop: "",
       created_at: new Date(),
       updated_at: new Date(),
     },
@@ -133,7 +133,7 @@ export default function Workshops() {
       image: workshop3,
       category: defaultCategories[1].id,  // Use only the category ID here
       category_workshop: defaultCategories[1].name,  // Use the category name here
-      pdf_workshop: "https://fallback-link.example.com",
+      pdf_workshop: "",
       created_at: new Date(),
       updated_at: new Date(),
     },
@@ -145,7 +145,7 @@ export default function Workshops() {
       image: workshop4,
       category: defaultCategories[2].id,  // Use only the category ID here
       category_workshop: defaultCategories[2].name,  // Use the category name here
-      pdf_workshop: "https://fallback-link.example.com",
+      pdf_workshop: "",
       created_at: new Date(),
       updated_at: new Date(),
     },
@@ -157,7 +157,7 @@ export default function Workshops() {
       image: workshop5,
       category: defaultCategories[2].id,  // Use only the category ID here
       category_workshop: defaultCategories[2].name,  // Use the category name here
-      pdf_workshop: "https://fallback-link.example.com",
+      pdf_workshop: "",
       created_at: new Date(),
       updated_at: new Date(),
     },
@@ -169,7 +169,7 @@ export default function Workshops() {
       image: workshop6,
       category: defaultCategories[2].id,  // Use only the category ID here
       category_workshop: defaultCategories[2].name,  // Use the category name here
-      pdf_workshop: "https://fallback-link.example.com",
+      pdf_workshop: "",
       created_at: new Date(),
       updated_at: new Date(),
     },
@@ -181,7 +181,7 @@ export default function Workshops() {
       image: workshop7,
       category: defaultCategories[1].id,  // Use only the category ID here
       category_workshop: defaultCategories[1].name,  // Use the category name here
-      pdf_workshop: "https://fallback-link.example.com",
+      pdf_workshop: "",
       created_at: new Date(),
       updated_at: new Date(),
     },
@@ -193,7 +193,7 @@ export default function Workshops() {
       image: workshop8,
       category: defaultCategories[1].id,  // Use only the category ID here
       category_workshop: defaultCategories[1].name,  // Use the category name here
-      pdf_workshop: "https://fallback-link.example.com",
+      pdf_workshop: "",
       created_at: new Date(),
       updated_at: new Date(),
     },
@@ -235,7 +235,7 @@ export default function Workshops() {
             </p>
             <ReserverButton
               text="Télécharger"
-              link={workshop.pdf_workshop || "https://fallback-link.example.com"}
+              link={workshop.pdf_workshop || ""}
             />
           </div>
         ))}
