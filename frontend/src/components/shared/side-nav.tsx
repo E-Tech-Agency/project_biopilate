@@ -221,7 +221,7 @@ export default function SideNav() {
             onClick={() => setIsSidebarOpen(false)}
           >
             <FaArrowLeft className="text-xl" />
-            <span>Retour à l'acceuil</span>
+            <span>Retour à l'accueil</span>
           </Link>
           <Link
             to="/user"
@@ -229,7 +229,7 @@ export default function SideNav() {
             onClick={() => setIsSidebarOpen(false)}
           >
             <BsGearFill className="text-xl" />
-            <span>Paramétres</span>
+            <span>Paramètres</span>
           </Link>
         </div>
       </div>

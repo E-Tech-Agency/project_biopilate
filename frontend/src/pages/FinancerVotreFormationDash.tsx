@@ -5,6 +5,9 @@ import ReserverButton from "@/biopilates/components/ReserverButton";
 import { FinancerFormation } from "@/types/types";
 import api from "@/lib/api";
 import { useNavigate } from "react-router-dom";
+import financerPdf1 from "@/assets/doc/Bienvenue aux étudiants.pdf";
+import financerPdf2 from "@/assets/doc/Conditions Générale de vente.pdf";
+import financerPdf3 from "@/assets/doc/Règlement intérieur.pdf";
 
 export default function FinancerVotreFormationDash() {
   const [formations, setFormations] = useState<FinancerFormation[]>([]);
@@ -37,17 +40,17 @@ export default function FinancerVotreFormationDash() {
     {
       title: "Bienvenue aux étudiants",
       image: financer1,
-      pdf_financer_formation: "",
+      pdf_financer_formation:financerPdf1,
     },
     {
       title: "Conditions Générales de vente",
       image: financer2,
-      pdf_financer_formation: "",
+      pdf_financer_formation: financerPdf2,
     },
     {
       title: "Règlement intérieur",
       image: financer1,
-      pdf_financer_formation: "",
+      pdf_financer_formation: financerPdf3,
     },
   ];
 
@@ -70,11 +73,8 @@ export default function FinancerVotreFormationDash() {
             {formation.title}
           </p>
           <ReserverButton
-            text="Commander"
-            link={
-              formation.pdf_financer_formation ||
-              "https://backoffice.bsport.io/m/Studio%20Biopilates%20Paris/878/calendar/?isPreview=true&tabSelected=0"
-            }
+            text="Télécharger"
+            link={formation.pdf_financer_formation}
           />
         </div>
       ))}

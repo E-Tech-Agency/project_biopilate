@@ -57,7 +57,7 @@ export function LoginForm({
       localStorage.setItem("first_name", res.data.first_name);
       localStorage.setItem("last_name", res.data.last_name);
       setIsLoggedIn(true);
-      navigate("/dashboard");
+      navigate("/manuel");
     } catch (error) {
       if (axios.isAxiosError(error)) {
         const errors = error.response?.data;
