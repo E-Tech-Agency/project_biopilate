@@ -99,7 +99,7 @@ export function Navbar({
           Bienvenue  {user.first_name}
         </h1>
         <p className="text-xs font-semibold">
-          Voici votre tableau de bord des manuels{" "}
+          Voici votre tableau de bord {" "}
         </p>
       </div>
 

@@ -235,7 +235,7 @@ export default function Workshops() {
             </p>
             <ReserverButton
               text="Télécharger"
-              link={workshop.pdf_workshop || ""}
+              link={workshop.pdf_workshop || "#"}
             />
           </div>
         ))}
