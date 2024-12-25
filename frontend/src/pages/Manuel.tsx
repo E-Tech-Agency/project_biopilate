@@ -22,8 +22,8 @@ export default function Manuel() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    const isSupplier = localStorage.getItem("is_supplier");
-    if (!isSupplier || isSupplier == "true") {
+    const authToken = localStorage.getItem("token");
+    if (!authToken) {
       navigate("/login");
     }
   }, [navigate]);

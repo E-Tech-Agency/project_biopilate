@@ -11,7 +11,7 @@ export default function FinancerVotreFormationDash() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    const authToken = localStorage.getItem("auth_token");
+    const authToken = localStorage.getItem("token");
     if (!authToken) {
       navigate("/login");
     }
