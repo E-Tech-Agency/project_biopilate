@@ -31,10 +31,10 @@ export default function Gyrotonic() {
       <div className="flex flex-col mt-8 mx-5 md:mx-12 mb-12 gap-6 font-lato">
         <div className="flex flex-col">
           <div className="flex flex-col gap-3">
-            <h1 className="text-3xl font-ebGaramond text-marron font-bold">
+            <h1 className="text-xl sm:text-[34px] font-ebGaramond text-marron font-bold">
               Formation et Cours GYROTONIC® à Paris - Studio Biopilates
             </h1>
-            <h2 className="text-xl font-ebGaramond text-blueText font-medium max-md:hidden">
+            <h2 className="text-lg sm:text-xl font-ebGaramond text-blueText font-medium ">
               Découvrez les cours et formations GYROTONIC® à Paris. Méthode
               innovante pour améliorer la force, la souplesse et l'équilibre.
               Rejoignez nous au Studio Biopilates pour des séances adaptées à
@@ -47,12 +47,6 @@ export default function Gyrotonic() {
             alt="Stott Pilates"
             className="rounded-sm w-full max-h-[680px] object-cover shadow-lg my-6"
           />
-          <h2 className="text-lg font-ebGaramond text-blueText font-medium md:hidden">
-            Découvrez les cours et formations GYROTONIC® à Paris. Méthode
-            innovante pour améliorer la force, la souplesse et l'équilibre.
-            Rejoignez nous au Studio Biopilates pour des séances adaptées à tous
-            les niveaux.
-          </h2>
         </div>
 
         <p className="text-justify leading-8">

@@ -26,8 +26,7 @@ import register_pic from "@/assets/images/register-pic.jpg";
 import { Link } from "react-router-dom";
 import "@/styles/index.css";
 import PhoneInput from "react-phone-input-2";
-import 'react-phone-number-input/style.css'; // Import the styles for phone input
-
+import "react-phone-number-input/style.css"; // Import the styles for phone input
 
 // interface PasswordHideProps {
 //   visible: boolean;
@@ -184,7 +183,6 @@ export function RegisterForm({
   //     </div>
   //   );
   // };
-  
 
   return (
     <>
@@ -296,90 +294,90 @@ export function RegisterForm({
                 </div>
               </div>
 
-                              <div className="mb-5">
-                  <label
-                    className="block font-ebGaramond text-sm sm:text-xl font-bold mb-2"
-                    htmlFor="phone_number"
-                  >
-                    Numéro de téléphone
-                  </label>
-                  {error?.phone_number && (
-                    <p className="text-red-500">{error.phone_number[0]}</p>
-                  )}
-                  <div className="relative">
-                    <PhoneInput
-                      country={"fr"}
-                      value={data.phone_number}
-                      onChange={(phone) => setData({ ...data, phone_number: phone })}
-                      inputStyle={{
-                        width: '100%',
-                        backgroundColor: '#F8F9FF',
-                        border: '1px solid #000',
-                        borderRadius: '8px',
-                        fontSize: '16px',
-                        padding: '12px 12px 12px 48px',
-                        color: '#111827'
-                      }}
-                      buttonStyle={{
-                        backgroundColor: 'transparent',
-                        border: 'none',
-                        padding: '0',
-                        position: 'absolute',
-                        left: '12px',
-                        top: '50%',
-                        transform: 'translateY(-50%)',
-                      }}
-                      containerStyle={{
-                        width: '100%',
-                      }}
-                      dropdownStyle={{
-                        width: '300px',
-                        margin: '4px 0',
-                        padding: '8px 0',
-                        borderRadius: '8px',
-                        border: '1px solid #E5E7EB',
-                        backgroundColor: 'white',
-                        boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)',
-                      }}
-                    />
-                  </div>
-                </div>
-
-
-            <div className="mb-5">
-              <label
-                className="block text-sm sm:text-xl font-bold mb-2"
-                htmlFor="password"
-              >
-                Mot de passe
-              </label>
-              {error?.password && (
-                <p className="text-red-500 mb-1">{error.password[0]}</p>
-              )}
-              <div className="relative flex items-center rounded-md shadow-sm">
-                <span className="absolute left-3 text-gray-500 text-lg">
-                  <FaLock />
-                </span>
-                <input
-                  type={visible ? "text" : "password"}
-                  id="password"
-                  value={data.password}
-                  onChange={(e) =>
-                    setData({ ...data, password: e.target.value })
-                  }
-                  className="pl-10 bg-gray-50 border border-marron text-gray-900 text-sm sm:text-base rounded-md block w-full p-2.5"
-                  required
-                />
-                <button
-                  type="button"
-                  onClick={() => setVisible(!visible)}
-                  className="absolute right-3 text-gray-500 text-lg"
+              <div className="mb-5">
+                <label
+                  className="block font-ebGaramond text-sm sm:text-xl font-bold mb-2"
+                  htmlFor="phone_number"
                 >
-                  {visible ? <FaEyeSlash /> : <FaEye />}
-                </button>
+                  Numéro de téléphone
+                </label>
+                {error?.phone_number && (
+                  <p className="text-red-500">{error.phone_number[0]}</p>
+                )}
+                <div className="relative">
+                  <PhoneInput
+                    country={"fr"}
+                    value={data.phone_number}
+                    onChange={(phone) =>
+                      setData({ ...data, phone_number: phone })
+                    }
+                    inputStyle={{
+                      width: "100%",
+                      backgroundColor: "#F8F9FF",
+                      border: "1px solid #000",
+                      borderRadius: "8px",
+                      fontSize: "16px",
+                      padding: "12px 12px 12px 48px",
+                      color: "#111827",
+                    }}
+                    buttonStyle={{
+                      backgroundColor: "transparent",
+                      border: "none",
+                      padding: "0",
+                      position: "absolute",
+                      left: "12px",
+                      top: "50%",
+                      transform: "translateY(-50%)",
+                    }}
+                    containerStyle={{
+                      width: "100%",
+                    }}
+                    dropdownStyle={{
+                      width: "300px",
+                      margin: "4px 0",
+                      padding: "8px 0",
+                      borderRadius: "8px",
+                      border: "1px solid #E5E7EB",
+                      backgroundColor: "white",
+                      boxShadow: "0 4px 6px -1px rgba(0, 0, 0, 0.1)",
+                    }}
+                  />
+                </div>
               </div>
-            </div>
 
+              <div className="mb-5">
+                <label
+                  className="block text-sm sm:text-xl font-bold mb-2"
+                  htmlFor="password"
+                >
+                  Mot de passe
+                </label>
+                {error?.password && (
+                  <p className="text-red-500 mb-1">{error.password[0]}</p>
+                )}
+                <div className="relative flex items-center rounded-md shadow-sm">
+                  <span className="absolute left-3 text-gray-500 text-lg">
+                    <FaLock />
+                  </span>
+                  <input
+                    type={visible ? "text" : "password"}
+                    id="password"
+                    value={data.password}
+                    onChange={(e) =>
+                      setData({ ...data, password: e.target.value })
+                    }
+                    className="pl-10 bg-gray-50 border border-marron text-gray-900 text-sm sm:text-base rounded-md block w-full p-2.5"
+                    required
+                  />
+                  <button
+                    type="button"
+                    onClick={() => setVisible(!visible)}
+                    className="absolute right-3 text-gray-500 text-lg"
+                  >
+                    {visible ? <FaEyeSlash /> : <FaEye />}
+                  </button>
+                </div>
+              </div>
 
               <div className="mb-5">
                 <label
@@ -439,7 +437,7 @@ export function RegisterForm({
               <div id="signInDiv" className="w-full rounded-lg my-3"></div>
               <button
                 type="submit"
-                className="reserver-button overflow-hidden flex mx-auto mb-3 flex-col justify-center items-center text-sm sm:text-base font-bold font-lato rounded-lg w-full py-2 sm:py-3 bg-bgColor text-marron transition duration-300 ease-in-out transform"
+                className="reserver-button overflow-hidden flex mx-auto mb-3 flex-col hover:text-white justify-center items-center text-sm sm:text-base font-bold font-lato rounded-lg w-full py-2 sm:py-3 bg-bgColor text-marron transition duration-300 ease-in-out transform"
               >
                 <div className="hover-circle overflow-hidden" />
                 Créer un compte
@@ -472,7 +470,7 @@ export function RegisterForm({
           <DialogHeader>
             <DialogTitle>Code de vérification</DialogTitle>
             <DialogDescription>
-            Veuillez entrer le code de vérification envoyé à votre email.
+              Veuillez entrer le code de vérification envoyé à votre email.
             </DialogDescription>
           </DialogHeader>
           <form onSubmit={handleVerify}>
@@ -493,8 +491,13 @@ export function RegisterForm({
               </div>
             </div>
             <DialogFooter>
-              <button type="submit"           className="reserver-button overflow-hidden flex mx-auto mb-3 flex-col justify-center items-center text-sm sm:text-base font-bold font-lato rounded-lg w-full py-2 sm:py-3 bg-bgColor text-marron transition duration-300 ease-in-out transform"
-              > submit</button>
+              <button
+                type="submit"
+                className="reserver-button overflow-hidden flex mx-auto mb-3 flex-col justify-center items-center text-sm sm:text-base font-bold font-lato rounded-lg w-full py-2 sm:py-3 bg-bgColor text-marron transition duration-300 ease-in-out transform"
+              >
+                {" "}
+                submit
+              </button>
             </DialogFooter>
           </form>
         </DialogContent>
