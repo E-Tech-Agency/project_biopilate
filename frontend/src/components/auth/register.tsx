@@ -106,7 +106,7 @@ export function RegisterForm({
       return;
     }
     try {
-      const res = await axios.post("http://biopilates.fr/api/register/", data);
+      const res = await axios.post("https://biopilates.fr/api/register/", data);
       setData({
         first_name: "",
         last_name: "",
@@ -140,7 +140,7 @@ export function RegisterForm({
     };
     try {
       const server_res = await axios.post(
-        "http://biopilates.fr/api/google/",
+        "https://biopilates.fr/api/google/",
         payload
       );
       localStorage.setItem("token", server_res.data.access_token);
@@ -159,7 +159,7 @@ export function RegisterForm({
     toast.loading("Verifying...");
     try {
       const res = await axios.post(
-        "http://biopilates.fr/api/verify/",
+        "https://biopilates.fr/api/verify/",
         verifyCode
       );
       toast.dismiss();

@@ -26,7 +26,7 @@ export default defineConfig({
   },
   define: {
     'process.env': {
-      API_BASE_URL: 'http://biopilates.fr/api/',
+      API_BASE_URL: 'https://biopilates.fr/api/',
     }
   }
 });

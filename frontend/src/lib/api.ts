@@ -9,7 +9,7 @@ const refresh_token = localStorage.getItem('refresh_token') || "";
 
 console.log('access: ', accessToken);
 console.log('Current Time:', dayjs().format());
-const baseURL = 'http://biopilates.fr/api/';
+const baseURL = 'https://biopilates.fr/api/';
 
 const api = axios.create({
     baseURL: baseURL,
