@@ -95,7 +95,7 @@ export default function Workshops() {
   };
 
   const defaultCategories = [
-    { id: 0, name: "Workshop Matwork" },
+    { id: 0, name: "Matwork" },
     { id: 1, name: "golfeurs" },
     { id: 2, name: "Reformer" },
   ];
