@@ -1,6 +1,6 @@
 import { useNavigate, useParams } from "react-router-dom";
 import { useState } from "react";
-import { Button } from "@/components/ui/button";
+
 import {
   Card,
   CardContent,
@@ -36,7 +36,7 @@ export function ResetPassword() {
 
     try {
       const res = await axios.patch(
-        `http://141.94.23.119/api/set_new_password/`,
+        `https://biopilates.fr/api/set_new_password/`,
         data
       );
       toast.success(res.data.message);
@@ -106,9 +106,10 @@ export function ResetPassword() {
             </div>
           </CardContent>
           <CardFooter>
-            <Button className="w-full" type="submit">
+            <button                 className="reserver-button overflow-hidden flex mx-auto mb-3 flex-col justify-center items-center text-sm sm:text-base font-bold font-lato rounded-lg w-full py-2 sm:py-3 bg-bgColor text-marron transition duration-300 ease-in-out transform"
+                  type="submit">
               Changer le mot de passe
-            </Button>
+            </button>
           </CardFooter>
         </Card>
       </form>

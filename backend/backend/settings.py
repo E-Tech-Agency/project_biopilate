@@ -29,7 +29,7 @@ SECRET_KEY = "django-insecure-ck#kon504#qtk$-ojh5rsw_(b0@-$)b*v+7j=+1^70q4(837%t
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['141.94.23.119', 'localhost', '127.0.0.1']
+ALLOWED_HOSTS = ['141.94.23.119']
 
 APPEND_SLASH = False
 
@@ -44,9 +44,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
-
     'accounts',
-
     'biopilate',
     'social_accounts',
     'corsheaders',
@@ -68,14 +66,19 @@ CORS_ALLOW_ALL_ORIGINS = True
 CORS_ALLOW_CREDENTIALS = True
 CSRF_TRUSTED_ORIGINS = [
     "http://141.94.23.119",
+
 ]
 CORS_ALLOWED_ORIGINS = [
     "http://141.94.23.119",
-    "http://localhost:5173",
+
 ]
 
 ROOT_URLCONF = 'backend.urls'
-
+CORS_ALLOW_HEADERS = [
+    'Content-Type',
+    'Authorization',
+    'X-Requested-With',
+]
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
@@ -102,10 +105,10 @@ MEDIA_ROOT = BASE_DIR / 'media'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'biopilate',
-        'USER': 'multilab',
+        'NAME': 'biopilatesbmg',
+        'USER': 'biopilates',
         'PASSWORD': 'root',
-        'HOST': 'localhost',
+        'HOST': '127.0.0.1',
         'PORT': '5432',
     }
 }
@@ -124,8 +127,8 @@ SIMPLE_JWT = {
     'AUTH_HEADER_TYPES': ('Bearer',),
 }
 
-DOMAIN = 'localhost:5173'
-SITE_NAME = 'Test Technique'
+DOMAIN = '141.94.23.119'
+SITE_NAME = 'Biopilates'
 
 AUTH_USER_MODEL = 'accounts.User'
 
@@ -164,6 +167,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
 STATIC_URL = 'static/'
+STATIC_ROOT = '/var/www/project_biopilate/backend/staticfiles'
 STATICFILES_DIRS = [os.path.join(BASE_DIR, '../frontend/dist')]
 
 # Default primary key field type
@@ -172,12 +176,12 @@ EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
 # EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 EMAIL_HOST = 'ssl0.ovh.net'
-EMAIL_HOST_USER = 'administration@biopilates.fr'
-EMAIL_HOST_PASSWORD = 'SoniaCaroline'
+EMAIL_HOST_USER = 'hello@biopilates.fr'
+EMAIL_HOST_PASSWORD = 'brandandcom2024*'
 EMAIL_PORT = 465
 EMAIL_USE_SSL = True
 EMAIL_USE_TLS = False
-DEFAULT_FROM_EMAIL = 'administration@biopilates.fr'
+DEFAULT_FROM_EMAIL = 'hello@biopilates.fr'
 EMAIL_USE_LOCALTIME = True
 GOOGLE_CLIENT_ID = '84824279187-i984iquv2b83e4gf9b5jort0p770v21g.apps.googleusercontent.com'
 GOOGLE_CLIENT_SECRET = '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'

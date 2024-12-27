@@ -195,7 +195,10 @@ export default function Header({ isLoggedIn }: { isLoggedIn: boolean }) {
                 </PopoverTrigger>
                 <PopoverContent className="w-[220px] font-lato flex flex-col gap-2 text-[15px] py-3 shadow-lg border bg-white rounded-md">
                   <a
+
                     href="/blog"
+
+
                     className="flex justify-start items-center gap-2 hover:underline px-4"
                   >
                     Blog
@@ -322,7 +325,7 @@ export default function Header({ isLoggedIn }: { isLoggedIn: boolean }) {
         <div className="flex gap-4 pl-auto font-bold text-center text-stone-500">
           {isLoggedIn ? (
             <Link
-              to="/dashboard"
+              to="/manuel"
               className="hidden md:flex items-center justify-center gap-3 my-auto text-lg border border-bgColor rounded-lg px-6 py-4"
             >
               <div className="max-md:hidden leading-5">Dashboard</div>
@@ -338,7 +341,7 @@ export default function Header({ isLoggedIn }: { isLoggedIn: boolean }) {
           )}
 
           <div className="hidden md:flex">
-            <ReserverButton />
+            <ReserverButton link="https://backoffice.bsport.io/m/Studio%20Biopilates%20Paris/878/calendar/?isPreview=true&tabSelected=0" />
           </div>
         </div>
 

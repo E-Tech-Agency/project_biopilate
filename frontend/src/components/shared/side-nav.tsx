@@ -9,10 +9,19 @@ import { BsGearFill } from "react-icons/bs";
 import { PiPackage } from "react-icons/pi";
 import { FaHandHoldingDollar, FaRegFolderOpen } from "react-icons/fa6";
 import { GiTeacher } from "react-icons/gi";
+import { useNavigate } from "react-router-dom";
 
 import ActiveLinkSVG from "@/components/shared/ActiveLinkSVG"; // Active link indicator SVG
 
 export default function SideNav() {
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const isSupplier = localStorage.getItem("token");
+    if (!isSupplier || isSupplier == "true") {
+      navigate("/login");
+    }
+  }, [navigate]);
   const location = useLocation();
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
@@ -107,6 +116,29 @@ export default function SideNav() {
       href: "/Formation-biopilates",
       icon: <PiPackage className="text-xl" />,
     },
+    {
+      label: "Biopilates WorkShop",
+      href: "/WorkshopShow-biopilates",
+      icon: <PiPackage className="text-xl" />,
+    },
+    {
+      label: "Biopilates vlog",
+      href: "/vlog-biopilates",
+      icon: <PiPackage className="text-xl" />,
+    },
+    // 
+    {
+      label: "Biopilates Manuel",
+      href: "/manuel-biopilates",
+      icon: <PiPackage className="text-xl" />,
+    },
+    {
+      label: "Financer voter formation",
+      href: "/financer-formation-biopilates",
+      icon: <PiPackage className="text-xl" />,
+    },
+
+
   ];
 
   const isSupplier = localStorage.getItem("is_supplier")?.toString() === "true";
@@ -189,7 +221,7 @@ export default function SideNav() {
             onClick={() => setIsSidebarOpen(false)}
           >
             <FaArrowLeft className="text-xl" />
-            <span>Retour à l'acceuil</span>
+            <span>Retour à l'accueil</span>
           </Link>
           <Link
             to="/user"
@@ -197,7 +229,7 @@ export default function SideNav() {
             onClick={() => setIsSidebarOpen(false)}
           >
             <BsGearFill className="text-xl" />
-            <span>Paramétres</span>
+            <span>Paramètres</span>
           </Link>
         </div>
       </div>

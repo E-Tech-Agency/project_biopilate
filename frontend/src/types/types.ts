@@ -51,6 +51,7 @@ export type UserType = {
 export type Teache = {
     id: number;
     fullname : string;
+    description : string;
     image: string;
     email : string;
     nomber_phone : number;
@@ -64,6 +65,7 @@ export type TeacherFormType = {
     email : string;
     nomber_phone : number;
     specialite : string;
+    description : string;
     
 
 }
@@ -73,6 +75,7 @@ export type TeacherFormEditType = {
     email : string;
     nomber_phone : number;
     specialite : string;
+    description : string;
     
 
 }
@@ -82,6 +85,7 @@ export type CreateTeacherErrors = {
     nomber_phone?: string[];
     specialite?: string[];
     image?: string[];
+    description?:string[]
    
 }
 export type Tage = {
@@ -176,6 +180,34 @@ export type Blog = {
     date:Date;
     range:number;
     view:number;
+    tages: string[];
+    create_at: Date;
+    updated_at: Date;
+}
+export type BlogArticle = {
+    id: number;
+    title: string;
+    ecrivain: string;
+    description: string;
+    favorites?: number;
+    image: string;
+    view?: number;
+    jaimes?: number;
+  };
+export type BlogShow = {
+    id: number;
+    title : string;
+    author: string;
+    description : string;
+    favorites : number;
+    status : string;
+    image_1 : string;
+    image_2: string;
+    full_text:string;
+    date:Date;
+    range:number;
+    view:number;
+    tages: string[];
     create_at: Date;
     updated_at: Date;
 }
@@ -190,6 +222,7 @@ export type BlogFormType = {
     date: string | Date;
     range:number;
     favorites:number | null;
+    tages:[] | string;
      
 
 }
@@ -197,13 +230,15 @@ export type CreateBlogErrors = {
     title?: string[];
     author?: string[];
     description?: string[];
-    
     status?: string[];
     image_1?: string[];
     image_2?: string[];
     full_text?: string[];
     date?: string[];
     range?: string[];
+    favorites?: string[];
+    tages?: string[];
+
    
 }
 
@@ -236,14 +271,24 @@ export type Formation = {
     status: 'pending' | 'approved';  // Reflect the choices from Django
     title: string;
     description: string;
+    related_formation?: Formation; 
     created_at: Date;
     updated_at: Date;
 }
 
-export type FormationFormType = {
+export type FormationFormTypeCreate = {
+  
     status: 'pending' | 'approved';  // Reflect the choices from Django
     title: string;
     description: string;
+    related_formation?: number; 
+}
+export type FormationFormType = {
+    id: number;
+    status: 'pending' | 'approved';  // Reflect the choices from Django
+    title: string;
+    description: string;
+    related_formation?: number; 
 }
 
 export type CreateFormationErrors = {
@@ -278,6 +323,7 @@ export type FormationCategory = {
 }
 
 export type FormationCategoryType = {
+    id?: number; 
     formation: number;  // Formation ID
     option: number;     // Option ID
     price: number;
@@ -294,6 +340,145 @@ export type CreateFormationCategoryErrors = {
 export type CategoryCours={
     id: number;
     name : string;
+}
+export type CategoryWorkShop={
+    id: number;
+    name : string;
+}
+export type CategoryVlog={
+    id: number;
+    name : string;
+}
+export type Vlog = {
+    id: number;
+    title : string;
+    description : string;
+    status : string;
+    image: string;
+    category: number; // category ID
+    category_vlog: string; // category name
+    created_at: Date;
+    updated_at: Date;
+    date: Date; //
+}
+export type VlogShow = {
+    id: number;
+    title : string;
+    description : string;
+    status : string;
+    image: string;
+    category: number; // category ID
+    category_vlog: string; // category name
+    created_at: Date;
+    updated_at: Date;
+    date: Date; //
+}
+export type VlogFormType = {
+    title : string;
+    description : string;
+    status : string;
+    image: File | null;
+    category : string;
+    date: string ;
+
+}
+export type CreateVlogErrors = {
+    title?: string[];
+    description?: string[];
+    status?: string[];
+    image?: string[];
+    category?: string[];
+    date?: string[];
+   
+}
+// 
+export type Manuel ={
+    id: number;
+    title : string;
+    description : string;
+    status : string;
+    image : string;
+    created_at: Date;
+    updated_at: Date;
+    
+}
+export type ManuelShow ={
+    id: number;
+    title : string;
+    description : string; //link
+    status : string;
+    image : string;
+    created_at: Date;
+    updated_at: Date;
+    
+}
+export type ManuelFormType = {
+    title : string;
+    description : string;
+    status : string;
+    image: File | null;
+}
+export type CreateManuelErrors = {
+    title?: string[];
+    description?: string[];
+    status?: string[];
+    image?: string[];
+}
+// 
+export type FinancerFormation ={
+    id: number;
+    status : string;
+    title: string;
+    description: string;
+    image: string;
+    pdf_financer_formation : string;
+    created_at: Date;
+    updated_at: Date;
+}
+export type CreateFinancerFormationErrors = {
+    status?: string[];
+    title?: string[];
+    description?: string[];
+    image?: string[];
+    pdf_financer_formation?: string[];
+}
+export type FinancerFormationFormType={
+    status : string;
+    title: string;
+    description: string;
+    image: File | null;
+    pdf_financer_formation: File | null;
+}
+// 
+export type WorkShop = {
+    id: number;
+    title : string;
+    description : string;
+    status : string;
+    image: string;
+    category: number; // category ID
+    category_workshop: string; // category name
+    pdf_workshop: string;
+    created_at: Date;
+    updated_at: Date;
+}
+export type WorkShopFormType = {
+    title : string;
+    description : string;
+    status : string;
+    image: File | null;
+    pdf_workshop : File | null;
+    category : string
+
+}
+export type CreateWorkShopErrors = {
+    title?: string[];
+    description?: string[];
+    status?: string[];
+    image?: string[];
+    pdf_workshop?: string[];
+    category?: string[];
+   
 }
 
 export type Cours = {

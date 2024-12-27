@@ -14,8 +14,9 @@ interface Article {
   title: string;
   ecrivain: string;
   description: string;
-  jaimes: number;
+  favorites: number;
   image: string;
+  view: number;
 }
 
 export default function OtherArticles({ articles }: { articles: Article[] }) {

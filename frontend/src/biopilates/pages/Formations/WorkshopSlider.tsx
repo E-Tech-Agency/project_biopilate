@@ -16,6 +16,10 @@ import workshop6 from "@/assets/images/workshop-3.jpg";
 import workshop7 from "@/assets/images/formation-5.png";
 import workshop8 from "@/assets/images/workshop-4.jpg";
 // import ReserverButton from "@/biopilates/components/ReserverButton";
+import { WorkShop } from "@/types/types";
+import  { useEffect, useState } from "react";7
+import api from "@/lib/api";
+
 
 type Workshop = {
   title: string;
@@ -81,6 +85,25 @@ function WorkshopCard({ workshop }: { workshop: Workshop }) {
 }
 
 export default function WorkshopSlider() {
+  const [workShops, setWorkShops] = useState<WorkShop[]>([]);
+  const getWorkShop = async () => {
+    try {
+        const res = await api.get("workshops-biopilate/");
+        const workShopsPublic = res.data.filter(
+          (workShops: WorkShop) => workShops.status === "approved"
+        );
+        setWorkShops(workShopsPublic);
+
+       
+    } catch (error) {
+        console.error("Error fetching workshops-biopilate", error);
+        
+    }
+};
+useEffect(() => {
+  getWorkShop();
+}, []);
+
   const workshops = [
     {
       title: "Workshop en ligne",
@@ -115,6 +138,18 @@ export default function WorkshopSlider() {
       image: workshop8,
     },
   ];
+  const workShopsData =
+  workShops && workShops.length > 0
+    ? workShops.map((workShop) => ({
+        id: workShop.id,
+        title: workShop.title,
+       
+        description: workShop.description,
+        
+        image: workShop.image,
+       
+      }))
+    : workshops;
 
   return (
     <section className="flex flex-col justify-center items-start w-full">
@@ -184,7 +219,7 @@ export default function WorkshopSlider() {
           },
         }}
       >
-        {workshops.map((workshop, index) => (
+        {workShopsData.map((workshop, index) => (
           <SwiperSlide
             key={index}
             className="flex flex-col justify-center items-center"

@@ -1,7 +1,7 @@
 import api from "@/lib/api";
 import { FAQ } from "@/types/types";
 import { useEffect, useState } from "react";
-import { FaTrash, FaEdit } from "react-icons/fa";
+
 import {
     Card,
     CardContent,
@@ -21,7 +21,14 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useNavigate } from "react-router-dom";
 import EditFAQ from "./EditFAQ";
-
+import { Edit2, PlusCircle, Search, Trash2 } from "lucide-react";
+import { 
+    Select, 
+    SelectContent, 
+    SelectItem, 
+    SelectTrigger, 
+    SelectValue 
+  } from "@/components/ui/select";
 export default function FAQShow() {
     const [faqs, setFaqs] = useState<FAQ[]>([]);
     const [filteredFaqs, setFilteredFaqs] = useState<FAQ[]>([]);
@@ -87,46 +94,59 @@ export default function FAQShow() {
 
     const paginatedFaqs = filteredFaqs.slice((currentPage - 1) * rowsPerPage, currentPage * rowsPerPage);
 
-    const handleChangeRowsPerPage = (value: number) => {
-        setRowsPerPage(value);
-        setCurrentPage(1); // Reset to first page whenever rows per page change
-    };
+    // const handleChangeRowsPerPage = (value: number) => {
+    //     setRowsPerPage(value);
+    //     setCurrentPage(1); // Reset to first page whenever rows per page change
+    // };
 
     return (
-        <Card>
-            <CardHeader className="px-7">
-                <div className="flex justify-between">
-                    <CardTitle>Liste FAQ</CardTitle>
-                    <div className="flex space-x-4">
-                        <Input
-                            type="text"
-                            placeholder="Rechercher"
-                            value={searchTerm}
-                            onChange={(e) => setSearchTerm(e.target.value)}
-                            className="w-full"
-                        />
-                    </div>
-                    <div className="flex items-center mt-4">
+        <Card className="w-full shadow-lg">
+            <CardHeader className="border-b bg-white">
+            <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
+            <div>
+              <CardTitle className="text-2xl font-bold text-gray-800">
+                Liste des FAQ
+              </CardTitle>
+              <p className="text-muted-foreground">
+                Gérez vos FAQ avec facilité
+              </p>
+            </div>
+                   
+            <div className="relative ">
+                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
+                <Input
+                  type="text"
+                  placeholder="Rechercher ..."
+                  value={searchTerm}
+                  onChange={(e) => setSearchTerm(e.target.value)}
+                  className="pl-10 bg-white border-gray-300"
+                />
+              </div>
+                    <div className="flex items-center m-4">
                         <Label htmlFor="rowsPerPage">Afficher:</Label>
-                        <select
-                            id="rowsPerPage"
-                            value={rowsPerPage}
-                            onChange={(e) => handleChangeRowsPerPage(Number(e.target.value))}
-                            className="ml-2 border-gray-300 rounded-md"
-                        >
-                            <option value={5}>5</option>
-                            <option value={10}>10</option>
-                            <option value={20}>20</option>
-                        </select>
+                        <Select 
+                value={rowsPerPage.toString()} 
+                onValueChange={(value) => setRowsPerPage(Number(value))}
+              >
+                <SelectTrigger className="w-[100px]">
+                  <SelectValue placeholder="Lignes" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="5">5 lignes</SelectItem>
+                  <SelectItem value="10">10 lignes</SelectItem>
+                  <SelectItem value="20">20 lignes</SelectItem>
+                </SelectContent>
+              </Select>
                     </div>
-                    <Button variant="default" onClick={handleAddClick}>
-                        Ajouter un FAQ
-                    </Button>
+                    <button  className=" flex reserver-button text-sm sm:text-base font-bold font-lato rounded-lg  py-2 sm:py-3 bg-bgColor text-marron   ease-in-out transform" onClick={handleAddClick}>
+                    <PlusCircle />
+                        Ajouter 
+                    </button>
                 </div>
             </CardHeader>
             <CardContent>
                 <Table>
-                    <TableHeader>
+                    <TableHeader className="bg-gray-100">
                         <TableRow>
                             <TableHead>Titre</TableHead>
                             <TableHead className="hidden sm:table-cell">Status</TableHead>
@@ -136,7 +156,7 @@ export default function FAQShow() {
                     </TableHeader>
                     <TableBody>
                         {paginatedFaqs.map((faq: FAQ) => (
-                            <TableRow key={faq.id} className="bg-accent">
+                            <TableRow key={faq.id} >
                                 <TableCell>
                                     <div className="flex items-center space-x-4">
                                         <div className="font-medium">{faq.title}</div>
@@ -150,12 +170,16 @@ export default function FAQShow() {
                                 </TableCell>
                                 <TableCell className="hidden md:table-cell">{new Date(faq.create_at).toLocaleDateString()}</TableCell>
                                 <TableCell className="text-right">
-                                    <div className="flex space-x-2">
-                                        <Button variant="secondary" onClick={() => handleEditClick(faq.id)}>
-                                            <FaEdit />
+                                <div className="flex justify-end space-x-2">
+                                        <Button variant="outline" 
+                                          className="hover:bg-blue-50" onClick={() => handleEditClick(faq.id)}>
+                                             <Edit2 className="w-4 h-4 text-blue-600" />
                                         </Button>
-                                        <Button variant="destructive" onClick={() => deleteFaq(faq.id)}>
-                                            <FaTrash />
+                                        <Button 
+                                        variant="outline" 
+                                        className="hover:bg-red-50"
+                                        onClick={() => deleteFaq(faq.id)}>
+                                           <Trash2 className="w-4 h-4 text-red-600" />
                                         </Button>
                                     </div>
                                 </TableCell>
@@ -163,22 +187,29 @@ export default function FAQShow() {
                         ))}
                     </TableBody>
                 </Table>
-                <div className="flex justify-end mt-4">
-                    <Button
-                        variant="secondary"
-                        onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
-                        disabled={currentPage === 1}
-                    >
-                        Previous
-                    </Button>
-                    <Button
-                        variant="secondary"
-                        onClick={() => setCurrentPage((prev) => (prev * rowsPerPage < filteredFaqs.length ? prev + 1 : prev))}
-                        disabled={currentPage * rowsPerPage >= filteredFaqs.length}
-                    >
-                        Next
-                    </Button>
-                </div>
+                <div className="flex justify-between items-center p-4 border-t">
+            <div className="text-sm text-muted-foreground">
+              Page {currentPage} sur {Math.ceil(filteredFaqs.length / rowsPerPage)}
+            </div>
+            <div className="flex space-x-2">
+              <Button
+                variant="outline"
+                onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
+                disabled={currentPage === 1}
+              >
+                Précédent
+              </Button>
+              <Button
+                variant="outline"
+                onClick={() => setCurrentPage(prev => 
+                  (prev * rowsPerPage < filteredFaqs.length ? prev + 1 : prev)
+                )}
+                disabled={currentPage * rowsPerPage >= filteredFaqs.length}
+              >
+                Suivant
+              </Button>
+            </div>
+          </div>
                 {editingId !== null && (
                     <EditFAQ
                         faqId={editingId}

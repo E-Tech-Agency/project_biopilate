@@ -20,6 +20,7 @@ import {
   DialogOverlay,
   DialogFooter,
   DialogDescription,
+  DialogClose,
 } from "../ui/dialog"; // Ensure these are imported correctly
 import { Label } from "@radix-ui/react-label";
 import { Input } from "../ui/input";
@@ -48,13 +49,15 @@ export function LoginForm({
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
-      const res = await axios.post("http://141.94.23.119/api/login/", data);
+      const res = await axios.post("https://biopilates.fr/api/login/", data);
       localStorage.setItem("token", res.data.access_token);
       localStorage.setItem("refresh_token", res.data.refresh_token);
       localStorage.setItem("is_supplier", res.data.is_supplier);
       localStorage.setItem("is_superuser", res.data.is_superuser);
+      localStorage.setItem("first_name", res.data.first_name);
+      localStorage.setItem("last_name", res.data.last_name);
       setIsLoggedIn(true);
-      navigate("/dashboard");
+      navigate("/manuel");
     } catch (error) {
       if (axios.isAxiosError(error)) {
         const errors = error.response?.data;
@@ -66,7 +69,7 @@ export function LoginForm({
   const handleForgotPassword = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
-      const res = await axios.post("http://141.94.23.119/api/password_reset/", {
+      const res = await axios.post("https://biopilates.fr/api/password_reset/", {
         email: data.email,
       });
       toast.success(res.data.message);
@@ -177,13 +180,13 @@ export function LoginForm({
                     </span>
                   </label>
 
-                  <Button
+                  <p
                     onClick={() => setDialogOpen(true)}
-                    variant={"link"}
+                  
                     className="ml-auto pr-0 text-gray-800 text-base font-lato font-medium underline"
                   >
                     Mot de passe oublié ?
-                  </Button>
+                  </p>
                 </div>
               </div>
               <button
@@ -213,37 +216,49 @@ export function LoginForm({
       </div>
 
       {/* Dialog for password reset */}
-      <Dialog open={dialogOpen}>
-        <DialogOverlay />
-        <DialogContent className="sm:max-w-[425px]">
-          <DialogHeader>
-            <DialogTitle>Password reset</DialogTitle>
-            <DialogDescription>
-              Please enter email to reset your password
-            </DialogDescription>
-          </DialogHeader>
-          <form onSubmit={handleForgotPassword}>
-            <div className="grid gap-4 py-4">
-              <div className="grid grid-cols-4 items-center gap-4">
-                <Label htmlFor="code" className="text-right">
-                  Email
-                </Label>
-                <Input
-                  id="email"
-                  className="col-span-3"
-                  required
-                  type="email"
-                  value={data.email}
-                  onChange={(e) => setData({ ...data, email: e.target.value })}
-                />
-              </div>
-            </div>
-            <DialogFooter>
-              <Button type="submit"> submit</Button>
-            </DialogFooter>
-          </form>
-        </DialogContent>
-      </Dialog>
+      <Dialog open={dialogOpen} onOpenChange={(open) => setDialogOpen(open)}>
+  <DialogOverlay />
+  <DialogContent className="sm:max-w-[425px]">
+    <DialogHeader>
+      <DialogTitle>Réinitialisation du mot de passe</DialogTitle>
+      <DialogDescription>
+      Veuillez entrer votre email pour réinitialiser votre mot de passe.
+      </DialogDescription>
+      {/* Close button */}
+      <DialogClose 
+        onClick={() => setDialogOpen(false)} 
+        className="absolute top-4 right-4 text-gray-600 cursor-pointer hover:text-gray-800"
+      >
+        
+      </DialogClose>
+    </DialogHeader>
+    <form onSubmit={handleForgotPassword}>
+      <div className="grid gap-4 py-4">
+        <div className="grid grid-cols-4 items-center gap-4">
+          <Label htmlFor="code" className="text-right">
+            Email
+          </Label>
+          <Input
+            id="email"
+            className="col-span-3"
+            required
+            type="email"
+            value={data.email}
+            onChange={(e) => setData({ ...data, email: e.target.value })}
+          />
+        </div>
+      </div>
+      <DialogFooter>
+        <button
+          className="reserver-button overflow-hidden flex mx-auto mb-3 flex-col justify-center items-center text-sm sm:text-base font-bold font-lato rounded-lg w-full py-2 sm:py-3 bg-bgColor text-marron transition duration-300 ease-in-out transform"
+          type="submit"
+        >
+          submit
+        </button>
+      </DialogFooter>
+    </form>
+  </DialogContent>
+</Dialog>
     </>
   );
 }

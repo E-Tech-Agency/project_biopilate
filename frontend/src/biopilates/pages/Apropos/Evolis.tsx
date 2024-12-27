@@ -25,18 +25,18 @@ type PourQui = {
 };
 function PourQuiCard({ pourqui }: { pourqui: PourQui }) {
   // Function to insert a line break before "et" in the text
-  function insertBreakBeforeEt(text: string) {
-    return text.replace(/\bet/g, "<br>et");
-  }
+  // function insertBreakBeforeEt(text: string) {
+  //   return text.replace(/\bet/g, "<br>et");
+  // }
 
   // Apply the function conditionally for mobile screens
-  function applyForMobile(inputText: string) {
-    const isMobile = window.matchMedia("(max-width: 550px)").matches; // Tailwind's max-md breakpoint
-    if (isMobile) {
-      return insertBreakBeforeEt(inputText);
-    }
-    return inputText; // Leave the text unchanged for non-mobile screens
-  }
+  // function applyForMobile(inputText: string) {
+  //   const isMobile = window.matchMedia("(max-width: 550px)").matches; // Tailwind's max-md breakpoint
+  //   if (isMobile) {
+  //     return insertBreakBeforeEt(inputText);
+  //   }
+  //   return inputText; // Leave the text unchanged for non-mobile screens
+  // }
 
   return (
     <div className="relative w-[280px] h-[334px] sm:w-[393px] sm:h-[454px] rounded-lg shadow-lg font-lato mx-auto">
@@ -186,10 +186,10 @@ export default function Evolis() {
       <div className="flex flex-col mt-8 mx-5 md:mx-12 mb-12 gap-6 font-lato">
         <div className="flex flex-col">
           <div className="flex flex-col gap-3">
-            <h1 className="text-xl sm:text-3xl font-ebGaramond text-marron font-bold">
+            <h1 className="text-xl sm:text-[34px] font-ebGaramond text-marron font-bold">
               Formation et Cours EVOLIS à Paris - Studio Biopilates
             </h1>
-            <h2 className="text-xl font-ebGaramond text-blueText font-medium max-md:hidden">
+            <h2 className="text-lg sm:text-xl font-ebGaramond text-blueText font-medium">
               Découvrez les cours et formations Evolis à Paris au Studio
               Biopilates. Une méthode innovante pour améliorer posture,
               souplesse et bien-être général. Réservez votre séance dès
@@ -202,11 +202,6 @@ export default function Evolis() {
             alt="Stott Pilates"
             className="rounded-sm w-full max-h-[680px] object-cover shadow-lg my-6"
           />
-          <h2 className="text-lg font-ebGaramond text-blueText font-medium md:hidden">
-            Découvrez les cours et formations Evolis à Paris au Studio
-            Biopilates. Une méthode innovante pour améliorer posture, souplesse
-            et bien-être général. Réservez votre séance dès aujourd'hui !
-          </h2>
         </div>
 
         <p className="text-sm sm:text-base text-justify  sm:leading-8">

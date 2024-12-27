@@ -2,7 +2,7 @@ import React, { useEffect, useState, Suspense } from "react";
 import { Cours, CoursFormType, CreateCoursErrors, CategoryCours } from "@/types/types";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
-import { FaTrash, FaEdit } from "react-icons/fa";
+
 import { useNavigate } from "react-router-dom";
 import "react-quill/dist/quill.snow.css"; // Import styles for React Quill
 import { Button } from "@/components/ui/button";
@@ -14,6 +14,14 @@ import { toast } from "sonner";
 import { Modal } from "./Modal";
 import DOMPurify from 'dompurify'; // Import DOMPurify
 import CreateCategoryCours from "../supplier/create-categorycours";
+import { UploadCloud, List, Tag, PlusCircle, Search, Edit2, Trash2 } from 'lucide-react';
+import { 
+    Select, 
+    SelectContent, 
+    SelectItem, 
+    SelectTrigger, 
+    SelectValue 
+  } from "@/components/ui/select";
 const ReactQuill = React.lazy(() => import("react-quill"));
 
 export default function CoursShow() {
@@ -141,10 +149,10 @@ export default function CoursShow() {
         }));
     };
 
-    const handleChangeRowsPerPage = (value: number) => {
-        setRowsPerPage(value);
-        setCurrentPage(1); // Reset to first page whenever rows per page change
-    };
+    // const handleChangeRowsPerPage = (value: number) => {
+    //     setRowsPerPage(value);
+    //     setCurrentPage(1); // Reset to first page whenever rows per page change
+    // };
 
     const paginatedCours = filteredCours.slice((currentPage - 1) * rowsPerPage, currentPage * rowsPerPage);
 
@@ -154,112 +162,44 @@ export default function CoursShow() {
 
     return (
         <div className='flex flex-col items-center m-6'>
-            <Card className="w-full max-w-6xl mx-auto p-6">
-                <CardHeader className="flex justify-between">
-                    <div>
-                        <CardTitle>Liste Cours</CardTitle>
-                    </div>
-                    <div>
-                        <Button variant="default" onClick={() => setIsModalOpen(true)}>
-                            Ajouter un Cours
-                        </Button>
-                        <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
-                            <form onSubmit={handleSubmitCours}>
-                                <div className="grid gap-6">
-                                    <div className="grid gap-3">
-                                        <Label htmlFor="title">
-                                            Titre du cours
-                                            {errors.title && <span className="text-red-500 mt-2">{errors.title}</span>}
-                                        </Label>
-                                        <Input
-                                            id="title"
-                                            name="title"
-                                            type="text"
-                                            value={newCours.title}
-                                            onChange={(e) => setNewCours({ ...newCours, title: e.target.value })}
-                                        />
-                                    </div>
-                                    <div className="grid gap-3">
-                                        <Label htmlFor="image">
-                                            Image
-                                            {errors.image && <span className="text-red-500 mt-2">{errors.image}</span>}
-                                        </Label>
-                                        <Input
-                                            id="image"
-                                            name="image"
-                                            type="file"
-                                            onChange={handleImageChange}
-                                        />
-                                    </div>
-                                    <div className="grid gap-3">
-                                        <Label htmlFor="description">
-                                            Description
-                                            {errors.description && <span className="text-red-500 mt-1">{errors.description}</span>}
-                                        </Label>
-                                        <Suspense fallback={<div>Loading...</div>}>
-                                            <ReactQuill
-                                                id="description"
-                                                value={newCours.description}
-                                                onChange={handleQuillChange}
-                                                theme="snow"
-                                            />
-                                        </Suspense>
-                                    </div>
-                                    <div className="grid gap-3 mt-9">
-                                        <Label htmlFor="category">
-                                            Catégorie
-                                            {errors.category && <span className="text-red-500 mt-2">{errors.category}</span>}
-                                        </Label>
-                                        <select
-                                            id="category"
-                                            name="category"
-                                            value={newCours.category}
-                                            onChange={(e) => setNewCours({ ...newCours, category: e.target.value })}
-                                            className="mt-1 block w-full rounded-md border-gray-300 shadow-sm"
-                                        >
-                                            <option value="">Sélectionner une Catégorie</option>
-                                            {categories.map((category) => (
-                                                <option key={category.id} value={category.id}>
-                                                    {category.name}
-                                                </option>
-                                            ))}
-                                        </select>
-                                    </div>
-                                    <div className="grid gap-3 mt-5">
-                                        <Label htmlFor="status">Status</Label>
-                                        <select
-                                            id="status"
-                                            value={newCours.status}
-                                            onChange={(e) => setNewCours({ ...newCours, status: e.target.value })}
-                                            className="w-full p-2 border border-gray-300 rounded-md"
-                                        >
-                                            <option value="">Sélectionner un Status</option>
-                                            <option value="pending">En attente de publication</option>
-                                            <option value="approved">Publiée</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div className="mt-4">
-                                    <Button type="submit" className="btn btn-primary">
-                                        Ajouter
-                                    </Button>
-                                </div>
-                            </form>
-                        </Modal>
+            <Card className="w-full max-w-6xl mx-auto shadow-lg">
+            <CardHeader className="border-b bg-white">
+                <CreateCategoryCours />
+                <div>
+               
+           
+    <div className="flex justify-between items-center">
+        <CardTitle>Liste Cours</CardTitle>
+        <div className="space-x-4">
+        <button 
+              onClick={() => setIsModalOpen(true)} 
+               className=" flex reserver-button text-sm sm:text-base font-bold font-lato rounded-lg  py-2 sm:py-3 bg-bgColor text-marron  duration-300 ease-in-out transform"
+            >
+              <PlusCircle  />
+              Ajouter un Cours
+            </button>
+        </div>
+        
+    </div>
+
                     </div>
                 </CardHeader>
-                <CardContent className="grid gap-3">
-                    <div className="grid gap-6 md:grid-cols-3">
-                        <Input
-                            type="text"
-                            placeholder="Recherche..."
-                            value={searchTerm}
-                            onChange={(e) => setSearchTerm(e.target.value)}
-                        />
+                <CardContent >
+                <div className="grid md:grid-cols-3 gap-4 mb-6">
+                <div className="relative">
+              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
+              <Input
+                type="text"
+                placeholder="Rechercher un cours..."
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+                className="pl-10 bg-white border-gray-300"
+              />
+            </div>
                         <select
                             value={statusFilter}
                             onChange={(e) => setStatusFilter(e.target.value)}
-                            className="p-2 border border-gray-300 rounded-md"
+                             className="p-2 border border-gray-300 rounded-md bg-white text-gray-700"
                         >
                             <option value="">Sélectionner un Status</option>
                             <option value="pending">En attente de publication</option>
@@ -268,7 +208,7 @@ export default function CoursShow() {
                         <select
                             value={categoryFilter}
                             onChange={(e) => setCategoryFilter(e.target.value)}
-                            className="p-2 border border-gray-300 rounded-md"
+                             className="p-2 border border-gray-300 rounded-md bg-white text-gray-700"
                         >
                             <option value="">Tous les Niveaux</option>
                             {categories.map((category) => (
@@ -279,13 +219,13 @@ export default function CoursShow() {
                         </select>
                     </div>
                     <Table>
-                        <TableHeader>
+                        <TableHeader  className="bg-gray-100">
                             <TableRow>
                                 <TableHead>Image</TableHead>
                                 <TableHead>Titre</TableHead>
                                 <TableHead>Catégorie</TableHead>
                                 <TableHead>Description</TableHead>
-                                <TableHead>Actions</TableHead>
+                                <TableHead className="text-right">Actions</TableHead>
                             </TableRow>
                         </TableHeader>
                         <TableBody>
@@ -309,13 +249,21 @@ export default function CoursShow() {
                                             }}
                                         />
                                     </TableCell>
-                                    <TableCell className="space-x-4">
-                                        <Button onClick={() => handleEditClick(cour.id)} variant="secondary">
-                                            <FaEdit />
+                                    <TableCell className="text-right">
+                                    <div className="flex justify-end space-x-2">
+                                        <Button onClick={() => handleEditClick(cour.id)} 
+                                         variant="outline" 
+                                          className="hover:bg-blue-50"
+                                        >
+                                             <Edit2 className="w-4 h-4 text-blue-600" />
                                         </Button>
-                                        <Button onClick={() => deleteCours(cour.id)} variant="destructive">
-                                            <FaTrash />
+                                        <Button onClick={() => deleteCours(cour.id)} 
+                                        variant="outline" 
+                                        className="hover:bg-red-50"
+                                        >
+                                            <Trash2 className="w-4 h-4 text-red-600" />
                                         </Button>
+                                        </div>
                                     </TableCell>
                                 </TableRow>
                             ))}
@@ -323,42 +271,166 @@ export default function CoursShow() {
                     </Table>
                     <div className="flex justify-between items-center mt-4">
                         <div className="flex items-center space-x-2">
-                            <span>Rows per page:</span>
-                            <select
-                                value={rowsPerPage}
-                                onChange={(e) => handleChangeRowsPerPage(parseInt(e.target.value))}
-                                className="p-1 border border-gray-300 rounded-md"
-                            >
-                                <option value={5}>5</option>
-                                <option value={10}>10</option>
-                                <option value={20}>20</option>
-                            </select>
+                        <Select 
+                value={rowsPerPage.toString()} 
+                onValueChange={(value) => setRowsPerPage(Number(value))}
+              >
+                <SelectTrigger className="w-[100px]">
+                  <SelectValue placeholder="Lignes" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="5">5 lignes</SelectItem>
+                  <SelectItem value="10">10 lignes</SelectItem>
+                  <SelectItem value="20">20 lignes</SelectItem>
+                </SelectContent>
+              </Select>
                         </div>
-                        <div className="flex items-center space-x-2">
-                            <button
-                                className="p-2 border border-gray-300 rounded-md"
-                                onClick={() => setCurrentPage(currentPage - 1)}
-                                disabled={currentPage === 1}
-                            >
-                                Previous
-                            </button>
-                            <span>
-                                Page {currentPage} of {Math.ceil(filteredCours.length / rowsPerPage)}
-                            </span>
-                            <button
-                                className="p-2 border border-gray-300 rounded-md"
-                                onClick={() => setCurrentPage(currentPage + 1)}
-                                disabled={currentPage === Math.ceil(filteredCours.length / rowsPerPage)}
-                            >
-                                Next
-                            </button>
-                        </div>
+                        <div className="flex justify-between items-center p-4 border-t">
+            <div className="text-sm text-muted-foreground">
+              Page {currentPage} sur {Math.ceil(filteredCours.length / rowsPerPage)}
+            </div>
+            <div className="flex space-x-2">
+              <Button
+                variant="outline"
+                onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
+                disabled={currentPage === 1}
+              >
+                Précédent
+              </Button>
+              <Button
+                variant="outline"
+                onClick={() => setCurrentPage(prev => 
+                  (prev * rowsPerPage < filteredCours.length ? prev + 1 : prev)
+                )}
+                disabled={currentPage * rowsPerPage >= filteredCours.length}
+              >
+                Suivant
+              </Button>
+            </div>
+          </div>
                     </div>
                 </CardContent>
             </Card>
-            <div className='flex gap-3 mt-6'>
-                <CreateCategoryCours />
+            <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
+                        <form onSubmit={handleSubmitCours} className="space-y-6">
+            {/* Title Input */}
+            <div className="space-y-2">
+              <div className="flex items-center justify-between">
+                <Label htmlFor="title" className="text-gray-700 font-semibold flex items-center">
+                  <Tag className="mr-2 text-blue-600" size={20} />
+                  Titre du Cours
+                </Label>
+                {errors.title && (
+                  <span className="text-red-500 text-sm">{errors.title}</span>
+                )}
+              </div>
+              <Input
+                id="title"
+                name="title"
+                type="text"
+                value={newCours.title}
+                onChange={(e) => setNewCours({ ...newCours, title: e.target.value })}
+                placeholder="Entrez le titre du cours"
+                className="mt-1 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              />
             </div>
+
+            {/* Image Upload */}
+            <div className="space-y-2">
+              <div className="flex items-center justify-between">
+                <Label htmlFor="image" className="text-gray-700 font-semibold flex items-center">
+                  <UploadCloud className="mr-2 text-blue-600" size={20} />
+                  Image du Cours
+                </Label>
+                {errors.image && (
+                  <span className="text-red-500 text-sm">{errors.image}</span>
+                )}
+              </div>
+              <Input
+                id="image"
+                name="image"
+                type="file"
+                onChange={handleImageChange}
+                className="mt-1 file:mr-4 file:rounded-md file:border-0 file:bg-blue-50 file:text-blue-700 file:px-4 file:py-2 hover:file:bg-blue-100"
+              />
+            </div>
+
+            {/* Description */}
+            <div className="space-y-2">
+              <div className="flex items-center justify-between">
+                <Label htmlFor="description" className="text-gray-700 font-semibold">
+                  Description
+                </Label>
+                {errors.description && (
+                  <span className="text-red-500 text-sm">{errors.description}</span>
+                )}
+              </div>
+              <Suspense fallback={<div className="h-32 bg-gray-100 rounded-md animate-pulse"></div>}>
+                <ReactQuill
+                  id="description"
+                  value={newCours.description}
+                  onChange={handleQuillChange}
+                  theme="snow"
+                  className="mt-1 border-2 border-blue-100 rounded-md"
+                />
+              </Suspense>
+            </div>
+
+            {/* Category Dropdown */}
+            <div className="space-y-2">
+              <div className="flex items-center justify-between">
+                <Label htmlFor="category" className="text-gray-700 font-semibold flex items-center">
+                  <List className="mr-2 text-blue-600" size={20} />
+                  Catégorie
+                </Label>
+                {errors.category && (
+                  <span className="text-red-500 text-sm">{errors.category}</span>
+                )}
+              </div>
+              <select
+                id="category"
+                name="category"
+                value={newCours.category}
+                onChange={(e) => setNewCours({ ...newCours, category: e.target.value })}
+                className="w-full p-2 border-2 border-blue-100 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              >
+                <option value="">Sélectionner une Catégorie</option>
+                {categories.map((category) => (
+                  <option key={category.id} value={category.id}>
+                    {category.name}
+                  </option>
+                ))}
+              </select>
+            </div>
+
+            {/* Status Dropdown */}
+            <div className="space-y-2">
+              <Label htmlFor="status" className="text-gray-700 font-semibold">
+                Statut de Publication
+              </Label>
+              <select
+                id="status"
+                value={newCours.status}
+                onChange={(e) => setNewCours({ ...newCours, status: e.target.value })}
+                className="w-full p-2 border-2 border-blue-100 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              >
+                <option value="">Sélectionner un Statut</option>
+                <option value="pending">En attente de publication</option>
+                <option value="approved">Publiée</option>
+              </select>
+            </div>
+
+            {/* Submit Button */}
+            <div className="mt-6 flex justify-end">
+              <button 
+                type="submit" 
+                className=" flex reserver-button text-sm sm:text-base font-bold font-lato rounded-lg  py-2 sm:py-3 bg-bgColor text-marron  duration-300 ease-in-out transform"
+              >
+                Ajouter le Cours
+              </button>
+            </div>
+          </form>
+                        </Modal>
         </div>
     );
 }

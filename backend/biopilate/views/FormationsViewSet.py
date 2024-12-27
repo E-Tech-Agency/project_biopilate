@@ -1,11 +1,12 @@
-from rest_framework import viewsets
+from rest_framework import viewsets ,permissions
 from rest_framework.response import Response
 from rest_framework import status
-from rest_framework.exceptions import ValidationError
+
 from ..models.formation import Formation, Option, FormationCategory
 from ..serializers.FormSerializer import FormationsSerializer, OptionSerializer, SelectedOptionSerializer
 
 class FormationsViewSet(viewsets.ModelViewSet):
+    permission_classes = [permissions.IsAuthenticated] 
     queryset = Formation.objects.all().order_by('-created_at')
     serializer_class = FormationsSerializer
 
@@ -39,16 +40,15 @@ class FormationsViewSet(viewsets.ModelViewSet):
                 price=option_data.get('price', 0)
             )
 
-
 class OptionViewSet(viewsets.ModelViewSet):
+    permission_classes = [permissions.IsAuthenticated] 
     queryset = Option.objects.all()
     serializer_class = OptionSerializer
 
 class SelectedOptionViewSet(viewsets.ModelViewSet):
+    permission_classes = [permissions.IsAuthenticated] 
     queryset = FormationCategory.objects.all().order_by('-created_at')
     serializer_class = SelectedOptionSerializer
 
     def perform_create(self, serializer):
-        option_data = self.request.data.get('option', {})
-        option, created = Option.objects.get_or_create(name=option_data.get('name'))
-        serializer.save(option=option)
+        serializer.save()

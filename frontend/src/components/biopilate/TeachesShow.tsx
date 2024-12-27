@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { FaTrash, FaEdit } from "react-icons/fa";
+
 import {
     Card,
     CardContent,
@@ -15,7 +15,7 @@ import {
     TableRow,
 } from "@/components/ui/table";
 import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
+
 import { Button } from "../ui/button";
 import { Modal } from "./Modal";
 import TeachesEditForm from "./TeachesEditForm ";
@@ -24,6 +24,14 @@ import api from "@/lib/api";
 import { toast } from "sonner";
 import axios, { AxiosError } from "axios";
 import { Teache, TeacherFormType, TeacherFormEditType } from "@/types/types";
+import { Camera, Upload, User, Mail, Phone, Star, FileText, Search, PlusCircle, Edit2, Trash2 } from 'lucide-react';
+import { 
+    Select, 
+    SelectContent, 
+    SelectItem, 
+    SelectTrigger, 
+    SelectValue 
+  } from "@/components/ui/select";
 
 export default function TeachesShow() {
     const [teaches, setTeaches] = useState<Teache[]>([]);
@@ -36,6 +44,7 @@ export default function TeachesShow() {
         nomber_phone: 0,
         specialite: "",
         image: null,
+        description: "",
     });
     const [searchTerm, setSearchTerm] = useState("");
     const [isEditing, setIsEditing] = useState(false); // Track whether modal is for editing or adding
@@ -90,7 +99,7 @@ export default function TeachesShow() {
             formData.append("email", data.email);
             formData.append("nomber_phone", data.nomber_phone.toString());
             formData.append("specialite", data.specialite);
-    
+            formData.append("description", data.description);
             if (data.image instanceof File) {
                 formData.append("image", data.image);
             }
@@ -119,7 +128,7 @@ export default function TeachesShow() {
             formData.append("email", teache.email);
             formData.append("specialite", teache.specialite);
             formData.append("nomber_phone", teache.nomber_phone.toString());
-
+            formData.append("description", teache.description);
             if (teache.image) {
                 formData.append("image", teache.image);
             }
@@ -136,6 +145,7 @@ export default function TeachesShow() {
                 nomber_phone: 0,
                 specialite: "",
                 image: null,
+                description: "",
             });
             setIsModalOpen(false);
             getTeaches();
@@ -167,172 +177,267 @@ export default function TeachesShow() {
         }));
     };
 
-    const handleChangeRowsPerPage = (value: number) => {
-        setRowsPerPage(value);
-        setCurrentPage(1); // Reset to first page when changing rows per page
-    };
+    // const handleChangeRowsPerPage = (value: number) => {
+    //     setRowsPerPage(value);
+    //     setCurrentPage(1); // Reset to first page when changing rows per page
+    // };
 
     const paginatedTeaches = filteredTeaches.slice((currentPage - 1) * rowsPerPage, currentPage * rowsPerPage);
 
     return (
-        <Card>
-            <CardHeader className="px-7">
-                <div className="flex justify-between">
-                    <div>
-                        <CardTitle>Liste Instructeur</CardTitle>
-                        <div className="mt-4">
-                            <Label htmlFor="rowsPerPage">Afficher:</Label>
-                            <select
-                                id="rowsPerPage"
-                                value={rowsPerPage}
-                                onChange={(e) => handleChangeRowsPerPage(Number(e.target.value))}
-                                className="ml-2 border-gray-300 rounded-md"
-                            >
-                                <option value={5}>5</option>
-                                <option value={10}>10</option>
-                                <option value={20}>20</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div className="flex space-x-4">
-                        <Input
-                            type="text"
-                            placeholder="Rechercher"
-                            value={searchTerm}
-                            onChange={(e) => setSearchTerm(e.target.value)}
-                            className="w-full"
+       
+      <Card className="w-full shadow-lg">
+        <CardHeader className="border-b bg-white">
+          <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
+            <div>
+              <CardTitle className="text-2xl font-bold text-gray-800">
+                Liste des Instructeurs
+              </CardTitle>
+              <p className="text-muted-foreground">
+                Gérez vos instructeurs avec facilité
+              </p>
+            </div>
+            
+            <div className="flex flex-col md:flex-row gap-4 w-full md:w-auto">
+              <div className="relative flex-grow">
+                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
+                <Input
+                  type="text"
+                  placeholder="Rechercher un instructeur..."
+                  value={searchTerm}
+                  onChange={(e) => setSearchTerm(e.target.value)}
+                  className="pl-10 bg-white border-gray-300"
+                />
+              </div>
+              
+              <Select 
+                value={rowsPerPage.toString()} 
+                onValueChange={(value) => setRowsPerPage(Number(value))}
+              >
+                <SelectTrigger className="w-[100px]">
+                  <SelectValue placeholder="Lignes" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="5">5 lignes</SelectItem>
+                  <SelectItem value="10">10 lignes</SelectItem>
+                  <SelectItem value="20">20 lignes</SelectItem>
+                </SelectContent>
+              </Select>
+              
+              <button 
+                onClick={handleAddClick} 
+                className=" flex reserver-button text-sm sm:text-base font-bold font-lato rounded-lg  py-2 sm:py-3 bg-bgColor text-marron  duration-300 ease-in-out transform"
+              >
+                <PlusCircle  />
+                Ajouter
+              </button>
+            </div>
+          </div>
+        </CardHeader>
+        
+        <CardContent className="p-0">
+          <Table>
+            <TableHeader className="bg-gray-100">
+              <TableRow>
+                <TableHead className="w-[250px]">Instructeur</TableHead>
+                <TableHead className="hidden md:table-cell">Téléphone</TableHead>
+                <TableHead className="hidden lg:table-cell">Spécialité</TableHead>
+                <TableHead className="hidden md:table-cell">Date de création</TableHead>
+                <TableHead className="text-right">Actions</TableHead>
+              </TableRow>
+            </TableHeader>
+            <TableBody>
+              {paginatedTeaches.map((teache) => (
+                <TableRow key={teache.id} className="hover:bg-gray-50">
+                  <TableCell>
+                    <div className="flex items-center space-x-4">
+                      <div className="w-12 h-12 rounded-full overflow-hidden">
+                        <img 
+                          src={teache.image} 
+                          alt={teache.fullname} 
+                          className="w-full h-full object-cover"
                         />
-                        <Button variant="default" onClick={handleAddClick}>
-                            Ajouter un Instructeur
-                        </Button>
+                      </div>
+                      <div>
+                        <div className="font-medium text-gray-800">{teache.fullname}</div>
+                        <div className="text-sm text-muted-foreground">{teache.email}</div>
+                      </div>
                     </div>
-                </div>
-            </CardHeader>
-            <CardContent>
-                <Table>
-                    <TableHeader>
-                        <TableRow>
-                            <TableHead>Prénom et Nom</TableHead>
-                            <TableHead className="hidden sm:table-cell">Numéro téléphone</TableHead>
-                            <TableHead className="hidden sm:table-cell">Spécialité</TableHead>
-                            <TableHead className="hidden md:table-cell">Créé le</TableHead>
-                            <TableHead>Actions</TableHead>
-                        </TableRow>
-                    </TableHeader>
-                    <TableBody>
-                        {paginatedTeaches.map((teache: Teache) => (
-                            <TableRow key={teache.id}>
-                                <TableCell>
-                                    <div className="flex items-center space-x-4">
-                                        <div className="w-16 h-16 overflow-hidden rounded-full">
-                                            <img src={teache.image} alt={teache.fullname} className="object-cover w-full h-full" />
-                                        </div>
-                                        <div>
-                                            <div className="font-medium">{teache.fullname}</div>
-                                            <div className="hidden text-sm text-muted-foreground md:inline">
-                                                {teache.email}
-                                            </div>
-                                        </div>
-                                    </div>
-                                </TableCell>
-                                <TableCell className="hidden sm:table-cell">{teache.nomber_phone}</TableCell>
-                                <TableCell className="hidden sm:table-cell">{teache.specialite}</TableCell>
-                                <TableCell className="hidden md:table-cell">{new Date(teache.create_at).toLocaleDateString()}</TableCell>
-                                <TableCell className="text-right">
-                                    <div className="flex space-x-2">
-                                        <Button variant="secondary" onClick={() => handleEditClick(teache)}>
-                                            <FaEdit />
-                                        </Button>
-                                        <Button variant="destructive" onClick={() => deleteTeaches(teache.id)}>
-                                            <FaTrash />
-                                        </Button>
-                                    </div>
-                                </TableCell>
-                            </TableRow>
-                        ))}
-                    </TableBody>
-                </Table>
-                <div className="flex justify-end mt-4">
-                    <Button
-                        variant="secondary"
-                        onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
-                        disabled={currentPage === 1}
-                    >
-                        Previous
-                    </Button>
-                    <Button
-                        variant="secondary"
-                        onClick={() => setCurrentPage((prev) => (prev * rowsPerPage < filteredTeaches.length ? prev + 1 : prev))}
-                        disabled={currentPage * rowsPerPage >= filteredTeaches.length}
-                    >
-                        Next
-                    </Button>
-                </div>
-            </CardContent>
+                  </TableCell>
+                  <TableCell className="hidden md:table-cell">{teache.nomber_phone}</TableCell>
+                  <TableCell className="hidden lg:table-cell">{teache.specialite}</TableCell>
+                  <TableCell className="hidden md:table-cell text-muted-foreground">
+                    {new Date(teache.create_at).toLocaleDateString()}
+                  </TableCell>
+                  <TableCell className="text-right">
+                    <div className="flex justify-end space-x-2">
+                      <Button 
+                        variant="outline" 
+                        size="icon" 
+                        onClick={() => handleEditClick(teache)}
+                        className="hover:bg-blue-50"
+                      >
+                        <Edit2 className="w-4 h-4 text-blue-600" />
+                      </Button>
+                      <Button 
+                        variant="outline" 
+                        size="icon" 
+                        onClick={() => deleteTeaches(teache.id)}
+                        className="hover:bg-red-50"
+                      >
+                        <Trash2 className="w-4 h-4 text-red-600" />
+                      </Button>
+                    </div>
+                  </TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
+          
+          {/* Pagination */}
+          <div className="flex justify-between items-center p-4 border-t">
+            <div className="text-sm text-muted-foreground">
+              Page {currentPage} sur {Math.ceil(filteredTeaches.length / rowsPerPage)}
+            </div>
+            <div className="flex space-x-2">
+              <Button
+                variant="outline"
+                onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
+                disabled={currentPage === 1}
+              >
+                Précédent
+              </Button>
+              <Button
+                variant="outline"
+                onClick={() => setCurrentPage(prev => 
+                  (prev * rowsPerPage < filteredTeaches.length ? prev + 1 : prev)
+                )}
+                disabled={currentPage * rowsPerPage >= filteredTeaches.length}
+              >
+                Suivant
+              </Button>
+            </div>
+          </div>
+        </CardContent>
+    
             {isModalOpen && (
                 <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
                     {isEditing ? (
                         <TeachesEditForm teache={selectedTeache as Teache} onSave={updateTeaches} onClose={() => setIsModalOpen(false)} />
                     ) : (
-                        <form onSubmit={handleSubmit}>
-                            <div className="grid gap-6">
-                                <div className="grid gap-3">
-                                    <Label htmlFor="fullname">Prénom et Nom</Label>
-                                    <Input
-                                        id="fullname"
-                                        type="text"
-                                        className="w-full"
-                                        placeholder="Prénom et Nom"
-                                        value={teache.fullname}
-                                        onChange={(e) => setTeache({ ...teache, fullname: e.target.value })}
-                                    />
-                                </div>
-                                <div className="grid gap-3">
-                                    <Label htmlFor="email">Email</Label>
-                                    <Input
-                                        id="email"
-                                        placeholder="Instructeur Email"
-                                        className="w-full"
-                                        value={teache.email}
-                                        onChange={(e) => setTeache({ ...teache, email: e.target.value })}
-                                    />
-                                </div>
-                                <div className="flex flex-col gap-6 items-center">
-                                    <div className="flex flex-row justify-center gap-3 items-center">
-                                        <Label htmlFor="nomber_phone">Numéro téléphone</Label>
-                                        <Input
-                                            id="nomber_phone"
-                                            type="number"
-                                            className="w-25"
-                                            placeholder="Numéro téléphone"
-                                            value={teache.nomber_phone}
-                                            onChange={(e) => setTeache({ ...teache, nomber_phone: Number(e.target.value) })}
-                                        />
-                                        <Label htmlFor="specialite">Spécialité</Label>
-                                        <Input
-                                            id="specialite"
-                                            type="text"
-                                            className="w-25"
-                                            placeholder="Spécialité"
-                                            value={teache.specialite}
-                                            onChange={(e) => setTeache({ ...teache, specialite: e.target.value })}
-                                        />
-                                    </div>
-                                    <div className="grid gap-3">
-                                        <Label htmlFor="image">Ajouter une image</Label>
-                                        <Input
-                                            id="image"
-                                            type="file"
-                                            className="w-full"
-                                            onChange={handleImageChange}
-                                        />
-                                    </div>
-                                    <div>
-                                    <Button type="submit" className="w-44" size="lg">Ajouter</Button>
-                                    </div>
-                                </div>
-                            </div>
-                        </form>
+                        <form onSubmit={handleSubmit} className=" inset-0 flex  ">
+          <div className="text-center ">
+            <h2 className="text-3xl font-extrabold text-blue-800 mb-2">Inscription Instructeur</h2>
+            <p className="text-gray-500 text-sm">Partagez vos informations professionnelles</p>
+          </div>
+        
+          <div className=" justify-center mb-8">
+            <div className="relative">
+              <div className="w-40 h-40 bg-blue-50 rounded-full flex items-center justify-center border-4 border-blue-200 overflow-hidden">
+                
+                  <Camera className="text-blue-400" size={64} />
+            
+              </div>
+              <label htmlFor="image" className="absolute bottom-2 right-2 bg-blue-600 hover:bg-blue-700 text-white rounded-full p-3 cursor-pointer shadow-lg transition-transform transform hover:scale-110">
+                <Upload size={24} />
+                <input 
+                  id="image" 
+                  type="file" 
+                  className="hidden" 
+                  onChange={handleImageChange} 
+                />
+              </label>
+            </div>
+          </div>
+        
+          <div className="space-y-6">
+            <div className="grid md:grid-cols-2 gap-6">
+              <div>
+                <label htmlFor="fullname" className="flex items-center text-gray-700 mb-2">
+                  <User className="mr-2 text-blue-500" size={20} />
+                  Prénom et Nom
+                </label>
+                <input
+                  id="fullname"
+                  type="text"
+                  placeholder="Ex: Marie Dupont"
+                  value={teache.fullname}
+                  onChange={(e) => setTeache({ ...teache, fullname: e.target.value })}
+                  className="w-full px-4 py-3 border border-blue-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-400 transition-all"
+                />
+              </div>
+              <div>
+                <label htmlFor="email" className="flex items-center text-gray-700 mb-2">
+                  <Mail className="mr-2 text-blue-500" size={20} />
+                  Email
+                </label>
+                <input
+                  id="email"
+                  type="email"
+                  placeholder="instructeur@example.com"
+                  value={teache.email}
+                  onChange={(e) => setTeache({ ...teache, email: e.target.value })}
+                  className="w-full px-4 py-3 border border-blue-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-400 transition-all"
+                />
+              </div>
+            </div>
+        
+            <div className="grid md:grid-cols-2 gap-6">
+              <div>
+                <label htmlFor="nomber_phone" className="flex items-center text-gray-700 mb-2">
+                  <Phone className="mr-2 text-blue-500" size={20} />
+                  Numéro de téléphone
+                </label>
+                <input
+                    id="nomber_phone"
+                    type="tel"
+                    placeholder="+33 6 12 34 56 78"
+                    value={teache.nomber_phone.toString()} // Convert number to string for display
+                    onChange={(e) => setTeache({ ...teache, nomber_phone: Number(e.target.value) })} // Parse to number
+                    className="w-full px-4 py-3 border border-blue-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-400 transition-all"
+                  />
+
+              </div>
+              <div>
+                <label htmlFor="specialite" className="flex items-center text-gray-700 mb-2">
+                  <Star className="mr-2 text-blue-500" size={20} />
+                  Spécialité
+                </label>
+                <input
+                  id="specialite"
+                  type="text"
+                  placeholder="Ex: Pilates"
+                  value={teache.specialite}
+                  onChange={(e) => setTeache({ ...teache, specialite: e.target.value })}
+                  className="w-full px-4 py-3 border border-blue-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-400 transition-all"
+                />
+              </div>
+            </div>
+        
+            <div>
+              <label htmlFor="description" className="flex items-center text-gray-700 mb-2">
+                <FileText className="mr-2 text-blue-500" size={20} />
+                Biographie
+              </label>
+              <textarea
+                id="description"
+                placeholder="Parlez-nous de votre parcours et de votre expertise..."
+                value={teache.description}
+                onChange={(e) => setTeache({ ...teache, description: e.target.value })}
+                className="w-full px-4 py-3 h-40 border border-blue-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-400 transition-all resize-none"
+              />
+            </div>
+        
+            <div className="text-center mt-8">
+              <button 
+                type="submit" 
+                className=" flex reserver-button text-sm sm:text-base font-bold font-lato rounded-lg  py-2 sm:py-3 bg-bgColor text-marron  duration-300 ease-in-out transform"              >
+                Ajouter Instructeur
+              </button>
+            </div>
+          </div>
+        </form>
+                      
                     )}
                 </Modal>
             )}

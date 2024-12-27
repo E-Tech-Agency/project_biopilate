@@ -1,4 +1,4 @@
-import { useState } from "react";
+
 import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 // import { LuShare } from "react-icons/lu";
@@ -12,13 +12,34 @@ import { LuShare } from "react-icons/lu";
 import { IoIosLink } from "react-icons/io";
 import { RiTwitterXLine, RiInstagramFill } from "react-icons/ri";
 import { TiSocialFacebook } from "react-icons/ti";
-
+import { Blog ,BlogArticle } from "@/types/types";
+import { useEffect, useState } from "react";
+import api from "@/lib/api";
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
 export default function Article() {
+  const [blogs, setBlogs] = useState<Blog[] | null>([]);
+ 
+
+  const getBlogs = async () => {
+    try {
+      const res = await api.get("blogs/");
+      const blogdataPublic = res.data.filter(
+        (blog: Blog) => blog.status === "approved"
+      );
+      setBlogs(blogdataPublic);
+    } catch (error) {
+      console.error("Error fetching blogs", error);
+    }
+  };
+
+  useEffect(() => {
+    getBlogs();
+  }, []);
+
   const articles = [
     {
       id: 1,
@@ -95,10 +116,21 @@ export default function Article() {
   ];
   const { id } = useParams<{ id: string }>(); // Make sure id is of type string
   const articleId = id ? parseInt(id) : null; // Safely parse the id if it exists
-  const article = articleId ? articles.find((a) => a.id === articleId) : null; // Find the article using the parsed ID
 
   const navigate = useNavigate();
-
+  const blogData: BlogArticle[] = blogs && blogs.length > 0
+  ? blogs.map((blog) => ({
+      id: blog.id,
+      title: blog.title,
+      ecrivain: blog.author,
+      description: blog.description,
+      favorites: blog.favorites,
+      image: blog.image_1,
+      view: blog.view,
+    }))
+  : articles;
+    
+    const article = blogData.find((blog) => blog.id === articleId);
   const navigateToContact = () => {
     navigate("/contact");
   };

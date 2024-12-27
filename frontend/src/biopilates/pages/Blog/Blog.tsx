@@ -3,6 +3,10 @@
 // import Stack from "@mui/material/Stack";
 import BlogCard from "@/biopilates/components/BlogCard";
 import articleImage1 from "@/assets/images/article-1.png";
+import { BlogShow } from "@/types/types";
+import { useEffect, useState } from "react";
+import api from "@/lib/api";
+
 // import placeholderImage from "@/assets/images/Placeholder_view_vector.png";
 
 // function Filter() {
@@ -36,6 +40,23 @@ import articleImage1 from "@/assets/images/article-1.png";
 // }
 
 export default function Blog() {
+  const [blogs, setBlogs] = useState<BlogShow[] | null>([]);
+
+  const getBlogs = async () => {
+    try {
+      const res = await api.get("blogs/");
+      const blogdataPublic = res.data.filter(
+        (blog: BlogShow) => blog.status === "approved"
+      );
+      setBlogs(blogdataPublic);
+    } catch (error) {
+      console.error("Error fetching blogs", error);
+    }
+  };
+
+  useEffect(() => {
+    getBlogs();
+  }, []);
   const articles = [
     {
       id: 1,
@@ -43,12 +64,25 @@ export default function Blog() {
       ecrivain: "Véronique Fournier",
       description:
         "La Maison Vieille est un lieu de soutien et de bien-être pour les personnes âgées, visant à briser leur isolement et à offrir des moments enrichissants.",
-      jaimes: 49,
+      favorites: 49,
       image: articleImage1,
+      view :10,
     },
 
     // Add other articles here similarly...
   ];
+  const blogData =
+    blogs && blogs.length > 0
+      ? blogs.map((blog) => ({
+          id: blog.id,
+          title: blog.title,
+          ecrivain: blog.author, // Map 'author' to 'ecrivain'
+          description: blog.description,
+          favorites: blog.favorites, // Map 'favorites' to 'favorites'
+          image: blog.image_1, // Use 'image_1' as the main image
+          view: blog.view,
+        }))
+      : articles;
 
   return (
     <div className="flex flex-col mt-4 mx-5 md:mx-12 mb-12 ">
@@ -140,7 +174,7 @@ export default function Blog() {
             </svg>
           </div>
           <div className="flex flex-wrap gap-6 justify-center py-16">
-            {articles.map((article, index) => (
+            {blogData.map((article, index) => (
               <div className="z-10">
                 <BlogCard key={index} article={article} />
               </div>

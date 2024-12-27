@@ -2,15 +2,16 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { FaRegHeart, FaHeart } from "react-icons/fa";
 import biopilateLogo from "@/assets/images/biopilate-logo.png"; // Replace require with import
-
+import api from "@/lib/api";
 // Define the Article type
 interface Article {
   id: number;
   title: string;
   ecrivain: string;
   description: string;
-  jaimes: number;
+  favorites: number;
   image: string;
+  view: number;
 }
 
 interface BlogCardProps {
@@ -19,17 +20,27 @@ interface BlogCardProps {
 
 export default function BlogCard({ article }: BlogCardProps) {
   const [liked, setLiked] = useState(false);
-  const [likes, setLikes] = useState(article.jaimes); // Initialize likes with article's jaimes count
+  const [likes, setLikes] = useState(article.favorites); // Initialize likes with article's favorites count
   const navigate = useNavigate(); // Initialize navigate for programmatic navigation
-
+  const updateBlog = async (data: { favorites?: number; view?: number }) => {
+    try {
+      await api.put(`blogs/${article.id}/`, data); // Use your "edit blog" API endpoint
+    } catch (error) {
+      console.error("Error updating blog:", error);
+    }
+  };
   const toggleLike = () => {
-    setLikes(liked ? likes - 1 : likes + 1);
-    setLiked(!liked); // Toggle the liked state
+    const newLikes = liked ? likes - 1 : likes + 1;
+    setLikes(newLikes);
+    setLiked(!liked);
+    updateBlog({ favorites: newLikes }); // Update the favorites count in the backend
   };
 
   const navigateToArticle = () => {
+    updateBlog({ view: (article.view || 0) + 1 }); // Increment view count in the backend
     navigate(`/blog/${article.id}`); // Navigate to the article page
   };
+  
 
   return (
     <div
@@ -69,7 +80,8 @@ export default function BlogCard({ article }: BlogCardProps) {
 
       <div className="px-2 flex flex-col gap-3">
         <p className="text-black sm:text-[28px] font-semibold font-ebGaramond mt-1">
-          {article.title}
+          {article.title} 
+          {/* {article.view}  <span className="text-gray-600">({likes} likes)</span> */}
         </p>
         <div className="flex items-center gap-2">
           <img

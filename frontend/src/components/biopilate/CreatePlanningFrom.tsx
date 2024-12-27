@@ -1,4 +1,4 @@
-import React, { useEffect, useState, Suspense } from "react";
+import React, { useEffect, useState, Suspense, useRef } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -8,13 +8,8 @@ import api from "@/lib/api";
 import axios from "axios";
 import { toast } from "sonner";
 import "react-quill/dist/quill.snow.css"; // Import styles for React Quill
-
 import { useNavigate } from "react-router-dom";
-import {
-  CreatePlanningErrors,
-  PlanningFormType,
-  Category,
-} from "@/types/types";
+import { CreatePlanningErrors, PlanningFormType, Category } from "@/types/types";
 import CreateCategory from "../supplier/create-category";
 const ReactQuill = React.lazy(() => import("react-quill"));
 
@@ -29,19 +24,26 @@ export default function CreatePlanningForm() {
     status: "",
     category: "",
   });
+  const [isCategoryModalOpen, setIsCategoryModalOpen] = useState(false);
   const navigate = useNavigate();
+  const planningRef = useRef<{ fetchCategories: () => void } | null>(null);
+
+  const handlePlanningAdded = () => {
+    if (planningRef.current) {
+      planningRef.current.fetchCategories();
+    }
+  };
 
   useEffect(() => {
     const fetchCategories = async () => {
       try {
         const res = await api.get("categories/");
         setCategories(res.data);
-        console.log(res.data);
       } catch (error) {
         console.error("Error fetching categories", error);
       }
     };
-
+    planningRef.current = { fetchCategories };
     fetchCategories();
   }, []);
 
@@ -85,153 +87,150 @@ export default function CreatePlanningForm() {
   };
 
   return (
-    <div>
-      <div className="flex flex-rowjustify-evenly items-center m-6">
-        <Card className="w-full max-w-2xl mx-auto p-6 my-8">
-          <CardHeader>
-            <CardTitle>Ajouter un Planning</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <form onSubmit={handleSubmit}>
-              <div className="grid gap-6">
-                <div className="grid gap-3">
-                  <Label htmlFor="title">
-                    Titre
-                    {errors.title && (
-                      <span className="text-red-500 mt-2">{errors.title}</span>
-                    )}
-                  </Label>
-                  <Input
-                    id="title"
-                    type="text"
-                    value={planning.title}
-                    onChange={(e) =>
-                      setPlanning({ ...planning, title: e.target.value })
-                    }
-                    className="w-full"
-                  />
-                </div>
-                <div className="grid gap-3">
-                  <Label htmlFor="duree">
-                    Durée
-                    {errors.duree && (
-                      <span className="text-red-500 mt-2">{errors.duree}</span>
-                    )}
-                  </Label>
-                  <Input
-                    id="duree"
-                    value={planning.duree}
-                    onChange={(e) =>
-                      setPlanning({ ...planning, duree: e.target.value })
-                    }
-                    placeholder="Durée du planning"
-                    className="w-full"
-                  />
-                </div>
-                <div className="grid gap-6">
-                  <div className="grid gap-3">
-                    <Label htmlFor="category">
-                      Niveau
-                      {errors.category && (
-                        <span className="text-red-500 mt-2">
-                          {errors.category}
-                        </span>
-                      )}
-                    </Label>
-                    <select
-                      id="category"
-                      name="category"
-                      value={planning.category}
-                      onChange={(e) =>
-                        setPlanning({ ...planning, category: e.target.value })
-                      }
-                      className="mt-1 block w-full rounded-md border-gray-300 shadow-sm"
-                    >
-                      <option value="">Sélectionner un Niveau</option>
-                      {categories.map((niveau) => (
-                        <option key={niveau.id} value={niveau.id}>
-                          {niveau.name}
-                        </option>
-                      ))}
-                    </select>
-                  </div>
-                  <div className="grid gap-3">
-                    <Label htmlFor="range">
-                      Déplacement
-                      {errors.range && (
-                        <span className="text-red-500 mt-2">
-                          {errors.range}
-                        </span>
-                      )}
-                    </Label>
-                    <Input
-                      id="range"
-                      name="range"
-                      type="number"
-                      value={planning.range}
-                      onChange={(e) =>
-                        setPlanning({
-                          ...planning,
-                          range: parseInt(e.target.value),
-                        })
-                      }
-                      className="w-full"
-                    />
-                  </div>
-                </div>
-                <div className="grid gap-3">
-                  <Label htmlFor="status">
-                    Status
-                    {errors.status && (
-                      <span className="text-red-500 mt-2">{errors.status}</span>
-                    )}
-                  </Label>
+    <div className="container  mx-auto max-w-4xl p-6">
+      <Card className="bg-white shadow-lg rounded-lg">
+        <CardHeader className="p-6">
+          <CardTitle className="text-xl font-semibold text-gray-800">
+            Créer un Nouveau Planning
+          </CardTitle>
+        </CardHeader>
+        <CardContent className="p-6">
+          <form onSubmit={handleSubmit} className="space-y-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div>
+                <Label htmlFor="title">
+                  Titre
+                  {errors.title && <span className="text-red-500 ml-2">{errors.title}</span>}
+                </Label>
+                <Input
+                  id="title"
+                  type="text"
+                  value={planning.title}
+                  onChange={(e) => setPlanning({ ...planning, title: e.target.value })}
+                  placeholder="Titre du planning"
+                  className="mt-2"
+                />
+              </div>
+              <div>
+                <Label htmlFor="duree">
+                  Durée
+                  {errors.duree && <span className="text-red-500 ml-2">{errors.duree}</span>}
+                </Label>
+                <Input
+                  id="duree"
+                  type="text"
+                  value={planning.duree}
+                  onChange={(e) => setPlanning({ ...planning, duree: e.target.value })}
+                  placeholder="Durée du planning"
+                  className="mt-2"
+                />
+              </div>
+              <div>
+                <Label htmlFor="category">
+                  Niveau
+                  {errors.category && <span className="text-red-500 ml-2">{errors.category}</span>}
+                </Label>
+                <div className="flex items-center mt-2">
                   <select
-                    id="status"
-                    name="status"
-                    value={planning.status}
-                    onChange={(e) =>
-                      setPlanning({ ...planning, status: e.target.value })
-                    }
-                    className="mt-1 block w-full rounded-md border-gray-300 shadow-sm"
+                    id="category"
+                    value={planning.category}
+                    onChange={(e) => setPlanning({ ...planning, category: e.target.value })}
+                    className="w-full rounded-md border-gray-300 shadow-sm"
                   >
-                    <option value="">Sélectionner un Status</option>
-                    <option value="pending">En attente de publication</option>
-                    <option value="approved">Publiée</option>
+                    <option value="">Sélectionner un Niveau</option>
+                    {categories.map((niveau) => (
+                      <option key={niveau.id} value={niveau.id}>
+                        {niveau.name}
+                      </option>
+                    ))}
                   </select>
-                </div>
-                <div className="grid gap-3">
-                  <Label htmlFor="description">
-                    Description
-                    {errors.description && (
-                      <span className="text-red-500 mt-2">
-                        {errors.description}
-                      </span>
-                    )}
-                  </Label>
-                  <Suspense fallback={<div>Loading...</div>}>
-                    <ReactQuill
-                      id="description"
-                      value={planning.description}
-                      onChange={handleQuillChange}
-                      className="w-full"
-                      theme="snow"
-                    />
-                  </Suspense>
-                </div>
-                <div className="flex justify-end mt-6">
-                  <Button type="submit" className="w-44" size="lg">
-                    Ajouter
+                  <Button
+                    type="button"
+                    onClick={() => setIsCategoryModalOpen(true)}
+                   className=" flex reserver-button text-sm sm:text-base font-bold font-lato rounded-lg  py-2 sm:py-3 bg-bgColor text-marron  duration-300 ease-in-out transform"
+
+                  >
+                    + Ajouter
                   </Button>
                 </div>
               </div>
-            </form>
-          </CardContent>
-        </Card>
-        <div className="flex  gap-3">
-          <CreateCategory />
-        </div>
-      </div>
+              <div>
+                <Label htmlFor="range">
+                  Déplacement
+                  {errors.range && <span className="text-red-500 ml-2">{errors.range}</span>}
+                </Label>
+                <Input
+                  id="range"
+                  type="number"
+                  value={planning.range}
+                  onChange={(e) =>
+                    setPlanning({ ...planning, range: parseInt(e.target.value) || 0 })
+                  }
+                  placeholder="Valeur de déplacement"
+                  className="mt-2"
+                />
+              </div>
+            </div>
+
+            <div>
+              <Label htmlFor="status">
+                Status
+                {errors.status && <span className="text-red-500 ml-2">{errors.status}</span>}
+              </Label>
+              <select
+                id="status"
+                value={planning.status}
+                onChange={(e) => setPlanning({ ...planning, status: e.target.value })}
+                className="mt-2 w-full rounded-md border-gray-300 shadow-sm"
+              >
+                <option value="">Sélectionner un Status</option>
+                <option value="pending">En attente de publication</option>
+                <option value="approved">Publiée</option>
+              </select>
+            </div>
+
+            <div>
+              <Label htmlFor="description">
+                Description
+                {errors.description && <span className="text-red-500 ml-2">{errors.description}</span>}
+              </Label>
+              <Suspense fallback={<div>Chargement de l'éditeur...</div>}>
+                <ReactQuill
+                  id="description"
+                  value={planning.description}
+                  onChange={handleQuillChange}
+                  className="mt-2"
+                  theme="snow"
+                />
+              </Suspense>
+            </div>
+
+            <div className="flex justify-end space-x-4">
+              <Button
+                type="submit"
+                className=" flex reserver-button text-sm sm:text-base font-bold font-lato rounded-lg  py-2 sm:py-3 bg-bgColor text-marron  duration-300 ease-in-out transform"
+
+              >
+                Ajouter
+              </Button>
+              <Button
+                type="button"
+                onClick={() => navigate("/planning-biopilates")}
+                className="bg-gray-300 px-6 py-2 rounded-lg hover:bg-gray-400 transition"
+              >
+                Annuler
+              </Button>
+            </div>
+          </form>
+        </CardContent>
+      </Card>
+
+      {isCategoryModalOpen && (
+        <CreateCategory
+          onClose={() => setIsCategoryModalOpen(false)}
+          onTagAdded={handlePlanningAdded}
+        />
+      )}
     </div>
   );
 }
