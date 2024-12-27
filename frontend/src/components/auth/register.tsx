@@ -78,7 +78,7 @@ export function RegisterForm({
     const initializeGoogleLogin = () => {
       if (window.google) {
         window.google.accounts.id.initialize({
-         client_id: "112347057052422315323.apps.googleusercontent.com",
+         client_id: "85228442992-chbtggvroj2hklqrl5tt88a2ctflee9k.apps.googleusercontent.com ",
           callback: handleLoginWithGoogle,
         });
         window.google.accounts.id.renderButton(
