@@ -29,7 +29,9 @@ SECRET_KEY = "django-insecure-ck#kon504#qtk$-ojh5rsw_(b0@-$)b*v+7j=+1^70q4(837%t
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['141.94.23.119']
+ALLOWED_HOSTS = env.list('DJANGO_ALLOWED_HOSTS', default=[
+                         '141.94.23.119', 'biopilates.fr', 'www.biopilates.fr'])
+
 
 APPEND_SLASH = False
 
@@ -66,10 +68,12 @@ CORS_ALLOW_ALL_ORIGINS = True
 CORS_ALLOW_CREDENTIALS = True
 CSRF_TRUSTED_ORIGINS = [
     "http://141.94.23.119",
+    "https://www.biopilates.fr",
 
 ]
 CORS_ALLOWED_ORIGINS = [
     "http://141.94.23.119",
+    "https://www.biopilates.fr",
 
 ]
 
@@ -127,7 +131,7 @@ SIMPLE_JWT = {
     'AUTH_HEADER_TYPES': ('Bearer',),
 }
 
-DOMAIN = '141.94.23.119'
+DOMAIN = 'biopilates.fr'
 SITE_NAME = 'Biopilates'
 
 AUTH_USER_MODEL = 'accounts.User'
