@@ -59,7 +59,7 @@ const FormationTarifCard: React.FC<FormationCardProps> = ({ formation }) => {
           className="reserver-button bg-bgColor flex flex-col justify-center rounded-lg mb-3 sm:mb-4 max-sm:px-10 sm:px-[70px] py-3 transform"
           onClick={() => {
             window.open(
-              "https://forms.zohopublic.com/virtualoffice707/form/AnalysedesbesoinsbnficiairesFormationscourtesouper/formperma/0Yyw-9wbvHRQB_Xb63QniT0EDrnKuekcjjfWvZC8PMg",
+              "https://forms.zohopublic.com/carolinebergerdefemynie1/form/RecueildesbesoinsInscription/formperma/X8ryqIG4D2mdyqQI-FiBnW9a1vwiN-y0HuQGnPGetaQ",
               "_blank"
             );
           }}

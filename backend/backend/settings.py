@@ -67,12 +67,12 @@ MIDDLEWARE = [
 CORS_ALLOW_ALL_ORIGINS = True
 CORS_ALLOW_CREDENTIALS = True
 CSRF_TRUSTED_ORIGINS = [
-    "http://141.94.23.119",
+    "https://141.94.23.119",
     "https://www.biopilates.fr",
 
 ]
 CORS_ALLOWED_ORIGINS = [
-    "http://141.94.23.119",
+    "https://141.94.23.119",
     "https://www.biopilates.fr",
 
 ]
