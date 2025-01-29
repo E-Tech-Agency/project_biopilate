@@ -6,7 +6,7 @@ from ..models.formation import Formation, Option, FormationCategory
 from ..serializers.FormSerializer import FormationsSerializer, OptionSerializer, SelectedOptionSerializer
 
 class FormationsViewSet(viewsets.ModelViewSet):
-    permission_classes = [permissions.IsAuthenticated] 
+    
     queryset = Formation.objects.all().order_by('-created_at')
     serializer_class = FormationsSerializer
 
@@ -41,12 +41,12 @@ class FormationsViewSet(viewsets.ModelViewSet):
             )
 
 class OptionViewSet(viewsets.ModelViewSet):
-    permission_classes = [permissions.IsAuthenticated] 
+    
     queryset = Option.objects.all()
     serializer_class = OptionSerializer
 
 class SelectedOptionViewSet(viewsets.ModelViewSet):
-    permission_classes = [permissions.IsAuthenticated] 
+   
     queryset = FormationCategory.objects.all().order_by('-created_at')
     serializer_class = SelectedOptionSerializer
 

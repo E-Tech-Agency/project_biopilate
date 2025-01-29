@@ -27,10 +27,9 @@ environ.Env.read_env(BASE_DIR / '.env')
 SECRET_KEY = "django-insecure-ck#kon504#qtk$-ojh5rsw_(b0@-$)b*v+7j=+1^70q4(837%t"
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
-ALLOWED_HOSTS = env.list('DJANGO_ALLOWED_HOSTS', default=[
-                         '141.94.23.119', 'biopilates.fr', 'www.biopilates.fr'])
+ALLOWED_HOSTS =["127.0.0.1","localhost"]
 
 
 APPEND_SLASH = False
@@ -67,13 +66,16 @@ MIDDLEWARE = [
 CORS_ALLOW_ALL_ORIGINS = True
 CORS_ALLOW_CREDENTIALS = True
 CSRF_TRUSTED_ORIGINS = [
-    "https://141.94.23.119",
-    "https://www.biopilates.fr",
+  
+    "http://localhost:8000",
+    "http://localhost:5173",
+
 
 ]
 CORS_ALLOWED_ORIGINS = [
-    "https://141.94.23.119",
-    "https://www.biopilates.fr",
+ 
+    "http://localhost:8000",
+    "http://localhost:5173",
 
 ]
 
@@ -109,8 +111,8 @@ MEDIA_ROOT = BASE_DIR / 'media'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'biopilatesbmg',
-        'USER': 'biopilates',
+        'NAME': 'biopilatetest',
+        'USER': 'multilab',
         'PASSWORD': 'root',
         'HOST': '127.0.0.1',
         'PORT': '5432',

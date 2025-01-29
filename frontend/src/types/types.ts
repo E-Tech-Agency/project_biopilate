@@ -136,6 +136,66 @@ export type CreateServiceErrors = {
     instructeur?: string[];
    
 }
+// cour plannig new vesion
+export type CoursePlanning ={
+    id: number;
+    title: string;
+    description: string;
+    image?: string;
+    status: string;
+    created_at: string;
+    updated_at: string;
+  }
+
+  export type CoursePlanningForm ={
+    title: string;
+    description: string;
+    image?: File | null;
+    status: string;
+  }
+  export type CreateCoursePlanningErrors = {
+    title?: string[];
+    description?: string[];
+    image?: string[];
+    status?: string[];
+  }
+  //
+
+  export type SessionPlanning ={
+    id: number;
+    course: number; // Foreign key to CoursePlanning
+    start_date: string;
+    end_date: string;
+    schedule: string;
+    created_at: string;
+    updated_at: string;
+    course_details?: CoursePlanning; // Optional nested course details
+  }
+
+  export type SessionPlanningForm = {
+    course: number;
+    start_date: string;
+    end_date: string;
+    schedule: string;
+    
+  }
+  export type CreateSessionPlanningErrors = {
+    course?: string[];
+    start_date?: string[];
+    end_date?: string[];
+    schedule?: string[];
+    course_details?: string[];
+  }
+  //
+  
+  export type PaginatedResponse<T> ={
+    count: number;
+    next: string | null;
+    previous: string | null;
+    results: T[];
+  }
+
+//end function
 export type Planning = {
     id: number;
     title : string;

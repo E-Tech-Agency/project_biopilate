@@ -8,13 +8,13 @@ from rest_framework.decorators import api_view
 
 
 class CategoryViewSet(viewsets.ModelViewSet):
-    permission_classes = [permissions.IsAuthenticated]
+    
     queryset = Category.objects.all()
     serializer_class = CategorySerializer
 
 
 class PlanningViewSet(viewsets.ModelViewSet):
-    permission_classes = [permissions.IsAuthenticated]
+   
     queryset = Planning.objects.all().order_by('-create_at')
     serializer_class = PlanningSerializer
 

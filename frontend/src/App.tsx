@@ -57,7 +57,7 @@ import FormationEdit from "./components/biopilate/FormationEdit";
 // Forms
 import CreateBlogForm from "./components/biopilate/CreateBlogForm";
 import CreateServicesForm from "./components/biopilate/CreateServicesFrom";
-import CreatePlanningForm from "./components/biopilate/CreatePlanningFrom";
+import CreatePlanningForm from "./components/biopilate/plannig/CreatePlanningFrom";
 import CreateFAQFrom from "./components/biopilate/CreateFAQFrom";
 import CreateFormationForm from "./components/biopilate/CreateFormationForm";
 import EditBlog from "./pages/EditBlog";

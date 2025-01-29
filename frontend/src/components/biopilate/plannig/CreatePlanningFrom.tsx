@@ -9,20 +9,18 @@ import axios from "axios";
 import { toast } from "sonner";
 import "react-quill/dist/quill.snow.css"; // Import styles for React Quill
 import { useNavigate } from "react-router-dom";
-import { CreatePlanningErrors, PlanningFormType, Category } from "@/types/types";
-import CreateCategory from "../supplier/create-category";
+import { CoursePlanningForm, CreateCoursePlanningErrors } from "@/types/types";
+import CreateCategory from "../../supplier/create-category";
 const ReactQuill = React.lazy(() => import("react-quill"));
 
 export default function CreatePlanningForm() {
-  const [errors, setErrors] = useState<CreatePlanningErrors>({});
-  const [categories, setCategories] = useState<Category[]>([]);
-  const [planning, setPlanning] = useState<PlanningFormType>({
+  const [errors, setErrors] = useState<CreateCoursePlanningErrors>({});
+  const [imagePreview, setImagePreview] = useState<string | null>(null);
+  const [planning, setPlanning] = useState<CoursePlanningForm>({
     title: "",
-    duree: "",
     description: "",
-    range: 0,
-    status: "",
-    category: "",
+    image: null,
+    status : "",
   });
   const [isCategoryModalOpen, setIsCategoryModalOpen] = useState(false);
   const navigate = useNavigate();
@@ -34,58 +32,50 @@ export default function CreatePlanningForm() {
     }
   };
 
-  useEffect(() => {
-    const fetchCategories = async () => {
-      try {
-        const res = await api.get("categories/");
-        setCategories(res.data);
-      } catch (error) {
-        console.error("Error fetching categories", error);
-      }
-    };
-    planningRef.current = { fetchCategories };
-    fetchCategories();
-  }, []);
-
-  const handleQuillChange = (value: string) => {
-    setPlanning((prevPlanning) => ({
-      ...prevPlanning,
-      description: value,
-    }));
+ 
+  const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (file) {
+      setPlanning(prev => ({
+        ...prev,
+        image: file
+      }));
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setImagePreview(reader.result as string);
+      };
+      reader.readAsDataURL(file);
+    }
   };
+ 
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     const formData = new FormData();
     formData.append("title", planning.title);
-    formData.append("duree", planning.duree);
     formData.append("description", planning.description);
-    formData.append("range", planning.range.toString());
     formData.append("status", planning.status);
-    formData.append("category", planning.category);
+    if (planning.image) {
+      formData.append("image", planning.image);
+    }
 
     try {
-      await apiCreateTeache.post("plannings/", formData);
-      setPlanning({
-        title: "",
-        duree: "",
-        description: "",
-        range: 0,
-        status: "",
-        category: "",
+      await api.post("course-list-planning/", formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
       });
-      toast.success("Planning created");
+      toast.success("Course planning created successfully");
       navigate("/planning-biopilates");
     } catch (error) {
       if (axios.isAxiosError(error)) {
         const errorsFromDb = error.response?.data;
-        toast.error(errorsFromDb.error);
         setErrors(errorsFromDb);
+        toast.error("Error creating course planning");
       }
     }
   };
-
   return (
     <div className="container  mx-auto max-w-4xl p-6">
       <Card className="bg-white shadow-lg rounded-lg">
@@ -111,65 +101,9 @@ export default function CreatePlanningForm() {
                   className="mt-2"
                 />
               </div>
-              <div>
-                <Label htmlFor="duree">
-                  Durée
-                  {errors.duree && <span className="text-red-500 ml-2">{errors.duree}</span>}
-                </Label>
-                <Input
-                  id="duree"
-                  type="text"
-                  value={planning.duree}
-                  onChange={(e) => setPlanning({ ...planning, duree: e.target.value })}
-                  placeholder="Durée du planning"
-                  className="mt-2"
-                />
-              </div>
-              <div>
-                <Label htmlFor="category">
-                  Niveau
-                  {errors.category && <span className="text-red-500 ml-2">{errors.category}</span>}
-                </Label>
-                <div className="flex items-center mt-2">
-                  <select
-                    id="category"
-                    value={planning.category}
-                    onChange={(e) => setPlanning({ ...planning, category: e.target.value })}
-                    className="w-full rounded-md border-gray-300 shadow-sm"
-                  >
-                    <option value="">Sélectionner un Niveau</option>
-                    {categories.map((niveau) => (
-                      <option key={niveau.id} value={niveau.id}>
-                        {niveau.name}
-                      </option>
-                    ))}
-                  </select>
-                  <Button
-                    type="button"
-                    onClick={() => setIsCategoryModalOpen(true)}
-                   className=" flex reserver-button text-sm sm:text-base font-bold font-lato rounded-lg  py-2 sm:py-3 bg-bgColor text-marron  duration-300 ease-in-out transform"
-
-                  >
-                    + Ajouter
-                  </Button>
-                </div>
-              </div>
-              <div>
-                <Label htmlFor="range">
-                  Déplacement
-                  {errors.range && <span className="text-red-500 ml-2">{errors.range}</span>}
-                </Label>
-                <Input
-                  id="range"
-                  type="number"
-                  value={planning.range}
-                  onChange={(e) =>
-                    setPlanning({ ...planning, range: parseInt(e.target.value) || 0 })
-                  }
-                  placeholder="Valeur de déplacement"
-                  className="mt-2"
-                />
-              </div>
+              
+              
+             
             </div>
 
             <div>
@@ -185,24 +119,47 @@ export default function CreatePlanningForm() {
               >
                 <option value="">Sélectionner un Status</option>
                 <option value="pending">En attente de publication</option>
-                <option value="approved">Publiée</option>
+                <option value="confirmed">Publiée</option>
+                <option value="cancelled">Annulée</option>
               </select>
             </div>
 
             <div>
               <Label htmlFor="description">
-                Description
+              Description du planning 
                 {errors.description && <span className="text-red-500 ml-2">{errors.description}</span>}
               </Label>
               <Suspense fallback={<div>Chargement de l'éditeur...</div>}>
-                <ReactQuill
+                <Input
                   id="description"
                   value={planning.description}
-                  onChange={handleQuillChange}
+                  onChange={(e) => setPlanning({ ...planning, description: e.target.value })}
                   className="mt-2"
-                  theme="snow"
+                  placeholder="Description du planning"
                 />
               </Suspense>
+            </div>
+            <div>
+              <Label htmlFor="image">
+                Image
+                {errors.image && <span className="text-red-500 ml-2">{errors.image}</span>}
+              </Label>
+              <Input
+                id="image"
+                type="file"
+                accept="image/*"
+                onChange={handleImageChange}
+                className="mt-2"
+              />
+              {imagePreview && (
+                <div className="mt-2">
+                  <img 
+                    src={imagePreview} 
+                    alt="Preview" 
+                    className="max-w-xs rounded-lg shadow-md"
+                  />
+                </div>
+              )}
             </div>
 
             <div className="flex justify-end space-x-4">

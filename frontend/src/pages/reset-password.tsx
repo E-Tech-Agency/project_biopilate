@@ -36,7 +36,7 @@ export function ResetPassword() {
 
     try {
       const res = await axios.patch(
-        `https://biopilates.fr/api/set_new_password/`,
+        `http://localhost:8000/api/set_new_password/`,
         data
       );
       toast.success(res.data.message);
