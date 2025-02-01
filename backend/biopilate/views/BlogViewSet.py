@@ -5,7 +5,7 @@ from ..serializers.BlogSerializer import BlogSerializer, BlogImageSerializer
 
 
 class BlogViewSet(viewsets.ModelViewSet):
-    permission_classes = [permissions.IsAuthenticated]  
+    
     queryset = Blog.objects.all().order_by('-create_at') 
     serializer_class = BlogSerializer
     def perform_update(self, serializer):

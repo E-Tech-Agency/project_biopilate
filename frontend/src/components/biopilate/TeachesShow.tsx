@@ -18,7 +18,7 @@ import { Input } from "@/components/ui/input";
 
 import { Button } from "../ui/button";
 import { Modal } from "./Modal";
-import TeachesEditForm from "./TeachesEditForm ";
+import TeachesEditForm from "./service/TeachesEditForm ";
 import apiCreateTeache from "@/lib/apiCreateTeache";
 import api from "@/lib/api";
 import { toast } from "sonner";

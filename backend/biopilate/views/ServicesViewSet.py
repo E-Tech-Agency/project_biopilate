@@ -4,7 +4,7 @@ from ..serializers.ServiceSerializer import ServicesSerializer
 
 
 class ServicesViewSet(viewsets.ModelViewSet):
-    permission_classes = [permissions.IsAuthenticated]
+   
     queryset = Services.objects.all().order_by('-create_at') 
     serializer_class = ServicesSerializer
     def perform_update(self, serializer):

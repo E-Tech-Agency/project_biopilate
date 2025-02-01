@@ -68,7 +68,7 @@ export default function Apropos() {
           <p className="text-marron text-xl sm:text-[34px] leading-snug text-start font-ebGaramond font-bold w-full">
             Caroline,
           </p>
-          <p className="sm:leading-normal tex-xl sm:text-[28px] text-marron font-ebGaramond">
+          <p className="sm:leading-normal tex-xl sm:text-[28px] text-blueText  font-ebGaramond">
             Fondatrice du studio Biopilates : passionnée de mouvement et experte
             en Pilates
           </p>
@@ -111,7 +111,7 @@ export default function Apropos() {
         <p className="text-marron text-xl sm:text-[34px] leading-snug text-start font-ebGaramond font-bold w-full max-sm:mb-4">
           Caroline,
         </p>
-        <p className="sm:leading-normal tex-xl sm:text-[28px] text-marron font-ebGaramond">
+        <p className="sm:leading-normal tex-xl sm:text-[28px] text-blueText font-ebGaramond">
             Fondatrice du studio Biopilates : passionnée de mouvement et experte
             en Pilates
           </p>

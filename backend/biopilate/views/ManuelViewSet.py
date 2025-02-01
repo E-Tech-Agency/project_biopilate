@@ -5,7 +5,7 @@ from ..serializers.manuelSerializer import ManuelSerializer
 
 
 class ManuelViewSet(viewsets.ModelViewSet):
-    permission_classes = [permissions.IsAuthenticated] 
+    
     queryset = Manuel.objects.all().order_by('-created_at')
     serializer_class = ManuelSerializer
 

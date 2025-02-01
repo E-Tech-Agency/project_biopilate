@@ -5,11 +5,11 @@ from ..serializers.CoursSerializer import CoursSerializer , CategoryCoursSeriali
 
 
 class CategoryCoursViewSet(viewsets.ModelViewSet):
-    permission_classes = [permissions.IsAuthenticated] 
+   
     queryset = CategoryCours.objects.all()
     serializer_class = CategoryCoursSerializer
 class CoursViewSet(viewsets.ModelViewSet):
-    permission_classes = [permissions.IsAuthenticated] 
+   
     queryset = Cours.objects.all().order_by('-created_at')
     serializer_class = CoursSerializer
     def perform_update(self, serializer):

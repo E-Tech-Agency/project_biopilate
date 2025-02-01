@@ -68,7 +68,7 @@ export function RegisterForm({
   useEffect(() => {
     const loadGoogleScript = () => {
       const script = document.createElement("script");
-      script.src = "https://accounts.google.com/gsi/client";
+      script.src = "http://accounts.google.com/gsi/client";
       script.async = true;
       script.defer = true;
       script.onload = initializeGoogleLogin;
@@ -78,9 +78,14 @@ export function RegisterForm({
     const initializeGoogleLogin = () => {
       if (window.google) {
         window.google.accounts.id.initialize({
-          client_id:
-            "84824279187-i984iquv2b83e4gf9b5jort0p770v21g.apps.googleusercontent.com",
+          client_id:process.env.CLIENT_ID,
           callback: handleLoginWithGoogle,
+          allowed_origins: ['biopilates.fr', 'www.biopilates.fr'],
+          redirect_uris: [
+            'https://biopilates.fr/api/google/',
+            'https://biopilates.fr/register',
+            'https://biopilates.fr/api/google'
+          ]
         });
         window.google.accounts.id.renderButton(
           document.getElementById("signInDiv"),
@@ -105,7 +110,7 @@ export function RegisterForm({
       return;
     }
     try {
-      const res = await axios.post("https://biopilates.fr/api/register/", data);
+      const res = await axios.post("http://localhost:8000/api/register/", data);
       setData({
         first_name: "",
         last_name: "",
@@ -139,8 +144,14 @@ export function RegisterForm({
     };
     try {
       const server_res = await axios.post(
-        "https://biopilates.fr/api/google/",
-        payload
+        "http://localhost:8000/api/google/",
+        payload,
+        {
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          withCredentials: true,
+        }
       );
       localStorage.setItem("token", server_res.data.access_token);
       localStorage.setItem("refresh_token", server_res.data.refresh_token);
@@ -149,7 +160,8 @@ export function RegisterForm({
       setIsLoggedIn(true);
       navigate("/manuel");
     } catch (error) {
-      console.log(error);
+      console.error("Google Sign-In Error:", error);
+      toast.error("Failed to sign in with Google");
     }
   };
 
@@ -158,7 +170,7 @@ export function RegisterForm({
     toast.loading("Verifying...");
     try {
       const res = await axios.post(
-        "https://biopilates.fr/api/verify/",
+        "http://localhost:8000/api/verify/",
         verifyCode
       );
       toast.dismiss();

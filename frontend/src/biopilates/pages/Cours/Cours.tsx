@@ -90,7 +90,7 @@ export default function Cours() {
           <p className="text-marron text-xl sm:text-[34px] leading-snug font-bold font-ebGaramond">
             Cours Pilates à Paris – Biopilates
           </p>
-          <p className="leading-normal text-lg sm:text-[28px] text-marron font-medium font-ebGaramond">
+          <p className="leading-normal text-lg sm:text-[28px] font-medium text-blueText font-ebGaramond ">
             Développez votre potentiel et atteignez vos objectifs grâce à nos
             cours de Pilates pour tous niveaux !
           </p>
@@ -116,7 +116,7 @@ export default function Cours() {
         <p className="text-marron text-xl sm:text-[34px] leading-snug text-start font-bold w-full font-ebGaramond max-sm:mb-4  ">
           Cours Pilates à Paris – Biopilates
         </p>
-        <p className="leading-normal text-lg sm:text-[28px] text-marron font-medium font-ebGaramond">
+        <p className="leading-normal text-lg sm:text-[28px] text-blueText font-medium font-ebGaramond">
             Développez votre potentiel et atteignez vos objectifs grâce à nos
             cours de Pilates pour tous niveaux !
           </p>

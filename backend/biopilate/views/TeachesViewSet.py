@@ -4,7 +4,7 @@ from ..serializers.TeacheSerializer import TeachesSerializer
 
 
 class TeachesViewSet(viewsets.ModelViewSet):
-    permission_classes = [permissions.IsAuthenticated] 
+   
     queryset = Teaches.objects.all().order_by('-create_at')  # Order by create_at descending
     serializer_class = TeachesSerializer
     def perform_update(self, serializer):

@@ -33,7 +33,7 @@ import Gyrotonic from "@/biopilates/pages/Apropos/Gyrotonic";
 import Teaches from "./pages/Teaches";
 import Tages from "./pages/Tages";
 import Services from "./pages/Services";
-import EditService from "./pages/EditService";
+import EditService from "./pages/service/EditService";
 import Planning from "./pages/Planning";
 import Blog from "./pages/Blog";
 import FAQ from "./pages/FAQ";
@@ -43,25 +43,25 @@ import OneCours from "./pages/one-cours";
 import AdminDashboard from "./pages/admin-dashboard";
 import UserProfile from "./pages/user-profile";
 import WorkshopShow from "./components/biopilate/WorkshopShow";
-import EditWorkshop from "./pages/EditWorkShp";
+import EditWorkshop from "./pages/service/EditWorkShp";
 import VlogShow from "./components/biopilate/VlogShow";
-import EditVlog from "./pages/EditVlog";
+import EditVlog from "./pages/blog/EditVlog";
 import ManuelShow from "./components/biopilate/ManuelShow";
-import EditManuel from "./pages/EditManuel";
+import EditManuel from "./pages/formation/EditManuel";
 import FinancerFormationShow from "./components/biopilate/FinancerFormationShow";
-import EditFormationFinancer from "./pages/EditFormationFinancer";
-import FormationEdit from "./components/biopilate/FormationEdit";
+import EditFormationFinancer from "./pages/formation/EditFormationFinancer";
+import FormationEdit from "./components/biopilate/formation/FormationEdit";
 
 
 
 // Forms
-import CreateBlogForm from "./components/biopilate/CreateBlogForm";
-import CreateServicesForm from "./components/biopilate/CreateServicesFrom";
-import CreatePlanningForm from "./components/biopilate/CreatePlanningFrom";
-import CreateFAQFrom from "./components/biopilate/CreateFAQFrom";
-import CreateFormationForm from "./components/biopilate/CreateFormationForm";
-import EditBlog from "./pages/EditBlog";
-import EditCourForm from "./pages/EditCourForm";
+import CreateBlogForm from "./components/biopilate/blog/CreateBlogForm";
+import CreateServicesForm from "./components/biopilate/service/CreateServicesFrom";
+import CreatePlanningForm from "./components/biopilate/planning/CreatePlanningFrom";
+import CreateFAQFrom from "./components/biopilate/service/CreateFAQFrom";
+import CreateFormationForm from "./components/biopilate/formation/CreateFormationForm";
+import EditBlog from "./pages/blog/EditBlog";
+import EditCourForm from "./pages/cours/EditCourForm";
 import ScrollToTop from "./biopilates/components/ScrollToTop";
 import Vlog from "./biopilates/pages/Vlog/Vlog";
 import Manuel from "./pages/Manuel";
