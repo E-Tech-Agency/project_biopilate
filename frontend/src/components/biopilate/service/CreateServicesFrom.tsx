@@ -3,7 +3,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { CreateServiceErrors, ServiceFormType, Teache } from "@/types/types";
 import React, { useEffect, useState, Suspense } from "react";
-import { Button } from "@/components/ui/button";
+
 import apiCreateTeache from "@/lib/apiCreateTeache";
 import api from "@/lib/api";
 import axios from "axios";
@@ -203,12 +203,14 @@ export default function CreateServicesForm() {
               </div>
 
               <div className="flex justify-end">
-                <Button 
+                <button 
                   type="submit" 
-                  className="bg-primary hover:bg-opacity-90 transition-colors duration-300"
+                
+                  className=" flex reserver-button text-sm sm:text-base font-bold font-lato rounded-lg  py-2 sm:py-3 bg-bgColor text-marron  duration-300 ease-in-out transform"
+
                 >
                   Ajouter le Service
-                </Button>
+                </button>
               </div>
             </form>
           </CardContent>

@@ -25,7 +25,7 @@ import formation4 from "@/assets/doc/4-Formation-Cadillac.pdf";
 import formation5 from "@/assets/doc/5-Formation-Barils.pdf";
 import formation6 from "@/assets/doc/6-Formation-Chaise.pdf";
 import formation7 from "@/assets/doc/7-Formation-ISP.pdf";
-import api from "@/lib/api";
+import api from "@/lib/apiPublic";
 import { FormationShow } from "@/types/formation";
 import { useEffect, useState } from "react";
 

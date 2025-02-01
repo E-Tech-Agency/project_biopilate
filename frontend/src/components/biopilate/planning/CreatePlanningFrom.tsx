@@ -178,13 +178,13 @@ export default function CreatePlanningForm() {
             </div>
 
             <div className="flex justify-end space-x-4">
-              <Button
+              <button
                 type="submit"
                 className=" flex reserver-button text-sm sm:text-base font-bold font-lato rounded-lg  py-2 sm:py-3 bg-bgColor text-marron  duration-300 ease-in-out transform"
 
               >
                 Ajouter
-              </Button>
+              </button>
               <Button
                 type="button"
                 onClick={() => navigate("/planning-biopilates")}

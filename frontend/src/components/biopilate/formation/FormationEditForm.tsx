@@ -83,13 +83,13 @@ const FormationEditForm: React.FC<Props> = ({ initialFormation, onSubmit }) => {
             {formation.status === "published" ? "Publiée" : "En attente"}
           </Badge>
         </div>
-        <Button 
+        <button 
           onClick={handleSubmit}
           className="flex reserver-button text-sm sm:text-base font-bold font-lato rounded-lg py-2 sm:py-3 bg-bgColor text-marron duration-300 ease-in-out transform"
         >
           <Save className="w-4 h-4" />
           Enregistrer
-        </Button>
+        </button>
       </div>
       <div className="space-y-6">
         <div className="relative group">

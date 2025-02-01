@@ -356,12 +356,13 @@ export default function VlogShow() {
 
     {/* Submit Button */}
     <div className="mt-6">
-        <Button 
+        <button 
             type="submit" 
-            className="w-full  hover:bg-blue-700 text-white font-bold py-3 rounded-md transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+            className=" w-full reserver-button text-sm sm:text-base font-bold font-lato rounded-lg   bg-bgColor text-marron  duration-300 ease-in-out transform"
+
         >
             Ajouter Vlog
-        </Button>
+        </button>
     </div>
 </form>
                 </Modal>

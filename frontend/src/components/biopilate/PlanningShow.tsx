@@ -107,27 +107,27 @@ export default function PlanningShow() {
  
     
   
-const handleAddSession = (courseId: number) => {
-    console.log("Course ID in handleAddSession:", courseId); // Debug log
-    const courseDetails = planning.find(p => p.id === courseId);
-    if (!courseDetails) {
-        console.error("Course details not found for ID:", courseId);
-        return;
-    }
-    setSelectedCourseId(courseId);
-    setSelectedCourseDetails(courseDetails);
-    setIsSessionModalOpen(true);
-};
-const getSessionPlanning = async (courseId: number) => {
-    try {
-        const res = await api.get(`session-detail/${courseId}/`); // Fetch sessions for course
-        setSessions(res.data);
-        setSelectedCourseId(courseId);
-        setIsSessionModalOpen(true);
-    } catch (error) {
-        console.error("Error fetching session planning", error);
-    }
-};
+// const handleAddSession = (courseId: number) => {
+//     console.log("Course ID in handleAddSession:", courseId); // Debug log
+//     const courseDetails = planning.find(p => p.id === courseId);
+//     if (!courseDetails) {
+//         console.error("Course details not found for ID:", courseId);
+//         return;
+//     }
+//     setSelectedCourseId(courseId);
+//     setSelectedCourseDetails(courseDetails);
+//     setIsSessionModalOpen(true);
+// };
+// const getSessionPlanning = async (courseId: number) => {
+//     try {
+//         const res = await api.get(`session-detail/${courseId}/`); // Fetch sessions for course
+//         setSessions(res.data);
+//         setSelectedCourseId(courseId);
+//         setIsSessionModalOpen(true);
+//     } catch (error) {
+//         console.error("Error fetching session planning", error);
+//     }
+// };
     
 
     return (
@@ -143,13 +143,13 @@ const getSessionPlanning = async (courseId: number) => {
               </p>
                     </div>
                     
-                    <Button 
+                    <button 
                 onClick={handleAddClick} 
                 className=" flex reserver-button text-sm sm:text-base font-bold font-lato rounded-lg  py-2 sm:py-3 bg-bgColor text-marron  duration-300 ease-in-out transform"
               >
                 <PlusCircle className="w-4 h-4" />
                 Ajouter un planning
-              </Button>
+              </button>
                     
                 </div>
                 <div className="flex flex-col md:flex-row gap-4 w-full md:w-auto">
