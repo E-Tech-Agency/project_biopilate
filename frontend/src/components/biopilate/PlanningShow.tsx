@@ -15,7 +15,7 @@ import {
     TableRow,
 } from "@/components/ui/table";
 import { Button } from "@/components/ui/button";
-import PlanningEditModal from "./PlanningEditModal";
+import PlanningEditModal from "./planning/PlanningEditModal";
 import api from "@/lib/api";
 import { CoursePlanning } from "@/types/types";
 import { useNavigate } from "react-router-dom";
@@ -28,8 +28,8 @@ import {
     SelectTrigger, 
     SelectValue 
   } from "@/components/ui/select";
-  import SessionPlanningModal from "./plannig/SessionPlanningModal";
-  import SessionManagementButton from "./plannig/SessionManagementButton";
+  import SessionPlanningModal from "./planning/SessionPlanningModal";
+  import SessionManagementButton from "./planning/SessionManagementButton";
 export default function PlanningShow() {
     const [planning, setPlanning] = useState<CoursePlanning[]>([]);
     const [filteredPlanning, setFilteredPlanning] = useState<CoursePlanning[]>([]);
@@ -234,14 +234,7 @@ const getSessionPlanning = async (courseId: number) => {
                                 <TableCell className="hidden sm:table-cell">{new Date(plan.created_at).toLocaleDateString()}</TableCell>
                                 <TableCell className="text-right">
                                     <div  className="flex justify-end space-x-2">
-                                    <Button
-                                            variant="outline" 
-                                            size="icon"
-                                            className="hover:bg-green-50"
-                                            onClick={() => handleAddSession(plan.id)}
-                                        >
-                                            <PlusCircle className="w-4 h-4 text-green-600" />
-                                        </Button>
+                                   
                                         <SessionManagementButton 
                                             plan={plan} 
                                             onSessionUpdate={getPlannings} 

@@ -18,7 +18,7 @@ import {
 } from "@/components/ui/table";
 import { Button } from "@/components/ui/button";
 import { Modal } from "./Modal";
-import TagesForm from "./TagesForm";
+import TagesForm from "./service/TagesForm";
 
 import { Edit2, Search, Tag, Trash2 } from "lucide-react";
 import { Input } from "@/components/ui/input";

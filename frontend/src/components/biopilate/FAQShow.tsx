@@ -20,7 +20,7 @@ import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useNavigate } from "react-router-dom";
-import EditFAQ from "./EditFAQ";
+import EditFAQ from "./service/EditFAQ";
 import { Edit2, PlusCircle, Search, Trash2 } from "lucide-react";
 import { 
     Select, 

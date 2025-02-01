@@ -8,10 +8,11 @@ import {
 } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
-import { PlusCircle, Edit2, Trash2 } from "lucide-react";
+import { PlusCircle ,LibraryBig} from "lucide-react";
 import SessionPlanningModal from "./SessionPlanningModal";
 import api from "@/lib/api";
 import { CoursePlanning } from "@/types/types";
+import SessionRow from "./SessionRow";
 
 interface SessionManagementButtonProps {
   plan: CoursePlanning;
@@ -33,6 +34,8 @@ export default function SessionManagementButton({ plan, onSessionUpdate }: Sessi
       console.error("Error fetching sessions", error);
     }
   };
+
+  
 
   const handleAddSession = () => {
     setModalMode("add");
@@ -61,7 +64,7 @@ export default function SessionManagementButton({ plan, onSessionUpdate }: Sessi
         className="hover:bg-blue-50 px-3 flex items-center"
         onClick={handleButtonClick}
       >
-        <PlusCircle className="w-4 h-4 text-blue-600 mr-2" />
+        <LibraryBig className="w-4 h-4 text-blue-600 mr-2" />
         Gérer les Sessions
       </Button>
 
@@ -101,23 +104,11 @@ export default function SessionManagementButton({ plan, onSessionUpdate }: Sessi
                   <TableBody>
                     {sessions.length > 0 ? (
                       sessions.map((session) => (
-                        <TableRow key={session.id}>
-                          <TableCell>{new Date(session.start_date).toLocaleDateString()}</TableCell>
-                          <TableCell>{new Date(session.end_date).toLocaleDateString()}</TableCell>
-                          <TableCell className="whitespace-pre-line">{session.schedule}</TableCell>
-                          <TableCell>
-                            <div className="flex space-x-2">
-                              <Button
-                                variant="outline"
-                                size="icon"
-                                className="hover:bg-red-50"
-                                onClick={() => handleDeleteSession(session.id)}
-                              >
-                                <Trash2 className="w-4 h-4 text-red-600" />
-                              </Button>
-                            </div>
-                          </TableCell>
-                        </TableRow>
+                        <SessionRow 
+                        key={session.id} 
+                        session={session} 
+                        onDelete={handleDeleteSession} 
+                      />
                       ))
                     ) : (
                       <TableRow>

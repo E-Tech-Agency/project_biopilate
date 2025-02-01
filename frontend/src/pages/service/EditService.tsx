@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import api from "@/lib/api";
 import { Service } from "@/types/types";
-import EditServiceForm from "@/components/biopilate/EditServiceForm";
+import EditServiceForm from "@/components/biopilate/service/EditServiceForm";
 
 const EditService: React.FC = () => {
   const { id } = useParams<{ id: string }>();

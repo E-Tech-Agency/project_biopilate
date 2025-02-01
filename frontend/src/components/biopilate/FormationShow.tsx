@@ -1,5 +1,6 @@
 import api from "@/lib/api";
-import { Formation } from "@/types/types";
+import { FormationFormState } from "@/types/formation";
+
 import { useEffect, useState } from "react";
 import { FaTrash, FaEdit } from "react-icons/fa";
 import {
@@ -29,8 +30,8 @@ import {
     SelectValue 
   } from "@/components/ui/select";
 export default function FormationShow() {
-    const [formations, setFormations] = useState<Formation[]>([]);
-    const [filteredFormations, setFilteredFormations] = useState<Formation[]>([]);
+    const [formations, setFormations] = useState<FormationFormState[]>([]);
+    const [filteredFormations, setFilteredFormations] = useState<FormationFormState[]>([]);
     const [rowsPerPage, setRowsPerPage] = useState(10);
     const [statusFilter, setStatusFilter] = useState("");
     const navigate = useNavigate();
@@ -39,7 +40,7 @@ export default function FormationShow() {
 
     const getFormations = async () => {
         try {
-            const res = await api.get("formations/");
+            const res = await api.get("formation-bio-plates/");
             setFormations(res.data);
         } catch (error) {
             console.error("Error fetching formations", error);
@@ -69,7 +70,7 @@ export default function FormationShow() {
 
     const deleteFormation = async (id: number) => {
         try {
-            await api.delete(`formations/${id}/`);
+            await api.delete(`formation-bio-plates/${id}/`);
             getFormations();
         } catch (error) {
             console.error("Error deleting formation", error);
@@ -144,7 +145,7 @@ export default function FormationShow() {
                         >
                             <option value="">Tous les statuts</option>
                             <option value="pending">En attente</option>
-                            <option value="approved">Publiée</option>
+                            <option value="published">Publiée</option>
                         </select>
                         </div>
                    
@@ -153,23 +154,43 @@ export default function FormationShow() {
                     <TableHeader className="bg-gray-100">
                         <TableRow>
                             <TableHead>Titre</TableHead>
+                            <TableHead className="hidden sm:table-cell">formulaire</TableHead>
+                            <TableHead>fomation pfd</TableHead>
                             <TableHead className="hidden sm:table-cell">Status</TableHead>
                             <TableHead className="hidden md:table-cell">Créé le</TableHead>
                             <TableHead className="hidden md:table-cell">Actions</TableHead>
                         </TableRow>
                     </TableHeader>
                     <TableBody>
-                        {paginatedFormations.map((formation: Formation) => (
+                        {paginatedFormations.map((formation: FormationFormState) => (
                             <TableRow key={formation.id} >
                                 <TableCell>
-                                    <div className="flex items-center space-x-4">
-                                        <div className="font-medium">{formation.title}</div>
+                                <div className="flex items-center space-x-4">
+                                        <div className="w-16 h-16 overflow-hidden rounded-full">
+                                            <img src={formation.image} alt={formation.title} className="object-cover w-full h-full" />
+                                        </div>
+                                        <div>
+                                            <div className="font-medium">{formation.title}</div>
+                                            <div className="hidden text-sm text-muted-foreground md:inline">
+                                                {formation.description}
+                                            </div>
+                                        </div>
                                     </div>
+                                </TableCell>
+                                <TableCell className="hidden sm:table-cell">
+                                    <a href={formation.formation_line} target="_blank" rel="noopener noreferrer">
+                                        Voir le formulaire
+                                    </a>
+                                </TableCell>
+                                <TableCell>
+                                    <a href={formation.pdf_document} target="_blank" rel="noopener noreferrer">
+                                        Voir le PFD
+                                    </a>
                                 </TableCell>
                                 <TableCell className="hidden md:table-cell">
                                     <div className="flex space-x-2">
                                         {formation.status === "pending" && <span className="text-danger">En attente</span>}
-                                        {formation.status === "approved" && <span className="text-emerald-500">Publiée</span>}
+                                        {formation.status === "published" && <span className="text-emerald-500">Publiée</span>}
                                     </div>
                                 </TableCell>
                                 <TableCell className="hidden md:table-cell">{new Date(formation.created_at).toLocaleDateString()}</TableCell>

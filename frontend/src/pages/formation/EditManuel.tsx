@@ -1,21 +1,20 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import api from "@/lib/api";
-import { FinancerFormation } from "@/types/types";
+import { Manuel } from "@/types/types";
+import EditManuelForm from "@/components/biopilate/service/ManuelEditForm";
 
-import EditFormationFinanceForm from "@/components/biopilate/FormationFinancerEditForm";
-
-const EditFormationFinancer: React.FC = () => {
+const EditManuel: React.FC = () => {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
-  const [FormationData, setFormationData] = useState<FinancerFormation | null>(null);
+  const [ManuelData, setManuelData] = useState<Manuel | null>(null);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await api.get(`financer-formations/${id}/`);
+        const response = await api.get(`manuels-biopilates/${id}/`);
         const ManuelData = response.data;
-        setFormationData(ManuelData);
+        setManuelData(ManuelData);
       } catch (error) {
         console.error("Error fetching manuels-biopilates data", error);
       }
@@ -27,16 +26,16 @@ const EditFormationFinancer: React.FC = () => {
 
   const updateManuel = async (data: FormData, id: number) => {
     try {
-      await api.put(`financer-formations/${id}/`, data, {
+      await api.put(`manuels-biopilates/${id}/`, data, {
         headers: {
           "Content-Type": "multipart/form-data",
         },
       });
-      navigate("/financer-formation-biopilates"); // Navigate to home or previous page on successful update
+      navigate("/manuel-biopilates"); // Navigate to home or previous page on successful update
     } catch (error) {
       if (error instanceof Error) {
-        console.error("Error updating financer-formation-biopilates", error);
-        alert(`Failed to update financer-formation-biopilates: ${error.message}`);
+        console.error("Error updating manuel-biopilates", error);
+        alert(`Failed to update manuel-biopilates: ${error.message}`);
       }
     }
   };
@@ -48,14 +47,14 @@ const EditFormationFinancer: React.FC = () => {
     }
   }, [navigate]);
 
-  if (!FormationData) {
+  if (!ManuelData) {
     return <div>Loading...</div>;
   }
 
   return (
     <div className="justify-evenly items-center  m-6">
-      <EditFormationFinanceForm
-        formation={FormationData}
+      <EditManuelForm
+        manuel={ManuelData}
         onUpdate={updateManuel}
         
       />
@@ -63,4 +62,4 @@ const EditFormationFinancer: React.FC = () => {
   );
 };
 
-export default EditFormationFinancer;
+export default EditManuel;

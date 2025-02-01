@@ -54,20 +54,25 @@ export default function SessionPlanningModal({
 
   
   const formatSchedule = (): string => {
-    return timeSlots
-      .filter((slot) => slot.isActive)
-      .map((slot) => {
-        const date = new Date(slot.date);
-        const formattedDate = date.toLocaleDateString("fr-FR", {
-          weekday: "short",
-          day: "2-digit",
-          month: "2-digit",
-          year: "numeric",
-        });
-        return `  - ${formattedDate}: ${convertTo12Hour(slot.startTime)} - ${convertTo12Hour(slot.endTime)}`;
-      })
-      .join("\n");
-  };
+  return timeSlots
+    .map((slot) => {
+      const date = new Date(slot.date);
+      const formattedDate = date.toLocaleDateString("fr-FR", {
+        weekday: "short",
+        day: "2-digit",
+        month: "2-digit",
+        year: "numeric",
+      });
+
+      if (!slot.isActive) {
+        return `  - ${formattedDate}: OFF`; // Mark as "OFF" if inactive
+      }
+
+      return `  - ${formattedDate}: ${convertTo12Hour(slot.startTime)} - ${convertTo12Hour(slot.endTime)}`;
+    })
+    .join("\n");
+};
+
 
   const convertTo12Hour = (time24: string): string => {
     const [hours, minutes] = time24.split(":");

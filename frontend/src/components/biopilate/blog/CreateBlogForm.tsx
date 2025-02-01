@@ -6,7 +6,7 @@ import axios from "axios";
 import { CreateBlogErrors, BlogFormType, Tage } from "@/types/types";
 import apiCreateTeache from "@/lib/apiCreateTeache";
 import api from "@/lib/api";
-import BlogForm from "./BlogForm";
+import BlogForm from "../blog/BlogForm";
 
 export default function CreateBlogForm() {
   const navigate = useNavigate();

@@ -7,9 +7,10 @@ class CoursePlanning(models.Model):
         ('cancelled', 'Annulé'),
     ]
     title = models.CharField(max_length=200)
-    description = models.TextField()
+    description = models.TextField(blank=True, null=True)
     image = models.ImageField(upload_to='courses_planning/', blank=True, null=True)  # Fixed folder name
     status = models.CharField(max_length=10, choices=STATUS_CHOICES, default='pending')
+    decription_link = models.URLField(blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     def get_active_sessions(self):

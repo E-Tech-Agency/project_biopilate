@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import api from "@/lib/api";
 import { Blog } from "@/types/types";
-import BlogEditForm from "@/components/biopilate/BlogEditForm";
+import BlogEditForm from "@/components/biopilate/blog/BlogEditForm";
 
 const EditBlog: React.FC = () => {
   const { id } = useParams<{ id: string }>();

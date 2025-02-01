@@ -14,7 +14,8 @@ from .views.TeachesViewSet import TeachesViewSet
 from .views.VlogViewSet import VlogViewSet, CategoryVlogViewSet
 from .views.ManuelViewSet import ManuelViewSet
 from .views.FinancerFormationViewSet import FinancerFormationViewSet
-from .views.SessionDetailViewSet import SessionDetail, CourseListPlannig
+from .views.SessionDetailViewSet import SessionDetail, CourseListPlannig ,CourseListPlannigSessions
+from .views.FormationBioPlatesViewSet import FormationBioPlatesViewSet
 router = DefaultRouter()
 router.register(r'teaches', TeachesViewSet)
 
@@ -39,6 +40,9 @@ router.register(r'financer-formations', FinancerFormationViewSet)
 router.register(r'session-detail', SessionDetail, basename='session-detail')
 router.register(r'course-list-planning', CourseListPlannig,
                 basename='course-list-plannig')
+router.register(r'course-list-planning-sessions', CourseListPlannigSessions,
+                basename='course-list-plannig-sessions')
+router.register(r'formation-bio-plates', FormationBioPlatesViewSet, basename='formation-bio-plates')
 
 urlpatterns = [
     path('', include(router.urls)),

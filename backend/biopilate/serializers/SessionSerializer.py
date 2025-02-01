@@ -8,6 +8,8 @@ class CourseSerializer(serializers.ModelSerializer):
         read_only_fields = ['created_at', 'updated_at']
         extra_kwargs = {
             'image': {'required': False},
+            'decription_link': {'required': False},
+            'description' : {'required': False},
         }
 
 class SessionSerializer(serializers.ModelSerializer):

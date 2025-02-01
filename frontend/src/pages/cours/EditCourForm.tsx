@@ -1,29 +1,29 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import api from "@/lib/api";
-import { Vlog,  CategoryVlog } from "@/types/types";
-import EditVlogForm from "@/components/biopilate/VlogEditForm";
+import { Cours, CategoryCours } from "@/types/types";
+import EditCour from "@/components/biopilate/cours/EditCour";
 
-const EditVlog: React.FC = () => {
+const EditCourForm: React.FC = () => {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
-  const [vlogData, setVlogpData] = useState<Vlog | null>(null);
-  const [categories, setCategories] = useState<CategoryVlog[]>([]);
+  const [courData, setCoursData] = useState<Cours | null>(null);
+  const [categories, setCategories] = useState<CategoryCours[]>([]);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await api.get(`vlogs/${id}/`);
-        const vlogData = response.data;
-        setVlogpData(vlogData);
+        const response = await api.get(`cours/${id}/`);
+        const courData = response.data;
+        setCoursData(courData);
       } catch (error) {
-        console.error("Error fetching vlogs-biopilate data", error);
+        console.error("Error fetching cours data", error);
       }
     };
 
     const fetchCategories = async () => {
       try {
-        const response = await api.get("category-vlogs/");
+        const response = await api.get("cours_category/");
         setCategories(response.data);
       } catch (error) {
         console.error("Error fetching categories", error);
@@ -34,18 +34,18 @@ const EditVlog: React.FC = () => {
     fetchCategories();
   }, [id]);
 
-  const updateVlog = async (data: FormData, id: number) => {
+  const updateCours = async (data: FormData, id: number) => {
     try {
-      await api.put(`vlogs/${id}/`, data, {
+      await api.put(`cours/${id}/`, data, {
         headers: {
           "Content-Type": "multipart/form-data",
         },
       });
-      navigate("/vlog-biopilates"); // Navigate to home or previous page on successful update
+      navigate("/Cours-biopilates"); // Navigate to home or previous page on successful update
     } catch (error) {
       if (error instanceof Error) {
-        console.error("Error updating vlog-biopilates", error);
-        alert(`Failed to update vlog-biopilates: ${error.message}`);
+        console.error("Error updating cours", error);
+        alert(`Failed to update cour: ${error.message}`);
       }
     }
   };
@@ -57,19 +57,19 @@ const EditVlog: React.FC = () => {
     }
   }, [navigate]);
 
-  if (!vlogData) {
+  if (!courData) {
     return <div>Loading...</div>;
   }
 
   return (
     <div className="justify-evenly items-center  m-6">
-      <EditVlogForm
-        vlog={vlogData}
-        onUpdate={updateVlog}
+      <EditCour
+        cours={courData}
+        onUpdate={updateCours}
         categories={categories}
       />
     </div>
   );
 };
 
-export default EditVlog;
+export default EditCourForm;

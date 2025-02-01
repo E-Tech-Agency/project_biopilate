@@ -16,9 +16,10 @@ class CourseListPlannig(viewsets.ModelViewSet):
         sessions = course.sessions.all()
         serializer = SessionSerializer(sessions, many=True)
         return Response(serializer.data)
+    
 
 class SessionDetail(viewsets.ModelViewSet):
-    queryset = SessionPlanning.objects.all()
+    queryset = SessionPlanning.objects.all().order_by('-created_at')
     serializer_class = SessionSerializer
     def create(self, request, *args, **kwargs):
         print("Received data:", request.data)
@@ -35,3 +36,21 @@ class SessionDetail(viewsets.ModelViewSet):
         sessions = SessionPlanning.objects.filter(course_id=course_id)
         serializer = SessionSerializer(sessions, many=True)
         return Response(serializer.data)
+    
+class CourseListPlannigSessions(viewsets.ModelViewSet):
+    queryset = CoursePlanning.objects.filter(status='confirmed').order_by('-created_at')
+    serializer_class = CourseSerializer
+
+    def list(self, request, *args, **kwargs):
+        queryset = self.get_queryset()
+        courses = []
+
+        for course in queryset:
+            course_data = CourseSerializer(course).data
+            course_data["sessions"] = SessionSerializer(course.sessions.all(), many=True).data
+            courses.append(course_data)
+
+        return Response(courses)
+
+
+    

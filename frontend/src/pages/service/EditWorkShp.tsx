@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import api from "@/lib/api";
 import { WorkShop, CategoryWorkShop } from "@/types/types";
-import EditWorkShopForm from "@/components/biopilate/WoekShopEditForm ";
+import EditWorkShopForm from "@/components/biopilate/formation/WoekShopEditForm ";
 
 const EditWorkShop: React.FC = () => {
   const { id } = useParams<{ id: string }>();

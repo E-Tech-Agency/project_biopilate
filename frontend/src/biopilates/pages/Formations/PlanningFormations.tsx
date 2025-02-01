@@ -10,12 +10,14 @@ import PlanningFormationCard from "./PlanningFormationCard";
 
 type Plan = {
   title: string;
-  niveau: string;
+  description: string;
   image: string;
-  date?: string;
-  timeSlots: string[];
+  status: string;
+  created_at: string;
+  updated_at: string;
+  decription_link: string;
+  sessions?: {  course:number; start_date: string; end_date: string; schedule: string[] }[];
 };
-
 interface PlanningProps {
   plans: Plan[];
 }

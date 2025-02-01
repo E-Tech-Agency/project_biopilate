@@ -1,27 +1,24 @@
 import React from "react";
 import { FaArrowDown } from "react-icons/fa6";
+import { FormationShow } from "@/types/formation"; // Ensure this is imported
 
-// Define TypeScript interface for formation data
-interface Formation {
-  title: string;
-  image: string;
-  prices: string[];
-  pdf: string;
-  levels?: string[];
-}
+// Modify the component to accept props directly, not as an object with "formation"
+const FormationTarifCard: React.FC<FormationShow> = ({
+  title,
+  image,
+  pdf_document,
+  levels,
+  formation_line,
+}) => {
+  // Check for missing levels (e.g., no "Avancé" or "Débutant" levels)
+  const isLevelNotFound = !levels?.[0] || !levels?.[1];
 
-interface FormationCardProps {
-  formation: Formation;
-}
-
-const FormationTarifCard: React.FC<FormationCardProps> = ({ formation }) => {
-  const isLevelNotFound = !formation.levels?.[0] || !formation.levels?.[1];
   return (
     <div className="py-4 sm:py-0 flex flex-col justify-between items-center bg-white w-[232px] h-[450px] sm:w-[300px] sm:h-[580px] rounded-lg shadow-lg">
       <div className="px-6 py-2 sm:py-6 flex flex-col justify-center items-center gap-3 sm:gap-6">
         <img
           loading="lazy"
-          src={formation.image}
+          src={image}
           alt="Formation"
           className="rounded-full w-[170px] h-[170px] sm:w-[240px] sm:h-[240px] object-cover shadow-lg"
         />
@@ -31,7 +28,7 @@ const FormationTarifCard: React.FC<FormationCardProps> = ({ formation }) => {
             isLevelNotFound ? "sm:h-20" : "sm:h-16 mb-4 sm:mb-0"
           }`}
         >
-          {formation.title}
+          {title}
         </p>
 
         <div
@@ -44,12 +41,12 @@ const FormationTarifCard: React.FC<FormationCardProps> = ({ formation }) => {
               isLevelNotFound ? "justify-center items-center" : ""
             }`}
           >
-            <p className="text-xs sm:text-sm">{formation.prices[0]}</p>
-            <p className="text-xs sm:text-sm">{formation.prices[1]}</p>
+            <p className="text-xs sm:text-sm">{levels?.[0]?.price}€</p>
+            <p className="text-xs sm:text-sm">{levels?.[1]?.price}€</p>
           </div>
           <div className="flex flex-col justify-between gap-1">
-            <p className="text-xs sm:text-sm">{formation.levels?.[0] || ""}</p>
-            <p className="text-xs sm:text-sm">{formation.levels?.[1] || ""}</p>
+            <p className="text-xs sm:text-sm">{levels?.[0]?.name || ""}</p>
+            <p className="text-xs sm:text-sm">{levels?.[1]?.name || ""}</p>
           </div>
         </div>
       </div>
@@ -58,10 +55,7 @@ const FormationTarifCard: React.FC<FormationCardProps> = ({ formation }) => {
         <button
           className="reserver-button bg-bgColor flex flex-col justify-center rounded-lg mb-3 sm:mb-4 max-sm:px-10 sm:px-[70px] py-3 transform"
           onClick={() => {
-            window.open(
-              "https://forms.zohopublic.com/carolinebergerdefemynie1/form/RecueildesbesoinsInscription/formperma/X8ryqIG4D2mdyqQI-FiBnW9a1vwiN-y0HuQGnPGetaQ",
-              "_blank"
-            );
+            window.open(formation_line, "_blank");
           }}
         >
           <div className="hover-circle overflow-hidden" />
@@ -72,7 +66,7 @@ const FormationTarifCard: React.FC<FormationCardProps> = ({ formation }) => {
           onClick={(e) => {
             e.stopPropagation();
           }}
-          href={formation.pdf}
+          href={pdf_document}
           target="_blank"
           download
         >
@@ -84,4 +78,5 @@ const FormationTarifCard: React.FC<FormationCardProps> = ({ formation }) => {
     </div>
   );
 };
+
 export default FormationTarifCard;

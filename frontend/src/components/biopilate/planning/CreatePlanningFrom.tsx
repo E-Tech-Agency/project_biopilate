@@ -1,9 +1,9 @@
-import React, { useEffect, useState, Suspense, useRef } from "react";
+import React, { useState, Suspense, useRef } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
-import apiCreateTeache from "@/lib/apiCreateTeache";
+
 import api from "@/lib/api";
 import axios from "axios";
 import { toast } from "sonner";
@@ -11,7 +11,7 @@ import "react-quill/dist/quill.snow.css"; // Import styles for React Quill
 import { useNavigate } from "react-router-dom";
 import { CoursePlanningForm, CreateCoursePlanningErrors } from "@/types/types";
 import CreateCategory from "../../supplier/create-category";
-const ReactQuill = React.lazy(() => import("react-quill"));
+
 
 export default function CreatePlanningForm() {
   const [errors, setErrors] = useState<CreateCoursePlanningErrors>({});
@@ -21,6 +21,7 @@ export default function CreatePlanningForm() {
     description: "",
     image: null,
     status : "",
+    decription_link : "",
   });
   const [isCategoryModalOpen, setIsCategoryModalOpen] = useState(false);
   const navigate = useNavigate();
@@ -56,6 +57,7 @@ export default function CreatePlanningForm() {
     formData.append("title", planning.title);
     formData.append("description", planning.description);
     formData.append("status", planning.status);
+    formData.append("decription_link", planning.decription_link);
     if (planning.image) {
       formData.append("image", planning.image);
     }
@@ -101,7 +103,20 @@ export default function CreatePlanningForm() {
                   className="mt-2"
                 />
               </div>
-              
+              <div>
+                <Label htmlFor="decription_link">
+                  Line de planning
+                  {errors.decription_link && <span className="text-red-500 ml-2">{errors.decription_link}</span>}
+                </Label>
+                <Input
+                  id="decription_link"
+                  type="text"
+                  value={planning.decription_link}
+                  onChange={(e) => setPlanning({ ...planning, decription_link: e.target.value })}
+                  placeholder="Titre du planning"
+                  className="mt-2"
+                />
+              </div>
               
              
             </div>
@@ -118,7 +133,7 @@ export default function CreatePlanningForm() {
                 className="mt-2 w-full rounded-md border-gray-300 shadow-sm"
               >
                 <option value="">Sélectionner un Status</option>
-                <option value="pending">En attente de publication</option>
+                <option value="pending" selected>En attente de publication</option>
                 <option value="confirmed">Publiée</option>
                 <option value="cancelled">Annulée</option>
               </select>

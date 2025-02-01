@@ -188,6 +188,20 @@ export default function PlanningEditModal({
                         placeholder="ex: Pilates Débutant"
                       />
                     </div>
+                    <div className="space-y-2">
+                      <Label htmlFor="decription_link" className="text-sm font-medium text-gray-700">
+                       Line de planning
+                      </Label>
+                      <Input
+                        id="decription_link"
+                        name="decription_link"
+                        value={formData?.decription_link || ""}
+                        onChange={handleChange}
+                        className="w-full shadow-sm"
+                        placeholder="ex: Pilates Débutant"
+                      />
+                    </div>
+
 
                     <div className="space-y-2">
                       <Label htmlFor="description" className="text-sm font-medium text-gray-700">
@@ -217,7 +231,7 @@ export default function PlanningEditModal({
                       >
                         <option value="">Sélectionner un statut</option>
                         <option value="pending">En attente de publication</option>
-                        <option value="approved">Publié</option>
+                        <option value="confirmed">Publié</option>
                         <option value="cancelled">Annulé</option>
                       </select>
                     </div>

@@ -136,7 +136,24 @@ export type CreateServiceErrors = {
     instructeur?: string[];
    
 }
-// cour plannig new vesion
+// cour plannig new  view version
+export type CoursePlanningSessions = {
+    // id: number;
+    title: string;
+    description: string;
+    image: string;
+    status: string;
+    created_at: string;
+    updated_at: string;
+    decription_link: string;
+    sessions?: {
+        course:number;
+        start_date: string;
+        end_date: string;
+        schedule: string[];
+    }[];
+}
+//
 export type CoursePlanning ={
     id: number;
     title: string;
@@ -145,6 +162,7 @@ export type CoursePlanning ={
     status: string;
     created_at: string;
     updated_at: string;
+    decription_link: string;
   }
 
   export type CoursePlanningForm ={
@@ -152,12 +170,15 @@ export type CoursePlanning ={
     description: string;
     image?: File | null;
     status: string;
+    decription_link : string;
+
   }
   export type CreateCoursePlanningErrors = {
     title?: string[];
     description?: string[];
     image?: string[];
     status?: string[];
+    decription_link?: string[];
   }
   //
 
@@ -195,38 +216,39 @@ export type CoursePlanning ={
     results: T[];
   }
 
-//end function
-export type Planning = {
-    id: number;
-    title : string;
-    duree: string;
-    description : string;
-    range : number;
-    status : string;
-    category: number; // category ID
-    category_name: string; // category name
-    create_at: Date;
-    updated_at: Date;
-}
-export type PlanningFormType = {
-    title : string;
-    duree: string;
-    description : string;
-    range : number;
-    status : string;
-    category : string;
+// //end function
+// export type Planning = {
+//     id: number;
+//     title : string;
+//     duree: string;
+//     description : string;
+//     range : number;
+//     status : string;
+//     category: number; // category ID
+//     category_name: string; // category name
+//     create_at: Date;
+//     updated_at: Date;
+// }
+// export type PlanningFormType = {
+//     title : string;
+//     duree: string;
+//     description : string;
+//     range : number;
+//     status : string;
+//     category : string;
     
 
-}
-export type CreatePlanningErrors = {
-    title?: string[];
-    duree?: string[];
-    description?: string[];
-    status?: string[];
-    range?: string[];
-    category?: string[];
+// }
+// export type CreatePlanningErrors = {
+//     title?: string[];
+//     duree?: string[];
+//     description?: string[];
+//     status?: string[];
+//     range?: string[];
+//     category?: string[];
    
-}
+// }
+
 export type Blog = {
     id: number;
     title : string;
@@ -326,6 +348,8 @@ export type CreateFAQErrors = {
     range?: string[];
    
 }
+//****/
+
 export type Formation = {
     id: number;
     status: 'pending' | 'approved';  // Reflect the choices from Django

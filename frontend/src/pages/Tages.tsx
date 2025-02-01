@@ -1,7 +1,7 @@
 import { useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import TagesShow from "@/components/biopilate/TagesShow";
-import CreateTagesForm from "@/components/biopilate/CreateTagesFrom";
+import CreateTagesForm from "@/components/biopilate/service/CreateTagesFrom";
 
 export default function Tages() {
   const navigate = useNavigate();
