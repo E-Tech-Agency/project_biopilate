@@ -1,4 +1,3 @@
-import React from 'react';
 import { LuCalendarDays } from "react-icons/lu";
 import { FaChevronDown } from "react-icons/fa";
 
@@ -6,7 +5,7 @@ type Session = {
   course: number;
   start_date: string;
   end_date: string;
-  schedule: string[];
+  schedule: string;
 };
 
 type Plan = {
@@ -33,8 +32,10 @@ function TimeSlots({ plan, showMore, toggleShowMore }: PlanningCardProps) {
     return null;
   }
 
-  // Get all schedules from all sessions
-  const allSchedules = plan.sessions.flatMap(session => session.schedule);
+  // Get all schedules from all sessions and split them into individual time slots
+  const allSchedules = plan.sessions.flatMap((session) =>
+    session.schedule.split("\n").filter(Boolean)
+  );
   const displayedSchedules = showMore ? allSchedules : allSchedules.slice(0, 1);
 
   return (
@@ -116,7 +117,7 @@ export default function PlanningFormationCard({
               <p className="md:text-lg font-bold">{plan.date}</p>
             </div>
           )}
-          
+
           <TimeSlots
             plan={plan}
             showMore={showMore}
