@@ -10,17 +10,11 @@ import PhoneInput from "react-phone-input-2";
 import 'react-phone-input-2/lib/style.css';
 import { Upload, AlertCircle, CheckCircle, Loader2 } from "lucide-react";
 import { AxiosError } from "axios";
-import { useNavigate } from "react-router-dom";
 
 export function EditForm() {
-  const navigate = useNavigate();
+ 
 
-  useEffect(() => {
-    const isSupplier = localStorage.getItem("is_supplier");
-    if (!isSupplier || isSupplier == "true") {
-      navigate("/login");
-    }
-  }, [navigate]);
+
   // Initial user state
   const [user, setUser] = useState<User>({
     auth_provider: "",

@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { FaRegHeart, FaHeart } from "react-icons/fa";
 import biopilateLogo from "@/assets/images/biopilate-logo.png"; // Replace require with import
-import api from "@/lib/api";
+import api from "@/lib/apiPublic";
 // Define the Article type
 interface Article {
   id: number;

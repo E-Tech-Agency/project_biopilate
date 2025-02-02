@@ -42,7 +42,7 @@ export default function PlanningShow() {
     const [isSessionModalOpen, setIsSessionModalOpen] = useState(false);
    const [selectedCourseId, setSelectedCourseId] = useState<number | null>(null);
    const [selectedCourseDetails, setSelectedCourseDetails] = useState<CoursePlanning | null>(null);
-   const [sessions, setSessions] = useState([]);
+ 
    const navigate = useNavigate();
 
     const getPlannings = async () => {

@@ -12,7 +12,7 @@ import reformer from "@/assets/images/reformer.jpg";
 import formation1 from "@/assets/images/formation-1.jpg";
 import formation2 from "@/assets/images/formation-2.jpg";
 import formation3 from "@/assets/images/formation-3.png";
-import formation5 from "@/assets/images/formation-5.png";
+
 import formation6 from "@/assets/images/formation-6.jpg";
 import reformerGyrotonicImage from "@/assets/images/reformer-gyrotonic.jpg";
 

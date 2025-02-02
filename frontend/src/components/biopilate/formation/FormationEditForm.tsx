@@ -19,8 +19,8 @@ const FormationEditForm: React.FC<Props> = ({ initialFormation, onSubmit }) => {
   const [formation, setFormation] = useState(initialFormation);
   const [previewMode, setPreviewMode] = useState(false);
   const [expandedSection, setExpandedSection] = useState("details");
-  const [imagePreview, setImagePreview] = useState<string | null>(null);
-  const [pdfPreview, setPdfPreview] = useState<string | null>(null);
+  // const [imagePreview, setImagePreview] = useState<string | null>(null);
+  // const [pdfPreview, setPdfPreview] = useState<string | null>(null);
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
     setFormation((prev) => ({ ...prev, [name]: value }));

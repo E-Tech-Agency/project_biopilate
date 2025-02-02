@@ -76,6 +76,8 @@ export default function SessionPlanningModal({
 
   const convertTo12Hour = (time24: string): string => {
     const [hours, minutes] = time24.split(":");
+    console.log(minutes);
+    
     const hour = parseInt(hours);
     const ampm = hour >= 12 ? "PM" : "AM";
     const hour12 = hour % 12 || 12;
