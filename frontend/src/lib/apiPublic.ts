@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const baseURL = "http://localhost:8000/api/";
+const baseURL = "https://www.biopilates.fr/api/";
 
 const api = axios.create({
     baseURL: baseURL,

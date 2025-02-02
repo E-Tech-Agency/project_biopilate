@@ -110,7 +110,7 @@ export function RegisterForm({
       return;
     }
     try {
-      const res = await axios.post("http://localhost:8000/api/register/", data);
+      const res = await axios.post("https://www.biopilates.fr/api/register/", data);
       setData({
         first_name: "",
         last_name: "",
@@ -144,7 +144,7 @@ export function RegisterForm({
     };
     try {
       const server_res = await axios.post(
-        "http://localhost:8000/api/google/",
+        "https://www.biopilates.fr/api/google/",
         payload,
         {
           headers: {
@@ -170,7 +170,7 @@ export function RegisterForm({
     toast.loading("Verifying...");
     try {
       const res = await axios.post(
-        "http://localhost:8000/api/verify/",
+        "https://www.biopilates.fr/api/verify/",
         verifyCode
       );
       toast.dismiss();

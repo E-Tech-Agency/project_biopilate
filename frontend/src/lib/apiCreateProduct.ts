@@ -6,7 +6,7 @@ const accessToken = localStorage.getItem('token') || "";
 const refresh_token = localStorage.getItem('refresh_token') || "";
 
 console.log('access: ', accessToken);
-const baseURL = 'http://localhost:8000/api/';
+const baseURL = 'https://www.biopilates.fr/api/';
 
 const apiCreateProduct = axios.create({
     baseURL: baseURL,
