@@ -320,7 +320,8 @@ export default function PlanningFormations() {
     const firstSession = plan.sessions?.[0];
     const startDate = firstSession?.start_date;
     const endDate = firstSession?.end_date;
-    const imageUrl = `https://www.biopilates.fr${plan.image}`;
+    const imageUrl = `${window.location.origin}${plan.image}`;
+
   
     const formattedDate =
       startDate && endDate
