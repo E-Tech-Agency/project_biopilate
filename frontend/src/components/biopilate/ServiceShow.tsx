@@ -107,6 +107,7 @@ export default function ServiceShow() {
     //     setRowsPerPage(value);
     //     setCurrentPage(1);
     // };
+    
 
     return (
         <Card className="w-full shadow-lg">

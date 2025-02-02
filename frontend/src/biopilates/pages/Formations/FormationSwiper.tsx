@@ -25,65 +25,133 @@ import formation4 from "@/assets/doc/4-Formation-Cadillac.pdf";
 import formation5 from "@/assets/doc/5-Formation-Barils.pdf";
 import formation6 from "@/assets/doc/6-Formation-Chaise.pdf";
 import formation7 from "@/assets/doc/7-Formation-ISP.pdf";
+import api from "@/lib/apiPublic";
+import { FormationShow } from "@/types/formation";
+import { useEffect, useState } from "react";
+
 // Define TypeScript interface for formation data
-interface Formation {
-  title: string;
-  image: string;
-  prices: string[];
-  pdf: string;
-  levels?: string[];
-}
+
+
 
 export default function FormationSwiper() {
-  const formations: Formation[] = [
-    {
+  const [formationsDataBackent, setFormations] = useState<FormationShow[]>([]);
+  const getFormations = async () => {
+    try {
+      const res = await api.get("formation-bio-plates/");
+      const publishedFormations = res.data.filter(
+        (formation: FormationShow) => formation.status === "published"
+      );
+      setFormations(publishedFormations);
+    } catch (error) {
+      console.error("Error fetching formations", error);
+    }
+  };
+
+  useEffect(() => {
+    getFormations();
+  }, []);
+  const formations = [
+    { 
       title: "Reformer",
       image: reformerImage,
-      prices: ["2299 €", "999 €"],
-      pdf: formation3,
-      levels: ["Débutant et intermédiaire", "Avancé"],
+    
+      pdf_document: formation3,
+     
+      levels: [
+        { name: "Débutant et intermédiaire", price: 2299 },
+        { name: "Avancé", price: 999},
+       
+      ],
+      status : "published",
+      formation_line : "https://forms.zohopublic.com/carolinebergerdefemynie1/form/RecueildesbesoinsInscription/formperma/X8ryqIG4D2mdyqQI-FiBnW9a1vwiN-y0HuQGnPGetaQ"
     },
     {
       title: "Matwork",
       image: Matwork,
-      prices: ["1599 €", "399 €"],
-      pdf: formation2,
-      levels: ["Débutant et intermédiaire", "Avancé"],
+      pdf_document: formation2,
+      levels: [
+        { name: "Débutant et intermédiaire", price: 1599 },
+        { name: "Avancé", price: 399},
+       
+      ],
+       status : "published",
+      formation_line : "https://forms.zohopublic.com/carolinebergerdefemynie1/form/RecueildesbesoinsInscription/formperma/X8ryqIG4D2mdyqQI-FiBnW9a1vwiN-y0HuQGnPGetaQ"
+
     },
     {
+      
       title: "Chaise",
       image: formation2Image,
-      prices: ["699 €", "299 €"],
-      pdf: formation6,
-      levels: ["Débutant et intermédiaire", "Avancé"],
+      
+      pdf_document: formation6,
+      levels: [
+        { name: "Débutant et intermédiaire", price: 699 },
+        { name: "Avancé", price: 299},
+       
+      ],
+       status : "published",
+      formation_line : "https://forms.zohopublic.com/carolinebergerdefemynie1/form/RecueildesbesoinsInscription/formperma/X8ryqIG4D2mdyqQI-FiBnW9a1vwiN-y0HuQGnPGetaQ"
+
     },
     {
+      
       title: "Cadillac",
       image: reformerGyrotonicImage,
-      prices: ["999 €", "399 €"],
-      pdf: formation4,
-      levels: ["Débutant et intermédiaire", "Avancé"],
+     
+      pdf_document: formation4,
+      levels: [
+        { name: "Débutant et intermédiaire", price: 999 },
+        { name: "Avancé", price: 399},
+       
+      ],
+      status : "published",
+      formation_line : "https://forms.zohopublic.com/carolinebergerdefemynie1/form/RecueildesbesoinsInscription/formperma/X8ryqIG4D2mdyqQI-FiBnW9a1vwiN-y0HuQGnPGetaQ"
+
     },
     {
       title: "Barrils",
       image: formation1Image,
-      prices: ["399 €", "299 €"],
-      pdf: formation5,
-      levels: ["Débutant et intermédiaire", "Avancé"],
+     
+      pdf_document: formation5,
+      levels: [
+        { name: "Débutant et intermédiaire", price: 399 },
+        { name: "Avancé", price: 299},
+       
+      ],
+      status : "published",
+      formation_line : "https://forms.zohopublic.com/carolinebergerdefemynie1/form/RecueildesbesoinsInscription/formperma/X8ryqIG4D2mdyqQI-FiBnW9a1vwiN-y0HuQGnPGetaQ"
+
     },
     {
       title: "Anatomie Fonctionnelle et biomécanique en privée",
       image: formation5Image,
-      prices: ["1199 €"],
-      pdf: formation1,
+    
+      pdf_document: formation1,
+      levels: [
+        { name: "tous les niveaux", price: 1199 },
+      
+       
+      ],
+      status : "published",
+      formation_line : "https://forms.zohopublic.com/carolinebergerdefemynie1/form/RecueildesbesoinsInscription/formperma/X8ryqIG4D2mdyqQI-FiBnW9a1vwiN-y0HuQGnPGetaQ"
+
     },
     {
       title: "Blessures et Population spécifiques et prénatal et postnatal-ISP",
       image: Blessures,
-      prices: ["1599 €"],
-      pdf: formation7,
+     
+      pdf_document: formation7,
+      levels: [
+        { name: "tous les niveaux", price: 1599 },
+      
+       
+      ],
+      status : "published",
+      formation_line : "https://forms.zohopublic.com/carolinebergerdefemynie1/form/RecueildesbesoinsInscription/formperma/X8ryqIG4D2mdyqQI-FiBnW9a1vwiN-y0HuQGnPGetaQ"
+
     },
   ];
+  const dataFormation = formationsDataBackent.length > 0 ? formationsDataBackent : formations;
 
   return (
     <section className="relative mt-8">
@@ -169,13 +237,19 @@ export default function FormationSwiper() {
             },
           }}
         >
-          {formations.map((formation, index) => (
-            <SwiperSlide
-              key={index}
-              className="flex flex-col justify-center items-center"
-            >
-              <FormationTarifCard formation={formation} />
-            </SwiperSlide>
+          {dataFormation.map((formation, index) => (
+         <SwiperSlide key={index} className="flex flex-col justify-center items-center">
+         <FormationTarifCard
+         // Add id here
+           title={formation.title}
+           image={formation.image}
+           pdf_document={formation.pdf_document}
+           levels={formation.levels}
+           formation_line={formation.formation_line}
+           status={formation.status}  // Add status here
+         />
+       </SwiperSlide>
+       
           ))}
           <div className="slider-controler flex justify-center gap-10 mb-6 ">
             {/* <div className="arrow-hover cursor-pointer swiper-but-prev slider-arrow hidden sm:flex justify-center items-center bg-bgColor rounded-full w-10 h-10">

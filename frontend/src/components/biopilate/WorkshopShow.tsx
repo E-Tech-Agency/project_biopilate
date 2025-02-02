@@ -332,9 +332,10 @@ export default function WorkshopShow() {
 
                         {/* Submit Button */}
                         <div className="mt-4">
-                            <Button type="submit" className="w-full">
+                            <button type="submit"                className=" flex reserver-button text-sm sm:text-base font-bold font-lato rounded-lg  py-2 sm:py-3 bg-bgColor text-marron  duration-300 ease-in-out transform"
+                            >
                                 Ajouter l'WorkShop
-                            </Button>
+                            </button>
                         </div>
                     </form>
                 </Modal>

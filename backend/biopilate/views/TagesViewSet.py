@@ -3,7 +3,7 @@ from ..models.tages import Tages
 from ..serializers.TagesSerializer import TagesSerializer
 
 class TagesViewSet(viewsets.ModelViewSet):
-    permission_classes = [permissions.IsAuthenticated] 
+   
     queryset = Tages.objects.all().order_by('-create_at') 
     serializer_class = TagesSerializer
     def perform_update(self, serializer):

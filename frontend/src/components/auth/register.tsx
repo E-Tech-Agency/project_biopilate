@@ -68,7 +68,7 @@ export function RegisterForm({
   useEffect(() => {
     const loadGoogleScript = () => {
       const script = document.createElement("script");
-      script.src = "https://accounts.google.com/gsi/client";
+      script.src = "http://accounts.google.com/gsi/client";
       script.async = true;
       script.defer = true;
       script.onload = initializeGoogleLogin;
@@ -110,7 +110,7 @@ export function RegisterForm({
       return;
     }
     try {
-      const res = await axios.post("https://biopilates.fr/api/register/", data);
+      const res = await axios.post("http://localhost:8000/api/register/", data);
       setData({
         first_name: "",
         last_name: "",
@@ -144,7 +144,7 @@ export function RegisterForm({
     };
     try {
       const server_res = await axios.post(
-        "https://biopilates.fr/api/google/",
+        "http://localhost:8000/api/google/",
         payload,
         {
           headers: {
@@ -170,7 +170,7 @@ export function RegisterForm({
     toast.loading("Verifying...");
     try {
       const res = await axios.post(
-        "https://biopilates.fr/api/verify/",
+        "http://localhost:8000/api/verify/",
         verifyCode
       );
       toast.dismiss();

@@ -3,7 +3,7 @@ import financer2 from "@/assets/images/financer2.png";
 import { useEffect, useState } from "react";
 import ReserverButton from "@/biopilates/components/ReserverButton";
 import { FinancerFormation } from "@/types/types";
-import api from "@/lib/api";
+import api from "@/lib/apiPublic";
 import { useNavigate } from "react-router-dom";
 import financerPdf1 from "@/assets/doc/Bienvenue aux étudiants.pdf";
 import financerPdf2 from "@/assets/doc/Conditions Générale de vente.pdf";

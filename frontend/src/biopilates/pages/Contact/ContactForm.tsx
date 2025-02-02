@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { FaRegUser } from "react-icons/fa";
 import { HiOutlineEnvelope } from "react-icons/hi2";
 import { LuPhone } from "react-icons/lu";
-import api from "@/lib/api"; // Ensure this path is correct based on your project structure
+import api from "@/lib/apiPublic"; // Ensure this path is correct based on your project structure
 
 export default function ContactForm() {
   const [formData, setFormData] = useState({

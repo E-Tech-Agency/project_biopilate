@@ -10,7 +10,7 @@ import {
 } from "@radix-ui/react-popover";
 
 import { SetStateAction } from "react";
-import userImg from "@/assets/images/user-default.png";
+import userImg from "@/assets/images/UserIconGrey.png";
 import { Button } from "../ui/button";
 // import { ModeToggle } from "./mode-toggle";
 import { User } from "@/types/types";

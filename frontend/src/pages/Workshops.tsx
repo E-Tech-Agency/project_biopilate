@@ -8,7 +8,7 @@ import workshop7 from "@/assets/images/formation-5.png";
 import workshop8 from "@/assets/images/workshop-4.jpg";
 import ReserverButton from "@/biopilates/components/ReserverButton";
 import { useEffect, useState } from "react";
-import api from "@/lib/api";
+import api from "@/lib/apiPublic";
 import { WorkShop, CategoryWorkShop } from "@/types/types";
 import { useNavigate } from "react-router-dom";
 

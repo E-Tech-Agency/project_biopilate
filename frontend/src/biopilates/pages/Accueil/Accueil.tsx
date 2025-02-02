@@ -18,7 +18,7 @@ import bgImgReserver from "@/assets/images/bg-img-reserver.jpg";
 import blogBg from "@/assets/images/blog-bg.jpg";
 import { Blog } from "@/types/types";
 import { useEffect, useState } from "react";
-import api from "@/lib/api";
+import api from "@/lib/apiPublic";
 
 
 

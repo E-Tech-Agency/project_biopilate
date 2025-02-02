@@ -15,9 +15,9 @@ import {
     TableRow,
 } from "@/components/ui/table";
 import { Button } from "@/components/ui/button";
-import PlanningEditModal from "./PlanningEditModal";
+import PlanningEditModal from "./planning/PlanningEditModal";
 import api from "@/lib/api";
-import { Planning } from "@/types/types";
+import { CoursePlanning } from "@/types/types";
 import { useNavigate } from "react-router-dom";
 import { Edit2, PlusCircle, Search, Trash2 } from "lucide-react";
 import { Input } from "@/components/ui/input";
@@ -28,20 +28,26 @@ import {
     SelectTrigger, 
     SelectValue 
   } from "@/components/ui/select";
+  import SessionPlanningModal from "./planning/SessionPlanningModal";
+  import SessionManagementButton from "./planning/SessionManagementButton";
 export default function PlanningShow() {
-    const [planning, setPlanning] = useState<Planning[]>([]);
-    const [filteredPlanning, setFilteredPlanning] = useState<Planning[]>([]);
+    const [planning, setPlanning] = useState<CoursePlanning[]>([]);
+    const [filteredPlanning, setFilteredPlanning] = useState<CoursePlanning[]>([]);
     const [editingId, setEditingId] = useState<number | null>(null);
     const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
     const [searchTerm, setSearchTerm] = useState("");
     const [statusFilter, setStatusFilter] = useState("");
     const [rowsPerPage, setRowsPerPage] = useState(10);
     const [currentPage, setCurrentPage] = useState(1);
-    const navigate = useNavigate();
+    const [isSessionModalOpen, setIsSessionModalOpen] = useState(false);
+   const [selectedCourseId, setSelectedCourseId] = useState<number | null>(null);
+   const [selectedCourseDetails, setSelectedCourseDetails] = useState<CoursePlanning | null>(null);
+ 
+   const navigate = useNavigate();
 
     const getPlannings = async () => {
         try {
-            const res = await api.get("plannings/");
+            const res = await api.get("course-list-planning/");
             setPlanning(res.data);
             setFilteredPlanning(res.data);
         } catch (error) {
@@ -59,8 +65,8 @@ export default function PlanningShow() {
 
     const filterPlanning = () => {
         const filtered = planning.filter((plan) => {
-            const formattedDate = new Date(plan.create_at).toLocaleDateString();
-            const fullText = `${plan.title} ${plan.duree} ${plan.category_name} ${formattedDate}`.toLowerCase();
+            const formattedDate = new Date(plan.created_at).toLocaleDateString();
+            const fullText = `${plan.title} ${formattedDate}`.toLowerCase();
             const matchesSearchTerm = fullText.includes(searchTerm.toLowerCase());
             const matchesStatusFilter = statusFilter ? plan.status === statusFilter : true;
             return matchesSearchTerm && matchesStatusFilter;
@@ -70,7 +76,7 @@ export default function PlanningShow() {
 
     const deletePlanning = async (id: number) => {
         try {
-            await api.delete(`plannings/${id}/`);
+            await api.delete(`course-list-planning/${id}/`);
             getPlannings();
         } catch (error) {
             console.error("Error deleting planning", error);
@@ -98,6 +104,31 @@ export default function PlanningShow() {
     //     setRowsPerPage(value);
     //     setCurrentPage(1);
     // };
+ 
+    
+  
+// const handleAddSession = (courseId: number) => {
+//     console.log("Course ID in handleAddSession:", courseId); // Debug log
+//     const courseDetails = planning.find(p => p.id === courseId);
+//     if (!courseDetails) {
+//         console.error("Course details not found for ID:", courseId);
+//         return;
+//     }
+//     setSelectedCourseId(courseId);
+//     setSelectedCourseDetails(courseDetails);
+//     setIsSessionModalOpen(true);
+// };
+// const getSessionPlanning = async (courseId: number) => {
+//     try {
+//         const res = await api.get(`session-detail/${courseId}/`); // Fetch sessions for course
+//         setSessions(res.data);
+//         setSelectedCourseId(courseId);
+//         setIsSessionModalOpen(true);
+//     } catch (error) {
+//         console.error("Error fetching session planning", error);
+//     }
+// };
+    
 
     return (
         <Card className="w-full shadow-lg">
@@ -112,13 +143,13 @@ export default function PlanningShow() {
               </p>
                     </div>
                     
-                    <Button 
+                    <button 
                 onClick={handleAddClick} 
                 className=" flex reserver-button text-sm sm:text-base font-bold font-lato rounded-lg  py-2 sm:py-3 bg-bgColor text-marron  duration-300 ease-in-out transform"
               >
                 <PlusCircle className="w-4 h-4" />
                 Ajouter un planning
-              </Button>
+              </button>
                     
                 </div>
                 <div className="flex flex-col md:flex-row gap-4 w-full md:w-auto">
@@ -155,7 +186,8 @@ export default function PlanningShow() {
                     >
                         <option value="">Tous les statuts</option>
                         <option value="pending">En attente</option>
-                        <option value="approved">Publiée</option>
+                        <option value="confirmed">Confirmé</option>
+                        <option value="cancelled">Annulé</option>
                     </select>
                 </div>
             </CardHeader>
@@ -163,30 +195,50 @@ export default function PlanningShow() {
                 <Table>
                     <TableHeader className="bg-gray-100">
                         <TableRow>
+                            <TableHead></TableHead>
                             <TableHead>Titre</TableHead>
-                            <TableHead className="hidden sm:table-cell">Niveau</TableHead>
-                            <TableHead className="hidden sm:table-cell">Durée</TableHead>
-                            <TableHead className="hidden md:table-cell">Déplacement</TableHead>
+                            <TableHead className="hidden sm:table-cell">Sous Titre</TableHead>
+                            
                             <TableHead className="hidden md:table-cell">Status</TableHead>
                             <TableHead className="hidden md:table-cell">Crée le</TableHead>
                             <TableHead className="hidden md:table-cell">Actions</TableHead>
                         </TableRow>
                     </TableHeader>
                     <TableBody>
-                        {paginatedPlanning.map((plan: Planning) => (
+                    {paginatedPlanning.map((plan: CoursePlanning) => {
+                         console.log("Planning ID:", plan.id); // Log the ID of each planning item
+                         return (
                             <TableRow key={plan.id} >
+                                
                                 <TableCell>
-                                    <div className="font-medium">{plan.title}</div>
+                                <div className="w-12 h-12 rounded-full overflow-hidden">
+                                        <img 
+                                        src={plan.image} 
+                                        alt={plan.title} 
+                                        className="w-full h-full object-cover"
+                                        />
+                                    </div>
+                                  
+                                    
                                 </TableCell>
-                                <TableCell className="hidden sm:table-cell">{plan.category_name}</TableCell>
-                                <TableCell className="hidden sm:table-cell">{plan.duree}</TableCell>
-                                <TableCell className="hidden sm:table-cell">{plan.range}</TableCell>
+                                <TableCell className="hidden sm:table-cell"><div className="font-medium">{plan.title}</div></TableCell>
+                               <TableCell className="hidden sm:table-cell"><div className="font-medium">{plan.description}</div></TableCell>
                                 <TableCell className="hidden sm:table-cell">
-                                    {plan.status === "pending" ? <h2>En attente</h2> : <h2 className="text-emerald-500">Publiée</h2>}
+                                {plan.status === "pending" ? (
+                                                        <h2>En attente</h2>
+                                                        ) : plan.status === "confirmed" ? (
+                                                        <h2 className="text-emerald-500">Confirmé</h2>
+                                                        ) : plan.status === "cancelled" ? (
+                                                            <h2 className="text-emerald-500">Annulé</h2>):null}
                                 </TableCell>
-                                <TableCell className="hidden sm:table-cell">{new Date(plan.create_at).toLocaleDateString()}</TableCell>
+                                <TableCell className="hidden sm:table-cell">{new Date(plan.created_at).toLocaleDateString()}</TableCell>
                                 <TableCell className="text-right">
                                     <div  className="flex justify-end space-x-2">
+                                   
+                                        <SessionManagementButton 
+                                            plan={plan} 
+                                            onSessionUpdate={getPlannings} 
+                                            />
                                         <Button
                                           variant="outline" 
                                           size="icon" 
@@ -203,7 +255,8 @@ export default function PlanningShow() {
                                     </div>
                                 </TableCell>
                             </TableRow>
-                        ))}
+                       );
+                    })}
                     </TableBody>
                 </Table>
                 <div className="flex justify-between items-center p-4 border-t">
@@ -238,7 +291,25 @@ export default function PlanningShow() {
                         onSave={handleEditClose}
                     />
                 )}
-            </CardContent>
+                {selectedCourseId !== null && selectedCourseDetails && (
+                    <SessionPlanningModal
+                        isOpen={isSessionModalOpen}
+                        onClose={() => {
+                            setIsSessionModalOpen(false);
+                            setSelectedCourseId(null);
+                            setSelectedCourseDetails(null);
+                        }}
+                        courseId={selectedCourseId}
+                        courseDetails={selectedCourseDetails}
+                        onSave={() => {
+                            setIsSessionModalOpen(false);
+                            setSelectedCourseId(null);
+                            setSelectedCourseDetails(null);
+                            getPlannings();
+                        }}
+                    />
+                )}
+                     </CardContent>
         </Card>
     );
 }
