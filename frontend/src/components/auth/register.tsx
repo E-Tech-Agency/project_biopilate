@@ -48,7 +48,9 @@ export function RegisterForm({
   const login = () => {
     navigate("/login");
   };
-
+  const getBaseUrl = () => {
+    return `${window.location.protocol}//${window.location.host}/api/`;
+  };
   const [verifyCode, setVerifyCode] = useState({
     otp: "",
   });
@@ -74,7 +76,8 @@ export function RegisterForm({
       script.onload = initializeGoogleLogin;
       document.body.appendChild(script);
     };
-
+  
+   
     const initializeGoogleLogin = () => {
       if (window.google) {
         window.google.accounts.id.initialize({
@@ -82,9 +85,9 @@ export function RegisterForm({
           callback: handleLoginWithGoogle,
           allowed_origins: ['biopilates.fr', 'www.biopilates.fr'],
           redirect_uris: [
-            'https://biopilates.fr/api/google/',
-            'https://biopilates.fr/register',
-            'https://biopilates.fr/api/google'
+            `${getBaseUrl()}google/`,
+           `${getBaseUrl()}register/`,
+            `${getBaseUrl()}google`,
           ]
         });
         window.google.accounts.id.renderButton(
@@ -110,7 +113,7 @@ export function RegisterForm({
       return;
     }
     try {
-      const res = await axios.post("https://biopilates.fr/api/register/", data);
+      const res = await axios.post(  `${getBaseUrl()}register/`, data);
       setData({
         first_name: "",
         last_name: "",
@@ -144,7 +147,7 @@ export function RegisterForm({
     };
     try {
       const server_res = await axios.post(
-        "https://biopilates.fr/api/google/",
+         `${getBaseUrl()}google/`,
         payload,
         {
           headers: {
@@ -170,7 +173,7 @@ export function RegisterForm({
     toast.loading("Verifying...");
     try {
       const res = await axios.post(
-        "https://biopilates.fr/api/verify/",
+         `${getBaseUrl()}verify/`,
         verifyCode
       );
       toast.dismiss();

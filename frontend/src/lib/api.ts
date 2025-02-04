@@ -3,13 +3,15 @@ import { jwtDecode as jwt_decode } from "jwt-decode";
 import dayjs from "dayjs";
 
 
-
+const getBaseUrl = () => {
+    return `${window.location.protocol}//${window.location.host}/api/`;
+  };
 const accessToken = localStorage.getItem('token') || "";
 const refresh_token = localStorage.getItem('refresh_token') || "";
 
 console.log('access: ', accessToken);
 console.log('Current Time:', dayjs().format());
-const baseURL = 'https://biopilates.fr/api/';
+const baseURL =   `${getBaseUrl()}`;
 
 const api = axios.create({
     baseURL: baseURL,

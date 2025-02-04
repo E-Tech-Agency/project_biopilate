@@ -100,11 +100,14 @@ class PasswordResetSerializer(serializers.Serializer):
         uid64 = user.id
         token = PasswordResetTokenGenerator().make_token(user)
         request = self.context.get('request')
-        site_domain = get_current_site(request).domain
-        relative_link = reverse('password_reset_confirm', kwargs={'uidb64': uid64, 'token': token})
-        abslink = f'https://biopilates.fr/reset_password/{uid64}/{token}'
+        
+        # Get protocol and host dynamically
+        protocol = 'https' if request.is_secure() else 'http'
+        host = request.get_host()
+        
+        # Build the reset password URL
+        abslink = f'{protocol}://{host}/reset_password/{uid64}/{token}'
 
-        # Updated email message
         email_body = f"""
         Bonjour {user.first_name},
 

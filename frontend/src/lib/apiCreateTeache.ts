@@ -4,9 +4,11 @@ import  dayjs from 'dayjs'
 
 const accessToken = localStorage.getItem('token') || "";
 const refresh_token = localStorage.getItem('refresh_token') || "";
+const getBaseUrl = () => {
+    return `${window.location.protocol}//${window.location.host}/api/`;
+  };
 
-console.log('access: ', accessToken);
-const baseURL = 'https://biopilates.fr/api/';
+const baseURL =   `${getBaseUrl()}`;
 
 const apiCreateTeache = axios.create({
     baseURL: baseURL,
@@ -25,7 +27,7 @@ apiCreateTeache.interceptors.request.use(async req => {
         const resp = await axios.post(`${baseURL}token/refresh/`, {
             refresh: refresh_token
         });
-        console.log('new_accesstoken: ', resp.data.access);
+        //console.log('new_accesstoken: ', resp.data.access);
         localStorage.setItem('token', resp.data.access);
         req.headers.Authorization = `Bearer ${resp.data.access}`;
         return req;

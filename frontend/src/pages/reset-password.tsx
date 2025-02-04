@@ -26,7 +26,9 @@ export function ResetPassword() {
   });
   const [error, setError] = useState<string | null>(null);
   const [visible, setVisible] = useState({ password: false, confirm: false });
-
+  const getBaseUrl = () => {
+    return `${window.location.protocol}//${window.location.host}/api/`;
+  };
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (data.password !== data.confirm_password) {
@@ -36,7 +38,7 @@ export function ResetPassword() {
 
     try {
       const res = await axios.patch(
-        `https://biopilates.fr/api/set_new_password/`,
+         `${getBaseUrl()}et_new_password/`,
         data
       );
       toast.success(res.data.message);

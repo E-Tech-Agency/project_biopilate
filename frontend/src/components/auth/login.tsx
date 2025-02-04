@@ -45,11 +45,13 @@ export function LoginForm({
     password: "",
   });
   const [error, setError] = useState<string | null>(null);
-
+  const getBaseUrl = () => {
+    return `${window.location.protocol}//${window.location.host}/api/`;
+  };
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
-      const res = await axios.post("https://biopilates.fr/api/login/", data);
+      const res = await axios.post(`${getBaseUrl()}login/`, data);
       localStorage.setItem("token", res.data.access_token);
       localStorage.setItem("refresh_token", res.data.refresh_token);
       localStorage.setItem("is_supplier", res.data.is_supplier);
@@ -69,7 +71,7 @@ export function LoginForm({
   const handleForgotPassword = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
-      const res = await axios.post("https://biopilates.fr/api/password_reset/", {
+      const res = await axios.post(`${getBaseUrl()}password_reset/`, {
         email: data.email,
       });
       toast.success(res.data.message);
