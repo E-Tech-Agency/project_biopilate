@@ -3,6 +3,7 @@
 // import Stack from "@mui/material/Stack";
 import BlogCard from "@/biopilates/components/BlogCard";
 import articleImage1 from "@/assets/images/article-1.png";
+import blogimg2 from "@/assets/images/blog2-img1.png";
 import { BlogShow } from "@/types/types";
 import { useEffect, useState } from "react";
 import api from "@/lib/api";
@@ -66,7 +67,17 @@ export default function Blog() {
         "La Maison Vieille est un lieu de soutien et de bien-être pour les personnes âgées, visant à briser leur isolement et à offrir des moments enrichissants.",
       favorites: 49,
       image: articleImage1,
-      view :10,
+      view: 10,
+    },
+    {
+      id: 2,
+      title: "La méthode pilates favorise une grossesse saine",
+      ecrivain: "Caroline Berger de Fémynie",
+      description:
+        "La grossesse entraîne de profonds changements physiques, émotionnels et mentaux. Pour accompagner ces transformations, de nombreuses femmes enceintes se tournent vers le Pilates, une méthode d'exercice à faible impact qui favorise la force, la souplesse et le lien entre le corps et l'esprit.",
+      favorites: 49,
+      image: blogimg2,
+      view: 10,
     },
 
     // Add other articles here similarly...

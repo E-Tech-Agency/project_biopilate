@@ -3,24 +3,15 @@ import { useNavigate } from "react-router-dom";
 import { FaRegHeart, FaHeart } from "react-icons/fa";
 import biopilateLogo from "@/assets/images/biopilate-logo.png"; // Replace require with import
 import api from "@/lib/api";
-// Define the Article type
-interface Article {
-  id: number;
-  title: string;
-  ecrivain: string;
-  description: string;
-  favorites: number;
-  image: string;
-  view: number;
-}
+import { BlogArticle } from "@/types/types";
 
 interface BlogCardProps {
-  article: Article;
+  article: BlogArticle;
 }
 
 export default function BlogCard({ article }: BlogCardProps) {
   const [liked, setLiked] = useState(false);
-  const [likes, setLikes] = useState(article.favorites); // Initialize likes with article's favorites count
+  const [likes, setLikes] = useState(article.favorites || 0); // Initialize likes with article's favorites count or 0 if undefined
   const navigate = useNavigate(); // Initialize navigate for programmatic navigation
   const updateBlog = async (data: { favorites?: number; view?: number }) => {
     try {
@@ -40,7 +31,6 @@ export default function BlogCard({ article }: BlogCardProps) {
     updateBlog({ view: (article.view || 0) + 1 }); // Increment view count in the backend
     navigate(`/blog/${article.id}`); // Navigate to the article page
   };
-  
 
   return (
     <div
@@ -78,9 +68,9 @@ export default function BlogCard({ article }: BlogCardProps) {
         />
       </div>
 
-      <div className="px-2 flex flex-col gap-3">
-        <p className="text-black sm:text-[28px] font-semibold font-ebGaramond mt-1">
-          {article.title} 
+      <div className="px-2 flex flex-col gap-3 h-56">
+        <p className="text-black sm:text-[28px] font-semibold font-ebGaramond mt-1 leading-8">
+          {article.title}
           {/* {article.view}  <span className="text-gray-600">({likes} likes)</span> */}
         </p>
         <div className="flex items-center gap-2">
@@ -92,17 +82,17 @@ export default function BlogCard({ article }: BlogCardProps) {
           />
           <p className="text-sm text-gray-700">{article.ecrivain}</p>
         </div>
-        <p className="text-xs sm:text-base sm:leading-5 overflow-hidden h-[78px]">
+        <p className="text-xs sm:text-base sm:leading-5 overflow-hidden h-[80px] overflow-y-auto ">
           {article.description}
         </p>
-        <div className="flex items-center gap-2 text-sm">
-          {/* <FaHeart className="text-blueText" /> */}
-          {/* <p>{likes} j'aimes</p> */}
-        </div>
+        {/* <div className="flex items-center gap-2 text-sm">
+          <FaHeart className="text-blueText" /> 
+          <p>{likes} j'aimes</p> 
+        </div> */}
       </div>
 
       <button
-        className="reserver-button flex mt-1 bg-bgColor flex-col justify-center items-center text-base rounded-lg w-[90%] py-3 transform"
+        className="reserver-button flex mt-1 bg-bgColor flex-col justify-center items-center text-base font-bold text-marron rounded-xl w-[90%] py-2 transform"
         onClick={(e) => {
           e.stopPropagation(); // Prevent card click when button is clicked
           navigateToArticle(); // Navigate when button is clicked
