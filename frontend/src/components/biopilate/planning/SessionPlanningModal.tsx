@@ -76,6 +76,8 @@ export default function SessionPlanningModal({
 
   const convertTo12Hour = (time24: string): string => {
     const [hours, minutes] = time24.split(":");
+    console.log(minutes);
+    
     const hour = parseInt(hours);
     const ampm = hour >= 12 ? "PM" : "AM";
     const hour12 = hour % 12 || 12;
@@ -215,7 +217,8 @@ export default function SessionPlanningModal({
             <Button type="button" variant="outline" onClick={onClose}>
               Annuler
             </Button>
-            <Button type="submit">Enregistrer</Button>
+            <button type="submit"                className=" flex reserver-button text-sm sm:text-base font-bold font-lato rounded-lg  py-2 sm:py-3 bg-bgColor text-marron  duration-300 ease-in-out transform"
+            >Enregistrer</button>
           </div>
         </form>
       </DialogContent>

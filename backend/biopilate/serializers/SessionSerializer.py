@@ -27,3 +27,19 @@ class SessionSerializer(serializers.ModelSerializer):
         if not value:
             raise serializers.ValidationError("Le champ 'course' est requis.")
         return value
+    def get_schedule(self, obj):
+        if not obj.schedule:
+            return None
+            
+        # Convert the schedule to a formatted string
+        schedule_lines = []
+        schedule_data = obj.schedule
+        
+        # Handle the case where schedule is stored as a dictionary
+        if isinstance(schedule_data, dict):
+            for date, time in schedule_data.items():
+                if date not in ['start_date', 'end_date']:
+                    schedule_lines.append(f"- {date}: {time}")
+        
+        # Return the formatted schedule
+        return "\n".join(schedule_lines) if schedule_lines else None

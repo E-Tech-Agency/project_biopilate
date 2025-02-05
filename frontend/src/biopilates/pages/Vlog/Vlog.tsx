@@ -1,7 +1,7 @@
 import vlog1 from "@/assets/images/vlog-1.jpg";
 import vlog2 from "@/assets/images/vlog-2.jpg";
 import vlog3 from "@/assets/images/vlog-3.jpg";
-import api from "@/lib/api";
+import api from "@/lib/apiPublic";
 import { VlogShow } from "@/types/types";
 import  { useEffect, useState } from "react";
 

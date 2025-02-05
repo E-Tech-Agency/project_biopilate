@@ -18,7 +18,7 @@ import workshop8 from "@/assets/images/workshop-4.jpg";
 // import ReserverButton from "@/biopilates/components/ReserverButton";
 import { WorkShop } from "@/types/types";
 import  { useEffect, useState } from "react";7
-import api from "@/lib/api";
+import api from "@/lib/apiPublic";
 
 
 type Workshop = {

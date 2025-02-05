@@ -1,4 +1,4 @@
-import api from "@/lib/api";
+import api from "@/lib/apiPublic";
 
 import { useParams } from "react-router-dom";
 import { Cours } from "@/types/types";

@@ -6,7 +6,7 @@ import articleImage1 from "@/assets/images/article-1.png";
 import blogimg2 from "@/assets/images/blog2-img1.png";
 import { BlogShow } from "@/types/types";
 import { useEffect, useState } from "react";
-import api from "@/lib/api";
+import api from "@/lib/apiPublic";
 
 // import placeholderImage from "@/assets/images/Placeholder_view_vector.png";
 

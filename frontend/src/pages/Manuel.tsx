@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import api from "@/lib/api";
+import api from "@/lib/apiPublic";
 import { ManuelShow } from "@/types/types";
 
 // Import images

@@ -282,9 +282,9 @@ const CreateFormationSimple: React.FC = () => {
             />
           </div>
 
-          <Button type="submit"  className="  reserver-button text-sm sm:text-base font-bold font-lato rounded-lg  bg-bgColor text-marron  duration-300 ease-in-out transform">
+          <button type="submit"  className="  reserver-button text-sm sm:text-base font-bold font-lato rounded-lg  bg-bgColor text-marron  duration-300 ease-in-out transform">
             Créer la formation
-          </Button>
+          </button>
         </form>
       </CardContent>
     </Card>

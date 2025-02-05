@@ -15,7 +15,7 @@ import { RiTwitterXLine, RiInstagramFill } from "react-icons/ri";
 import { TiSocialFacebook } from "react-icons/ti";
 import { Blog } from "@/types/types";
 import { useEffect, useState } from "react";
-import api from "@/lib/api";
+import api from "@/lib/apiPublic";
 import {
   Popover,
   PopoverContent,

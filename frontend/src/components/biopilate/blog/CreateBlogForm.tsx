@@ -121,14 +121,14 @@ export default function CreateBlogForm() {
 
   return (
     <div className="container mx-auto px-4 py-6">
-       {isLoading ? "Submitting..." : "Submit"}
+       {isLoading ? "Submitting..." : 
       <BlogForm
         handleSubmit={handleSubmit}
         errors={errors}
         blog={blog}
         setBlog={setBlog}
         tages={tages}
-      />
+      />}
     </div>
   );
 }

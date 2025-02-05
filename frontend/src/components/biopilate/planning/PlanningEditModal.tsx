@@ -52,6 +52,8 @@ export default function PlanningEditModal({
       setSessions([]);
     }
   }, [planningId]);
+  console.log(sessions);
+  
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>

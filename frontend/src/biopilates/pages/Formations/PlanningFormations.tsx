@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import api from "@/lib/api";
+import api from "@/lib/apiPublic";
 import { CoursePlanningSessions } from "@/types/types";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/swiper-bundle.css";
@@ -8,7 +8,13 @@ import "swiper/css/pagination";
 import "@/assets/styles/swiper.css";
 import { Pagination } from "swiper/modules";
 import PlanningFormationCard from "./PlanningFormationCard";
+import reformer from "@/assets/images/reformer.jpg";
+import formation1 from "@/assets/images/formation-1.jpg";
+import formation2 from "@/assets/images/formation-2.jpg";
+import formation3 from "@/assets/images/formation-3.png";
+
 import formation6 from "@/assets/images/formation-6.jpg";
+import reformerGyrotonicImage from "@/assets/images/reformer-gyrotonic.jpg";
 
 interface Plan {
   title: string;
@@ -59,10 +65,9 @@ export default function PlanningFormations() {
         },
       ],
     },
-    // ...other plans...
     {
-      title: "Advanced Reformer",
-      description: "Avancé",
+      title: "Matwork Avancé",
+      description: "",
       image: formation6,
       status: "confirmed",
       decription_link:
@@ -72,27 +77,18 @@ export default function PlanningFormations() {
       sessions: [
         {
           course: 2,
-          start_date: "2025-03-10",
-          end_date: "2025-03-20",
+          start_date: "2025-03-06",
+          end_date: "2025-03-06",
           schedule: `
-      - Lun. 10/03/2025 : 1 PM - 6 PM
-      - Mar. 11/03/2025 : 8 AM - 1 PM
-      - Mer. 12/03/2025 : 8 AM - 1 PM
-      - Jeu. 13/03/2025 : 8 AM - 1 PM
-      - Ven. 14/03/2025 : 8 AM - 1 PM
-      - OFF
-      - Mar. 17/03/2025 : 8 AM - 1 PM
-      - Mer. 18/03/2025 : 8 AM - 1 PM
-      - Jeu. 19/03/2025 : 8 AM - 1 PM
-      - Ven. 20/03/2025 : 8 AM - 1 PM
-      `,
+            - Ven. 06/03/2025 : 9 AM - 12 PM, 2 PM - 3 PM
+          `,
         },
       ],
     },
     {
-      title: "Comprehensive Pilates",
-      description: "Tous niveaux",
-      image: formation6,
+      title: "Intensive Reformer",
+      description: "Debutant et intermédiare",
+      image: reformer,
       status: "confirmed",
       decription_link:
         "https://forms.zohopublic.com/carolinebergerdefemynie1/form/RecueildesbesoinsInscription/formperma/X8ryqIG4D2mdyqQI-FiBnW9a1vwiN-y0HuQGnPGetaQ",
@@ -101,33 +97,214 @@ export default function PlanningFormations() {
       sessions: [
         {
           course: 3,
-          start_date: "2025-04-01",
-          end_date: "2025-04-10",
+          start_date: "2025-03-31",
+          end_date: "2025-04-11",
           schedule: `
-      - Lun. 01/04/2025 : 1 PM - 6 PM
-      - Mar. 02/04/2025 : 8 AM - 1 PM
-      - Mer. 03/04/2025 : 8 AM - 1 PM
-      - Jeu. 04/04/2025 : 8 AM - 1 PM
-      - Ven. 05/04/2025 : 8 AM - 1 PM
-      - OFF
-      - Mar. 08/04/2025 : 8 AM - 1 PM
-      - Mer. 09/04/2025 : 8 AM - 1 PM
-      - Jeu. 10/04/2025 : 8 AM - 1 PM
-      `,
+            - Lun. 31/03/2025 : 1 PM - 6 PM
+            - Mar. 01/04/2025 : 8 AM - 1 PM
+            - Mer. 02/04/2025 : 8 AM - 1 PM
+            - Jeu. 03/04/2025 : 8 AM - 1 PM
+            - Ven. 05/04/2025 : 8 AM - 1 PM
+            - OFF
+            - Lun. 07/04/2025 : 1 PM - 6 PM
+            - Niveau Intermédiaire
+            - Mar. 08/04/2025 : 8 AM - 1 PM
+            - Mer. 09/04/2025 : 8 AM - 1 PM
+            - Jeu. 10/04/2025 : 8 AM - 1 PM
+            - Ven. 11/04/2025 : 8 AM - 1 PM
+          `,
+        },
+      ],
+    },
+    {
+      title: "ISP",
+      description: "",
+      image: formation3,
+      status: "confirmed",
+      decription_link:
+        "https://forms.zohopublic.com/carolinebergerdefemynie1/form/RecueildesbesoinsInscription/formperma/X8ryqIG4D2mdyqQI-FiBnW9a1vwiN-y0HuQGnPGetaQ",
+      created_at: "2025-05-01T10:10:39.231396Z",
+      updated_at: "2025-05-01T12:38:07.965067Z",
+      sessions: [
+        {
+          course: 4,
+          start_date: "2025-05-27",
+          end_date: "2025-05-30",
+          schedule: `
+            - Mar. 27/05/2025 : 9 AM - 12 PM, 2 PM - 5 PM
+            - Mer. 28/05/2025 : 9 AM - 12 PM, 2 PM - 5 PM
+            - Jeu. 29/05/2025 : 9 AM - 12 PM, 2 PM - 5 PM
+            - Ven. 30/05/2025 : 9 AM - 12 PM, 2 PM - 5 PM
+          `,
+        },
+      ],
+    },
+    {
+      title: "Intensive Reformer",
+      description: "Debutant et intermédiare",
+      image: reformer,
+      status: "confirmed",
+      decription_link:
+        "https://forms.zohopublic.com/carolinebergerdefemynie1/form/RecueildesbesoinsInscription/formperma/X8ryqIG4D2mdyqQI-FiBnW9a1vwiN-y0HuQGnPGetaQ",
+      created_at: "2025-06-01T10:10:39.231396Z",
+      updated_at: "2025-06-01T12:38:07.965067Z",
+      sessions: [
+        {
+          course: 5,
+          start_date: "2025-06-09",
+          end_date: "2025-06-20",
+          schedule: `
+            - Lun. 09/06/2025 : 1 PM - 6 PM
+            - Mar. 10/06/2025 : 8 AM - 1 PM
+            - Mer. 11/06/2025 : 8 AM - 1 PM
+            - Jeu. 12/06/2025 : 8 AM - 1 PM
+            - Ven. 13/06/2025 : 8 AM - 1 PM
+            - OFF
+            - Lun. 16/06/2025 : 1 PM - 6 PM
+            - Niveau Intermédiaire
+            - Mar. 17/06/2025 : 8 AM - 1 PM
+            - Mer. 18/06/2025 : 8 AM - 1 PM
+            - Jeu. 19/06/2025 : 8 AM - 1 PM
+            - Ven. 20/06/2025 : 8 AM - 1 PM
+          `,
+        },
+      ],
+    },
+    {
+      title: "Intensive Cadillac",
+      description: "Debutant et intermédiare",
+      image: reformerGyrotonicImage,
+      status: "confirmed",
+      decription_link:
+        "https://forms.zohopublic.com/carolinebergerdefemynie1/form/RecueildesbesoinsInscription/formperma/X8ryqIG4D2mdyqQI-FiBnW9a1vwiN-y0HuQGnPGetaQ",
+      created_at: "2025-06-15T10:10:39.231396Z",
+      updated_at: "2025-06-15T12:38:07.965067Z",
+      sessions: [
+        {
+          course: 6,
+          start_date: "2025-06-30",
+          end_date: "2025-07-04",
+          schedule: `
+            - Lun. 30/06/2025 : 1 PM - 6:30 PM
+            - Mar. 01/07/2025 : 8 AM - 1 PM
+            - Mer. 02/07/2025 : 8 AM - 1 PM
+            - Jeu. 03/07/2025 : 8 AM - 1 PM
+            - Ven. 04/07/2025 : 8 AM - 1 PM
+          `,
+        },
+      ],
+    },
+    {
+      title: "Intensive Chaise",
+      description: "Debutant et intermédiare",
+      image: formation2,
+      status: "confirmed",
+      decription_link:
+        "https://forms.zohopublic.com/carolinebergerdefemynie1/form/RecueildesbesoinsInscription/formperma/X8ryqIG4D2mdyqQI-FiBnW9a1vwiN-y0HuQGnPGetaQ",
+      created_at: "2025-07-01T10:10:39.231396Z",
+      updated_at: "2025-07-01T12:38:07.965067Z",
+      sessions: [
+        {
+          course: 7,
+          start_date: "2025-07-07",
+          end_date: "2025-07-09",
+          schedule: `
+            - Lun. 07/07/2025 : 1 PM - 6:30 PM
+            - Mar. 08/07/2025 : 8 AM - 1 PM
+            - Mer. 09/07/2025 : 8 AM - 1 PM
+          `,
+        },
+      ],
+    },
+    {
+      title: "Intensive Barrils",
+      description: "Debutant et intermédiare",
+      image: formation1,
+      status: "confirmed",
+      decription_link:
+        "https://forms.zohopublic.com/carolinebergerdefemynie1/form/RecueildesbesoinsInscription/formperma/X8ryqIG4D2mdyqQI-FiBnW9a1vwiN-y0HuQGnPGetaQ",
+      created_at: "2025-07-01T10:10:39.231396Z",
+      updated_at: "2025-07-01T12:38:07.965067Z",
+      sessions: [
+        {
+          course: 8,
+          start_date: "2025-07-10",
+          end_date: "2025-07-11",
+          schedule: `
+            - Jeu. 10/07/2025 : 8 AM - 1 PM
+            - Ven. 11/07/2025 : 8 AM - 1 PM
+          `,
+        },
+      ],
+    },
+    {
+      title: "Intensive Reformer",
+      description: "Debutant et intermédiare",
+      image: reformer,
+      status: "confirmed",
+      decription_link:
+        "https://forms.zohopublic.com/carolinebergerdefemynie1/form/RecueildesbesoinsInscription/formperma/X8ryqIG4D2mdyqQI-FiBnW9a1vwiN-y0HuQGnPGetaQ",
+      created_at: "2025-08-01T10:10:39.231396Z",
+      updated_at: "2025-08-01T12:38:07.965067Z",
+      sessions: [
+        {
+          course: 9,
+          start_date: "2025-08-25",
+          end_date: "2025-09-05",
+          schedule: `
+            - Lun. 25/08/2025 : 1 PM - 6 PM
+            - Mar. 26/08/2025 : 8 AM - 1 PM
+            - Mer. 27/08/2025 : 8 AM - 1 PM
+            - Jeu. 28/08/2025 : 8 AM - 1 PM
+            - Ven. 29/08/2025 : 8 AM - 1 PM
+            - OFF
+            - Lun. 01/09/2025 : 1 PM - 6 PM
+            - Niveau Intermédiaire
+            - Mar. 02/09/2025 : 8 AM - 1 PM
+            - Mer. 03/09/2025 : 8 AM - 1 PM
+            - Jeu. 04/09/2025 : 8 AM - 1 PM
+            - Ven. 05/09/2025 : 8 AM - 1 PM
+          `,
         },
       ],
     },
   ];
 
+  const parseBackendSchedule = (scheduleString: string) => {
+    if (!scheduleString) return '';
+    
+    // Split the schedule string into lines and filter out the headers
+    const lines = scheduleString.split('\n')
+      .filter(line => line.includes(':') && !line.includes('Start Date') && !line.includes('End Date') && !line.includes('Schedule'))
+      .map(line => line.trim().replace('  - ', '- ')) // Clean up extra spaces
+      .join('\n');
+    
+    return lines;
+  };
+
   const getFormations = async () => {
     try {
-      const res = await api.get("couxrse-list-planning-sessions/");
-      const publishedFormations = res.data.filter(
-        (formation: CoursePlanningSessions) => formation.status === "confirmed"
-      );
+      const res = await api.get("course-list-planning-sessions/");
+      const publishedFormations = res.data
+        .filter((formation: CoursePlanningSessions) => formation.status === "confirmed")
+        .map((formation: CoursePlanningSessions) => {
+          // If there are sessions, process them
+          if (formation.sessions && formation.sessions.length > 0) {
+            const firstSession = formation.sessions[0];
+            return {
+              ...formation,
+              sessions: [{
+                ...firstSession,
+                schedule: parseBackendSchedule(firstSession.schedule)
+              }]
+            };
+          }
+          return formation;
+        });
+      console.log("Processed formations:", publishedFormations);
       setPlanning(publishedFormations);
     } catch (error) {
-      console.error("Error fetching plannig", error);
+      console.error("Error fetching planning", error);
     }
   };
 
@@ -138,15 +315,27 @@ export default function PlanningFormations() {
   useEffect(() => {
     setShowMoreStates(dataPlanFormation.map(() => false));
   }, [planning]);
+  
+  const formattedPlans = planning.map((plan) => {
+    const firstSession = plan.sessions?.[0];
+    const startDate = firstSession?.start_date;
+    const endDate = firstSession?.end_date;
+    const imageUrl = `${window.location.origin}${plan.image}`;
 
-  const formattedPlans = planning.map((plan) => ({
-    ...plan,
-    sessions: plan.sessions?.map((session) => ({
-      ...session,
-      schedule: session.schedule, // Ensure schedule is a string
-    })),
-  }));
-
+  
+    const formattedDate =
+      startDate && endDate
+        ? `${new Date(startDate).toLocaleDateString("fr-FR")} au ${new Date(
+            endDate
+          ).toLocaleDateString("fr-FR")}`
+        : "";
+  
+    return {
+      ...plan,
+      date: formattedDate,
+      image: imageUrl,
+    };
+  });
   const dataPlanFormation =
     formattedPlans.length > 0 ? formattedPlans : plansFormation;
 
@@ -155,6 +344,7 @@ export default function PlanningFormations() {
       prevStates.map((state, i) => (i === index ? !state : state))
     );
   };
+  console.log("Formatted Plans:", formattedPlans);
 
   return (
     <section className="mb-14">

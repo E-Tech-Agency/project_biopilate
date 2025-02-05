@@ -16,7 +16,6 @@ type Plan = {
   created_at: string;
   updated_at: string;
   decription_link: string;
-  niveau?: string;
   date?: string;
   sessions?: Session[];
 };
@@ -27,16 +26,36 @@ type PlanningCardProps = {
   toggleShowMore: () => void;
 };
 
+
 function TimeSlots({ plan, showMore, toggleShowMore }: PlanningCardProps) {
-  if (!plan.sessions || plan.sessions.length === 0) {
+  // Extract schedule data from the sessions
+  const session = plan.sessions?.[0];
+  if (!session) return null;
+
+  // Format the schedule data
+  let scheduleLines: string[] = [];
+  
+  if (session.schedule && typeof session.schedule === 'object') {
+    // Handle API format
+    const scheduleData = session.schedule;
+    scheduleLines = Object.entries(scheduleData)
+      .filter(([key]) => key !== 'start_date' && key !== 'end_date')
+      .map(([date, time]) => `- ${date}: ${time}`)
+      .filter(line => line && line !== '');
+  } else if (typeof session.schedule === 'string') {
+    // Handle hardcoded format
+    scheduleLines = session.schedule
+      .split('\n')
+      .map(line => line.trim())
+      .filter(line => line && line !== '');
+  }
+
+  // If no valid schedule lines after processing, return null
+  if (scheduleLines.length === 0) {
     return null;
   }
 
-  // Get all schedules from all sessions and split them into individual time slots
-  const allSchedules = plan.sessions.flatMap((session) =>
-    session.schedule.split("\n").filter(Boolean)
-  );
-  const displayedSchedules = showMore ? allSchedules : allSchedules.slice(0, 1);
+  const displayedSchedules = showMore ? scheduleLines : scheduleLines.slice(0, 1);
 
   return (
     <div className="flex flex-col justify-center items-center w-full">
@@ -49,7 +68,7 @@ function TimeSlots({ plan, showMore, toggleShowMore }: PlanningCardProps) {
         </div>
       ))}
 
-      {allSchedules.length > 1 && (
+      {scheduleLines.length > 1 && (
         <button
           className="flex items-center text-marron text-lg font-lato font-bold mt-5"
           onClick={toggleShowMore}
@@ -93,14 +112,14 @@ export default function PlanningFormationCard({
               <div className="absolute inset-0 bg-gradient-to-t from-black to-[70%] opacity-75" />
               <h3
                 className={`text-xl md:text-2xl font-semibold absolute bottom-0 left-0 right-0 text-center pb-14 px-4 ${
-                  plan.niveau ? "" : "pb-7"
+                  plan.description ? "" : "pb-7"
                 }`}
               >
                 {plan.title}
               </h3>
-              {plan.niveau && (
+              {plan.description && (
                 <h3 className="text-lg md:text-xl font-normal absolute bottom-0 left-0 right-0 text-center pb-6">
-                  {plan.niveau}
+                  {plan.description}
                 </h3>
               )}
             </div>
@@ -118,25 +137,19 @@ export default function PlanningFormationCard({
             </div>
           )}
 
+          {/* Display the schedule */}
           <TimeSlots
             plan={plan}
             showMore={showMore}
             toggleShowMore={toggleShowMore}
           />
 
-          {/* Space filler */}
-          {(!plan.sessions || plan.sessions.length < 2) && (
-            <div className="h-5 md:h-7" />
-          )}
-
+          {/* Button to join */}
           <div className="rounded-lg grow">
             <button
               className="flex overflow-hidden reserver-button bg-bgColor flex-col justify-center text-sm md:text-base leading-6 rounded-lg text-current transition duration-300 ease-in-out transform"
               onClick={() => {
-                window.open(
-                  "https://forms.zohopublic.com/virtualoffice707/form/AnalysedesbesoinsbnficiairesFormationscourtesouper/formperma/0Yyw-9wbvHRQB_Xb63QniT0EDrnKuekcjjfWvZC8PMg",
-                  "_blank"
-                );
+                window.open(plan.decription_link, "_blank");
               }}
             >
               <div className="hover-circle overflow-hidden" />

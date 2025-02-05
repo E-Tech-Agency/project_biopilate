@@ -158,12 +158,13 @@ export default function CreateFAQForm() {
 
               {/* Boutons */}
               <div className="flex justify-between items-center mt-4">
-                <Button
+                <button
                   type="submit"
-                  className="bg-blue-600 text-white hover:bg-blue-700 rounded-md px-6 py-2"
+                  className=" flex reserver-button text-sm sm:text-base font-bold font-lato rounded-lg  py-2 sm:py-3 bg-bgColor text-marron  duration-300 ease-in-out transform"
+
                 >
                   Ajouter
-                </Button>
+                </button>
                 <Button
                   type="button"
                   className="bg-gray-500 text-white hover:bg-gray-600 rounded-md px-6 py-2"

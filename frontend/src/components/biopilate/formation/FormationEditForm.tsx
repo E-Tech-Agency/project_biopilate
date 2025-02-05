@@ -19,8 +19,8 @@ const FormationEditForm: React.FC<Props> = ({ initialFormation, onSubmit }) => {
   const [formation, setFormation] = useState(initialFormation);
   const [previewMode, setPreviewMode] = useState(false);
   const [expandedSection, setExpandedSection] = useState("details");
-  const [imagePreview, setImagePreview] = useState<string | null>(null);
-  const [pdfPreview, setPdfPreview] = useState<string | null>(null);
+  // const [imagePreview, setImagePreview] = useState<string | null>(null);
+  // const [pdfPreview, setPdfPreview] = useState<string | null>(null);
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
     setFormation((prev) => ({ ...prev, [name]: value }));
@@ -83,13 +83,13 @@ const FormationEditForm: React.FC<Props> = ({ initialFormation, onSubmit }) => {
             {formation.status === "published" ? "Publiée" : "En attente"}
           </Badge>
         </div>
-        <Button 
+        <button 
           onClick={handleSubmit}
           className="flex reserver-button text-sm sm:text-base font-bold font-lato rounded-lg py-2 sm:py-3 bg-bgColor text-marron duration-300 ease-in-out transform"
         >
           <Save className="w-4 h-4" />
           Enregistrer
-        </Button>
+        </button>
       </div>
       <div className="space-y-6">
         <div className="relative group">
