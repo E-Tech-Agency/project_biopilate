@@ -1,18 +1,19 @@
-
 import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 // import { LuShare } from "react-icons/lu";
 // import OtherArticles from "./OtherArticles";
-import article1Image from "@/assets/images/article-1.png";
-import placeholderImage from "@/assets/images/Placeholder_view_vector.png";
-import image1 from "@/assets/images/caroline-article-1.jpeg";
-import image2 from "@/assets/images/caroline-article-2.jpg";
+import blog1Img1 from "@/assets/images/article-1.png";
+import blog1Img2 from "@/assets/images/caroline-article-1.jpeg";
+import blog1Img3 from "@/assets/images/caroline-article-2.jpg";
+import blog2Img1 from "@/assets/images/blog2-img1.png";
+import blog2Img2 from "@/assets/images/blog2-img2.png";
+import blog2Img3 from "@/assets/images/blog2-img3.png";
 import blogTrainer from "@//assets/images/blog-trainer.jpg";
 import { LuShare } from "react-icons/lu";
 import { IoIosLink } from "react-icons/io";
 import { RiTwitterXLine, RiInstagramFill } from "react-icons/ri";
 import { TiSocialFacebook } from "react-icons/ti";
-import { Blog ,BlogArticle } from "@/types/types";
+import { Blog } from "@/types/types";
 import { useEffect, useState } from "react";
 import api from "@/lib/apiPublic";
 import {
@@ -22,7 +23,6 @@ import {
 } from "@/components/ui/popover";
 export default function Article() {
   const [blogs, setBlogs] = useState<Blog[] | null>([]);
- 
 
   const getBlogs = async () => {
     try {
@@ -40,97 +40,99 @@ export default function Article() {
     getBlogs();
   }, []);
 
-  const articles = [
+  const articles: Blog[] = [
     {
       id: 1,
-      title: "La maison vieille",
-      ecrivain: "Véronique Fournier",
+      title:
+        "Ce n'est pas parce qu'on est vieux qu'on n'a pas besoin ni envie de vacances.",
+      author: "Véronique Fournier",
+      authorBio: "Fondatrice du projet et hôtesse des lieux",
       description:
         "La Maison Vieille est un lieu de soutien et de bien-être pour les personnes âgées, visant à briser leur isolement et à offrir des moments enrichissants.",
-      jaimes: 49,
-      image: article1Image,
+      favorites: 49,
+      view: 0,
+      text1:
+        "<strong>La maison vieille</strong> est une maison de vacances spécialement conçue pour les personnes vieilles ou à mobilité réduite. Elle propose des services et activités adaptés à leur âge. <br className='sm:hidden' />Elle permet aussi de venir entre amis ou en famille dans un lieu qui convient à toutes les générations. « J’ai conçu cette maison comme un lieu de fraternité pour y accueillir plus particulièrement toutes ces vieilles et ces vieux dont j’ai eu à prendre soin quand j’étais médecin, et dont j’ai découvert combien si souvent ils souffrent de se sentir seuls et en marge de la vie qui va. Puiss <strong>la maison vieille</strong> leur permettre de renouer du lien social, de rencontrer des pairs, de s’offrir quelques plaisirs simples; devenir un lieu où l’on sait que l’on peut aller facilement pour briser pendant quelques jours,voire simplement pendant quelques heures, le cours infini de la solitude à laquelle on est désormais contraint ».",
+      subtitle:
+        "Caroline Berger intervient bénévolement à la Maison Vieille dans les ateliers de pratique physique du Pilates adapté:",
+      text2:
+        "“Cela fait plus de 15 ans que je connais Véronique Fournier et j’ai toujours été très respectueuse de ses idées et très engagée à y adhérer dès que je le pouvais. Nous avons tous des parents ou des proches vieillissants. Après avoir vécu ma première maison de de retraite avec ma grand-mère, je me suis promise d’accompagner mes proches et de leur offrir la possibilité d’être autonome le plus longtemps possible et cela passe aussi par une activité physique adaptée.“",
+      imageCover: blog1Img1,
+      imagePosition: "object-bottom",
+      image_1: blog1Img2,
+      image_2: blog1Img3,
+      tags: [
+        "Pilates",
+        "Activités physique",
+        "Mobilité réduite",
+        "Maison Vieille",
+      ],
+      date: new Date(""),
+      status: "approved",
+      full_text: "",
+      range: 0,
+      create_at: new Date("2025-01-30"),
+      updated_at: new Date("2025-02-05"),
     },
     {
       id: 2,
-      title: "Titre",
-      ecrivain: "Par Biopilates",
+      title:
+        "Les bienfaits physiques de la méthode pilates pendant la grossesse",
+      author: "Caroline Berger de Fémynie",
+      authorBio: "Fondatrice du studio Biopilates",
       description:
-        "Vous êtes débutant en Pilates et vous vous demandez comment bien commencer ? Découvrez nos 5 conseils pour débuter le Pilates.",
-      jaimes: 39,
-      image: placeholderImage,
-    },
-    {
-      id: 3,
-      title: "Titre",
-      ecrivain: "Par Biopilates",
-      description:
-        "Vous êtes débutant en Pilates et vous vous demandez comment bien commencer ? Découvrez nos 5 conseils pour débuter le Pilates.",
-      jaimes: 67,
-      image: placeholderImage,
-    },
-    {
-      id: 4,
-      title: "Titre",
-      ecrivain: "Par Biopilates",
-      description:
-        "Vous êtes débutant en Pilates et vous vous demandez comment bien commencer ? Découvrez nos 5 conseils pour débuter le Pilates.",
-      jaimes: 25,
-      image: placeholderImage,
-    },
-    {
-      id: 5,
-      title: "Titre",
-      ecrivain: "Par Biopilates",
-      description:
-        "Vous êtes débutant en Pilates et vous vous demandez comment bien commencer ? Découvrez nos 5 conseils pour débuter le Pilates.",
-      jaimes: 49,
-      image: placeholderImage,
-    },
-    {
-      id: 6,
-      title: "Titre",
-      ecrivain: "Par Biopilates",
-      description:
-        "Vous êtes débutant en Pilates et vous vous demandez comment bien commencer ? Découvrez nos 5 conseils pour débuter le Pilates.",
-      jaimes: 49,
-      image: placeholderImage,
-    },
-    {
-      id: 7,
-      title: "Titre",
-      ecrivain: "Par Biopilates",
-      description:
-        "Vous êtes débutant en Pilates et vous vous demandez comment bien commencer ? Découvrez nos 5 conseils pour débuter le Pilates.",
-      jaimes: 49,
-      image: placeholderImage,
-    },
-    {
-      id: 8,
-      title: "Titre",
-      ecrivain: "Par Biopilates",
-      description:
-        "Vous êtes débutant en Pilates et vous vous demandez comment bien commencer ? Découvrez nos 5 conseils pour débuter le Pilates.",
-      jaimes: 49,
-      image: placeholderImage,
+        "La Maison Vieille est un lieu de soutien et de bien-être pour les personnes âgées, visant à briser leur isolement et à offrir des moments enrichissants.",
+      favorites: 49,
+      view: 0,
+      text1:
+        "Soutenue par des recommandations fondées sur des preuves, la méthode Pilates offre une approche holistique pour nourrir le corps et l'esprit pendant la grossesse et le rétablissement après l'accouchement. Chaque grossesse est unique et la priorité doit toujours être d'écouter votre corps et de consulter votre médecin pour déterminer ce qui est le mieux pour vous. <br> </br> Au fur et à mesure que le corps s'adapte à la grossesse, divers changements physiques peuvent affecter le confort, la mobilité et la posture. <br> </br> Les exercices de Pilates offrent des moyens ciblés pour répondre à ces changements : Renforcement du tronc (sans travail du grand droit) : Le renforcement de l'abdomen transverse (muscles profonds du tronc) soutient la colonne vertébrale et le bassin, réduisant ainsi les désagréments courants de la grossesse tels que les douleurs lombaires. Soyez prudente avec les exercices qui font travailler le grand droit de l'abdomen (par exemple, les boucles abdominales ou tout travail de flexion), car ils peuvent solliciter les muscles abdominaux et aggraver le diastasis recto. <br> </br> Amélioration de la posture et de l'alignement : Le Pilates aide à maintenir l'alignement de la colonne vertébrale et renforce les muscles du dos afin d'atténuer les tensions dues aux déplacements de poids causés par la croissance du ventre et des seins.",
+      subtitle: "",
+      text2:
+        "Augmentation de la flexibilité et de la mobilité : Pendant la grossesse, l'hormone relaxine augmente pour aider le corps à se préparer à l'accouchement en relâchant les ligaments et en augmentant la flexibilité, en particulier au niveau du bassin. Si cette souplesse accrue peut être bénéfique, elle nécessite également une certaine prudence, car des étirements excessifs pendant la grossesse peuvent rendre les articulations trop lâches ou instables, ce qui peut entraîner une gêne ou une blessure. Des étirements doux et contrôlés aident à maintenir la souplesse, tandis que des exercices en profondeur du tronc et du plancher pelvien développent la force nécessaire pour soutenir les articulations lâches en toute sécurité.",
+      imageCover: blog2Img1,
+      image_1: blog2Img2,
+      image_2: blog2Img3,
+      tags: [],
+      date: new Date("2025-01-30"),
+      status: "approved",
+      full_text: "",
+      range: 0,
+      create_at: new Date("2025-01-30"),
+      updated_at: new Date("2025-02-05"),
     },
   ];
+
   const { id } = useParams<{ id: string }>(); // Make sure id is of type string
   const articleId = id ? parseInt(id) : null; // Safely parse the id if it exists
 
   const navigate = useNavigate();
-  const blogData: BlogArticle[] = blogs && blogs.length > 0
-  ? blogs.map((blog) => ({
-      id: blog.id,
-      title: blog.title,
-      ecrivain: blog.author,
-      description: blog.description,
-      favorites: blog.favorites,
-      image: blog.image_1,
-      view: blog.view,
-    }))
-  : articles;
-    
-    const article = blogData.find((blog) => blog.id === articleId);
+  const blogData: Blog[] =
+    blogs && blogs.length > 0
+      ? blogs.map((blog) => ({
+          id: blog.id,
+          title: blog.title,
+          author: blog.author,
+          authorBio: blog.authorBio,
+          description: blog.description,
+          favorites: blog.favorites,
+          view: blog.view,
+          text1: blog.text1,
+          subtitle: blog.subtitle,
+          text2: blog.text2,
+          imageCover: blog.imageCover,
+          image_1: blog.image_1,
+          image_2: blog.image_2,
+          tags: blog.tags,
+          date: blog.date,
+          status: blog.status,
+          full_text: blog.full_text,
+          range: blog.range,
+          create_at: blog.create_at,
+          updated_at: blog.updated_at,
+        }))
+      : articles;
+
+  const article = blogData.find((blog) => blog.id === articleId);
   const navigateToContact = () => {
     navigate("/contact");
   };
@@ -174,97 +176,66 @@ export default function Article() {
       </div>
     );
   }
+
   return (
     <div className="mt-8 mx-5 md:mx-12 mb-12 gap-3">
       <div className="flex flex-col justify-center items-center">
         <p className="text-marron text-xl md:text-6xl leading-snug font-ebGaramond font-semibold text-center max-w-[1100px] mx-8">
-          Ce n'est pas parce qu'on est vieux qu'on n'a pas besoin ni envie de
-          vacances.
+          {article.title}
         </p>
         <img
-          src={article.image}
+          src={article.imageCover}
           alt={article.title}
-          className="rounded-lg w-full max-h-[645px] object-cover object-bottom shadow-lg my-6"
+          className={`rounded-lg w-full max-h-[645px] object-cover ${article.imagePosition} shadow-lg my-6`}
         />
       </div>
       <div className="flex flex-row max-md:flex-wrap my-4 gap-6">
-        <div className="min-w-[200px] text-marron font-bold">
-          Date de l'article
+        <div className="min-w-[200px] text-marron">
+          <strong>Date:</strong> {article.date && article.date.toDateString()}
         </div>
         <div className="font-lato flex flex-col gap-6 text-justify md:pr-6">
           <div>
-            <p>
-              <strong>La maison vieille</strong> est une maison de vacances
-              spécialement conçue pour les personnes vieilles ou à mobilité
-              réduite. Elle propose des services et activités adaptés à leur
-              âge.
-            </p>
-            <p>
-              Elle permet aussi de venir entre amis ou en famille dans un lieu
-              qui convient à toutes les générations. « J’ai conçu cette maison
-              comme un lieu de fraternité pour y accueillir plus
-              particulièrement toutes ces vieilles et ces vieux dont j’ai eu à
-              prendre soin quand j’étais médecin, <br className="sm:hidden" />{" "}
-              et dont j’ai découvert combien si souvent ils souffrent de se
-              sentir seuls et en marge de la vie qui va. Puisse{" "}
-              <strong>la maison vieille</strong> leur permettre de renouer du
-              lien social, de rencontrer des pairs, de s’offrir quelques
-              plaisirs simples; devenir un lieu où l’on sait que l’on peut aller
-              facilement pour briser pendant quelques jours,voire simplement
-              pendant quelques heures, le cours infini de la solitude à laquelle
-              on est désormais contraint ».
-            </p>
+            <p dangerouslySetInnerHTML={{ __html: article.text1 }} />
           </div>
-          <p className="font-bold text-marron text-xl md:text-3xl">
-            Caroline Berger intervient bénévolement à la Maison Vieille dans les
-            ateliers de pratique physique du Pilates adapté:
-          </p>
+
+          {article.subtitle && (
+            <p className="font-bold text-marron text-xl md:text-3xl">
+              {article.subtitle}
+            </p>
+          )}
           <div className="flex flex-wrap gap-8 mt-2">
             <img
-              src={image1}
+              src={article.image_1}
               alt={article.title}
               className="rounded-lg max-h-[300px] w-[420px] max-md:w-full object-top object-cover "
             />
             <img
-              src={image2}
+              src={article.image_2}
               alt={article.title}
               className="rounded-lg max-h-[300px] w-[420px] object-cover max-md:hidden"
             />
           </div>
-          <p>
-            “Cela fait plus de 15 ans que je connais Véronique Fournier et j’ai
-            toujours été très respectueuse de ses idées et très engagée à y
-            adhérer dès que je le pouvais. Nous avons tous des parents ou des
-            proches vieillissants. Après avoir vécu ma première maison de de
-            retraite avec ma grand-mère, je me suis promise d’accompagner mes
-            proches et de leur offrir la possibilité d’être autonome le plus
-            longtemps possible et cela passe aussi par une activité physique
-            adaptée.“
-          </p>
+          <p dangerouslySetInnerHTML={{ __html: article.text2 }} />
 
-          <ul className="flex flex-wrap gap-3 pt-2">
-            <li className="block rounded-md text-marron py-1 px-3 border border-bgColor">
-              Pilates
-            </li>
-            <li className="block rounded-md text-marron py-1 px-3 border border-bgColor">
-              Activités physique
-            </li>
-            <li className="block rounded-md text-marron py-1 px-3 border border-bgColor">
-              Mobilité réduite
-            </li>
-            <li className="block rounded-md text-marron py-1 px-3 border border-bgColor">
-              Maison Vieille
-            </li>
-          </ul>
+          {article.tags.length > 0 && (
+            <ul className="flex flex-wrap gap-3 pt-2">
+              {article.tags.map((tag, index) => (
+                <li
+                  key={index}
+                  className="block rounded-md text-marron py-1 px-3 border border-bgColor"
+                >
+                  {tag}
+                </li>
+              ))}
+            </ul>
+          )}
           <hr />
 
           {/* author */}
           <div className="flex justify-between items-start md:items-center mt-2">
             <div className="flex flex-col gap-2">
-              <p>Véronique Fournier</p>
-              <p className="text-gray-500">
-                Fondatrice du projet et hôtesse des lieux
-              </p>
+              <p>{article.author}</p>
+              <p className="text-gray-500">{article.authorBio}</p>
             </div>
 
             {/* social media */}

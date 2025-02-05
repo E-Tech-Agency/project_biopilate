@@ -236,19 +236,26 @@ export type Blog = {
   id: number;
   title: string;
   author: string;
+  authorBio: string;
   description: string;
   favorites: number;
+  text1: string;
+  subtitle: string;
+  text2: string;
   status: string;
+  imageCover: string;
+  imagePosition?: string;
   image_1: string;
   image_2: string;
   full_text: string;
   date: Date;
   range: number;
   view: number;
-  tages: string[];
+  tags: string[];
   create_at: Date;
   updated_at: Date;
 };
+
 export type BlogArticle = {
   id: number;
   title: string;
@@ -259,6 +266,7 @@ export type BlogArticle = {
   view?: number;
   jaimes?: number;
 };
+
 export type BlogShow = {
   id: number;
   title: string;
