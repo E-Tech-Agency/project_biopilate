@@ -11,20 +11,20 @@ class Blog(models.Model):
     title = models.CharField('Titre', max_length=255)
     author = models.CharField('Nom de l’écrivain', max_length=100)
     description = models.TextField()
-    favorites = models.IntegerField(blank=True)
+    favorites = models.IntegerField(blank=True,default=0)
     image_1 = models.ImageField(
         'Image de coverture ', upload_to='blog_images/')  # upload path
     image_2 = models.ImageField('Image de blog', upload_to='blog_images/')
     full_text = models.TextField()
     date = models.DateField()
-    range = models.IntegerField(default='1')
+    range = models.IntegerField(default=1)
     create_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     tages_blog = models.ManyToManyField(
-        Tages, related_name='tages_blog', blank=True)
+        Tages, related_name='tages_blog', blank=True,db_table='biopilate_blog_tages')
     status = models.CharField('Status', max_length=10,
                               choices=STATUS_CHOICES, default='pending')
-    view = models.IntegerField(default='0')
+    view = models.IntegerField(default=0)
 
     def __str__(self):
         return self.title
@@ -38,10 +38,13 @@ class Blog(models.Model):
             return 'No Image'
 
     admin_image.short_description = 'Image'
-    admin_image.allow_tag = True
+    admin_image.allow_tags = True
 
     class Meta:
         verbose_name_plural = "Blog"
+        indexes = [
+        models.Index(fields=['-create_at']),  # Since you order by this in the ViewSet
+    ]
 
 
 class BlogImage(models.Model):
