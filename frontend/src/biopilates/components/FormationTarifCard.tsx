@@ -42,7 +42,9 @@ const FormationTarifCard: React.FC<FormationShow> = ({
             }`}
           >
             <p className="text-xs sm:text-sm">{levels?.[0]?.price}€</p>
-            <p className="text-xs sm:text-sm">{levels?.[1]?.price}€</p>
+            {levels?.[1]?.price && (
+              <p className="text-xs sm:text-sm">{levels?.[1]?.price}€</p>
+            )}
           </div>
           <div className="flex flex-col justify-between gap-1">
             <p className="text-xs sm:text-sm">{levels?.[0]?.name || ""}</p>

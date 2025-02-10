@@ -8,18 +8,13 @@ import "swiper/css/navigation";
 import { Pagination, Navigation, EffectCoverflow } from "swiper/modules";
 import { FaArrowLeftLong, FaArrowRightLong } from "react-icons/fa6";
 import BlogCard from "@/biopilates/components/BlogCard";
+import { BlogArticle } from "@/types/types";
 
-interface Article {
-  id: number;
-  title: string;
-  ecrivain: string;
-  description: string;
-  favorites: number;
-  image: string;
-  view: number;
-}
-
-export default function OtherArticles({ articles }: { articles: Article[] }) {
+export default function OtherArticles({
+  articles,
+}: {
+  articles: BlogArticle[];
+}) {
   return (
     <div className="w-full">
       <Swiper
@@ -27,8 +22,8 @@ export default function OtherArticles({ articles }: { articles: Article[] }) {
         grabCursor={true}
         centeredSlides={true} // Center the active slide
         loop={true} // Allow infinite looping
-        slideToClickedSlide={true}
-        initialSlide={1}
+        // slideToClickedSlide={true}
+        initialSlide={2}
         coverflowEffect={{
           rotate: 0, // No rotation
           stretch: 0, // No stretch effect
@@ -55,19 +50,19 @@ export default function OtherArticles({ articles }: { articles: Article[] }) {
             spaceBetween: 20,
           },
           1440: {
-            slidesPerView: 3,
+            slidesPerView: 2.8,
             spaceBetween: 15,
           },
           1280: {
-            slidesPerView: 2,
+            slidesPerView: 2.5,
             spaceBetween: 10,
           },
           1028: {
-            slidesPerView: 2,
+            slidesPerView: 1.9,
             spaceBetween: 10,
           },
           768: {
-            slidesPerView: 1,
+            slidesPerView: 1.4,
             spaceBetween: 5,
           },
           640: {

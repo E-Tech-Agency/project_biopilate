@@ -268,17 +268,98 @@ export default function PlanningFormations() {
         },
       ],
     },
+    {
+      title: "Chaise avancé",
+      description: "Avancé",
+      image: formation2,
+      status: "confirmed",
+      decription_link:
+        "https://forms.zohopublic.com/carolinebergerdefemynie1/form/RecueildesbesoinsInscription/formperma/X8ryqIG4D2mdyqQI-FiBnW9a1vwiN-y0HuQGnPGetaQ",
+      created_at: "2025-08-01T10:10:39.231396Z",
+      updated_at: "2025-08-01T12:38:07.965067Z",
+      sessions: [
+        {
+          course: 9,
+          start_date: "2025-08-25",
+          end_date: "2025-09-05",
+          schedule: `
+            - Sam. 12/07/2025 : 4PM - 7PM
+          `,
+        },
+      ],
+    },
+    {
+      title: "Baril Avancé",
+      description: "Avancé",
+      image: formation2,
+      status: "confirmed",
+      decription_link:
+        "https://forms.zohopublic.com/carolinebergerdefemynie1/form/RecueildesbesoinsInscription/formperma/X8ryqIG4D2mdyqQI-FiBnW9a1vwiN-y0HuQGnPGetaQ",
+      created_at: "2025-08-01T10:10:39.231396Z",
+      updated_at: "2025-08-01T12:38:07.965067Z",
+      sessions: [
+        {
+          course: 9,
+          start_date: "2025-08-25",
+          end_date: "2025-09-05",
+          schedule: `
+            - Dim. 13/07/2025 : 4PM - 7PM
+          `,
+        },
+      ],
+    },
+    {
+      title: "ONLINE Intensive Matwork",
+      description: "débutant, intermédiaire et avancé",
+      image: reformer,
+      status: "confirmed",
+      decription_link:
+        "https://forms.zohopublic.com/carolinebergerdefemynie1/form/RecueildesbesoinsInscription/formperma/X8ryqIG4D2mdyqQI-FiBnW9a1vwiN-y0HuQGnPGetaQ",
+      created_at: "2025-08-01T10:10:39.231396Z",
+      updated_at: "2025-08-01T12:38:07.965067Z",
+      sessions: [
+        {
+          course: 9,
+          start_date: "2025-08-25",
+          end_date: "2025-09-05",
+          schedule: `
+            - Mar. 15/07/2025 : 3 PM - 6 PM
+            - Mer. 16/07/2025 : 3 PM - 6 PM
+            - Jeu. 17/07/2025 : 3 PM - 6 PM
+            - Ven. 18/07/2025 : 3 PM - 6 PM
+            - OFF
+            - Lun. 21/07/2025 : 3 PM - 6 PM
+            - Mar. 22/07/2025 : 3 PM - 6 PM
+            - Mer. 23/07/2025 : 3 PM - 6 PM
+            - Jeu. 24/07/2025 : 3 PM - 6 PM
+            - Ven. 25/07/2025 : 3 PM - 6 PM
+            - OFF 
+            - Lun. 28/07/2025 : 3 PM - 6 PM
+            - Mar. 29/07/2025 : 3 PM - 6 PM
+            - Mer. 30/07/2025 : 3 PM - 6 PM
+            - Jeu. 31/07/2025 : 3 PM - 6 PM
+          `,
+        },
+      ],
+    },
   ];
 
   const parseBackendSchedule = (scheduleString: string) => {
-    if (!scheduleString) return '';
-    
+    if (!scheduleString) return "";
+
     // Split the schedule string into lines and filter out the headers
-    const lines = scheduleString.split('\n')
-      .filter(line => line.includes(':') && !line.includes('Start Date') && !line.includes('End Date') && !line.includes('Schedule'))
-      .map(line => line.trim().replace('  - ', '- ')) // Clean up extra spaces
-      .join('\n');
-    
+    const lines = scheduleString
+      .split("\n")
+      .filter(
+        (line) =>
+          line.includes(":") &&
+          !line.includes("Start Date") &&
+          !line.includes("End Date") &&
+          !line.includes("Schedule")
+      )
+      .map((line) => line.trim().replace("  - ", "- ")) // Clean up extra spaces
+      .join("\n");
+
     return lines;
   };
 
@@ -286,17 +367,22 @@ export default function PlanningFormations() {
     try {
       const res = await api.get("course-list-planning-sessions/");
       const publishedFormations = res.data
-        .filter((formation: CoursePlanningSessions) => formation.status === "confirmed")
+        .filter(
+          (formation: CoursePlanningSessions) =>
+            formation.status === "confirmed"
+        )
         .map((formation: CoursePlanningSessions) => {
           // If there are sessions, process them
           if (formation.sessions && formation.sessions.length > 0) {
             const firstSession = formation.sessions[0];
             return {
               ...formation,
-              sessions: [{
-                ...firstSession,
-                schedule: parseBackendSchedule(firstSession.schedule)
-              }]
+              sessions: [
+                {
+                  ...firstSession,
+                  schedule: parseBackendSchedule(firstSession.schedule),
+                },
+              ],
             };
           }
           return formation;
@@ -315,21 +401,20 @@ export default function PlanningFormations() {
   useEffect(() => {
     setShowMoreStates(dataPlanFormation.map(() => false));
   }, [planning]);
-  
+
   const formattedPlans = planning.map((plan) => {
     const firstSession = plan.sessions?.[0];
     const startDate = firstSession?.start_date;
     const endDate = firstSession?.end_date;
     const imageUrl = `${window.location.origin}${plan.image}`;
 
-  
     const formattedDate =
       startDate && endDate
         ? `${new Date(startDate).toLocaleDateString("fr-FR")} au ${new Date(
             endDate
           ).toLocaleDateString("fr-FR")}`
         : "";
-  
+
     return {
       ...plan,
       date: formattedDate,

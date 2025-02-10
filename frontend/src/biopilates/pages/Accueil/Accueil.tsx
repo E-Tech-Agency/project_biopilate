@@ -11,7 +11,7 @@ import ServicesSection from "./ServicesSection";
 import OtherArticles from "../Blog/OtherArticles";
 
 // Importing images
-import articleImage1 from "@/assets/images/article-1.png";
+// import articleImage1 from "@/assets/images/article-1.png";
 // import placeholderImage from "@/assets/images/Placeholder_view_vector.png";
 import gymImage from "@/assets/images/gym.jpg";
 import bgImgReserver from "@/assets/images/bg-img-reserver.jpg";
@@ -19,8 +19,7 @@ import blogBg from "@/assets/images/blog-bg.jpg";
 import { Blog } from "@/types/types";
 import { useEffect, useState } from "react";
 import api from "@/lib/apiPublic";
-
-
+import { articleCards } from "../Blog/ArticlesList";
 
 export default function Accueil() {
   const [blogs, setBlogs] = useState<Blog[] | null>([]);
@@ -41,18 +40,6 @@ export default function Accueil() {
     getBlogs();
   }, []);
 
-  const articles = [
-    {
-      id: 1,
-      title: "La maison vieille",
-      ecrivain: "Véronique Fournier",
-      description:
-        "La Maison Vieille est un lieu de soutien et de bien-être pour les personnes âgées, visant à briser leur isolement et à offrir des moments enrichissants.",
-      favorites: 49,
-      image: articleImage1,
-      view:10,
-    },
-  ];
   const blogData =
     blogs && blogs.length > 0
       ? blogs.map((blog) => ({
@@ -64,8 +51,8 @@ export default function Accueil() {
           image: blog.image_1, // Use 'image_1' as the main image
           view: blog.view,
         }))
-      : articles;
-   const navigate = useNavigate();
+      : articleCards;
+  const navigate = useNavigate();
 
   const navigateToContact = () => {
     navigate("/contact");

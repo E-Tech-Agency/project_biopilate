@@ -19,19 +19,19 @@ import FormationTarifCard from "@/biopilates/components/FormationTarifCard";
 import blogBg from "@/assets/images/blog-bg.jpg";
 
 import formation1 from "@/assets/doc/1-Formation-Anatomie.pdf";
-import formation2 from "@/assets/doc/2-Formation-Matwork.pdf";
-import formation3 from "@/assets/doc/3-Formation-Reformer.pdf";
-import formation4 from "@/assets/doc/4-Formation-Cadillac.pdf";
-import formation5 from "@/assets/doc/5-Formation-Barils.pdf";
-import formation6 from "@/assets/doc/6-Formation-Chaise.pdf";
-import formation7 from "@/assets/doc/7-Formation-ISP.pdf";
+import formation2 from "@/assets/doc/2-Formation-Matwork-avec-prix.pdf";
+import formation3 from "@/assets/doc/3-Formation-Reformer-avec-prix.pdf";
+import formation4 from "@/assets/doc/4-Formation-Cadillac-avec-prix.pdf";
+import formation5 from "@/assets/doc/5-Formation-Barils-avec-prix.pdf";
+import formation6 from "@/assets/doc/6-Formation-Chaise-avec-prix.pdf";
+import formation7 from "@/assets/doc/7-Formation-ISP-avec-prix.pdf";
+import formation8 from "@/assets/doc/EXAMEN-CADDILAC-CHAISE-BARRILS.pdf";
+import formation9 from "@/assets/doc/EXAMEN-MATWORK-REFORMER.pdf";
 import api from "@/lib/apiPublic";
 import { FormationShow } from "@/types/formation";
 import { useEffect, useState } from "react";
 
 // Define TypeScript interface for formation data
-
-
 
 export default function FormationSwiper() {
   const [formationsDataBackent, setFormations] = useState<FormationShow[]>([]);
@@ -51,107 +51,116 @@ export default function FormationSwiper() {
     getFormations();
   }, []);
   const formations = [
-    { 
+    {
       title: "Reformer",
       image: reformerImage,
-    
+
       pdf_document: formation3,
-     
+
       levels: [
-        { name: "Débutant et intermédiaire", price: 2299 },
-        { name: "Avancé", price: 999},
-       
+        { name: "Débutant", price: 1155 },
+        { name: "Avancé", price: 855 },
       ],
-      status : "published",
-      formation_line : "https://forms.zohopublic.com/carolinebergerdefemynie1/form/RecueildesbesoinsInscription/formperma/X8ryqIG4D2mdyqQI-FiBnW9a1vwiN-y0HuQGnPGetaQ"
+      status: "published",
+      formation_line:
+        "https://forms.zohopublic.com/carolinebergerdefemynie1/form/RecueildesbesoinsInscription/formperma/X8ryqIG4D2mdyqQI-FiBnW9a1vwiN-y0HuQGnPGetaQ",
     },
     {
       title: "Matwork",
       image: Matwork,
       pdf_document: formation2,
       levels: [
-        { name: "Débutant et intermédiaire", price: 1599 },
-        { name: "Avancé", price: 399},
-       
+        { name: "Débutant", price: 999 },
+        { name: "Avancé", price: 315 },
       ],
-       status : "published",
-      formation_line : "https://forms.zohopublic.com/carolinebergerdefemynie1/form/RecueildesbesoinsInscription/formperma/X8ryqIG4D2mdyqQI-FiBnW9a1vwiN-y0HuQGnPGetaQ"
-
+      status: "published",
+      formation_line:
+        "https://forms.zohopublic.com/carolinebergerdefemynie1/form/RecueildesbesoinsInscription/formperma/X8ryqIG4D2mdyqQI-FiBnW9a1vwiN-y0HuQGnPGetaQ",
     },
     {
-      
       title: "Chaise",
       image: formation2Image,
-      
+
       pdf_document: formation6,
       levels: [
-        { name: "Débutant et intermédiaire", price: 699 },
-        { name: "Avancé", price: 299},
-       
+        { name: "Débutant", price: 489 },
+        { name: "Avancé", price: 309 },
       ],
-       status : "published",
-      formation_line : "https://forms.zohopublic.com/carolinebergerdefemynie1/form/RecueildesbesoinsInscription/formperma/X8ryqIG4D2mdyqQI-FiBnW9a1vwiN-y0HuQGnPGetaQ"
-
+      status: "published",
+      formation_line:
+        "https://forms.zohopublic.com/carolinebergerdefemynie1/form/RecueildesbesoinsInscription/formperma/X8ryqIG4D2mdyqQI-FiBnW9a1vwiN-y0HuQGnPGetaQ",
     },
     {
-      
+      title: "Examen Matwork Reformer",
+      image: Blessures,
+
+      pdf_document: formation9,
+      levels: [
+        { name: "4h (dont examen blanc) + envoie de Tests", price: 399 },
+      ],
+      status: "published",
+      formation_line:
+        "https://forms.zohopublic.com/carolinebergerdefemynie1/form/RecueildesbesoinsInscription/formperma/X8ryqIG4D2mdyqQI-FiBnW9a1vwiN-y0HuQGnPGetaQ",
+    },
+    {
       title: "Cadillac",
       image: reformerGyrotonicImage,
-     
+
       pdf_document: formation4,
       levels: [
-        { name: "Débutant et intermédiaire", price: 999 },
-        { name: "Avancé", price: 399},
-       
+        { name: "Débutant", price: 699 },
+        { name: "Avancé", price: 399 },
       ],
-      status : "published",
-      formation_line : "https://forms.zohopublic.com/carolinebergerdefemynie1/form/RecueildesbesoinsInscription/formperma/X8ryqIG4D2mdyqQI-FiBnW9a1vwiN-y0HuQGnPGetaQ"
-
+      status: "published",
+      formation_line:
+        "https://forms.zohopublic.com/carolinebergerdefemynie1/form/RecueildesbesoinsInscription/formperma/X8ryqIG4D2mdyqQI-FiBnW9a1vwiN-y0HuQGnPGetaQ",
     },
     {
       title: "Barrils",
       image: formation1Image,
-     
+
       pdf_document: formation5,
       levels: [
         { name: "Débutant et intermédiaire", price: 399 },
-        { name: "Avancé", price: 299},
-       
+        { name: "Avancé", price: 309 },
       ],
-      status : "published",
-      formation_line : "https://forms.zohopublic.com/carolinebergerdefemynie1/form/RecueildesbesoinsInscription/formperma/X8ryqIG4D2mdyqQI-FiBnW9a1vwiN-y0HuQGnPGetaQ"
-
+      status: "published",
+      formation_line:
+        "https://forms.zohopublic.com/carolinebergerdefemynie1/form/RecueildesbesoinsInscription/formperma/X8ryqIG4D2mdyqQI-FiBnW9a1vwiN-y0HuQGnPGetaQ",
     },
     {
       title: "Anatomie Fonctionnelle et biomécanique en privée",
       image: formation5Image,
-    
-      pdf_document: formation1,
-      levels: [
-        { name: "tous les niveaux", price: 1199 },
-      
-       
-      ],
-      status : "published",
-      formation_line : "https://forms.zohopublic.com/carolinebergerdefemynie1/form/RecueildesbesoinsInscription/formperma/X8ryqIG4D2mdyqQI-FiBnW9a1vwiN-y0HuQGnPGetaQ"
 
+      pdf_document: formation1,
+      levels: [{ name: "tous les niveaux", price: 1199 }],
+      status: "published",
+      formation_line:
+        "https://forms.zohopublic.com/carolinebergerdefemynie1/form/RecueildesbesoinsInscription/formperma/X8ryqIG4D2mdyqQI-FiBnW9a1vwiN-y0HuQGnPGetaQ",
     },
     {
-      title: "Blessures et Population spécifiques et prénatal et postnatal-ISP",
+      title: "ISP",
       image: Blessures,
-     
-      pdf_document: formation7,
-      levels: [
-        { name: "tous les niveaux", price: 1599 },
-      
-       
-      ],
-      status : "published",
-      formation_line : "https://forms.zohopublic.com/carolinebergerdefemynie1/form/RecueildesbesoinsInscription/formperma/X8ryqIG4D2mdyqQI-FiBnW9a1vwiN-y0HuQGnPGetaQ"
 
+      pdf_document: formation7,
+      levels: [{ name: "Blessures et populations spécifiques", price: 1599 }],
+      status: "published",
+      formation_line:
+        "https://forms.zohopublic.com/carolinebergerdefemynie1/form/RecueildesbesoinsInscription/formperma/X8ryqIG4D2mdyqQI-FiBnW9a1vwiN-y0HuQGnPGetaQ",
+    },
+    {
+      title: "Examen Caddilac, Chaise & Barrils",
+      image: Blessures,
+
+      pdf_document: formation8,
+      levels: [{ name: "Préparation Examen heure privée", price: 1599 }],
+      status: "published",
+      formation_line:
+        "https://forms.zohopublic.com/carolinebergerdefemynie1/form/RecueildesbesoinsInscription/formperma/X8ryqIG4D2mdyqQI-FiBnW9a1vwiN-y0HuQGnPGetaQ",
     },
   ];
-  const dataFormation = formationsDataBackent.length > 0 ? formationsDataBackent : formations;
+  const dataFormation =
+    formationsDataBackent.length > 0 ? formationsDataBackent : formations;
 
   return (
     <section className="relative mt-8">
@@ -238,18 +247,20 @@ export default function FormationSwiper() {
           }}
         >
           {dataFormation.map((formation, index) => (
-         <SwiperSlide key={index} className="flex flex-col justify-center items-center">
-         <FormationTarifCard
-         // Add id here
-           title={formation.title}
-           image={formation.image}
-           pdf_document={formation.pdf_document}
-           levels={formation.levels}
-           formation_line={formation.formation_line}
-           status={formation.status}  // Add status here
-         />
-       </SwiperSlide>
-       
+            <SwiperSlide
+              key={index}
+              className="flex flex-col justify-center items-center"
+            >
+              <FormationTarifCard
+                // Add id here
+                title={formation.title}
+                image={formation.image}
+                pdf_document={formation.pdf_document}
+                levels={formation.levels}
+                formation_line={formation.formation_line}
+                status={formation.status} // Add status here
+              />
+            </SwiperSlide>
           ))}
           <div className="slider-controler flex justify-center gap-10 mb-6 ">
             {/* <div className="arrow-hover cursor-pointer swiper-but-prev slider-arrow hidden sm:flex justify-center items-center bg-bgColor rounded-full w-10 h-10">

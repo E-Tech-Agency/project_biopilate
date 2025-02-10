@@ -26,7 +26,6 @@ type PlanningCardProps = {
   toggleShowMore: () => void;
 };
 
-
 function TimeSlots({ plan, showMore, toggleShowMore }: PlanningCardProps) {
   // Extract schedule data from the sessions
   const session = plan.sessions?.[0];
@@ -34,20 +33,20 @@ function TimeSlots({ plan, showMore, toggleShowMore }: PlanningCardProps) {
 
   // Format the schedule data
   let scheduleLines: string[] = [];
-  
-  if (session.schedule && typeof session.schedule === 'object') {
+
+  if (session.schedule && typeof session.schedule === "object") {
     // Handle API format
     const scheduleData = session.schedule;
     scheduleLines = Object.entries(scheduleData)
-      .filter(([key]) => key !== 'start_date' && key !== 'end_date')
+      .filter(([key]) => key !== "start_date" && key !== "end_date")
       .map(([date, time]) => `- ${date}: ${time}`)
-      .filter(line => line && line !== '');
-  } else if (typeof session.schedule === 'string') {
+      .filter((line) => line && line !== "");
+  } else if (typeof session.schedule === "string") {
     // Handle hardcoded format
     scheduleLines = session.schedule
-      .split('\n')
-      .map(line => line.trim())
-      .filter(line => line && line !== '');
+      .split("\n")
+      .map((line) => line.trim())
+      .filter((line) => line && line !== "");
   }
 
   // If no valid schedule lines after processing, return null
@@ -55,7 +54,9 @@ function TimeSlots({ plan, showMore, toggleShowMore }: PlanningCardProps) {
     return null;
   }
 
-  const displayedSchedules = showMore ? scheduleLines : scheduleLines.slice(0, 1);
+  const displayedSchedules = showMore
+    ? scheduleLines
+    : scheduleLines.slice(0, 1);
 
   return (
     <div className="flex flex-col justify-center items-center w-full">
@@ -143,6 +144,9 @@ export default function PlanningFormationCard({
             showMore={showMore}
             toggleShowMore={toggleShowMore}
           />
+
+          {/* Space filler to maintain layout consistency */}
+          {showMore && <div className="h-20" />}
 
           {/* Button to join */}
           <div className="rounded-lg grow">

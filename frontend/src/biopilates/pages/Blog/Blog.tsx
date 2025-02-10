@@ -2,11 +2,12 @@
 // import Pagination from "@mui/material/Pagination";
 // import Stack from "@mui/material/Stack";
 import BlogCard from "@/biopilates/components/BlogCard";
-import articleImage1 from "@/assets/images/article-1.png";
-import blogimg2 from "@/assets/images/blog2-img1.png";
+// import articleImage1 from "@/assets/images/article-1.png";
+// import blogimg2 from "@/assets/images/blog2-img1.png";
 import { BlogShow } from "@/types/types";
 import { useEffect, useState } from "react";
 import api from "@/lib/apiPublic";
+import { articleCards } from "./ArticlesList";
 
 // import placeholderImage from "@/assets/images/Placeholder_view_vector.png";
 
@@ -40,6 +41,29 @@ import api from "@/lib/apiPublic";
 //   );
 // }
 
+// export const articles: BlogArticle[] = [
+//   {
+//     id: 1,
+//     title: "La maison vieille",
+//     ecrivain: "Véronique Fournier",
+//     description:
+//       "La Maison Vieille est un lieu de soutien et de bien-être pour les personnes âgées, visant à briser leur isolement et à offrir des moments enrichissants.",
+//     favorites: 49,
+//     image: articleImage1,
+//     view: 10,
+//   },
+//   {
+//     id: 2,
+//     title: "La méthode pilates favorise une grossesse saine",
+//     ecrivain: "Caroline Berger de Fémynie",
+//     description:
+//       "La grossesse entraîne de profonds changements physiques, émotionnels et mentaux. Pour accompagner ces transformations, de nombreuses femmes enceintes se tournent vers le Pilates, une méthode d'exercice à faible impact qui favorise la force, la souplesse et le lien entre le corps et l'esprit.",
+//     favorites: 49,
+//     image: blogimg2,
+//     view: 10,
+//   },
+// ];
+
 export default function Blog() {
   const [blogs, setBlogs] = useState<BlogShow[] | null>([]);
 
@@ -58,30 +82,32 @@ export default function Blog() {
   useEffect(() => {
     getBlogs();
   }, []);
-  const articles = [
-    {
-      id: 1,
-      title: "La maison vieille",
-      ecrivain: "Véronique Fournier",
-      description:
-        "La Maison Vieille est un lieu de soutien et de bien-être pour les personnes âgées, visant à briser leur isolement et à offrir des moments enrichissants.",
-      favorites: 49,
-      image: articleImage1,
-      view: 10,
-    },
-    {
-      id: 2,
-      title: "La méthode pilates favorise une grossesse saine",
-      ecrivain: "Caroline Berger de Fémynie",
-      description:
-        "La grossesse entraîne de profonds changements physiques, émotionnels et mentaux. Pour accompagner ces transformations, de nombreuses femmes enceintes se tournent vers le Pilates, une méthode d'exercice à faible impact qui favorise la force, la souplesse et le lien entre le corps et l'esprit.",
-      favorites: 49,
-      image: blogimg2,
-      view: 10,
-    },
 
-    // Add other articles here similarly...
-  ];
+  // const articles = [
+  //   {
+  //     id: 1,
+  //     title: "La maison vieille",
+  //     ecrivain: "Véronique Fournier",
+  //     description:
+  //       "La Maison Vieille est un lieu de soutien et de bien-être pour les personnes âgées, visant à briser leur isolement et à offrir des moments enrichissants.",
+  //     favorites: 49,
+  //     image: articleImage1,
+  //     view: 10,
+  //   },
+  //   {
+  //     id: 2,
+  //     title: "La méthode pilates favorise une grossesse saine",
+  //     ecrivain: "Caroline Berger de Fémynie",
+  //     description:
+  //       "La grossesse entraîne de profonds changements physiques, émotionnels et mentaux. Pour accompagner ces transformations, de nombreuses femmes enceintes se tournent vers le Pilates, une méthode d'exercice à faible impact qui favorise la force, la souplesse et le lien entre le corps et l'esprit.",
+  //     favorites: 49,
+  //     image: blogimg2,
+  //     view: 10,
+  //   },
+
+  //   // Add other articles here similarly...
+  // ];
+
   const blogData =
     blogs && blogs.length > 0
       ? blogs.map((blog) => ({
@@ -93,7 +119,7 @@ export default function Blog() {
           image: blog.image_1, // Use 'image_1' as the main image
           view: blog.view,
         }))
-      : articles;
+      : articleCards;
 
   return (
     <div className="flex flex-col mt-4 mx-5 md:mx-12 mb-12 ">

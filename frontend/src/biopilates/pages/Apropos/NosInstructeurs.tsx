@@ -29,14 +29,14 @@ const InstructeurCard = ({ instructeur }: { instructeur: InstructeurInfo }) => {
           className="rounded-full w-[90px] h-[90px] sm:w-[130px] sm:h-[130px] md:w-[170px] md:h-[170px] object-cover"
         />
       </div>
-      
-      <div className="flex flex-col gap-3 flex-grow ml-4 sm:ml-8 max-w-[60%]">
+
+      <div className="flex flex-col gap-3 flex-grow ml-4 sm:ml-6 max-w-[60%]">
         <h3 className="text-lg sm:text-xl md:text-2xl font-ebGaramond text-marron font-bold">
           {instructeur.name}
         </h3>
         <div
           dangerouslySetInnerHTML={{ __html: instructeur.description }}
-          className="text-justify text-[#5a5a5a] text-xs sm:text-sm md:text-base font-lato leading-relaxed overflow-y-auto max-h-44 pr-4"
+          className="text-justify text-[#5a5a5a] text-xs sm:text-sm md:text-base font-lato leading-relaxed overflow-y-auto max-h-[216px]"
         />
       </div>
     </div>
@@ -49,7 +49,7 @@ export default function NosInstructeurs() {
       name: "Sarah Bellagamba",
       image: instructeur1,
       description:
-        "Ancienne danseuse et professeure de yoga vinyasa, est <strong>instructrice certifiée Stott Pilates</strong> chez Biopilates Paris. Avec son expertise, elle propose des cours enrichissants, alliant professionnalisme et passion.",
+        "Professeure invitée au Studio Le Pilates, Sarah insuffle à ses cours une énergie inspirante, nourrie par ses voyages et ses découvertes culturelles. Son enseignement unique mêle le Pilates à des influences variées, offrant une expérience riche et immersive.",
     },
     {
       name: "Imrann Bana",
@@ -70,16 +70,16 @@ export default function NosInstructeurs() {
         "Instructrice Pilates et Lagree chez Biopilates Paris, allie ses racines brésiliennes et orientales à un enseignement lumineux et unique. Son approche artistique et dynamique rend chaque cours captivant.",
     },
     {
-      name: "Joelle Berckmans",
+      name: "Joëlle Berckmans",
       image: instructeur5,
       description:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+        "Instructrice de Pilates, incarne la douceur, l’élégance et la subtilité. Grâce à son approche intuitive et bienveillante, elle propose des cours qui allient fluidité et écoute du corps, offrant un enseignement raffiné et accessible à tous.",
     },
     {
       name: "Natasha Lodhi",
       image: instructeur6,
       description:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+        "Instructrice de Pilates, Natasha allie créativité et liberté dans son enseignement. Toujours en quête d’innovation, elle propose des cours dynamiques et authentiques, offrant une expérience unique où expression personnelle et bien-être se rencontrent.",
     },
   ];
 
@@ -88,7 +88,7 @@ export default function NosInstructeurs() {
       <h2 className="text-marron text-start w-full text-xl sm:text-[34px] leading-snug font-ebGaramond font-bold mb-8">
         Nos instructeurs
       </h2>
-      
+
       <Swiper
         className="centered-slide-carousel swiper-container w-full overflow-hidden mx-[-20px] md:mx-[-48px]"
         grabCursor={true}
@@ -123,14 +123,14 @@ export default function NosInstructeurs() {
           </SwiperSlide>
         ))}
       </Swiper>
-      
+
       <button className="arrow-hover cursor-pointer swiper-but-prev slider-arrow hidden sm:flex justify-center items-center bg-marron text-bgColor hover:text-marron rounded-full w-10 h-10 absolute left-[-20px] top-1/2 transform -translate-y-1/2 z-20">
         <FaArrowLeftLong />
       </button>
       <button className="arrow-hover cursor-pointer swiper-but-next slider-arrow hidden sm:flex justify-center items-center bg-marron text-bgColor hover:text-marron rounded-full w-10 h-10 absolute right-[-20px] top-1/2 transform -translate-y-1/2 z-20">
         <FaArrowRightLong />
       </button>
-      
+
       <div className="swiper-pagination m-auto z-[1] block" />
     </section>
   );
